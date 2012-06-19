@@ -5,7 +5,7 @@
 
 var express = require('express'),
   routes = require('./routes'),
-  json = require('./routes/json');
+  api = require('./routes/api');
 
 var app = module.exports = express.createServer();
 
@@ -14,6 +14,9 @@ var app = module.exports = express.createServer();
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.set('view options', {
+    layout: false
+  });
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/public'));
@@ -35,7 +38,7 @@ app.get('/partial/:id', routes.partial);
 
 // JSON API
 
-app.get('/json/name', json.name);
+app.get('/api/name', api.name);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
