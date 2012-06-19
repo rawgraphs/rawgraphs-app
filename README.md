@@ -13,7 +13,7 @@ It also illustrates writing angular partials/views with the Jade templating libr
 
 _Note: Although Jade supports interpolation, you should be doing that mostly on the client. Mixing
 server and browser templating will convolute your app. Instead, use Jade as a syntactic sugar for
-HTML, and let AngularJS take care of interpolation on the browser side.
+HTML, and let AngularJS take care of interpolation on the browser side._
 
 ## How to use angular-express-seed
 
@@ -55,8 +55,8 @@ Just fetch the changes and merge them into your project with git.
             angular-*.js          --> angular add-on modules
             version.txt           --> version number
     routes/
+      api.js            --> route for serving JSON
       index.js          --> route for serving HTML pages and partials
-      json.js           --> route for serving JSON
     views/
       index.jade        --> main page for app
       layout.jade       --> doctype, title, head boilerplate
