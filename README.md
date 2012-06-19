@@ -65,6 +65,12 @@ Just fetch the changes and merge them into your project with git.
         partial2.jade
 
 
+
+## Example App
+
+A simple [blog](https://github.com/btford/angular-express-blog) based on this seed.
+
+
 ## Contact
 
 For more information on AngularJS please check out http://angularjs.org/
