@@ -16,8 +16,8 @@ app.configure(function(){
   app.set('view engine', 'jade');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+  app.use(app.router);
 });
 
 app.configure('development', function(){
@@ -36,6 +36,9 @@ app.get('/partial/:id', routes.partial);
 // JSON API
 
 app.get('/json/name', json.name);
+
+// redirect all others to the index (HTML5 history)
+app.get('*', routes.index);
 
 // Start server
 
