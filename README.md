@@ -17,7 +17,7 @@ HTML, and let AngularJS take care of interpolation on the browser side._
 
 ## How to use angular-express-seed
 
-Clone the angular-express-seed repository and start hacking!
+Clone the angular-express-seed repository, run `npm install` to grab the dependencies, and start hacking!
 
 ### Running the app
 
