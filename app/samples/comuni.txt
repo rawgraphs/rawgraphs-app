@@ -1,0 +1,1183 @@
+id	Stato	Regione	Provincia	Comune	value
+A005	Italia	Lombardia	Lecco	Abbadia Lariana	1368
+A010	Italia	Lombardia	Milano	Abbiategrasso	17806
+A034	Italia	Lombardia	Brescia	Acquafredda	813
+A038	Italia	Lombardia	Mantova	Acquanegra sul Chiese	1732
+A039	Italia	Lombardia	Cremona	Acquanegra Cremonese	618
+A057	Italia	Lombardia	Bergamo	Adrara San Martino	1295
+A058	Italia	Lombardia	Bergamo	Adrara San Rocco	533
+A060	Italia	Lombardia	Brescia	Adro	4023
+A076	Italia	Lombardia	Cremona	Agnadello	2059
+A082	Italia	Lombardia	Brescia	Agnosine	860
+A087	Italia	Lombardia	Monza e della Brianza	Agrate Brianza	7777
+A096	Italia	Lombardia	Monza e della Brianza	Aicurzio	910
+A112	Italia	Lombardia	Lecco	Airuno	1554
+A127	Italia	Lombardia	Milano	Albairate	1920
+A129	Italia	Lombardia	Bergamo	Albano Sant'Alessandro	4127
+A143	Italia	Lombardia	Como	Albavilla	2834
+A153	Italia	Lombardia	Como	Albese con Cassano	1598
+A159	Italia	Lombardia	Monza e della Brianza	Albiate	2931
+A163	Italia	Lombardia	Bergamo	Albino	7600
+A164	Italia	Lombardia	Como	Albiolo	877
+A167	Italia	Lombardia	Varese	Albizzate	2302
+A172	Italia	Lombardia	Sondrio	Albosaggia	1594
+A175	Italia	Lombardia	Pavia	Albuzzano	1873
+A188	Italia	Lombardia	Brescia	Alfianello	1218
+A214	Italia	Lombardia	Bergamo	Alme'	2210
+A215	Italia	Lombardia	Bergamo	Villa d'Alme'	2494
+A216	Italia	Lombardia	Bergamo	Almenno San Bartolomeo	2345
+A217	Italia	Lombardia	Bergamo	Almenno San Salvatore	2109
+A224	Italia	Lombardia	Como	Alserio	515
+A246	Italia	Lombardia	Bergamo	Alzano Lombardo	6333
+A249	Italia	Lombardia	Como	Alzate Brianza	2027
+A259	Italia	Lombardia	Bergamo	Ambivere	1009
+A290	Italia	Lombardia	Varese	Angera	2357
+A293	Italia	Lombardia	Brescia	Angolo Terme	1376
+A299	Italia	Lombardia	Cremona	Annicco	1069
+A301	Italia	Lombardia	Lecco	Annone di Brianza	711
+A304	Italia	Lombardia	Bergamo	Antegnate	2072
+A319	Italia	Lombardia	Como	Anzano del Parco	633
+A333	Italia	Lombardia	Como	Appiano Gentile	3061
+A337	Italia	Lombardia	Sondrio	Aprica	1391
+A365	Italia	Lombardia	Bergamo	Arcene	2585
+A371	Italia	Lombardia	Varese	Arcisate	5312
+A375	Italia	Lombardia	Milano	Arconate	2696
+A376	Italia	Lombardia	Monza e della Brianza	Arcore	8368
+A382	Italia	Lombardia	Sondrio	Ardenno	1639
+A383	Italia	Lombardia	Bergamo	Ardesio	1272
+A387	Italia	Lombardia	Pavia	Arena Po	1088
+A389	Italia	Lombardia	Milano	Arese	10177
+A391	Italia	Lombardia	Como	Argegno	719
+A413	Italia	Lombardia	Milano	Arluno	5271
+A430	Italia	Lombardia	Como	Arosio	2013
+A440	Italia	Lombardia	Bergamo	Arzago d'Adda	1298
+A441	Italia	Lombardia	Varese	Arsago Seprio	2239
+A451	Italia	Lombardia	Brescia	Artogne	2589
+A470	Italia	Lombardia	Mantova	Asola	5525
+A473	Italia	Lombardia	Milano	Assago	6527
+A476	Italia	Lombardia	Como	Asso	1974
+A528	Italia	Lombardia	Bergamo	Azzano San Paolo	3774
+A529	Italia	Lombardia	Brescia	Azzano Mella	1837
+A531	Italia	Lombardia	Varese	Azzate	1753
+A557	Italia	Lombardia	Bergamo	Bagnatica	1879
+A569	Italia	Lombardia	Brescia	Bagnolo Mella	7275
+A570	Italia	Lombardia	Cremona	Bagnolo Cremasco	3121
+A575	Italia	Lombardia	Mantova	Bagnolo San Vito	3355
+A578	Italia	Lombardia	Brescia	Bagolino	1440
+A594	Italia	Lombardia	Lecco	Ballabio	1658
+A618	Italia	Lombardia	Milano	Baranzate	7761
+A619	Italia	Lombardia	Varese	Barasso	616
+A630	Italia	Lombardia	Brescia	Barbariga	1069
+A645	Italia	Lombardia	Varese	Bardello	718
+A652	Italia	Lombardia	Milano	Bareggio	9008
+A661	Italia	Lombardia	Brescia	Barghe	571
+A664	Italia	Lombardia	Bergamo	Bariano	2533
+A668	Italia	Lombardia	Monza e della Brianza	Barlassina	2952
+A683	Italia	Lombardia	Lecco	Barzago	989
+A684	Italia	Lombardia	Bergamo	Barzana	565
+A686	Italia	Lombardia	Lecco	Barzano'	1874
+A687	Italia	Lombardia	Lecco	Barzio	519
+A690	Italia	Lombardia	Pavia	Bascape'	1058
+A697	Italia	Lombardia	Milano	Basiano	1804
+A699	Italia	Lombardia	Milano	Basiglio	4722
+A702	Italia	Lombardia	Brescia	Bassano Bresciano	1265
+A729	Italia	Lombardia	Brescia	Bedizzole	7181
+A741	Italia	Lombardia	Pavia	Belgioioso	4293
+A744	Italia	Lombardia	Como	Bellagio	2114
+A745	Italia	Lombardia	Lecco	Bellano	1369
+A751	Italia	Lombardia	Milano	Bellinzago Lombardo	2144
+A759	Italia	Lombardia	Monza e della Brianza	Bellusco	3255
+A786	Italia	Lombardia	Bergamo	Berbenno	838
+A787	Italia	Lombardia	Sondrio	Berbenno di Valtellina	1951
+A791	Italia	Lombardia	Como	Beregazzo con Figliaro	836
+A792	Italia	Lombardia	Pavia	Bereguardo	1377
+A794	Italia	Lombardia	Bergamo	Bergamo	76680
+A799	Italia	Lombardia	Brescia	Berlingo	1252
+A802	Italia	Lombardia	Monza e della Brianza	Bernareggio	5602
+A804	Italia	Lombardia	Milano	Bernate Ticino	1253
+A811	Italia	Lombardia	Lodi	Bertonico	676
+A815	Italia	Lombardia	Bergamo	Berzo San Fermo	623
+A816	Italia	Lombardia	Brescia	Berzo Demo	701
+A817	Italia	Lombardia	Brescia	Berzo Inferiore	1256
+A818	Italia	Lombardia	Monza e della Brianza	Besana in Brianza	6180
+A819	Italia	Lombardia	Varese	Besano	765
+A820	Italia	Lombardia	Milano	Besate	1042
+A825	Italia	Lombardia	Varese	Besnate	2370
+A826	Italia	Lombardia	Varese	Besozzo	4404
+A845	Italia	Lombardia	Varese	Biandronno	1669
+A848	Italia	Lombardia	Sondrio	Bianzone	910
+A849	Italia	Lombardia	Monza e della Brianza	Biassono	4738
+A861	Italia	Lombardia	Brescia	Bienno	1834
+A866	Italia	Lombardia	Mantova	Bigarello	1128
+A870	Italia	Lombardia	Como	Binago	1565
+A872	Italia	Lombardia	Milano	Binasco	4690
+A878	Italia	Lombardia	Brescia	Bione	621
+A891	Italia	Lombardia	Varese	Bisuschio	1346
+A898	Italia	Lombardia	Como	Bizzarone	589
+A905	Italia	Lombardia	Como	Blevio	537
+A918	Italia	Lombardia	Varese	Bodio Lomnago	936
+A919	Italia	Lombardia	Lodi	Boffalora d'Adda	824
+A920	Italia	Lombardia	Milano	Boffalora sopra Ticino	1787
+A937	Italia	Lombardia	Bergamo	Bolgare	2938
+A940	Italia	Lombardia	Milano	Bollate	22240
+A950	Italia	Lombardia	Bergamo	Boltiere	3317
+A962	Italia	Lombardia	Bergamo	Bonate Sotto	3446
+A963	Italia	Lombardia	Bergamo	Bonate Sopra	4200
+A972	Italia	Lombardia	Cremona	Bonemerse	502
+A989	Italia	Lombardia	Pavia	Borgarello	1096
+A995	Italia	Lombardia	Lodi	Borghetto Lodigiano	2310
+B010	Italia	Lombardia	Bergamo	Borgo di Terzo	577
+B011	Italia	Lombardia	Mantova	Borgoforte	1726
+B012	Italia	Lombardia	Mantova	Motteggiana	1319
+B013	Italia	Lombardia	Mantova	Borgofranco sul Po	518
+B017	Italia	Lombardia	Lodi	Borgo San Giovanni	1402
+B028	Italia	Lombardia	Pavia	Borgo Priolo	1316
+B030	Italia	Lombardia	Pavia	Borgoratto Mormorolo	700
+B035	Italia	Lombardia	Brescia	Borgo San Giacomo	3566
+B040	Italia	Lombardia	Brescia	Borgosatollo	4695
+B049	Italia	Lombardia	Sondrio	Bormio	4202
+B051	Italia	Lombardia	Pavia	Bornasco	1357
+B054	Italia	Lombardia	Brescia	Borno	1451
+B081	Italia	Lombardia	Lecco	Bosisio Parini	1278
+B088	Italia	Lombardia	Bergamo	Bottanuco	2642
+B091	Italia	Lombardia	Brescia	Botticino	4340
+B100	Italia	Lombardia	Brescia	Bovegno	834
+B102	Italia	Lombardia	Brescia	Bovezzo	3938
+B105	Italia	Lombardia	Monza e della Brianza	Bovisio-Masciago	9409
+B110	Italia	Lombardia	Mantova	Bozzolo	2177
+B120	Italia	Lombardia	Brescia	Brandico	795
+B126	Italia	Lombardia	Varese	Brebbia	1426
+B129	Italia	Lombardia	Cremona	Castelverde	3094
+B134	Italia	Lombardia	Como	Bregnano	2652
+B137	Italia	Lombardia	Bergamo	Brembate	4448
+B138	Italia	Lombardia	Bergamo	Brembate di Sopra	2844
+B140	Italia	Lombardia	Bergamo	Brembilla	1274
+B141	Italia	Lombardia	Lodi	Brembio	1421
+B144	Italia	Lombardia	Como	Brenna	632
+B149	Italia	Lombardia	Brescia	Breno	2410
+B150	Italia	Lombardia	Varese	Brenta	935
+B157	Italia	Lombardia	Brescia	Brescia	143750
+B159	Italia	Lombardia	Pavia	Bressana Bottarone	1743
+B162	Italia	Lombardia	Milano	Bresso	15527
+B178	Italia	Lombardia	Bergamo	Brignano Gera d'Adda	2958
+B187	Italia	Lombardia	Monza e della Brianza	Briosco	2055
+B194	Italia	Lombardia	Lecco	Brivio	1974
+B201	Italia	Lombardia	Pavia	Broni	5671
+B212	Italia	Lombardia	Monza e della Brianza	Brugherio	17290
+B218	Italia	Lombardia	Como	Brunate	722
+B223	Italia	Lombardia	Bergamo	Brusaporto	2284
+B235	Italia	Lombardia	Milano	Bubbiano	1402
+B240	Italia	Lombardia	Milano	Buccinasco	16803
+B255	Italia	Lombardia	Sondrio	Buglio in Monte	820
+B258	Italia	Lombardia	Varese	Buguggiate	1080
+B261	Italia	Lombardia	Lecco	Bulciago	1326
+B262	Italia	Lombardia	Como	Bulgarograsso	1530
+B272	Italia	Lombardia	Monza e della Brianza	Burago di Molgora	2200
+B286	Italia	Lombardia	Milano	Buscate	2172
+B289	Italia	Lombardia	Monza e della Brianza	Busnago	3350
+B292	Italia	Lombardia	Milano	Bussero	4904
+B300	Italia	Lombardia	Varese	Busto Arsizio	45401
+B301	Italia	Lombardia	Milano	Busto Garolfo	5624
+B310	Italia	Lombardia	Bergamo	San Paolo d'Argon	2754
+B313	Italia	Lombardia	Como	Cabiate	3705
+B346	Italia	Lombardia	Como	Cadorago	3676
+B347	Italia	Lombardia	Varese	Cadrezzate	827
+B359	Italia	Lombardia	Como	Cagno	689
+B365	Italia	Lombardia	Brescia	Caino	906
+B368	Italia	Lombardia	Varese	Cairate	3619
+B393	Italia	Lombardia	Brescia	Calcinato	3428
+B394	Italia	Lombardia	Bergamo	Calcio	7731
+B395	Italia	Lombardia	Bergamo	Calcio	4035
+B396	Italia	Lombardia	Lecco	Calco	2255
+B423	Italia	Lombardia	Lecco	Calolziocorte	6440
+B434	Italia	Lombardia	Bergamo	Calusco d'Adda	4285
+B436	Italia	Lombardia	Brescia	Calvagese della Riviera	1985
+B439	Italia	Lombardia	Cremona	Calvatone	652
+B442	Italia	Lombardia	Bergamo	Calvenzano	1947
+B448	Italia	Lombardia	Milano	Calvignasco	798
+B450	Italia	Lombardia	Brescia	Calvisano	4177
+B461	Italia	Lombardia	Milano	Cambiago	3721
+B484	Italia	Lombardia	Cremona	Camisano	770
+B501	Italia	Lombardia	Monza e della Brianza	Camparada	676
+B513	Italia	Lombardia	Como	Campione d'Italia	19511
+B530	Italia	Lombardia	Sondrio	Campodolcino	760
+B587	Italia	Lombardia	Pavia	Candia Lomellina	865
+B593	Italia	Lombardia	Milano	Canegrate	5927
+B612	Italia	Lombardia	Mantova	Canneto sull'Oglio	2677
+B613	Italia	Lombardia	Pavia	Canneto Pavese	1089
+B618	Italia	Lombardia	Bergamo	Canonica d'Adda	2584
+B634	Italia	Lombardia	Varese	Cantello	1355
+B639	Italia	Lombardia	Como	Cantu'	17875
+B641	Italia	Lombardia	Como	Canzo	2314
+B650	Italia	Lombardia	Cremona	Capergnanica	1068
+B653	Italia	Lombardia	Como	Capiago Intimiano	2220
+B664	Italia	Lombardia	Brescia	Capo di Ponte	1123
+B671	Italia	Lombardia	Monza e della Brianza	Caponago	2433
+B686	Italia	Lombardia	Cremona	Capralba	1280
+B698	Italia	Lombardia	Brescia	Capriano del Colle	2276
+B703	Italia	Lombardia	Bergamo	Capriate San Gervasio	4068
+B710	Italia	Lombardia	Bergamo	Caprino Bergamasco	1470
+B711	Italia	Lombardia	Brescia	Capriolo	6435
+B729	Italia	Lombardia	Monza e della Brianza	Carate Brianza	7988
+B731	Italia	Lombardia	Bergamo	Caravaggio	8081
+B732	Italia	Lombardia	Varese	Caravate	1041
+B739	Italia	Lombardia	Mantova	Carbonara di Po	832
+B741	Italia	Lombardia	Pavia	Carbonara al Ticino	658
+B742	Italia	Lombardia	Como	Carbonate	1158
+B754	Italia	Lombardia	Varese	Cardano al Campo	8792
+B763	Italia	Lombardia	Lecco	Carenno	506
+B778	Italia	Lombardia	Como	Carimate	1468
+B785	Italia	Lombardia	Como	Carlazzo	764
+B796	Italia	Lombardia	Varese	Carnago	2797
+B798	Italia	Lombardia	Monza e della Brianza	Carnate	4220
+B801	Italia	Lombardia	Bergamo	Carobbio degli Angeli	2609
+B805	Italia	Lombardia	Varese	Caronno Pertusella	10285
+B807	Italia	Lombardia	Varese	Caronno Varesino	2305
+B817	Italia	Lombardia	Brescia	Carpenedolo	7611
+B820	Italia	Lombardia	Milano	Carpiano	2347
+B824	Italia	Lombardia	Pavia	Cura Carpignano	2367
+B850	Italia	Lombardia	Milano	Carugate	8716
+B851	Italia	Lombardia	Como	Carugo	2447
+B854	Italia	Lombardia	Bergamo	Carvico	1791
+B869	Italia	Lombardia	Cremona	Casalbuttano ed Uniti	1812
+B875	Italia	Lombardia	Varese	Casale Litta	1103
+B881	Italia	Lombardia	Cremona	Casale Cremasco-Vidolasco	1438
+B887	Italia	Lombardia	Lodi	Casaletto Lodigiano	1335
+B889	Italia	Lombardia	Cremona	Casaletto Ceredano	720
+B891	Italia	Lombardia	Cremona	Casaletto Vaprio	1093
+B898	Italia	Lombardia	Cremona	Casalmaggiore	8085
+B899	Italia	Lombardia	Lodi	Casalmaiocco	1493
+B900	Italia	Lombardia	Cremona	Casalmorano	884
+B901	Italia	Lombardia	Mantova	Casalmoro	1289
+B907	Italia	Lombardia	Mantova	Casaloldo	1429
+B910	Italia	Lombardia	Lodi	Casalpusterlengo	8924
+B911	Italia	Lombardia	Mantova	Casalromano	868
+B914	Italia	Lombardia	Cremona	Pozzaglio ed Uniti	792
+B921	Italia	Lombardia	Varese	Casalzuigno	621
+B938	Italia	Lombardia	Milano	Casarile	2428
+B943	Italia	Lombardia	Lecco	Casatenovo	5367
+B947	Italia	Lombardia	Bergamo	Casazza	2075
+B949	Italia	Lombardia	Varese	Casciago	1808
+B954	Italia	Lombardia	Pavia	Casei Gerola	1492
+B958	Italia	Lombardia	Lodi	Caselle Lurani	2594
+B961	Italia	Lombardia	Lodi	Caselle Landi	880
+B971	Italia	Lombardia	Bergamo	Casirate d'Adda	2063
+B974	Italia	Lombardia	Como	Caslino d'Erba	826
+B977	Italia	Lombardia	Como	Casnate con Bernate	1926
+B978	Italia	Lombardia	Bergamo	Casnigo	1118
+B987	Italia	Lombardia	Varese	Casorate Sempione	3093
+B988	Italia	Lombardia	Pavia	Casorate Primo	5885
+B989	Italia	Lombardia	Milano	Casorezzo	2460
+B993	Italia	Lombardia	Sondrio	Caspoggio	942
+B996	Italia	Lombardia	Lecco	Cassago Brianza	1961
+C003	Italia	Lombardia	Milano	Cassano d'Adda	11103
+C004	Italia	Lombardia	Varese	Cassano Magnago	10733
+C013	Italia	Lombardia	Milano	Pero	6548
+C014	Italia	Lombardia	Milano	Cassina de' Pecchi	7897
+C020	Italia	Lombardia	Como	Cassina Rizzardi	1466
+C033	Italia	Lombardia	Milano	Cassinetta di Lugagnano	672
+C038	Italia	Lombardia	Pavia	Cassolnovo	3029
+C052	Italia	Lombardia	Milano	Castano Primo	5179
+C053	Italia	Lombardia	Pavia	Casteggio	4285
+C055	Italia	Lombardia	Brescia	Castegnato	4081
+C059	Italia	Lombardia	Mantova	Castelbelforte	1508
+C072	Italia	Lombardia	Brescia	Castelcovati	8468
+C076	Italia	Lombardia	Mantova	Castel d'Ario	2672
+C079	Italia	Lombardia	Bergamo	Castelli Calepio	5968
+C118	Italia	Lombardia	Mantova	Castel Goffredo	7086
+C139	Italia	Lombardia	Varese	Castellanza	8251
+C153	Italia	Lombardia	Cremona	Castelleone	4866
+C181	Italia	Lombardia	Varese	Castelveccana	948
+C184	Italia	Lombardia	Pavia	Castello d'Agogna	537
+C187	Italia	Lombardia	Lecco	Castello di Brianza	893
+C195	Italia	Lombardia	Mantova	Castellucchio	2511
+C206	Italia	Lombardia	Como	Castelmarte	520
+C208	Italia	Lombardia	Brescia	Castel Mella	5931
+C228	Italia	Lombardia	Lodi	Castelnuovo Bocca d'Adda	1026
+C255	Italia	Lombardia	Bergamo	Castel Rozzone	1413
+C273	Italia	Lombardia	Varese	Castelseprio	525
+C293	Italia	Lombardia	Brescia	Castenedolo	5600
+C300	Italia	Lombardia	Varese	Castiglione Olona	3501
+C304	Italia	Lombardia	Lodi	Castiglione d'Adda	2662
+C312	Italia	Lombardia	Mantova	Castiglione delle Stiviere	15712
+C324	Italia	Lombardia	Sondrio	Castione Andevenno	1661
+C325	Italia	Lombardia	Bergamo	Castione della Presolana	632
+C329	Italia	Lombardia	Lodi	Castiraga Vidardo	1194
+C330	Italia	Lombardia	Brescia	Casto	893
+C332	Italia	Lombardia	Brescia	Castrezzato	6289
+C337	Italia	Lombardia	Bergamo	Castro	852
+C343	Italia	Lombardia	Varese	Castronno	2245
+C360	Italia	Lombardia	Pavia	Cava Manara	2819
+C362	Italia	Lombardia	Lodi	Cavacurta	805
+C374	Italia	Lombardia	Como	Cavallasca	1207
+C382	Italia	Lombardia	Varese	Cavaria con Premezzo	3008
+C394	Italia	Lombardia	Lodi	Cavenago d'Adda	1174
+C395	Italia	Lombardia	Monza e della Brianza	Cavenago di Brianza	4120
+C396	Italia	Lombardia	Bergamo	Cavernago	1401
+C406	Italia	Lombardia	Mantova	Cavriana	1840
+C408	Italia	Lombardia	Brescia	Cazzago San Martino	4940
+C417	Italia	Lombardia	Brescia	Cedegolo	680
+C439	Italia	Lombardia	Brescia	Cellatica	2421
+C456	Italia	Lombardia	Bergamo	Cenate Sopra	905
+C457	Italia	Lombardia	Bergamo	Cenate Sotto	1339
+C459	Italia	Lombardia	Bergamo	Cene	1607
+C484	Italia	Lombardia	Pavia	Ceranova	1282
+C502	Italia	Lombardia	Mantova	Ceresara	1175
+C506	Italia	Lombardia	Bergamo	Cerete	706
+C512	Italia	Lombardia	Monza e della Brianza	Ceriano Laghetto	2955
+C516	Italia	Lombardia	Como	Cermenate	4085
+C520	Italia	Lombardia	Como	Cernobbio	2926
+C521	Italia	Lombardia	Lecco	Cernusco Lombardone	1867
+C523	Italia	Lombardia	Milano	Cernusco sul Naviglio	17204
+C536	Italia	Lombardia	Milano	Cerro al Lambro	2631
+C537	Italia	Lombardia	Milano	Cerro Maggiore	8082
+C541	Italia	Lombardia	Pavia	Certosa di Pavia	2516
+C551	Italia	Lombardia	Pavia	Cervesina	955
+C555	Italia	Lombardia	Lodi	Cervignano d'Adda	888
+C563	Italia	Lombardia	Lecco	Cesana Brianza	753
+C565	Italia	Lombardia	Milano	Cesano Boscone	17866
+C566	Italia	Lombardia	Monza e della Brianza	Cesano Maderno	20069
+C569	Italia	Lombardia	Milano	Cesate	7948
+C585	Italia	Lombardia	Brescia	Ceto	1052
+C618	Italia	Lombardia	Brescia	Chiari	17794
+C623	Italia	Lombardia	Sondrio	Chiavenna	3286
+C628	Italia	Lombardia	Sondrio	Chiesa in Valmalenco	1505
+C634	Italia	Lombardia	Cremona	Chieve	1227
+C635	Italia	Lombardia	Bergamo	Chignolo d'Isola	1627
+C637	Italia	Lombardia	Pavia	Chignolo Po	2395
+C649	Italia	Lombardia	Bergamo	Chiuduno	2753
+C651	Italia	Lombardia	Sondrio	Chiuro	1223
+C684	Italia	Lombardia	Pavia	Cigognola	797
+C685	Italia	Lombardia	Brescia	Cigole	635
+C686	Italia	Lombardia	Pavia	Cilavegna	2594
+C698	Italia	Lombardia	Brescia	Tavernole sul Mella	526
+C703	Italia	Lombardia	Cremona	Cingia de' Botti	566
+C707	Italia	Lombardia	Milano	Cinisello Balsamo	59028
+C724	Italia	Lombardia	Como	Cirimido	1029
+C728	Italia	Lombardia	Bergamo	Cisano Bergamasco	2676
+C730	Italia	Lombardia	Bergamo	Ciserano	3419
+C732	Italia	Lombardia	Varese	Cislago	5180
+C733	Italia	Lombardia	Milano	Cisliano	1829
+C751	Italia	Lombardia	Varese	Cittiglio	1828
+C752	Italia	Lombardia	Lecco	Civate	1765
+C759	Italia	Lombardia	Bergamo	Cividate al Piano	3344
+C760	Italia	Lombardia	Brescia	Cividate Camuno	1323
+C796	Italia	Lombardia	Varese	Clivio	503
+C800	Italia	Lombardia	Bergamo	Clusone	3821
+C806	Italia	Lombardia	Brescia	Coccaglio	6222
+C810	Italia	Lombardia	Varese	Cocquio-Trevisago	2145
+C813	Italia	Lombardia	Pavia	Codevilla	625
+C816	Italia	Lombardia	Lodi	Codogno	8494
+C820	Italia	Lombardia	Monza e della Brianza	Cogliate	3467
+C839	Italia	Lombardia	Lecco	Colico	3992
+C850	Italia	Lombardia	Brescia	Collebeato	1807
+C851	Italia	Lombardia	Lecco	Colle Brianza	635
+C883	Italia	Lombardia	Brescia	Collio	1506
+C893	Italia	Lombardia	Brescia	Cologne	4594
+C894	Italia	Lombardia	Bergamo	Cologno al Serio	6047
+C895	Italia	Lombardia	Milano	Cologno Monzese	35518
+C902	Italia	Lombardia	Como	Colonno	739
+C903	Italia	Lombardia	Sondrio	Colorina	822
+C908	Italia	Lombardia	Milano	Colturano	1275
+C910	Italia	Lombardia	Bergamo	Colzate	583
+C911	Italia	Lombardia	Varese	Comabbio	516
+C917	Italia	Lombardia	Lodi	Comazzo	1267
+C922	Italia	Lombardia	Varese	Comerio	1063
+C925	Italia	Lombardia	Brescia	Comezzano-Cizzago	3206
+C933	Italia	Lombardia	Como	Como	48064
+C937	Italia	Lombardia	Bergamo	Comun Nuovo	2024
+C948	Italia	Lombardia	Brescia	Concesio	7526
+C952	Italia	Lombardia	Monza e della Brianza	Concorezzo	6858
+C958	Italia	Lombardia	Pavia	Confienza	612
+C979	Italia	Lombardia	Pavia	Copiano	1018
+C986	Italia	Lombardia	Milano	Corbetta	9644
+D013	Italia	Lombardia	Milano	Cormano	11948
+D018	Italia	Lombardia	Milano	Cornaredo	11341
+D019	Italia	Lombardia	Monza e della Brianza	Cornate d'Adda	4477
+D021	Italia	Lombardia	Lodi	Cornegliano Laudense	1306
+D028	Italia	Lombardia	Lodi	Corno Giovine	532
+D038	Italia	Lombardia	Monza e della Brianza	Correzzana	1145
+D045	Italia	Lombardia	Milano	Corsico	24695
+D056	Italia	Lombardia	Cremona	Corte de' Cortesi con Cignone	683
+D057	Italia	Lombardia	Cremona	Corte de' Frati	930
+D058	Italia	Lombardia	Brescia	Corte Franca	3990
+D064	Italia	Lombardia	Brescia	Corteno Golgi	1194
+D066	Italia	Lombardia	Bergamo	Cortenuova	1149
+D067	Italia	Lombardia	Pavia	Corteolona	2388
+D068	Italia	Lombardia	Lodi	Corte Palasio	817
+D082	Italia	Lombardia	Brescia	Corzano	608
+D088	Italia	Lombardia	Sondrio	Cosio Valtellino	2870
+D110	Italia	Lombardia	Bergamo	Costa di Mezzate	1794
+D112	Italia	Lombardia	Lecco	Costa Masnaga	2308
+D117	Italia	Lombardia	Bergamo	Costa Volpino	5114
+D126	Italia	Lombardia	Bergamo	Covo	2465
+D139	Italia	Lombardia	Bergamo	Credaro	2412
+D141	Italia	Lombardia	Cremona	Credera Rubbiano	687
+D142	Italia	Lombardia	Cremona	Crema	18678
+D143	Italia	Lombardia	Lecco	Cremella	745
+D150	Italia	Lombardia	Cremona	Cremona	41898
+D151	Italia	Lombardia	Cremona	Cremosano	866
+D159	Italia	Lombardia	Lodi	Crespiatica	1234
+D192	Italia	Lombardia	Varese	Cuasso al Monte	1066
+D196	Italia	Lombardia	Como	Cucciago	1342
+D198	Italia	Lombardia	Milano	Cuggiono	4452
+D199	Italia	Lombardia	Varese	Cugliate-Fabiasco	896
+D204	Italia	Lombardia	Varese	Cunardo	1489
+D221	Italia	Lombardia	Bergamo	Curno	3494
+D227	Italia	Lombardia	Mantova	Curtatone	6199
+D229	Italia	Lombardia	Milano	Cusago	1191
+D231	Italia	Lombardia	Milano	Cusano Milanino	10061
+D238	Italia	Lombardia	Varese	Cuveglio	1565
+D239	Italia	Lombardia	Varese	Cuvio	752
+D244	Italia	Lombardia	Milano	Dairago	2587
+D245	Italia	Lombardia	Bergamo	Dalmine	12024
+D251	Italia	Lombardia	Brescia	Darfo Boario Terme	10600
+D256	Italia	Lombardia	Varese	Daverio	1372
+D266	Italia	Lombardia	Sondrio	Delebio	1775
+D270	Italia	Lombardia	Brescia	Dello	3034
+D280	Italia	Lombardia	Lecco	Dervio	1064
+D284	Italia	Lombardia	Brescia	Desenzano del Garda	20570
+D286	Italia	Lombardia	Monza e della Brianza	Desio	21646
+D327	Italia	Lombardia	Lecco	Dolzago	892
+D329	Italia	Lombardia	Como	Domaso	719
+D341	Italia	Lombardia	Como	Dongo	1234
+D348	Italia	Lombardia	Pavia	Dorno	2057
+D351	Italia	Lombardia	Mantova	Dosolo	1202
+D358	Italia	Lombardia	Cremona	Dovera	2264
+D367	Italia	Lombardia	Milano	Dresano	1497
+D377	Italia	Lombardia	Sondrio	Dubino	1766
+D391	Italia	Lombardia	Brescia	Edolo	2368
+D406	Italia	Lombardia	Bergamo	Endine Gaiano	1684
+D411	Italia	Lombardia	Bergamo	Entratico	837
+D416	Italia	Lombardia	Como	Erba	8580
+D421	Italia	Lombardia	Brescia	Erbusco	5537
+D434	Italia	Lombardia	Brescia	Esine	3247
+D445	Italia	Lombardia	Como	Eupilio	1045
+D467	Italia	Lombardia	Varese	Fagnano Olona	5449
+D482	Italia	Lombardia	Como	Faloppio	1140
+D490	Italia	Lombardia	Bergamo	Fara Gera d'Adda	3878
+D491	Italia	Lombardia	Bergamo	Fara Olivana con Sola	766
+D529	Italia	Lombardia	Mantova	Felonica	895
+D531	Italia	Lombardia	Como	Fenegro'	1264
+D543	Italia	Lombardia	Varese	Ferno	3663
+D552	Italia	Lombardia	Pavia	Ferrera Erbognone	629
+D574	Italia	Lombardia	Cremona	Fiesco	557
+D576	Italia	Lombardia	Brescia	Fiesse	1042
+D579	Italia	Lombardia	Como	Figino Serenza	2368
+D588	Italia	Lombardia	Bergamo	Filago	1616
+D594	Italia	Lombardia	Pavia	Filighera	585
+D605	Italia	Lombardia	Como	Fino Mornasco	5096
+D606	Italia	Lombardia	Bergamo	Fiorano al Serio	1297
+D634	Italia	Lombardia	Brescia	Flero	4054
+D660	Italia	Lombardia	Lodi	Fombio	1201
+D672	Italia	Lombardia	Bergamo	Fontanella	2289
+D697	Italia	Lombardia	Bergamo	Foresto Sparso	1933
+D710	Italia	Lombardia	Cremona	Formigara	578
+D727	Italia	Lombardia	Bergamo	Fornovo San Giovanni	1596
+D834	Italia	Lombardia	Cremona	Gabbioneta-Binanuova	579
+D841	Italia	Lombardia	Cremona	Gadesco-Pieve Delmona	1148
+D845	Italia	Lombardia	Milano	Gaggiano	5109
+D865	Italia	Lombardia	Lecco	Galbiate	3065
+D868	Italia	Lombardia	Lodi	Galgagnano	689
+D869	Italia	Lombardia	Varese	Gallarate	32503
+D891	Italia	Lombardia	Brescia	Gambara	2081
+D901	Italia	Lombardia	Pavia	Gambolo'	4286
+D905	Italia	Lombardia	Bergamo	Gandino	2079
+D906	Italia	Lombardia	Bergamo	Gandosso	850
+D912	Italia	Lombardia	Milano	Garbagnate Milanese	18431
+D913	Italia	Lombardia	Lecco	Garbagnate Monastero	852
+D917	Italia	Lombardia	Brescia	Gardone Riviera	1988
+D918	Italia	Lombardia	Brescia	Gardone Val Trompia	6559
+D924	Italia	Lombardia	Brescia	Gargnano	1913
+D925	Italia	Lombardia	Pavia	Garlasco	4238
+D926	Italia	Lombardia	Lecco	Garlate	1313
+D940	Italia	Lombardia	Brescia	Gavardo	7160
+D946	Italia	Lombardia	Varese	Gavirate	4306
+D949	Italia	Lombardia	Mantova	Gazoldo degli Ippoliti	1789
+D951	Italia	Lombardia	Varese	Gazzada Schianno	2157
+D952	Italia	Lombardia	Bergamo	Gazzaniga	1978
+D959	Italia	Lombardia	Mantova	Gazzuolo	1053
+D963	Italia	Lombardia	Varese	Gemonio	1548
+D966	Italia	Lombardia	Cremona	Genivolta	600
+D980	Italia	Lombardia	Pavia	Gerenzago	714
+D981	Italia	Lombardia	Varese	Gerenzano	5738
+D987	Italia	Lombardia	Varese	Germignaga	1503
+D993	Italia	Lombardia	Cremona	Gerre de' Caprioli	605
+D995	Italia	Lombardia	Milano	Gessate	5701
+D999	Italia	Lombardia	Brescia	Ghedi	11655
+E006	Italia	Lombardia	Bergamo	Ghisalba	3194
+E010	Italia	Lombardia	Brescia	Gianico	1035
+E051	Italia	Lombardia	Como	Gironico	691
+E062	Italia	Lombardia	Pavia	Giussago	2501
+E063	Italia	Lombardia	Monza e della Brianza	Giussano	10556
+E072	Italia	Lombardia	Pavia	Godiasco	1815
+E078	Italia	Lombardia	Mantova	Goito	5318
+E079	Italia	Lombardia	Varese	Golasecca	1258
+E089	Italia	Lombardia	Mantova	Gonzaga	4824
+E090	Italia	Lombardia	Sondrio	Gordona	751
+E094	Italia	Lombardia	Milano	Gorgonzola	11612
+E100	Italia	Lombardia	Bergamo	Gorlago	2595
+E101	Italia	Lombardia	Varese	Gorla Maggiore	2412
+E102	Italia	Lombardia	Varese	Gorla Minore	4296
+E103	Italia	Lombardia	Bergamo	Gorle	2621
+E104	Italia	Lombardia	Varese	Gornate-Olona	902
+E106	Italia	Lombardia	Bergamo	Gorno	704
+E116	Italia	Lombardia	Brescia	Gottolengo	2771
+E127	Italia	Lombardia	Lodi	Graffignana	1438
+E139	Italia	Lombardia	Como	Grandate	1256
+E141	Italia	Lombardia	Como	Grandola ed Uniti	614
+E144	Italia	Lombardia	Varese	Grantola	633
+E148	Italia	Lombardia	Bergamo	Grassobbio	3211
+E151	Italia	Lombardia	Como	Gravedona	980
+E152	Italia	Lombardia	Pavia	Gravellona Lomellina	1180
+E170	Italia	Lombardia	Milano	Grezzago	1604
+E172	Italia	Lombardia	Como	Griante	522
+E193	Italia	Lombardia	Cremona	Grontardo	650
+E195	Italia	Lombardia	Pavia	Gropello Cairoli	2190
+E200	Italia	Lombardia	Sondrio	Grosio	2387
+E201	Italia	Lombardia	Sondrio	Grosotto	734
+E217	Italia	Lombardia	Cremona	Grumello Cremonese ed Uniti	1135
+E219	Italia	Lombardia	Bergamo	Grumello del Monte	3271
+E235	Italia	Lombardia	Como	Guanzate	2334
+E238	Italia	Lombardia	Lodi	Guardamiglio	1379
+E258	Italia	Lombardia	Milano	Gudo Visconti	661
+E261	Italia	Lombardia	Mantova	Guidizzolo	3473
+E265	Italia	Lombardia	Pavia	Siziano	3105
+E271	Italia	Lombardia	Brescia	Gussago	8223
+E272	Italia	Lombardia	Cremona	Gussola	1485
+E280	Italia	Lombardia	Brescia	Idro	894
+E287	Italia	Lombardia	Lecco	Imbersago	873
+E299	Italia	Lombardia	Varese	Induno Olona	4965
+E305	Italia	Lombardia	Lecco	Introbio	721
+E309	Italia	Lombardia	Como	Inverigo	3350
+E310	Italia	Lombardia	Pavia	Inverno e Monteleone	524
+E313	Italia	Lombardia	Milano	Inveruno	3701
+E317	Italia	Lombardia	Milano	Inzago	5231
+E333	Italia	Lombardia	Brescia	Iseo	5514
+E364	Italia	Lombardia	Brescia	Isorella	1853
+E367	Italia	Lombardia	Varese	Ispra	2388
+E380	Italia	Lombardia	Cremona	Izano	1063
+E386	Italia	Lombardia	Varese	Jerago con Orago	2142
+E395	Italia	Lombardia	Milano	Lacchiarella	5277
+E415	Italia	Lombardia	Milano	Lainate	13580
+E422	Italia	Lombardia	Bergamo	Lallio	2151
+E428	Italia	Lombardia	Como	Lambrugo	923
+E437	Italia	Lombardia	Pavia	Landriano	3653
+E443	Italia	Lombardia	Sondrio	Lanzada	616
+E454	Italia	Lombardia	Pavia	Lardirago	585
+E494	Italia	Lombardia	Varese	Lavena Ponte Tresa	1320
+E496	Italia	Lombardia	Varese	Laveno-Mombello	4097
+E504	Italia	Lombardia	Monza e della Brianza	Lazzate	3116
+E507	Italia	Lombardia	Lecco	Lecco	24005
+E509	Italia	Lombardia	Bergamo	Leffe	1727
+E510	Italia	Lombardia	Varese	Leggiuno	1460
+E514	Italia	Lombardia	Milano	Legnano	34536
+E525	Italia	Lombardia	Como	Lenno	1228
+E526	Italia	Lombardia	Brescia	Leno	8299
+E530	Italia	Lombardia	Monza e della Brianza	Lentate sul Seveso	7060
+E550	Italia	Lombardia	Monza e della Brianza	Lesmo	3477
+E562	Italia	Lombardia	Bergamo	Levate	1614
+E569	Italia	Lombardia	Como	Lezzeno	1439
+E581	Italia	Lombardia	Lecco	Lierna	931
+E591	Italia	Lombardia	Monza e della Brianza	Limbiate	21892
+E593	Italia	Lombardia	Como	Limido Comasco	1939
+E596	Italia	Lombardia	Brescia	Limone sul Garda	2469
+E600	Italia	Lombardia	Pavia	Linarolo	1300
+E607	Italia	Lombardia	Como	Lipomo	2844
+E610	Italia	Lombardia	Milano	Liscate	2221
+E617	Italia	Lombardia	Monza e della Brianza	Lissone	20891
+E621	Italia	Lombardia	Sondrio	Livigno	9110
+E627	Italia	Lombardia	Lodi	Livraga	1272
+E638	Italia	Lombardia	Como	Locate Varesino	2113
+E639	Italia	Lombardia	Milano	Locate di Triulzi	5283
+E648	Italia	Lombardia	Lodi	Lodi	29238
+E651	Italia	Lombardia	Lodi	Lodi Vecchio	5182
+E652	Italia	Lombardia	Brescia	Lodrino	607
+E654	Italia	Lombardia	Brescia	Lograto	2265
+E656	Italia	Lombardia	Lecco	Lomagna	2498
+E659	Italia	Lombardia	Como	Lomazzo	4893
+E662	Italia	Lombardia	Pavia	Lomello	924
+E665	Italia	Lombardia	Varese	Lonate Ceppino	2143
+E666	Italia	Lombardia	Varese	Lonate Pozzolo	6137
+E667	Italia	Lombardia	Brescia	Lonato del Garda	3280
+E679	Italia	Lombardia	Como	Longone al Segrino	730
+E704	Italia	Lombardia	Bergamo	Lovere	3189
+E734	Italia	Lombardia	Varese	Luino	5711
+E735	Italia	Lombardia	Como	Luisago	1143
+E738	Italia	Lombardia	Brescia	Lumezzane	12683
+E749	Italia	Lombardia	Como	Lurago d'Erba	2222
+E750	Italia	Lombardia	Como	Lurago Marinone	1100
+E751	Italia	Lombardia	Bergamo	Lurano	1159
+E753	Italia	Lombardia	Como	Lurate Caccivio	4041
+E769	Italia	Lombardia	Varese	Luvinate	603
+E775	Italia	Lombardia	Varese	Maccagno	679
+E786	Italia	Lombardia	Monza e della Brianza	Macherio	2835
+E787	Italia	Lombardia	Brescia	Maclodio	1042
+E793	Italia	Lombardia	Cremona	Madignano	1789
+E794	Italia	Lombardia	Bergamo	Madone	2327
+E801	Italia	Lombardia	Milano	Magenta	11643
+E804	Italia	Lombardia	Pavia	Magherno	1164
+E818	Italia	Lombardia	Mantova	Magnacavallo	1076
+E819	Italia	Lombardia	Milano	Magnago	3826
+E840	Italia	Lombardia	Lodi	Mairago	681
+E841	Italia	Lombardia	Brescia	Mairano	1853
+E843	Italia	Lombardia	Cremona	Malagnino	654
+E851	Italia	Lombardia	Brescia	Malegno	895
+E852	Italia	Lombardia	Lodi	Maleo	1728
+E858	Italia	Lombardia	Lecco	Malgrate	2654
+E863	Italia	Lombardia	Varese	Malnate	7944
+E865	Italia	Lombardia	Brescia	Malonno	1460
+E879	Italia	Lombardia	Lecco	Mandello del Lario	3967
+E883	Italia	Lombardia	Brescia	Manerba del Garda	3119
+E884	Italia	Lombardia	Brescia	Manerbio	8743
+E897	Italia	Lombardia	Mantova	Mantova	29294
+E901	Italia	Lombardia	Bergamo	Mapello	2686
+E921	Italia	Lombardia	Milano	Marcallo con Casone	2697
+E922	Italia	Lombardia	Mantova	Marcaria	3366
+E928	Italia	Lombardia	Brescia	Marcheno	1875
+E929	Italia	Lombardia	Varese	Marchirolo	1114
+E934	Italia	Lombardia	Pavia	Marcignago	1252
+E951	Italia	Lombardia	Como	Mariano Comense	10881
+E962	Italia	Lombardia	Mantova	Marmirolo	3739
+E965	Italia	Lombardia	Varese	Marnate	2944
+E967	Italia	Lombardia	Brescia	Marone	1823
+E983	Italia	Lombardia	Cremona	Martignana di Po	932
+E987	Italia	Lombardia	Bergamo	Martinengo	5445
+E994	Italia	Lombardia	Lodi	Marudo	813
+E999	Italia	Lombardia	Pavia	Marzano	832
+F003	Italia	Lombardia	Milano	Masate	1629
+F017	Italia	Lombardia	Como	Maslianico	1603
+F028	Italia	Lombardia	Lodi	Massalengo	2548
+F063	Italia	Lombardia	Brescia	Mazzano	5937
+F070	Italia	Lombardia	Sondrio	Mazzo di Valtellina	530
+F078	Italia	Lombardia	Monza e della Brianza	Meda	10139
+F080	Italia	Lombardia	Pavia	Mede	3222
+F084	Italia	Lombardia	Milano	Mediglia	7444
+F085	Italia	Lombardia	Bergamo	Medolago	1140
+F086	Italia	Lombardia	Mantova	Medole	1983
+F100	Italia	Lombardia	Milano	Melegnano	10456
+F119	Italia	Lombardia	Milano	Melzo	11500
+F120	Italia	Lombardia	Como	Menaggio	2248
+F133	Italia	Lombardia	Lecco	Merate	7078
+F134	Italia	Lombardia	Varese	Mercallo	806
+F149	Italia	Lombardia	Lodi	Merlino	1367
+F151	Italia	Lombardia	Como	Merone	2060
+F153	Italia	Lombardia	Sondrio	Mese	613
+F155	Italia	Lombardia	Milano	Mesero	1643
+F165	Italia	Lombardia	Monza e della Brianza	Mezzago	2603
+F170	Italia	Lombardia	Pavia	Mezzana Bigli	571
+F175	Italia	Lombardia	Pavia	Mezzanino	577
+F181	Italia	Lombardia	Como	Mezzegra	1060
+F205	Italia	Lombardia	Milano	Milano	1151601
+F216	Italia	Lombardia	Brescia	Milzano	1059
+F238	Italia	Lombardia	Pavia	Miradolo Terme	2066
+F243	Italia	Lombardia	Bergamo	Misano di Gera d'Adda	1864
+F247	Italia	Lombardia	Monza e della Brianza	Misinto	2094
+F248	Italia	Lombardia	Lecco	Missaglia	3592
+F260	Italia	Lombardia	Lodi	Tavazzano con Villavesco	4143
+F267	Italia	Lombardia	Mantova	Moglia	3643
+F304	Italia	Lombardia	Lecco	Molteno	1375
+F305	Italia	Lombardia	Como	Moltrasio	690
+F328	Italia	Lombardia	Bergamo	Monasterolo del Castello	570
+F372	Italia	Lombardia	Como	Monguzzo	821
+F373	Italia	Lombardia	Brescia	Moniga del Garda	1912
+F393	Italia	Lombardia	Sondrio	Montagna in Valtellina	1297
+F417	Italia	Lombardia	Pavia	Montalto Pavese	1128
+F423	Italia	Lombardia	Lodi	Montanaso Lombardo	920
+F427	Italia	Lombardia	Como	Montano Lucino	2093
+F434	Italia	Lombardia	Cremona	Monte Cremasco	1519
+F440	Italia	Lombardia	Pavia	Montebello della Battaglia	911
+F449	Italia	Lombardia	Pavia	Montecalvo Versiggia	800
+F471	Italia	Lombardia	Brescia	Montichiari	15593
+F532	Italia	Lombardia	Brescia	Monte Isola	637
+F547	Italia	Lombardia	Bergamo	Montello	2003
+F561	Italia	Lombardia	Lecco	Monte Marenzo	827
+F657	Italia	Lombardia	Lecco	Montevecchia	733
+F670	Italia	Lombardia	Pavia	Monticelli Pavese	505
+F672	Italia	Lombardia	Brescia	Monticelli Brusati	1920
+F674	Italia	Lombardia	Lecco	Monticello Brianza	1849
+F680	Italia	Lombardia	Brescia	Montirone	2618
+F681	Italia	Lombardia	Cremona	Montodine	1195
+F688	Italia	Lombardia	Como	Montorfano	1024
+F701	Italia	Lombardia	Pavia	Montu' Beccaria	1286
+F703	Italia	Lombardia	Varese	Monvalle	913
+F704	Italia	Lombardia	Monza e della Brianza	Monza	68330
+F705	Italia	Lombardia	Mantova	Monzambano	2911
+F711	Italia	Lombardia	Varese	Morazzone	2116
+F712	Italia	Lombardia	Sondrio	Morbegno	6310
+F720	Italia	Lombardia	Bergamo	Morengo	970
+F736	Italia	Lombardia	Varese	Mornago	1861
+F738	Italia	Lombardia	Bergamo	Mornico al Serio	1511
+F754	Italia	Lombardia	Pavia	Mortara	7760
+F771	Italia	Lombardia	Cremona	Motta Baluffi	550
+F783	Italia	Lombardia	Milano	Motta Visconti	4285
+F786	Italia	Lombardia	Bergamo	Mozzanica	2223
+F788	Italia	Lombardia	Como	Mozzate	4396
+F791	Italia	Lombardia	Bergamo	Mozzo	3438
+F797	Italia	Lombardia	Monza e della Brianza	Muggio'	11435
+F801	Italia	Lombardia	Lodi	Mulazzano	2886
+F804	Italia	Lombardia	Mantova	Villa Poma	1027
+F820	Italia	Lombardia	Brescia	Muscoline	1197
+F851	Italia	Lombardia	Brescia	Nave	4519
+F864	Italia	Lombardia	Bergamo	Nembro	4633
+F874	Italia	Lombardia	Milano	Nerviano	8877
+F877	Italia	Lombardia	Como	Nesso	924
+F884	Italia	Lombardia	Brescia	Niardo	927
+F887	Italia	Lombardia	Lecco	Nibionno	1372
+F941	Italia	Lombardia	Bergamo	Ponte Nossa	749
+F944	Italia	Lombardia	Monza e della Brianza	Nova Milanese	13387
+F955	Italia	Lombardia	Milano	Novate Milanese	11152
+F956	Italia	Lombardia	Sondrio	Novate Mezzola	1073
+F958	Italia	Lombardia	Como	Novedrate	1313
+F968	Italia	Lombardia	Milano	Noviglio	2008
+F989	Italia	Lombardia	Brescia	Nuvolento	1915
+F990	Italia	Lombardia	Brescia	Nuvolera	2212
+G001	Italia	Lombardia	Brescia	Odolo	1166
+G004	Italia	Lombardia	Cremona	Offanengo	2633
+G006	Italia	Lombardia	Brescia	Offlaga	2798
+G008	Italia	Lombardia	Varese	Oggiona con Santo Stefano	2041
+G009	Italia	Lombardia	Lecco	Oggiono	4360
+G025	Italia	Lombardia	Como	Olgiate Comasco	4346
+G026	Italia	Lombardia	Lecco	Olgiate Molgora	3027
+G028	Italia	Lombardia	Varese	Olgiate Olona	5611
+G030	Italia	Lombardia	Lecco	Olginate	3617
+G040	Italia	Lombardia	Lecco	Oliveto Lario	530
+G047	Italia	Lombardia	Cremona	Olmeneta	530
+G056	Italia	Lombardia	Como	Oltrona di San Mamette	970
+G061	Italia	Lombardia	Brescia	Ome	1911
+G074	Italia	Lombardia	Brescia	Ono San Pietro	518
+G078	Italia	Lombardia	Milano	Opera	9328
+G096	Italia	Lombardia	Lodi	Pieve Fissiraga	777
+G103	Italia	Lombardia	Varese	Origgio	3178
+G107	Italia	Lombardia	Lodi	Orio Litta	1525
+G108	Italia	Lombardia	Bergamo	Orio al Serio	999
+G116	Italia	Lombardia	Monza e della Brianza	Ornago	2028
+G126	Italia	Lombardia	Como	Orsenigo	1030
+G149	Italia	Lombardia	Brescia	Orzinuovi	10837
+G150	Italia	Lombardia	Brescia	Orzivecchi	1941
+G159	Italia	Lombardia	Bergamo	Osio Sopra	2484
+G160	Italia	Lombardia	Bergamo	Osio Sotto	6879
+G161	Italia	Lombardia	Lecco	Osnago	2322
+G166	Italia	Lombardia	Lodi	Ospedaletto Lodigiano	1118
+G170	Italia	Lombardia	Brescia	Ospitaletto	9335
+G171	Italia	Lombardia	Lodi	Ossago Lodigiano	962
+G179	Italia	Lombardia	Brescia	Ossimo	766
+G181	Italia	Lombardia	Milano	Ossona	1649
+G182	Italia	Lombardia	Como	Ossuccio	802
+G185	Italia	Lombardia	Cremona	Ostiano	1615
+G186	Italia	Lombardia	Mantova	Ostiglia	4750
+G194	Italia	Lombardia	Pavia	Ottobiano	533
+G206	Italia	Lombardia	Milano	Ozzero	563
+G213	Italia	Lombardia	Brescia	Padenghe sul Garda	2111
+G217	Italia	Lombardia	Brescia	Paderno Franciacorta	2184
+G218	Italia	Lombardia	Lecco	Paderno d'Adda	1950
+G220	Italia	Lombardia	Milano	Paderno Dugnano	28700
+G222	Italia	Lombardia	Cremona	Paderno Ponchielli	700
+G223	Italia	Lombardia	Lecco	Robbiate	2898
+G233	Italia	Lombardia	Bergamo	Pagazzano	1150
+G248	Italia	Lombardia	Brescia	Paitone	870
+G249	Italia	Lombardia	Bergamo	Paladina	1548
+G259	Italia	Lombardia	Bergamo	Palazzago	1582
+G260	Italia	Lombardia	Cremona	Palazzo Pignano	2468
+G264	Italia	Lombardia	Brescia	Palazzolo sull'Oglio	12711
+G275	Italia	Lombardia	Pavia	Palestro	1018
+G295	Italia	Lombardia	Bergamo	Palosco	2878
+G306	Italia	Lombardia	Cremona	Pandino	5332
+G316	Italia	Lombardia	Milano	Pantigliate	3959
+G324	Italia	Lombardia	Milano	Parabiago	13458
+G327	Italia	Lombardia	Brescia	Paratico	2921
+G329	Italia	Lombardia	Como	Pare'	740
+G342	Italia	Lombardia	Pavia	Parona	879
+G346	Italia	Lombardia	Bergamo	Parre	1013
+G361	Italia	Lombardia	Brescia	Passirano	3341
+G368	Italia	Lombardia	Lecco	Pasturo	950
+G385	Italia	Lombardia	Milano	Paullo	7172
+G388	Italia	Lombardia	Pavia	Pavia	42051
+G391	Italia	Lombardia	Brescia	Pavone del Mella	1413
+G407	Italia	Lombardia	Brescia	San Paolo	2549
+G412	Italia	Lombardia	Bergamo	Pedrengo	2555
+G417	Italia	Lombardia	Mantova	Pegognaga	3655
+G418	Italia	Lombardia	Bergamo	Peia	548
+G431	Italia	Lombardia	Sondrio	Poggiridenti	852
+G448	Italia	Lombardia	Lecco	Perego	547
+G469	Italia	Lombardia	Cremona	Persico Dosimo	1749
+G483	Italia	Lombardia	Cremona	Pescarolo ed Uniti	688
+G485	Italia	Lombardia	Lecco	Pescate	1035
+G488	Italia	Lombardia	Milano	Peschiera Borromeo	12702
+G502	Italia	Lombardia	Milano	Pessano con Bornago	4346
+G529	Italia	Lombardia	Brescia	Pezzaze	646
+G536	Italia	Lombardia	Cremona	Piadena	1942
+G546	Italia	Lombardia	Brescia	Pian Camuno	2929
+G549	Italia	Lombardia	Brescia	Piancogno	2641
+G558	Italia	Lombardia	Cremona	Pianengo	1712
+G564	Italia	Lombardia	Bergamo	Pianico	795
+G572	Italia	Lombardia	Sondrio	Piantedo	694
+G576	Italia	Lombardia	Sondrio	Piateda	1093
+G603	Italia	Lombardia	Cremona	Pieranica	730
+G612	Italia	Lombardia	Pavia	Pietra de' Giorgi	1029
+G633	Italia	Lombardia	Mantova	Pieve di Coriano	643
+G634	Italia	Lombardia	Milano	Pieve Emanuele	15460
+G639	Italia	Lombardia	Pavia	Pieve del Cairo	1010
+G647	Italia	Lombardia	Cremona	Pieve d'Olmi	606
+G650	Italia	Lombardia	Pavia	Pieve Porto Morone	1336
+G651	Italia	Lombardia	Cremona	Pieve San Giacomo	807
+G671	Italia	Lombardia	Pavia	Pinarolo Po	897
+G686	Italia	Lombardia	Milano	Pioltello	30816
+G710	Italia	Lombardia	Brescia	Pisogne	3866
+G717	Italia	Lombardia	Mantova	Piubega	800
+G718	Italia	Lombardia	Sondrio	Piuro	771
+G721	Italia	Lombardia	Cremona	Pizzighettone	2998
+G753	Italia	Lombardia	Mantova	Poggio Rusco	4130
+G772	Italia	Lombardia	Milano	Pogliano Milanese	4408
+G774	Italia	Lombardia	Bergamo	Pognano	811
+G779	Italia	Lombardia	Brescia	Polaveno	1127
+G801	Italia	Lombardia	Brescia	Polpenazze del Garda	1332
+G815	Italia	Lombardia	Brescia	Pompiano	2684
+G816	Italia	Lombardia	Mantova	Pomponesco	630
+G818	Italia	Lombardia	Brescia	Poncarale	2742
+G829	Italia	Lombardia	Sondrio	Ponte in Valtellina	1130
+G844	Italia	Lombardia	Brescia	Ponte di Legno	1709
+G847	Italia	Lombardia	Como	Ponte Lambro	2245
+G853	Italia	Lombardia	Bergamo	Ponteranica	2568
+G856	Italia	Lombardia	Bergamo	Ponte San Pietro	6458
+G859	Italia	Lombardia	Brescia	Pontevico	4151
+G862	Italia	Lombardia	Mantova	Ponti sul Mincio	1495
+G864	Italia	Lombardia	Bergamo	Pontida	1169
+G867	Italia	Lombardia	Bergamo	Pontirolo Nuovo	2747
+G869	Italia	Lombardia	Brescia	Pontoglio	5374
+G889	Italia	Lombardia	Como	Porlezza	2150
+G895	Italia	Lombardia	Pavia	Portalbera	828
+G906	Italia	Lombardia	Varese	Porto Ceresio	1064
+G907	Italia	Lombardia	Varese	Porto Valtravaglia	869
+G917	Italia	Lombardia	Mantova	Porto Mantovano	8363
+G955	Italia	Lombardia	Milano	Pozzo d'Adda	3358
+G959	Italia	Lombardia	Brescia	Pozzolengo	1952
+G965	Italia	Lombardia	Milano	Pozzuolo Martesana	3824
+G968	Italia	Lombardia	Bergamo	Pradalunga	1774
+G977	Italia	Lombardia	Brescia	Pralboino	2066
+G993	Italia	Lombardia	Sondrio	Prata Camportaccio	1165
+H020	Italia	Lombardia	Bergamo	Predore	1162
+H026	Italia	Lombardia	Milano	Pregnana Milanese	3665
+H028	Italia	Lombardia	Lecco	Premana	500
+H043	Italia	Lombardia	Brescia	Preseglie	765
+H046	Italia	Lombardia	Bergamo	Presezzo	2427
+H055	Italia	Lombardia	Brescia	Prevalle	4168
+H063	Italia	Lombardia	Lecco	Primaluna	676
+H078	Italia	Lombardia	Brescia	Provaglio d'Iseo	3555
+H086	Italia	Lombardia	Brescia	Puegnago sul Garda	1674
+H091	Italia	Lombardia	Bergamo	Pumenengo	990
+H094	Italia	Lombardia	Como	Pusiano	527
+H123	Italia	Lombardia	Mantova	Virgilio	6641
+H129	Italia	Lombardia	Mantova	Quingentole	953
+H130	Italia	Lombardia	Cremona	Quintano	746
+H140	Italia	Lombardia	Brescia	Quinzano d'Oglio	3661
+H143	Italia	Lombardia	Mantova	Quistello	3027
+H176	Italia	Lombardia	Bergamo	Ranica	2415
+H177	Italia	Lombardia	Bergamo	Ranzanico	550
+H216	Italia	Lombardia	Pavia	Redavalle	554
+H218	Italia	Lombardia	Mantova	Redondesco	504
+H230	Italia	Lombardia	Brescia	Remedello	2064
+H233	Italia	Lombardia	Monza e della Brianza	Renate	1812
+H240	Italia	Lombardia	Milano	Rescaldina	6963
+H246	Italia	Lombardia	Pavia	Retorbido	741
+H248	Italia	Lombardia	Mantova	Revere	1538
+H256	Italia	Lombardia	Brescia	Rezzato	6752
+H264	Italia	Lombardia	Milano	Rho	31855
+H276	Italia	Lombardia	Cremona	Ricengo	976
+H314	Italia	Lombardia	Cremona	Ripalta Arpina	611
+H315	Italia	Lombardia	Cremona	Ripalta Cremasca	1778
+H336	Italia	Lombardia	Pavia	Rivanazzano Terme	3277
+H341	Italia	Lombardia	Cremona	Rivarolo del Re ed Uniti	1040
+H342	Italia	Lombardia	Mantova	Rivarolo Mantovano	1264
+H357	Italia	Lombardia	Cremona	Rivolta d'Adda	3394
+H369	Italia	Lombardia	Pavia	Robbio	2439
+H371	Italia	Lombardia	Milano	Robecchetto con Induno	1932
+H372	Italia	Lombardia	Cremona	Robecco d'Oglio	1301
+H373	Italia	Lombardia	Milano	Robecco sul Naviglio	2924
+H410	Italia	Lombardia	Brescia	Roccafranca	5149
+H470	Italia	Lombardia	Milano	Rodano	2608
+H477	Italia	Lombardia	Brescia	Rodengo Saiano	3978
+H481	Italia	Lombardia	Mantova	Rodigo	2836
+H484	Italia	Lombardia	Brescia	Roe' Volciano	2652
+H486	Italia	Lombardia	Lecco	Rogeno	1381
+H492	Italia	Lombardia	Bergamo	Rogno	2156
+H508	Italia	Lombardia	Cremona	Romanengo	1876
+H509	Italia	Lombardia	Bergamo	Romano di Lombardia	13787
+H521	Italia	Lombardia	Como	Ronago	708
+H525	Italia	Lombardia	Brescia	Roncadelle	6101
+H527	Italia	Lombardia	Pavia	Roncaro	686
+H529	Italia	Lombardia	Monza e della Brianza	Roncello	1884
+H537	Italia	Lombardia	Monza e della Brianza	Ronco Briantino	1500
+H541	Italia	Lombardia	Mantova	Roncoferraro	3459
+H560	Italia	Lombardia	Milano	Rosate	3280
+H596	Italia	Lombardia	Lecco	Rovagnate	1018
+H598	Italia	Lombardia	Brescia	Rovato	16409
+H601	Italia	Lombardia	Como	Rovellasca	3515
+H602	Italia	Lombardia	Como	Rovello Porro	3243
+H604	Italia	Lombardia	Mantova	Roverbella	5613
+H614	Italia	Lombardia	Pavia	Rovescala	1281
+H615	Italia	Lombardia	Bergamo	Rovetta	1707
+H623	Italia	Lombardia	Milano	Rozzano	31750
+H630	Italia	Lombardia	Brescia	Rudiano	5875
+H637	Italia	Lombardia	Pavia	Ruino	586
+H650	Italia	Lombardia	Brescia	Sabbio Chiese	1848
+H652	Italia	Lombardia	Mantova	Sabbioneta	1690
+H699	Italia	Lombardia	Brescia	Sale Marasino	1615
+H701	Italia	Lombardia	Lodi	Salerano sul Lambro	1695
+H717	Italia	Lombardia	Brescia	Salo'	6407
+H723	Italia	Lombardia	Varese	Saltrio	704
+H731	Italia	Lombardia	Cremona	Salvirola	588
+H736	Italia	Lombardia	Varese	Samarate	7727
+H752	Italia	Lombardia	Sondrio	Samolaco	1385
+H767	Italia	Lombardia	Cremona	San Bassano	1009
+H771	Italia	Lombardia	Mantova	San Benedetto Po	4127
+H803	Italia	Lombardia	Milano	San Colombano al Lambro	3853
+H814	Italia	Lombardia	Pavia	San Damiano al Colle	554
+H815	Italia	Lombardia	Cremona	San Daniele Po	799
+H827	Italia	Lombardia	Milano	San Donato Milanese	21939
+H830	Italia	Lombardia	Como	San Fedele Intelvi	751
+H838	Italia	Lombardia	Brescia	San Felice del Benaco	1820
+H840	Italia	Lombardia	Como	San Fermo della Battaglia	1612
+H844	Italia	Lombardia	Lodi	San Fiorano	727
+H859	Italia	Lombardia	Pavia	San Genesio ed Uniti	1445
+H865	Italia	Lombardia	Brescia	San Gervasio Bresciano	1819
+H870	Italia	Lombardia	Mantova	San Giacomo delle Segnate	943
+H872	Italia	Lombardia	Varese	Sangiano	703
+H883	Italia	Lombardia	Mantova	San Giorgio di Mantova	5053
+H884	Italia	Lombardia	Milano	San Giorgio su Legnano	3547
+H910	Italia	Lombardia	Bergamo	San Giovanni Bianco	2301
+H912	Italia	Lombardia	Mantova	San Giovanni del Dosso	846
+H918	Italia	Lombardia	Cremona	San Giovanni in Croce	969
+H930	Italia	Lombardia	Milano	San Giuliano Milanese	31155
+I005	Italia	Lombardia	Mantova	San Martino dall'Argine	850
+I012	Italia	Lombardia	Lodi	San Martino in Strada	1709
+I014	Italia	Lombardia	Pavia	San Martino Siccomario	2757
+I048	Italia	Lombardia	Pavia	Sannazzaro de' Burgondi	3707
+I079	Italia	Lombardia	Bergamo	San Pellegrino Terme	2215
+I140	Italia	Lombardia	Lodi	San Rocco al Porto	2266
+I162	Italia	Lombardia	Como	San Siro	681
+I175	Italia	Lombardia	Pavia	Santa Cristina e Bissone	1563
+I203	Italia	Lombardia	Pavia	Santa Giuletta	1453
+I236	Italia	Lombardia	Pavia	Travaco' Siccomario	1685
+I237	Italia	Lombardia	Pavia	Santa Maria della Versa	2578
+I243	Italia	Lombardia	Lecco	Santa Maria Hoe'	829
+I274	Italia	Lombardia	Lodi	Sant'Angelo Lodigiano	8085
+I349	Italia	Lombardia	Bergamo	Sant'Omobono Terme	1352
+I361	Italia	Lombardia	Milano	Santo Stefano Ticino	2779
+I362	Italia	Lombardia	Lodi	Santo Stefano Lodigiano	768
+I409	Italia	Lombardia	Milano	San Vittore Olona	4185
+I412	Italia	Lombardia	Brescia	San Zeno Naviglio	2370
+I415	Italia	Lombardia	Milano	San Zenone al Lambro	2713
+I433	Italia	Lombardia	Brescia	Sarezzo	7090
+I437	Italia	Lombardia	Bergamo	Sarnico	3829
+I441	Italia	Lombardia	Varese	Saronno	22616
+I447	Italia	Lombardia	Pavia	Sartirana Lomellina	738
+I476	Italia	Lombardia	Brescia	Saviore dell'Adamello	507
+I497	Italia	Lombardia	Cremona	Scandolara Ravara	558
+I506	Italia	Lombardia	Bergamo	Scanzorosciate	3527
+I532	Italia	Lombardia	Mantova	Schivenoglia	885
+I561	Italia	Lombardia	Lodi	Secugnago	1142
+I566	Italia	Lombardia	Milano	Sedriano	6811
+I567	Italia	Lombardia	Bergamo	Sedrina	998
+I577	Italia	Lombardia	Milano	Segrate	19094
+I588	Italia	Lombardia	Brescia	Sellero	721
+I597	Italia	Lombardia	Bergamo	Selvino	731
+I602	Italia	Lombardia	Milano	Senago	11104
+I607	Italia	Lombardia	Brescia	Seniga	874
+I611	Italia	Lombardia	Como	Senna Comasco	1214
+I612	Italia	Lombardia	Lodi	Senna Lodigiana	877
+I625	Italia	Lombardia	Monza e della Brianza	Seregno	21562
+I627	Italia	Lombardia	Cremona	Sergnano	2304
+I628	Italia	Lombardia	Bergamo	Seriate	13875
+I629	Italia	Lombardia	Bergamo	Serina	728
+I631	Italia	Lombardia	Brescia	Serle	1233
+I632	Italia	Lombardia	Mantova	Sermide	4851
+I633	Italia	Lombardia	Brescia	Sirmione	9196
+I662	Italia	Lombardia	Mantova	Serravalle a Po	875
+I683	Italia	Lombardia	Cremona	Sesto ed Uniti	1425
+I688	Italia	Lombardia	Varese	Sesto Calende	5595
+I690	Italia	Lombardia	Milano	Sesto San Giovanni	64759
+I696	Italia	Lombardia	Milano	Settala	4899
+I700	Italia	Lombardia	Milano	Settimo Milanese	9259
+I709	Italia	Lombardia	Monza e della Brianza	Seveso	11899
+I759	Italia	Lombardia	Lecco	Sirone	972
+I761	Italia	Lombardia	Lecco	Sirtori	1152
+I782	Italia	Lombardia	Brescia	Soiano del Lago	994
+I786	Italia	Lombardia	Milano	Solaro	8571
+I792	Italia	Lombardia	Como	Solbiate	729
+I793	Italia	Lombardia	Varese	Solbiate Arno	2147
+I794	Italia	Lombardia	Varese	Solbiate Olona	2759
+I801	Italia	Lombardia	Mantova	Solferino	1427
+I812	Italia	Lombardia	Bergamo	Solto Collina	823
+I813	Italia	Lombardia	Bergamo	Solza	974
+I815	Italia	Lombardia	Lodi	Somaglia	1852
+I819	Italia	Lombardia	Varese	Somma Lombardo	9976
+I827	Italia	Lombardia	Cremona	Soncino	4250
+I828	Italia	Lombardia	Sondrio	Sondalo	3190
+I829	Italia	Lombardia	Sondrio	Sondrio	12431
+I831	Italia	Lombardia	Brescia	Sonico	511
+I848	Italia	Lombardia	Lodi	Sordio	2253
+I849	Italia	Lombardia	Cremona	Soresina	5173
+I856	Italia	Lombardia	Como	Sorico	683
+I858	Italia	Lombardia	Bergamo	Sorisole	3440
+I865	Italia	Lombardia	Cremona	Sospiro	1310
+I869	Italia	Lombardia	Bergamo	Sotto il Monte Giovanni XXIII	1624
+I873	Italia	Lombardia	Bergamo	Sovere	2721
+I878	Italia	Lombardia	Monza e della Brianza	Sovico	3176
+I906	Italia	Lombardia	Cremona	Spinadesco	845
+I914	Italia	Lombardia	Cremona	Spino d'Adda	4352
+I916	Italia	Lombardia	Bergamo	Spinone al Lago	509
+I919	Italia	Lombardia	Bergamo	Spirano	3019
+I935	Italia	Lombardia	Cremona	Stagno Lombardo	700
+I951	Italia	Lombardia	Bergamo	Stezzano	5917
+I968	Italia	Lombardia	Pavia	Stradella	7060
+I996	Italia	Lombardia	Lecco	Suello	684
+I997	Italia	Lombardia	Bergamo	Suisio	2073
+I998	Italia	Lombardia	Monza e della Brianza	Sulbiate	2191
+L002	Italia	Lombardia	Brescia	Sulzano	874
+L003	Italia	Lombardia	Varese	Sumirago	2617
+L015	Italia	Lombardia	Mantova	Sustinente	1217
+L020	Italia	Lombardia	Mantova	Suzzara	11043
+L032	Italia	Lombardia	Varese	Taino	1447
+L035	Italia	Lombardia	Sondrio	Talamona	2429
+L071	Italia	Lombardia	Como	Tavernerio	2660
+L073	Italia	Lombardia	Bergamo	Tavernola Bergamasca	769
+L084	Italia	Lombardia	Sondrio	Teglio	2416
+L087	Italia	Lombardia	Bergamo	Telgate	3150
+L094	Italia	Lombardia	Brescia	Temu'	972
+L115	Italia	Lombardia	Varese	Ternate	1073
+L118	Italia	Lombardia	Bergamo	Terno d'Isola	4510
+L169	Italia	Lombardia	Brescia	Tignale	951
+L175	Italia	Lombardia	Sondrio	Tirano	5364
+L210	Italia	Lombardia	Brescia	Torbole Casaglia	3790
+L237	Italia	Lombardia	Pavia	Torrazza Coste	849
+L251	Italia	Lombardia	Bergamo	Torre Boldone	4038
+L257	Italia	Lombardia	Lecco	Torre de' Busi	667
+L258	Italia	Lombardia	Cremona	Torre de' Picenardi	863
+L265	Italia	Lombardia	Bergamo	Torre de' Roveri	829
+L269	Italia	Lombardia	Pavia	Torre d'Isola	832
+L276	Italia	Lombardia	Bergamo	Torre Pallavicina	719
+L285	Italia	Lombardia	Pavia	Torrevecchia Pia	1605
+L312	Italia	Lombardia	Brescia	Toscolano-Maderno	4959
+L319	Italia	Lombardia	Varese	Tradate	9374
+L330	Italia	Lombardia	Sondrio	Traona	1348
+L339	Italia	Lombardia	Brescia	Travagliato	7085
+L342	Italia	Lombardia	Varese	Travedona-Monate	1692
+L371	Italia	Lombardia	Como	Tremezzo	1541
+L372	Italia	Lombardia	Brescia	Tremosine	2315
+L380	Italia	Lombardia	Brescia	Trenzano	3655
+L388	Italia	Lombardia	Bergamo	Trescore Balneario	5975
+L389	Italia	Lombardia	Cremona	Trescore Cremasco	1915
+L392	Italia	Lombardia	Sondrio	Tresivio	856
+L400	Italia	Lombardia	Bergamo	Treviglio	17048
+L404	Italia	Lombardia	Bergamo	Treviolo	4056
+L408	Italia	Lombardia	Milano	Trezzano Rosa	3010
+L409	Italia	Lombardia	Milano	Trezzano sul Naviglio	12757
+L411	Italia	Lombardia	Milano	Trezzo sull'Adda	7378
+L415	Italia	Lombardia	Milano	Tribiano	1690
+L426	Italia	Lombardia	Cremona	Trigolo	810
+L434	Italia	Lombardia	Monza e della Brianza	Triuggio	3093
+L440	Italia	Lombardia	Pavia	Trivolzio	1182
+L449	Italia	Lombardia	Pavia	Tromello	2016
+L453	Italia	Lombardia	Pavia	Trovo	534
+L454	Italia	Lombardia	Milano	Truccazzano	3243
+L469	Italia	Lombardia	Lodi	Turano Lodigiano	773
+L470	Italia	Lombardia	Como	Turate	5411
+L471	Italia	Lombardia	Milano	Turbigo	3432
+L480	Italia	Lombardia	Varese	Uboldo	5569
+L487	Italia	Lombardia	Como	Uggiate-Trevano	1264
+L494	Italia	Lombardia	Brescia	Urago d'Oglio	3288
+L502	Italia	Lombardia	Bergamo	Urgnano	4362
+L511	Italia	Lombardia	Monza e della Brianza	Usmate Velate	4877
+L535	Italia	Lombardia	Cremona	Vaiano Cremasco	1971
+L539	Italia	Lombardia	Cremona	Vailate	2250
+L544	Italia	Lombardia	Bergamo	Valbondione	521
+L545	Italia	Lombardia	Bergamo	Valbrembo	1450
+L547	Italia	Lombardia	Como	Valbrona	1408
+L557	Italia	Lombardia	Sondrio	Valdidentro	3588
+L563	Italia	Lombardia	Sondrio	Valdisotto	3340
+L572	Italia	Lombardia	Lodi	Valera Fratta	1181
+L576	Italia	Lombardia	Sondrio	Valfurva	3400
+L577	Italia	Lombardia	Varese	Valganna	569
+L581	Italia	Lombardia	Lecco	Valgreghentino	1201
+L593	Italia	Lombardia	Pavia	Valle Lomellina	1084
+L617	Italia	Lombardia	Pavia	Valle Salimbene	600
+L626	Italia	Lombardia	Brescia	Vallio Terme	596
+L634	Italia	Lombardia	Lecco	Valmadrera	5815
+L640	Italia	Lombardia	Como	Valmorea	758
+L664	Italia	Lombardia	Milano	Vanzaghello	2213
+L665	Italia	Lombardia	Milano	Vanzago	4150
+L667	Italia	Lombardia	Milano	Vaprio d'Adda	4858
+L671	Italia	Lombardia	Varese	Varano Borghi	1216
+L677	Italia	Lombardia	Monza e della Brianza	Varedo	7096
+L682	Italia	Lombardia	Varese	Varese	44123
+L690	Italia	Lombardia	Pavia	Varzi	1471
+L703	Italia	Lombardia	Varese	Vedano Olona	3097
+L704	Italia	Lombardia	Monza e della Brianza	Vedano al Lambro	3323
+L709	Italia	Lombardia	Monza e della Brianza	Veduggio con Colzano	2064
+L720	Italia	Lombardia	Pavia	Vellezzo Bellini	1460
+L733	Italia	Lombardia	Varese	Venegono Inferiore	2951
+L734	Italia	Lombardia	Varese	Venegono Superiore	3624
+L737	Italia	Lombardia	Como	Veniano	1295
+L744	Italia	Lombardia	Monza e della Brianza	Verano Brianza	4073
+L749	Italia	Lombardia	Sondrio	Verceia	606
+L751	Italia	Lombardia	Lecco	Vercurago	1201
+L752	Italia	Lombardia	Bergamo	Verdellino	6350
+L753	Italia	Lombardia	Bergamo	Verdello	4177
+L755	Italia	Lombardia	Lecco	Verderio Inferiore	1204
+L756	Italia	Lombardia	Lecco	Verderio Superiore	2001
+L765	Italia	Lombardia	Varese	Vergiate	4560
+L768	Italia	Lombardia	Milano	Vermezzo	1902
+L773	Italia	Lombardia	Milano	Vernate	1487
+L777	Italia	Lombardia	Brescia	Verolanuova	4689
+L778	Italia	Lombardia	Brescia	Verolavecchia	2066
+L788	Italia	Lombardia	Pavia	Verrua Po	640
+L792	Italia	Lombardia	Como	Vertemate con Minoprio	1476
+L795	Italia	Lombardia	Bergamo	Vertova	1706
+L806	Italia	Lombardia	Cremona	Vescovato	2064
+L812	Italia	Lombardia	Brescia	Vestone	2579
+L816	Italia	Lombardia	Brescia	Vezza d'Oglio	725
+L826	Italia	Lombardia	Mantova	Viadana	10199
+L827	Italia	Lombardia	Bergamo	Viadanica	589
+L854	Italia	Lombardia	Pavia	Vidigulfo	2884
+L865	Italia	Lombardia	Bergamo	Vigano San Martino	620
+L866	Italia	Lombardia	Lecco	Vigano'	754
+L872	Italia	Lombardia	Pavia	Vigevano	33267
+L876	Italia	Lombardia	Varese	Viggiu'	1328
+L883	Italia	Lombardia	Milano	Vignate	4944
+L908	Italia	Lombardia	Sondrio	Villa di Tirano	1885
+L919	Italia	Lombardia	Brescia	Villa Carcina	6221
+L923	Italia	Lombardia	Brescia	Villachiara	917
+L928	Italia	Lombardia	Milano	Villa Cortese	2898
+L929	Italia	Lombardia	Bergamo	Villa d'Adda	1861
+L936	Italia	Lombardia	Bergamo	Villa di Serio	2304
+L938	Italia	Lombardia	Bergamo	Villa d'Ogna	788
+L956	Italia	Lombardia	Como	Villa Guardia	3327
+L977	Italia	Lombardia	Lodi	Villanova del Sillaro	1057
+L994	Italia	Lombardia	Pavia	Villanterio	1906
+L995	Italia	Lombardia	Brescia	Villanuova sul Clisi	3412
+M017	Italia	Lombardia	Monza e della Brianza	Villasanta	5577
+M044	Italia	Lombardia	Mantova	Villimpenta	1273
+M045	Italia	Lombardia	Bergamo	Villongo	5292
+M050	Italia	Lombardia	Bergamo	Vilminore di Scalve	622
+M052	Italia	Lombardia	Monza e della Brianza	Vimercate	13508
+M053	Italia	Lombardia	Milano	Vimodrone	11308
+M070	Italia	Lombardia	Brescia	Visano	782
+M079	Italia	Lombardia	Pavia	Vistarino	918
+M091	Italia	Lombardia	Milano	Vittuone	5781
+M102	Italia	Lombardia	Milano	Vizzolo Predabissi	2275
+M104	Italia	Lombardia	Brescia	Vobarno	5124
+M109	Italia	Lombardia	Pavia	Voghera	23093
+M125	Italia	Lombardia	Mantova	Volta Mantovana	3559
+M144	Italia	Lombardia	Bergamo	Zandobbio	1331
+M147	Italia	Lombardia	Bergamo	Zanica	3854
+M152	Italia	Lombardia	Pavia	Zeccone	675
+M158	Italia	Lombardia	Lodi	Zelo Buon Persico	3702
+M160	Italia	Lombardia	Milano	Zelo Surrigone	546
+M167	Italia	Lombardia	Pavia	Zerbolo'	824
+M176	Italia	Lombardia	Milano	Zibido San Giacomo	3444
+M180	Italia	Lombardia	Pavia	Zinasco	1307
+M184	Italia	Lombardia	Bergamo	Zogno	2865
+M312	Italia	Lombardia	Brescia	Lonato del Garda	7542
+ZZZ	Italia	Altra regione	Provincia fuori regione	ZZZ	831805
+B406	Italia	Altra regione	Provincia fuori regione	B406	831805

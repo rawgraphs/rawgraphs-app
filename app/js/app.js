@@ -1,12 +1,12 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-angular.module('rawApp', ['rawApp.filters', 'rawApp.services', 'rawApp.directives', 'rawApp.controllers'])
+angular.module('rawApp', ['ui'])
 	.config(function ($routeProvider) {
 	    $routeProvider
 	      .when('/', {
 	        templateUrl: 'views/main.html',
-	        controller: 'MainCtrl'
+	        controller: 'mainCtrl'
 	      })
 	      .otherwise({
 	        redirectTo: '/'

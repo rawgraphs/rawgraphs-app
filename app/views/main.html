@@ -1,3 +1,29 @@
-<div class="container">
-	This is Raw.
+<div class="container" id="main">
+
+	<div class="progress progress-striped active" ng-show="loadingProgress<100">
+  	<div class="bar" style="width: {{loadingProgress}}%;"></div>
+	</div>
+
+  <h3>Data</h3>
+	<textarea ui-codemirror="{ mode : 'text', styleActiveLine: true, lineNumbers : true, lineWrapping: true}"
+						placeholder="Paste your text here or drag in a file..."
+		        ng-model="text">
+	</textarea>
+
+	<a class="btn" ng-click="loadSample()">Load Sample</a>
+
+ 	<h3>Layout</h3>
+ 	<div class="row-fluid">
+
+ 		<select ng-model="layout" ng-options="l.label group by l.group for l in layouts"
+ 						class="show-tick" data-size="10" selectpicker></select>
+
 </div>
+
+
+</div>
+
+<div class="container">
+    <div id="push"></div>
+</div> <!-- /container -->
+
