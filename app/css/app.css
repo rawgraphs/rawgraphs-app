@@ -59,12 +59,64 @@ body {
 
 #info {
   padding: 20px 0px;
-  background-color: #44cca4;
+  background-color: #61d8b8;
   color: #f2f2f2;
   font-family: "Merriweather";
   height:100%;
 }
 
+
+
+.key {
+  padding: 8px 16px;
+  margin-bottom: 0;
+  font-size: 11px;
+  letter-spacing: 1px;
+  line-height: 22px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #61d8b8;
+  background-image: none;
+  border: none;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.keys li.key {
+  margin-bottom: 5px;
+}
+
+.keys.well li.key {
+  margin: 5px 0px;
+}
+
+
+.header {
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #888;
+  text-transform: uppercase;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.placeholder {
+  background-color:transparent;
+  height:34px;
+  width:100%;
+  margin: 5px 0px;
+  border-radius: 4px;
+  border: 2px dashed #ddd;
+}
+
+.render {
+  text-align: center;
+  width: 100%;
+  margin: 0px;
+}
 
 /* Bootstrap */
 
@@ -77,6 +129,36 @@ h3 {
   border-bottom: 1px solid #ddd;
   padding: 10px 0px;
   text-align: center;
+}
+
+.alert {
+  text-shadow: none;
+  text-align: center;
+  color: #303032;
+}
+
+.alert-danger, .alert-error {
+  background-color: #eff460;
+  border-color: #eff460;
+}
+
+.muted {
+  color: #ddd;
+  font-size: 10px;
+}
+
+.well {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e3e3e3;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 input, button, select, textarea {
@@ -101,7 +183,7 @@ select:focus {
   text-transform: uppercase;
   vertical-align: middle;
   cursor: pointer;
-  background-color: #44cca4;
+  background-color: #61d8b8;
   background-image: none;
 
   border: none;
@@ -121,14 +203,14 @@ select:focus {
 .btn:focus,
 .btn.active,
 .btn:active {
-  background-color: #44cca4;
+  background-color: #61d8b8;
   background-image: none;
   outline: 0;
   color: #ffffff;
 }
 
 .btn-group.open .btn.dropdown-toggle {
-  background-color: #44cca4;
+  background-color: #61d8b8;
 }
 
 .btn-group>.btn, .btn-group>.dropdown-menu, .btn-group>.popover {
@@ -184,7 +266,7 @@ select:focus {
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus, .dropdown-submenu:hover>a, .dropdown-submenu:focus>a {
   font-weight: normal;
   background-color: #484848;
-color: #44cca4;
+color: #61d8b8;
   background-image: none;
 }
 
@@ -205,7 +287,7 @@ color: #44cca4;
 }
 
 .bootstrap-select .btn:focus {
-  background-color: #44cca4;
+  background-color: #61d8b8;
   outline: 0px dotted #333333 !important;
   outline: 0px auto -webkit-focus-ring-color !important;
 }

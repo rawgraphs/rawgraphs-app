@@ -335,7 +335,7 @@
 				}
 				objData.push(obj);
 			} else {
-				throw new Error("Oops! There's something weird at line " + (row+1) );
+				throw new Error("Hey, wait! There's something strange at line " + (row+1) );
 				//if (raw.parseError) raw.parseError("Not so fast. There's something wrong at line " + (row+1));
 				return false;
 			}

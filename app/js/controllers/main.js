@@ -3,6 +3,28 @@
 angular.module('rawApp')
   .controller('mainCtrl', function($scope, $http) {
 
+  	$scope.$watch("text", function(){
+   
+    	$scope.errors = false;
+
+			try {
+				
+				$scope.data = raw.parse($scope.text);
+				var sniff = raw.sniffAll($scope.data)
+				$scope.header = d3.keys($scope.data[0]).map(function(d){
+					return { key:d, type:raw.maxOnValue(raw.count(sniff[d]))}
+				})
+			
+			} catch(e){
+				
+				$scope.data = [];
+				$scope.header = [];
+				$scope.errors = e.message;
+			
+			}
+
+    })
+
 
   	// should be a service?
     $scope.loadSample = function() {
@@ -63,8 +85,5 @@ angular.module('rawApp')
 
   	
   	$scope.loadScripts();
-  
-
-
 
   });
