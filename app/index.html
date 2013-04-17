@@ -1,19 +1,28 @@
 <!doctype html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="rawApp">
 <head>
   <meta charset="utf-8">
-  <title>My AngularJS App</title>
+  <title>Raw</title>
+
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/bootstrap-responsive.min.css"/>
+  <link rel="stylesheet" href="css/bootstrap-select.min.css"/>
+
   <link rel="stylesheet" href="css/app.css"/>
+
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul>
-
+  
   <div ng-view></div>
 
-  <div>Angular seed app: v<span app-version></span></div>
+
+
+
+
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/jquery/jquery-ui.min.js"></script>
+  <script src="lib/bootstrap/bootstrap.min.js"></script>
+  <script src="lib/bootstrap/bootstrap-select.min.js"></script>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>

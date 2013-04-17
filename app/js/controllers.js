@@ -2,10 +2,7 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', []).
-  controller('MyCtrl1', [function() {
-
-  }])
-  .controller('MyCtrl2', [function() {
-
+angular.module('rawApp.controllers', [])
+  .controller('MainCtrl', [function() {
+  	console.log("yeah")
   }]);
