@@ -120,9 +120,7 @@ raw.layouts.treemap = function(){
 				    .attr("dy", ".35em")
 				    .attr("text-anchor", "middle")
 				    .text(function(d) { return d.name +  " (" + d.value + ")"; })//{ return d.children ? null : d.name; })
-
 					.style("font-size","11px")
-					.style("font-family","Arial, Helvetica, sans-serif");
 			}
 			return this;
 		}

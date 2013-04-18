@@ -8,6 +8,19 @@ angular.module('rawApp')
 
       	var sortableIn = false;
 
+      	function typeIsValid(){
+      		var types = scope.$eval(attrs.ngModel).value.map(function(r){return r.type;});
+      		var validTypes = scope.$eval(attrs.accept);
+      		var valid = true;
+      		for (var t in types) {
+      			if (validTypes.indexOf(types[t]) == -1) {
+      				valid = false;
+      				break;
+      			}
+      		}
+      		return valid;
+      	}
+
       	function update(){
 			var values = element.sortable('toArray',{ attribute : "value" }).map(function(d){ return d.length ? JSON.parse(d) : {} });
 
@@ -19,6 +32,20 @@ angular.module('rawApp')
               		return $.inArray(v.key,scope.$eval(attrs.ngModel).value.map(function(r){return r.key;})) === k;
             	});
           	}
+
+          	if(typeIsValid()) {
+          		element.addClass("success");
+          		element.removeClass("fail");
+          	} else {
+          		element.addClass("fail");
+          		element.removeClass("success");
+          	}
+          	console.log(scope.$eval(attrs.ngModel).value)
+          	if(!scope.$eval(attrs.ngModel).value.length) {
+          		element.removeClass("success");
+          		element.removeClass("fail");
+          	}
+
 			element.find('.ui-draggable').remove();
 			scope.$apply();
       	}

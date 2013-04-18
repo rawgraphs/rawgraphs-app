@@ -1,5 +1,8 @@
 [
 	{
 		"file" : "layouts/treemap.js"
+	},
+	{
+		"file" : "layouts/bubblechart.js"
 	}
 ]

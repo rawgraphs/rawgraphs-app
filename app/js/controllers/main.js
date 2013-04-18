@@ -56,10 +56,10 @@ angular.module('rawApp')
   						
   						// i know, please forgive me
   						var counter = 0;
-  						var loaded = function(){
+  						var loaded = function(test){
   							counter++;
   							if (counter == scripts.length) {
-  								$scope.layouts = d3.values(raw.layouts).map(function(l){ return l(); });
+  								$scope.layouts = d3.values(raw.layouts).map(function(l){ return l(); })
     							$scope.layout = $scope.layouts[0];
     							$scope.$apply();
   							}
@@ -67,7 +67,8 @@ angular.module('rawApp')
 
   						for (var script in scripts) {
 			      		try {
-			      			var fileref=document.createElement('script')
+
+                  var fileref=document.createElement('script')
 	  							fileref.setAttribute("src", scripts[script].file)
 	  							document.getElementsByTagName("body")[0].appendChild(fileref);
 	  							fileref.onload = loaded;
@@ -83,7 +84,6 @@ angular.module('rawApp')
   			})
   	}
 
-  	
   	$scope.loadScripts();
 
   });

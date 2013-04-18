@@ -11,15 +11,12 @@ angular.module('rawApp')
       link: function postLink(scope, element, attrs) {
 
         function prova(){
-          console.log("yeahhh")
         }
 
       	scope.prova = function(){
-      		console.log("yeahhh")
       	}
 
         scope.$watch("colors",function(){
-        	console.log(scope.colors);
         },true)
 
       }

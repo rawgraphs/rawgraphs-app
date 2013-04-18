@@ -67,6 +67,26 @@ body {
 
 
 
+.push {
+  margin: 10px;
+}
+
+.push-up {
+  margin-top:10px;
+}
+
+.push-down {
+  margin-bottom:10px;
+}
+
+.push-right {
+  margin-right:10px;
+}
+
+.push-left {
+  margin-left:10px;
+}
+
 .key {
   padding: 8px 16px;
   margin-bottom: 0;
@@ -118,6 +138,10 @@ body {
   margin: 0px;
 }
 
+textarea {
+  resize:vertical;
+}
+
 /* Bootstrap */
 
 h3 {
@@ -161,6 +185,22 @@ h3 {
   box-shadow: none;
 }
 
+.well.success {
+  border-color: rgba(38, 231, 131, 0.68);
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 5px rgba(38, 231, 131, 0.68);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 5px rgba(38, 231, 131, 0.68);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 5px rgba(38, 231, 131, 0.68);
+}
+
+.well.fail {
+  border-color: rgb(233, 114, 68);
+  outline: 0;
+  -webkit-box-shadow: 0 0 6px rgb(233, 114, 68)
+  -moz-box-shadow: 0 0 rgb(233, 114, 68)
+  box-shadow: 0 0 6px rgb(233, 114, 68)
+}
+
 input, button, select, textarea {
   font-family: "Lato", Helvetica, Arial, sans-serif;
 }
@@ -168,6 +208,18 @@ input, button, select, textarea {
 select:focus {
   outline-color: transparent;
   outline-style: none;
+}
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 .btn {
@@ -282,8 +334,8 @@ color: #61d8b8;
 /* Bootstrap-select */
 .bootstrap-select.btn-group, .bootstrap-select.btn-group[class*="span"] {
   outline: none;
-  margin-bottom: 0px;
   font-size: 11px;
+  margin-bottom: 0px;
 }
 
 .bootstrap-select .btn:focus {

@@ -4,22 +4,22 @@
   	<div class="bar" style="width: {{loadingProgress}}%;"></div>
 	</div>
 
-  <h3>Data</h3>
+  	<h3>Data</h3>
 	<textarea ui-codemirror="{ mode : 'text', styleActiveLine: true, lineNumbers : true, lineWrapping: true}"
 						placeholder="Paste your text here or drag in a file..."
 		        ng-model="text">
 	</textarea>
 	<div class="alert alert-danger" ng-show="errors">
 			{{errors}}
-		</div>
+	</div>
 
-	<div class="row-fluid">
+	<div class="row-fluid text-center">
 		<a class="btn" ng-click="loadSample()">Load Sample</a>
 	</div>
 
 	<h3>Fields</h3>
  	<div class="row-fluid">
- 		<ul droppable class="unstyled keys" accept="> li">
+ 		<ul droppable class="unstyled keys" accept="> li" group every="6" watch="header">
 				<li draggable ng-repeat="field in header" value="{{field}}" connect-to-sortable="ul.map" helper="clone" class="key span2">{{field.key}} <span class="muted">({{field.type}})</span></li>
 		</ul>
  	</div>
@@ -27,19 +27,25 @@
  	<h3>Layout</h3>
  	<div class="row-fluid">
 
- 		<select ng-model="layout" ng-options="l.label group by l.group for l in layouts"
- 						class="show-tick" data-size="10" selectpicker></select>
- 		<p ng-bind-html="layout.description"></p>
+ 		<div class="span3">
+ 			<select ng-model="layout" ng-options="l.label group by l.group for l in layouts"
+ 						class="show-tick span12" data-size="10" data-subtext="Heinz" selectpicker></select>
+ 		</div>
+ 		<div class="span9">
+ 			<p ng-bind-html="layout.description"></p>
+ 		</div>
+	
 	</div>
 
-	<div class="row-fluid">
-
+	<h3>Mapping</h3>
+	<div class="row-fluid" group every="4" watch="layout.model">
 		<div ng-repeat="structure in layout.model.structure" class="span3">
 			<ul sortable 
 			    ng-model="structure"
 			    placeholder="placeholder"
 			    single="structure.single"
 			    unique="structure.unique"
+			    accept="structure.accept"
 			    items="> li"
 			    class="keys unstyled map well">
 				
@@ -54,6 +60,7 @@
 			    placeholder="placeholder"
 			    single="mapper.single"
 			    unique="mapper.unique"
+			    accept="mapper.accept"
 			    items="> li"
 			    class="keys unstyled map well">
 				<p class="header">{{mapper.label}}</p>
@@ -66,30 +73,55 @@
 
 	<h3>Visualization</h3>
  	<div class="row-fluid">
-		<render class="render" render-layout="layout" render-data="data"></render>
+		<render id="vis" class="render" render-layout="layout" render-data="data"></render>
  	</div>
 
 	<h3>options</h3>
- 	<div class="row-fluid">
-		<div class="row-fluid" group every="4">
-			<div ng-repeat="(name,option) in layout.style" ng-model="option" class="span3">
-				<div ng-switch on="option.type">
-			        <p class="header">{{option.label}}</p>
-			        <input type="number" min="0" ng-switch-when="number" ng-model="option.value" class="span12"></input>
-			        <input type="checkbox" ng-switch-when="check" ng-model="option.value" class=""></input>
-			        <color ng-switch-when="color" colors="option.value()" class="span12"></color>
-			        <input type="text" ng-switch-default ng-model="option.value" class="span12"></input>
-			    </div>
-			</div>
+	<div class="row-fluid" group every="4" watch="layout.style">
+		<div ng-repeat="(name,option) in layout.style" ng-model="option" class="span3">
+			<div ng-switch on="option.type">
+        <p class="header">{{option.label}}</p>
+        <input type="number" min="0" ng-switch-when="number" ng-model="option.value" class="span12"></input>
+        <input type="checkbox" ng-switch-when="check" ng-model="option.value" class=""></input>
+        <color ng-switch-when="color" colors="option.value()" class="span12"></color>
+        <input type="text" ng-switch-default ng-model="option.value" class="span12"></input>
+		  </div>
 		</div>
-	</div>
+</div>
 
- 	<h3>Export</h3>
+ 	<!--<div class="row-fluid">
+ 		<div class="span12">
+ 			<div class="row-fluid">
+ 				<div class="span9">
+ 					<h3>Export</h3>
+ 					<div class="row-fluid">
+ 						<downloader type="svg" class="span4" label=".svg" source="#vis"></downloader>
+	 		<downloader type="png" class="span4" label=".png" source="#vis"></downloader>
+	 		<downloader type="json" class="span4" label=".json" source="{{layout.model.applyOn(data)}}"></downloader>
+ 					</div>
+ 				</div>
+ 				<div class="span3">
+					<h3>Embed</h3>
+					<coder source="#vis"></coder>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>-->
+
  	<div class="row-fluid">
+ 		<div class="span12">
+ 			<h3>Export</h3>
+ 			<div class="row-fluid">
+ 				<downloader type="svg" class="span3" label=".svg" source="#vis"></downloader>
+	 			<downloader type="png" class="span3" label=".png" source="#vis"></downloader>
+	 			<downloader type="json" class="span3" label=".json" source="{{layout.model.applyOn(data)}}"></downloader>
+	 			<div class="span3">
+					<p class="header">Embed</p>
+					<coder source="#vis"></coder>
+ 				</div> 				
+ 			</div>
+ 		</div>
  	</div>
-	
-
-
 
 </div>
 
