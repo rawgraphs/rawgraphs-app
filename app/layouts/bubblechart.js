@@ -51,7 +51,7 @@ raw.layouts.bubblechart = function(){
 				label : 'Labels',
 				type : 'check',
 				position : 2,
-				description : 'Width is whatever',
+				description : 'Show labels',
 				value : true
 			},
 
@@ -109,7 +109,7 @@ raw.layouts.bubblechart = function(){
 		    	node.append("svg:text")
 		      		.attr("text-anchor", "middle")
 		      		.attr("dy", ".3em")
-					.style("font-size","10px")
+					.style("font-size","11px")
 					.style("font-family","Arial, Helvetica, sans-serif")
 		      		.text(function(d) { return d.name +  " (" + d.map.size + ")"; });
 		    }

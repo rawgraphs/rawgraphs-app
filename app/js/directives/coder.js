@@ -4,21 +4,40 @@ angular.module('rawApp')
       restrict: 'E',
       scope : {
         source : '@',
+        moviePath : '@'
       },
-      template :  '<textarea class="span12" ng-model="stringify"></textarea>',
+      template :  '<textarea id="source-to-copy" readonly class="span12" ng-model="val"></textarea>',
+                  //'<button class="btn btn-block" id="copy" value="source-to-copy">Copy</button>',
 
       link: function postLink(scope, element, attrs) {
 
+        scope.val = "";
 
-        scope.stringify = function(){
-          //if (!$(scope.source).find("svg").length) return;
-          return $(scope.source).find('svg').length;
-          return d3.select(scope.source).select("svg")
+        function asHTML(){
+          if (!$(scope.source).length) return "";
+          return d3.select(scope.source)
           .attr("xmlns", "http://www.w3.org/2000/svg")
           .node().parentNode.innerHTML;
-
         }
-        
+
+        scope.$watch(asHTML, function(){
+          scope.val = asHTML();
+        })
+
+        /*
+        scope.$watch('moviePath', function(){
+
+          
+          var clip = new ZeroClipboard( element.find('button'), {
+            moviePath: scope.moviePath
+          });
+
+          clip.on( 'complete', function(client, args) {
+            //alert("Copied text to clipboard: " + args.text );
+          });
+          
+        })
+        */
 
       }
     };

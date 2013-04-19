@@ -25,7 +25,6 @@ angular.module('rawApp')
 
     })
 
-
   	// should be a service?
     $scope.loadSample = function() {
     

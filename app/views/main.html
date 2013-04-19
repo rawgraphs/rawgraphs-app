@@ -17,13 +17,6 @@
 		<a class="btn" ng-click="loadSample()">Load Sample</a>
 	</div>
 
-	<h3>Fields</h3>
- 	<div class="row-fluid">
- 		<ul droppable class="unstyled keys" accept="> li" group every="6" watch="header">
-				<li draggable ng-repeat="field in header" value="{{field}}" connect-to-sortable="ul.map" helper="clone" class="key span2">{{field.key}} <span class="muted">({{field.type}})</span></li>
-		</ul>
- 	</div>
-
  	<h3>Layout</h3>
  	<div class="row-fluid">
 
@@ -37,6 +30,13 @@
 	
 	</div>
 
+	<h3>Fields</h3>
+ 	<div class="row-fluid">
+ 		<ul droppable class="unstyled keys" accept="> li" group every="6" watch="header">
+				<li draggable ng-repeat="field in header" value="{{field}}" connect-to-sortable="ul.map" helper="clone" class="key span2">{{field.key}} <span class="muted">({{field.type}})</span></li>
+		</ul>
+ 	</div>
+
 	<h3>Mapping</h3>
 	<div class="row-fluid" group every="4" watch="layout.model">
 		<div ng-repeat="structure in layout.model.structure" class="span3">
@@ -46,11 +46,11 @@
 			    single="structure.single"
 			    unique="structure.unique"
 			    accept="structure.accept"
-			    items="> li"
+			    items="> li:not('.initial')"
 			    class="keys unstyled map well">
 				
 				<p class="header">{{structure.label}}</p>
-				
+				<li class="initial">drag here</li>
 			  	<li ng-repeat="item in structure.value" value="{{item}}" class="key">{{item.key}} <span class="muted"><!--({{item.type}})--></span></li>
 			</ul>
 		</div>
@@ -61,11 +61,12 @@
 			    single="mapper.single"
 			    unique="mapper.unique"
 			    accept="mapper.accept"
-			    items="> li"
+			    items="> li:not('.initial')"
 			    class="keys unstyled map well">
 				<p class="header">{{mapper.label}}</p>
 				<!--<p class="small">{{mapper.accept}}</p>-->
 			  	<p class="muted" ng-bind-html="mapper.description"></p>
+				<li class="initial">drag here</li>
 			  	<li ng-repeat="item in mapper.value" value="{{item}}" class="key">{{item.key}} <span class="muted"><!--({{item.type}})--></span></li>
 			</ul>
 		</div>
@@ -73,7 +74,7 @@
 
 	<h3>Visualization</h3>
  	<div class="row-fluid">
-		<render id="vis" class="render" render-layout="layout" render-data="data"></render>
+		<render id="vis" class="render" layout="layout" data="data"></render>
  	</div>
 
 	<h3>options</h3>
@@ -82,8 +83,14 @@
 			<div ng-switch on="option.type">
         <p class="header">{{option.label}}</p>
         <input type="number" min="0" ng-switch-when="number" ng-model="option.value" class="span12"></input>
-        <input type="checkbox" ng-switch-when="check" ng-model="option.value" class=""></input>
-        <color ng-switch-when="color" colors="option.value()" class="span12"></color>
+        
+        <div ng-switch-when="check">
+	        <label class="checkbox">
+	        	<input type="checkbox" ng-model="option.value" class=""> {{option.description}}
+	    	</label>
+   		</div>
+        
+        <color ng-switch-when="color" colors="option.value()" class=""></color>
         <input type="text" ng-switch-default ng-model="option.value" class="span12"></input>
 		  </div>
 		</div>
@@ -107,21 +114,22 @@
  			</div>
  		</div>
  	</div>-->
-
  	<div class="row-fluid">
  		<div class="span12">
  			<h3>Export</h3>
  			<div class="row-fluid">
  				<downloader type="svg" class="span3" label=".svg" source="#vis"></downloader>
-	 			<downloader type="png" class="span3" label=".png" source="#vis"></downloader>
+	 			<downloader type="png" class="span3" label=".png (beta)" source="#vis"></downloader>
 	 			<downloader type="json" class="span3" label=".json" source="{{layout.model.applyOn(data)}}"></downloader>
 	 			<div class="span3">
 					<p class="header">Embed</p>
-					<coder source="#vis"></coder>
+					<coder source="#vis > svg"></coder>
+					<p>If you want to embed this visualization in a HTML page, just copy and paste the code above in the source code of your document.</p>
  				</div> 				
  			</div>
  		</div>
  	</div>
+
 
 </div>
 

@@ -126,16 +126,42 @@ body {
 .placeholder {
   background-color:transparent;
   height:34px;
-  width:100%;
   margin: 5px 0px;
   border-radius: 4px;
   border: 2px dashed #ddd;
+}
+
+.initial {
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #ccc;
+
+    /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari, Opera, and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
 }
 
 .render {
   text-align: center;
   width: 100%;
   margin: 0px;
+}
+
+coder textarea {
+  font-family: Menlo, Monaco, Courier, monospace;
+  font-size: 12px;
 }
 
 textarea {
@@ -253,7 +279,6 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 
 .btn:hover,
 .btn:focus,
-.btn.active,
 .btn:active {
   background-color: #61d8b8;
   background-image: none;

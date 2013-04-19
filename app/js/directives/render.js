@@ -7,31 +7,31 @@ angular.module('rawApp')
       replace: true,
       require :'?ngModel',
       scope: {
-      	renderLayout: "=",
-      	renderData: "=",
+      	layout: "=",
+      	data: "=",
+        update: "&"
       },
       restrict: 'E',
       link: function(scope, element, attrs) {
-        //element.text('this is the render directive');
 
         var updateLayout = function() {
           
-          var data = scope.renderData,
-              target = d3.select(element[0]),
-              model = scope.renderLayout.model;
+          var target = d3.select(element[0]),
+              model = scope.layout.model;
 
           target.selectAll("svg").remove();
-          if (!model.isValid() || !data.length) return;
+          if (!model.isValid() || !scope.data.length) return;
                   
-        	scope.renderLayout.render(data, target);
+        	scope.layout.render(scope.data, target);
+          scope.update();
         }
 
-        scope.$watch("renderLayout",function(){
-        	if(scope.renderLayout) updateLayout();
+        scope.$watch("layout",function(){
+        	if(scope.layout) updateLayout();
         },true)
 
-        scope.$watch("renderData",function(){
-        	if(scope.renderLayout) updateLayout();
+        scope.$watch("data",function(){
+        	if(scope.layout) updateLayout();
         }, true)
 
         

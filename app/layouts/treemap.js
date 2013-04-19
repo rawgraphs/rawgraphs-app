@@ -59,7 +59,7 @@ raw.layouts.treemap = function(){
 				label : 'Labels',
 				type : 'check',
 				position : 2,
-				description : 'Width is whatever',
+				description : 'Show labels',
 				value : true
 			},
 
@@ -119,8 +119,9 @@ raw.layouts.treemap = function(){
 				    .attr("y", function(d) { return d.dy / 2; })
 				    .attr("dy", ".35em")
 				    .attr("text-anchor", "middle")
+				   	.style("font-size","11px")
+					.style("font-family","Arial, Helvetica, sans-serif")
 				    .text(function(d) { return d.name +  " (" + d.value + ")"; })//{ return d.children ? null : d.name; })
-					.style("font-size","11px")
 			}
 			return this;
 		}

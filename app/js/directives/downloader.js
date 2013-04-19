@@ -43,7 +43,7 @@ angular.module('rawApp')
         var downloadImage = function(){
           var content = d3.select("body").append("canvas")
               .attr("id", "canvas")
-              .style("display","none")
+          //    .style("display","none")
 
           var html = d3.select(scope.source).select("svg")
               .node().parentNode.innerHTML;
@@ -54,7 +54,7 @@ angular.module('rawApp')
               saveAs(blob, (element.find('input').value || element.find('input').attr("placeholder")) + ".png");
           }, "image/png");
 
-          d3.select("#canvas").remove();
+          //d3.select("#canvas").remove();
         }
 
         /* Download Data */

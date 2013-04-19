@@ -1,5 +1,8 @@
 [
 	{
+		"id" : "treemap",
+		"label" : "Treemap",
+		"description" : "A treemap is whatever <a href='http://www.google.com'>Google</a>.",
 		"file" : "layouts/treemap.js"
 	},
 	{
