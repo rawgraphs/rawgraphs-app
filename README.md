@@ -76,3 +76,6 @@ A simple [blog](https://github.com/btford/angular-express-blog) based on this se
 For more information on AngularJS please check out http://angularjs.org/
 For more on Express and Jade, http://expressjs.com/ and http://jade-lang.com/ are
 your friends.
+
+## License
+MIT
