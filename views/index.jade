@@ -1,23 +1,55 @@
 extends layout
 
 block body
-  div(ng-controller='AppCtrl')
-    h2 Hello {{name}}
-    ul.menu
-      li
-        a(href='view1') view1
-      li
-        a(href='view2') view2
 
-    div(ng-view)
+  div#header.navbar.navbar-fixed-top
+    div.navbar-inner
+      div.container
+        a.brand RAW
+        ul.nav
+          li.active
+            a(href="#data") Data
+          li
+            a(href="#layout") Layout
+          li
+            a(href="#mapping") Mapping
+          li
+            a(href="#visualization") Visualization
+          li
+            a(href="#export") Export
+        p.navbar-text.pull-right BETA version
 
-    div
-      | Angular seed app: v
-      span(app-version)
+  div.wrap(ng-view)
 
-  script(src='js/lib/angular/angular.js')
+  div#footer
+    div.container
+      p.muted.credit &copy;2013, DensityDesign Lab
+  
+  // Libraries
+  script(src='js/lib/jquery/jquery.min.js')
+  script(src='js/lib/jquery-ui/jquery-ui.min.js')
+  script(src='js/lib/sticky/jquery.sticky.js')  
+  script(src='js/lib/bootstrap/bootstrap.min.js')  
+  script(src='js/lib/bootstrap-select/bootstrap-select.min.js')  
+  script(src='js/lib/d3/d3.v3.min.js')
+  script(src='js/lib/codemirror/codemirror.js')  
+  script(src='js/lib/codemirror/placeholder.js')  
+  script(src='js/lib/codemirror/active-line.js')  
+  
+  // Raw
+  script(src='js/lib/raw/raw.js')  
+  script(src='js/lib/raw/raw.models.js')  
+  script(src='js/lib/raw/raw.charts.js')  
+  
+  // Angular
+  script(src='js/lib/angular/angular.js')  
+  script(src='js/lib/angular-ui/angular-ui.min.js')  
+  script(src='js/lib/angular-ui/angular-ui-ieshiv.min.js')
+  script(src='js/lib/angular/angular-sanitize.min.js')
   script(src='js/app.js')
   script(src='js/services.js')
   script(src='js/controllers.js')
   script(src='js/filters.js')
   script(src='js/directives.js')
+
+  // Charts

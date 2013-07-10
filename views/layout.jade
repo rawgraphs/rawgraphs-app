@@ -1,9 +1,25 @@
 !!!
-html(ng-app="myApp")
+html(ng-app="raw")
   head
     meta(charset='utf8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    meta(name='description', content='')
+    meta(name='viewport', content='width=device-width')
     base(href='/')
-    title Angular Express Seed App
+    title RAW / DensityDesign
+
+    // CSS
+
+    // Google Fonts
+    link(href='http://fonts.googleapis.com/css?family=Lato:100,400,700', rel='stylesheet', type='text/css')
+
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/bootstrap-responsive.min.css')
+    link(rel='stylesheet', href='/css/bootstrap-select.min.css')
+    link(rel='stylesheet', href='/css/codemirror.css')
+    link(rel='stylesheet', href='/css/angular-ui.min.css')
     link(rel='stylesheet', href='/css/app.css')
-  body
+  
+  body(data-spy="scroll", data-target="#header")
+
     block body

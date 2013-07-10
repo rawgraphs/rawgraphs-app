@@ -2,25 +2,25 @@
 
 // Declare app level module which depends on filters, and services
 
-angular.module('myApp', [
-  'myApp.controllers',
-  'myApp.filters',
-  'myApp.services',
-  'myApp.directives'
-]).
-config(function ($routeProvider, $locationProvider) {
+angular.module('raw', [
+  'raw.controllers',
+  'raw.filters',
+  'raw.services',
+  'raw.directives',
+  'ui',
+  'ngSanitize'
+])
+
+.config(function ($routeProvider, $locationProvider) {
   $routeProvider.
-    when('/view1', {
-      templateUrl: 'partials/partial1',
-      controller: 'MyCtrl1'
-    }).
-    when('/view2', {
-      templateUrl: 'partials/partial2',
-      controller: 'MyCtrl2'
+    when('/', {
+      redirectTo: '/',
+      templateUrl: 'partials/main',
+      controller: 'rawCtrl'
     }).
     otherwise({
-      redirectTo: '/view1'
+      redirectTo: '/'
     });
 
-  $locationProvider.html5Mode(true);
+  //$locationProvider.html5Mode(true);
 });

@@ -1,0 +1,18 @@
+{
+	"charts" :
+	[
+		"charts/treemap.js"
+	],
+
+	"samples" :
+	[
+		{
+			"url" : "samples/dispersion.csv",
+			"title" : "movies (Dispersions)"
+		},
+		{
+			"url" : "samples/correlations.csv",
+			"title" : "cocktails (Correlations)"
+		}
+	]
+}

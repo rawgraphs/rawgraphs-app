@@ -1,0 +1,106 @@
+div.container
+
+	section#data
+		h3 Data
+		div.row-fluid
+			textarea(ui-codemirror="{ mode : 'text',  lineNumbers : true, lineWrapping: true }"
+				placeholder="Paste your text here or drag in a file..."
+				ng-model="text")
+
+		div.alert.alert-danger(ng-show="error") {{error}}
+		div.alert.alert-success(ng-show="!error && data")
+			span Ok, everything seems fine with your data. Plese continue
+				
+		div.row-fluid
+			div.span4
+				p.light
+					b {{data.length}} objects in your data
+			div.span8
+				div.dropdown.pull-right
+					a.dropdown-toggle(data-toggle="dropdown", href="#", role="button") choose a sample 
+						b.caret
+					ul.dropdown-menu(role="menu", aria-labelledBy="dLabel")
+						li(ng-repeat="sample in samples", role="presentation")
+							a(data-target="#", tabindex="-1", role="menuitem", ng-click="chooseSample(sample)") {{sample.title}}
+
+	section#layout(ng-show="data.length")
+		h3 Layout
+		div.row-fluid
+			div.span3
+				select.show-tick.span12(selectpicker, ng-model="chart", ng-options="c.title for c in charts")
+			div.span9
+				p(ng-bind-html="chart.description")
+
+	section#mapping(ng-show="data.length")
+		h3 Mapping
+		div.row-fluid
+
+			// Header
+			div.span3
+				ul.unstyled.keys(droppable
+					accept="> li"
+					group
+					every="1"
+					watch="header")
+
+					li.key.span12(draggable
+						ng-repeat="field in header"
+						connect-to-sortable="ul.map"
+						helper="clone"
+						value="{{field}}") {{field.key}}
+
+						span.muted  ({{field.type}})
+		
+			// Model
+			div.span9(group, every="3", watch="chart.model")
+				
+				// Structure
+				div.span4(ng-repeat="structure in chart.model.structure")
+					ul.keys.unstyled.map.well(sortable
+						ng-model="structure"
+						placeholder="placeholder"
+						single="structure.single"
+						accept="structure.accept"
+						items="> li:not('.initial')")
+						p.header {{structure.title}} *
+						div.placeholder.static drop here
+						li.key(ng-repeat="item in structure.value", value="{{item}}") {{item.key}}
+				
+				// Mapping
+				div.span4(ng-repeat="mapper in chart.model.map")
+					ul.keys.unstyled.map.well(sortable
+						ng-model="mapper"
+						placeholder="placeholder"
+						single="mapper.single"
+						accept="mapper.accept"
+						items="> li:not('.initial')")
+						p.header {{mapper.title}}
+						div.placeholder.static drop here
+						li.key(ng-repeat="item in mapper.value", value="{{item}}") {{item.key}}
+					
+	section(ng-show="data.length")
+		a.toggles(href="")
+			i.icon-chevron-left.active
+		div.row-fluid
+			div#options.span3
+				h3 Options
+
+				div.option(ng-repeat="(name, option) in chart.options", ng-model="option")
+					div(ng-switch="", on="option.type")
+						p.header {{option.title}}
+						input.span12(type="number", min="0", ng-switch-when="number", ng-model="option.value")
+						div(ng-switch-when="boolean")
+							label.checkbox
+								input(type="checkbox", ng-model="option.value")
+						input.span12(type="text", ng-switch-default, ng-model="option.value")
+
+			div#visualization.span9
+				h3 Visualization
+				div.span12(chart)
+
+	section#export(ng-show="data.length")
+		h3 Export
+		
+
+div.container
+	div#push

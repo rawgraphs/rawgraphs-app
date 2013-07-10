@@ -1,0 +1,65 @@
+Cocktail,Parts,Ingredient
+Bloody Mary,9,vodka
+Bloody Mary,18,Tomato juice
+Bloody Mary,3,lemon juice
+Gin and Tonic,12,Gin
+Gin and Tonic,29,Tonic Water
+Screwdriver,10,vodka
+Screwdriver,20,orange juice
+White Russian,10,vodka
+White Russian,4,coffee liqueur
+White Russian,6,cream
+Cosmopolitan,8,vodka
+Cosmopolitan,3,cointreau
+Cosmopolitan,3,lime juice
+Cosmopolitan,6,cranberry juice
+Apple Martini,8,vodka
+Apple Martini,3,apple schnapps
+Apple Martini,3,cointreau
+Long Island Iced Tea,3,vodka
+Long Island Iced Tea,3,tequila
+Long Island Iced Tea,3,rum
+Long Island Iced Tea,3,triple sec
+Long Island Iced Tea,3,Gin
+Long Island Iced Tea,5,lemon juice
+Long Island Iced Tea,6,gomme syrup
+Mudslide,6,vodka
+Mudslide,6,coffee liqueur
+Mudslide,6,bailey's
+Mudslide,6,cream
+Margarita,7,tequila
+Margarita,4,cointreau
+Margarita,3,lime juice
+Kamikaze,6,vodka
+Kamikaze,6,triple sec
+Kamikaze,6,lime juice
+Mojito,8,rum
+Mojito,6,lime juice
+Mojito,1,sugar
+Mojito,1,mint
+Mojito,12,soda
+Caribou Lou,6,rum
+Caribou Lou,3,pineapple juice
+Cuba Libre,12,Cola
+Cuba Libre,6,rum
+Jager Monster,9,Jagermeister
+Jager Monster,6,orange juice
+Daiquiri,9,rum
+Daiquiri,4,lime juice
+Daiquiri,1,syrup
+Whiskey Sour,3,whiskey
+Whiskey Sour,2,lemon juice
+Whiskey Sour,1,syrup
+Mint Julep,18,whiskey
+Mint Julep,1,mint
+Mint Julep,1,sugar
+Pina Colada,6,rum
+Pina Colada,6,cream
+Pina Colada,6,pineapple juice
+Sex on the Beach,8,vodka
+Sex on the Beach,4,peach schnapps
+Sex on the Beach,8,orange juice
+Sex on the Beach,8,cranberry juice
+B-52,4,coffee liqueur
+B-52,4,bailey's
+B-52,4,cointreau

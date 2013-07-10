@@ -17,7 +17,7 @@ var app = module.exports = express();
  */
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 4000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.logger('dev'));
@@ -36,20 +36,19 @@ if (app.get('env') === 'production') {
   // TODO
 };
 
+// Authenticator
+var auth = express.basicAuth('raw', 'raw2')
 
 /**
  * Routes
  */
 
 // serve index and view partials
-app.get('/', routes.index);
+app.get('/', auth, routes.index);
 app.get('/partials/:name', routes.partials);
 
-// JSON API
-app.get('/api/name', api.name);
-
 // redirect all others to the index (HTML5 history)
-app.get('*', routes.index);
+app.get('*', auth, routes.index);
 
 
 /**
