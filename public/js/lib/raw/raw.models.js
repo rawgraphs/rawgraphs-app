@@ -149,4 +149,62 @@
 	};
 }
 
+
+/* Points */
+
+raw.models.points = function(map){
+
+		return {
+
+			structure : {
+				x : {
+					title : 'X',
+					accept : ['string','number'],
+					single : true,
+					value : []
+				},
+
+				y : {
+					title : 'Y',
+					accept : ['string','number'],
+					single : true,
+					value : []
+				}
+			},
+
+			map : map,
+
+			applyOn : function(data) {
+
+				var model = this;
+		    try {
+		      var points = [];
+	        data.forEach(function(d){
+	        	var point = {};
+	        	// structure
+	        	point.x = model.structure.x.value.length ? parseFloat(d[model.structure.x.value[0].key]) : 0;
+	        	point.y = model.structure.y.value.length ? parseFloat(d[model.structure.y.value[0].key]) : 0;
+          	// map
+            for (var m in model.map){
+            	point[m] = model.map[m].map(d, 0);
+            }
+            points.push(point);
+
+		    	});
+	      }
+        catch(e){
+          return false;
+        }
+        
+        return points;
+			},
+
+			isValid : function(){
+				return this.structure.x.value.length != 0 && this.structure.y.value.length != 0;
+			}
+		}
+
+	}
+
+
 })();

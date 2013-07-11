@@ -3,6 +3,7 @@
 	[
 		"charts/treemap.js",
 		"charts/bubblechart.js",
+		"charts/scatterplot.js",
 		"charts/alluvial.js",
 		"charts/circlepacking.js",
 		"charts/circulardendogram.js",

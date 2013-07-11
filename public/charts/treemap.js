@@ -123,7 +123,6 @@ raw.charts.treemap = function(){
 					.style("font-family","Arial, Helvetica, sans-serif")
 				    .text(function(d) { return d.name +  " (" + d.value + ")"; })//{ return d.children ? null : d.name; })
 			}
-						console.log(color.values())
 
 			return this;
 		}

@@ -61,7 +61,7 @@ div.container
 						single="structure.single"
 						accept="structure.accept"
 						items="> li:not('.initial')")
-						p.header {{structure.title}} *
+						p.header {{structure.title}}
 						div.placeholder.static drop here
 						li.key(ng-repeat="item in structure.value", value="{{item}}") {{item.key}}
 				
@@ -77,8 +77,9 @@ div.container
 						div.placeholder.static drop here
 						li.key(ng-repeat="item in mapper.value", value="{{item}}") {{item.key}}
 					
-	section#vis(ng-show="data.length")
-		a.toggles(href="")
+	section(ng-show="data.length")
+		//
+			a.toggles(href="")
 			i.icon-chevron-left.active
 		div.row-fluid
 			div#options.span3
@@ -95,11 +96,18 @@ div.container
 
 			div#visualization.span9
 				h3 Visualization
-				div.span12(chart)
+				div#vis.span12(chart)
 
 	section#export(ng-show="data.length")
 		h3 Export
-		
+		div.row-fluid
+			downloader.span3(type="svg", label=".svg", source="#vis")
+			downloader.span3(type="png", label=".png (beta)", source="#vis")
+			downloader.span3(type="json", label="data", source="{{chart.model.applyOn(data)}}")
+			div.span3
+				p.header Embed in HTML
+				coder(source="#vis > svg")
+				p Copy and paste the code above in the source code of your HTML document to embed the visualization.
 
 div.container
 	div#push

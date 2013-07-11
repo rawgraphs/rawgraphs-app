@@ -111,8 +111,10 @@ angular.module('raw.controllers', []).
 
   // update the scroll when things change
   $scope.$watch("chart", $scope.update, true)
-  $scope.$watch("chart.title", $scope.reset, true)
   $scope.$watch("text", $scope.update, true)
+
+  // update charts when things change
+  $scope.$watch("chart.title", $scope.reset, true)
   $scope.$watch("header", $scope.reset, true)
 
 

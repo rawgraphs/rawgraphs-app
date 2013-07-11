@@ -6,6 +6,7 @@ block body
     div.navbar-inner
       div.container
         a.brand RAW
+        //p.navbar-text.pull-left Sketch your data
         ul.nav
           li.active
             a(href="#data") Data
@@ -14,7 +15,7 @@ block body
           li
             a(href="#mapping") Mapping
           li
-            a(href="#vis") Visualization
+            a(href="#options") Visualization
           li
             a(href="#export") Export
         p.navbar-text.pull-right BETA version
@@ -35,7 +36,14 @@ block body
   script(src='js/lib/d3/sankey.js')
   script(src='js/lib/codemirror/codemirror.js')  
   script(src='js/lib/codemirror/placeholder.js')  
-  script(src='js/lib/codemirror/active-line.js')  
+  script(src='js/lib/codemirror/active-line.js')
+  script(src='js/lib/canvg/canvg.js')
+  script(src='js/lib/canvg/rgbcolor.js')
+  script(src='js/lib/blob/Blob.js')
+  script(src='js/lib/blob/BlobBuilder.js')
+  script(src='js/lib/canvas-toblob/canvas-toBlob.js')
+  script(src='js/lib/filesaver/FileSaver.min.js')
+
   
   // Raw
   script(src='js/lib/raw/raw.js')  
