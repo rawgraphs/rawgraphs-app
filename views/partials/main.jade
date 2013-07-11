@@ -51,31 +51,32 @@ div.container
 						span.muted  ({{field.type}})
 		
 			// Model
-			div.span9(group, every="3", watch="chart.model")
-				
-				// Structure
-				div.span4(ng-repeat="structure in chart.model.structure")
-					ul.keys.unstyled.map.well(sortable
-						ng-model="structure"
-						placeholder="placeholder"
-						single="structure.single"
-						accept="structure.accept"
-						items="> li:not('.initial')")
-						p.header {{structure.title}}
-						div.placeholder.static drop here
-						li.key(ng-repeat="item in structure.value", value="{{item}}") {{item.key}}
-				
-				// Mapping
-				div.span4(ng-repeat="mapper in chart.model.map")
-					ul.keys.unstyled.map.well(sortable
-						ng-model="mapper"
-						placeholder="placeholder"
-						single="mapper.single"
-						accept="mapper.accept"
-						items="> li:not('.initial')")
-						p.header {{mapper.title}}
-						div.placeholder.static drop here
-						li.key(ng-repeat="item in mapper.value", value="{{item}}") {{item.key}}
+			div.span9
+				div.row-fluid(group, every="3", watch="chart.model")
+
+						// Structure
+						div.span4(ng-repeat="structure in chart.model.structure")
+							ul.keys.unstyled.map.well(sortable
+								ng-model="structure"
+								placeholder="placeholder"
+								single="structure.single"
+								accept="structure.accept"
+								items="> li:not('.initial')")
+								p.header {{structure.title}}
+								div.placeholder.static drop here
+								li.key(ng-repeat="item in structure.value", value="{{item}}") {{item.key}}
+						
+						// Mapping
+						div.span4(ng-repeat="mapper in chart.model.map")
+							ul.keys.unstyled.map.well(sortable
+								ng-model="mapper"
+								placeholder="placeholder"
+								single="mapper.single"
+								accept="mapper.accept"
+								items="> li:not('.initial')")
+								p.header {{mapper.title}}
+								div.placeholder.static drop here
+								li.key(ng-repeat="item in mapper.value", value="{{item}}") {{item.key}}
 					
 	section(ng-show="data.length")
 		//
