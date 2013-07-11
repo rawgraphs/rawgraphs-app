@@ -6,6 +6,8 @@ angular.module('raw.controllers', []).
 
   controller('rawCtrl', function ($scope, $http, dataService) {
 
+    $scope.loading = false;
+
     // Loading config file
     dataService.loadConfig('config.json')
     .then(
@@ -22,9 +24,11 @@ angular.module('raw.controllers', []).
     // loading samples
     $scope.$watch("sample", function(){
       if (!$scope.sample) return;
+      $scope.loading = true;
       dataService.loadSample($scope.sample).then(
         function(data){
           $scope.text = data;
+          $scope.loading = false;
         }, 
         function(error){
           $scope.error = error;
@@ -123,22 +127,22 @@ angular.module('raw.controllers', []).
 
     $scope.update();
 
+    // create scroll links
     $("#header ul li a[href^='#']").on('click', function(e) {
       e.preventDefault();
       $('html, body').animate({ scrollTop: $(this.hash).offset().top - 70 }, 500, "easeOutCubic");
     });
 
+   // toggle options
    $('.toggles').click(function() {
       $('a.toggles i').toggleClass('icon-chevron-left icon-chevron-right');
       $('#options').toggle(0, function() {
-
         $('#visualization').toggleClass('span12'),
         $('#visualization').toggleClass('span9')
-
       });
     });
     
 
   });
    
-  });
+});

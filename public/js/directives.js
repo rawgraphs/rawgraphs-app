@@ -174,7 +174,6 @@ angular.module('raw.directives', [])
         		element.removeClass("success");
         		element.removeClass("fail");
         	}*/
-
     			element.find('.ui-draggable').remove();
     			scope.$apply();
       	}
@@ -197,7 +196,7 @@ angular.module('raw.directives', [])
 
 	        out: function(event, ui)
 	        {
-            if(ui.item.hasClass('ui-draggable') && !scope.$eval(attrs.single) || !scope.$eval(attrs.ngModel).value.length) {
+            if(ui.item.hasClass('ui-draggable') && !scope.$eval(attrs.single) || !scope.$eval(attrs.ngModel).value.length ) {
               element.append('<div class="placeholder static">drop here</div>');
             }
 
@@ -212,7 +211,7 @@ angular.module('raw.directives', [])
 	        beforeStop: function(event, ui)
 	        { 
 
-            if(!ui.item.hasClass('ui-draggable')) {
+            if(!ui.item.hasClass('ui-draggable') ) {
               element.append('<div class="placeholder static">drop here</div>');
             }
 
@@ -225,8 +224,13 @@ angular.module('raw.directives', [])
 
         });
 
+				scope.$watch(function(){return scope.$eval(attrs.ngModel).value},function(val){
+					if(!val.length && !element.find(".placeholder.static").length) element.append('<div class="placeholder static">drop here</div>');
+				},true)
+
         element.disableSelection();
       }
+    
     };
   })
 	

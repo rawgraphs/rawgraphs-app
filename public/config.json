@@ -3,7 +3,6 @@
 	[
 		"charts/treemap.js",
 		"charts/bubblechart.js",
-		"charts/scatterplot.js",
 		"charts/alluvial.js",
 		"charts/circlepacking.js",
 		"charts/circulardendogram.js",
@@ -19,6 +18,10 @@
 		{
 			"url" : "samples/correlations.csv",
 			"title" : "cocktails (Correlations)"
+		},
+		{
+			"url" : "samples/categorical.csv",
+			"title" : "titanic (multi variate)"
 		}
 	]
 }

@@ -482,17 +482,17 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
   -moz-border-radius: 2px;
   border-radius: 2px;
   letter-spacing: 1px;
-  font-size: 12px;
+  font-size: 11px;
   vertical-align: middle;
   font-weight: 400;
-  color: #ffffff;
+  color: #eeeeee;
   text-transform: uppercase;
 }
 
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus, .dropdown-submenu:hover>a, .dropdown-submenu:focus>a {
   font-weight: normal;
-  background-color: #484848;
-color: #61d8b8;
+  background-color: #61d8b8;
+  color: #ffffff;
   background-image: none;
 }
 

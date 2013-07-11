@@ -70,7 +70,7 @@
 		structure : {
 
 			sequence : {
-				title : 'Sequence',
+				title : 'Dimensions',
 				accept : ['string','number'],
 				single : false,
 				value : []
@@ -157,6 +157,7 @@ raw.models.points = function(map){
 		return {
 
 			structure : {
+				
 				x : {
 					title : 'X',
 					accept : ['string','number'],

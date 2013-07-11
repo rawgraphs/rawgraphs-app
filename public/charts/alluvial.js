@@ -2,8 +2,8 @@ raw.charts.alluvial = function(){
 
 	return {
 
-		title : 'Alluvial',
-		description : 'An alluvial is whatever <a href="http://www.google.com">Google</a>.',
+		title : 'Alluvial diagram (aka fineo)',
+		description : '',
 		model : raw.models.graph({}),
 
 		options : {

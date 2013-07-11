@@ -41,8 +41,8 @@
 	}
 
 	raw.isBooleanLike = function(value){
-		if (value.toLowerCase() === 'true' || value.toLowerCase() === 'yes' || value == 1) return true;
-    	if (value.toLowerCase() === 'false' || value.toLowerCase() === 'no' || value == 0) return true;
+		if (value.toLowerCase() === 'true' || value.toLowerCase() === 'yes' || value === 1 ) return true;
+    	if (value.toLowerCase() === 'false' || value.toLowerCase() === 'no' || value === 0 ) return true;
 		return false;
 	}
 
