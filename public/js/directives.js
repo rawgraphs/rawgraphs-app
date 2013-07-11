@@ -90,11 +90,19 @@ angular.module('raw.directives', [])
             element.css("opacity", .4);
             ui.helper.css("width", w);
             ui.helper.css("z-index", 10000);
+            //
+            scope.dragging.key = scope.$eval(attrs.value).key;
+            scope.dragging.type = scope.$eval(attrs.value).type;
+            scope.$apply();
           },
 
           stop:function(){
             element.css("width", "");
             element.css("opacity", "");
+            //
+            scope.dragging.key = "";
+            scope.dragging.type = "";
+            scope.$apply();
           }
 
         });
@@ -134,6 +142,7 @@ angular.module('raw.directives', [])
       link: function postLink(scope, element, attrs) {
 
       	var sortableIn = false;
+      	var dropString = "drop here";
         
         function getValues(){
           var values = element.sortable('toArray',{ attribute : "value" }).map(function(d){ return d.length ? JSON.parse(d) : {} });
@@ -197,7 +206,7 @@ angular.module('raw.directives', [])
 	        out: function(event, ui)
 	        {
             if(ui.item.hasClass('ui-draggable') && !scope.$eval(attrs.single) || !scope.$eval(attrs.ngModel).value.length ) {
-              element.append('<div class="placeholder static">drop here</div>');
+              element.append('<div class="placeholder static">' + dropString + '</div>');
             }
 
             sortableIn = false;
@@ -205,7 +214,7 @@ angular.module('raw.directives', [])
           
           start: function (e, ui)
           {
-            ui.placeholder.html('drop here');
+            ui.placeholder.html(dropString);
           },
           
 	        beforeStop: function(event, ui)
@@ -226,6 +235,23 @@ angular.module('raw.directives', [])
 
 				scope.$watch(function(){return scope.$eval(attrs.ngModel).value},function(val){
 					if(!val.length && !element.find(".placeholder.static").length) element.append('<div class="placeholder static">drop here</div>');
+				},true)
+
+				scope.$watch("dragging",function(val){
+					if (!val || !val.type || val.type == "") {
+						dropString = "drop here";
+						element.find('.placeholder').html(dropString)
+						return;
+					}
+					var validTypes = scope.$eval(attrs.accept);
+					if(validTypes.indexOf(val.type) != -1) {
+						dropString = "drop here";
+						element.find('.placeholder').html(dropString);
+					}
+					else {
+						dropString = "no " + val.type + "s here!";
+						element.find('.placeholder').html(dropString);
+					}
 				},true)
 
         element.disableSelection();

@@ -157,17 +157,17 @@ raw.models.points = function(map){
 		return {
 
 			structure : {
-				
+
 				x : {
 					title : 'X',
-					accept : ['string','number'],
+					accept : ['number'],
 					single : true,
 					value : []
 				},
 
 				y : {
 					title : 'Y',
-					accept : ['string','number'],
+					accept : ['number'],
 					single : true,
 					value : []
 				}

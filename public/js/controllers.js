@@ -85,6 +85,8 @@ angular.module('raw.controllers', []).
 
     })
 
+  $scope.dragging = {};
+
   $scope.myValueFunction = function(card) {
     console.log("asdasdas");
     return 0;
