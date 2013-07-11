@@ -4,7 +4,7 @@ div.container
 		h3 Data
 		div.row-fluid
 			textarea(ui-codemirror="{ mode : 'text',  lineNumbers : true, lineWrapping: true }"
-				placeholder="Paste your text here or drag in a file..."
+				placeholder="Paste your text here or drag in a file. No data on hand? Choose one of our sample!"
 				ng-model="text")
 
 		div.alert.alert-danger(ng-show="error") {{error}}
@@ -13,8 +13,7 @@ div.container
 				
 		div.row-fluid
 			div.span4
-				p.light
-					b {{data.length}} objects in your data
+				p.light {{data.length}} objects in your data
 			div.span8
 				div.dropdown.pull-right
 					a.dropdown-toggle(data-toggle="dropdown", href="#", role="button") choose a sample 
@@ -78,7 +77,7 @@ div.container
 						div.placeholder.static drop here
 						li.key(ng-repeat="item in mapper.value", value="{{item}}") {{item.key}}
 					
-	section(ng-show="data.length")
+	section#vis(ng-show="data.length")
 		a.toggles(href="")
 			i.icon-chevron-left.active
 		div.row-fluid

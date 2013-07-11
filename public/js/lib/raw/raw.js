@@ -121,7 +121,7 @@
 		
 		var values = {},
 			domain = [],
-			saturation = .5,
+			saturation = .4,
 			light = .6;
 		
 		var diverging = function(x){

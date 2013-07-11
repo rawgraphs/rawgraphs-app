@@ -49,7 +49,7 @@ body {
   background-color: #303032;
   color: #f2f2f2;
   text-align: center;
-  opacity: .96;
+  opacity: .97;
 }
 
 
@@ -236,7 +236,7 @@ body {
   padding-bottom: 5px;
 }
 
-#visualization .header {
+#options .header {
   font-size: 11px;
   text-align: left;
   padding-bottom: 0px;
@@ -544,6 +544,7 @@ color: #61d8b8;
   border: 1px solid #ddd;
   border-radius: 3px;
   margin: 10px 0;
+  height: 293px;
   /*box-shadow: 0 1px 3px rgba(0,0,0,0.1) inset;*/
 }
 

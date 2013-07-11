@@ -1,7 +1,12 @@
 {
 	"charts" :
 	[
-		"charts/treemap.js"
+		"charts/treemap.js",
+		"charts/bubblechart.js",
+		"charts/alluvial.js",
+		"charts/circlepacking.js",
+		"charts/circulardendogram.js",
+		"charts/dendogram.js"
 	],
 
 	"samples" :

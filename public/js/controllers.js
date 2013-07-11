@@ -87,21 +87,33 @@ angular.module('raw.controllers', []).
    //return card.values.opt1 + card.values.opt2;
   };
 
-  $scope.$watch("chart", function(){
-    $scope.update();
-  }, true)
-   
+
+  // reset charts
+  $scope.reset = function() {
+    if (!$scope.charts) return;
+    $scope.charts.forEach(function(chart){
+      // TODO: create a reset method in models
+      // reset model structure
+      d3.values(chart.model.structure).forEach(function(d){ d.value = []; });
+      // reset model map
+      d3.values(chart.model.map).forEach(function(d){ d.value = []; });
+    })
+  }
 
   // general update
   $scope.update = function(){
   
     $('[data-spy="scroll"]').each(function () {
-      var $spy = $(this).scrollspy('refresh')
-      //$spy.scrollspy({offset: 10})
+      $(this).scrollspy('refresh');
     });
   
   }
 
+  // update the scroll when things change
+  $scope.$watch("chart", $scope.update, true)
+  $scope.$watch("chart.title", $scope.reset, true)
+  $scope.$watch("text", $scope.update, true)
+  $scope.$watch("header", $scope.reset, true)
 
 
   // listeners
