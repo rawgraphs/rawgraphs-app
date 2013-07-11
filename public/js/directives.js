@@ -214,13 +214,15 @@ angular.module('raw.directives', [])
           
           start: function (e, ui)
           {
-            ui.placeholder.html(dropString);
+          	//if(!scope.$eval(attrs.single))
+            	ui.placeholder.html(dropString);
+            //else ui.placeholder.remove()
           },
           
 	        beforeStop: function(event, ui)
 	        { 
 
-            if(!ui.item.hasClass('ui-draggable') ) {
+            if(!ui.item.hasClass('ui-draggable')) {
               element.append('<div class="placeholder static">drop here</div>');
             }
 

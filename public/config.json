@@ -6,7 +6,8 @@
 		"charts/alluvial.js",
 		"charts/circlepacking.js",
 		"charts/circulardendogram.js",
-		"charts/dendogram.js"
+		"charts/dendogram.js",
+		"charts/binning.js"
 	],
 
 	"samples" :
