@@ -188,6 +188,7 @@ angular.module('raw.directives', [])
       	}
 
         element.sortable({
+       //   axis: "y",
         	update: update,
         	items: (attrs.items || '> li'),
         	placeholder: 'placeholder',
@@ -207,6 +208,8 @@ angular.module('raw.directives', [])
 	        {
             if(ui.item.hasClass('ui-draggable') && !scope.$eval(attrs.single) || !scope.$eval(attrs.ngModel).value.length ) {
               element.append('<div class="placeholder static">' + dropString + '</div>');
+              if (dropString == 'drop here') element.find('.placeholder').addClass("valid");
+              else element.find('.placeholder').addClass("invalid");
             }
 
             sortableIn = false;
@@ -231,6 +234,8 @@ angular.module('raw.directives', [])
 	            ui.item.remove();
 	            update();                
 	          }
+            element.find('.placeholder').removeClass("valid");
+            element.find('.placeholder').removeClass("invalid");
           }
 
         });
@@ -240,20 +245,29 @@ angular.module('raw.directives', [])
 				},true)
 
 				scope.$watch("dragging",function(val){
+
 					if (!val || !val.type || val.type == "") {
 						dropString = "drop here";
-						element.find('.placeholder').html(dropString)
+						element.find('.placeholder').html(dropString);
+            element.find('.placeholder').removeClass("invalid");
+            element.find('.placeholder').removeClass("valid");
 						return;
 					}
+
 					var validTypes = scope.$eval(attrs.accept);
 					if(validTypes.indexOf(val.type) != -1) {
 						dropString = "drop here";
 						element.find('.placeholder').html(dropString);
+            element.find('.placeholder').removeClass("invalid");
+            element.find('.placeholder').addClass("valid");
 					}
 					else {
 						dropString = "no " + val.type + "s here!";
 						element.find('.placeholder').html(dropString);
+            element.find('.placeholder').addClass("invalid");
+            element.find('.placeholder').removeClass("valid");
 					}
+
 				},true)
 
         element.disableSelection();

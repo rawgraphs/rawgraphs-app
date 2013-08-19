@@ -55,7 +55,7 @@ body {
 
 .navbar .brand {
   font-size:24px;
-  color: #ddd;
+  color: #eee;
   font-weight: 700;
   text-transform: uppercase;
   text-shadow: none;
@@ -219,6 +219,17 @@ body {
   margin: 5px 0px;
 }
 
+.type {
+  opacity: .5;
+  padding: 2px 4px;
+  margin-left: 10px;
+  background-color: #fff;
+  color: #61d8b8;
+
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+}
 
 .light {
   font-size: 11px;
@@ -291,6 +302,14 @@ body {
   -ms-transition: border-color .15s ease-in-out;
   -o-transition: border-color .15s ease-in-out;
   transition: border-color .15s ease-in-out;
+}
+
+.placeholder.valid { 
+  color: #31BE3D;
+}
+
+.placeholder.invalid { 
+  color: #E9451C;
 }
 
 .render {

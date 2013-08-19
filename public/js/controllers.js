@@ -123,6 +123,31 @@ angular.module('raw.controllers', []).
   $scope.$watch("chart.title", $scope.reset, true)
   $scope.$watch("header", $scope.reset, true)
 
+  $(window).scroll(function(){
+    var scrollTop = $(window).scrollTop() + 0,
+        mappingTop = $('#mapping').offset().top,
+        mappingHeight = $('#mapping').height(),
+        isBetween = scrollTop > mappingTop && scrollTop <= mappingTop+mappingHeight-$(".sticky").height()-70,
+        isSticky = false,
+        mappingWidth = mappingWidth ? mappingWidth : $('#visualization').width();
+
+    if (isBetween && !isSticky) {
+      $(".sticky")
+        .css("position","fixed")
+        .css("width", mappingWidth+"px")
+        .css("top","80px")
+
+    } else {
+      $(".sticky")
+        .css("position","relative")
+        .css("top","0px")
+        .css("width", "");
+      isSticky = false;
+    }
+
+    
+  })
+
 
   // listeners
   $(document).ready(function(){
@@ -135,16 +160,15 @@ angular.module('raw.controllers', []).
       $('html, body').animate({ scrollTop: $(this.hash).offset().top - 70 }, 500, "easeOutCubic");
     });
 
-   // toggle options
-   $('.toggles').click(function() {
+    // toggle options
+    $('.toggles').click(function() {
       $('a.toggles i').toggleClass('icon-chevron-left icon-chevron-right');
       $('#options').toggle(0, function() {
         $('#visualization').toggleClass('span12'),
         $('#visualization').toggleClass('span9')
       });
-    });
-    
+    });  
 
   });
-   
+
 });
