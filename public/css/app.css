@@ -597,7 +597,7 @@ div[color] input {
   margin: 0px;
   width: 60px;
   padding: 2px 6px;
-  float: left;
+  float: right;
   background: transparent;
   outline: 0px;
 }
@@ -622,15 +622,17 @@ div[color] table tr:first-child td {
   border-top: none;
 }
 
-.sample {
-
+.sample-name {
+  margin-top: 3px;
+  float: left;
 }
 
 .sample-color {
   width:16px;
   height: 16px;
-  float: right;
+  float: left;
   margin-top: 4px;
+  margin-right: 8px; 
 }
 
 .sample-text {

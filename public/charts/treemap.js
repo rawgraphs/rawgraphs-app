@@ -63,7 +63,7 @@ raw.charts.treemap = function(){
 			},
 
 			color : {
-				title : 'Color',
+				title : 'Colors',
 				type : 'color',
 				position : 2,
 				description : 'Color sucks!',

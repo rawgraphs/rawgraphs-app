@@ -71,6 +71,7 @@ raw.charts.circlepacking = function(){
 
 		    var pack = d3.layout.pack()
     			.size([r - 4, r - 4])
+    			.sort(null)
     			.padding(parseInt(options.padding.value) || 0)
     			.value(function(d) { return d.map.size; });
 
