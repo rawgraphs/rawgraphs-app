@@ -98,6 +98,7 @@ div.container
 						div(ng-switch-when="boolean")
 							label.checkbox
 								input(type="checkbox", ng-model="option.value")
+						div(color, ng-switch-when="color", model="chart.model", colors="option.value")
 						input.span12(type="text", ng-switch-default, ng-model="option.value")
 
 			div#visualization.span9

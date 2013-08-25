@@ -506,6 +506,7 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
   font-weight: 400;
   color: #eeeeee;
   text-transform: uppercase;
+
 }
 
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus, .dropdown-submenu:hover>a, .dropdown-submenu:focus>a {
@@ -583,19 +584,57 @@ pre.CodeMirror-placeholder {
   opacity: .5;
 }
 
-/* Colorpicker */
-.colorpicker-saturation {
-  background-image: url("../img/saturation.png");
+div[color] {
+  min-height: 36px;
+  max-height: 230px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  overflow: scroll;
 }
-.colorpicker-hue {
-  background-image: url("../img/hue.png");
+
+div[color] input {
+  font-size: 12px;
+  margin: 0px;
+  width: 60px;
+  padding: 2px 6px;
+  float: left;
+  background: transparent;
+  outline: 0px;
 }
-.colorpicker-alpha {
-  background-image: url("../img/alpha.png");
-  display: none;
+
+div[color] input:focus {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  outline: 0px auto -webkit-focus-ring-color !important;
 }
-.colorpicker-color {
-  background-image: url("../img/alpha.png");
+
+
+div[color] table{
+  margin-bottom: 0px;
+}
+
+div[color] table td {
+  padding: 5px 8px;
+}
+
+div[color] table tr:first-child td {
+  border-top: none;
+}
+
+.sample {
+
+}
+
+.sample-color {
+  width:16px;
+  height: 16px;
+  float: right;
+  margin-top: 4px;
+}
+
+.sample-text {
+  outline: none;
 }
 
 /* Samples 

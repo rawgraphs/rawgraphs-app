@@ -39,6 +39,33 @@ angular.module('raw.directives', [])
     };
   })
 
+  .directive('color', function ($rootScope) {
+    return {
+      restrict: 'A',
+      require: '?ngModel',
+      scope : {
+        colors : '=',
+        model : '='
+      },
+      templateUrl : 'templates/color.html',
+      link: function postLink(scope, element, attrs) {
+
+        scope.colorsList = [];
+
+        scope.setColor = function(color) {
+          scope.colors.value(color.key, color.value);
+          $rootScope.$broadcast("update");
+        }
+
+        scope.$watch('model', function (model){
+          scope.colorsList = d3.entries(scope.colors());
+        },true)
+        
+      }
+    };
+  })
+
+
 	
 	/* Chart */
 
@@ -67,6 +94,10 @@ angular.module('raw.directives', [])
         scope.$watch("data",function(){
         	if(scope.chart) updateLayout();
         }, true)
+
+        scope.$on("update", function(){
+          if(scope.chart) updateLayout();
+        })
 
 
       }

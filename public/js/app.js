@@ -8,7 +8,8 @@ angular.module('raw', [
   'raw.services',
   'raw.directives',
   'ui',
-  'ngSanitize'
+  'ngSanitize',
+  'colorpicker.module'
 ])
 
 .config(function ($routeProvider, $locationProvider) {

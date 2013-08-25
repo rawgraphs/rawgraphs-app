@@ -1,0 +1,22 @@
+ <!--<ul class="unstyled">
+   	<li ng-repeat="color in colorsList">
+    	<small>{{color.key}}</small>
+      	
+  	</li>
+</ul>-->
+
+<table class="table table-striped">
+	<tbody>
+		<tr ng-repeat="color in colorsList | orderBy:'key'">
+			<td>
+				<small>{{color.key}}</small>
+			</td>
+			<td>
+				<div class="sample">
+					<input type="text" colorpicker="hex" class="input-mini sample-text" ng-model="color.value" ng-change="setColor(color)"></input>
+					<div class="sample-color" style="background-color:{{color.value}}"></div>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>

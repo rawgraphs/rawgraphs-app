@@ -151,7 +151,13 @@
 		diverging.domain = function(x){
 			if (!arguments.length) return domain;
 			domain = x;
-			values = {};
+			//values = {};
+			var newValues = {};
+			domain.forEach(function(d){
+				var k = d != 'null' ? d : "undefined";
+				if(values.hasOwnProperty(k)) newValues[k] = values[k];
+			})
+			values = newValues;
 			return diverging;
 		}
 
@@ -365,6 +371,9 @@
 		header = arrData[0];
 			
 		for (var row=1; row<arrData.length; row++) {
+
+			// skipping empty rows
+			if (arrData[row].length == 1 && arrData[row].length != header.length) continue;
 			
 			if(arrData[row].length == header.length) {
 				var obj = {};
@@ -374,10 +383,7 @@
 				objData.push(obj);
 			} else {
 
-				
-
 				throw new Error("Hey, there's something strange at line " + (row+1) );
-				//if (raw.parseError) raw.parseError("Not so fast. There's something wrong at line " + (row+1));
 				return false;
 			}
 		}
