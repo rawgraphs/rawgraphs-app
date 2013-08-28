@@ -49,7 +49,7 @@ raw.charts.treemap = function(){
 			padding : {
 				title : 'Padding',
 				type : 'number',
-				position : 1,
+				position : 2,
 				description : 'Width is whatever',
 				value : 10
 			},
