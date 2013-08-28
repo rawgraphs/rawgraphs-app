@@ -37,7 +37,7 @@ if (app.get('env') === 'production') {
 };
 
 // Authenticator
-var auth = express.basicAuth('infographics', 'infographics')
+var auth = express.basicAuth('test', 'test')
 
 /**
  * Routes
