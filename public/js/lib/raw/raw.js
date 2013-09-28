@@ -87,7 +87,7 @@
 
 	raw.maxOnValue = function(obj){
 		var entries = d3.entries(obj).sort(function(a,b){ return a.value < b.value; });
-		return entries[0].key;
+		return entries[0].key == "null" && entries.length > 1 ? entries[1].key : entries[0].key;
 	}
 
 

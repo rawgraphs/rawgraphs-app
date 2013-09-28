@@ -27,6 +27,14 @@ raw.charts.binning = function(){
 				value : 500
 			},
 
+			radius : {
+				title : 'Cell radius',
+				type : 'number',
+				position : 1,
+				description : 'Radius',
+				value : 20
+			},
+
 			grid : {
 				title : 'Grid',
 				type : 'boolean',
@@ -56,9 +64,9 @@ raw.charts.binning = function(){
 
 			// let's calculate margins
 			var marginLeft = !options.grid.value ? 0 : d3.max(points, function(d){ return (Math.log(d.y) / 2.302585092994046) + 1; }) * 9,
-					marginBottom = !options.grid.value ? 0 : 20,
-					width = options.width.value - marginLeft -2,
-					height = options.height.value - marginBottom-1;
+				marginBottom = !options.grid.value ? 0 : 20,
+				width = options.width.value - marginLeft -2,
+				height = options.height.value - marginBottom-1;
 
 			var color = d3.scale.linear()
 			    .domain([0, 20])
@@ -69,7 +77,7 @@ raw.charts.binning = function(){
 			    .size([width, height])
 			    .x(function(d){ return xScale(d.x); })
 			    .y(function(d){ return yScale(d.y); })
-			    .radius(20);
+			    .radius(this.options.radius.value);
 
 			var	xScale = d3.scale.linear().range([marginLeft,this.options.width.value-1]).domain([ d3.min(points, function(d){ return d.x; }), d3.max(points, function(d){ return d.x; }) ]),
 					yScale = d3.scale.linear().range([height, 0]).domain([ d3.min(points, function(d){ return d.y; }), d3.max(points, function(d){ return d.y; }) ])
