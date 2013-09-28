@@ -5,7 +5,7 @@
 Raw is a web tool developed at the [DensityDesign Research Lab](http://www.densitydesign.org) (Politecnico di Milano) to create customizable vector-based visualizations of multivariate datasets, using the amazing [d3.js](https://github.com/mbostock/d3) library.
 Primarily conceived as a production tool for designers, Raw aims at providing **a missing link**  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, OpenRefine) and vector graphics editors (e.g. Adobe Illustrator, Adobe InDesign, CorelDRAW).
 
-Currently, Raw accepts **delimiter-separated values** (i.e. csv and tsv files) as well as **copied-and-pasted texts **by other applications (e.g. Microsoft Excel). Based on [svg](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily imported in and edited by vector graphics applications, for further refinements or directly embedded into web pages.
+Currently, Raw accepts **delimiter-separated values** (i.e. csv and tsv files) as well as **copied-and-pasted texts** by other applications (e.g. Microsoft Excel). Based on [svg](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily imported in and edited by vector graphics applications, for further refinements or directly embedded into web pages.
 
 Intended to be used also with sensitive information, the data uploaded to Raw will be processed only by the web browser: no server-side operation or storage will be performed.
 
@@ -13,7 +13,7 @@ Raw is also highly customizable and extensible, accepting new custom layouts def
 
 
 ##Usage
-The easiest way to use Raw is by accessing the most updated version on the [official website](http://app.raw.densitydesign.org). However, Raw can also run locally on your machine. 
+The easiest way to use Raw is by accessing the most updated version on the [official website](http://app.raw.densitydesign.org). However, as a Node.js app, Raw can also runs locally on your machine. 
 
 ##How to install and run Raw on your machine
 If you want to run your instance of Raw locally on your machine, [download](https://github.com/densitydesign/raw/archive/master.zip) or [clone](github-mac://openRepo/https://github.com/densitydesign/raw) this repository and follow these instructions:
@@ -30,16 +30,12 @@ If you want to run your instance of Raw locally on your machine, [download](http
 
 ##Documentation and Support
 
-Documentation and FAQs about how to use Raw can be found on the [offical website](http://raw.densitydesign.org). Development documentation will be available soon on the Wiki of this repository. 
-
-Google Group link
-
-##Contribution and extentions
+Documentation and FAQs about how to use Raw can be found on the [offical website](http://raw.densitydesign.org). Development documentation will be available soon on the Wiki of this repository. Sorry for this.
 
 
 ##Libraries
 
-Raw has been developed using a lot of cool stuff:
+Raw has been developed using a lot of cool stuff available out there:
 
 [angular.js](https://github.com/angular/angular.js)  
 [angular-ui](https://github.com/angular-ui)  
@@ -51,9 +47,13 @@ Raw has been developed using a lot of cool stuff:
 [canvg.js](http://code.google.com/p/canvg/)  
 [CodeMirror](https://github.com/marijnh/codemirror)  
 [d3.js](https://github.com/mbostock/d3)  
+[express](https://github.com/visionmedia/express)  
 [FileSaver.js](https://github.com/eligrey/FileSaver.js)  
+[Jade](http://jade-lang.com/)  
 [jQuery](https://github.com/jquery/jquery)  
 [jsPDF](https://github.com/MrRio/jsPDF)  
+[Node.js](http://nodejs.org/)  
+[nodemon](https://github.com/remy/nodemon)  
 [rgbcolor.js](http://www.phpied.com/rgb-color-parser-in-javascript/)  
 [Sticky](https://github.com/garand/sticky)
 
@@ -74,7 +74,7 @@ Giorgio Uboldi <giorgio.uboldi@polimi.it>
 Matteo Azzi <matteo.azzi@polimi.it>  
 Azzurra Pini <azzurra.pini@polimi.it>  
 
-**Want to contribute? You are more than welcome! Just fork the repo and send us issues and pull requests!**
+**Want to contribute? You are more than welcome! Just fork the repo and create issues and pull requests!**
 
 If you want to know more about Raw, how it works and future developments, please visit the [offical website](http://raw.densitydesign.org). For any specific request or comment we suggest you to use Github or the [Google group](http://). If none of these worked for you, you can write us at <raw@densitydesign.org>.
 
