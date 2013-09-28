@@ -2,12 +2,12 @@
 
 ![image](http://www.densitydesign.org/wp-content/themes/whiteasmilk/img/logo.png)
 
-Raw is a web tool developed at the [DensityDesign Research Lab](http://www.densitydesign.org) (Politecnico di Milano) to create customizable vector-based visualizations of multivariate datasets, using the amazing [d3.js](https://github.com/mbostock/d3) library.
-Primarily conceived as a production tool for designers, Raw aims at providing **a missing link**  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, OpenRefine) and vector graphics editors (e.g. Adobe Illustrator, Adobe InDesign, CorelDRAW).
+Raw is an open web tool developed at the [DensityDesign Research Lab](http://www.densitydesign.org) (Politecnico di Milano) to create custom vector-based visualizations of multivariate datasets on top of the amazing [d3.js](https://github.com/mbostock/d3) library.
+Primarily conceived as a tool for designers and vis geeks, Raw aims at providing **a missing link  between spreadsheet applications** (e.g. Microsoft Excel, Apple Numbers, OpenRefine) **and vector graphics editors** (e.g. Adobe Illustrator, Adobe InDesign, CorelDRAW).
 
-Currently, Raw accepts **delimiter-separated values** (i.e. csv and tsv files) as well as **copied-and-pasted texts** by other applications (e.g. Microsoft Excel). Based on [svg](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily imported in and edited by vector graphics applications for further refinements, or directly embedded into web pages.
+Raw works with delimiter-separated values (i.e. csv and tsv files) as well as with copied-and-pasted texts by other applications (e.g. Microsoft Excel). Based on the [svg](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily imported in and edited with vector graphics applications for further refinements, or directly embedded into web pages.
 
-Intended to be used also with sensitive information, the data uploaded to Raw will be processed only by the web browser: no server-side operation or storage will be performed.
+In order to be used also with sensitive information, the data uploaded to Raw is processed only by the web browser: no server-side operation or storage are performed - no one will see or touch your data!
 
 Raw is also highly customizable and extensible, accepting new custom layouts defined by users. For more information about how to add or edit layouts, see the Documentation section.
 
@@ -60,8 +60,11 @@ Raw has been developed using a lot of cool stuff available out there:
 ##Roadmap
 
 - Improve documentation
-- Simplify the creation of layouts through reusable charts
+- Introducing continuous color scales (for numeric values)
 - PDF export
+- Code refactoring using [reusable charts](http://bost.ocks.org/mike/chart/) as layouts
+
+
 
 ##Team and Contacts
 
@@ -71,11 +74,11 @@ Giorgio Caviglia <giorgio.caviglia@polimi.it>
 Michele Mauri <michele.mauri@polimi.it>  
 Giorgio Uboldi <giorgio.uboldi@polimi.it>  
 Matteo Azzi <matteo.azzi@polimi.it>  
-Azzurra Pini <azzurra.pini@polimi.it>  
-
-**Want to contribute? You are more than welcome! Just fork the repo and create issues and pull requests!**
+Azzurra Pini <azzurra.pini@polimi.it>
 
 If you want to know more about Raw, how it works and future developments, please visit the [offical website](http://raw.densitydesign.org). For any specific request or comment we suggest you to use Github or the [Google group](http://). If none of these worked for you, you can write us at <raw@densitydesign.org>.
+
+Want to contribute to Raw's development? You are more than welcome! Just fork the repo and use Github's issues and pull requests.
 
 
 ##License
