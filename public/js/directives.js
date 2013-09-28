@@ -358,6 +358,7 @@ angular.module('raw.directives', [])
           if(!scope.type || !scope.source) return;
 
           if (scope.type == "svg") downloadSVG();
+          if (scope.type == "pdf") downloadPDF();
           if (scope.type == "png") downloadImage();
           if (scope.type == "json") downloadData();
         }
@@ -373,6 +374,23 @@ angular.module('raw.directives', [])
           var blob = new Blob([html], { type: "data:image/svg+xml" });
 
           saveAs(blob, (element.find('input').val() || element.find('input').attr("placeholder")) + ".svg")
+        }
+
+        /* Download PDF */
+        var downloadPDF = function(){
+         
+          var html = d3.select(scope.source).select("svg")
+            .attr("version", 1.1)
+            .attr("xmlns", "http://www.w3.org/2000/svg")
+            .node().parentNode.innerHTML;
+          var doc = new jsPDF();
+          svgElementToPdf(html, doc, {});
+          //doc.addSVG(html,0,0,100,100)
+          doc.save('test.pdf')
+
+          //var blob = new Blob([html], { type: "data:image/svg+xml" });
+
+          //saveAs(blob, (element.find('input').val() || element.find('input').attr("placeholder")) + ".svg")
         }
 
         /* Download Image */
