@@ -5,7 +5,7 @@
 Raw is a web tool developed at the [DensityDesign Research Lab](http://www.densitydesign.org) (Politecnico di Milano) to create customizable vector-based visualizations of multivariate datasets, using the amazing [d3.js](https://github.com/mbostock/d3) library.
 Primarily conceived as a production tool for designers, Raw aims at providing **a missing link**  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, OpenRefine) and vector graphics editors (e.g. Adobe Illustrator, Adobe InDesign, CorelDRAW).
 
-Currently, Raw accepts **delimiter-separated values** (i.e. csv and tsv files) as well as **copied-and-pasted texts** by other applications (e.g. Microsoft Excel). Based on [svg](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily imported in and edited by vector graphics applications, for further refinements or directly embedded into web pages.
+Currently, Raw accepts **delimiter-separated values** (i.e. csv and tsv files) as well as **copied-and-pasted texts** by other applications (e.g. Microsoft Excel). Based on [svg](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily imported in and edited by vector graphics applications for further refinements, or directly embedded into web pages.
 
 Intended to be used also with sensitive information, the data uploaded to Raw will be processed only by the web browser: no server-side operation or storage will be performed.
 
@@ -13,7 +13,7 @@ Raw is also highly customizable and extensible, accepting new custom layouts def
 
 
 ##Usage
-The easiest way to use Raw is by accessing the most updated version on the [official website](http://app.raw.densitydesign.org). However, as a Node.js app, Raw can also runs locally on your machine. 
+The easiest way to use Raw is by accessing the most updated version on the [official website](http://app.raw.densitydesign.org). However, as a Node.js app, Raw can also run locally on your machine. 
 
 ##How to install and run Raw on your machine
 If you want to run your instance of Raw locally on your machine, [download](https://github.com/densitydesign/raw/archive/master.zip) or [clone](github-mac://openRepo/https://github.com/densitydesign/raw) this repository and follow these instructions:
@@ -86,12 +86,12 @@ Raw is provided under the LGPL (Lesser General Public License) v.3:
 > Copyright (c), 2013 DensityDesign Lab, Giorgio Caviglia, Michele Mauri,
 > Giorgio Uboldi, Matteo Azzi and Azzurra Pini
 > 
-> <info@densitydesign.org>
-> <giorgio.caviglia@polimi.it>
-> <michele.mauri@polimi.it>
-> <giorgio.uboldi@polimi.it>
-> <matteo.azzi@polimi.it>
-> <azzurra.pini@polimi.it>
+> <info@densitydesign.org>  
+> <giorgio.caviglia@polimi.it>  
+> <michele.mauri@polimi.it>  
+> <giorgio.uboldi@polimi.it>  
+> <matteo.azzi@polimi.it>  
+> <azzurra.pini@polimi.it>  
 > 
 > This program is free software: you can redistribute it and/or modify
 > it under the terms of the GNU Lesser General Public License as published by
