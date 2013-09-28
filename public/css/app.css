@@ -24,7 +24,6 @@ body {
 
 #footer {
   background-color: #565656;
-  padding: 20px 0px;
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -365,6 +364,7 @@ h3 {
   opacity: .8;
   font-size: 10px;
   font-weight: 400;
+  margin-top: 20px;
 }
 
 .well {
