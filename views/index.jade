@@ -18,7 +18,10 @@ block body
             a(href="#options") Visualization
           li
             a(href="#export") Export
-        p.navbar-text.pull-right ALPHA
+        p.navbar-text.pull-right BETA
+        ul.nav.pull-right
+          li
+            a(href="http://raw.densitydesign.org") Need help ?
 
   div.wrap(ng-view)
 
@@ -45,7 +48,8 @@ block body
   script(src='js/lib/canvas-toblob/canvas-toBlob.js')
   script(src='js/lib/filesaver/FileSaver.min.js')
   script(src='js/lib/bootstrap-colorpicker/bootstrap-colorpicker.js')  
-
+  script(src='js/lib/jsPDF/jspdf.min.js') 
+  script(src='js/lib/jsPDF/jspdf.plugin.svgToPdf.js') 
   
   // Raw
   script(src='js/lib/raw/raw.js')  

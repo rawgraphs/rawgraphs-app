@@ -2,7 +2,7 @@ raw.charts.alluvial = function(){
 
 	return {
 
-		title : 'Alluvial diagram (aka fineo)',
+		title : 'Alluvial diagram (fineo-like)',
 		description : '',
 		model : raw.models.graph({}),
 
