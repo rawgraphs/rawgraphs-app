@@ -54,13 +54,13 @@
 	raw.isDateLike = function(value){
 		value = value.replace(/[\-|\.\_]/g, '/');
 		value = value.replace(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/g , '$3/$1/$2');
-		if (value.search(/^\d{2,4}\/\d{1,2}\/\d{1,2}\b/g) != -1) return true;
+		if (value.search(/^\d{2,4}\/\d{1,2}\/\d{1,2}\b$/) != 0) return false;
 		if (!raw.isNumberLike(value) && Date.parse(value)) return true;
 		return false;
 	}
 
 	raw.sniff = function(value) {
-		if (value === null) return 'null';
+		if (value === null || value.length === 0) return 'null';
 		if (raw.isObject(value)) return 'object';
 		if (raw.isArray(value)) return 'array';
 		if (raw.isNumber(value)) return 'number';

@@ -23,6 +23,10 @@
 		{
 			"url" : "samples/categorical.csv",
 			"title" : "titanic (multi variate)"
+		},
+		{
+			"url" : "samples/flow.csv",
+			"title" : "music industry (Flows)"
 		}
 	]
 }
