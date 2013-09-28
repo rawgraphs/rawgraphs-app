@@ -128,6 +128,7 @@ angular.module('raw.controllers', []).
         mappingTop = $('#mapping').offset().top,
         mappingHeight = $('#mapping').height(),
         isBetween = scrollTop > mappingTop && scrollTop <= mappingTop+mappingHeight-$(".sticky").height()-70,
+        isOver = scrollTop > mappingTop+mappingHeight,
         isSticky = false,
         mappingWidth = mappingWidth ? mappingWidth : $('#visualization').width();
 
@@ -136,16 +137,23 @@ angular.module('raw.controllers', []).
         .css("position","fixed")
         .css("width", mappingWidth+"px")
         .css("top","80px")
+      return;
+    } 
 
-    } else {
+   /* if (isOver) {
+      console.log("hihihi")
       $(".sticky")
-        .css("position","relative")
-        .css("top","0px")
-        .css("width", "");
-      isSticky = false;
-    }
+        .css("position","absolute")
+        .css("width", mappingWidth+"px")
+        .css("bottom","0px")
+      return;
+    }*/
 
-    
+    $(".sticky")
+      .css("position","relative")
+      .css("top","0px")
+      .css("width", "");
+    isSticky = false;
   })
 
 

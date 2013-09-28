@@ -108,8 +108,8 @@ div.container
 	section#export(ng-show="data.length")
 		h3 Export
 		div.row-fluid
-			downloader.span3(type="svg", label="vector graphics (svg)", source="#vis")
-			downloader.span3(type="png", label="image (png) (beta)", source="#vis")
+			downloader.span3(type="svg", label="svg", source="#vis")
+			downloader.span3(type="png", label="png (beta)", source="#vis")
 			downloader.span3(type="json", label="data (json)", source="{{chart.model.applyOn(data)}}")
 			div.span3
 				p.header Embed in HTML

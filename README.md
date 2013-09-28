@@ -55,7 +55,6 @@ Raw has been developed using a lot of cool stuff available out there:
 [Node.js](http://nodejs.org/)  
 [nodemon](https://github.com/remy/nodemon)  
 [rgbcolor.js](http://www.phpied.com/rgb-color-parser-in-javascript/)  
-[Sticky](https://github.com/garand/sticky)
 
 
 ##Roadmap
