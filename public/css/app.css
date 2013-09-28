@@ -340,6 +340,8 @@ h3 {
   border-bottom: 1px solid #ddd;
   padding: 10px 0px;
   padding-bottom: 0px;
+  text-shadow: 0px 1px #fff;
+  color: #999;
 }
 
 .alert {
