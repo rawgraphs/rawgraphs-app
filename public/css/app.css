@@ -596,6 +596,10 @@ pre.CodeMirror-placeholder {
   opacity: .5;
 }
 
+.CodeMirror-gutters {
+  height: 100%;
+}
+
 div[color] {
   min-height: 36px;
   max-height: 230px;
@@ -649,6 +653,11 @@ div[color] table tr:first-child td {
 
 .sample-text {
   outline: none;
+}
+
+.colorpicker {
+  background-color: #fff;
+  border: 1px solid #bbb;
 }
 
 /* Samples 

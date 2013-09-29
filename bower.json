@@ -1,0 +1,22 @@
+{
+  "name": "raw",
+  "main": "raw.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/densitydesign/raw",
+  "authors": [
+    "giorgio caviglia <giorgio.caviglia@polimi.it>",
+    "michele mauri <michele.mauri@polimi.it>",
+    "giorgio uboldi <giorgio.uboldi@polimi.it>",
+    "matteo azzi <matteo.azzi@polimi.it>",
+    "azzurra pini <azzurra.pini@polimi.it>"
+  ],
+  "license": "LGPL",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
