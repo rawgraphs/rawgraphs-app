@@ -2,7 +2,7 @@
 Currently in beta.
 
 **Raw** is an open web tool developed at the [DensityDesign Research Lab](http://www.densitydesign.org) (Politecnico di Milano) to create custom vector-based visualizations on top of the amazing [d3.js](https://github.com/mbostock/d3) library.
-Primarily conceived as a tool for designers and vis geeks, Raw aims at providing a missing link  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, OpenRefine) and vector graphics editors (e.g. Adobe Illustrator, Adobe InDesign, CorelDRAW).
+Primarily conceived as a tool for designers and vis geeks, Raw aims at providing a missing link  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, OpenRefine) and vector graphics editors (e.g. Adobe Illustrator, Inkscape, Adobe InDesign, ...).
 
 Raw works with delimiter-separated values (i.e. csv and tsv files) as well as with copied-and-pasted texts from other applications (e.g. Microsoft Excel). Based on the [svg](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily imported in and edited with vector graphics applications for further refinements, or directly embedded into web pages.
 
@@ -117,7 +117,7 @@ Giorgio Uboldi <giorgio.uboldi@polimi.it>
 Matteo Azzi <matteo.azzi@polimi.it>  
 Azzurra Pini <azzurra.pini@polimi.it>
 
-If you want to know more about Raw, how it works and future developments, please visit the [offical website](http://raw.densitydesign.org). For any specific request or comment we suggest you to use Github or the [Google group](http://). If none of these worked for you, you can write us at <raw@densitydesign.org>.
+If you want to know more about Raw, how it works and future developments, please visit the [official website](http://raw.densitydesign.org). For any specific request or comment we suggest you to use Github or the [Google group](https://groups.google.com/forum/#!forum/densitydesign-raw). If none of these worked for you, you can write us at <raw@densitydesign.org>.
 
 Want to contribute to Raw's development? You are more than welcome! Just fork the repo and use Github's issues and pull requests.
 
