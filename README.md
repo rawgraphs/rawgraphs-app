@@ -32,12 +32,16 @@ or, clone it from the command line:
 
 browse to Raw root folder:
 
-	$ cd raw/
+	$ cd raw
 
-install dependencies:
+install server-side dependencies:
 
 	$ npm install
 
+install client-side dependencies:
+
+	$ bower install
+	
 run server:
 
 	$ npm start
