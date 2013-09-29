@@ -1,14 +1,13 @@
 {
   "name": "application-name",
-  "version": "0.0.1",
-  "private": true,
+  "version": "0.1.0",
   "scripts" : {
   	"start" : "NODE_ENV=development ./node_modules/.bin/nodemon raw.js"
   	},
   "dependencies": {
     "express": "~3.2.6",
     "jade": "~0.31.2",
-    "nodemon" : "latest",
-    "bower" : "latest"
+    "nodemon" : "~0.7.8",
+    "bower" : "~1.2.6"
   }
 }

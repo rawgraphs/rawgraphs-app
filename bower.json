@@ -11,7 +11,6 @@
     "azzurra pini <azzurra.pini@polimi.it>"
   ],
   "license": "LGPL",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
