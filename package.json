@@ -7,6 +7,8 @@
   	},
   "dependencies": {
     "express": "~3.2.6",
-    "jade": "~0.31.2"
+    "jade": "~0.31.2",
+    "nodemon" : "latest",
+    "bower" : "latest"
   }
 }
