@@ -1,37 +1,77 @@
 # RAW
+Currently in beta.
 
-![image](http://www.densitydesign.org/wp-content/themes/whiteasmilk/img/logo.png)
+**Raw** is an open web tool developed at the [DensityDesign Research Lab](http://www.densitydesign.org) (Politecnico di Milano) to create custom vector-based visualizations on top of the amazing [d3.js](https://github.com/mbostock/d3) library.
+Primarily conceived as a tool for designers and vis geeks, Raw aims at providing a missing link  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, OpenRefine) and vector graphics editors (e.g. Adobe Illustrator, Adobe InDesign, CorelDRAW).
 
-Raw is an open web tool developed at the [DensityDesign Research Lab](http://www.densitydesign.org) (Politecnico di Milano) to create custom vector-based visualizations of multivariate datasets on top of the amazing [d3.js](https://github.com/mbostock/d3) library.
-Primarily conceived as a tool for designers and vis geeks, Raw aims at providing **a missing link  between spreadsheet applications** (e.g. Microsoft Excel, Apple Numbers, OpenRefine) **and vector graphics editors** (e.g. Adobe Illustrator, Adobe InDesign, CorelDRAW).
+Raw works with delimiter-separated values (i.e. csv and tsv files) as well as with copied-and-pasted texts from other applications (e.g. Microsoft Excel). Based on the [svg](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily imported in and edited with vector graphics applications for further refinements, or directly embedded into web pages.
 
-Raw works with delimiter-separated values (i.e. csv and tsv files) as well as with copied-and-pasted texts by other applications (e.g. Microsoft Excel). Based on the [svg](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily imported in and edited with vector graphics applications for further refinements, or directly embedded into web pages.
-
-In order to be used also with sensitive information, the data uploaded to Raw is processed only by the web browser: no server-side operation or storage are performed - no one will see or touch your data!
+Knowing the need of working with sensitive information, the data uploaded to Raw is processed only by the web browser: no server-side operation or storage are performed - no one will see, touch or copy your data!
 
 Raw is also highly customizable and extensible, accepting new custom layouts defined by users. For more information about how to add or edit layouts, see the Documentation section.
 
+- Web site: [http://raw.densitydesign.org](http://raw.densitydesign.org)
+- Online app: [http://app.raw.densitydesign.org](http://app.raw.densitydesign.org)
+- Documentation: ...
+- Google group: [https://groups.google.com/forum/#!forum/densitydesign-raw](https://groups.google.com/forum/#!forum/densitydesign-raw)
+
 
 ##Usage
-The easiest way to use Raw is by accessing the most updated version on the [official website](http://app.raw.densitydesign.org). However, as a Node.js app, Raw can also run locally on your machine. 
+The easiest way to use Raw is by accessing the most updated version on the [official app website](http://app.raw.densitydesign.org). However, as an open source Node.js/Express app, Raw can also run locally on your machine. 
 
-##How to install and run Raw on your machine
-If you want to run your instance of Raw locally on your machine, [download](https://github.com/densitydesign/raw/archive/master.zip) or [clone](github-mac://openRepo/https://github.com/densitydesign/raw) this repository and follow these instructions:
+##Installation
+If you want to run your instance of Raw locally on your machine, be sure you have [Node.js](http://dnodejs.org/) installed, otherwise [download](http://nodejs.org/download/) and install it.
 
-- Be sure you have [Node.js](http://dnodejs.org/) installed, otherwise [download](http://nodejs.org/download/) and install it.
-- Enter the repository, install the dependencies and start the app:
+Download the latest version [here](https://github.com/densitydesign/raw/zipball/master):
 
-		cd raw
-		npm install
-		npm start
+	https://github.com/densitydesign/raw/zipball/master
 
+or, clone it from the command line:
 
-- Browse the app at <http://localhost:4000>
+	$ git clone git://github.com/densitydesign/raw.git
+
+browse to Raw root folder:
+
+	$ cd raw/
+
+install dependencies:
+
+	$ npm install
+
+run server:
+
+	$ npm start
+
+Once this is running, go to [http://localhost:4000/](http://localhost:4000/).
+
 
 ##Documentation and Support
 
-Documentation and FAQs about how to use Raw can be found on the [offical website](http://raw.densitydesign.org). Development documentation will be available soon on the Wiki of this repository. Sorry for this.
+Documentation and FAQs about how to use Raw can be found on the [official website](http://raw.densitydesign.org). Development guide will be available soon on the Wiki of this repository. Sorry for this.
 
+##Layouts
+
+Currently, the following layouts are available:
+
+- Treemap
+- Bubble Chart
+- Circle Packing
+- Dendogram
+- Circular Dendogram
+- Hexagonal Binning
+- Alluvial Diagram (Fineo-like diagram)
+
+…and these will come soon:
+
+- Ribbon Streamgraph
+- Parallel Set 
+- Area Graph
+- Horizon Chart
+- Convex-hull Scatterplot
+- Parallel Coordinates
+- Scatterplot Voronoi Tesselation
+- Scatterplot Delaunay Triangulation
+- Quantum Treemap
 
 ##Libraries
 
@@ -59,8 +99,9 @@ Raw has been developed using a lot of cool stuff available out there:
 
 ##Roadmap
 
-- Improve documentation
+- Improve documentation and API reference
 - Introducing continuous color scales (for numeric values)
+- Creating and exporting visualizations' legends
 - PDF export
 - Code refactoring using [reusable charts](http://bost.ocks.org/mike/chart/) as layouts
 
