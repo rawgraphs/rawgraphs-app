@@ -155,6 +155,16 @@ angular.module('raw.controllers', []).
     isSticky = false;
   })
 
+  $scope.select2Options = {
+    minimumResultsForSearch: -1,    
+    initSelection : function (element, callback) {
+      console.log("sadad")
+      var data = { id: element.val(), text: element.val() };
+      console.log(data);
+      callback(data);
+    }
+  };
+
 
   // listeners
   $(document).ready(function(){

@@ -26,7 +26,6 @@
     "blob": "*",
     "bootstrap": "2.3.2",
     "bootstrap-colorpicker": "*",
-    "bootstrap-select": "1.0",
     "canvas-toBlob.js": "git://github.com/eligrey/canvas-toBlob.js.git",
     "canvg-1.3.zip": "https://canvg.googlecode.com/files/canvg-1.3.zip",
     "codemirror": "~3.18.0",
@@ -35,6 +34,6 @@
     "FileSaver": "git://github.com/eligrey/FileSaver.js.git",
     "jquery": "1.9.1",
     "jquery-ui": "~1.10.3",
-    "angular-bootstrap-select": "*"
+    "select2": "~3.4.3"
   }
 }
