@@ -3,7 +3,7 @@ raw.charts.alluvial = function(){
 	return {
 
 		title : 'Alluvial diagram (fineo-like)',
-		description : 'Alluvial diagrams allow to represent flows and to see correlations between categorical dimensions, visually linking to the number of elements sharing the same categories. It is useful to see the evolution of cluster (such as the number of people belonging to a specific group). It can also be used to represent bipartite networks.',
+		description : 'Alluvial diagrams allow to represent flows and to see correlations between categorical dimensions, visually linking to the number of elements sharing the same categories. It is useful to see the evolution of cluster (such as the number of people belonging to a specific group). It can also be used to represent <a href="http://en.wikipedia.org/wiki/Bipartite_graph">bipartite graphs</a>, using each node group as dimensions.<br>Mainly based on our previous work with <a href="http://www.densitydesign.org/research/fineo/">Fineo</a>, it is based on <a href="http://bost.ocks.org/mike/sankey/">http://bost.ocks.org/mike/sankey/</a>.',
 		model : raw.models.graph({}),
 
 		options : {
