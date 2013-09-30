@@ -39,19 +39,16 @@ if (app.get('env') === 'production') {
   // TODO
 };
 
-// Authenticator
-var auth = express.basicAuth('test', 'test')
-
 /**
  * Routes
  */
 
 // serve index and view partials
-app.get('/', auth, routes.index);
+app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
 // redirect all others to the index (HTML5 history)
-app.get('*', auth, routes.index);
+app.get('*', routes.index);
 
 
 /**

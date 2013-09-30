@@ -8,13 +8,13 @@
     "michele mauri <michele.mauri@polimi.it>",
     "giorgio uboldi <giorgio.uboldi@polimi.it>",
     "matteo azzi <matteo.azzi@polimi.it>",
-    "azzurra pini <azzurra.pini@polimi.it>"
   ],
   "license": "LGPL",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
+    "components",
     "test",
     "tests"
   ],

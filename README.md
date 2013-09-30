@@ -21,10 +21,11 @@ The easiest way to use Raw is by accessing the most updated version on the [offi
 ##Installation
 If you want to run your instance of Raw locally on your machine, be sure you have [Node.js](http://dnodejs.org/) installed, otherwise [download](http://nodejs.org/download/) and install it.
 
-Requirements
+###Requirements
 
 - [git](http://git-scm.com/book/en/Getting-Started-Installing-Git)
-- [Node.js](http://nodejs.org/download/)
+- [Node.js](http://nodejs.org/download/) 
+- [Bower](http://bower.io/#installing-bower)
 
 
 Clone Raw from the command line:
@@ -38,20 +39,12 @@ browse to Raw root folder:
 install server-side dependencies:
 
 	$ npm install
-
-install client-side dependencies*:
-
-	$ bower install
 	
 run server:
 
 	$ npm start
 
 Once this is running, go to [http://localhost:4000/](http://localhost:4000/).
-
-*If you have issues running `bower install` please be sure you have bower installed globally:
-	
-	$ npm install bower -g
 
 
 ##Documentation and Support
@@ -91,7 +84,6 @@ Raw has been developed using a lot of cool stuff available out there:
 [Blob.js](https://github.com/eligrey/Blob.js)  
 [bootstrap](https://github.com/twbs/bootstrap)  
 [bootstrap-colorpicker](http://www.eyecon.ro/bootstrap-colorpicker/)  
-[bootstrap-select](https://github.com/silviomoreto/bootstrap-select)  
 [canvas-toBlob.js](https://github.com/eligrey/canvas-toBlob.js)  
 [canvg.js](http://code.google.com/p/canvg/)  
 [CodeMirror](https://github.com/marijnh/codemirror)  
@@ -104,7 +96,7 @@ Raw has been developed using a lot of cool stuff available out there:
 [Node.js](http://nodejs.org/)  
 [nodemon](https://github.com/remy/nodemon)  
 [rgbcolor.js](http://www.phpied.com/rgb-color-parser-in-javascript/)  
-
+[select2](http://ivaynberg.github.io/select2/)
 
 ##Roadmap
 
