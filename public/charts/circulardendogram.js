@@ -3,7 +3,7 @@ raw.charts.circulardendogram = function(){
 	return {
 
 		title : 'Circular Dendogram',
-		description : 'Nested circles allow to represent hierarchies and compare values. This visualization is particularly effective to show the proportion between elements through their areas and their position inside a hierarchical structure. <br>Based on <a href="http://bl.ocks.org/mbostock/4063530">http://bl.ocks.org/mbostock/4063530</a>.',
+		description : 'Radial tree diagrams imply the same hierarchical logic of the dendrogram, implementing in addition an algorithm to optimize the node distribution along a circular shape, allowing to minimize the needed space. The arrangement of the clusters is calculated by the distance from the central root node. <br>Based on <a href="http://bl.ocks.org/mbostock/4063550">http://bl.ocks.org/mbostock/4063550</a>.',
 		model : raw.models.hierarchy(),
 
 		options : {
