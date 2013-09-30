@@ -33,7 +33,7 @@
     "d3": "~3.3.6",
     "d3-plugins": "*",
     "FileSaver": "git://github.com/eligrey/FileSaver.js.git",
-    "jquery": "~2.0.3",
+    "jquery": "1.9.1",
     "jquery-ui": "~1.10.3",
     "angular-bootstrap-select": "*"
   }
