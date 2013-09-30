@@ -2,7 +2,7 @@
 Currently in beta.
 
 **Raw** is an open web tool developed at the [DensityDesign Research Lab](http://www.densitydesign.org) (Politecnico di Milano) to create custom vector-based visualizations on top of the amazing [d3.js](https://github.com/mbostock/d3) library.
-Primarily conceived as a tool for designers and vis geeks, Raw aims at providing a missing link  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, OpenRefine) and vector graphics editors (e.g. Adobe Illustrator, Inkscape, Adobe InDesign, ...).
+Primarily conceived as a tool for designers and vis geeks, Raw aims at providing a missing link  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, OpenRefine) and vector graphics editors (e.g. Adobe Illustrator, Inkscape, ...).
 
 **Raw** works with delimiter-separated values (i.e. csv and tsv files) as well as with copied-and-pasted texts from other applications (e.g. Microsoft Excel, TextWrangler, TextEdit). Based on the [svg](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily imported in and edited with vector graphics applications for further refinements, or directly embedded into web pages.
 
@@ -39,7 +39,7 @@ install server-side dependencies:
 
 	$ npm install
 
-install client-side dependencies:
+install client-side dependencies*:
 
 	$ bower install
 	
@@ -49,7 +49,9 @@ run server:
 
 Once this is running, go to [http://localhost:4000/](http://localhost:4000/).
 
-If you have issues running `bower install` please be sure you have bower installed globally
+*If you have issues running `bower install` please be sure you have bower installed globally:
+	
+	$ npm install bower -g
 
 
 ##Documentation and Support
