@@ -60,7 +60,6 @@ angular.module('raw.controllers', []).
         fileref.setAttribute("src", d)
         fileref.onload = loaded;
         document.getElementsByTagName("body")[0].appendChild(fileref);
-        
       })
 
     },true)
@@ -155,6 +154,16 @@ angular.module('raw.controllers', []).
       .css("width", "");
     isSticky = false;
   })
+
+  $scope.select2Options = {
+    minimumResultsForSearch: -1,    
+    initSelection : function (element, callback) {
+      console.log("sadad")
+      var data = { id: element.val(), text: element.val() };
+      console.log(data);
+      callback(data);
+    }
+  };
 
 
   // listeners

@@ -2,17 +2,16 @@
 Currently in beta.
 
 **Raw** is an open web tool developed at the [DensityDesign Research Lab](http://www.densitydesign.org) (Politecnico di Milano) to create custom vector-based visualizations on top of the amazing [d3.js](https://github.com/mbostock/d3) library.
-Primarily conceived as a tool for designers and vis geeks, Raw aims at providing a missing link  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, OpenRefine) and vector graphics editors (e.g. Adobe Illustrator, Inkscape, Adobe InDesign, ...).
+Primarily conceived as a tool for designers and vis geeks, Raw aims at providing a missing link  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, OpenRefine) and vector graphics editors (e.g. Adobe Illustrator, Inkscape, ...).
 
-Raw works with delimiter-separated values (i.e. csv and tsv files) as well as with copied-and-pasted texts from other applications (e.g. Microsoft Excel). Based on the [svg](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily imported in and edited with vector graphics applications for further refinements, or directly embedded into web pages.
+**Raw** works with delimiter-separated values (i.e. csv and tsv files) as well as with copied-and-pasted texts from other applications (e.g. Microsoft Excel, TextWrangler, TextEdit). Based on the [svg](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily imported in and edited with vector graphics applications for further refinements, or directly embedded into web pages.
 
-Knowing the need of working with sensitive information, the data uploaded to Raw is processed only by the web browser: no server-side operation or storage are performed - no one will see, touch or copy your data!
+Knowing the need of working with sensitive information, the data uploaded to **Raw** is processed only by the web browser: no server-side operation or storage are performed - no one will see, touch or copy your data!
 
-Raw is also highly customizable and extensible, accepting new custom layouts defined by users. For more information about how to add or edit layouts, see the Documentation section.
+**Raw** is also highly customizable and extensible, accepting new custom layouts defined by users. For more information about how to add or edit layouts, see the Documentation section.
 
 - Web site: [http://raw.densitydesign.org](http://raw.densitydesign.org)
 - Online app: [http://app.raw.densitydesign.org](http://app.raw.densitydesign.org)
-- Documentation: ...
 - Google group: [https://groups.google.com/forum/#!forum/densitydesign-raw](https://groups.google.com/forum/#!forum/densitydesign-raw)
 
 
@@ -22,22 +21,25 @@ The easiest way to use Raw is by accessing the most updated version on the [offi
 ##Installation
 If you want to run your instance of Raw locally on your machine, be sure you have [Node.js](http://dnodejs.org/) installed, otherwise [download](http://nodejs.org/download/) and install it.
 
-Download the latest version [here](https://github.com/densitydesign/raw/zipball/master):
+###Requirements
 
-	https://github.com/densitydesign/raw/zipball/master
+- [git](http://git-scm.com/book/en/Getting-Started-Installing-Git)
+- [Node.js](http://nodejs.org/download/) 
+- [Bower](http://bower.io/#installing-bower)
 
-or, clone it from the command line:
+
+Clone Raw from the command line:
 
 	$ git clone git://github.com/densitydesign/raw.git
 
 browse to Raw root folder:
 
-	$ cd raw/
+	$ cd raw
 
-install dependencies:
+install server-side dependencies:
 
 	$ npm install
-
+	
 run server:
 
 	$ npm start
@@ -82,7 +84,6 @@ Raw has been developed using a lot of cool stuff available out there:
 [Blob.js](https://github.com/eligrey/Blob.js)  
 [bootstrap](https://github.com/twbs/bootstrap)  
 [bootstrap-colorpicker](http://www.eyecon.ro/bootstrap-colorpicker/)  
-[bootstrap-select](https://github.com/silviomoreto/bootstrap-select)  
 [canvas-toBlob.js](https://github.com/eligrey/canvas-toBlob.js)  
 [canvg.js](http://code.google.com/p/canvg/)  
 [CodeMirror](https://github.com/marijnh/codemirror)  
@@ -95,7 +96,7 @@ Raw has been developed using a lot of cool stuff available out there:
 [Node.js](http://nodejs.org/)  
 [nodemon](https://github.com/remy/nodemon)  
 [rgbcolor.js](http://www.phpied.com/rgb-color-parser-in-javascript/)  
-
+[select2](http://ivaynberg.github.io/select2/)
 
 ##Roadmap
 
@@ -120,6 +121,10 @@ If you want to know more about Raw, how it works and future developments, please
 
 Want to contribute to Raw's development? You are more than welcome! Just fork the repo and use Github's issues and pull requests.
 
+##Acknowledgments
+
+Azzurra Pini  
+Marta Croce
 
 ##License
 

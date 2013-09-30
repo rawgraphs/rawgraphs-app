@@ -3,7 +3,7 @@ raw.charts.alluvial = function(){
 	return {
 
 		title : 'Alluvial diagram (fineo-like)',
-		description : '',
+		description : 'Alluvial diagrams allow to represent flows and to see correlations between categorical dimensions, visually linking to the number of elements sharing the same categories. It is useful to see the evolution of cluster (such as the number of people belonging to a specific group). It can also be used to represent bipartite networks.',
 		model : raw.models.graph({}),
 
 		options : {

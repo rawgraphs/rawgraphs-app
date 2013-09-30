@@ -28,7 +28,7 @@ div.container
 		h3 Layout
 		div.row-fluid
 			div.span3
-				select.show-tick.span12(selectpicker, ng-model="chart", ng-options="c.title for c in charts")
+				select.span12(ui-select2="select2Options", ng-model="chart", ng-options="c.title for c in charts")
 			div.span3
 				p No picture available
 			div.span6
