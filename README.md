@@ -115,7 +115,6 @@ Giorgio Caviglia <giorgio.caviglia@polimi.it>
 Michele Mauri <michele.mauri@polimi.it>  
 Giorgio Uboldi <giorgio.uboldi@polimi.it>  
 Matteo Azzi <matteo.azzi@polimi.it>  
-Azzurra Pini <azzurra.pini@polimi.it>
 
 If you want to know more about Raw, how it works and future developments, please visit the [official website](http://raw.densitydesign.org). For any specific request or comment we suggest you to use Github or the [Google group](https://groups.google.com/forum/#!forum/densitydesign-raw). If none of these worked for you, you can write us at <raw@densitydesign.org>.
 
@@ -127,14 +126,13 @@ Want to contribute to Raw's development? You are more than welcome! Just fork th
 Raw is provided under the LGPL (Lesser General Public License) v.3:
 
 > Copyright (c), 2013 DensityDesign Lab, Giorgio Caviglia, Michele Mauri,
-> Giorgio Uboldi, Matteo Azzi and Azzurra Pini
+> Giorgio Uboldi, Matteo Azzi
 > 
 > <info@densitydesign.org>  
 > <giorgio.caviglia@polimi.it>  
 > <michele.mauri@polimi.it>  
 > <giorgio.uboldi@polimi.it>  
 > <matteo.azzi@polimi.it>  
-> <azzurra.pini@polimi.it>  
 > 
 > This program is free software: you can redistribute it and/or modify
 > it under the terms of the GNU Lesser General Public License as published by
