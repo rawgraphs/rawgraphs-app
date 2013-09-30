@@ -5,7 +5,7 @@ raw.charts.binning = function(){
 		title : 'Binned scatterplot',
 		
 		description : 'Visually clusters the most populated areas on a scatterplot. Useful to make more readable a scatterplot when plotting hundreds of points.<br>Based on <a href="http://bl.ocks.org/mbostock/4248145">http://bl.ocks.org/mbostock/4248145</a>',
-		
+		image : 'charts/imgs/hexagonal-binning.png',
 		model : raw.models.points(),
 
 		options : {

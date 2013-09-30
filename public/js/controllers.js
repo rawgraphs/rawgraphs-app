@@ -47,14 +47,16 @@ angular.module('raw.controllers', []).
       $scope.charts = [];
 
       chartsUrl.forEach(function(d, i){
-
         function loaded() {
           if (i == chartsUrl.length-1) {
             $scope.charts = d3.values(raw.charts).map(function(chart){ return chart(); });
+            $scope.charts.forEach(function(c, ind){ c.id = ind; c.text = c.title; })
             $scope.chart = $scope.charts[0];
             $scope.$apply();
+            $("#suca").select2("data", $scope.chart);
           }
         }
+
 
         var fileref = document.createElement('script')
         fileref.setAttribute("src", d)
@@ -158,7 +160,6 @@ angular.module('raw.controllers', []).
   $scope.select2Options = {
     minimumResultsForSearch: -1,    
     initSelection : function (element, callback) {
-      console.log("sadad")
       var data = { id: element.val(), text: element.val() };
       console.log(data);
       callback(data);

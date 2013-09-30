@@ -5,7 +5,7 @@ raw.charts.bubblechart = function(){
 		title : 'Bubble chart',
 		
 		description : 'The bubble chart uses Cartesian coordinates to represent three numerical variables using circles position and area. Similar to scatterplot, it is useful to spot out correlations between variables.<br> Based on <a href="http://nvd3.org/ghpages/scatter.html">http://nvd3.org/ghpages/scatter.html</a>',
-		
+		image : 'charts/imgs/bubble.png',
 		model : raw.models.points({
 
 			color : {

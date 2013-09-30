@@ -856,6 +856,13 @@ div[color] table tr:first-child td {
   border: 1px solid #bbb;
 }
 
+.image {
+  width: 100%;
+  height: 150px;
+  background-position: center center;
+  background-size: cover;
+}
+
 /* Samples 
 .sample .btn {
   background-color: #ddd;

@@ -6,7 +6,7 @@ raw.charts.treemap = function(){
 		title : 'Treemap',
 		
 		description : "A space filling visualization of data hierarchies and proportion between elements. The different hierarchical levels create visual clusters through the subdivision into rectangles proportionally to each element's value. Treemaps are useful to represent the different proportion of nested hierarchical data structures.<br/>Based on <a href='http://bl.ocks.org/mbostock/4063582'>http://bl.ocks.org/mbostock/4063582</a>",
-		
+		image : 'charts/imgs/treemap.png',
 		model : raw.models.hierarchy({
 
 			color : {

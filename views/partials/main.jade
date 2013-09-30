@@ -28,9 +28,9 @@ div.container
 		h3 Layout
 		div.row-fluid
 			div.span3
-				select.span12(ui-select2="select2Options", ng-model="chart", ng-options="c.title for c in charts")
+				select#suca.span12(ui-select2="select2Options", ng-model="chart", ng-options="c.title for c in charts")
 			div.span3
-				p No picture available
+				.image(style="background-image:url({{chart.image}})")
 			div.span6
 				p(ng-bind-html="chart.description")
 
