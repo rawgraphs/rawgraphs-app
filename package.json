@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts" : {
   	"start" : "NODE_ENV=development ./node_modules/.bin/nodemon raw.js",
-  	"postinstall" : "./node_modules/bower/bin/bower install"
+  	"postinstall" : "bower install"
   	},
   "dependencies": {
     "express": "~3.2.6",
