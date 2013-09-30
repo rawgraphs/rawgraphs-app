@@ -21,11 +21,13 @@ The easiest way to use Raw is by accessing the most updated version on the [offi
 ##Installation
 If you want to run your instance of Raw locally on your machine, be sure you have [Node.js](http://dnodejs.org/) installed, otherwise [download](http://nodejs.org/download/) and install it.
 
-Download the latest version [here](https://github.com/densitydesign/raw/zipball/master):
+Requirements
 
-	https://github.com/densitydesign/raw/zipball/master
+- [git](http://git-scm.com/book/en/Getting-Started-Installing-Git)
+- [Node.js](http://nodejs.org/download/)
 
-or, clone it from the command line (be sure you have [git](http://git-scm.com/book/en/Getting-Started-Installing-Git) installed):
+
+Clone Raw from the command line:
 
 	$ git clone git://github.com/densitydesign/raw.git
 
@@ -46,6 +48,8 @@ run server:
 	$ npm start
 
 Once this is running, go to [http://localhost:4000/](http://localhost:4000/).
+
+If you have issues running `bower install` please be sure you have bower installed globally
 
 
 ##Documentation and Support

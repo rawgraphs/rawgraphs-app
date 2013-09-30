@@ -60,7 +60,6 @@ angular.module('raw.controllers', []).
         fileref.setAttribute("src", d)
         fileref.onload = loaded;
         document.getElementsByTagName("body")[0].appendChild(fileref);
-        
       })
 
     },true)

@@ -10,6 +10,7 @@ angular.module('raw', [
   'ui',
   'ngSanitize',
   'colorpicker.module'
+ // 'angular-bootstrap-select'
 ])
 
 .config(function ($routeProvider, $locationProvider) {
