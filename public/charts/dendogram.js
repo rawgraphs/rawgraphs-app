@@ -3,7 +3,7 @@ raw.charts.dendogram = function(){
 	return {
 
 		title : 'Dendogram',
-		description : '...',
+		description : 'Dendrograms are tree-like diagrams used to represent the distribution of a hierarchical clustering. The different depth levels represented by each node are visualized on the horizontal axes and it is useful to visualize a non-weighted hierarchy.<br>Based on <a href="http://bl.ocks.org/mbostock/4063570">http://bl.ocks.org/mbostock/4063570</a>.',
 		model : raw.models.hierarchy(),
 
 		options : {
