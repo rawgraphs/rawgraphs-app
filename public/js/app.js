@@ -19,10 +19,10 @@ angular.module('raw', [
       redirectTo: '/',
       templateUrl: 'partials/main',
       controller: 'rawCtrl'
-    }).
+    })/*.
     otherwise({
       redirectTo: '/'
-    });
+    });*/
 
-  //$locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(true);
 });
