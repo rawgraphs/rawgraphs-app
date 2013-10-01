@@ -110,6 +110,7 @@ Raw has been developed using a lot of cool stuff available out there:
 - Creating and exporting visualizations' legends
 - PDF export
 - Code refactoring using [reusable charts](http://bost.ocks.org/mike/chart/) as layouts
+- labels based on data
 
 
 
