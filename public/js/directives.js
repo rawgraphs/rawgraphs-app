@@ -439,7 +439,6 @@ angular.module('raw.directives', [])
               .node().parentNode.innerHTML;
 
           canvg('canvas',html);
-         
           var canvas = document.getElementById("canvas");//, ctx = canvas.getContext("2d");
           canvas.toBlob(function(blob) {
               saveAs(blob, (element.find('input').val() || element.find('input').attr("placeholder")) + ".png");
