@@ -1,8 +1,8 @@
 # RAW
 Currently in beta.
 
-**Raw** is an open web tool developed at the [DensityDesign Research Lab](http://www.densitydesign.org) (Politecnico di Milano) to create custom vector-based visualizations on top of the amazing [d3.js](https://github.com/mbostock/d3) library.
-Primarily conceived as a tool for designers and vis geeks, Raw aims at providing a missing link  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, OpenRefine) and vector graphics editors (e.g. Adobe Illustrator, Inkscape, ...).
+**Raw** is an open web tool developed at the [DensityDesign Research Lab](http://www.densitydesign.org) (Politecnico di Milano) to create custom vector-based visualizations on top of the amazing [d3.js](https://github.com/mbostock/d3) library by [Mike Bostock](http://bost.ocks.org/mike/).
+Primarily conceived as a tool for designers and vis geeks, **Raw** aims at providing a missing link  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, OpenRefine) and vector graphics editors (e.g. Adobe Illustrator, Inkscape, ...).
 
 **Raw** works with delimiter-separated values (i.e. csv and tsv files) as well as with copied-and-pasted texts from other applications (e.g. Microsoft Excel, TextWrangler, TextEdit). Based on the [svg](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily imported in and edited with vector graphics applications for further refinements, or directly embedded into web pages.
 
@@ -10,8 +10,9 @@ Knowing the need of working with sensitive information, the data uploaded to **R
 
 **Raw** is also highly customizable and extensible, accepting new custom layouts defined by users. For more information about how to add or edit layouts, see the Documentation section.
 
-- Web site: [http://raw.densitydesign.org](http://raw.densitydesign.org)
 - Online app: [http://app.raw.densitydesign.org](http://app.raw.densitydesign.org)
+- Official web site: [http://raw.densitydesign.org](http://raw.densitydesign.org)
+- Documentation: [https://github.com/densitydesign/raw/wiki](https://github.com/densitydesign/raw/wiki)
 - Google group: [https://groups.google.com/forum/#!forum/densitydesign-raw](https://groups.google.com/forum/#!forum/densitydesign-raw)
 
 
@@ -20,6 +21,7 @@ The easiest way to use Raw is by accessing the most updated version on the [offi
 
 ##Installation
 If you want to run your instance of Raw locally on your machine, be sure you have the following requirements installed.
+
 ###Requirements
 
 - [git](http://git-scm.com/book/en/Getting-Started-Installing-Git)
@@ -71,9 +73,12 @@ Currently, the following layouts are available:
 - [Parallel Coordinates](http://mbostock.github.io/d3/talk/20111116/iris-parallel.html)
 - [Gantt Chart](http://bl.ocks.org/dk8996/5449641)
 
-…and we also have some ideas we would like to implement:
+…and these will come someday:
+
 - [Ribbon Streamgraph](http://www.flickr.com/photos/densitydesign/6937189744/in/set-72157629041140561)
 - [Scatterplot Voronoi Tesselation](http://mbostock.github.io/d3/talk/20111116/airports-all.html)
+
+If you have any suggestion or request about new layouts to include, please let us know! If you have already created new layouts and you would like to see them included into Raw, please send us a [pull request](https://github.com/densitydesign/raw/pulls).
 
 ##Libraries
 
@@ -121,10 +126,6 @@ If you want to know more about Raw, how it works and future developments, please
 
 Want to contribute to Raw's development? You are more than welcome! Just fork the repo and use Github's issues and pull requests.
 
-##Acknowledgments
-
-Azzurra Pini  
-Marta Croce
 
 ##License
 
