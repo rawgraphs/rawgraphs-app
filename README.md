@@ -19,8 +19,7 @@ Knowing the need of working with sensitive information, the data uploaded to **R
 The easiest way to use Raw is by accessing the most updated version on the [official app website](http://app.raw.densitydesign.org). However, as an open source Node.js/Express app, Raw can also run locally on your machine. 
 
 ##Installation
-If you want to run your instance of Raw locally on your machine, be sure you have [Node.js](http://dnodejs.org/) installed, otherwise [download](http://nodejs.org/download/) and install it.
-
+If you want to run your instance of Raw locally on your machine, be sure you have the following requirements installed.
 ###Requirements
 
 - [git](http://git-scm.com/book/en/Getting-Started-Installing-Git)
