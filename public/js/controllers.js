@@ -36,6 +36,10 @@ angular.module('raw.controllers', []).
       );
     })
 
+    $scope.getBackground = function(chart) {
+        return chart && chart.image? { 'background-image': 'url(' + chart.image + ')'  } : { 'background-image' : 'none' };
+    }
+
 
     $scope.chooseSample = function(sample){
       $scope.sample = sample;
@@ -89,7 +93,6 @@ angular.module('raw.controllers', []).
   $scope.dragging = {};
 
   $scope.myValueFunction = function(card) {
-    console.log("asdasdas");
     return 0;
    //return card.values.opt1 + card.values.opt2;
   };

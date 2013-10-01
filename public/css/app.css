@@ -14,19 +14,36 @@ body {
   height: auto !important;
   height: 100%;
   /* Negative indent footer by it's height */
-  margin: 0 auto -60px;
+  margin: 0 auto -80px;
 }
 
 #push,
 #footer {
-  height: 60px;
+  height: 80px;
 }
 
 #footer {
   background-color: #565656;
   font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  color: #bbb;
+  padding: 0px 20px;
+}
+
+#footer a {
+  color: #bbb;
+  text-decoration: none;
+}
+
+#footer a:hover {
+  color: #eee;
+}
+
+#footer p {
+  margin: 0 0 2px; 
+}
+
+#footer .container {
+  padding-top: 20px;
 }
 
 @media (max-width: 767px) {

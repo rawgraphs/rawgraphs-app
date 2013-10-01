@@ -30,7 +30,7 @@ div.container
 			div.span3
 				select#suca.span12(ui-select2="select2Options", ng-model="chart", ng-options="c.title for c in charts")
 			div.span3
-				.image(style="background-image:url({{chart.image}})")
+				.image(ng-style="getBackground(chart)")
 			div.span6
 				p(ng-bind-html="chart.description")
 
