@@ -366,15 +366,49 @@ angular.module('raw.directives', [])
 
         /* Download SVG */
         var downloadSVG = function(){
+
+          var get_blob = function() {
+            return window.Blob||window.WebKitBlob||window.MozBlob;
+          }
+          
+          var BB = get_blob(),
+              html = d3.select(scope.source).select("svg")
+                .attr("version", 1.1)
+                .attr("xmlns", "http://www.w3.org/2000/svg")
+                .node().parentNode.innerHTML;
+          //, doc = $('div#svg_template').html();
+
+          var byteArray = new Uint8Array(html.length);
+          
+          for (var i = 0; i < html.length; i++) {
+            byteArray[i] = html.charCodeAt(i) & 0xff;
+          }
+
+          var blob;
+          try {
+            blob = new BB([byteArray.buffer],{type: "image/svg+xml;charset=" + document.characterSet});
+            console.log(blob);
+          }
+            catch(e){
+              var oBuilder = new BlobBuilder();
+              var svgFile = [byteArray.buffer];
+              oBuilder.append(svgFile);
+              blob = oBuilder.getBlob("image/svg+xml"); // the blob
+            }
+          
+          saveAs(blob, (element.find('input').val() || element.find('input').attr("placeholder")) + ".svg")
+
+
+
+          /*
          
           var html = d3.select(scope.source).select("svg")
             .attr("version", 1.1)
             .attr("xmlns", "http://www.w3.org/2000/svg")
             .node().parentNode.innerHTML;
 
-          var blob = new Blob([html], { type: "data:image/svg+xml" });
+          var blob = new Blob([html], { type: "data:image/svg+xml" });*/
 
-          saveAs(blob, (element.find('input').val() || element.find('input').attr("placeholder")) + ".svg")
         }
 
         /* Download PDF */
