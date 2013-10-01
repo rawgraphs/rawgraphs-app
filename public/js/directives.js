@@ -120,6 +120,7 @@ angular.module('raw.directives', [])
             element.css("width", w);
             element.css("opacity", .4);
             ui.helper.css("width", w);
+            ui.helper.css("top","800px")
             ui.helper.css("z-index", 10000);
             //
             scope.dragging.key = scope.$eval(attrs.value).key;

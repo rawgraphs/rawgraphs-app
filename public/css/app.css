@@ -289,6 +289,7 @@ body {
 .placeholder {
   background-color:transparent;
   height:34px;
+  width: 100%;
   margin: 5px 0px;
   border-radius: 4px;
   border: 2px dashed #eee;
