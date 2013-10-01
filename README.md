@@ -64,15 +64,16 @@ Currently, the following layouts are available:
 
 …and these will come soon:
 
-- Ribbon Streamgraph
-- Parallel Set 
-- Area Graph
-- Horizon Chart
-- Convex-hull Scatterplot
-- Parallel Coordinates
-- Scatterplot Voronoi Tesselation
-- Scatterplot Delaunay Triangulation
-- Quantum Treemap
+- [Parallel Set](http://www.jasondavies.com/parallel-sets/)
+- [Area Graph (Lee Byron's Streamgraph-like)](http://bl.ocks.org/mbostock/4060954)
+- [Horizon Chart](http://bl.ocks.org/mbostock/1483226)
+- [Convex-hull Scatterplot](http://bl.ocks.org/mbostock/4341699)
+- [Parallel Coordinates](http://mbostock.github.io/d3/talk/20111116/iris-parallel.html)
+- [Gantt Chart](http://bl.ocks.org/dk8996/5449641)
+
+…and we also have some ideas we would like to implement:
+- [Ribbon Streamgraph](http://www.flickr.com/photos/densitydesign/6937189744/in/set-72157629041140561)
+- [Scatterplot Voronoi Tesselation](http://mbostock.github.io/d3/talk/20111116/airports-all.html)
 
 ##Libraries
 
