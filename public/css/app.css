@@ -300,6 +300,11 @@ body {
   color: #ccc;
   margin-top: 8px;
 
+  /* Internet Explorer 10 */
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
     /* Firefox */
   display:-moz-box;
   -moz-box-pack:center;

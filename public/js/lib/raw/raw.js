@@ -21,7 +21,7 @@
 	}
 
 	raw.isArray = function(value){
-		return toString.apply(value) == '[object Array]';
+		return Object.prototype.toString.apply(value) == '[object Array]';
 	}
 
 	raw.isNumber = function(value){
@@ -33,7 +33,7 @@
 	}
 
 	raw.isDate = function(value){
-		return toString.apply(value) == '[object Date]';
+		return Object.prototype.toString.apply(value) == '[object Date]';
 	}
 
 	raw.isFunction = function(value){
