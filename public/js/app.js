@@ -1,7 +1,5 @@
 'use strict';
 
-// Declare app level module which depends on filters, and services
-
 angular.module('raw', [
   'raw.controllers',
   'raw.filters',
@@ -10,7 +8,6 @@ angular.module('raw', [
   'ui',
   'ngSanitize',
   'colorpicker.module'
- // 'angular-bootstrap-select'
 ])
 
 .config(function ($routeProvider, $locationProvider) {
@@ -19,10 +16,9 @@ angular.module('raw', [
       redirectTo: '/',
       templateUrl: 'partials/main',
       controller: 'rawCtrl'
-    })/*.
+    }).
     otherwise({
       redirectTo: '/'
-    });*/
+    });
 
-  $locationProvider.html5Mode(true);
 });
