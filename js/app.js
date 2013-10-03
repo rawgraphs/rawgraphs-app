@@ -14,7 +14,7 @@ angular.module('raw', [
   $routeProvider.
     when('/', {
       redirectTo: '/',
-      templateUrl: 'partials/main',
+      templateUrl : 'partials/main.html',
       controller: 'rawCtrl'
     }).
     otherwise({

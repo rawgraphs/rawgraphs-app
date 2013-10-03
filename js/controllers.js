@@ -7,7 +7,6 @@ angular.module('raw.controllers', []).
   controller('rawCtrl', function ($scope, $http, dataService) {
 
     $scope.loading = false;
-
     // Loading config file
     dataService.loadConfig('config.json')
     .then(
@@ -51,6 +50,7 @@ angular.module('raw.controllers', []).
       $scope.charts = [];
 
       chartsUrl.forEach(function(d, i){
+        
         function loaded() {
           if (i == chartsUrl.length-1) {
             $scope.charts = d3.values(raw.charts).map(function(chart){ return chart(); });
@@ -60,7 +60,6 @@ angular.module('raw.controllers', []).
             $("#suca").select2("data", $scope.chart);
           }
         }
-
 
         var fileref = document.createElement('script')
         fileref.setAttribute("src", d)
@@ -144,15 +143,6 @@ angular.module('raw.controllers', []).
       return;
     } 
 
-   /* if (isOver) {
-      console.log("hihihi")
-      $(".sticky")
-        .css("position","absolute")
-        .css("width", mappingWidth+"px")
-        .css("bottom","0px")
-      return;
-    }*/
-
     $(".sticky")
       .css("position","relative")
       .css("top","0px")
@@ -164,7 +154,6 @@ angular.module('raw.controllers', []).
     minimumResultsForSearch: -1,    
     initSelection : function (element, callback) {
       var data = { id: element.val(), text: element.val() };
-      console.log(data);
       callback(data);
     }
   };
