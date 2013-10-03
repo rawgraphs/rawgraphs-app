@@ -97,7 +97,6 @@ Raw has been developed using a lot of cool stuff available out there:
 [FileSaver.js](https://github.com/eligrey/FileSaver.js)  
 [Jade](http://jade-lang.com/)  
 [jQuery](https://github.com/jquery/jquery)  
-[jsPDF](https://github.com/MrRio/jsPDF)  
 [Node.js](http://nodejs.org/)  
 [nodemon](https://github.com/remy/nodemon)  
 [rgbcolor.js](http://www.phpied.com/rgb-color-parser-in-javascript/)  
