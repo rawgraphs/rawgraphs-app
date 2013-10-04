@@ -19,7 +19,7 @@ Knowing the need of working with sensitive information, the data uploaded to **R
 The easiest way to use Raw is by accessing the most updated version on the [official app website](http://app.raw.densitydesign.org). However Raw can also run locally on your machine. 
 
 ##Installation
-If you want to run your instance of Raw locally on your machine, be sure you have the following requirements installed. **Update:** we simplified the code by removing Node.js: only Bower is needed now to install client-side dependencies.
+If you want to run your instance of Raw locally on your machine, be sure you have the following requirements installed. **Starting from version 0.1.2, we decided to simplify the code and removing Node.js: only Bower is needed to install client-side dependencies.**
 
 ###Requirements
 
@@ -41,11 +41,11 @@ install client-side dependencies:
 	
 You can now access Raw from any local web server. For example, you can run Python's built-in server:
 
-	python -m SimpleHTTPServer 4000 &
+	python -m SimpleHTTPServer 4000
 
 or for Python 3+
 
-	python -m http.server 4000 &
+	python -m http.server 4000
 
 Once this is running, go to [http://localhost:4000/](http://localhost:4000/).
 
