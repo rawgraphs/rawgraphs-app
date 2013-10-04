@@ -1,5 +1,4 @@
 # RAW
-Currently in beta.
 
 **Raw** is an open web tool developed at the [DensityDesign Research Lab](http://www.densitydesign.org) (Politecnico di Milano) to create custom vector-based visualizations on top of the amazing [d3.js](https://github.com/mbostock/d3) library by [Mike Bostock](http://bost.ocks.org/mike/).
 Primarily conceived as a tool for designers and vis geeks, **Raw** aims at providing a missing link  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, OpenRefine) and vector graphics editors (e.g. Adobe Illustrator, Inkscape, ...).
@@ -17,15 +16,14 @@ Knowing the need of working with sensitive information, the data uploaded to **R
 
 
 ##Usage
-The easiest way to use Raw is by accessing the most updated version on the [official app website](http://app.raw.densitydesign.org). However, as an open source Node.js/Express app, Raw can also run locally on your machine. 
+The easiest way to use Raw is by accessing the most updated version on the [official app website](http://app.raw.densitydesign.org). However Raw can also run locally on your machine. 
 
 ##Installation
-If you want to run your instance of Raw locally on your machine, be sure you have the following requirements installed.
+If you want to run your instance of Raw locally on your machine, be sure you have the following requirements installed. **Update:** we simplified the code by removing Node.js: only Bower is needed now to install client-side dependencies.
 
 ###Requirements
 
 - [git](http://git-scm.com/book/en/Getting-Started-Installing-Git)
-- [Node.js](http://nodejs.org/download/) 
 - [Bower](http://bower.io/#installing-bower)
 
 
@@ -37,15 +35,21 @@ browse to Raw root folder:
 
 	$ cd raw
 
-install server-side dependencies:
+install client-side dependencies:
 
-	$ npm install
+	$ bower install
 	
-run server:
+You can now access Raw from any local web server. For example, you can run Python's built-in server:
 
-	$ npm start
+	python -m SimpleHTTPServer 4000 &
+
+or for Python 3+
+
+	python -m http.server 4000 &
 
 Once this is running, go to [http://localhost:4000/](http://localhost:4000/).
+
+Troubles with the installation? Maybe a look at the [issues](https://github.com/densitydesign/raw/issues) page can solve your problem, otherwise reach us on the [Google group](https://groups.google.com/forum/#!forum/densitydesign-raw)
 
 
 ##Documentation and Support
@@ -87,30 +91,26 @@ Raw has been developed using a lot of cool stuff available out there:
 [angular.js](https://github.com/angular/angular.js)  
 [angular-ui](https://github.com/angular-ui)  
 [Blob.js](https://github.com/eligrey/Blob.js)  
-[bootstrap](https://github.com/twbs/bootstrap)  
+[bootstrap (2.3.2)](https://github.com/twbs/bootstrap)  
 [bootstrap-colorpicker](http://www.eyecon.ro/bootstrap-colorpicker/)  
+[Bower](https://github.com/bower/bower)  
 [canvas-toBlob.js](https://github.com/eligrey/canvas-toBlob.js)  
 [canvg.js](http://code.google.com/p/canvg/)  
 [CodeMirror](https://github.com/marijnh/codemirror)  
 [d3.js](https://github.com/mbostock/d3)  
-[express](https://github.com/visionmedia/express)  
 [FileSaver.js](https://github.com/eligrey/FileSaver.js)  
-[Jade](http://jade-lang.com/)  
 [jQuery](https://github.com/jquery/jquery)  
-[Node.js](http://nodejs.org/)  
-[nodemon](https://github.com/remy/nodemon)  
 [rgbcolor.js](http://www.phpied.com/rgb-color-parser-in-javascript/)  
 [select2](http://ivaynberg.github.io/select2/)
 
 ##Roadmap
 
-- Improve documentation and API reference
+- Improving documentation and API reference
 - Introducing continuous color scales (for numeric values)
 - Creating and exporting visualizations' legends
 - PDF export
-- Code refactoring using [reusable charts](http://bost.ocks.org/mike/chart/) as layouts
-- labels based on data
-
+- Refactoring using [reusable charts](http://bost.ocks.org/mike/chart/) as layouts
+- Labels based on data
 
 
 ##Team and Contacts
