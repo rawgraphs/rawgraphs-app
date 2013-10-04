@@ -1,6 +1,12 @@
-/* app css stylesheet */
-
-/* main scaffolding */
+/*!
+ * Raw
+ *
+ * Copyright 2013 DensityDesign Lab
+ * Licensed under the LGPL license
+ * http://www.gnu.org/licenses/lgpl.html
+ *
+ * Designed and developed by Giorgio Caviglia, Giorgio Uboldi, Matteo Azzi, Michele Mauri
+ */
 
 html,
 body {
@@ -125,10 +131,10 @@ body {
   background-image: none;
   border: none;
 
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  border-radius: none;
-  filter: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  filter: 0px;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -137,14 +143,12 @@ body {
 .navbar .nav>li>a {
   font-family: Lato;
   font-size: 12px;
-  font-weight: 40
-
-  #header {
+  font-weight: 400;
   padding: 10px 0px;
   background-color: #303032;
   color: #f2f2f2;
   text-align: center;
-}0;
+
   letter-spacing: 1px;
   float: none;
   padding: 0px 0px 1px 0px;
@@ -305,7 +309,7 @@ body {
   -ms-flex-pack:center;
   -ms-flex-align:center;
 
-    /* Firefox */
+  /* Firefox */
   display:-moz-box;
   -moz-box-pack:center;
   -moz-box-align:center;
@@ -416,9 +420,9 @@ h3 {
 .well.fail {
   border-color: rgb(233, 114, 68);
   outline: 0;
-  -webkit-box-shadow: 0 0 6px rgb(233, 114, 68)
-  -moz-box-shadow: 0 0 rgb(233, 114, 68)
-  box-shadow: 0 0 6px rgb(233, 114, 68)
+  -webkit-box-shadow: 0px 0px rgb(233, 114, 68);
+  -moz-box-shadow: 0px 0px rgb(233, 114, 68);
+  box-shadow: 0px 0px rgb(233, 114, 68);
 }
 
 input, button, select, textarea {
@@ -560,35 +564,6 @@ textarea:focus {
   border-bottom: 1px solid #777;
 }
 
-
-/* Bootstrap-select 
-.bootstrap-select.btn-group, .bootstrap-select.btn-group[class*="span"] {
-  outline: none;
-  font-size: 11px;
-  margin-bottom: 0px;
-}
-
-.bootstrap-select .btn:focus {
-  background-color: #61d8b8;
-  outline: 0px dotted #333333 !important;
-  outline: 0px auto -webkit-focus-ring-color !important;
-}
-
-.bootstrap-select.btn-group .dropdown-menu dt {
-  display: block;
-  padding: 3px 20px;
-  cursor: default;
-  color: #aaaaaa;
-  font-size: 11px;
-  font-weight: 200;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.bootstrap-select.btn-group .btn .filter-option {
-  text-overflow: ellipsis;
-}*/
-
 .select2-container {
   margin: 0;
   position: relative;
@@ -614,10 +589,10 @@ textarea:focus {
 }
 
 .select2-container-active .select2-choice, .select2-container-active .select2-choices {
-border: 1px solid #5897fb;
-outline: none;
--webkit-box-shadow: none;
-box-shadow:none;
+  border: 1px solid #5897fb;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow:none;
 }
 
 .select2-container .select2-choice {
@@ -634,7 +609,7 @@ box-shadow:none;
   border-radius: 3px;
   background-clip: padding-box;
   text-transform: uppercase;
- 
+
   background-color: #61d8b8;
   background-image: none;
   filter: none;
@@ -656,7 +631,7 @@ box-shadow:none;
   content: "";
   background: none;
   margin-top: 17px;
-  opacity; .5;
+  opacity: 0.5;
 }
 
 .select2-container:hover .select2-choice .select2-arrow b {
@@ -678,17 +653,17 @@ box-shadow:none;
 }
 
 .select2-results {
-max-height: 200px;
-padding: 0 0 0 4px;
-margin: 4px 4px 4px 0;
-position: relative;
-overflow-x: hidden;
-overflow-y: auto;
--webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  max-height: 200px;
+  padding: 0 0 0 4px;
+  margin: 4px 4px 4px 0;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .select2-drop.select2-drop-above.select2-drop-active {
-border-top: 1px solid #5897fb;
+  border-top: 1px solid #5897fb;
 }
 
 .select2-drop.select2-drop-above {
@@ -885,13 +860,3 @@ div[color] table tr:first-child td {
   background-position: center center;
   background-size: cover;
 }
-
-/* Samples 
-.sample .btn {
-  background-color: #ddd;
-}
-
-.sample .btn-group.open .btn.dropdown-toggle {
-  background-color: #ddd;
-}
-*/
