@@ -59,18 +59,11 @@ raw.charts.binning = function(){
 
 			var points = model.applyOn(data);
 
-			console.log(points)
-
 			// let's calculate margins
 			var marginLeft = !options.grid.value ? 0 : d3.max(points, function(d){ return (Math.log(d.y) / 2.302585092994046) + 1; }) * 9,
 				marginBottom = !options.grid.value ? 0 : 20,
 				width = options.width.value - marginLeft -2,
 				height = options.height.value - marginBottom-1;
-
-			var color = d3.scale.linear()
-			    .domain([0, 20])
-			    .range(["white", "steelblue"])
-			    .interpolate(d3.interpolateLab);
 
 			var hexbin = d3.hexbin()
 			    .size([width, height])
@@ -105,7 +98,10 @@ raw.charts.binning = function(){
 			    .attr("height", height)
 			    .attr("transform", "translate(" + marginLeft + ",1)");
 
-			    console.log(hexbin(points))
+			var color = d3.scale.linear()
+			    .domain([0, d3.max(hexbin(points), function(d){return d.length})])
+			    .range(["white", "steelblue"])
+			    .interpolate(d3.interpolateLab);
 
 			svg.append("g")
 			    .attr("clip-path", "url(#clip)")
@@ -114,7 +110,7 @@ raw.charts.binning = function(){
 			  .enter().append("path")
 			    .attr("class", "hexagon")
 			    .attr("d", hexbin.hexagon())
-			    .attr("transform", function(d) { console.log(d); return "translate(" + d.x + "," + d.y + ")"; })
+			    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
 			    .style("fill", function(d) { return color(d.length); })
 			    .attr("stroke","#000")
 			    .attr("stroke-width",".5px")
