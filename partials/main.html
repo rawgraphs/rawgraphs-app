@@ -3,7 +3,7 @@
 	<section id="data">
 		<h3>Data</h3>
 		<div class="row-fluid">
-			<textarea ui-codemirror="{ mode : 'text',  lineNumbers : true, lineWrapping: true }" placeholder="Paste your text here or drag in a file. No data on hand? Choose one of our sample!" ng-model="text"></textarea>
+			<textarea ui-codemirror="{ mode : 'text',  lineNumbers : true, lineWrapping: true }" placeholder="Paste your text or drag-and-drop a file here. No data on hand? Choose one of our sample!" ng-model="text"></textarea>
 		</div>
 		<div ng-show="error &amp;&amp; !loading" class="alert alert-danger">{{error}}</div>
 		<div ng-show="!error &amp;&amp; data.length &amp;&amp; !loading" class="alert alert-success"><span>Everything seems fine with your data! Please continue</span></div>
