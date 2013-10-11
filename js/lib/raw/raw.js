@@ -6,9 +6,6 @@
 (function() {
 
 	var raw = window.raw || (window.raw = {});
-
-	//raw.models = {};
-	//raw.layouts = {};
 	
 	/* Helpers */
 
@@ -92,6 +89,7 @@
 
 
 	/* Returns object value by string path */
+
 	raw.reach = function(obj, path){
     	var path = path ? path.split('.') : null;
     	var result = obj;
@@ -197,56 +195,6 @@
 	}
 
 
-	/**
-	 * @ngdoc function
-	 * @name raw.model
-	 * @function
-	 *
-	 * @description Factory for Raw's Models
-	 * @param {string} string String to be converted to uppercase.
-	 * @returns {string} Uppercased string.
-	 */
-
-	/*raw.models = function(name){
-		if (!arguments.length) return models;
-		if (models.hasOwnProperty(name)) return models[name];
-		return raw;
-	}
-
-	raw.models.toArray = function(){
-		return d3.values(models);
-	}
-
-	raw.models.add = function(name, model){
-		//if (models.hasOwnProperty(name)) throw new Error("[raw] The name " + name + " is already used by another model. Please try another name.");
-		models[name] = model;
-		return models[name];
-	}
-
-	raw.models.remove = function(name){
-		if (!models.hasOwnProperty(name)) return false;
-		return delete models[name];
-	}
-
-	raw.model = function(options){
-
-
-
-		var model = function(){
-
-		}
-
-		// Checking if name is unique
-		if (options.name) {
-			model.name = options.name;
-			if (raw.models.hasOwnProperty(model.name)) throw new Error("[raw] The name " + " is already used by another model. Please try another name.");
-		};
-		
-		
-
-		return model;
-	}*/
-
 	/* Helpers */
 
 	/* Auto-detect delimiter, inspired by JosipK's C++ algorithm
@@ -316,7 +264,7 @@
 		if (string[0] == "[") {
 
 			try {
-				var result = jsonlint.parse(string); //JSON.parse(string);
+				var result = JSON.parse(string);
 				return result;
 			}
 			catch (e) {

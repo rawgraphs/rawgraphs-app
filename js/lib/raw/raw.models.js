@@ -120,8 +120,6 @@
 							ti = n.length-1;
 						}
 						var value = model.structure.value.value.length ? d3.sum(t.values, function(d){ return parseFloat(d[model.structure.value.value[0].key].replace(",",".")); }) : t.values.length;
-						//var value = t.values.length;
-						console.log(value)
 						var link = { "source" : parseInt(si), "target" : parseInt(ti), "value" : value };
 						l.push(link);
 					})
