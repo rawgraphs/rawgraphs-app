@@ -58,7 +58,7 @@ Documentation and FAQs about how to use Raw can be found on the [official websit
 
 ##Layouts
 
-Information about the available layouts can be found on the [wiki]([[Layouts]]).
+Information about the available layouts can be found on the [wiki](https://github.com/densitydesign/raw/wiki/Layouts).
 
 If you have any suggestion or request about new layouts to include, please let us know! If you have already created new layouts and you would like to see them included into Raw, please send us a [pull request](https://github.com/densitydesign/raw/pulls).
 
