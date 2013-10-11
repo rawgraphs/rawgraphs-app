@@ -58,29 +58,7 @@ Documentation and FAQs about how to use Raw can be found on the [official websit
 
 ##Layouts
 
-Currently, the following layouts are available:
-
-- Treemap
-- Bubble Chart
-- Circle Packing
-- Dendogram
-- Circular Dendogram
-- Hexagonal Binning
-- Alluvial Diagram (Fineo-like diagram)
-
-…and these will come soon:
-
-- [Parallel Set](http://www.jasondavies.com/parallel-sets/)
-- [Area Graph (Lee Byron's Streamgraph-like)](http://bl.ocks.org/mbostock/4060954)
-- [Horizon Chart](http://bl.ocks.org/mbostock/1483226)
-- [Convex-hull Scatterplot](http://bl.ocks.org/mbostock/4341699)
-- [Parallel Coordinates](http://mbostock.github.io/d3/talk/20111116/iris-parallel.html)
-- [Gantt Chart](http://bl.ocks.org/dk8996/5449641)
-
-…and these will come someday:
-
-- [Ribbon Streamgraph](http://www.flickr.com/photos/densitydesign/6937189744/in/set-72157629041140561)
-- [Scatterplot Voronoi Tesselation](http://mbostock.github.io/d3/talk/20111116/airports-all.html)
+Information about the available layouts can be found on the [wiki]([[Layouts]]).
 
 If you have any suggestion or request about new layouts to include, please let us know! If you have already created new layouts and you would like to see them included into Raw, please send us a [pull request](https://github.com/densitydesign/raw/pulls).
 
@@ -90,7 +68,6 @@ Raw has been developed using a lot of cool stuff available out there:
 
 [angular.js](https://github.com/angular/angular.js)  
 [angular-ui](https://github.com/angular-ui)  
-[Blob.js](https://github.com/eligrey/Blob.js)  
 [bootstrap (2.3.2)](https://github.com/twbs/bootstrap)  
 [bootstrap-colorpicker](http://www.eyecon.ro/bootstrap-colorpicker/)  
 [Bower](https://github.com/bower/bower)  
