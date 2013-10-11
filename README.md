@@ -29,23 +29,33 @@ If you want to run your instance of Raw locally on your machine, be sure you hav
 
 Clone Raw from the command line:
 
-	$ git clone git://github.com/densitydesign/raw.git
+``` sh
+$ git clone git://github.com/densitydesign/raw.git
+```
 
 browse to Raw root folder:
 
-	$ cd raw
+``` sh
+$ cd raw
+```
 
 install client-side dependencies:
 
-	$ bower install
+``` sh
+$ bower install
+```
 	
 You can now access Raw from any local web server. For example, you can run Python's built-in server:
 
-	$ python -m SimpleHTTPServer 4000
+``` sh
+$ python -m SimpleHTTPServer 4000
+```
 
 or for Python 3+
 
-	$ python -m http.server 4000
+``` sh
+$ python -m http.server 4000
+```
 
 Once this is running, go to [http://localhost:4000/](http://localhost:4000/).
 
