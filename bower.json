@@ -23,7 +23,6 @@
     "angular-ui": "~0.4.0",
     "angular-sanitize": "~1.0.8",
     "angular-bootstrap-colorpicker": "1.0.0",
-    "blob": "*",
     "bootstrap": "2.3.2",
     "bootstrap-colorpicker": "*",
     "canvas-toBlob.js": "git://github.com/eligrey/canvas-toBlob.js.git",

@@ -355,6 +355,10 @@ angular.module('raw.directives', [])
 
       link: function postLink(scope, element, attrs) {
 
+        var getBlob = function() {
+            return window.Blob||window.WebKitBlob||window.MozBlob;
+          }
+
         scope.download = function(){
           if(!scope.type || !scope.source) return;
 
@@ -367,69 +371,28 @@ angular.module('raw.directives', [])
         /* Download SVG */
         var downloadSVG = function(){
 
-          /*var get_blob = function() {
-            return window.Blob||window.WebKitBlob||window.MozBlob;
-          }
-          
-          var BB = get_blob(),
-              html = d3.select(scope.source).select("svg")
-                .attr("version", 1.1)
-                .attr("xmlns", "http://www.w3.org/2000/svg")
-                .node().parentNode.innerHTML;
-          //, doc = $('div#svg_template').html();
-
-          var byteArray = new Uint8Array(html.length);
-          
-          for (var i = 0; i < html.length; i++) {
-            byteArray[i] = html.charCodeAt(i) & 0xff;
-          }
-
-          var blob;
-          try {
-            blob = new BB([byteArray.buffer],{type: "image/svg+xml;charset=" + document.characterSet});
-            console.log(blob);
-          }
-            catch(e){
-              var oBuilder = new BlobBuilder();
-              var svgFile = [byteArray.buffer];
-              oBuilder.append(svgFile);
-              blob = oBuilder.getBlob("image/svg+xml"); // the blob
-            }
-          
-          saveAs(blob, (element.find('input').val() || element.find('input').attr("placeholder")) + ".svg")
-
-          */
-
-          
+          var BB = getBlob();
          
           var html = d3.select(scope.source).select("svg")
             .attr("version", 1.1)
             .attr("xmlns", "http://www.w3.org/2000/svg")
             .node().parentNode.innerHTML;
 
-          var blob = new Blob([html], { type: "data:image/svg+xml" });
-          saveAs(blob, (element.find('input').val() || element.find('input').attr("placeholder")) + ".svg")
+          var isSafari = (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1);
+
+          if (isSafari) {
+            var img = "data:image/svg+xml;utf8," + html;
+            var newWindow = window.open(img, 'download');
+          } else {
+            var blob = new BB([html], { type: "data:image/svg+xml" });
+            saveAs(blob, (element.find('input').val() || element.find('input').attr("placeholder")) + ".svg")
+          }
 
         }
 
-        /* Download PDF */
-        var downloadPDF = function(){
-         
-          var html = d3.select(scope.source).select("svg")
-            .attr("version", 1.1)
-            .attr("xmlns", "http://www.w3.org/2000/svg")
-            .node().parentNode.innerHTML;
-          var doc = new jsPDF();
-          svgElementToPdf(html, doc, {});
-          //doc.addSVG(html,0,0,100,100)
-          doc.save('test.pdf')
-
-          //var blob = new Blob([html], { type: "data:image/svg+xml" });
-
-          //saveAs(blob, (element.find('input').val() || element.find('input').attr("placeholder")) + ".svg")
-        }
 
         /* Download Image */
+
         var downloadImage = function(){
           var content = d3.select("body").append("canvas")
               .attr("id", "canvas")
@@ -438,16 +401,25 @@ angular.module('raw.directives', [])
           var html = d3.select(scope.source).select("svg")
               .node().parentNode.innerHTML;
 
-          canvg('canvas',html);
+          canvg('canvas', html);
           var canvas = document.getElementById("canvas");//, ctx = canvas.getContext("2d");
-          canvas.toBlob(function(blob) {
+          
+          var isSafari = (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1);
+          
+          if (isSafari) {
+            var img = canvas.toDataURL("image/png;base64");
+            var newWindow = window.open(img, 'download');
+          } else {
+            canvas.toBlob(function(blob) {
               saveAs(blob, (element.find('input').val() || element.find('input').attr("placeholder")) + ".png");
-          }, "image/png");
+            }, "image/png");
+          }
 
-        d3.select("#canvas").remove();
-      }
+          d3.select("#canvas").remove();
+      } 
 
       /* Download Data */
+
       var downloadData = function() {
         var json = JSON.stringify(scope.$eval(scope.source));
         var blob = new Blob([json], {type: "data:text/json;charset=utf-8"});
