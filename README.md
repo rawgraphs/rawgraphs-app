@@ -1,4 +1,4 @@
-# RAW
+![image](http://raw.densitydesign.org/wp-content/uploads/2013/10/Header.png)
 
 **Raw** is an open web tool developed at the [DensityDesign Research Lab](http://www.densitydesign.org) (Politecnico di Milano) to create custom vector-based visualizations on top of the amazing [d3.js](https://github.com/mbostock/d3) library by [Mike Bostock](http://bost.ocks.org/mike/).
 Primarily conceived as a tool for designers and vis geeks, **Raw** aims at providing a missing link  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, Google Docs, OpenRefine, …) and vector graphics editors (e.g. Adobe Illustrator, Inkscape, ...).
@@ -93,12 +93,12 @@ Raw has been developed using a lot of cool stuff available out there:
 ##Roadmap
 
 - Improving documentation and API reference
+- Refactoring using [reusable charts](http://bost.ocks.org/mike/chart/) as layouts
 - Introducing continuous color scales (for numeric values)
 - Creating and exporting visualizations' legends
-- PDF export
-- Refactoring using [reusable charts](http://bost.ocks.org/mike/chart/) as layouts
 - Labels based on data
-
+- PDF export
+- Mobile version
 
 ##Team and Contacts
 
