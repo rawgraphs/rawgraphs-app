@@ -19,7 +19,7 @@ Knowing the need of working with sensitive information, the data uploaded to **R
 The easiest way to use Raw is by accessing the most updated version on the [official app page](http://app.raw.densitydesign.org). However Raw can also run locally on your machine, see the installation instructions below to know how.
 
 ##Installation
-If you want to run your instance of Raw locally on your machine, be sure you have the following requirements installed. Starting from version 0.1.2, we decided to simplify the code and removing Node.js: only Bower is needed to install client-side dependencies.
+If you want to run your instance of Raw locally on your machine, be sure you have the following requirements installed (starting from version 0.1.2, we decided to simplify the code and removing Node.js: only Bower is needed to install client-side dependencies).
 
 ###Requirements
 
@@ -45,7 +45,7 @@ install client-side dependencies:
 $ bower install
 ```
 	
-You can now access Raw from any local web server. For example, you can run Python's built-in server:
+You can now run Raw from your local web server. For example, you can run Python's built-in server:
 
 ``` sh
 $ python -m SimpleHTTPServer 4000
@@ -59,7 +59,7 @@ $ python -m http.server 4000
 
 Once this is running, go to [http://localhost:4000/](http://localhost:4000/).
 
-Troubles with the installation? Maybe a look at the [issues](https://github.com/densitydesign/raw/issues) page can solve your problem, otherwise visit the [Google group](https://groups.google.com/forum/#!forum/densitydesign-raw).
+Troubles with the installation? Maybe a look at the [issues](https://github.com/densitydesign/raw/issues) page can solve your problem, otherwise join the [Google group](https://groups.google.com/forum/#!forum/densitydesign-raw).
 
 
 ##Documentation and Support
@@ -74,7 +74,7 @@ If you have any suggestion or request about new layouts to include, please let u
 
 ##Libraries
 
-Raw has been developed using a lot of cool stuff available out there:
+**Raw** has been developed using a lot of cool stuff found out there:
 
 [angular.js](https://github.com/angular/angular.js)  
 [angular-ui](https://github.com/angular-ui)  
