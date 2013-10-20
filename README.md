@@ -19,7 +19,7 @@ Knowing the need of working with sensitive information, the data uploaded to **R
 The easiest way to use Raw is by accessing the most updated version on the [official app page](http://app.raw.densitydesign.org). However Raw can also run locally on your machine, see the installation instructions below to know how.
 
 ##Installation
-If you want to run your instance of Raw locally on your machine, be sure you have the following requirements installed. **Starting from version 0.1.2, we decided to simplify the code and removing Node.js: only Bower is needed to install client-side dependencies.**
+If you want to run your instance of Raw locally on your machine, be sure you have the following requirements installed. Starting from version 0.1.2, we decided to simplify the code and removing Node.js: only Bower is needed to install client-side dependencies.
 
 ###Requirements
 
