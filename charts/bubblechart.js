@@ -132,7 +132,7 @@ raw.charts.bubblechart = function(){
 			    .attr("dy", ".71em")
 			    .attr("text-anchor", "middle")
 					.style("font-size","10px")
-					.style("font-family","Arial, Helvetica, sans-serif")
+					.style("font-family","Arial, Helvetica")
 				  .text(xScale.tickFormat(10));
 
 				var yrule = svg.selectAll("g.y")
@@ -155,7 +155,7 @@ raw.charts.bubblechart = function(){
 			    .attr("dy", ".35em")
 			    .attr("text-anchor", "end")
 					.style("font-size","10px")
-					.style("font-family","Arial, Helvetica, sans-serif")
+					.style("font-family","Arial, Helvetica")
 				  .text(yScale.tickFormat(10));
 			}
 
@@ -188,7 +188,7 @@ raw.charts.bubblechart = function(){
 						.attr("text-anchor", "middle")
 						.style("font-size","10px")
 						.attr("dy", 3)
-						.style("font-family","Arial, Helvetica, sans-serif")
+						.style("font-family","Arial, Helvetica")
 				  	.text(function(d){ return model.map.label.value.length ? d.label : ""; });
 
 			return this;

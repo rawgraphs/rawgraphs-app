@@ -127,7 +127,7 @@ raw.charts.binning = function(){
 
 			svg.selectAll(".axis")
 				.selectAll("text")
-				.style("font","10px sans-serif")
+				.style("font","10px Arial, Helvetica")
 
 			svg.selectAll(".axis")
 				.selectAll("path")

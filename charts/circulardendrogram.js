@@ -76,7 +76,7 @@ raw.charts.circulardendrogram = function(){
 				    .attr("dy", ".31em")
 				    .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
 				    .style("font-size","11px")
-					.style("font-family","Arial, Helvetica, sans-serif")
+					.style("font-family","Arial, Helvetica")
 				    .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
 				    .text(function(d) { return d.name; });
 			}

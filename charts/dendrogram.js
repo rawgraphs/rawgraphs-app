@@ -92,7 +92,7 @@ raw.charts.dendrogram = function(){
 				    .attr("dx", function(d) { return d.children ? -8 : 8; })
 				    .attr("dy", 3)
 				    .style("font-size","11px")
-					.style("font-family","Arial, Helvetica, sans-serif")
+					.style("font-family","Arial, Helvetica")
 				    .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
 				    .text(function(d) { return d.name; });
 			}

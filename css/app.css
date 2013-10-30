@@ -12,7 +12,7 @@ html,
 body {
   height: 100%;
   background-color: #f2f2f2;
-  font-family: "Lato", Arial, Helvetica, sans-serif;
+  font-family: "Lato", Arial, Helvetica;
 }
 
 .wrap {
@@ -426,7 +426,7 @@ h3 {
 }
 
 input, button, select, textarea {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Lato", Helvetica, Arial;
 }
 
 select:focus {

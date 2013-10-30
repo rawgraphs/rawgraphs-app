@@ -111,7 +111,7 @@ raw.charts.alluvial = function(){
 		      	.attr("transform", null)
 			    .text(function(d) { return d.name; })
 			    .style("font-size","11px")
-				.style("font-family","Arial, Helvetica, sans-serif")
+				.style("font-family","Arial, Helvetica")
 			    .style("pointer-events","none")
 			    .filter(function(d) { return d.x < width / 2; })
 			    	.attr("x", 6 + sankey.nodeWidth())
