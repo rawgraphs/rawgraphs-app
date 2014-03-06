@@ -7,25 +7,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="bower_components/codemirror/lib/codemirror.css">
+
   <link rel="stylesheet" href="css/raw.css"/>
 
 </head>
-<body>
+
+<body data-spy="scroll" data-target="#raw-nav">
+
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="raw-nav">
+    <div class="container">
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#raw-navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">RAW</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="raw-navbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#data">Data</a></li>
+          <li><a href="#layout">Layout</a></li>
+          <li><a href="#mapping">Mapping</a></li>
+          <li><a href="#options">Visualization</a></li>
+          <li><a href="#export">Export</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
 
   <div ng-view></div>
 
   <!-- jquery -->
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
   <!-- bootstrap -->
-  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- d3 -->
-  <script src="bower_components/d3/d3.min.js"></script>
+  <script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
+  <!-- codemirror -->
+  <script type="text/javascript" src="bower_components/codemirror/lib/codemirror.js"></script>
+  <script type="text/javascript" src="bower_components/codemirror/addon/display/placeholder.js"></script>
+
   <!-- raw -->
-  <script src="lib/raw.js"></script>
+  <script type="text/javascript" src="lib/raw.js"></script>
+
+  <!-- charts -->
+  <script src="charts/treemap.js"></script>
 
   <!-- angular -->
-  <script src="bower_components/angular/angular.min.js"></script>
-  <script src="bower_components/angular-route/angular-route.min.js"></script>
+  <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+  <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
+  <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script type="text/javascript" src="bower_components/angular-strap/dist/angular-strap.min.js"></script>
+  <script type="text/javascript" src="bower_components/angular-ui-codemirror/ui-codemirror.js"></script>
 
   <script src="js/app.js"></script>
   <script src="js/services.js"></script>

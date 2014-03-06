@@ -1,3 +1,66 @@
 <div class="container">
 
+	
+	<h3 id="data">Data</h3>
+	<div
+		ui-codemirror="{ 
+			mode : 'text',
+			lineNumbers : true,
+			lineWrapping : true,
+			placeholder : 'Paste your text or drag-and-drop a file here. No data on hand? Choose one of our sample!'
+		}"
+		ng-model="text">
+	</div>
+
+	<h3 id="layout">Mapping</h3>
+	
+	<div class="row">
+		
+		<div class="col-lg-3">
+			<ul draggable
+				items="metadata"
+				class="list-unstyled dimensions-list">
+			</ul>
+		</div>
+		
+		<div class="col-lg-9">
+
+			<div
+				class="row"
+				group every="3">
+
+				<div
+					class="col-lg-4"
+					ng-repeat="dimension in model.dimensions() track by $index">
+					
+					<div class="dimensions-model">
+						<p class="dimension-title">{{dimension.title()}}</p>
+						<ul
+							sortable
+							title="dimension.title()"
+							value="dimension.value"
+							multiple="dimension.multiple()"
+							class="dimensions-container list-unstyled">
+							<span class="msg">Drop element here</span>
+							<!--<ul class="list-unstyled list-inline">
+								<li  class="dimension-type-valid" ng-repeat="type in dimension.types()">{{type.name}}</li>
+							</ul>-->
+						</ul>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	
+	<ul>
+		<li ng-repeat="option in chart.options() track by $index">{{option.title()}} {{option.value}}
+			<input type="number" ng-model="option.value"></input>
+		</li>
+	</ul>
+
+	<div chart></div>
 </div>
