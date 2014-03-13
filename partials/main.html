@@ -1,66 +1,203 @@
 <div class="container">
 
 	
-	<h3 id="data">Data</h3>
-	<div
-		ui-codemirror="{ 
-			mode : 'text',
+	<h3 id="data">Insert your data</h3>
+
+	<textarea ui-codemirror="{ 
 			lineNumbers : true,
 			lineWrapping : true,
-			placeholder : 'Paste your text or drag-and-drop a file here. No data on hand? Choose one of our sample!'
+			placeholder : 'Paste your text or drop a file here. No data on hand? Try one of our sample datasets!'
 		}"
 		ng-model="text">
-	</div>
+	</textarea>
 
-	<h3 id="layout">Mapping</h3>
-	
 	<div class="row">
-		
-		<div class="col-lg-3">
-			<ul draggable
-				items="metadata"
-				class="list-unstyled dimensions-list">
-			</ul>
+
+		<div class="col-lg-10">
+			<div data-ng-show="!error && data.length" class="alert"><i class="fa fa-check-circle breath-right"></i>{{data.length}} records in your data</div>
+			<div data-ng-show="error" class="alert alert-warning"><i class="fa fa-bolt breath-right"></i><strong>Whoops!</strong> {{error}}</div>
 		</div>
 		
-		<div class="col-lg-9">
+		<div class="col-lg-2">
+			<button type="button"
+				class="btn btn-default col-lg-12"
+				ng-model="sasmple"
+				placeholder="Choose a sample"
+				ng-change=""
+				ng-options="s for s in ['banana']" bs-select>
+			  Select the sample <span class="caret"></span>
+			</button>
+		</div>
 
-			<div
-				class="row"
-				group every="3">
+	</div>
+
+	<div data-ng-show="error">
+		<h3 id="layout">ouch.</h3>
+		<p class="light stronga">Sorry, but it seems like something went wrong. Please, check your data and be sure that everything is correct. Most of the times this is due to some missing <a href="http://en.wikipedia.org/wiki/Delimiter">delimiters</a> or weird characters at the end of the file.</p>
+	</div>
+
+	<div data-ng-show="!error && data.length">
+	
+		<h3 id="layout">Choose a Layout</h3>
+	
+		<div class="row" group every="4" watch="charts">
+			<div class="col-lg-3" ng-repeat="c in charts track by $index">
+				<div ng-class="{selected: c == chart}" class="layout"  ng-click="selectChart(c)">
+					<div class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}"></div>
+					<span class="layout-title">{{c.title()}}
+						<i data-ng-show="c==chart" class="fa fa-check pull-right"></i>
+					</span>
+				</div>
+			</div>
+		</div>
+		<h4>{{chart.title()}}</h4>
+		<p class="light chart-description" ng-bind-html="chart.description()"></p>
+
+		<div>
+			<h3 id="mapping">Mapping
+			<a ng-click="clearDimensions()" class="pull-right light"><i class="fa fa-trash-o"></i> Clear</a>
+			</h3>
+			<div class="clearfix"></div>
+		</div>
+
+
+		<div class="row">
+			
+			<div class="col-lg-3">
+				<div draggable>
+					<ul class="list-unstyled dimensions-list">
+						<li class="dimension" data-index="{{$index}}" data-dimension="{{dimension}}" ng-repeat="dimension in metadata track by $index">
+							{{ dimension.key }} 
+							<span class="dimension-type">{{dimension.type}}</span>
+							<span class="dimension-icon pull-right"><i class="fa fa-bars"></i></span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="col-lg-9">
 
 				<div
-					class="col-lg-4"
-					ng-repeat="dimension in model.dimensions() track by $index">
-					
-					<div class="dimensions-model">
-						<p class="dimension-title">{{dimension.title()}}</p>
-						<ul
-							sortable
-							title="dimension.title()"
-							value="dimension.value"
-							multiple="dimension.multiple()"
-							class="dimensions-container list-unstyled">
-							<span class="msg">Drop element here</span>
-							<!--<ul class="list-unstyled list-inline">
-								<li  class="dimension-type-valid" ng-repeat="type in dimension.types()">{{type.name}}</li>
-							</ul>-->
-						</ul>
-					</div>
+					class="row"
+					group every="3"
+					watch="model">
 
+					<div
+						class="col-lg-4"
+						ng-repeat="dimension in model.dimensions().values() track by $index" ng-init="open=false">
+
+						<div class="dimensions-model">
+							<div class="dimension-multiple">
+								
+								<i class="fa fa-tag"
+									data-toggle="tooltip"
+							   		data-title="One"
+							   		data-ng-show="!dimension.multiple()"></i>
+								
+								<i class="fa fa-tags"
+									data-toggle="tooltip"
+							   		data-title="Multiple"
+							   		data-ng-show="dimension.multiple()"></i>
+							</div>
+							
+							<div class="dimension-info"
+									data-toggle="tooltip"
+							   		data-title="Show description"
+							   		ng-click="open = !open" ng-show="dimension.description()">
+								<i class="fa fa-info"></i>
+							</div>
+							
+							<p class="dimension-title">{{dimension.title()}}</p>
+							<ul
+								sortable
+								title="dimension.title()"
+								value="dimension.value"
+								multiple="dimension.multiple()"
+								types="dimension.types()"
+								class="dimensions-container list-unstyled">
+							</ul>
+							<div class="dimension-description" ng-class="{open: open}">{{dimension.description()}}</div>
+						</div>
+
+					</div>
 				</div>
+
 			</div>
 
 		</div>
 
+
+		<h3 id="options">customize your visualization</h3>
+
+		<div class="row">
+
+			<div class="col-lg-3">
+				<ul class="list-unstyled">
+					<li ng-repeat="option in chart.options() track by $index" chart-option>
+						<p class="option-title">{{option.title()}}
+							<a data-ng-show="option.fitToWidth()"
+							   data-toggle="tooltip"
+							   data-title="Fit to width"
+							   class="option-fit pull-right"><i class="fa fa-arrows-h"></i></a>
+						</p>
+
+						<div ng-switch="" on="option.type()">
+
+							<input type="number" min="0" class="form-control" ng-model="option.value" ng-switch-when="number"></input>
+
+							<div ng-switch-when="checkbox">
+								<label class="checkbox">
+									<input type="checkbox" ng-model="option.value"/>
+								</label>
+							</div>
+
+							<div colors="option.value" ng-switch-when="color">
+							</div>
+
+							<button
+								type="button"
+								class="btn btn-default"
+								ng-model="option.value"
+								ng-change="$apply()"
+								ng-options="o for o in option.values()" bs-select ng-switch-when="select">
+							  Action <span class="caret"></span>
+							</button>
+							
+							<input type="text" min="0" class="form-control" ng-model="option.value" ng-switch-default="ng-switch-default"></input>
+
+						</div>
+
+					</li>
+				</ul>
+			</div>
+			
+			<div class="col-lg-9">
+				<div class="chart-resize">
+					<div id="chart" chart></div>
+				</div>
+			</div>
+		
+		</div>
+
+		<div ng-show="!isEmpty()">
+
+			<div class="row">
+
+				<div class="col-lg-3">
+					<h3>export</h3>
+					<downloader></downloader>
+				</div>
+				
+				<div class="col-lg-9">
+					<h3 id="data">embed code</h3>
+					<coder></coder>
+					<p class="light">Paste the code above in your HTML to embed the visualization
+						<a class="pull-right" id="copy-button" copy-button data-clipboard-target="source" data-container="body"><i class="fa fa-clipboard"></i></a>
+					</p>
+				</div>
+
+			</div>
+		</div>	
+
 	</div>
-
-	
-	<ul>
-		<li ng-repeat="option in chart.options() track by $index">{{option.title()}} {{option.value}}
-			<input type="number" ng-model="option.value"></input>
-		</li>
-	</ul>
-
-	<div chart></div>
 </div>

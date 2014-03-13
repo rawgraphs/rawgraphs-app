@@ -7,8 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="bower_components/angular-bootstrap-colorpicker/css/colorpicker.css">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="bower_components/codemirror/lib/codemirror.css">
-
+  
   <link rel="stylesheet" href="css/raw.css"/>
 
 </head>
@@ -33,44 +35,94 @@
           <li class="active"><a href="#data">Data</a></li>
           <li><a href="#layout">Layout</a></li>
           <li><a href="#mapping">Mapping</a></li>
-          <li><a href="#options">Visualization</a></li>
+          <li><a href="#options">Customize</a></li>
           <li><a href="#export">Export</a></li>
         </ul>
+
+        <p class="navbar-text navbar-right"><a href="http://github.com/densitydesign/raw" target="_blank" class="navbar-link"><i class="fa fa-github"></i></a></p>
       </div>
+
 
     </div>
   </nav>
 
-  <div ng-view></div>
+  <div ng-view class="wrap"></div>
+
+  <div id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <p><strong>RAW</strong> is a project by <a href="http://www.densitydesign.org">DensityDesign Lab</a></p>
+          <p>Giorgio Caviglia, Michele Mauri, Giorgio Uboldi, Matteo Azzi</p>
+          <p>&copy; 2013-2014 (<a href="https://raw.github.com/densitydesign/raw/master/LICENSE">LGPL License</a>)</p>
+        </div>
+        <div class="col-lg-3">
+          <p><a href="mailto:raw@densitydesign.org">raw@densitydesign.org</a></p>
+          <p><i class="fa fa-twitter breath-right"></i> <a href="http://twitter.com/densitydesign">densitydesign</a></p>
+        </div>
+        <div class="col-lg-3">
+          <p><i class="fa fa-github breath-right"></i> <a href="http://github.com/densitydesign/raw">GitHub</a></p>
+          <p><a href="https://groups.google.com/forum/?hl=en#!forum/densitydesign-raw">Google group</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- jquery -->
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
   <!-- bootstrap -->
   <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="bower_components/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
   <!-- d3 -->
   <script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
+  <script type="text/javascript" src="bower_components/d3-plugins/sankey/sankey.js"></script>
+  <script type="text/javascript" src="bower_components/d3-plugins/hexbin/hexbin.js"></script>
   <!-- codemirror -->
   <script type="text/javascript" src="bower_components/codemirror/lib/codemirror.js"></script>
   <script type="text/javascript" src="bower_components/codemirror/addon/display/placeholder.js"></script>
+  <!-- canvastoblob -->
+  <script type="text/javascript" src="bower_components/canvas-toBlob.js/canvas-toBlob.js"></script>
+  <!-- filesaver -->
+  <script type="text/javascript" src="bower_components/FileSaver/FileSaver.js"></script>
+  <!-- zeroclipboard -->
+  <script type="text/javascript" src="bower_components/zeroclipboard/ZeroClipboard.min.js"></script>
+  <!-- canvg -->
+  <script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/rgbcolor.js"></script> 
+  <script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/StackBlur.js"></script>
+  <script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/canvg.js"></script>
 
   <!-- raw -->
   <script type="text/javascript" src="lib/raw.js"></script>
 
   <!-- charts -->
   <script src="charts/treemap.js"></script>
+  <script src="charts/scatterPlot.js"></script>
+  <script src="charts/packing.js"></script>
+  <script src="charts/clusterDendrogram.js"></script>
+  <script src="charts/voronoi.js"></script>
+  <script src="charts/delaunay.js"></script>
+  <script src="charts/alluvial.js"></script>
+  <script src="charts/convexHull.js"></script>
+  <script src="charts/clusterForce.js"></script>
+  <script src="charts/hexagonalBinning.js"></script>
+  <script src="charts/reingoldTilford.js"></script>
+  <script src="charts/streamgraph.js"></script>
 
   <!-- angular -->
   <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
   <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
   <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
   <script type="text/javascript" src="bower_components/angular-strap/dist/angular-strap.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-ui-codemirror/ui-codemirror.js"></script>
+  <script type="text/javascript" src="bower_components/angular-ui/build/angular-ui.min.js"></script>
+  <script type="text/javascript" src="bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js"></script>
 
   <script src="js/app.js"></script>
   <script src="js/services.js"></script>
   <script src="js/controllers.js"></script>
   <script src="js/filters.js"></script>
   <script src="js/directives.js"></script>
+
 </body>
 </html>

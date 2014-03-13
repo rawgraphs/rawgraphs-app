@@ -4,38 +4,200 @@
 
 angular.module('raw.directives', [])
 
-	.directive('chart', function () {
+	.directive('chart', function ($rootScope) {
 	    return {
 	      restrict: 'A',
 	      link: function postLink(scope, element, attrs) {
 
 	        function update(){
-	        	if (!scope.chart || !scope.data.length) return;
+
+	        	$('*[data-toggle="tooltip"]').tooltip({ container:'body' });
 
 	        	d3.select(element[0]).select("*").remove();
 
+	        	if (!scope.chart || !scope.data.length) return;
+						if (scope.isEmpty()) return;
+
 	        	d3.select(element[0])
+	        		.append("svg")
 	        		.datum(scope.data)
 	        		.call(scope.chart)
+
+	        	// for moving charts... to be improven
+	        	updateHTML();
+	        	//setTimeout(updateHTML, 100)
+
+        		function updateHTML(){
+        			scope.svgCode = d3.select(element[0])
+	        			.select('svg')
+        				.attr("xmlns", "http://www.w3.org/2000/svg")
+        				.node().parentNode.innerHTML;
+        			$rootScope.$broadcast("completeGraph");
+        		}
+
 	        }
 
-	        scope.$watch('chart', update)
+	        scope.$watch('chart', update);
+	        scope.$on('update', update);
 	        //scope.$watch('data', update)
-	        scope.$watch(function(){ return scope.model(scope.data); }, update, true);
-	        scope.$watch(function(){ return scope.chart.options().map(function (d){ return d.value }); }, update, true);
+	        scope.$watch(function(){ if (scope.model) return scope.model(scope.data); }, update, true);
+	        scope.$watch(function(){ if (scope.chart) return scope.chart.options().map(function (d){ return d.value }); }, update, true);
 
 	      }
 	    };
 	  })
 
-	.directive('sortable', function () {
+	.directive('chartOption', function () {
+	    return {
+	      restrict: 'A',
+	      link: function postLink(scope, element, attrs) {
+
+	      	var firstTime = false;
+
+	        element.find('.option-fit').click(function(){
+	        	scope.$apply(fitWidth);
+	        });
+
+	        scope.$watch('chart', fitWidth);
+
+	        function fitWidth(chart,sa){
+	        	if (chart == sa) return;
+	        	if(!scope.option.fitToWidth()) return;
+	        	scope.option.value = $('.col-lg-9').width();
+	        }
+
+	        $(document).ready(fitWidth);
+
+	        //fitWidth();
+
+	      }
+	    };
+	  })
+
+	.directive('colors', function ($rootScope) {
+	    return {
+	      restrict: 'A',
+	      templateUrl : 'templates/colors.html',
+	      link: function postLink(scope, element, attrs) {
+
+	        scope.scales = [ 
+	        	
+	        	{
+	        		type : 'Ordinal (10 categories)',
+	        		value : d3.scale.category10(),
+	        		reset : function(){ this.value.range(d3.scale.category10().range().map(function (d){ return d; })); },
+	        		update : ordinalUpdate
+	        	},
+	        	{
+	        		type : 'Ordinal (20 categories)',
+	        		value : d3.scale.category20(),
+	        		reset : function(){ this.value.range(d3.scale.category20().range().map(function (d){ return d; })); },
+	        		update : ordinalUpdate
+	        	},
+	        	{
+	        		type : 'Ordinal B (20 categories)',
+	        		value : d3.scale.category20b(),
+	        		reset : function(){ this.value.range(d3.scale.category20b().range().map(function (d){ return d; })); },
+	        		update : ordinalUpdate
+	        	},
+	        	{
+	        		type : 'Ordinal C (20 categories)',
+	        		value : d3.scale.category20c(),
+	        		reset : function(){ this.value.range(d3.scale.category20c().range().map(function (d){ return d; })); },
+	        		update : ordinalUpdate
+	        	},
+	        	{
+	        		type : 'Linear',
+	        		value : d3.scale.linear().range(["#f7fbff", "#08306b"]),
+	        		reset : function(){ this.value.range(["#f7fbff", "#08306b"]); },
+	        		update : linearUpdate
+	        	}
+	        ];
+
+	        function ordinalUpdate() {
+	        	var data = arguments[0][0],
+	        			accessor = arguments[0].length > 1 ? arguments[0][1] : function (d){ return d.color; };
+	        	var domain = d3.set(data.filter(accessor).map(accessor)).values();
+	        	if (!domain.length) domain = [null];
+	        	this.value.domain(domain);
+	        	listColors();
+	        }
+
+	        function linearUpdate() {
+	        	var data = arguments[0][0],
+	        			accessor = arguments[0].length > 1 ? arguments[0][1] : function (d){ return d.color; };
+	        	var domain = d3.extent(data, function (d){return +accessor(d); });
+	        	if (domain[0]==domain[1]) domain = [null];
+	        	this.value.domain(domain).interpolate(d3.interpolateLab);
+	        }
+
+	        scope.setScale = function(){
+	        	scope.option.value = scope.colorScale.value;
+	        	scope.colorScale.reset();
+	        	$rootScope.$broadcast("update");
+	        }
+
+	        function resetDomain(domain){
+	        	if (!domain) return;
+	        	scope.colorScale.reset();
+	        }
+
+	        function addListener(){
+	        	scope.colorScale.reset();
+	        	scope.option.listener(function (data){
+		      		scope.option.value = scope.colorScale.value;
+		      		scope.colorScale.update(data);
+		      	})
+	        }
+
+	        scope.colorScale = scope.scales[0];
+
+	        scope.$watch('chart', addListener)
+	        //scope.$watch('option.value.domain()', resetDomain, true);
+					//scope.$watch('colorScale.value.range()',listColors, true);
+					scope.$watch('colorScale.value.domain()',listColors, true);
+
+	        function listColors(){
+	        	scope.colors = scope.colorScale.value.domain().map(function (d){
+	        		return { key: d, value: scope.colorScale.value(d)}
+	        	}).sort(function (a,b){
+	        		if (raw.isNumber(a.key) && raw.isNumber(b.key)) return a.key - b.key;
+	        		return a.key < b.key ? -1 : a.key > b.key ? 1 : 0;
+    				})
+	        }
+
+	        scope.setColor = function(key, color) {
+	          var domain = scope.colorScale.value.domain(),
+	          		index = domain.indexOf(key),
+	          		range = scope.colorScale.value.range();
+	          range[index] = color;	         	
+						scope.option.value.range(range);
+	          $rootScope.$broadcast("update");
+	        }
+
+	        scope.foreground = function(color){
+	        	return d3.hsl(color).l > .5 ? "#222222" : "#ffffff";
+	        }
+
+	        scope.$watch('option.value', function (value){
+	        	if(!value) scope.setScale();
+	        })
+	        
+
+	      }
+	    };
+	  })
+
+	.directive('sortable', function ($rootScope) {
     return {
       restrict: 'A',
       scope : {
       	title : "=",
       	value : "=",
+      	types : "=",
       	multiple : "="
       },
+      template:'<div class="msg">{{messageText}}</div>',
       link: function postLink(scope, element, attrs) {
 
       	var removeLast = false;
@@ -46,25 +208,39 @@ angular.module('raw.directives', [])
 	        placeholder:'drop',
 	        start: onStart,
 	        out: out,
-	        update: onStop,
+	        update: onUpdate,
 	        receive : onReceive,
 	        remove: onRemove,
 	        tolerance:'intersect'
 	      })
 
 	      function out(e,ui) {
+	      	//ui.helper.toggleClass("invalid", false)
 	      	element.parent().removeClass('invalid');
+	      	//message();
+	      }
+
+	      function over(){
+	      	console.log("banana")
 	      }
 
 		    function onStart(e,ui){
-		      element.parent().addClass('invalid');
-		      element.find('.msg').html(message(ui.item.data().dimension));
+		    	var dimension = ui.item.data().dimension;
+		      //element.parent().toggleClass('invalid', hasValue(dimension));
+		      element.find('.drop').html('drop here');
+		      element.parent().css("overflow","visible");
+		     	ui.helper.toggleClass("invalid", false)
+		     //	element.parent().find('.dimension-description').css("opacity","0")
+		     	angular.element(element).scope().open=false;
+		     	scope.$apply();
 		    }
 
-		    function onStop(e,ui){
+		    function onUpdate(e,ui){
 		    	element.parent().removeClass('invalid');
 
 					var dimension = ui.item.data().dimension;
+
+					ui.item.find('.dimension-icon').remove();
 
 		    	if (ui.item.find('span.remove').length == 0) {
 		      	ui.item.append("<span class='remove pull-right'>&times;</span>")
@@ -78,14 +254,20 @@ angular.module('raw.directives', [])
 
 		     	scope.value = values();
 		     	scope.$apply();
+
+		     	element.parent().css("overflow","hidden");
+		    // 	element.parent().find('.dimension-description').css("opacity","auto")
+
+		     	ui.item.toggleClass("invalid", !isValidType(dimension))
+		     	message();
+		     	$rootScope.$broadcast("update");
 		    }
 
-		    scope.$watch('value', function(){
-		    	if (!scope.multiple && scope.value.length) {
-		     	//	element.find('.drop.static').hide();
-		     	} else {
-		     	//	element.parent().css("padding-bottom","53px");
-		     	}
+		    scope.$watch('value', function (value){
+		    	if (!value.length) {
+		    		element.find('li').remove();
+		    	}
+		     	message();
 		    })
 
 		    function onReceive(e,ui) {
@@ -102,8 +284,7 @@ angular.module('raw.directives', [])
 		     				removeLast=false;
 		     			}
 		     		})
-		     	} 
-
+		     	}
 		    	scope.value = values();
 		     	scope.$apply();
 					ui.item.find('span.remove').click(function(){  ui.item.remove(); onRemove(); })
@@ -134,8 +315,18 @@ angular.module('raw.directives', [])
 		    	return false;
 				}
 
-				function message(dimension){
-					return hasValue(dimension) ? "abbiamo gia" : "ok";
+				function isValidType(dimension) {
+					if (!dimension) return;
+					return scope.types.map(function (d){ return d.name; }).indexOf(dimension.type) != -1;
+					
+				}
+
+				function message(){
+					var hasInvalidType = values().filter(function (d){ return !isValidType(d); }).length > 0;
+					scope.messageText = hasInvalidType
+						? "You should only use " + scope.types.map(function (d){ return d.name.toLowerCase() + "s"; }).join(" or ") + " here"
+						: "Drag " + scope.types.map(function (d){ return d.name.toLowerCase() + "s"; }).join(", ") + " here";
+					//element.parent().find('.msg').html(messageText);
 				}
 		
 
@@ -146,34 +337,22 @@ angular.module('raw.directives', [])
 		.directive('draggable', function () {
 	    return {
 	      restrict: 'A',
-	      scope : {
-	      	items : '='
-	      },
-	      template : '<li class="dimension" data-index="{{$index}}" data-dimension="{{dimension}}" ng-repeat="dimension in items">{{ dimension.key }}<br/><span class="dimension-type">{{dimension.type}}</span></li>',
+	    //  templateUrl : 'templates/dimensions.html',
 	      link: function postLink(scope, element, attrs) {
 
-		      scope.$watch('items', function(){
-			      
+		      scope.$watch('metadata', function(metadata){
+		      	if (!metadata.length) element.find('li').remove();
 			      element.find('li').draggable({
 			        connectToSortable:'.dimensions-container',
-			        /*helper: function () {
-					        var cloned = $(this).clone();					        
-					        return cloned;
-					    },*/
 					    helper : 'clone',
 			        revert: 'invalid',
 			        start : onStart,
-			        stop : onStop
 			      })
-		     })
+		     	})
 
-			    function onStart(e,ui){
+			   	function onStart(e,ui){
 			      ui.helper.width($(e.currentTarget).width())
 			      ui.helper.css('z-index','100000')
-			    }
-
-			    function onStop(e,ui){
-			    	
 			    }
 
 	      }
@@ -200,3 +379,145 @@ angular.module('raw.directives', [])
        }
       };
   	})
+
+.directive('copyButton', function () {
+  return {
+    restrict: 'A',
+    link: function postLink(scope, element, attrs) {
+
+    	ZeroClipboard.config({ moviePath: "../bower_components/zeroclipboard/ZeroClipboard.swf" });
+
+	    var client = new ZeroClipboard( element );
+
+	    client.on( "load", function (client) {
+	      client.on( "complete", function (client, args) {
+	        element.tooltip('destroy');
+	        element.tooltip({ title:'Copied!'});
+	        element.tooltip('show')
+	      } );
+	    });
+
+	    client.on( 'mouseover', function ( client, args ) {
+	    	element.tooltip({title:'Copy to clipboard'});
+			  element.tooltip('show');
+			});
+
+			client.on( 'mouseout', function ( client, args ) {
+			  element.tooltip('destroy');
+			});
+
+    }
+  };
+})
+
+.directive('coder', function () {
+  return {
+    restrict: 'EA',
+    template :  '<textarea id="source" readonly class="col-lg-12 source-area" rows="4" ng-model="svgCode"></textarea>',
+    link: function postLink(scope, element, attrs) {
+
+    	scope.$on('completeGraph',function(){
+    		element.find('textarea').val(scope.svgCode)
+    	})
+
+      /*function asHTML(){
+        if (!$('#chart > svg').length) return "";
+        return d3.select('#chart > svg')
+        	.attr("xmlns", "http://www.w3.org/2000/svg")
+        	.node().parentNode.innerHTML;
+      }
+
+      scope.$watch(asHTML, function(){
+        scope.html = asHTML();
+      },true)
+      scope.$on('update', function(){
+      	scope.html = asHTML();
+      })*/
+    }
+  };
+})
+
+.directive('downloader', function () {
+    return {
+      restrict: 'E',
+      replace:true,
+      template :  '<div class="row">' +
+                    '<form class="form-search col-lg-12">' +
+                      '<input class="form-control col-lg-12" placeholder="Filename" type="text" ng-model="filename">' +
+                      '<button bs-select class="btn btn-default" placeholder="Choose..." ng-model="mode" ng-options="m.label for m in modes">' +
+                      'Select <span class="caret"></span>' +
+                      '</button>' +
+                      '<button class="btn btn-success form-control" ng-class="{disabled:!mode}" ng-click="mode.download()">Download</button>' +
+                    '</form>' +
+                  '</div>',
+
+      link: function postLink(scope, element, attrs) {
+
+      	var source = "#chart > svg";
+
+      	var getBlob = function() {
+            return window.Blob || window.WebKitBlob || window.MozBlob;
+          }
+
+        function downloadSvg(){
+          var BB = getBlob();
+         
+          var html = d3.select(source)
+            .attr("version", 1.1)
+            .attr("xmlns", "http://www.w3.org/2000/svg")
+            .node().parentNode.innerHTML;
+
+          var isSafari = (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1);
+
+          if (isSafari) {
+            var img = "data:image/svg+xml;utf8," + html;
+            var newWindow = window.open(img, 'download');
+          } else {
+            var blob = new BB([html], { type: "data:image/svg+xml" });
+            saveAs(blob, (element.find('input').val() || element.find('input').attr("placeholder")) + ".svg")
+          }
+
+        }
+
+        function downloadPng(){
+          
+          var content = d3.select("body").append("canvas")
+              .attr("id", "canvas")
+              .style("display","none")
+
+          var html = d3.select(source)
+              .node().parentNode.innerHTML;
+
+          canvg('canvas', html);
+          var canvas = document.getElementById("canvas");//, ctx = canvas.getContext("2d");
+          
+          var isSafari = (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1);
+          
+          if (isSafari) {
+            var img = canvas.toDataURL("image/png;base64");
+            var newWindow = window.open(img, 'download');
+          } else {
+            canvas.toBlob(function (blob) {
+              saveAs(blob, (scope.filename || element.find('input').attr("placeholder")) + ".png");
+            }, "image/png");
+          }
+
+          d3.select("#canvas").remove();
+      } 
+
+      var downloadData = function() {
+        var json = JSON.stringify(scope.model(scope.data));
+        var blob = new Blob([json], { type: "data:text/json;charset=utf-8" });
+        saveAs(blob, (scope.filename || element.find('input').attr("placeholder")) + ".json")
+      }
+
+      scope.modes = [
+    		{ label : 'Vector graphics (SVG)', download : downloadSvg },
+    		{ label : 'Image (PNG)', download : downloadPng },
+    		{ label : 'Data (JSON)', download : downloadData }
+    	]
+    	//scope.mode = scope.modes[0]
+
+    }
+  };
+});

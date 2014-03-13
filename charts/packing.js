@@ -1,66 +1,86 @@
+(function(){
 
-var tree = raw.models.tree();
+	var tree = raw.models.tree();
 
-var chart = raw.chart()
-	 .model(tree)
+	var chart = raw.chart()
+		.title('Circle Packing')
+		.thumbnail("/imgs/circlePacking.png")
+	  .model(tree)
 
-var radius = chart.option()
-	 .title("Radius")
-	 .defaultValue(500)
+	var diameter = chart.option()
+		 .title("Diameter")
+		 .defaultValue(800)
+		 .fitToWidth(true)
 
-var padding = chart.option()
-	 .title("Padding")
-	 .defaultValue(10)
+	var padding = chart.option()
+		 .title("Padding")
+		 .defaultValue(5)
 
-chart.draw(function (selection, data){
+	var sort = chart.option()
+		 .title("Sort by size")
+		 .defaultValue(false)
+		 .type("checkbox")
 
-	var margin = 10,
-    	outerDiameter = +radius()*2,
-    	innerDiameter = outerDiameter - margin - margin;
+	var color = chart.option()
+		 .title("Color scale")
+		 .type("color")
 
-	var x = d3.scale.linear()
-	    .range([0, innerDiameter]);
+	var showLabels = chart.option()
+		 .title("Show labels")
+		 .defaultValue(true)
+		 .type("checkbox")
 
-	var y = d3.scale.linear()
-	    .range([0, innerDiameter]);
+	chart.draw(function (selection, data){
 
-	var color = d3.scale.category20b();
+		if (!data.children.length) return;
 
-	var pack = d3.layout.pack()
-	    .padding(2)
-	    .sort(null)
-	    .size([innerDiameter, innerDiameter])
-	    .value(function(d) { return d.size; })
+		var margin = 10,
+	    	outerDiameter = +diameter(),
+	    	innerDiameter = outerDiameter - margin - margin;
 
-	var g = selection.append("svg")
-	    .attr("width", outerDiameter)
-	    .attr("height", outerDiameter)
-	  .append("g")
-	    .attr("transform", "translate(" + margin + "," + margin + ")");
+		var x = d3.scale.linear()
+		    .range([0, innerDiameter]);
 
-  var focus = data,
-      nodes = pack.nodes(data);
+		var y = d3.scale.linear()
+		    .range([0, innerDiameter]);
 
-  g.append("g").selectAll("circle")
-      .data(nodes)
-    .enter().append("circle")
-      .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
-      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-      .attr("r", function(d) { return d.r; })
-      .style("fill", function(d) { return !d.children ? color(d.color||'undefined') : '#eeeeee'; })
+		var pack = d3.layout.pack()
+		    .padding(+padding())
+		    .sort(function (a,b){ return sort() ? a.value-b.value : null; })
+		    .size([innerDiameter, innerDiameter])
+		    .value(function(d) { return +d.size; })
 
-  g.append("g").selectAll("text")
-      .data(nodes)
-    .enter().append("text")
-      .attr("text-anchor", "middle")
-   		.style("font-size","11px")
-			.style("font-family","Arial, Helvetica")
-      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-      .style("fill-opacity", function(d) { return d.parent === data ? 1 : 0; })
-      .style("display", function(d) { return d.parent === data ? null : "none"; })
-      .text(function(d) { return d.name; });
+		var g = selection
+		    .attr("width", outerDiameter)
+		    .attr("height", outerDiameter)
+		  .append("g")
+		    .attr("transform", "translate(" + margin + "," + margin + ")");
 
-  d3.select(self.frameElement).style("height", outerDiameter + "px");
+	  var focus = data,
+	      nodes = pack.nodes(data);
 
+	  color.data(nodes);
 
-})
+	  g.append("g").selectAll("circle")
+	      .data(nodes)
+	    .enter().append("circle")
+	      .attr("class", function (d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
+	      .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; })
+	      .attr("r", function (d) { return d.r; })
+	      .style("fill", function (d) { return !d.children ?  color()(d.color) : '#eeeeee'; })
+	      .style("stroke", '#ddd')
+	      .style("stroke-opacity", function (d) { return !d.children ? 0 : 1 })
+
+	  g.append("g").selectAll("text")
+	      .data(nodes.filter(function (d){ return showLabels(); }))
+	    .enter().append("text")
+	      .attr("text-anchor", "middle")
+	   		.style("font-size","11px")
+				.style("font-family","Arial, Helvetica")
+	      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+	      .text(function (d) { return d.label ? d.label.join(", ") : d.name; });
+
+	  d3.select(self.frameElement).style("height", outerDiameter + "px");
+
+	})
+})();

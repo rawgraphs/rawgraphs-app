@@ -2,10 +2,11 @@
 
 /* Controllers */
 
-angular.module('raw.controllers', []).
-  controller('RawCtrl', ['$scope','dataService', function ($scope, dataService) {
+angular.module('raw.controllers', [])
 
-  	dataService.loadSample('data/dispersion.csv').then(
+  .controller('RawCtrl', ['$scope','dataService', function ($scope, dataService) {
+
+  	dataService.loadSample('data/flow.csv').then(
       function(data){
         $scope.text = data;
       }, 
@@ -29,17 +30,27 @@ angular.module('raw.controllers', []).
         $scope.metadata = [];
         $scope.error = e.message;
       }
-      
-      $scope.chart = raw.charts.values()[0];
-      $scope.model = $scope.chart.model();
-
-      //$scope.update();
-
     })
 
+    $scope.charts = raw.charts.values().sort(function (a,b){ return a.title() < b.title() ? -1 : a.title() > b.title() ? 1 : 0; });
+    $scope.chart = $scope.charts[0];
+    $scope.model = $scope.chart.model();
 
-    $scope.update = function(){
-    	$scope.$apply();
+
+    $scope.clearDimensions = function(){      
+        $scope.model.dimensions().values().forEach(function (d){
+          d.value = [];
+        })
+    }
+
+    $scope.selectChart = function(chart){
+      $scope.chart = chart;
+      $scope.model = $scope.chart.model();
+      $scope.model.clean();
+    }
+
+    $scope.isEmpty = function(){
+      return $scope.model && !$scope.model.dimensions().values().filter(function (d){ return d.value.length } ).length;
     }
 
     $(document).ready(function(){
