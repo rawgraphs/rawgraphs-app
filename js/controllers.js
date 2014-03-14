@@ -4,9 +4,9 @@
 
 angular.module('raw.controllers', [])
 
-  .controller('RawCtrl', ['$scope','dataService', function ($scope, dataService) {
+  .controller('RawCtrl', function ($scope, dataService) {
 
-  	dataService.loadSample('data/flow.csv').then(
+  	dataService.loadSample('data/categorical.csv').then(
       function(data){
         $scope.text = data;
       }, 
@@ -16,10 +16,11 @@ angular.module('raw.controllers', [])
     );
 
     $scope.raw = raw;
+    $scope.data = [];
+    $scope.metadata = [];
+    $scope.error = false;
 
-    // watching for changes in text
-    $scope.$watch("text", function (text){
-      
+    $scope.parse = function(text){
       try {
         var parser = raw.parser(text);
         $scope.data = parser.data();
@@ -30,34 +31,67 @@ angular.module('raw.controllers', [])
         $scope.metadata = [];
         $scope.error = e.message;
       }
-    })
+    }
+
+    $scope.delayParse = dataService.debounce($scope.parse, 500, false);
+
+    $scope.$watch("text", function (text){
+      $scope.delayParse(text);
+    });
 
     $scope.charts = raw.charts.values().sort(function (a,b){ return a.title() < b.title() ? -1 : a.title() > b.title() ? 1 : 0; });
     $scope.chart = $scope.charts[0];
     $scope.model = $scope.chart.model();
 
-
-    $scope.clearDimensions = function(){      
-        $scope.model.dimensions().values().forEach(function (d){
-          d.value = [];
-        })
-    }
-
     $scope.selectChart = function(chart){
       $scope.chart = chart;
       $scope.model = $scope.chart.model();
-      $scope.model.clean();
+      $scope.model.clear();
     }
 
     $scope.isEmpty = function(){
       return $scope.model && !$scope.model.dimensions().values().filter(function (d){ return d.value.length } ).length;
     }
 
-    $(document).ready(function(){
+    function refreshScroll(){
       $('[data-spy="scroll"]').each(function () {
         $(this).scrollspy('refresh');
       });
+    }
+
+    $(window).scroll(function(){
+
+      // check for mobile
+      if ($(window).width() < 760) return;
+
+      var scrollTop = $(window).scrollTop() + 0,
+          mappingTop = $('#mapping').offset().top,
+          mappingHeight = $('#mapping').height(),
+          isBetween = scrollTop > mappingTop && scrollTop <= mappingTop + mappingHeight-$(".sticky").height()-70,
+          isOver = scrollTop > mappingTop+mappingHeight,
+          isSticky = false,
+          mappingWidth = mappingWidth ? mappingWidth : $('.col-lg-9').width();
+
+      if (isBetween && !isSticky) {
+        $(".sticky")
+          .css("position","fixed")
+          .css("width", mappingWidth+"px")
+          .css("top","80px")
+        return;
+      } 
+
+      if ($(".sticky").css('position') != 'fixed') return;
+
+      $(".sticky")
+        .css("position","relative")
+        .css("top","0px")
+        .css("width", "");
+
+      isSticky = false;
+
     })
 
+    $(document).ready(refreshScroll);
 
-  }])
+
+  })

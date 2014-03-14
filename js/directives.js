@@ -346,13 +346,13 @@ angular.module('raw.directives', [])
 			        connectToSortable:'.dimensions-container',
 					    helper : 'clone',
 			        revert: 'invalid',
-			        start : onStart,
+			        start : onStart
 			      })
 		     	})
 
 			   	function onStart(e,ui){
 			      ui.helper.width($(e.currentTarget).width())
-			      ui.helper.css('z-index','100000')
+			      ui.helper.css('z-index','100000');
 			    }
 
 	      }
@@ -413,7 +413,7 @@ angular.module('raw.directives', [])
 .directive('coder', function () {
   return {
     restrict: 'EA',
-    template :  '<textarea id="source" readonly class="col-lg-12 source-area" rows="4" ng-model="svgCode"></textarea>',
+    template :  '<textarea id="source" readonly class="source-area" rows="4" ng-model="svgCode"></textarea>',
     link: function postLink(scope, element, attrs) {
 
     	scope.$on('completeGraph',function(){

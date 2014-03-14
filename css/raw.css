@@ -7,7 +7,7 @@ body {
   font-size: 300;
 }
 
-body { padding-top: 70px; }
+body { padding-top: 40px; }
 
 
 h3 {
@@ -172,7 +172,7 @@ h4 {
   border: none;
   font-weight: 300;
   padding: 6px 12px;
-  background-color: transparent;
+  background-color: #e4e4e4;
   color: #444;
 }
 
@@ -237,7 +237,6 @@ textarea:focus {
   -moz-border-radius: 2px;
   border-radius: 2px;
   font-weight: 300; 
-  margin-top: 10px;
 }
 
 .btn-success.disabled, .btn-success[disabled], fieldset[disabled] .btn-success, .btn-success.disabled:hover, .btn-success[disabled]:hover, fieldset[disabled] .btn-success:hover, .btn-success.disabled:focus, .btn-success[disabled]:focus, fieldset[disabled] .btn-success:focus, .btn-success.disabled:active, .btn-success[disabled]:active, fieldset[disabled] .btn-success:active, .btn-success.disabled.active, .btn-success[disabled].active, fieldset[disabled] .btn-success.active,
@@ -266,6 +265,10 @@ textarea:focus {
 
 .dropdown-menu>li>a {
   font-weight: 300;
+}
+
+.export .btn {
+  margin-top: 10px;
 }
 
 /* Charts */
@@ -525,6 +528,12 @@ textarea:focus {
   color: #444;
 }
 
+.sticky {
+  -webkit-transition: -webkit-transform 0.4s, top 0.3s ease-in-out;
+  -moz-transition: -moz-transform 0.4s, top 0.3s ease-in-out;
+  transition: transform 0.4s, top 0.3s ease-in-out;
+}
+
 /* Colors */
 
 div[colors] {
@@ -644,9 +653,30 @@ div[colors] input[type="text"] {
 
 .chart-resize {
   padding: 0px;
+
+  /* Internet Explorer 10 */
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari, Opera, and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
 }
 
 textarea.source-area {
+  width: 100%;
   font-family: Menlo, Monaco, Courier, monospace;
   font-size: 11px;
   color: #999999;

@@ -34,6 +34,7 @@
     "angular-ui": "~0.4.0",
     "codemirror": "~4.0.1",
     "zeroclipboard": "~1.3.2",
-    "canvas-toBlob.js": "https://github.com/eligrey/canvas-toBlob.js.git"
+    "canvas-toBlob.js": "https://github.com/eligrey/canvas-toBlob.js.git",
+    "jqueryui-touch-punch": "*"
   }
 }

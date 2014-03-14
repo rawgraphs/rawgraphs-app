@@ -53,73 +53,80 @@
 		<h4>{{chart.title()}}</h4>
 		<p class="light chart-description" ng-bind-html="chart.description()"></p>
 
-		<div>
-			<h3 id="mapping">Mapping
-			<a ng-click="clearDimensions()" class="pull-right light"><i class="fa fa-trash-o"></i> Clear</a>
-			</h3>
-			<div class="clearfix"></div>
-		</div>
+		<div id="mapping">
 
-
-		<div class="row">
-			
-			<div class="col-lg-3">
-				<div draggable>
-					<ul class="list-unstyled dimensions-list">
-						<li class="dimension" data-index="{{$index}}" data-dimension="{{dimension}}" ng-repeat="dimension in metadata track by $index">
-							{{ dimension.key }} 
-							<span class="dimension-type">{{dimension.type}}</span>
-							<span class="dimension-icon pull-right"><i class="fa fa-bars"></i></span>
-						</li>
-					</ul>
-				</div>
+			<div>
+				<h3>map your dimensions
+				<a data-toggle="tooltip"
+				   data-title="Clear all dimensions"
+				   ng-click="model.clear()" class="pull-right light"><i class="fa fa-trash-o"></i></a>
+				</h3>
+				<div class="clearfix"></div>
 			</div>
-			
-			<div class="col-lg-9">
 
-				<div
-					class="row"
-					group every="3"
-					watch="model">
 
-					<div
-						class="col-lg-4"
-						ng-repeat="dimension in model.dimensions().values() track by $index" ng-init="open=false">
-
-						<div class="dimensions-model">
-							<div class="dimension-multiple">
-								
-								<i class="fa fa-tag"
-									data-toggle="tooltip"
-							   		data-title="One"
-							   		data-ng-show="!dimension.multiple()"></i>
-								
-								<i class="fa fa-tags"
-									data-toggle="tooltip"
-							   		data-title="Multiple"
-							   		data-ng-show="dimension.multiple()"></i>
-							</div>
-							
-							<div class="dimension-info"
-									data-toggle="tooltip"
-							   		data-title="Show description"
-							   		ng-click="open = !open" ng-show="dimension.description()">
-								<i class="fa fa-info"></i>
-							</div>
-							
-							<p class="dimension-title">{{dimension.title()}}</p>
-							<ul
-								sortable
-								title="dimension.title()"
-								value="dimension.value"
-								multiple="dimension.multiple()"
-								types="dimension.types()"
-								class="dimensions-container list-unstyled">
-							</ul>
-							<div class="dimension-description" ng-class="{open: open}">{{dimension.description()}}</div>
-						</div>
-
+			<div class="row">
+				
+				<div class="col-lg-3">
+					<div draggable>
+						<ul class="list-unstyled dimensions-list">
+							<li class="dimension" data-index="{{$index}}" data-dimension="{{dimension}}" ng-repeat="dimension in metadata track by $index">
+								{{ dimension.key }} 
+								<span class="dimension-type">{{dimension.type}}</span>
+								<span class="dimension-icon pull-right"><i class="fa fa-bars"></i></span>
+							</li>
+						</ul>
 					</div>
+				</div>
+				
+				<div class="col-lg-9">
+					<div class="sticky">
+						<div
+							class="row"
+							group every="3"
+							watch="model">
+
+							<div
+								class="col-lg-4"
+								ng-repeat="dimension in model.dimensions().values() track by $index" ng-init="open=false">
+
+								<div class="dimensions-model">
+									<div class="dimension-multiple">
+										
+										<i class="fa fa-tag"
+											data-toggle="tooltip"
+									   		data-title="Single dimension"
+									   		data-ng-show="!dimension.multiple()"></i>
+										
+										<i class="fa fa-tags"
+											data-toggle="tooltip"
+									   		data-title="Multiple dimension"
+									   		data-ng-show="dimension.multiple()"></i>
+									</div>
+									
+									<div class="dimension-info"
+											data-toggle="tooltip"
+									   		data-title="Show description"
+									   		ng-click="open = !open" ng-show="dimension.description()">
+										<i class="fa fa-info"></i>
+									</div>
+									
+									<p class="dimension-title">{{dimension.title()}}</p>
+									<ul
+										sortable
+										title="dimension.title()"
+										value="dimension.value"
+										multiple="dimension.multiple()"
+										types="dimension.types()"
+										class="dimensions-container list-unstyled">
+									</ul>
+									<div class="dimension-description" ng-class="{open: open}">{{dimension.description()}}</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
 				</div>
 
 			</div>
@@ -173,7 +180,8 @@
 			
 			<div class="col-lg-9">
 				<div class="chart-resize">
-					<div id="chart" chart></div>
+					<div ng-show="!isEmpty()" id="chart" chart></div>
+					<p class="light" ng-show="isEmpty()">Please, map your dimensions in the panels above to build the visualization</p>
 				</div>
 			</div>
 		
@@ -181,7 +189,7 @@
 
 		<div ng-show="!isEmpty()">
 
-			<div class="row">
+			<div id="export" class="row">
 
 				<div class="col-lg-3">
 					<h3>export</h3>
@@ -191,7 +199,7 @@
 				<div class="col-lg-9">
 					<h3 id="data">embed code</h3>
 					<coder></coder>
-					<p class="light">Paste the code above in your HTML to embed the visualization
+					<p class="light">Copy the code above into your HTML to embed the visualization
 						<a class="pull-right" id="copy-button" copy-button data-clipboard-target="source" data-container="body"><i class="fa fa-clipboard"></i></a>
 					</p>
 				</div>
