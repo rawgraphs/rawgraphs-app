@@ -6,7 +6,7 @@ angular.module('raw.controllers', [])
 
   .controller('RawCtrl', function ($scope, dataService) {
 
-  	dataService.loadSample('data/dispersion.csv').then(
+  	dataService.loadSample('data/multivariate.csv').then(
       function(data){
         $scope.text = data;
       }, 
@@ -31,6 +31,7 @@ angular.module('raw.controllers', [])
         $scope.metadata = [];
         $scope.error = e.message;
       }
+      if (!$scope.data.length) $scope.model.clear();
     }
 
     $scope.delayParse = dataService.debounce($scope.parse, 500, false);
@@ -67,7 +68,7 @@ angular.module('raw.controllers', [])
       var scrollTop = $(window).scrollTop() + 0,
           mappingTop = $('#mapping').offset().top,
           mappingHeight = $('#mapping').height(),
-          isBetween = scrollTop > mappingTop && scrollTop <= mappingTop + mappingHeight-$(".sticky").height()-70,
+          isBetween = scrollTop > mappingTop && scrollTop <= mappingTop + mappingHeight - $(".sticky").height()-70,
           isOver = scrollTop > mappingTop+mappingHeight,
           isSticky = false,
           mappingWidth = mappingWidth ? mappingWidth : $('.col-lg-9').width();

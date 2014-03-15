@@ -18,7 +18,7 @@
 
 	var maxRadius = chart.option()
 		.title("max radius")
-		.defaultValue(30)
+		.defaultValue(20)
 
 	var useZero = chart.option()
 		.title("set origin at (0,0)")
