@@ -7,7 +7,7 @@ body {
   font-size: 300;
 }
 
-body { padding-top: 40px; }
+body { padding-top: 20px; }
 
 
 h3 {
@@ -19,7 +19,6 @@ h3 {
   margin-top: 40px;
   padding: 10px 0px;
   padding-bottom: 0px;
-  color: #999999;
 }
 
 a {
@@ -46,7 +45,7 @@ h3 a {
 }
 
 h4 {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   margin-top: 20px;
 }
@@ -291,6 +290,10 @@ textarea:focus {
 
 /* Charts */
 
+.chart-description {
+  font-size: 13px;
+}
+
 .chart-description a {
   font-weight: 600;
 }
@@ -317,7 +320,6 @@ textarea:focus {
 	padding: 10px;
 	margin-bottom: 20px;
   overflow: hidden;
-  border: 1px dashed #ddd;
 
 	-webkit-transition: border .15s ease-in-out;
   -moz-transition: border .15s ease-in-out;
@@ -354,7 +356,7 @@ textarea:focus {
 }
 
 .layout {
-  background-color: #fff;
+  background-color: #ddd;
   cursor: pointer;
   margin-bottom: 10px;
 }
@@ -701,6 +703,19 @@ textarea.source-area {
   -ms-transition: border .15s ease-in-out;
   -o-transition: border .15s ease-in-out;
   transition: border .15s ease-in-out;
+}
+
+.list-type {
+  margin-bottom: 10px;
+}
+
+.type {
+  color: #999;
+  cursor: pointer;
+}
+
+.type.selected {
+  color: #222;
 }
 
 #copy-button {

@@ -48,13 +48,21 @@
 			</div>		
 
 			<div class="col-lg-9">
-				<i class="fa fa-th-list breath-right"></i>
-				<i class="fa fa-th breath-right"></i>
+				<div class="list-type text-right">
+					<i class="type fa fa-th-list breath-left"
+					   data-toggle="tooltip"
+				   	   data-title="List"
+				   	   ng-click="listType='list'" ng-class="{selected:listType!='gallery'}"></i>
+					<i class="type fa fa-th breath-left"
+					   data-toggle="tooltip"
+				   	   data-title="Gallery"
+				   	   ng-click="listType='gallery'" ng-class="{selected:listType=='gallery'}"></i>
+				</div>
 				<div class="row" group every="3" watch="charts">
 					<div class="col-lg-4" ng-repeat="c in charts track by $index">
 						<div ng-class="{selected: c == chart}" class="layout"  ng-click="selectChart(c)">
-							<!--<div class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}">
-							</div>-->
+							<div ng-show="listType=='gallery'" class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}">
+							</div>
 							<span class="layout-title">{{c.title()}}
 								<i data-ng-show="c==chart" class="fa fa-check pull-right"></i>
 							</span>

@@ -9,6 +9,9 @@
     .title("Size")
     .types(Number)
 
+  var label = nodes.dimension()
+    .title("Label")
+
   var color = nodes.dimension()
     .title("Color")
 
@@ -26,6 +29,7 @@
     var nodeElements = data.map(function (d) {
       return { 
         type : 'node',
+        label : label(d),
         cluster: cluster(d),
         clusterObject : nodeClusters[cluster(d)],
         size: size() ? +size(d) : 1,
@@ -102,12 +106,26 @@
         return function(t) { return d.radius = i(t); };
       });
 
+    var text = g.selectAll("text")
+        .data(data.filter(function (d){ return d.type == "node"; }))
+      .enter().append("text")
+        .text(function (d){ return d.label; })
+        .attr("text-anchor", "middle")
+        .style("font-size","11px")
+        .style("font-family","Arial, Helvetica")
+        .call(force.drag);
+
     function tick(e) {
       node
           .each(cluster(10 * e.alpha * e.alpha))
           .each(collide(.5))
           .attr("cx", function(d) { return d.x; })
           .attr("cy", function(d) { return d.y; });
+      text
+          .each(cluster(10 * e.alpha * e.alpha))
+          .each(collide(.5))
+          .attr("x", function(d) { return d.x; })
+          .attr("y", function(d) { return d.y; });
     }
 
     function cluster(alpha) {
