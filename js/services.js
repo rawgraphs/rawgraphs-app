@@ -22,7 +22,6 @@ angular.module('raw.services', [])
 		    },
 
 		    debounce : function (func, wait, immediate) {
-		    	console.log("anana")
 			    var timeout;
 			    var deferred = $q.defer();
 			    return function() {

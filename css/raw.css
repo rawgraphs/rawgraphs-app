@@ -118,7 +118,6 @@ h4 {
 }
 
 .wrap > .container {
-  padding-top: 20px;
   padding-bottom: 160px;
 }
 
@@ -126,7 +125,6 @@ h4 {
 /* Navbar */
 
 .navbar {
-  background-color: #303030;
   color: #f2f2f2;
   text-align: center;
   opacity: .97;
@@ -140,11 +138,21 @@ h4 {
   text-transform: uppercase;
 }
 
+.navbar-brand {
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.navbar-brand small {
+  font-weight: 300;
+  font-size: 14px;
+}
+
 .navbar .nav>li>a {
   font-size: 12px;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 1px;
-  color: #bbb;
+  color: #999;
   text-transform: uppercase;
 
   -webkit-transition: color .15s ease-in-out;
@@ -160,6 +168,7 @@ h4 {
 .navbar .nav>.active>a:hover,
 .navbar .nav>.active>a:focus {
   background-color: transparent;
+  color: #000;
 }
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
@@ -200,7 +209,7 @@ input[type="number"], input[type="email"], input[type="url"], input[type="search
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  border-color: transparent;
+  border: 1px solid transparent;
   padding: 6px;
   font-weight: 300;
 }
@@ -213,8 +222,13 @@ textarea:focus {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  border-color: #bbbbbb;
+  border: 1px solid #bbbbbb;
   outline: 0px auto -webkit-focus-ring-color !important;
+  outline: none;
+}
+
+.btn:focus {
+  border: none;
 }
 
 .form-control {
@@ -267,8 +281,12 @@ textarea:focus {
   font-weight: 300;
 }
 
-.export .btn {
-  margin-top: 10px;
+#export .btn {
+  margin: 10px 0px;
+}
+
+#export .btn:first-child {
+  margin-top: 0px;
 }
 
 /* Charts */
@@ -299,6 +317,7 @@ textarea:focus {
 	padding: 10px;
 	margin-bottom: 20px;
   overflow: hidden;
+  border: 1px dashed #ddd;
 
 	-webkit-transition: border .15s ease-in-out;
   -moz-transition: border .15s ease-in-out;
@@ -423,38 +442,30 @@ textarea:focus {
 }
 
 .drop {
-	padding: 6px 10px;
+	padding: 8px 10px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
 	border-radius: 2px;
-	border: 2px dashed #eee;
-	text-transform: uppercase;
+  background-color: #ddd;
   font-size: 13px;
   font-weight: 300;
   line-height: 18px;
-	color: #ccc;
+	color: #fff;
 	margin-bottom: 3px;
+
+  display: block;
+  width: 100%;
 	
-	display: -ms-flexbox;
-	-ms-flex-pack: center;
-	-ms-flex-align: center;
-	
-	display: -moz-box;
-	-moz-box-pack: center;
-	-moz-box-align: center;
-	
-	display: -webkit-box;
-	-webkit-box-pack: center;
-	-webkit-box-align: center;
-	
-	display: box;
-	box-pack: center;
-	box-align: center;
 
 }
 
 .dimension.invalid {
-  background-color: #E4C521;
+  background-color: #F8E937;
+  color: #000;
+}
+
+.dimension.invalid .dimension-type {
+  color: rgba(0,0,0,.6)  
 }
 
 .dimension-placeholder {
@@ -648,7 +659,7 @@ div[colors] input[type="text"] {
 }
 
 #chart svg {
-  border: 1px dotted #ddd;
+  border: 1px solid #ddd;
 }
 
 .chart-resize {
@@ -720,7 +731,6 @@ textarea.source-area {
   font-size: 11px;
   background-color: #ffffff;
   line-height: 18px;
-  border: 1px solid #ddd;
   border-radius: 2px;
   margin: 10px 0;
   height: 260px;
@@ -745,4 +755,14 @@ pre.CodeMirror-placeholder {
 
 .CodeMirror-gutters {
   height: 100%;
-}*/
+  border: none;
+  background-color: #46CEA9;
+}
+
+.CodeMirror-linenumber {
+  color: #fff;
+}
+
+.CodeMirror-focused {
+
+}

@@ -7,8 +7,10 @@
 </button>
 
 <div class="colors-table">
-	<input ng-model="searchColor" type="text" class="search-color form-control input-sm" placeholder="Search..."></input>
-	<i class="fa fa-times-circle search-clear" data-ng-show="searchColor" ng-click="searchColor=''"></i>
+	<div ng-show="colors.length">
+		<input ng-model="searchColor" type="text" class="search-color form-control input-sm" placeholder="Search..."></input>
+		<i class="fa fa-times-circle search-clear" data-ng-show="searchColor" ng-click="searchColor=''"></i>
+	</div>
 	<table class="table table-striped">
 		<tbody>
 			<tr ng-repeat="color in colors | filter:{'key':searchColor} track by $index">

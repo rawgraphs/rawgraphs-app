@@ -83,9 +83,9 @@ angular.module('raw.directives', [])
 	        scope.scales = [ 
 	        	
 	        	{
-	        		type : 'Ordinal (10 categories)',
-	        		value : d3.scale.category10(),
-	        		reset : function(){ this.value.range(d3.scale.category10().range().map(function (d){ return d; })); },
+	        		type : 'Ordinal (automatic)',
+	        		value : d3.scale.ordinal().range(raw.divergingRange(1)),
+	        		reset : function(domain){ this.value.range(raw.divergingRange(domain.length || 1)); },
 	        		update : ordinalUpdate
 	        	},
 	        	{
@@ -104,6 +104,12 @@ angular.module('raw.directives', [])
 	        		type : 'Ordinal C (20 categories)',
 	        		value : d3.scale.category20c(),
 	        		reset : function(){ this.value.range(d3.scale.category20c().range().map(function (d){ return d; })); },
+	        		update : ordinalUpdate
+	        	},
+	        	{
+	        		type : 'Ordinal (10 categories)',
+	        		value : d3.scale.category10(),
+	        		reset : function(){ this.value.range(d3.scale.category10().range().map(function (d){ return d; })); },
 	        		update : ordinalUpdate
 	        	},
 	        	{
@@ -133,17 +139,12 @@ angular.module('raw.directives', [])
 
 	        scope.setScale = function(){
 	        	scope.option.value = scope.colorScale.value;
-	        	scope.colorScale.reset();
+	        	scope.colorScale.reset(scope.colorScale.value.domain());
 	        	$rootScope.$broadcast("update");
 	        }
 
-	        function resetDomain(domain){
-	        	if (!domain) return;
-	        	scope.colorScale.reset();
-	        }
-
 	        function addListener(){
-	        	scope.colorScale.reset();
+	        	scope.colorScale.reset(scope.colorScale.value.domain());
 	        	scope.option.listener(function (data){
 		      		scope.option.value = scope.colorScale.value;
 		      		scope.colorScale.update(data);
@@ -153,9 +154,10 @@ angular.module('raw.directives', [])
 	        scope.colorScale = scope.scales[0];
 
 	        scope.$watch('chart', addListener)
-	        //scope.$watch('option.value.domain()', resetDomain, true);
-					//scope.$watch('colorScale.value.range()',listColors, true);
-					scope.$watch('colorScale.value.domain()',listColors, true);
+					scope.$watch('colorScale.value.domain()',function (domain){
+						scope.colorScale.reset(domain);
+						listColors();
+					}, true);
 
 	        function listColors(){
 	        	scope.colors = scope.colorScale.value.domain().map(function (d){
@@ -176,7 +178,7 @@ angular.module('raw.directives', [])
 	        }
 
 	        scope.foreground = function(color){
-	        	return d3.hsl(color).l > .5 ? "#222222" : "#ffffff";
+	        	return d3.hsl(color).l > .5 ? "#000000" : "#ffffff";
 	        }
 
 	        scope.$watch('option.value', function (value){
@@ -207,38 +209,19 @@ angular.module('raw.directives', [])
 	        connectWith: '.dimensions-container',
 	        placeholder:'drop',
 	        start: onStart,
-	        out: out,
 	        update: onUpdate,
 	        receive : onReceive,
 	        remove: onRemove,
 	        tolerance:'intersect'
 	      })
 
-	      function out(e,ui) {
-	      	//ui.helper.toggleClass("invalid", false)
-	      	element.parent().removeClass('invalid');
-	      	//message();
-	      }
-
-	      function over(){
-	      	console.log("banana")
-	      }
-
 		    function onStart(e,ui){
-		    	var dimension = ui.item.data().dimension;
-		      //element.parent().toggleClass('invalid', hasValue(dimension));
-		      element.find('.drop').html('drop here');
+		      element.find('.drop').html('<i class="fa fa-arrow-circle-down breath-right"></i>Drop here');
 		      element.parent().css("overflow","visible");
-		     	ui.helper.toggleClass("invalid", false)
-		     //	element.parent().find('.dimension-description').css("opacity","0")
 		     	angular.element(element).scope().open=false;
-		     	scope.$apply();
 		    }
 
 		    function onUpdate(e,ui){
-		    	element.parent().removeClass('invalid');
-
-					var dimension = ui.item.data().dimension;
 
 					ui.item.find('.dimension-icon').remove();
 
@@ -256,10 +239,11 @@ angular.module('raw.directives', [])
 		     	scope.$apply();
 
 		     	element.parent().css("overflow","hidden");
-		    // 	element.parent().find('.dimension-description').css("opacity","auto")
 
+					var dimension = ui.item.data().dimension;
 		     	ui.item.toggleClass("invalid", !isValidType(dimension))
 		     	message();
+
 		     	$rootScope.$broadcast("update");
 		    }
 
@@ -286,9 +270,7 @@ angular.module('raw.directives', [])
 		     		})
 		     	}
 		    	scope.value = values();
-		     	scope.$apply();
 					ui.item.find('span.remove').click(function(){  ui.item.remove(); onRemove(); })
-
 		    }
 
 		    function onRemove(e,ui) {
@@ -443,10 +425,10 @@ angular.module('raw.directives', [])
       replace:true,
       template :  '<div class="row">' +
                     '<form class="form-search col-lg-12">' +
-                      '<input class="form-control col-lg-12" placeholder="Filename" type="text" ng-model="filename">' +
-                      '<button bs-select class="btn btn-default" placeholder="Choose..." ng-model="mode" ng-options="m.label for m in modes">' +
+                      '<button bs-select class="btn btn-default" placeholder="Choose type" ng-model="mode" ng-options="m.label for m in modes">' +
                       'Select <span class="caret"></span>' +
                       '</button>' +
+                      '<input class="form-control col-lg-12" placeholder="Filename" type="text" ng-model="filename">' +
                       '<button class="btn btn-success form-control" ng-class="{disabled:!mode}" ng-click="mode.download()">Download</button>' +
                     '</form>' +
                   '</div>',
@@ -512,9 +494,9 @@ angular.module('raw.directives', [])
       }
 
       scope.modes = [
-    		{ label : 'Vector graphics (SVG)', download : downloadSvg },
-    		{ label : 'Image (PNG)', download : downloadPng },
-    		{ label : 'Data (JSON)', download : downloadData }
+    		{ label : 'Vector graphics (.svg)', download : downloadSvg },
+    		{ label : 'Image (.png)', download : downloadPng },
+    		{ label : 'Data model (.json)', download : downloadData }
     	]
     	//scope.mode = scope.modes[0]
 

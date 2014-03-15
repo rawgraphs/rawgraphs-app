@@ -1,7 +1,7 @@
 <div class="container">
 
 	
-	<h3 id="data">Insert your data</h3>
+	<h3 id="data"><i class="fa fa-table breath-right"></i>Insert your data</h3>
 
 	<textarea ui-codemirror="{ 
 			lineNumbers : true,
@@ -14,7 +14,7 @@
 	<div class="row">
 
 		<div class="col-lg-10">
-			<div data-ng-show="!error && data.length" class="alert"><i class="fa fa-check-circle breath-right"></i>{{data.length}} records in your data</div>
+			<div data-ng-show="!error && data.length" class="alert"><i class="fa fa-check breath-right"></i>{{data.length}} records in your data</div>
 			<div data-ng-show="error" class="alert alert-warning"><i class="fa fa-bolt breath-right"></i><strong>Whoops!</strong> {{error}}</div>
 		</div>
 		
@@ -38,25 +38,39 @@
 
 	<div data-ng-show="!error && data.length">
 	
-		<h3 id="layout">Choose a Layout</h3>
-	
-		<div class="row" group every="4" watch="charts">
-			<div class="col-lg-3" ng-repeat="c in charts track by $index">
-				<div ng-class="{selected: c == chart}" class="layout"  ng-click="selectChart(c)">
-					<div class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}"></div>
-					<span class="layout-title">{{c.title()}}
-						<i data-ng-show="c==chart" class="fa fa-check pull-right"></i>
-					</span>
+		<h3 id="layout"><i class="fa fa-th breath-right"></i>Choose a Layout</h3>
+		
+		<div class="row">
+
+			<div class="col-lg-3">
+				<h4>{{chart.title()}}</h4>
+				<p class="light chart-description" ng-bind-html="chart.description()"></p>
+			</div>		
+
+			<div class="col-lg-9">
+				<i class="fa fa-th-list breath-right"></i>
+				<i class="fa fa-th breath-right"></i>
+				<div class="row" group every="3" watch="charts">
+					<div class="col-lg-4" ng-repeat="c in charts track by $index">
+						<div ng-class="{selected: c == chart}" class="layout"  ng-click="selectChart(c)">
+							<!--<div class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}">
+							</div>-->
+							<span class="layout-title">{{c.title()}}
+								<i data-ng-show="c==chart" class="fa fa-check pull-right"></i>
+							</span>
+						</div>
+					</div>
 				</div>
 			</div>
+
 		</div>
-		<h4>{{chart.title()}}</h4>
-		<p class="light chart-description" ng-bind-html="chart.description()"></p>
+		
+		
 
 		<div id="mapping">
 
 			<div>
-				<h3>map your dimensions
+				<h3><i class="fa fa-magnet breath-right"></i> map your dimensions
 				<a data-toggle="tooltip"
 				   data-title="Clear all dimensions"
 				   ng-click="model.clear()" class="pull-right light"><i class="fa fa-trash-o"></i></a>
@@ -134,7 +148,7 @@
 		</div>
 
 
-		<h3 id="options">customize your visualization</h3>
+		<h3 id="options"><i class="fa fa-check-square breath-right"></i>customize your visualization</h3>
 
 		<div class="row">
 
@@ -145,7 +159,7 @@
 							<a data-ng-show="option.fitToWidth()"
 							   data-toggle="tooltip"
 							   data-title="Fit to width"
-							   class="option-fit pull-right"><i class="fa fa-arrows-h"></i></a>
+							   class="option-fit pull-right"><i class="fa fa-expand"></i></a>
 						</p>
 
 						<div ng-switch="" on="option.type()">
@@ -192,12 +206,12 @@
 			<div id="export" class="row">
 
 				<div class="col-lg-3">
-					<h3>export</h3>
+					<h3><i class="fa fa-arrow-circle-down breath-right"></i>download</h3>
 					<downloader></downloader>
 				</div>
 				
 				<div class="col-lg-9">
-					<h3 id="data">embed code</h3>
+					<h3 id="data"><i class="fa fa-code breath-right"></i>embed code</h3>
 					<coder></coder>
 					<p class="light">Copy the code above into your HTML to embed the visualization
 						<a class="pull-right" id="copy-button" copy-button data-clipboard-target="source" data-container="body"><i class="fa fa-clipboard"></i></a>

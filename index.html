@@ -1,20 +1,26 @@
 <!doctype html>
 <html lang="en" ng-app="raw">
 <head>
+  <title>RAW</title>
   <meta charset="utf-8">
-  <title>Raw</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="Keywords" content="RAW,visualization,data,design,spreadsheet,interface,vector graphics,SVG,PNG,JSON">
+  <meta name="Description" content="RAW, missing link between spreadsheets and vector graphics, by DensityDesign, Giorgio Caviglia, Matteo Azzi, Michele Mauri, Giorgio Uboldi">
+
   <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
   <link rel="stylesheet" type="text/css" href="bower_components/angular-bootstrap-colorpicker/css/colorpicker.css">
   <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="bower_components/codemirror/lib/codemirror.css">  
   <link rel="stylesheet" href="css/raw.css"/>
+  <link rel="icon" href="favicon.ico?v=2" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
 </head>
 
 <body data-spy="scroll" data-target="#raw-nav">
 
-  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="raw-nav">
+  <nav class="navbar" role="navigation" id="raw-nav">
     <div class="container">
 
       <div class="navbar-header">
@@ -30,13 +36,13 @@
       <div class="collapse navbar-collapse" id="raw-navbar">
         <ul class="nav navbar-nav">
           <li class="active"><a href="#data">Data</a></li>
-          <li><a href="#layout">Layout</a></li>
-          <li><a href="#mapping">Mapping</a></li>
-          <li><a href="#options">Customize</a></li>
-          <li><a href="#export">Export</a></li>
+          <li><a href="#layout" target="_self">Layout</a></li>
+          <li><a href="#mapping" target="_self">Mapping</a></li>
+          <li><a href="#options" target="_self">Customize</a></li>
+          <li><a href="#export" target="_self">Export</a></li>
         </ul>
 
-        <p class="navbar-text navbar-right"><a href="http://raw.densitydesign.org" target="_blank" class="navbar-link"><i class="fa fa-globe"></i></a></p>
+        <p class="navbar-text navbar-right light"><a href="http://raw.densitydesign.org" target="_blank" class="navbar-link"><i class="fa fa-globe"></i></a></p>
       </div>
 
 
@@ -121,6 +127,10 @@
   <script src="js/controllers.js"></script>
   <script src="js/filters.js"></script>
   <script src="js/directives.js"></script>
+
+  <!-- google analytics -->
+  <script src="js/analytics.js"></script>
+
 
 </body>
 </html>

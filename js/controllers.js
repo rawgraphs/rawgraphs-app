@@ -6,7 +6,7 @@ angular.module('raw.controllers', [])
 
   .controller('RawCtrl', function ($scope, dataService) {
 
-  	dataService.loadSample('data/categorical.csv').then(
+  	dataService.loadSample('data/dispersion.csv').then(
       function(data){
         $scope.text = data;
       }, 
@@ -62,7 +62,7 @@ angular.module('raw.controllers', [])
     $(window).scroll(function(){
 
       // check for mobile
-      if ($(window).width() < 760) return;
+      if ($(window).width() < 760 || $('#mapping').height() < 300) return;
 
       var scrollTop = $(window).scrollTop() + 0,
           mappingTop = $('#mapping').offset().top,
