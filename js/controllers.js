@@ -6,14 +6,24 @@ angular.module('raw.controllers', [])
 
   .controller('RawCtrl', function ($scope, dataService) {
 
-  	dataService.loadSample('data/multivariate.csv').then(
-      function(data){
-        $scope.text = data;
-      }, 
-      function(error){
-        $scope.error = error;
-      }
-    );
+    $scope.samples = [
+      { title : 'Cars (multivariate)', url : '/data/multivariate.csv' },
+      { title : 'Movies (dispersions)', url : '/data/dispersions.csv' },
+      { title : 'Music (flows)', url : '/data/flows.csv' },
+      { title : 'Cocktails (correlations)', url : '/data/correlations.csv' }
+    ]
+
+    $scope.$watch('sample', function (sample){
+      if (!sample) return;
+      dataService.loadSample(sample.url).then(
+        function(data){
+          $scope.text = data;
+        }, 
+        function(error){
+          $scope.error = error;
+        }
+      );
+    });
 
     $scope.raw = raw;
     $scope.data = [];
@@ -29,7 +39,7 @@ angular.module('raw.controllers', [])
       } catch(e){
         $scope.data = [];
         $scope.metadata = [];
-        $scope.error = e.message;
+        $scope.error = +e.message;
       }
       if (!$scope.data.length) $scope.model.clear();
     }
@@ -43,6 +53,19 @@ angular.module('raw.controllers', [])
     $scope.charts = raw.charts.values().sort(function (a,b){ return a.title() < b.title() ? -1 : a.title() > b.title() ? 1 : 0; });
     $scope.chart = $scope.charts[0];
     $scope.model = $scope.chart.model();
+
+    $scope.$watch('error', function (error){
+      if (!$('.CodeMirror')[0]) return;
+      var cm = $('.CodeMirror')[0].CodeMirror;
+      if (!error) {
+        cm.removeLineClass($scope.lastError,'wrap','line-error');
+        return;
+      }
+      cm.addLineClass(error, 'wrap', 'line-error');
+      cm.scrollIntoView(error);
+      $scope.lastError = error;
+
+    })
 
     $scope.selectChart = function(chart){
       $scope.chart = chart;
