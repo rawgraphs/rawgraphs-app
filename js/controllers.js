@@ -31,6 +31,14 @@ angular.module('raw.controllers', [])
     $scope.error = false;
 
     $scope.parse = function(text){
+
+      $scope.model.clear();
+
+      $scope.data = [];
+      $scope.metadata = [];
+      $scope.error = false;
+      $scope.$apply();
+
       try {
         var parser = raw.parser(text);
         $scope.data = parser.data();
@@ -67,10 +75,15 @@ angular.module('raw.controllers', [])
 
     })
 
+    /*$scope.$watch('dataView', function(){
+      if (!$('.CodeMirror')[0]) return;
+      var cm = $('.CodeMirror')[0].CodeMirror;
+    })*/
+
     $scope.selectChart = function(chart){
+      $scope.model.clear();
       $scope.chart = chart;
       $scope.model = $scope.chart.model();
-      $scope.model.clear();
     }
 
     $scope.isEmpty = function(){
@@ -94,7 +107,7 @@ angular.module('raw.controllers', [])
           isBetween = scrollTop > mappingTop+10 && scrollTop <= mappingTop + mappingHeight - $(".sticky").height()-20,
           isOver = scrollTop > mappingTop + mappingHeight - $(".sticky").height()-20,
           mappingWidth = mappingWidth ? mappingWidth : $('.col-lg-9').width();
-
+      if (mappingHeight-$('.dimensions-list').height() > 55) return;
 
       if (isBetween) {
         $(".sticky")

@@ -35,30 +35,27 @@
 
 	<div raw-table class="data-table" data-ng-show="dataView == 'table'"></div>
 
-	<div class="row">
-
-		<div class="col-lg-12">
-			<div data-ng-show="!error && data.length" class="alert"><i class="fa fa-thumbs-up breath-right"></i><strong>{{data.length}}</strong> records in your data have been successfully parsed!</div>
-			<div data-ng-show="error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops!</strong> Please, check line {{error+1}}</div>
-		</div>
-		
-		
-
+	<div>
+		<div data-ng-show="!error && data.length" class="alert"><i class="fa fa-thumbs-up breath-right"></i><strong>{{data.length}}</strong> records in your data have been successfully parsed!</div>
+		<div data-ng-show="error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops!</strong> Please, check line {{error+1}}</div>
 	</div>
 
-	<div class="">
-			
-		</div>
+	<div data-ng-show="!error && !data.length">
+		<h3 id="layout">help</h3>
+		<p class="light stronga">To start...</p>
+	</div>
 
 	<div data-ng-show="error">
 		<h3 id="layout">ouch.</h3>
 		<p class="light stronga">Sorry, but it seems like something went wrong. Please, check your data and be sure that everything is correct. Most of the times this is due to some missing <a href="http://en.wikipedia.org/wiki/Delimiter">delimiters</a> or weird characters at the end of the file.</p>
 	</div>
 
+
+
 	<div data-ng-show="!error && data.length">
 	
 		<h3 id="layout">
-			<i class="fa fa-th breath-right"></i>Choose a Layout
+			Choose a Layout
 			<div class="list-type pull-right">
 				<i class="type fa fa-th-list breath-left"
 				   data-toggle="tooltip"
@@ -115,7 +112,7 @@
 				<div class="col-lg-3">
 					<div draggable>
 						<ul class="list-unstyled dimensions-list">
-							<li class="dimension" data-index="{{$index}}" data-dimension="{{dimension}}" ng-repeat="dimension in metadata track by $index">
+							<li class="dimension" data-dimension="{{dimension}}" ng-repeat="dimension in metadata track by $index">
 								{{ dimension.key }} 
 								<span class="dimension-type">{{dimension.type}}</span>
 								<span class="dimension-icon pull-right"><i class="fa fa-bars"></i></span>

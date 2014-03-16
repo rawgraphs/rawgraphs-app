@@ -319,11 +319,12 @@ angular.module('raw.directives', [])
 		.directive('draggable', function () {
 	    return {
 	      restrict: 'A',
+	      scope:false,
 	    //  templateUrl : 'templates/dimensions.html',
 	      link: function postLink(scope, element, attrs) {
 
 		      scope.$watch('metadata', function(metadata){
-		      	if (!metadata.length) element.find('li').remove();
+		      	if(!metadata.length) element.find('li').remove();
 			      element.find('li').draggable({
 			        connectToSortable:'.dimensions-container',
 					    helper : 'clone',
@@ -376,7 +377,7 @@ angular.module('raw.directives', [])
     		d3.select(element[0]).selectAll("*").remove();
 
     		if(!scope.data|| !scope.data.length) {
-    			d3.select(element[0]).append("span").text("Please, review your data.")
+    			d3.select(element[0]).append("span").text("Please, review your data")
     			return;
     		}
 
@@ -419,7 +420,11 @@ angular.module('raw.directives', [])
 	      return descending ? a[sortBy] < b[sortBy] ? -1 : a[sortBy] > b[sortBy] ? 1 : 0 : a[sortBy] < b[sortBy] ? 1 : a[sortBy] > b[sortBy] ? -1 : 0;
     	}
 
-    	scope.$watch('data', update)
+    	scope.$watch('data', update);
+    	scope.$watch('metadata', function(){
+    		sortBy = null;
+    		update();
+    	});
 
     }
   };
