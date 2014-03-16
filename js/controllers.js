@@ -66,29 +66,34 @@ angular.module('raw.controllers', [])
       if ($(window).width() < 760 || $('#mapping').height() < 300) return;
 
       var scrollTop = $(window).scrollTop() + 0,
-          mappingTop = $('#mapping').offset().top,
+          mappingTop = $('#mapping').offset().top+10,
           mappingHeight = $('#mapping').height(),
-          isBetween = scrollTop > mappingTop && scrollTop <= mappingTop + mappingHeight - $(".sticky").height()-70,
-          isOver = scrollTop > mappingTop+mappingHeight,
-          isSticky = false,
+          isBetween = scrollTop > mappingTop+10 && scrollTop <= mappingTop + mappingHeight - $(".sticky").height()-20,
+          isOver = scrollTop > mappingTop + mappingHeight - $(".sticky").height()-20,
           mappingWidth = mappingWidth ? mappingWidth : $('.col-lg-9').width();
 
-      if (isBetween && !isSticky) {
+
+      if (isBetween) {
         $(".sticky")
           .css("position","fixed")
           .css("width", mappingWidth+"px")
-          .css("top","80px")
-        return;
+          .css("top","20px")
       } 
 
-      if ($(".sticky").css('position') != 'fixed') return;
+     if(isOver) {
+        $(".sticky")
+          .css("position","fixed")
+          .css("width", mappingWidth+"px")
+          .css("top", (mappingHeight - $(".sticky").height() + 0 - scrollTop+mappingTop) + "px");
+          return;
+      }
+
+      if (isBetween) return;
 
       $(".sticky")
         .css("position","relative")
-        .css("top","0px")
+        .css("top","")
         .css("width", "");
-
-      isSticky = false;
 
     })
 

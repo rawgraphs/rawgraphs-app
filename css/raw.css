@@ -540,11 +540,11 @@ textarea:focus {
   padding-bottom: 0px;
   color: #444;
 }
-/*
-.sticky {
-  -webkit-transition: -webkit-transform 0.4s, top 0.3s ease-in-out;
-  -moz-transition: -moz-transform 0.4s, top 0.3s ease-in-out;
-  transition: transform 0.4s, top 0.3s ease-in-out;
+
+/*.sticky {
+  -webkit-transition: top 0.3s;
+  -moz-transition: top 0.3s;
+  transition: top 0.3s;
 }*/
 
 /* Colors */
