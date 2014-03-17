@@ -111,6 +111,7 @@
       .enter().append("text")
         .text(function (d){ return d.label; })
         .attr("text-anchor", "middle")
+        .attr("dy","4")
         .style("font-size","11px")
         .style("font-family","Arial, Helvetica")
         .call(force.drag);

@@ -46,6 +46,8 @@
 	    .links(links)
 	    .layout(32);
 
+	  color.data(links)
+
 		var link = g.append("g").selectAll(".link")
 	    .data(links)
 	   	.enter().append("path")
@@ -53,8 +55,8 @@
 		    .attr("d", path )
 		    .style("stroke-width", function(d) { return Math.max(1, d.dy); })
 		    .style("fill","none")
-		    .style("stroke","#000")
-		    .style("stroke-opacity",".2")
+		    .style("stroke", function (d){ return color()(d.color); })
+		    .style("stroke-opacity",".4")
 		    .sort(function(a, b) { return b.dy - a.dy; });
 
 		var node = g.append("g").selectAll(".node")
@@ -68,7 +70,7 @@
 		node.append("rect")
 	    .attr("height", function(d) { return d.dy; })
 	    .attr("width", sankey.nodeWidth())
-	    .style("fill", function (d) { console.log('d'); return "#999"; })
+	    .style("fill", function (d) { return d.sourceLinks.length ? color()(d.name) : "#666"; })
 	   // .style("stroke", function(d) { return d3.rgb(d.color).darker(2); })
 	    .style("shape-rendering","crispEdges")
 	    .append("title")
@@ -91,7 +93,3 @@
 	})
 
 })();
-
-
-
-

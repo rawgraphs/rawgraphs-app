@@ -79,7 +79,7 @@ h4 {
 
 #push,
 #footer {
-  height: 100px;
+  height: 200px;
 }
 
 #footer {
@@ -104,7 +104,7 @@ h4 {
 }
 
 #footer .container {
-  padding-top: 20px;
+  padding-top: 40px;
 }
 
 @media (max-width: 767px) {
@@ -151,7 +151,7 @@ h4 {
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 1px;
-  color: #999;
+  color: #31AA89;
   text-transform: uppercase;
 
   -webkit-transition: color .15s ease-in-out;
@@ -180,11 +180,13 @@ h4 {
   border: none;
   font-weight: 300;
   padding: 6px 12px;
-  background-color: #e4e4e4;
-  color: #444;
+  background-color: transparent;
+  color: #31AA89;
+
 }
 
 .alert-warning {
+  color: #444;
   background-color: #FFE666;
 }
 
@@ -801,6 +803,10 @@ textarea.source-area {
   margin-bottom: 0px;
 }
 
+.table>thead>tr>th {
+
+}
+
 
 /* CodeMirror */
 
@@ -835,6 +841,7 @@ pre.CodeMirror-placeholder {
   height: 100%;
   border: none;
   background-color: #fff;
+  border-right: 1px solid #eee;
 }
 
 .CodeMirror-linenumber {
