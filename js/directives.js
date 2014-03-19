@@ -4,7 +4,7 @@
 
 angular.module('raw.directives', [])
 
-	.directive('chart', function ($rootScope) {
+	.directive('chart', function ($rootScope, dataService) {
 	    return {
 	      restrict: 'A',
 	      link: function postLink(scope, element, attrs) {
@@ -37,11 +37,13 @@ angular.module('raw.directives', [])
 
 	        }
 
+	        scope.delayUpdate = dataService.debounce(update, 500, false);
+
 	        scope.$watch('chart', update);
 	        scope.$on('update', update);
 	        //scope.$watch('data', update)
 	        scope.$watch(function(){ if (scope.model) return scope.model(scope.data); }, update, true);
-	        scope.$watch(function(){ if (scope.chart) return scope.chart.options().map(function (d){ return d.value }); }, update, true);
+	        scope.$watch(function(){ if (scope.chart) return scope.chart.options().map(function (d){ return d.value }); }, scope.delayUpdate, true);
 
 	      }
 	    };
@@ -216,7 +218,9 @@ angular.module('raw.directives', [])
 	      })
 
 		    function onStart(e,ui){
-		      element.find('.drop').html('<i class="fa fa-arrow-circle-down breath-right"></i>Drop here');
+		    	var dimension = ui.item.data().dimension,
+		    			html = isValidType(dimension) ? '<i class="fa fa-arrow-circle-down breath-right"></i>Drop here' : '<i class="fa fa-times-circle breath-right"></i>Don\'t drop here'
+		    	element.find('.drop').html(html);
 		      element.parent().css("overflow","visible");
 		     	angular.element(element).scope().open=false;
 		    }

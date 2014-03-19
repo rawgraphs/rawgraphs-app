@@ -40,14 +40,14 @@ angular.module('raw.controllers', [])
       $scope.$apply();
 
       try {
-        var parser = raw.parser(text);
-        $scope.data = parser.data();
-        $scope.metadata = parser.metadata();
+        var parser = raw.parser();
+        $scope.data = parser(text);
+        $scope.metadata = parser.metadata(text);
         $scope.error = false;
       } catch(e){
         $scope.data = [];
         $scope.metadata = [];
-        $scope.error = +e.message;
+        $scope.error = e.name == "ParseError" ? +e.message : false;
       }
       if (!$scope.data.length) $scope.model.clear();
     }
@@ -81,6 +81,7 @@ angular.module('raw.controllers', [])
     })*/
 
     $scope.selectChart = function(chart){
+      if (chart == $scope.chart) return;
       $scope.model.clear();
       $scope.chart = chart;
       $scope.model = $scope.chart.model();

@@ -81,10 +81,11 @@
 				<div class="row" group every="3" watch="charts">
 					<div class="col-lg-4" ng-repeat="c in charts track by $index">
 						<div ng-class="{selected: c == chart}" class="layout"  ng-click="selectChart(c)">
-							<div ng-show="listType=='gallery'" class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}">
-							</div>
-							<span class="layout-title">{{c.title()}}
-								<i data-ng-show="c==chart" class="fa fa-check pull-right"></i>
+							<!--<div class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}">
+							</div>-->
+							<span class="layout-inner" >
+								<span class="layout-title">{{c.title()}}</span>
+								<!--<i data-ng-show="c==chart" class="fa fa-check pull-right"></i>-->
 							</span>
 						</div>
 					</div>
@@ -100,7 +101,7 @@
 			<div>
 				<h3><i class="fa fa-magnet breath-right"></i> map your dimensions
 				<a data-toggle="tooltip"
-				   data-title="Clear all dimensions"
+				   data-title="Clear all"
 				   ng-click="model.clear()" class="pull-right light"><i class="fa fa-trash-o"></i></a>
 					<span class="clearfix"></span>
 				</h3>
