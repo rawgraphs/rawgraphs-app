@@ -39,15 +39,15 @@ a:hover {
 }
 
 h3 a {
-  font-size: 14px;
+  font-size: 15px;
   text-transform: none;
   letter-spacing: normal;
 }
 
 h4 {
-  font-size: 16px;
-  font-weight: 300;
-  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 0px;
 }
 
 .light {
@@ -274,11 +274,11 @@ textarea:focus {
 
 .btn-success.disabled, .btn-success[disabled], fieldset[disabled] .btn-success, .btn-success.disabled:hover, .btn-success[disabled]:hover, fieldset[disabled] .btn-success:hover, .btn-success.disabled:focus, .btn-success[disabled]:focus, fieldset[disabled] .btn-success:focus, .btn-success.disabled:active, .btn-success[disabled]:active, fieldset[disabled] .btn-success:active, .btn-success.disabled.active, .btn-success[disabled].active, fieldset[disabled] .btn-success.active,
 .btn-success {
-  background-color: #46CEA9;
+  background-color: #2DC37B;
 }
 
 .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success {
-  background-color: #2BB993;
+  background-color: #2DC37B;
 }
 
 .btn .caret {
@@ -312,6 +312,8 @@ textarea:focus {
 
 .chart-description {
   font-size: 13px;
+  background-color: #eee;
+  padding: 20px;
 }
 
 .chart-description a {
@@ -426,7 +428,7 @@ textarea:focus {
   background-size: 170%;
   background-repeat: no-repeat;
   color: #fff;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 300;
 
   /* Internet Explorer 10 */

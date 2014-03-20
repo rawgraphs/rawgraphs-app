@@ -214,8 +214,15 @@ angular.module('raw.directives', [])
 	        update: onUpdate,
 	        receive : onReceive,
 	        remove: onRemove,
+	        over: over,
 	        tolerance:'intersect'
 	      })
+
+	      function over(e,ui){
+		    	var dimension = ui.item.data().dimension,
+		    			html = isValidType(dimension) ? '<i class="fa fa-arrow-circle-down breath-right"></i>Drop here' : '<i class="fa fa-times-circle breath-right"></i>Don\'t drop here'
+		    	element.find('.drop').html(html);
+	      }
 
 		    function onStart(e,ui){
 		    	var dimension = ui.item.data().dimension,
