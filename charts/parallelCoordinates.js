@@ -7,12 +7,15 @@
     .multiple(true)
     .types(Number)
 
+  var color = model.dimension()
+    .title("Color")
+
   model.map(function (data){
     if (!list()) return;
     return data.map(function (d){
-      var obj = {};
+      var obj = { dimensions: {}, color: color(d) };
       list().forEach(function (l){
-        obj[l] = d[l];
+        obj.dimensions[l] = d[l];
       })
       return obj;
     })
@@ -30,6 +33,10 @@
   var height = chart.option()
     .title("Height")
     .defaultValue(500)
+
+  var colorScale = chart.option()
+     .title("Color scale")
+     .type("color")
 
   chart.draw(function (selection, data){
 
@@ -57,11 +64,13 @@
         .append("svg:g")
           .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
 
-    x.domain(dimensions = d3.keys(data[0]).filter(function(d) {
+    x.domain(dimensions = d3.keys(data[0].dimensions).filter(function (d) {
       return d != "name" && (y[d] = d3.scale.linear()
-          .domain(d3.extent(data, function(p) { return +p[d]; }))
+          .domain(d3.extent(data, function(p) { return +p.dimensions[d]; }))
           .range([h, 0]));
     }));
+
+    colorScale.data(data);
 
     background = svg.append("svg:g")
         .attr("class", "background")
@@ -69,7 +78,7 @@
         .data(data)
       .enter().append("svg:path")
         .style('fill','none')
-        .style('stroke','#999')
+        .style('stroke', function (d){ return colorScale()(d.color); })
         .style('stroke-opacity','.4')
         .attr("d", path);
 
@@ -104,7 +113,7 @@
       return v == null ? x(d) : v;
     }
     function path(d) {
-      return line(dimensions.map(function(p) { return [position(p), y[p](d[p])]; }));
+      return line(dimensions.map(function(p) { return [position(p), y[p](d.dimensions[p])]; }));
     }
   
   });
