@@ -1,88 +1,82 @@
 (function(){
 
-  var stream = raw.model();
+    var stream = raw.model();
 
-  var group = stream.dimension()
-    .title('Group')
+    var group = stream.dimension()
+        .title('Group')
 
-  var date = stream.dimension()
-    .title('Date')
-    .types(Number,Date)
+    var date = stream.dimension()
+        .title('Date')
+        .types(Number,Date)
 
-  var size = stream.dimension()
-    .title('Size')
-    .types(Number)
+    var size = stream.dimension()
+        .title('Size')
+        .types(Number)
 
-  stream.map(function (data){
-    if (!group()) return [];
+    stream.map(function (data){
+        if (!group()) return [];
+        var groups = d3.nest()
+            .key(function (g){ return group(g); })
+            .rollup(function (g){ return g.map(function (h){ return { group : group(h), x : date(h), y : +size(h) }; }) })
+            .map(data)
+        return d3.values(groups);
+    })
 
-    var groups = d3.nest()
-      .key(function (g){ return group(g); })
-      .rollup(function (g){ return g.map(function (h){ return { group : group(h), x : date(h), y : +size(h) }; }) })
-      .map(data)
-    
-    return d3.values(groups);
+    var chart = raw.chart()
+        .title('Streamgraph')
+        .thumbnail("/imgs/streamgraph.png")
+        .model(stream)
 
-  })
+    var width = chart.number()
+        .title("Width")
+        .defaultValue(1000)
+        .fitToWidth(true)
 
-  var chart = raw.chart()
-    .title('Streamgraph')
-    .thumbnail("/imgs/streamgraph.png")
-    .model(stream)
+    var height = chart.number()
+        .title("Height")
+        .defaultValue(500)
 
-  var width = chart.option()
-    .title("Width")
-    .defaultValue(1000)
-    .fitToWidth(true)
+    var offset = chart.select()
+        .title("Offset")
+        .options(['silhouette','wiggle','expand','zero'])
+        .defaultValue('silhouette')
 
-  var height = chart.option()
-    .title("Height")
-    .defaultValue(500)
+    var colors = chart.color()
+        .title("Color scale")
 
-  var offset = chart.option()
-     .title("Offset")
-     .values(['silhouette','wiggle','expand','zero'])
-     .type("select")
-     .defaultValue('silhouette')
+    chart.draw(function (selection, data){
 
-  var color = chart.option()
-     .title("Color scale")
-     .type("color")
-
-  chart.draw(function (selection, data){
-
-    var g = selection
-      .attr("width", +width() )
-      .attr("height", +height() )
-      .append("g")
+        var g = selection
+            .attr("width", +width() )
+            .attr("height", +height() )
+            .append("g")
    
-    var stack = d3.layout.stack()
-      .offset(offset());
+        var stack = d3.layout.stack()
+            .offset(offset());
 
-    var layers = stack(data);
+        var layers = stack(data);
 
-    var x = d3.scale.linear()
-      .domain( [ d3.min(layers, function(layer) { return d3.min(layer, function(d) { return d.x; }); }), d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.x; }); }) ])
-      .range([0, +width()]);
+        var x = d3.scale.linear()
+            .domain( [ d3.min(layers, function(layer) { return d3.min(layer, function(d) { return d.x; }); }), d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.x; }); }) ])
+            .range([0, +width()]);
 
-    var y = d3.scale.linear()
-        .domain([0, d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); })])
-        .range([+height(), 0]);
+        var y = d3.scale.linear()
+            .domain([0, d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); })])
+            .range([+height(), 0]);
 
+        colors.domain(layers, function (d){ return d[0].group; })
 
-    color.data(layers, function (d){ return d[0].group; })
+        var area = d3.svg.area()
+            .x(function(d) { return x(d.x); })
+            .y0(function(d) { return y(d.y0); })
+            .y1(function(d) { return y(d.y0 + d.y); });
 
-    var area = d3.svg.area()
-        .x(function(d) { return x(d.x); })
-        .y0(function(d) { return y(d.y0); })
-        .y1(function(d) { return y(d.y0 + d.y); });
+        g.selectAll("path")
+            .data(layers)
+            .enter().append("path")
+                .attr("d", area)
+                .style("fill", function (d) { return colors()(d[0].group); });
 
-    g.selectAll("path")
-        .data(layers)
-      .enter().append("path")
-        .attr("d", area)
-        .style("fill", function (d) { return color()(d[0].group); });
+    })
 
-  })
-
-})()
+})();

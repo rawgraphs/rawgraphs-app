@@ -37,7 +37,7 @@ angular.module('raw.directives', [])
 
 	        }
 
-	        scope.delayUpdate = dataService.debounce(update, 500, false);
+	        scope.delayUpdate = dataService.debounce(update, 300, false);
 
 	        scope.$watch('chart', update);
 	        scope.$on('update', update);
@@ -62,15 +62,13 @@ angular.module('raw.directives', [])
 
 	        scope.$watch('chart', fitWidth);
 
-	        function fitWidth(chart,sa){
-	        	if (chart == sa) return;
-	        	if(scope.option.fitToWidth && !scope.option.fitToWidth()) return;
+	        function fitWidth(chart, old){
+	        	if (chart == old) return;
+	        	if(!scope.option.fitToWidth || !scope.option.fitToWidth()) return;
 	        	scope.option.value = $('.col-lg-9').width();
 	        }
 
 	        $(document).ready(fitWidth);
-
-	        //fitWidth();
 
 	      }
 	    };
@@ -91,25 +89,25 @@ angular.module('raw.directives', [])
 	        		update : ordinalUpdate
 	        	},
 	        	{
-	        		type : 'Ordinal (20 categories)',
+	        		type : 'Ordinal (max 20 categories)',
 	        		value : d3.scale.category20(),
 	        		reset : function(){ this.value.range(d3.scale.category20().range().map(function (d){ return d; })); },
 	        		update : ordinalUpdate
 	        	},
 	        	{
-	        		type : 'Ordinal B (20 categories)',
+	        		type : 'Ordinal B (max 20 categories)',
 	        		value : d3.scale.category20b(),
 	        		reset : function(){ this.value.range(d3.scale.category20b().range().map(function (d){ return d; })); },
 	        		update : ordinalUpdate
 	        	},
 	        	{
-	        		type : 'Ordinal C (20 categories)',
+	        		type : 'Ordinal C (max 20 categories)',
 	        		value : d3.scale.category20c(),
 	        		reset : function(){ this.value.range(d3.scale.category20c().range().map(function (d){ return d; })); },
 	        		update : ordinalUpdate
 	        	},
 	        	{
-	        		type : 'Ordinal (10 categories)',
+	        		type : 'Ordinal (max 10 categories)',
 	        		value : d3.scale.category10(),
 	        		reset : function(){ this.value.range(d3.scale.category10().range().map(function (d){ return d; })); },
 	        		update : ordinalUpdate

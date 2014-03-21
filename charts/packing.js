@@ -5,30 +5,27 @@
 	var chart = raw.chart()
 		.title('Circle Packing')
 		.thumbnail("/imgs/circlePacking.png")
-	  .model(tree)
+        .model(tree)
 
-	var diameter = chart.option()
-		 .title("Diameter")
-		 .defaultValue(800)
-		 .fitToWidth(true)
+	var diameter = chart.number()
+        .title("Diameter")
+        .defaultValue(800)
+        .fitToWidth(true)
 
-	var padding = chart.option()
-		 .title("Padding")
-		 .defaultValue(5)
+	var padding = chart.number()
+        .title("Padding")
+        .defaultValue(5)
 
-	var sort = chart.option()
-		 .title("Sort by size")
-		 .defaultValue(false)
-		 .type("checkbox")
+	var sort = chart.checkbox()
+        .title("Sort by size")
+        .defaultValue(false)
 
-	var color = chart.option()
-		 .title("Color scale")
-		 .type("color")
+	var colors = chart.color()
+        .title("Color scale")
 
-	var showLabels = chart.option()
-		 .title("Show labels")
-		 .defaultValue(true)
-		 .type("checkbox")
+	var showLabels = chart.checkbox()   
+        .title("Show labels")
+		.defaultValue(true)
 
 	chart.draw(function (selection, data){
 
@@ -53,34 +50,32 @@
 		var g = selection
 		    .attr("width", outerDiameter)
 		    .attr("height", outerDiameter)
-		  .append("g")
+            .append("g")
 		    .attr("transform", "translate(" + margin + "," + margin + ")");
 
-	  var focus = data,
-	      nodes = pack.nodes(data);
+        var focus = data,
+            nodes = pack.nodes(data);
 
-	  color.data(nodes);
+        colors.domain(nodes.filter(function (d){ return !d.children; }), function (d){ return d.color; });
 
-	  g.append("g").selectAll("circle")
-	      .data(nodes)
-	    .enter().append("circle")
-	      .attr("class", function (d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
-	      .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; })
-	      .attr("r", function (d) { return d.r; })
-	      .style("fill", function (d) { return !d.children ?  color()(d.color) : '#eeeeee'; })
-	      .style("stroke", '#ddd')
-	      .style("stroke-opacity", function (d) { return !d.children ? 0 : 1 })
+        g.append("g").selectAll("circle")
+            .data(nodes)
+            .enter().append("circle")
+            .attr("class", function (d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
+            .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; })
+            .attr("r", function (d) { return d.r; })
+            .style("fill", function (d) { return !d.children ? colors()(d.color) : '#eeeeee'; })
+            .style("stroke", '#ddd')
+            .style("stroke-opacity", function (d) { return !d.children ? 0 : 1 })
 
-	  g.append("g").selectAll("text")
-	      .data(nodes.filter(function (d){ return showLabels(); }))
-	    .enter().append("text")
-	      .attr("text-anchor", "middle")
+        g.append("g").selectAll("text")
+            .data(nodes.filter(function (d){ return showLabels(); }))
+            .enter().append("text")
+            .attr("text-anchor", "middle")
 	   		.style("font-size","11px")
-				.style("font-family","Arial, Helvetica")
-	      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-	      .text(function (d) { return d.label ? d.label.join(", ") : d.name; });
-
-	  d3.select(self.frameElement).style("height", outerDiameter + "px");
+			.style("font-family","Arial, Helvetica")
+            .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+            .text(function (d) { return d.label ? d.label.join(", ") : d.name; });
 
 	})
 })();

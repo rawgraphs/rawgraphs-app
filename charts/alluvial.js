@@ -7,18 +7,17 @@
 		.thumbnail("/imgs/alluvial.png")
 		.model(graph)
 
-	var width = chart.option()
+	var width = chart.number()
 		.title("Width")
 		.defaultValue(1000)
 		.fitToWidth(true)
 
-	var height = chart.option()
+	var height = chart.number()
 		.title("Height")
 		.defaultValue(500)
 
-	var colors = chart.option()
+	var colors = chart.color()
 		.title("Color scale")
-		.type("color")
 
 	chart.draw(function (selection, data){
 
@@ -36,59 +35,55 @@
 		    .nodePadding(10)
 		    .size([+width(), +height()]);
 
-		var path = sankey.link();
-
-		var nodes = data.nodes;
-				links = data.links;
+		var path = sankey.link(),
+			nodes = data.nodes,
+			links = data.links;
 
 		sankey
-	    .nodes(nodes)
-	    .links(links)
-	    .layout(32);
+	   		.nodes(nodes)
+	    	.links(links)
+	    	.layout(32);
 
-	  colors.domain(links);
+	 	colors.domain(links, function (d){ return d.color; });
 
 		var link = g.append("g").selectAll(".link")
-	    .data(links)
-	   	.enter().append("path")
-		    .attr("class", "link")
-		    .attr("d", path )
-		    .style("stroke-width", function(d) { return Math.max(1, d.dy); })
-		    .style("fill","none")
-		    .style("stroke", function (d){ return colors(d.color); })
-		    .style("stroke-opacity",".4")
-		    .sort(function(a, b) { return b.dy - a.dy; });
+	    	.data(links)
+	   		.enter().append("path")
+			    .attr("class", "link")
+			    .attr("d", path )
+			    .style("stroke-width", function(d) { return Math.max(1, d.dy); })
+			    .style("fill","none")
+			    .style("stroke", function (d){ return colors()(d.color); })
+			    .style("stroke-opacity",".4")
+			    .sort(function(a, b) { return b.dy - a.dy; });
 
 		var node = g.append("g").selectAll(".node")
-	    .data(nodes)
-	    .enter().append("g")
-	      .attr("class", "node")
-	      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-
-		//color.data()
+	    	.data(nodes)
+	    	.enter().append("g")
+		      	.attr("class", "node")
+		      	.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
 
 		node.append("rect")
-	    .attr("height", function(d) { return d.dy; })
-	    .attr("width", sankey.nodeWidth())
-	    .style("fill", function (d) { return d.sourceLinks.length ? colors(d.name) : "#666"; })
-	   // .style("stroke", function(d) { return d3.rgb(d.color).darker(2); })
-	    .style("shape-rendering","crispEdges")
-	    .append("title")
-	    	.text(function(d) { return d.name + "\n" + format(d.value); });
+		    .attr("height", function(d) { return d.dy; })
+		    .attr("width", sankey.nodeWidth())
+		    .style("fill", function (d) { return d.sourceLinks.length ? colors(d.name) : "#666"; })
+		    .style("shape-rendering","crispEdges")
+		    .append("title")
+		    	.text(function(d) { return d.name + "\n" + format(d.value); });
 
 		node.append("text")
-	    .attr("x", -6)
-      	.attr("y", function (d) { return d.dy / 2; })
-      	.attr("dy", ".35em")
-      	.attr("text-anchor", "end")
-      	.attr("transform", null)
-		    .text(function(d) { return d.name; })
-		    .style("font-size","11px")
+		    .attr("x", -6)
+	      	.attr("y", function (d) { return d.dy / 2; })
+	      	.attr("dy", ".35em")
+	      	.attr("text-anchor", "end")
+	      	.attr("transform", null)
+			    .text(function(d) { return d.name; })
+			    .style("font-size","11px")
 				.style("font-family","Arial, Helvetica")
-		    .style("pointer-events","none")
-		    .filter(function(d) { return d.x < +width() / 2; })
-		    	.attr("x", 6 + sankey.nodeWidth())
-	     		.attr("text-anchor", "start");
+			    .style("pointer-events","none")
+			    .filter(function(d) { return d.x < +width() / 2; })
+			    .attr("x", 6 + sankey.nodeWidth())
+		     	.attr("text-anchor", "start");
 
 	})
 
