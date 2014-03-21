@@ -16,9 +16,9 @@
 		.title("Height")
 		.defaultValue(500)
 
-	var color = chart.option()
-		 .title("Color scale")
-		 .type("color")
+	var colors = chart.option()
+		.title("Color scale")
+		.type("color")
 
 	chart.draw(function (selection, data){
 
@@ -46,7 +46,7 @@
 	    .links(links)
 	    .layout(32);
 
-	  color.data(links)
+	  colors.domain(links);
 
 		var link = g.append("g").selectAll(".link")
 	    .data(links)
@@ -55,7 +55,7 @@
 		    .attr("d", path )
 		    .style("stroke-width", function(d) { return Math.max(1, d.dy); })
 		    .style("fill","none")
-		    .style("stroke", function (d){ return color()(d.color); })
+		    .style("stroke", function (d){ return colors(d.color); })
 		    .style("stroke-opacity",".4")
 		    .sort(function(a, b) { return b.dy - a.dy; });
 
@@ -70,7 +70,7 @@
 		node.append("rect")
 	    .attr("height", function(d) { return d.dy; })
 	    .attr("width", sankey.nodeWidth())
-	    .style("fill", function (d) { return d.sourceLinks.length ? color()(d.name) : "#666"; })
+	    .style("fill", function (d) { return d.sourceLinks.length ? colors(d.name) : "#666"; })
 	   // .style("stroke", function(d) { return d3.rgb(d.color).darker(2); })
 	    .style("shape-rendering","crispEdges")
 	    .append("title")

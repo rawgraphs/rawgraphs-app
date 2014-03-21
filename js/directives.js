@@ -64,7 +64,7 @@ angular.module('raw.directives', [])
 
 	        function fitWidth(chart,sa){
 	        	if (chart == sa) return;
-	        	if(!scope.option.fitToWidth()) return;
+	        	if(scope.option.fitToWidth && !scope.option.fitToWidth()) return;
 	        	scope.option.value = $('.col-lg-9').width();
 	        }
 
@@ -122,19 +122,14 @@ angular.module('raw.directives', [])
 	        	}
 	        ];
 
-	        function ordinalUpdate() {
-	        	var data = arguments[0][0],
-	        			accessor = arguments[0].length > 1 ? arguments[0][1] : function (d){ return d.color; };
-	        	var domain = d3.set(data.filter(accessor).map(accessor)).values();
+	        function ordinalUpdate(domain) {
 	        	if (!domain.length) domain = [null];
 	        	this.value.domain(domain);
 	        	listColors();
 	        }
 
-	        function linearUpdate() {
-	        	var data = arguments[0][0],
-	        			accessor = arguments[0].length > 1 ? arguments[0][1] : function (d){ return d.color; };
-	        	var domain = d3.extent(data, function (d){return +accessor(d); });
+	        function linearUpdate(domain) {
+	        	domain = d3.extent(domain, function (d){return +d; });
 	        	if (domain[0]==domain[1]) domain = [null];
 	        	this.value.domain(domain).interpolate(d3.interpolateLab);
 	        }
@@ -147,9 +142,9 @@ angular.module('raw.directives', [])
 
 	        function addListener(){
 	        	scope.colorScale.reset(scope.colorScale.value.domain());
-	        	scope.option.listener(function (data){
+	        	scope.option.on('change', function (domain){
 		      		scope.option.value = scope.colorScale.value;
-		      		scope.colorScale.update(data);
+		      		scope.colorScale.update(domain);
 		      	})
 	        }
 
