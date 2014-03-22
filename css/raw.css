@@ -329,7 +329,7 @@ textarea:focus {
 
 .dimensions-container {
 	padding: 0px;
-	min-height: 55px;
+	min-height: 56px;
   margin-bottom: 0px;
 }
 
@@ -522,7 +522,7 @@ textarea:focus {
   background-color: #ddd;
   font-size: 13px;
   font-weight: 300;
-  line-height: 17px;
+  line-height: 18px;
 	color: #fff;
 	margin-bottom: 3px;
 

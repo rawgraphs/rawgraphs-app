@@ -11,13 +11,13 @@
 		</button>
 
 		<span class="list-type pull-right">
-			<i class="type fa fa-file-text-o breath-left"
+			<i class="type fa fa-align-left breath-left"
 			   data-toggle="tooltip"
-		   	   data-title="View as raw text"
+		   	   data-title="Text"
 		   	   ng-click="dataView='text'" ng-class="{selected:dataView!='table'}"></i>
-			<i class="type fa fa-align-justify breath-left"
+			<i class="type fa fa-table breath-left"
 			   data-toggle="tooltip"
-		   	   data-title="View as table"
+		   	   data-title="Table"
 		   	   ng-click="dataView='table'" ng-class="{selected:dataView=='table'}"></i>
 		</span>
 		<span class="clearfix"></span>
@@ -132,7 +132,7 @@
 							watch="model">
 
 							<div
-								class="col-lg-4"
+								class="col-lg-4 dimensions-wrapper"
 								ng-repeat="dimension in model.dimensions().values() track by $index" ng-init="open=false">
 
 								<div class="dimensions-model">
@@ -149,12 +149,12 @@
 									   		data-ng-show="dimension.multiple()"></i>
 									</div>
 									
-									<div class="dimension-info"
+									<a class="dimension-info"
 											data-toggle="tooltip"
-									   		data-title="Show description"
+									   		data-title="Show/hide description"
 									   		ng-click="open = !open" ng-show="dimension.description()">
-										<i class="fa fa-info"></i>
-									</div>
+										<i class="fa fa-info dimension-info-toggle"></i>
+									</a>
 									
 									<p class="dimension-title">{{dimension.title()}}</p>
 									<ul

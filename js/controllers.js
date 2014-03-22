@@ -75,6 +75,15 @@ angular.module('raw.controllers', [])
 
     })
 
+    $('body').mousedown(function (e,ui){
+      if ($(e.target).hasClass("dimension-info-toggle")) return;
+      $('.dimensions-wrapper').each(function (e){
+        angular.element(this).scope().open = false;
+        angular.element(this).scope().$apply();
+      })
+    })
+    
+
     /*$scope.$watch('dataView', function(){
       if (!$('.CodeMirror')[0]) return;
       var cm = $('.CodeMirror')[0].CodeMirror;

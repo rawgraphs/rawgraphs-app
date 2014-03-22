@@ -315,7 +315,6 @@ angular.module('raw.directives', [])
 						: "Drag " + scope.types.map(function (d){ return d.name.toLowerCase() + "s"; }).join(", ") + " here";
 					//element.parent().find('.msg').html(messageText);
 				}
-		
 
       }
     }

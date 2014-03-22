@@ -15,7 +15,7 @@
         return data.map(function (d){
             var obj = { dimensions: {}, color: color(d) };
             list().forEach(function (l){
-            obj.dimensions[l] = d[l];
+                obj.dimensions[l] = d[l];
             })
             return obj;
         })
