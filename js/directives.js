@@ -130,6 +130,7 @@ angular.module('raw.directives', [])
 	        	domain = d3.extent(domain, function (d){return +d; });
 	        	if (domain[0]==domain[1]) domain = [null];
 	        	this.value.domain(domain).interpolate(d3.interpolateLab);
+	        	listColors();
 	        }
 
 	        scope.setScale = function(){

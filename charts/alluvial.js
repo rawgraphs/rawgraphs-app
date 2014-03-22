@@ -44,7 +44,7 @@
 	    	.links(links)
 	    	.layout(32);
 
-	 	colors.domain(links, function (d){ return d.color; });
+	 	colors.domain(links, function (d){ return d.source.name; });
 
 		var link = g.append("g").selectAll(".link")
 	    	.data(links)
@@ -53,7 +53,7 @@
 			    .attr("d", path )
 			    .style("stroke-width", function(d) { return Math.max(1, d.dy); })
 			    .style("fill","none")
-			    .style("stroke", function (d){ return colors()(d.color); })
+			    .style("stroke", function (d){ return colors()(d.source.name); })
 			    .style("stroke-opacity",".4")
 			    .sort(function(a, b) { return b.dy - a.dy; });
 

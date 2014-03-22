@@ -101,15 +101,14 @@ angular.module('raw.controllers', [])
 
       // check for mobile
       if ($(window).width() < 760 || $('#mapping').height() < 300) return;
-
       var scrollTop = $(window).scrollTop() + 0,
           mappingTop = $('#mapping').offset().top+10,
           mappingHeight = $('#mapping').height(),
           isBetween = scrollTop > mappingTop+10 && scrollTop <= mappingTop + mappingHeight - $(".sticky").height()-20,
           isOver = scrollTop > mappingTop + mappingHeight - $(".sticky").height()-20,
           mappingWidth = mappingWidth ? mappingWidth : $('.col-lg-9').width();
-      if (mappingHeight-$('.dimensions-list').height() > 55) return;
-
+     
+      if (mappingHeight-$('.dimensions-list').height() > 60) return;
       if (isBetween) {
         $(".sticky")
           .css("position","fixed")
