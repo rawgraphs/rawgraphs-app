@@ -2,23 +2,21 @@
 html,
 body {
   height: 100%;
-  background-color: #f2f2f2;
-  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  background-color: rgb(241, 240, 235);
+  font-family: "ff-tisa-web-pro", 'Lato', Arial, Helvetica, sans-serif;
   font-size: 300;
 }
 
 body { padding-top: 20px; }
 
 
-h3 {
-  text-transform: uppercase;
-  font-weight: 400;
-  font-size: 11px;
-  letter-spacing: 1px;
-  margin: 20px 0px;
+h3,
+.btn.choose {
+  font-weight: 300;
+  font-size: 16px;
   margin-top: 40px;
   padding: 10px 0px;
-  padding-bottom: 0px;
+  padding-bottom: 10px;
 }
 
 a {
@@ -45,9 +43,12 @@ h3 a {
 }
 
 h4 {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   margin-top: 0px;
+  text-transform: uppercase;
+  border-bottom: 1px solid;
+  padding-bottom: 6px;
 }
 
 .light {
@@ -130,17 +131,12 @@ h4 {
   z-index: 10000;
 }
 
-.navbar-inverse .navbar-brand {
+.navbar-brand {
   font-size:24px;
-  color: #eee;
-  font-weight: 600;
+  font-weight: 900;
   text-transform: uppercase;
 }
 
-.navbar-brand {
-  font-weight: 900;
-  font-size: 24px;
-}
 
 .navbar-brand small {
   font-weight: 300;
@@ -161,6 +157,13 @@ h4 {
   transition: color .15s ease-in-out;
 }
 
+.navbar .nav>li>a,
+.navbar-brand,
+.option-title,
+.dimension-title {
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+}
+
 .navbar .nav>li>a:focus,
 .navbar .nav>li>a:hover,
 .navbar .nav>.active>a,
@@ -179,7 +182,7 @@ h4 {
 .alert {
   border: none;
   font-weight: 300;
-  padding: 6px 12px;
+  padding: 10px 12px;
   background-color: transparent;
   color: #444;
 
@@ -223,13 +226,15 @@ textarea:focus {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  border: 1px solid #bbbbbb;
+  border: 1px solid #bbb;
   outline: 0px auto -webkit-focus-ring-color !important;
   outline: none;
 }
 
-.btn:focus {
+.btn:focus,
+.btn:hover {
   border: none;
+  background-color: #E5E6DE;
 }
 
 .form-control {
@@ -239,14 +244,13 @@ textarea:focus {
 .btn.choose {
   background-color: transparent;
   line-height: 0px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 11px;
-  font-weight: 600;
   padding: 10px 0px;
+  margin-top: -1px;
 }
 
+.btn.choose:focus,
 .btn.choose:hover {
+  background-color: transparent;
   text-decoration: underline;
 }
 
@@ -270,6 +274,7 @@ textarea:focus {
   -moz-border-radius: 2px;
   border-radius: 2px;
   font-weight: 300; 
+  font-size: 14px;
 }
 
 .btn-success.disabled, .btn-success[disabled], fieldset[disabled] .btn-success, .btn-success.disabled:hover, .btn-success[disabled]:hover, fieldset[disabled] .btn-success:hover, .btn-success.disabled:focus, .btn-success[disabled]:focus, fieldset[disabled] .btn-success:focus, .btn-success.disabled:active, .btn-success[disabled]:active, fieldset[disabled] .btn-success:active, .btn-success.disabled.active, .btn-success[disabled].active, fieldset[disabled] .btn-success.active,
@@ -311,9 +316,7 @@ textarea:focus {
 /* Charts */
 
 .chart-description {
-  font-size: 13px;
-  background-color: #eee;
-  padding: 20px;
+  font-size: 14px;
 }
 
 .chart-description a {
@@ -485,6 +488,7 @@ textarea:focus {
   font-weight: 300;
   text-transform: lowercase;
   margin-left: 2px;
+  font-style: italic;
 }
 
 .dimension-type-valid {
@@ -497,7 +501,7 @@ textarea:focus {
 
 .dimension-title {
 	font-size: 12px;
-  font-weight: 400;
+  font-weight: 600;
 	text-align: center;
 	letter-spacing: 1px;
 	text-transform: uppercase;
@@ -595,7 +599,7 @@ textarea:focus {
 }
 
 .msg {
-  color: #999;
+  color: #B6B5A9;
   font-size: 13px;
   font-weight: 300;
   margin-bottom: 10px;
@@ -661,7 +665,7 @@ div[colors] table{
 
 div[colors] table td {
   padding: 5px 8px;
-  background: #fafafa;
+  background: #FAFAF7;
   border: none;
 }
 
@@ -857,6 +861,10 @@ textarea.source-area {
 
 .table>thead>tr>th {
 
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
+  background-color: #FAFAF7;
 }
 
 

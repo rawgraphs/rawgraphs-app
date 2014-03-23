@@ -41,7 +41,7 @@
 	</div>
 
 	<div data-ng-show="!error && !data.length">
-		<h3 id="layout">help</h3>
+		<h3 id="layout">Need help?</h3>
 		<p class="light stronga">To start...</p>
 	</div>
 
@@ -101,7 +101,7 @@
 		<div id="mapping" class="row-fluid">
 
 			<div>
-				<h3><i class="fa fa-magnet breath-right"></i> map your dimensions
+				<h3>Map your dimensions
 				<a data-toggle="tooltip"
 				   data-title="Clear all"
 				   ng-click="model.clear()" class="pull-right light"><i class="fa fa-trash-o"></i></a>
@@ -151,7 +151,7 @@
 									
 									<a class="dimension-info"
 											data-toggle="tooltip"
-									   		data-title="Show/hide description"
+									   		data-title="Show description"
 									   		ng-click="open = !open" ng-show="dimension.description()">
 										<i class="fa fa-info dimension-info-toggle"></i>
 									</a>
@@ -179,7 +179,7 @@
 		</div>
 
 
-		<h3 id="options"><i class="fa fa-check-square breath-right"></i>customize your visualization</h3>
+		<h3 id="options">Customize your Visualization</h3>
 
 		<div class="row">
 
@@ -235,12 +235,12 @@
 			<div id="export" class="row">
 
 				<div class="col-lg-3">
-					<h3><i class="fa fa-arrow-circle-down breath-right"></i>download</h3>
+					<h3><i class="fa fa-arrow-circle-down breath-right"></i>Download</h3>
 					<downloader></downloader>
 				</div>
 				
 				<div class="col-lg-9">
-					<h3 id="data"><i class="fa fa-code breath-right"></i>embed code</h3>
+					<h3 id="data"><i class="fa fa-code breath-right"></i>Embed Code</h3>
 					<coder></coder>
 					<p class="light">Copy the code above into your HTML to embed the visualization
 						<a class="pull-right" id="copy-button" copy-button data-clipboard-target="source" data-container="body"><i class="fa fa-clipboard"></i></a>
