@@ -23,6 +23,7 @@
 
     var chart = raw.chart()
         .title('Parallel Coordinates')
+        .thumbnail("/imgs/parallelCoordinates.png")
         .model(model)
 
     var width = chart.number()

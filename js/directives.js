@@ -23,17 +23,12 @@ angular.module('raw.directives', [])
 	        		.datum(scope.data)
 	        		.call(scope.chart)
 
-	        	// for moving charts... to be improven
-	        	updateHTML();
-	        	//setTimeout(updateHTML, 100)
-
-        		function updateHTML(){
-        			scope.svgCode = d3.select(element[0])
-	        			.select('svg')
-        				.attr("xmlns", "http://www.w3.org/2000/svg")
-        				.node().parentNode.innerHTML;
-        			$rootScope.$broadcast("completeGraph");
-        		}
+    			scope.svgCode = d3.select(element[0])
+        			.select('svg')
+    				.attr("xmlns", "http://www.w3.org/2000/svg")
+    				.node().parentNode.innerHTML;
+    			
+    			$rootScope.$broadcast("completeGraph");
 
 	        }
 

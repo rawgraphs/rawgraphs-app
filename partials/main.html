@@ -1,254 +1,279 @@
-<div class="container">
+<div class="wrapper">
 
-	
-	<h3 id="data">Insert your data
-		<span> or choose</span>
-		<button type="button"
-			class="choose btn btn-default"
-			ng-model="sample"
-			placeholder="one of our samples"
-			ng-options="s as s.title for s in samples" bs-select>
-		</button>
-
-		<span class="list-type pull-right">
-			<i class="type fa fa-align-left breath-left"
-			   data-toggle="tooltip"
-		   	   data-title="Text"
-		   	   ng-click="dataView='text'" ng-class="{selected:dataView!='table'}"></i>
-			<i class="type fa fa-table breath-left"
-			   data-toggle="tooltip"
-		   	   data-title="Table"
-		   	   ng-click="dataView='table'" ng-class="{selected:dataView=='table'}"></i>
-		</span>
-		<span class="clearfix"></span>
-	</h3>
-
-	<div data-ng-show="dataView != 'table'">
-		<textarea ui-codemirror="{ 
-				lineNumbers : true,
-				lineWrapping : true,
-				placeholder : 'Paste your text or drop a file here. No data on hand? Try one of our sample datasets!'
-			}"
-			ng-model="text">
-		</textarea>
-	</div>
-
-	<div raw-table class="data-table" data-ng-show="dataView == 'table'"></div>
-
-	<div>
-		<div data-ng-show="!error && data.length" class="alert"><i class="fa fa-thumbs-up breath-right"></i><strong>{{data.length}}</strong> records in your data have been successfully parsed!</div>
-		<div data-ng-show="error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops!</strong> Please, check line {{error+1}}</div>
-	</div>
-
-	<div data-ng-show="!error && !data.length">
-		<h3 id="layout">Need help?</h3>
-		<p class="light stronga">To start...</p>
-	</div>
-
-	<div data-ng-show="error">
-		<h3 id="layout">ouch.</h3>
-		<p class="light stronga">Sorry, but it seems like something went wrong. Please, check your data and be sure that everything is correct. Most of the times this is due to some missing <a href="http://en.wikipedia.org/wiki/Delimiter">delimiters</a> or weird characters at the end of the file.</p>
-	</div>
-
-
-
-	<div data-ng-show="!error && data.length">
-	
-		<h3 id="layout">
-			Choose a Layout
-			<div class="list-type pull-right">
-				<i class="type fa fa-th-list breath-left"
-				   data-toggle="tooltip"
-			   	   data-title="List"
-			   	   ng-click="listType='list'" ng-class="{selected:listType!='gallery'}"></i>
-				<i class="type fa fa-th breath-left"
-				   data-toggle="tooltip"
-			   	   data-title="Gallery"
-			   	   ng-click="listType='gallery'" ng-class="{selected:listType=='gallery'}"></i>
-			</div>
-			<span class="clearfix"></span>		
-		</h3>
+	<section class="">
 		
-		<div class="row">
+		<div class="container">
 
-			<div class="col-lg-3">
-				<div class="chart-description">
-					<h4>{{chart.title()}}</h4>
-					<p class="light" ng-bind-html="chart.description()"></p>
-				</div>
-			</div>		
+			<h3 id="data">Insert your data
+				<button type="button"
+					class="choose btn btn-default"
+					ng-model="sample"
+					placeholder="or choose one of our samples"
+					ng-options="s as s.title for s in samples" bs-select>
+				</button>
 
-			<div class="col-lg-9">
-				
-				<div class="row" group every="3" watch="charts">
-					<div class="col-lg-4" ng-repeat="c in charts track by $index">
-						<div ng-class="{selected: c == chart}" class="layout"  ng-click="selectChart(c)">
-							<!--<div class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}">
-							</div>-->
-							<span class="layout-inner" >
-								<span class="layout-title">{{c.title()}}</span>
-								<!--<i data-ng-show="c==chart" class="fa fa-check pull-right"></i>-->
-							</span>
-						</div>
-					</div>
-				</div>
+				<span class="list-type pull-right">
+					<i class="type fa fa-align-left breath-left"
+					   data-toggle="tooltip"
+				   	   data-title="Text"
+				   	   ng-click="dataView='text'" ng-class="{selected:dataView!='table'}"></i>
+					<i class="type fa fa-table breath-left"
+					   data-toggle="tooltip"
+				   	   data-title="Table"
+				   	   ng-click="dataView='table'" ng-class="{selected:dataView=='table'}"></i>
+				</span>
+				<span class="clearfix"></span>
+			</h3>
+
+			<div data-ng-show="dataView != 'table'">
+				<textarea ui-codemirror="{ 
+						lineNumbers : true,
+						lineWrapping : true,
+						placeholder : 'Paste your text or drop a file here. No data on hand? Try one of our sample datasets!'
+					}"
+					ng-model="text">
+				</textarea>
 			</div>
 
-		</div>
-		
-		
-
-		<div id="mapping" class="row-fluid">
+			<div raw-table class="data-table" data-ng-show="dataView == 'table'"></div>
 
 			<div>
-				<h3>Map your dimensions
-				<a data-toggle="tooltip"
-				   data-title="Clear all"
-				   ng-click="model.clear()" class="pull-right light"><i class="fa fa-trash-o"></i></a>
-					<span class="clearfix"></span>
-				</h3>
+				<div data-ng-show="!data.length && !error" class="alert"><i class="fa fa-hand-o-right breath-right"></i> Not sure how to format your data? Visit our FAQ</div>
+				<div data-ng-show="!error && data.length" class="alert"><i class="fa fa-thumbs-up breath-right"></i><strong>{{data.length}}</strong> records in your data have been successfully parsed!</div>
+				<div data-ng-show="error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops!</strong> Please, check line {{error+1}}</div>
 			</div>
 
+		</div>
+
+	</section>
+
+	<section class="" data-ng-show="!error && data.length">
+
+		<div class="container">
+
+			<div>
+			
+				<h3 id="layout">
+					Choose a Layout
+					<div class="list-type pull-right">
+						<i class="type fa fa-th-list breath-left"
+						   data-toggle="tooltip"
+					   	   data-title="List"
+					   	   ng-click="listType='list'" ng-class="{selected:listType!='gallery'}"></i>
+						<i class="type fa fa-th breath-left"
+						   data-toggle="tooltip"
+					   	   data-title="Gallery"
+					   	   ng-click="listType='gallery'" ng-class="{selected:listType=='gallery'}"></i>
+					</div>
+					<span class="clearfix"></span>		
+				</h3>
+				
+				<div class="row">
+
+					<div class="col-lg-3">
+						<div class="chart-description">
+							<h4>{{chart.title()}}</h4>
+							<p class="light" ng-bind-html="chart.description()"></p>
+							<p class="light" data-ng-show="!chart.description()">No description given</p>
+						</div>
+					</div>		
+
+					<div class="col-lg-9">
+						
+						<div class="row" group every="3" watch="charts">
+							<div class="col-lg-4" ng-repeat="c in charts track by $index">
+								<div ng-class="{selected: c == chart}" class="layout"  ng-click="selectChart(c)">
+									<div data-ng-show="listType=='gallery'" class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}">
+									</div>
+									<p class="layout-inner" >
+										<span class="layout-title">{{c.title()}}</span>
+										<i data-ng-show="c==chart" class="fa fa-check pull-right"></i>
+										<br/>
+										<span class="layout-category">Category</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+			
+	<section class="dark" data-ng-show="!error && data.length">
+
+		<div class="container">
+
+			<div id="mapping" class="row-fluid">
+
+				<div>
+					<h3>Map your dimensions
+					<a data-toggle="tooltip"
+					   data-title="Clear all"
+					   ng-click="model.clear()" class="pull-right light"><i class="fa fa-trash-o"></i></a>
+						<span class="clearfix"></span>
+					</h3>
+				</div>
+
+
+				<div class="row">
+					
+					<div class="col-lg-3">
+						<div draggable>
+							<ul class="list-unstyled dimensions-list">
+								<li class="dimension" data-dimension="{{dimension}}" ng-repeat="dimension in metadata track by $index">
+									{{ dimension.key }} 
+									<span class="dimension-type">{{dimension.type}}</span>
+									<span class="dimension-icon pull-right"><i class="fa fa-bars"></i></span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="col-lg-9">
+						<div class="sticky">
+							<div
+								class="row"
+								group every="3"
+								watch="model">
+
+								<div
+									class="col-lg-4 dimensions-wrapper"
+									ng-repeat="dimension in model.dimensions().values() track by $index" ng-init="open=false">
+
+									<div class="dimensions-model">
+										<div class="dimension-multiple">
+											
+											<i class="fa fa-tag"
+												data-toggle="tooltip"
+										   		data-title="Single dimension"
+										   		data-ng-show="!dimension.multiple()"></i>
+											
+											<i class="fa fa-tags"
+												data-toggle="tooltip"
+										   		data-title="Multiple dimension"
+										   		data-ng-show="dimension.multiple()"></i>
+										</div>
+										
+										<a class="dimension-info"
+												data-toggle="tooltip"
+										   		data-title="Show description"
+										   		ng-click="open = !open" ng-show="dimension.description()">
+											<i class="fa fa-info dimension-info-toggle"></i>
+										</a>
+										
+										<p class="dimension-title">{{dimension.title()}}</p>
+										<ul
+											sortable
+											title="dimension.title()"
+											value="dimension.value"
+											multiple="dimension.multiple()"
+											types="dimension.types()"
+											class="dimensions-container list-unstyled">
+										</ul>
+										<div class="dimension-description" ng-class="{open: open}">{{dimension.description()}}</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+			
+	<section class="" data-ng-show="!error && data.length">
+
+		<div class="container">
+
+			<h3 id="options">Customize your Visualization</h3>
 
 			<div class="row">
-				
+
 				<div class="col-lg-3">
-					<div draggable>
-						<ul class="list-unstyled dimensions-list">
-							<li class="dimension" data-dimension="{{dimension}}" ng-repeat="dimension in metadata track by $index">
-								{{ dimension.key }} 
-								<span class="dimension-type">{{dimension.type}}</span>
-								<span class="dimension-icon pull-right"><i class="fa fa-bars"></i></span>
-							</li>
-						</ul>
-					</div>
-				</div>
-				
-				<div class="col-lg-9">
-					<div class="sticky">
-						<div
-							class="row"
-							group every="3"
-							watch="model">
+					<ul class="list-unstyled">
+						<li ng-repeat="option in chart.options() track by $index" chart-option>
+							<p class="option-title">{{option.title()}}
+								<a data-ng-show="option.fitToWidth()"
+								   data-toggle="tooltip"
+								   data-title="Fit to width"
+								   class="option-fit pull-right"><i class="fa fa-expand"></i></a>
+							</p>
 
-							<div
-								class="col-lg-4 dimensions-wrapper"
-								ng-repeat="dimension in model.dimensions().values() track by $index" ng-init="open=false">
+							<div ng-switch="" on="option.type()">
+								<input type="number" min="0" class="form-control" ng-model="option.value" ng-switch-when="number"></input>
 
-								<div class="dimensions-model">
-									<div class="dimension-multiple">
-										
-										<i class="fa fa-tag"
-											data-toggle="tooltip"
-									   		data-title="Single dimension"
-									   		data-ng-show="!dimension.multiple()"></i>
-										
-										<i class="fa fa-tags"
-											data-toggle="tooltip"
-									   		data-title="Multiple dimension"
-									   		data-ng-show="dimension.multiple()"></i>
-									</div>
-									
-									<a class="dimension-info"
-											data-toggle="tooltip"
-									   		data-title="Show description"
-									   		ng-click="open = !open" ng-show="dimension.description()">
-										<i class="fa fa-info dimension-info-toggle"></i>
-									</a>
-									
-									<p class="dimension-title">{{dimension.title()}}</p>
-									<ul
-										sortable
-										title="dimension.title()"
-										value="dimension.value"
-										multiple="dimension.multiple()"
-										types="dimension.types()"
-										class="dimensions-container list-unstyled">
-									</ul>
-									<div class="dimension-description" ng-class="{open: open}">{{dimension.description()}}</div>
+								<div ng-switch-when="checkbox">
+									<label class="checkbox">
+										<input type="checkbox" ng-model="option.value"/>
+									</label>
 								</div>
 
-							</div>
-						</div>
-					</div>
+								<div colors="option.value" ng-switch-when="color">
+								</div>
+								<button
+									type="button"
+									class="btn btn-default"
+									ng-model="option.value"
+									ng-change="$apply()"
+									ng-options="opt for opt in option.options()" bs-select ng-switch-when="select">
+								  Action <span class="caret"></span>
+								</button>
+								
+								<input type="text" min="0" class="form-control" ng-model="option.value" ng-switch-default="ng-switch-default"></input>
 
-				</div>
-
-			</div>
-
-		</div>
-
-
-		<h3 id="options">Customize your Visualization</h3>
-
-		<div class="row">
-
-			<div class="col-lg-3">
-				<ul class="list-unstyled">
-					<li ng-repeat="option in chart.options() track by $index" chart-option>
-						<p class="option-title">{{option.title()}}
-							<a data-ng-show="option.fitToWidth()"
-							   data-toggle="tooltip"
-							   data-title="Fit to width"
-							   class="option-fit pull-right"><i class="fa fa-expand"></i></a>
-						</p>
-
-						<div ng-switch="" on="option.type()">
-							<input type="number" min="0" class="form-control" ng-model="option.value" ng-switch-when="number"></input>
-
-							<div ng-switch-when="checkbox">
-								<label class="checkbox">
-									<input type="checkbox" ng-model="option.value"/>
-								</label>
 							</div>
 
-							<div colors="option.value" ng-switch-when="color">
-							</div>
-							<button
-								type="button"
-								class="btn btn-default"
-								ng-model="option.value"
-								ng-change="$apply()"
-								ng-options="opt for opt in option.options()" bs-select ng-switch-when="select">
-							  Action <span class="caret"></span>
-							</button>
-							
-							<input type="text" min="0" class="form-control" ng-model="option.value" ng-switch-default="ng-switch-default"></input>
-
-						</div>
-
-					</li>
-				</ul>
-			</div>
-			
-			<div class="col-lg-9">
-				<div class="chart-resize">
-					<div ng-show="!isEmpty()" id="chart" chart></div>
-					<p class="light" ng-show="isEmpty()">Please, map your dimensions in the panels above to build the visualization</p>
-				</div>
-			</div>
-		
-		</div>
-
-		<div ng-show="!isEmpty()">
-
-			<div id="export" class="row">
-
-				<div class="col-lg-3">
-					<h3><i class="fa fa-arrow-circle-down breath-right"></i>Download</h3>
-					<downloader></downloader>
+						</li>
+					</ul>
 				</div>
 				
 				<div class="col-lg-9">
-					<h3 id="data"><i class="fa fa-code breath-right"></i>Embed Code</h3>
-					<coder></coder>
-					<p class="light">Copy the code above into your HTML to embed the visualization
-						<a class="pull-right" id="copy-button" copy-button data-clipboard-target="source" data-container="body"><i class="fa fa-clipboard"></i></a>
-					</p>
+					<div class="chart-resize">
+						<div ng-show="!isEmpty()" id="chart" chart></div>
+						<p class="light" ng-show="isEmpty()">Map your dimensions in the panels above to build the visualization</p>
+					</div>
 				</div>
-
+			
 			</div>
-		</div>	
+		</div>
 
-	</div>
+	</section>
+			
+	<section class="dark" ng-show="!isEmpty()" style="padding-bottom:50px">
+
+		<div class="container">
+
+			<div>
+
+				<div id="export" class="row">
+
+					<div class="col-lg-3">
+						<h3><i class="fa fa-arrow-circle-down breath-right"></i>Download</h3>
+						<downloader></downloader>
+					</div>
+					
+					<div class="col-lg-9">
+						<h3 id="data"><i class="fa fa-code breath-right"></i>Embed Code</h3>
+						<coder></coder>
+						<p class="light">Copy the code above into your HTML to embed the visualization
+							<a class="pull-right" id="copy-button" copy-button data-clipboard-target="source" data-container="body"><i class="fa fa-clipboard"></i></a>
+						</p>
+					</div>
+
+				</div>
+			</div>	
+
+		</div>
+	</section>
 </div>
