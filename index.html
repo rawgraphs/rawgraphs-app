@@ -5,7 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <base href="/">
+        <script>
+          document.write('<base href="' + document.location + '" />');
+        </script>
         <title>RAW</title>
         <!-- CSS-->
         <!-- Google Fonts-->
@@ -15,7 +17,7 @@
         <link rel="stylesheet" href="components/codemirror/lib/codemirror.css">
         <link rel="stylesheet" href="components/angular-ui/build/angular-ui.min.css">
         <link rel="stylesheet" href="components/select2/select2.css">
-        <link rel="stylesheet" href="/css/app.css">
+        <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" href="components/angular-bootstrap-colorpicker/css/colorpicker.css">
 
         <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -42,7 +44,7 @@
         </div>
       </div>
     </div>
-    
+
     <div ng-view="ng-view" class="wrap"></div>
 
     <!-- Footer -->
