@@ -95,7 +95,7 @@
         .attr("width", width)
         .attr("height", height);
 
-    colors.domain(data, function (d){ return d.color; });
+    colors.domain(data.filter(function (d){ return d.type == "node"; }), function (d){ return d.color; });
 
     var node = g.selectAll("circle")
         .data(data.filter(function (d){ return d.type == "node"; }))

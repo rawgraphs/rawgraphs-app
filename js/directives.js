@@ -83,7 +83,7 @@ angular.module('raw.directives', [])
 	        		reset : function(domain){ this.value.range(raw.divergingRange(domain.length || 1)); },
 	        		update : ordinalUpdate
 	        	},
-	        	{
+	        	/*{
 	        		type : 'Ordinal (max 20 categories)',
 	        		value : d3.scale.category20(),
 	        		reset : function(){ this.value.range(d3.scale.category20().range().map(function (d){ return d; })); },
@@ -106,7 +106,7 @@ angular.module('raw.directives', [])
 	        		value : d3.scale.category10(),
 	        		reset : function(){ this.value.range(d3.scale.category10().range().map(function (d){ return d; })); },
 	        		update : ordinalUpdate
-	        	},
+	        	},*/
 	        	{
 	        		type : 'Linear',
 	        		value : d3.scale.linear().range(["#f7fbff", "#08306b"]),
@@ -561,9 +561,9 @@ angular.module('raw.directives', [])
       }
 
       scope.modes = [
-    		{ label : 'Vector graphics (.svg)', download : downloadSvg },
-    		{ label : 'Image (.png)', download : downloadPng },
-    		{ label : 'Data model (.json)', download : downloadData }
+    		{ label : 'Vector graphics (svg)', download : downloadSvg },
+    		{ label : 'Image (png)', download : downloadPng },
+    		{ label : 'Data model (json)', download : downloadData }
     	]
     	//scope.mode = scope.modes[0]
 

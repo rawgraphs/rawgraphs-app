@@ -32,7 +32,7 @@ angular.module('raw.controllers', [])
 
     $scope.parse = function(text){
 
-      $scope.model.clear();
+      if ($scope.model) $scope.model.clear();
 
       $scope.data = [];
       $scope.metadata = [];
@@ -49,7 +49,7 @@ angular.module('raw.controllers', [])
         $scope.metadata = [];
         $scope.error = e.name == "ParseError" ? +e.message : false;
       }
-      if (!$scope.data.length) $scope.model.clear();
+      if (!$scope.data.length && $scope.model) $scope.model.clear();
     }
 
     $scope.delayParse = dataService.debounce($scope.parse, 500, false);
@@ -60,7 +60,7 @@ angular.module('raw.controllers', [])
 
     $scope.charts = raw.charts.values().sort(function (a,b){ return a.title() < b.title() ? -1 : a.title() > b.title() ? 1 : 0; });
     $scope.chart = $scope.charts[0];
-    $scope.model = $scope.chart.model();
+    $scope.model = $scope.chart ? $scope.chart.model() : null;
 
     $scope.$watch('error', function (error){
       if (!$('.CodeMirror')[0]) return;

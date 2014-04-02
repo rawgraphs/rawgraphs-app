@@ -47,14 +47,14 @@
 
 	</section>
 
-	<section class="" data-ng-show="!error && data.length">
+	<section class="" data-ng-show="!error && data.length && charts.length">
 
 		<div class="container">
 
 			<div>
 			
 				<h3 id="layout">
-					Choose a Layout
+					Choose a Chart
 					<div class="list-type pull-right">
 						<i class="type fa fa-th-list breath-left"
 						   data-toggle="tooltip"
@@ -102,6 +102,12 @@
 
 		</div>
 
+	</section>
+
+	<section class="" data-ng-show="!charts.length">
+		<div class="container">
+			<div class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>No charts found!</strong> Be sure to include them correctly.</div>			
+		</div>
 	</section>
 			
 	<section class="dark" data-ng-show="!error && data.length">
@@ -192,7 +198,7 @@
 
 	</section>
 			
-	<section class="" data-ng-show="!error && data.length">
+	<section class="" data-ng-show="!error && data.length && charts.length">
 
 		<div class="container">
 
@@ -250,7 +256,7 @@
 
 	</section>
 			
-	<section class="dark" ng-show="!isEmpty()" style="padding-bottom:50px">
+	<section class="dark" ng-show="!isEmpty() && charts.length" style="padding-bottom:50px">
 
 		<div class="container">
 
