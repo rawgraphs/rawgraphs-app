@@ -36,9 +36,9 @@
         .title("Height")
         .defaultValue(500)
 
-    var offset = chart.select()
+    var offset = chart.list()
         .title("Offset")
-        .options(['silhouette','wiggle','expand','zero'])
+        .items(['silhouette','wiggle','expand','zero'])
         .defaultValue('silhouette')
 
     var colors = chart.color()

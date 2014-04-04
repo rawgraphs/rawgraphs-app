@@ -227,12 +227,13 @@
 
 								<div colors="option.value" ng-switch-when="color">
 								</div>
+								
 								<button
 									type="button"
 									class="btn btn-default"
 									ng-model="option.value"
 									ng-change="$apply()"
-									ng-options="opt for opt in option.options()" bs-select ng-switch-when="select">
+									ng-options="opt for opt in option.values()" bs-select ng-switch-when="list">
 								  Action <span class="caret"></span>
 								</button>
 								
