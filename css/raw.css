@@ -1,21 +1,29 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900|Open+Sans:400,300,600,700,800|Roboto:400,100,300,500,700,900&subset=latin,latin-ext);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800|Roboto:400,100,300,500,700,900&subset=latin,latin-ext);
 
 html,
 body {
   height: 100%;
-  background-color: rgb(241, 241, 241);
-  font-family: 'Lato', Arial, Helvetica, sans-serif;
-  font-weight: 300;
+  background-color: #F5F5F5;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  font-weight: 400;
   font-size: 13px;
+  border-top: 3px solid #1BC373;
 }
 
+h3 {
+  font-weight: 700;
+  font-size: 15px;
+  padding: 10px 0px;
+  color: #3F403F;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 
-h3,
 .btn.choose {
   font-weight: 400;
-  font-size: 12px;
+  font-size: 16px;
   padding: 10px 0px;
-  color: #888;
+  color: #5B5B5B;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -51,7 +59,7 @@ h4 {
 }
 
 .light {
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .breath-right {
@@ -88,7 +96,7 @@ h4 {
   background-color: #565656;
   font-size: 13px;
   color: #bbb;
-  font-weight: 300;
+  font-weight: 400;
   padding: 0px 20px;
 }
 
@@ -130,14 +138,14 @@ section.light {
 }
 
 section.dark {
-  background-color: #ededed;
+  background-color: #E5E5E5;
 }
 
 
 /* Navbar */
 
 .navbar {
-  color: #f2f2f2;
+  color: #E5E5E5;
   text-align: center;
   opacity: .97;
   z-index: 10000;
@@ -150,12 +158,12 @@ section.dark {
   font-size:24px;
   font-weight: 900;
   text-transform: uppercase;
-  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-family: 'open sans', Arial, Helvetica, sans-serif;
 }
 
 
 .navbar-brand small {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 14px;
 }
 
@@ -201,10 +209,10 @@ section.dark {
 
 .alert {
   border: none;
-  font-weight: 300;
+  font-weight: 400;
   padding: 10px 12px;
   background-color: transparent;
-  color: #777;
+  color: #5A5E5A;
 
 }
 
@@ -282,7 +290,7 @@ textarea:focus {
 /* Tooltips */
 
 .tooltip-inner {
-  font-weight: 300;
+  font-weight: 400;
   padding: 10px 15px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -294,7 +302,7 @@ textarea:focus {
    -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
-  font-weight: 300; 
+  font-weight: 400; 
   font-size: 14px;
 }
 
@@ -327,7 +335,7 @@ textarea:focus {
 
 .dropdown-menu>li>a {
   font-size: 13px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 #export .btn {
@@ -342,8 +350,25 @@ textarea:focus {
 
 .chart-description {
   font-size: 13px;
-  padding: 10px;
-  background-color: #e5e5e5;
+}
+
+.chart-description h4{
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 1;
+}
+
+.chart-description p{
+  margin-top: 9px;
+}
+
+.chart-description hr{
+  background-color: #3F403F;
+  height: 2px;
+  width: 20px;
+  margin-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .chart-description a {
@@ -385,14 +410,13 @@ textarea:focus {
 	border-color: #f00;
 }
 
-.layout,
 .dimension-placeholder,
 .dimension {
   padding: 8px 10px;
   position: relative;
   margin-bottom: 3px;
   font-size: 13px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 18px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -413,24 +437,27 @@ textarea:focus {
   margin-bottom: 10px;
   display: table;
   width: 100%;
-  padding: 8px;
-  box-shadow: 0px 1px 1px rgba(0,0,0,.1);
-  border: 1px solid #fff;
+  border-bottom: 1px solid rgba(0,0,0,.1);
 }
 
 .layout.selected {
-  border-color: #bbb;
+  background-color: #E5E5E5;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.layout-title {
+  font-size: 13px;
 }
 
 .layout-category {
-  color: #666;
-  font-weight: 300;
+  color: #bbbbbb;
+  font-weight: 400;
 }
 
 .layout-thumb {
   width: 100%;
   height: 100px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   bottom: 0px;
   background-position: center;
   background-size: 200%;
@@ -441,9 +468,22 @@ textarea:focus {
   -webkit-filter: grayscale(100%);*/
 }
 
+.layout.selected .layout-title{
+ font-weight: 700;
+}
+
+.layout.selected .layout-category{
+  color: #3F403F;
+}
+
+.layout.selected .layout-thumb{
+    opacity: .6; 
+}
+
+
 .layout:hover .layout-thumb {
-  /*filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
-  -webkit-filter: grayscale(0%);*/
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+  -webkit-filter: grayscale(0%);
 }
 
 .layout-inner {
@@ -451,6 +491,7 @@ textarea:focus {
   font-size: 13px;
   font-weight: 400;
   margin-bottom: 0px;
+  padding: 10px 10px 10px;
 }
 
 .layout.selected .layout-inner {
@@ -480,11 +521,11 @@ textarea:focus {
 }
 
 .dimension-type {
-	color: rgba(255,255,255,.8);
+	color: rgba(255,255,255,.9);
 	font-size: 13px;
-  font-weight: 300;
+  font-weight: 400;
   text-transform: lowercase;
-  margin-left: 2px;
+  margin-left: 3px;
 }
 
 .dimension-type-valid {
@@ -521,7 +562,7 @@ textarea:focus {
 	border-radius: 2px;
   background-color: #ddd;
   font-size: 13px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 18px;
 	color: #fff;
 	margin-bottom: 3px;
@@ -569,7 +610,7 @@ textarea:focus {
   bottom: 0;
   opacity: 0;
   font-size: 13px;
-  font-weight: 300;
+  font-weight: 400;
   
   -webkit-transform: translateY(100%);
   -moz-transform: translateY(100%);
@@ -597,7 +638,7 @@ textarea:focus {
 .msg {
   color: #666;
   font-size: 12px;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 10px;
   text-align: center;
 }
@@ -703,7 +744,7 @@ div[colors] table tr:first-child td {
 }
 
 div[colors] input[type="text"] {
-  font-weight: 300;
+  font-weight: 400;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
   border: none;
@@ -787,7 +828,7 @@ textarea.source-area {
 }
 
 .type.selected {
-  color: #222;
+  color: #3F403F;
 }
 
 #copy-button {
@@ -814,7 +855,7 @@ textarea.source-area {
 
 .data-table {
   font-size: 11px;
-  font-weight: 300;
+  font-weight: 400;
   height: 275px;
   overflow: scroll;
   margin-bottom: 10px;
@@ -887,7 +928,7 @@ textarea.source-area {
 }
 
 pre.CodeMirror-placeholder {
-  color: #888;
+  color: #444444;
 }
 
 .CodeMirror.highlight {
@@ -919,6 +960,6 @@ pre.CodeMirror-placeholder {
 
 .CodeMirror .line-error {
   background-color: #FFF3B8;
-  color: #222;
+  color: #3F403F;
 }
 
