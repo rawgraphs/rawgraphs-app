@@ -1,27 +1,26 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900|Open+Sans:400,300,600,700,800|Roboto:400,100,300,500,700,900&subset=latin,latin-ext);
+@import url(http://fonts.googleapis.com/css?family=open sans:300,400,700,900|Open+Sans:400,300,600,700,800|Roboto:400,100,300,500,700,900&subset=latin,latin-ext);
 
 html,
 body {
   height: 100%;
-  background-color: #f5f5f5;
-  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  background-color: #F5F5F5;
+  font-family: 'open sans', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 13px;
   border-top: 3px solid #1BC373;
 }
 
-
 h3 {
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 15px;
   padding: 10px 0px;
-  color: #222;
+  color: #3F403F;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .btn.choose {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 16px;
   padding: 10px 0px;
   color: #5B5B5B;
@@ -139,14 +138,14 @@ section.light {
 }
 
 section.dark {
-  background-color: #EFEFEF;
+  background-color: #E5E5E5;
 }
 
 
 /* Navbar */
 
 .navbar {
-  color: #f2f2f2;
+  color: #E5E5E5;
   text-align: center;
   opacity: .97;
   z-index: 10000;
@@ -159,7 +158,7 @@ section.dark {
   font-size:24px;
   font-weight: 900;
   text-transform: uppercase;
-  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-family: 'open sans', Arial, Helvetica, sans-serif;
 }
 
 
@@ -213,7 +212,7 @@ section.dark {
   font-weight: 400;
   padding: 10px 12px;
   background-color: transparent;
-  color: #777;
+  color: #5A5E5A;
 
 }
 
@@ -351,8 +350,25 @@ textarea:focus {
 
 .chart-description {
   font-size: 13px;
-  padding: 10px;
-  background-color: #e5e5e5;
+}
+
+.chart-description h4{
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 1;
+}
+
+.chart-description p{
+  margin-top: 9px;
+}
+
+.chart-description hr{
+  background-color: #3F403F;
+  height: 2px;
+  width: 20px;
+  margin-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .chart-description a {
@@ -406,7 +422,6 @@ textarea:focus {
   -moz-border-radius: 2px;
   border-radius: 2px;
   opacity: .85;
-  text-transform: uppercase;
   
   -webkit-transition: background .1s ease-in-out;
   -moz-transition: background .1s ease-in-out;
@@ -426,8 +441,8 @@ textarea:focus {
 }
 
 .layout.selected {
-  background-color: #E5E6E6;
-  border-bottom: none;
+  background-color: #E5E5E5;
+  border-bottom: 1px solid rgba(0,0,0,.1);
 }
 
 .layout-title {
@@ -453,9 +468,22 @@ textarea:focus {
   -webkit-filter: grayscale(100%);*/
 }
 
+.layout.selected .layout-title{
+ font-weight: 700;
+}
+
+.layout.selected .layout-category{
+  color: #3F403F;
+}
+
+.layout.selected .layout-thumb{
+    opacity: .6; 
+}
+
+
 .layout:hover .layout-thumb {
-  /*filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
-  -webkit-filter: grayscale(0%);*/
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+  -webkit-filter: grayscale(0%);
 }
 
 .layout-inner {
@@ -493,11 +521,11 @@ textarea:focus {
 }
 
 .dimension-type {
-	color: rgba(255,255,255,.8);
+	color: rgba(255,255,255,.9);
 	font-size: 13px;
-  font-weight: 300;
+  font-weight: 400;
   text-transform: lowercase;
-  margin-left: 2px;
+  margin-left: 3px;
 }
 
 .dimension-type-valid {
@@ -800,7 +828,7 @@ textarea.source-area {
 }
 
 .type.selected {
-  color: #222;
+  color: #3F403F;
 }
 
 #copy-button {
@@ -932,6 +960,6 @@ pre.CodeMirror-placeholder {
 
 .CodeMirror .line-error {
   background-color: #FFF3B8;
-  color: #222;
+  color: #3F403F;
 }
 

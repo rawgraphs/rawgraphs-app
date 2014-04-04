@@ -1,6 +1,6 @@
 <div class="wrapper">
 
-	<section class="dark">
+	<section class="">
 
 		<div class="container">
 
@@ -69,66 +69,45 @@
 			</h3>
 
 
-<!-- With Description
-<div class="row">
+			<div class="row">
 
-<div class="col-lg-3">
-<div class="chart-description">
-<h4>{{chart.title()}}</h4>
-<p class="light" ng-bind-html="chart.description()"></p>
-<p class="light" data-ng-show="!chart.description()">No description given</p>
-</div>
-</div>		
-
-<div class="col-lg-9">
-
-<div class="row" group every="3" watch="charts">
-<div class="col-lg-4" ng-repeat="c in charts track by $index">
-<div ng-class="{selected: c == chart}" class="layout"  ng-click="selectChart(c)">
-<div data-ng-show="listType=='gallery'" class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}">
-</div>
-<p class="layout-inner" >
-<span class="layout-title">{{c.title()}}</span>
-<i data-ng-show="c==chart" class="fa fa-check pull-right"></i>
-<br/>
-<span class="layout-category">Category</span>
-</p>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-Fine -->
-
-<div class="row">
-
-	<div class="col-lg-12">
-
-		<div class="row" group every="4" watch="charts">
-			<div class="col-lg-3" ng-repeat="c in charts track by $index">
-				<div ng-class="{selected: c == chart}" class="layout"  ng-click="selectChart(c)">
-					<div data-ng-show="listType=='gallery'" class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}">
+				<div class="col-lg-3">
+					<div class="chart-description">
+						<h4>{{chart.title()}}</h4>
+						<hr>
+						<p class="light" ng-bind-html="chart.description()"></p>
+						<p class="light" data-ng-show="!chart.description()">No description given</p>
 					</div>
-					<p class="layout-inner" >
-						<span class="layout-title">{{c.title()}}</span>
-						<i data-ng-show="c==chart" class="fa fa-check pull-right"></i>
-						<br/>
-						<span class="layout-category">Category</span>
-					</p>
+				</div>		
+
+				<div class="col-lg-9">
+
+					<div class="row" group every="3" watch="charts">
+						<div class="col-lg-4" ng-repeat="c in charts track by $index">
+							<div ng-class="{selected: c == chart}" class="layout"  ng-click="selectChart(c)">
+								<div data-ng-show="listType=='gallery'" class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}">
+								</div>
+								<p class="layout-inner" >
+									<span class="layout-title">{{c.title()}}</span>
+									<i data-ng-show="c==chart" class="fa fa-check pull-right"></i>
+									<br/>
+									<span class="layout-category">Category</span>
+								</p>
+							</div>
+						</div>
+					</div>
 				</div>
+
 			</div>
+
+
 		</div>
+
 	</div>
-
-</div>
-</div>
-
-</div>
 
 </section>
 
-<section class="" data-ng-show="!error && data.length">
+<section class="dark" data-ng-show="!error && data.length">
 
 	<div class="container">
 
