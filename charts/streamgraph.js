@@ -38,7 +38,7 @@
 
     var offset = chart.list()
         .title("Offset")
-        .items(['silhouette','wiggle','expand','zero'])
+        .values(['silhouette','wiggle','expand','zero'])
         .defaultValue('silhouette')
 
     var colors = chart.color()
