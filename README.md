@@ -1,4 +1,4 @@
-<p align="center"><img src="http://raw.densitydesign.org/wp-content/uploads/2013/10/Header.png"></p>
+<p align="center"><img src="http://raw.densitydesign.org/wp-content/uploads/2014/04/header.png"></p>
 
 #RAW v1.0 is here!
 We have completely rebuilt RAW adding many new features and a charts!
