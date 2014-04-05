@@ -90,8 +90,6 @@
 								<p class="layout-inner" >
 									<span class="layout-title">{{c.title()}}</span>
 									<i data-ng-show="c==chart" class="fa fa-check pull-right"></i>
-									<br/>
-									<span class="layout-category">Category</span>
 								</p>
 							</div>
 						</div>
@@ -166,7 +164,7 @@
 							data-toggle="tooltip"
 							data-title="Show description"
 							ng-click="open = !open" ng-show="dimension.description()">
-							<i class="fa fa-info dimension-info-toggle"></i>
+							<!--<i class="fa fa-info dimension-info-toggle"></i>-->
 						</a>
 
 						<p class="dimension-title">{{dimension.title()}}</p>
@@ -178,7 +176,7 @@
 						types="dimension.types()"
 						class="dimensions-container list-unstyled">
 					</ul>
-					<div class="dimension-description" ng-class="{open: open}">{{dimension.description()}}</div>
+					<!--<div class="dimension-description" ng-class="{open: open}">{{dimension.description()}}</div>-->
 				</div>
 
 			</div>
