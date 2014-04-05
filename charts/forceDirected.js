@@ -4,6 +4,9 @@
 
 	var chart = raw.chart()
 		.title('Force Directed')
+		.description(
+            "Force-directed graph drawing algorithms assign forces among the set of edges and the set of nodes of a graph drawing.<br/>Based on <a href='http://bl.ocks.org/mbostock/4062045'>http://bl.ocks.org/mbostock/4062045</a>")
+		.thumbnail("/imgs/forcedirected.png")
 		.model(graph)
 
 	var width = chart.number()

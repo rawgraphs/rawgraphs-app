@@ -11,21 +11,21 @@ body {
 }
 
 h3 {
-  font-weight: 700;
-  font-size: 15px;
-  padding: 10px 0px;
-  color: #3F403F;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 48px;
+  margin: 0px;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .btn.choose {
-  font-weight: 400;
-  font-size: 16px;
-  padding: 10px 0px;
-  color: #5B5B5B;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 48px;
+  margin: 0px;
+  font-size: 24px;
+  color:;
 }
 
 a {
@@ -83,7 +83,7 @@ h4 {
   height: 100%;
   /* Negative indent footer by it's height */
   margin: 0 auto -200px;
-    padding-bottom: 200px;
+  padding-bottom: 200px;
 
 }
 
@@ -198,7 +198,7 @@ section.dark {
 }
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
- border-color: transparent;
+  border-color: transparent;
 }
 
 .navbar-toggle .icon-bar {
@@ -299,7 +299,7 @@ textarea:focus {
 
 .btn {
   border: none;
-   -webkit-border-radius: 2px;
+  -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
   font-weight: 400; 
@@ -324,7 +324,7 @@ textarea:focus {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
-    box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+  box-shadow: 0px 1px 2px rgba(0,0,0,.2);
 
 
 }
@@ -383,8 +383,8 @@ textarea:focus {
 /* Dimensions */
 
 .dimensions-container {
-	padding: 0px;
-	min-height: 56px;
+  padding: 0px;
+  min-height: 56px;
   margin-bottom: 0px;
 }
 
@@ -392,13 +392,13 @@ textarea:focus {
   position: relative;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-	border-radius: 2px;
-	background-color: white;
-	padding: 10px;
-	margin-bottom: 20px;
+  border-radius: 2px;
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 20px;
   overflow: hidden;
 
-	-webkit-transition: border .15s ease-in-out;
+  -webkit-transition: border .15s ease-in-out;
   -moz-transition: border .15s ease-in-out;
   -ms-transition: border .15s ease-in-out;
   -o-transition: border .15s ease-in-out;
@@ -407,7 +407,7 @@ textarea:focus {
 }
 
 .dimensions-model.invalid {
-	border-color: #f00;
+  border-color: #f00;
 }
 
 .dimension-placeholder,
@@ -422,7 +422,7 @@ textarea:focus {
   -moz-border-radius: 2px;
   border-radius: 2px;
   opacity: .85;
-  
+
   -webkit-transition: background .1s ease-in-out;
   -moz-transition: background .1s ease-in-out;
   -ms-transition: background .1s ease-in-out;
@@ -463,13 +463,13 @@ textarea:focus {
   background-size: 200%;
   background-color: #fff;
 
-  /*filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
-  filter: gray;
-  -webkit-filter: grayscale(100%);*/
+/*filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+filter: gray;
+-webkit-filter: grayscale(100%);*/
 }
 
 .layout.selected .layout-title{
- font-weight: 700;
+  font-weight: 700;
 }
 
 .layout.selected .layout-category{
@@ -477,13 +477,13 @@ textarea:focus {
 }
 
 .layout.selected .layout-thumb{
-    opacity: .6; 
+  opacity: .6; 
 }
 
 
 .layout:hover .layout-thumb {
-  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
-  -webkit-filter: grayscale(0%);
+/*filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+-webkit-filter: grayscale(0%);*/
 }
 
 .layout-inner {
@@ -510,7 +510,7 @@ textarea:focus {
 .layout:hover,
 .ui-draggable-dragging,
 .dimension:hover {
-	opacity: 1;
+  opacity: 1;
 }
 
 .dimension-multiple {
@@ -521,8 +521,8 @@ textarea:focus {
 }
 
 .dimension-type {
-	color: rgba(255,255,255,.9);
-	font-size: 13px;
+  color: rgba(255,255,255,.9);
+  font-size: 13px;
   font-weight: 400;
   text-transform: lowercase;
   margin-left: 3px;
@@ -537,40 +537,40 @@ textarea:focus {
 }
 
 .dimension-title {
-	font-size: 13px;
+  font-size: 13px;
   font-weight: 400;
-	text-align: center;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	padding-bottom: 5px;
-	margin: 10px 0px 5px 0px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  margin: 10px 0px 5px 0px;
 }
 
 .remove {
-	position: absolute;
-	font-size: 16px;
-	font-weight: 200;
-	top: 8px;
-	right: 10px;
+  position: absolute;
+  font-size: 16px;
+  font-weight: 200;
+  top: 8px;
+  right: 10px;
   cursor: pointer;
 }
 
 .drop {
-	padding: 8px 10px;
+  padding: 8px 10px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-	border-radius: 2px;
+  border-radius: 2px;
   background-color: #ddd;
   font-size: 13px;
   font-weight: 400;
   line-height: 18px;
-	color: #fff;
-	margin-bottom: 3px;
+  color: #fff;
+  margin-bottom: 3px;
 
   display: block;
   width: 100%;
   border-top: 1px solid rgba(100,100,100,.1);
-	
+
 
 }
 
@@ -584,7 +584,7 @@ textarea:focus {
 }
 
 .dimension-placeholder {
-	opacity: .5;
+  opacity: .5;
 }
 
 .dimension-info {
@@ -611,7 +611,7 @@ textarea:focus {
   opacity: 0;
   font-size: 13px;
   font-weight: 400;
-  
+
   -webkit-transform: translateY(100%);
   -moz-transform: translateY(100%);
   -ms-transform: translateY(100%);
@@ -625,7 +625,7 @@ textarea:focus {
 
 .dimension-description.open {
   opacity: .95;
-    z-index: 1005;
+  z-index: 1005;
   -webkit-transform: translateY(0px);
   -moz-transform: translateY(0px);
   -ms-transform: translateY(0px);
@@ -655,9 +655,9 @@ textarea:focus {
 }
 
 /*.sticky {
-  -webkit-transition: top 0.3s;
-  -moz-transition: top 0.3s;
-  transition: top 0.3s;
+-webkit-transition: top 0.3s;
+-moz-transition: top 0.3s;
+transition: top 0.3s;
 }*/
 
 /* Colors */

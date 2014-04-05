@@ -4,6 +4,8 @@
 
 	var chart = raw.chart()
 		.title('Alluvial Diagram (Fineo-like)')
+		.description(
+            "Alluvial diagrams allow to represent flows and to see correlations between categorical dimensions, visually linking to the number of elements sharing the same categories. It is useful to see the evolution of cluster (such as the number of people belonging to a specific group). It can also be used to represent bipartite graphs, using each node group as dimensions.<br/>Mainly based on our previous work with Fineo, it is inspired by <a href='http://bost.ocks.org/mike/sankey/'>http://bost.ocks.org/mike/sankey/</a>")
 		.thumbnail("/imgs/alluvial.png")
 		.model(graph)
 
