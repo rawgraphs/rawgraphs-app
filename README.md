@@ -1,9 +1,21 @@
 <p align="center"><img src="http://raw.densitydesign.org/wp-content/uploads/2013/10/Header.png"></p>
 
-#RAW v1.0.0 is here!
-We have completely rebuilt it adding many features and a lot of new charts!
+#RAW v1.0 is here!
+We have completely rebuilt RAW adding many new features and a charts!
+
+##What's New
+
+- **APIs to add and edit Charts**
+- **Lots of new Charts!**
+- Linear color scales for numeric values
+- Improved Documentation and Developer Guide
+- Mobile support
+- Brand new User Interface
+- Updated libraries 
+- Fixed bugs
 
 
+##About
 
 **RAW** is an open web tool developed at the [DensityDesign Research Lab](http://www.densitydesign.org) (Politecnico di Milano) to create custom vector-based visualizations on top of the amazing [d3.js](https://github.com/mbostock/d3) library by [Mike Bostock](http://bost.ocks.org/mike/).
 Primarily conceived as a tool for designers and vis geeks, **RAW** aims at providing a missing link  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, Google Docs, OpenRefine, …) and vector graphics editors (e.g. Adobe Illustrator, Inkscape, …).
@@ -71,9 +83,9 @@ Troubles with the installation? Maybe a look at the [issues](https://github.com/
 
 Documentation and FAQs about how to use RAW can be found on the [official website](http://raw.densitydesign.org). Development guide will be available soon on the Wiki of this repository. Sorry for this.
 
-##Available Charts
+##Charts
 
-Information about the available charts can be found on the [wiki](https://github.com/densitydesign/raw/wiki/Available-Charts).
+Information about the available charts can be found on the [wiki](https://github.com/densitydesign/raw/wiki/Available-Charts). Adding new charts is very easy in RAW, see how [here](https://github.com/densitydesign/raw/wiki/Adding-New-Charts)!
 
 If you have any suggestion or request about new layouts to include, please let us know! If you have already created new charts and you would like to see them included into Raw, please send us a [pull request](https://github.com/densitydesign/raw/pulls).
 
@@ -126,24 +138,24 @@ Want to contribute to RAW's development? You are more than welcome! Start by for
 
 RAW is provided under the LGPL (Lesser General Public License) v.3:
 
-> Copyright (c), 2013-2014 DensityDesign Lab, Giorgio Caviglia, Michele Mauri,
-> Giorgio Uboldi, Matteo Azzi
-> 
-> <info@densitydesign.org>  
-> <giorgio.caviglia@gmail.com>  
-> <michele.mauri@polimi.it>  
-> <giorgio.uboldi@polimi.it>  
-> <matteo.azzi@polimi.it>  
-> 
-> This program is free software: you can redistribute it and/or modify
-> it under the terms of the GNU Lesser General Public License as published by
-> the Free Software Foundation, either version 3 of the License, or
-> (at your option) any later version.
-> 
-> This program is distributed in the hope that it will be useful,
-> but WITHOUT ANY WARRANTY; without even the implied warranty of
-> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-> GNU Lesser General Public License for more details.
-> 
-> You should have received a copy of the GNU Lesser General Public License
-> along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	Copyright (c), 2013-2014 DensityDesign Lab, Giorgio Caviglia, Michele Mauri,
+	Giorgio Uboldi, Matteo Azzi
+	
+	<info@densitydesign.org>  
+	<giorgio.caviglia@gmail.com>  
+	<michele.mauri@polimi.it>  
+	<giorgio.uboldi@polimi.it>  
+	<matteo.azzi@polimi.it>  
+	 
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU Lesser General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	 
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU Lesser General Public License for more details.
+	 
+	You should have received a copy of the GNU Lesser General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
