@@ -1,7 +1,7 @@
 <p align="center"><img src="http://raw.densitydesign.org/wp-content/uploads/2014/04/header.png"></p>
 
 #RAW v1.0 is here!
-We have completely rebuilt RAW adding many new features and a charts!
+We have completely rebuilt RAW adding many new features and charts!
 
 ##What's New
 
@@ -18,13 +18,13 @@ We have completely rebuilt RAW adding many new features and a charts!
 ##About
 
 **RAW** is an open web tool developed at the [DensityDesign Research Lab](http://www.densitydesign.org) (Politecnico di Milano) to create custom vector-based visualizations on top of the amazing [d3.js](https://github.com/mbostock/d3) library by [Mike Bostock](http://bost.ocks.org/mike/).
-Primarily conceived as a tool for designers and vis geeks, **RAW** aims at providing a missing link  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, Google Docs, OpenRefine, …) and vector graphics editors (e.g. Adobe Illustrator, Inkscape, …).
+Primarily conceived as a tool for designers and vis geeks, RAW aims at providing a missing link  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, Google Docs, OpenRefine, …) and vector graphics editors (e.g. Adobe Illustrator, Inkscape, …).
 
-**RAW** works with [delimiter-separated values](http://en.wikipedia.org/wiki/Delimiter-separated_values) (i.e. csv and tsv files) as well as with copied-and-pasted texts from other applications (e.g. Microsoft Excel, TextWrangler, TextEdit, …). Based on the [svg](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily edited with vector graphics applications for further refinements, or directly embedded into web pages.
+RAW works with [delimiter-separated values](http://en.wikipedia.org/wiki/Delimiter-separated_values) (i.e. csv and tsv files) as well as with copied-and-pasted texts from other applications (e.g. Microsoft Excel, TextWrangler, TextEdit, …). Based on the [svg](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily edited with vector graphics applications for further refinements, or directly embedded into web pages.
 
-Knowing the need of working with sensitive information, the data uploaded to **RAW** is processed only by the web browser: **no server-side operations or storages are performed** and no one will see, touch or copy your data!
+Knowing the need of working with sensitive information, the data uploaded to RAW is processed only by the web browser: **no server-side operations or storages are performed** and no one will see, touch or copy your data!
 
-**RAW** is also highly customizable and extensible, accepting new custom layouts defined by users. For more information about how to add or edit layouts, see the [Developer Guide](https://github.com/densitydesign/raw/wiki/Developer-Guide).
+RAW is also highly customizable and extensible, accepting new custom layouts defined by users. For more information about how to add or edit layouts, see the [Developer Guide](https://github.com/densitydesign/raw/wiki/Developer-Guide).
 
 - App page: [app.raw.densitydesign.org](http://app.raw.densitydesign.org)
 - Project official page: [raw.densitydesign.org](http://raw.densitydesign.org)
@@ -36,13 +36,14 @@ Knowing the need of working with sensitive information, the data uploaded to **R
 The easiest way to use RAW is by accessing the most updated version on the **[official app page](http://app.raw.densitydesign.org)**. However, RAW can also run locally on your machine: see the installation instructions below to know how.
 
 ##Installation
-If you want to run your instance of RAW locally on your machine, be sure you have the following requirements installed (starting from version 0.1.2, we decided to simplify the code and removing Node.js: only Bower is needed to install client-side dependencies).
+If you want to run your instance of RAW locally on your machine, be sure you have the following requirements installed.
 
 ###Requirements
 
 - [git](http://git-scm.com/book/en/Getting-Started-Installing-Git)
 - [Bower](http://bower.io/#installing-bower)
 
+###Instructions
 
 Clone RAW from the command line:
 
@@ -81,11 +82,11 @@ Troubles with the installation? Maybe a look at the [issues](https://github.com/
 
 ##Documentation and Support
 
-Documentation and FAQs about how to use RAW can be found on the [official website](http://raw.densitydesign.org). Development guide will be available soon on the Wiki of this repository. Sorry for this.
+Documentation and FAQs about how to use RAW can be found on the [wiki](https://github.com/densitydesign/raw/wiki/).
 
 ##Charts
 
-Information about the available charts can be found on the [wiki](https://github.com/densitydesign/raw/wiki/Available-Charts). Adding new charts is very easy in RAW, see how [here](https://github.com/densitydesign/raw/wiki/Adding-New-Charts)!
+Information about the available charts can be found [here](https://github.com/densitydesign/raw/wiki/Available-Charts). Adding new charts is very easy in RAW, see how [here](https://github.com/densitydesign/raw/wiki/Adding-New-Charts)!
 
 If you have any suggestion or request about new layouts to include, please let us know! If you have already created new charts and you would like to see them included into Raw, please send us a [pull request](https://github.com/densitydesign/raw/pulls).
 
@@ -113,7 +114,7 @@ If you have any suggestion or request about new layouts to include, please let u
 
 - ~~Refactoring using [reusable charts](http://bost.ocks.org/mike/chart/) as layouts~~
 - ~~Introducing continuous color scales (for numeric values)~~
-- ~~Mobile version~~
+- ~~Mobile support~~
 - Improving documentation and API Reference
 - Creating and exporting legends
 - PDF export
