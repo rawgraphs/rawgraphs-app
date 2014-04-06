@@ -32,7 +32,6 @@
 
 	var colors = chart.color()
 		 .title("Color scale")
-		 .type("color")
 
 	var showPoints = chart.checkbox()
 		.title("show points")

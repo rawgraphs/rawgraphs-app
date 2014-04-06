@@ -37,7 +37,6 @@
 
     var colors = chart.color()
         .title("Color scale")
-        .type("color")
 
     chart.draw(function (selection, data){
 
