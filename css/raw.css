@@ -357,7 +357,8 @@ textarea:focus {
 .chart-description h4{
   font-size: 13px;
   font-weight: 700;
-  margin-bottom: 1;
+  margin-bottom: 1px;
+  font-family: 'Roboto Slab', sans-serif;
 }
 
 .chart-description p{
@@ -443,12 +444,12 @@ textarea:focus {
 }
 
 .layout.selected {
-  background-color: #E5E5E5;
-  border-bottom: 1px solid rgba(0,0,0,.1);
+  background-color: #34DAB9;
 }
 
 .layout-title {
   font-size: 13px;
+  font-family: 'Roboto Slab', sans-serif;
 }
 
 .layout-category {
@@ -498,6 +499,33 @@ filter: gray;
 
 .layout.selected .layout-inner {
 
+}
+
+.layout.yours {
+  background-color: transparent;
+  border: 2px dashed #ddd;
+}
+
+.layout.yours .layout-thumb {
+  background-color: transparent;
+  text-align: center;
+  font-size: 60px;
+  line-height: 110px;
+  opacity: .1;
+
+  -webkit-transition: opacity .1s ease-in-out;
+  -moz-transition: opacity .1s ease-in-out;
+  -ms-transition: opacity .1s ease-in-out;
+  -o-transition: opacity .1s ease-in-out;
+  transition: opacity .1s ease-in-out;
+}
+
+.layout.yours:hover .layout-thumb {
+  opacity: .5;
+}
+
+.layout.yours .layout-inner {
+  
 }
 
 
