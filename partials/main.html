@@ -38,8 +38,8 @@
 <div raw-table class="data-table" data-ng-show="dataView == 'table'"></div>
 
 <div>
-	<div data-ng-show="!data.length && !error" class="alert"><i class="fa fa-hand-o-right breath-right"></i> Not sure how to format your data? Visit our FAQ</div>
-	<div data-ng-show="!error && data.length" class="alert"><i class="fa fa-thumbs-up breath-right"></i><strong>{{data.length}}</strong> records in your data have been successfully parsed!</div>
+	<div data-ng-show="!data.length && !error" class="alert"><i class="fa fa-hand-o-right breath-right"></i> Not sure how it works? <a href="https://github.com/densitydesign/raw/wiki/FAQs">Visit our FAQ</a></div>
+	<div data-ng-show="!error && data.length" class="alert alert-success"><i class="fa fa-thumbs-up breath-right"></i><strong>{{data.length}}</strong> records in your data have been successfully parsed!</div>
 	<div data-ng-show="error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops!</strong> Please, check line {{error+1}}</div>
 </div>
 

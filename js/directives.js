@@ -78,7 +78,7 @@ angular.module('raw.directives', [])
 	        scope.scales = [ 
 	        	
 	        	{
-	        		type : 'Ordinal (automatic)',
+	        		type : 'Ordinal (categories)',
 	        		value : d3.scale.ordinal().range(raw.divergingRange(1)),
 	        		reset : function(domain){ this.value.range(raw.divergingRange(domain.length || 1)); },
 	        		update : ordinalUpdate
@@ -108,7 +108,7 @@ angular.module('raw.directives', [])
 	        		update : ordinalUpdate
 	        	},*/
 	        	{
-	        		type : 'Linear',
+	        		type : 'Linear (numeric)',
 	        		value : d3.scale.linear().range(["#f7fbff", "#08306b"]),
 	        		reset : function(){ this.value.range(["#f7fbff", "#08306b"]); },
 	        		update : linearUpdate
