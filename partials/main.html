@@ -47,6 +47,14 @@
 
 </section>
 
+<section data-ng-show="error">
+
+	<div class="container">
+		<h2>Ouch. It seems that RAW encountered some problems while parsing your data. Please, be sure everything is ok with your data. Often this is due to some missing delimiters. If you want to use a <a href="http://en.wikipedia.org/wiki/Delimiter">delimiter chart</a> as string literal, please include it in double quotes. See our <a href="https://github.com/densitydesign/raw/wiki/FAQs#raw-says-there-is-something-wrong-with-my-data">FAQs</a> for more information.</h2>
+	</div>
+
+</section>
+
 <section class="" data-ng-show="!error && data.length">
 
 	<div class="container">

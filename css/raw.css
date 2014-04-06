@@ -7,6 +7,18 @@ body {
   font-size: 13px;
 }
 
+h2 {
+  font-size: 18px;
+  font-family: 'Roboto Slab', sans-serif;
+  font-weight: 300;
+  line-height: 26px;
+  margin-top: 0px;
+}
+
+h2 a {
+  border-bottom: 1px dotted;
+}
+
 h3 {
   font-weight: 300;
   letter-spacing: -0.01em;
@@ -128,7 +140,7 @@ h4 {
 }
 
 section {
-  padding: 30px 0px;
+  padding: 40px 0px;
 }
 
 section.light {
