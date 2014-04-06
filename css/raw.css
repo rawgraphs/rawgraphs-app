@@ -12,7 +12,7 @@ h3 {
   letter-spacing: -0.01em;
   line-height: 48px;
   margin: 0px;
-  font-size: 18px;
+  font-size: 21px;
   margin-bottom: 20px;
   font-family: 'Roboto Slab', sans-serif;
 }
@@ -22,7 +22,7 @@ h3 {
   letter-spacing: -0.01em;
   line-height: 48px;
   margin: 0px;
-  font-size: 18px;
+  font-size: 21px;
   font-family: 'Roboto Slab', sans-serif;
 }
 
@@ -281,8 +281,8 @@ textarea:focus {
 
 .btn.choose:focus,
 .btn.choose:hover {
-  background-color: transparent;
-  text-decoration: underline;
+  border-bottom: 1px solid;
+  border-radius: 0px;
 }
 
 .btn.choose .caret {
@@ -355,7 +355,7 @@ textarea:focus {
 }
 
 .chart-description h4{
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 700;
   margin-bottom: 1px;
   font-family: 'Roboto Slab', sans-serif;
@@ -363,6 +363,9 @@ textarea:focus {
 
 .chart-description p{
   margin-top: 9px;
+  font-size: 14px;
+  font-family: 'Roboto Slab', sans-serif;
+  font-weight: 300;
 }
 
 .chart-description hr{
@@ -375,7 +378,7 @@ textarea:focus {
 }
 
 .chart-description a {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .chart-description a:hover {
@@ -444,7 +447,7 @@ textarea:focus {
 }
 
 .layout.selected {
-  background-color: #34DAB9;
+  background-color: rgba(18, 241, 179, 1);
 }
 
 .layout-title {
@@ -463,7 +466,7 @@ textarea:focus {
   margin-bottom: 5px;
   bottom: 0px;
   background-position: center;
-  background-size: 200%;
+  background-size: 250%;
   background-color: #fff;
 
 /*filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
@@ -512,6 +515,7 @@ filter: gray;
   font-size: 60px;
   line-height: 110px;
   opacity: .1;
+  height: 96px;
 
   -webkit-transition: opacity .1s ease-in-out;
   -moz-transition: opacity .1s ease-in-out;
@@ -533,7 +537,7 @@ filter: gray;
 .dimension {
   cursor: move;
   color: #ffffff;
-  background-color: #2DC37B;
+  background-color: #48A2C5;
   border-bottom: 1px solid rgba(0,0,0,.1);
 }
 
@@ -551,7 +555,7 @@ filter: gray;
 }
 
 .dimension-type {
-  color: rgba(255,255,255,.9);
+  color: rgba(255,255,255,.6);
   font-size: 13px;
   font-weight: 400;
   text-transform: lowercase;
@@ -732,7 +736,7 @@ div[colors] table{
 
 div[colors] table td {
   padding: 5px 8px;
-  background: #FAFAF7;
+  background: #FAFAFa;
   border: none;
 }
 
