@@ -8,6 +8,8 @@
 
     var chart = raw.chart()
         .title('Convex Hull')
+        .description(
+            "In mathematics, the convex hull or convex envelope of a set X of points in the Euclidean plane or Euclidean space is the smallest convex set that contains X. For instance, when X is a bounded subset of the plane, the convex hull may be visualized as the shape formed by a rubber band stretched around X. <br/>Based on <a href='http://bl.ocks.org/mbostock/4341699'>http://bl.ocks.org/mbostock/4341699</a>")
         .thumbnail("/imgs/convexHull.png")
         .model(points)
 
