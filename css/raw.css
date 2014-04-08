@@ -287,7 +287,8 @@ textarea:focus {
 
 .btn.choose {
   background-color: transparent;
-  line-height: 0px;
+  border-bottom: 1px solid transparent;
+  line-height: 2px !important;
   padding: 10px 0px;
   color: #444;
 }

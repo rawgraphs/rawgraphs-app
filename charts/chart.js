@@ -60,7 +60,7 @@
 		.title('margin')
 		.defaultValue(10)
 
-	// The Drawing function
+	// Drawing function
 	// selection represents the d3 selection (svg)
 	// data is not the original set of records
 	// but the result of the model map function
