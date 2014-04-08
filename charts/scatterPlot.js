@@ -40,13 +40,13 @@
 			.attr("height", +height() )
 			.append("g")
 
-		var marginLeft = d3.max(data, function (d) { return (Math.log(d.y) / 2.302585092994046) + 1; }) * 9,
+		var marginLeft = d3.max([maxRadius(),(d3.max(data, function (d) { return (Math.log(d.y) / 2.302585092994046) + 1; }) * 9)]),
 			marginBottom = 20,
 			w = width() - marginLeft,
 			h = height() - marginBottom;
 
 		var xExtent = !useZero()? d3.extent(data, function (d){ return d.x; }) : [0, d3.max(data, function (d){ return d.x; })],
-				yExtent = !useZero()? d3.extent(data, function (d){ return d.y; }) : [0, d3.max(data, function (d){ return d.y; })];
+			yExtent = !useZero()? d3.extent(data, function (d){ return d.y; }) : [0, d3.max(data, function (d){ return d.y; })];
 
 		var xScale = d3.scale.linear().range([marginLeft,width()-maxRadius()]).domain(xExtent),
 				yScale = d3.scale.linear().range([h-maxRadius(), maxRadius()]).domain(yExtent),
