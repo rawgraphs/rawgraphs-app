@@ -7,6 +7,8 @@
 
 	var chart = raw.chart()
 		.title('Voronoi Tessellation')
+		.description(
+            "The Voronoi tessellation shows the closest point on the plane for a given set of points. <br/>Based on <a href='http://bl.ocks.org/mbostock/4060366'>http://bl.ocks.org/mbostock/4060366</a>")
 		.thumbnail("/imgs/voronoi.png")
 		.model(points)
 
