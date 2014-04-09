@@ -45,7 +45,7 @@
 
 
     var chart = raw.chart()
-        .title('Cluster Force Layout')
+        .title('Clustered Force Layout')
         .description(
             "Nested circles allow to represent hierarchies and compare values. This visualization is particularly effective to show the proportion between elements through their areas and their position inside a hierarchical structure. <br/>Based on <a href='http://bl.ocks.org/mbostock/7882658'>http://bl.ocks.org/mbostock/7882658</a>")
         .thumbnail("/imgs/clusterForce.png")
@@ -76,6 +76,7 @@
         d3.layout.pack()
             .sort(null)
             .size([+width(), +height()])
+            .padding(d3.max([nodePadding(),clusterPadding()]))
             .children(function (d) { return d.values; })
             .value(function (d) { return +d.size; })
             .nodes({
@@ -106,6 +107,7 @@
             .call(force.drag);
 
     node.transition()
+        .delay(function(d, i) { return i * 5; })
         .attrTween("r", function(d) {
             var i = d3.interpolate(0, +d.r);
             return function(t) { return d.radius = i(t); };
