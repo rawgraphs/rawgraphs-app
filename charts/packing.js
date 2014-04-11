@@ -6,7 +6,7 @@
 		.title('Circle Packing')
 		.description(
             "Nested circles allow to represent hierarchies and compare values. This visualization is particularly effective to show the proportion between elements through their areas and their position inside a hierarchical structure.<br/>Based on <a href='http://bl.ocks.org/mbostock/4063530'>http://bl.ocks.org/mbostock/4063530</a>")
-		.thumbnail("/imgs/circlePacking.png")
+		.thumbnail("imgs/circlePacking.png")
         .model(tree)
 
 	var diameter = chart.number()
@@ -45,7 +45,7 @@
 
 		var pack = d3.layout.pack()
 		    .padding(+padding())
-		    .sort(function (a,b){ return sort() ? a.value-b.value : null; })
+		    .sort(function (a,b){ console.log(a); return sort() ? a.value-b.value : null; })
 		    .size([innerDiameter, innerDiameter])
 		    .value(function(d) { return +d.size; })
 

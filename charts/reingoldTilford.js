@@ -10,7 +10,7 @@
         .title('Reingold–Tilford Tree')
         .description(
             "The tree layout implements the Reingold-Tilford algorithm for efficient, tidy arrangement of layered nodes. The depth of nodes is computed by distance from the root, leading to a ragged appearance. <br/>Based on <a href='http://bl.ocks.org/mbostock/4339184'>http://bl.ocks.org/mbostock/4339184</a>")
-        .thumbnail("/imgs/reingoldTilford.png")
+        .thumbnail("imgs/reingoldTilford.png")
         .model(tree)
 
     var width = chart.number()

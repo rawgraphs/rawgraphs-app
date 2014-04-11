@@ -434,7 +434,7 @@ angular.module('raw.directives', [])
     restrict: 'A',
     link: function postLink(scope, element, attrs) {
 
-    	ZeroClipboard.config({ moviePath: "../bower_components/zeroclipboard/ZeroClipboard.swf" });
+    	ZeroClipboard.config({ moviePath: "bower_components/zeroclipboard/ZeroClipboard.swf" });
 
 	    var client = new ZeroClipboard( element );
 
