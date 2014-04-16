@@ -15,10 +15,33 @@
 
     stream.map(function (data){
         if (!group()) return [];
+
+        var dates = d3.set(data.map(function (d){ return date(d); })).values();
+
         var groups = d3.nest()
-            .key(function (g){ return group(g); })
-            .rollup(function (g){ return g.map(function (h){ return { group : group(h), x : date(h), y : +size(h) }; }) })
+            .key(group)
+            .rollup(function (g){
+
+                var singles = d3.nest()
+                    .key(date)
+                    .rollup(function (d){
+                        return {
+                            group : group(d[0]),
+                            x : +date(d[0]),
+                            y : size() ? d3.sum(d,size) : d.length 
+                        }
+                    })
+                    .map(g);
+
+                // let's create the empty ones
+                dates.forEach(function(d){
+                    if (!singles[d]) singles[d] = { group : group(g[0]), x : +d, y : 0 }
+                })
+
+                return d3.values(singles);
+            })
             .map(data)
+
         return d3.values(groups);
     })
 
@@ -47,6 +70,7 @@
         .title("Color scale")
 
     chart.draw(function (selection, data){
+        console.log(data)
 
         var g = selection
             .attr("width", +width() )
@@ -64,7 +88,22 @@
 
         var y = d3.scale.linear()
             .domain([0, d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); })])
-            .range([+height(), 0]);
+            .range([+height()-20, 0]);
+
+        var xAxis = d3.svg.axis().scale(x).tickSize(-height()+20).orient("bottom").tickFormat(d3.format("d"))
+
+        g.append("g")
+            .attr("class", "x axis")
+            .style("stroke-width", "1px")
+            .style("font-size","10px")
+            .style("font-family","Arial, Helvetica")
+            .attr("transform", "translate(" + 0 + "," + (height()-20) + ")")
+            .call(xAxis);
+
+        d3.selectAll(".x.axis line, .x.axis path")
+            .style("shape-rendering","crispEdges")
+            .style("fill","none")
+            .style("stroke","#ccc")
 
         colors.domain(layers, function (d){ return d[0].group; })
 
@@ -73,9 +112,10 @@
             .y0(function(d) { return y(d.y0); })
             .y1(function(d) { return y(d.y0 + d.y); });
 
-        g.selectAll("path")
+        g.selectAll("path.layer")
             .data(layers)
             .enter().append("path")
+                .attr("class","layer")
                 .attr("d", area)
                 .style("fill", function (d) { return colors()(d[0].group); });
 
