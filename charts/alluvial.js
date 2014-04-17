@@ -18,6 +18,10 @@
 		.title("Height")
 		.defaultValue(500)
 
+	var nodeWidth = chart.number()
+		.title("Node Width")
+		.defaultValue(10)
+
 	var sortBy = chart.list()
         .title("Sort by")
         .values(['automatic','size','name'])
@@ -37,9 +41,18 @@
 		  	.append("g")
 		    .attr("transform", "translate(" + 0 + "," + 0 + ")");
 
+		// Calculating the best nodePadding
+
+		var nested = d3.nest()
+	    	.key(function (d){ return d.group; })
+	    	.rollup(function (d){ return d.length; })
+	    	.entries(data.nodes)
+
+	    var maxNodes = d3.max(nested, function (d){ return d.values; });
+
 		var sankey = d3.sankey()
-		    .nodeWidth(10)
-		    .nodePadding(10)
+		    .nodeWidth(+nodeWidth())
+		    .nodePadding(d3.min([10,(height()-maxNodes)/maxNodes]))
 		    .size([+width(), +height()]);
 
 		var path = sankey.link(),
@@ -53,7 +66,7 @@
 
 	    // Re-sorting nodes
 
-	    var nested = d3.nest()
+	    nested = d3.nest()
 	    	.key(function(d){ return d.group; })
 	    	.map(nodes)
 
@@ -65,7 +78,6 @@
 	    		if (sortBy() == "name") return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;		
 	    	})
 	    	.forEach(function (node){
-	    		console.log(node.name,y)
 	    		node.y = y;
 	    		y += node.dy +sankey.nodePadding();
 	    		// and links too
@@ -86,11 +98,7 @@
 		    		})
 	    	})
 	    })
-
-	    // Re-sorting links
-
 	   
-
 	 	colors.domain(links, function (d){ return d.source.name; });
 
 		var link = g.append("g").selectAll(".link")
@@ -114,7 +122,6 @@
 		    .attr("height", function(d) { return d.dy; })
 		    .attr("width", sankey.nodeWidth())
 		    .style("fill", function (d) { return d.sourceLinks.length ? colors(d.name) : "#666"; })
-		    .style("shape-rendering","crispEdges")
 		    .append("title")
 		    	.text(function(d) { return d.name + "\n" + format(d.value); });
 
