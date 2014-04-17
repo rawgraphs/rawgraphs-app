@@ -24,7 +24,7 @@
 
 	var sortBy = chart.list()
         .title("Sort by")
-        .values(['automatic','size','name'])
+        .values(['size','name','automatic'])
         .defaultValue('size')
 
 	var colors = chart.color()
@@ -70,34 +70,48 @@
 	    	.key(function(d){ return d.group; })
 	    	.map(nodes)
 
-	    d3.values(nested).forEach(function (d){
-	    	var y = ( height() - d3.sum(d,function(n){ return n.dy+sankey.nodePadding();}) ) / 2 + sankey.nodePadding()/2;
-	    	d.sort(function (a,b){ 
-	    		if (sortBy() == "automatic") return -1;
-	    		if (sortBy() == "size") return b.dy - a.dy;
-	    		if (sortBy() == "name") return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;		
-	    	})
-	    	.forEach(function (node){
-	    		node.y = y;
-	    		y += node.dy +sankey.nodePadding();
-	    		// and links too
+	    d3.values(nested)
+	    	.forEach(function (d){
+		    	var y = ( height() - d3.sum(d,function(n){ return n.dy+sankey.nodePadding();}) ) / 2 + sankey.nodePadding()/2;
+		    	d.sort(function (a,b){ 
+		    		if (sortBy() == "automatic") return b.y - a.y;
+		    		if (sortBy() == "size") return b.dy - a.dy;
+		    		if (sortBy() == "name") return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;		
+		    	})
+		    	d.forEach(function (node){
+		    		node.y = y;
+		    		y += node.dy +sankey.nodePadding();
+		    	})
+		    })
+
+	    // Resorting links
+
+		d3.values(nested).forEach(function (d){
+
+			d.forEach(function (node){
+
 	    		var ly = 0;
 	    		node.sourceLinks
-		    		.sort(function(a,b){ return b.dy - a.dy; })
+		    		.sort(function (a,b){
+		    			return a.target.y - b.target.y;
+		    		})
 		    		.forEach(function (link){
 		    			link.sy = ly;
 		    			ly += link.dy;
 		    		})
-
+		    	
 		    	ly = 0;
-	    		node.targetLinks
-		    		.sort(function(a,b){ return b.dy - a.dy; })
+
+		    	node.targetLinks
+		    		.sort(function(a,b){ 
+		    			return a.source.y - b.source.y;
+		    		})
 		    		.forEach(function (link){
 		    			link.ty = ly;
 		    			ly += link.dy;
 		    		})
-	    	})
-	    })
+			})
+		})
 	   
 	 	colors.domain(links, function (d){ return d.source.name; });
 
