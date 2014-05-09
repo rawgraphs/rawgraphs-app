@@ -66,11 +66,14 @@
         .values(['silhouette','wiggle','expand','zero'])
         .defaultValue('silhouette')
 
+    var showLabels = chart.checkbox()
+        .title("show labels")
+        .defaultValue(true)
+
     var colors = chart.color()
         .title("Color scale")
 
     chart.draw(function (selection, data){
-        console.log(data)
 
         var g = selection
             .attr("width", +width() )
@@ -117,7 +120,34 @@
             .enter().append("path")
                 .attr("class","layer")
                 .attr("d", area)
+                .attr("title", function (d){ return d[0].group; })
                 .style("fill", function (d) { return colors()(d[0].group); });
+
+        if (!showLabels()) return;
+
+        g.selectAll("text.label")
+            .data(labels(layers))
+            .enter().append("text")
+                .attr("x", function(d){ return x(d.x); })
+                .attr("y", function(d){ return y(d.y0 + d.y/2); })
+                .text(function(d){ return d.group; })
+                .style("font-size","11px")
+                .style("font-family","Arial, Helvetica")
+
+
+        function labels(layers){
+            return layers.map(function(layer){
+                var l = layer[0], max = 0;
+                layer.forEach(function(d){
+                    if ( d.y > max ) {
+                        max = d.y;
+                        l = d;
+                    }
+                })
+                return l;
+            })
+
+        }
 
     })
 
