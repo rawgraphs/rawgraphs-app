@@ -173,7 +173,9 @@ section.dark {
   font-family: 'Lato', Arial, Helvetica, sans-serif;
 }
 
-
+a.navbar-brand{
+  text-decoration:none;
+}
 .navbar-brand small {
   font-weight: 400;
   font-size: 14px;
