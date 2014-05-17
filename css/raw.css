@@ -41,11 +41,12 @@ h3 {
 a {
   color: #444;
   cursor: pointer;
+  text-decoration: underline;
 }
 
 a:hover {
+  font-weight:600;
   color: #444;
-  text-decoration: none;
 }
 
 .stronga a {
@@ -112,7 +113,7 @@ h4 {
 
 #footer a {
   color: #bbb;
-  text-decoration: none;
+  /*text-decoration: none;*/
 }
 
 #footer a:hover {
@@ -172,7 +173,9 @@ section.dark {
   font-family: 'Lato', Arial, Helvetica, sans-serif;
 }
 
-
+a.navbar-brand{
+  text-decoration:none;
+}
 .navbar-brand small {
   font-weight: 400;
   font-size: 14px;
@@ -287,7 +290,8 @@ textarea:focus {
 
 .btn.choose {
   background-color: transparent;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px dotted #aaa;
+  border-radius:0px;
   line-height: 2px !important;
   padding: 10px 0px;
   color: #444;
@@ -994,7 +998,7 @@ textarea.source-area {
 }
 
 pre.CodeMirror-placeholder {
-  color: #444444;
+  color: #999;
 }
 
 .CodeMirror.highlight {
