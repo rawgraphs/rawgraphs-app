@@ -287,7 +287,8 @@ textarea:focus {
 
 .btn.choose {
   background-color: transparent;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px dotted #aaa;
+  border-radius:0px;
   line-height: 2px !important;
   padding: 10px 0px;
   color: #444;
@@ -994,7 +995,7 @@ textarea.source-area {
 }
 
 pre.CodeMirror-placeholder {
-  color: #444444;
+  color: #ccc;
 }
 
 .CodeMirror.highlight {
