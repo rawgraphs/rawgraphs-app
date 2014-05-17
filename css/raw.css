@@ -41,11 +41,12 @@ h3 {
 a {
   color: #444;
   cursor: pointer;
+  text-decoration: underline;
 }
 
 a:hover {
+  font-weight:600;
   color: #444;
-  text-decoration: none;
 }
 
 .stronga a {
@@ -112,7 +113,7 @@ h4 {
 
 #footer a {
   color: #bbb;
-  text-decoration: none;
+  /*text-decoration: none;*/
 }
 
 #footer a:hover {
@@ -995,7 +996,7 @@ textarea.source-area {
 }
 
 pre.CodeMirror-placeholder {
-  color: #ccc;
+  color: #999;
 }
 
 .CodeMirror.highlight {
