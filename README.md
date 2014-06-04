@@ -93,6 +93,7 @@ If you have any suggestion or request about new layouts to include, please let u
 [FileSaver.js](https://github.com/eligrey/FileSaver.js)  
 [jQuery](https://github.com/jquery/jquery)  
 [jQuery UI Touch Punch](https://github.com/furf/jquery-ui-touch-punch/)  
+[moment.js](https://github.com/moment/moment/)  
 [rgbcolor.js](http://www.phpied.com/rgb-color-parser-in-javascript/)  
 [ZeroClipboard](https://github.com/zeroclipboard/zeroclipboard)
 
