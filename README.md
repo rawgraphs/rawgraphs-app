@@ -1,19 +1,5 @@
 <p align="center"><img src="http://raw.densitydesign.org/wp-content/uploads/2014/04/header.png"></p>
 
-#RAW v1.0 is here!
-We have completely rebuilt RAW adding many new features and charts!
-
-##What's New
-
-- **APIs to add and edit Charts**
-- **Lots of new Charts!**
-- Linear color scales for numeric values
-- Improved Documentation and Developer Guide
-- Mobile support
-- Brand new User Interface
-- Updated libraries 
-- Fixed bugs
-
 
 ##About
 
