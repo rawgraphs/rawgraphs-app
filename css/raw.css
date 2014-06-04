@@ -29,17 +29,8 @@ h3 {
   font-family: 'Karla', sans-serif;
 }
 
-.btn.choose {
-  font-weight: 300;
-  letter-spacing: -0.01em;
-  line-height: 48px;
-  margin: 0px;
-  font-size: 21px;
-  font-family: 'Karla', sans-serif;
-}
-
 a {
-  color: #444;
+  color: #888;
   cursor: pointer;
 }
 
@@ -160,12 +151,13 @@ section.dark {
   opacity: .97;
   z-index: 10000;
   border-radius: 0px;
-  padding: 30px 0px;
+  padding: 20px 0px;
   margin-bottom: 30px;
   background-color: #fff;
 }
 
 .navbar-brand {
+  color: #222;
   font-size: 32px;
   font-weight: 900;
   text-transform: uppercase;
@@ -286,22 +278,29 @@ textarea:focus {
 }
 
 .btn.choose {
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  margin: 0px;
+  font-size: 21px;
+  font-family: 'Karla', sans-serif;
   background-color: transparent;
-  border-bottom: 1px solid transparent;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
   line-height: 2px !important;
   padding: 10px 0px;
-  color: #444;
+  color: #888;
 }
 
 .btn.choose:focus,
 .btn.choose:hover {
-  border-bottom: 1px solid;
   border-radius: 0px;
+  color: #444;
 }
 
 .btn.choose .caret {
   margin-left: 5px;
 }
+
 
 /* Tooltips */
 
@@ -396,7 +395,7 @@ textarea:focus {
 }
 
 .chart-description a:hover {
-  text-decoration: underline;
+
 }
 
 
@@ -994,7 +993,7 @@ textarea.source-area {
 }
 
 pre.CodeMirror-placeholder {
-  color: #444444;
+  color: #999;
 }
 
 .CodeMirror.highlight {
