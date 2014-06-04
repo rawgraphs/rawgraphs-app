@@ -34,6 +34,10 @@
 		.defaultValue(true)
 
 	chart.draw(function (selection, data){
+
+		// Retrieving dimensions from model
+		var x = points.dimensions().get('x'),
+			y = points.dimensions().get('y');
 			
 		var g = selection
 			.attr("width", +width() )
@@ -48,10 +52,14 @@
 		var xExtent = !useZero()? d3.extent(data, function (d){ return d.x; }) : [0, d3.max(data, function (d){ return d.x; })],
 			yExtent = !useZero()? d3.extent(data, function (d){ return d.y; }) : [0, d3.max(data, function (d){ return d.y; })];
 
-		var xScale = d3.scale.linear().range([marginLeft,width()-maxRadius()]).domain(xExtent),
-				yScale = d3.scale.linear().range([h-maxRadius(), maxRadius()]).domain(yExtent),
-				sizeScale = d3.scale.linear().range([1, Math.pow(+maxRadius(),2)*Math.PI]).domain([0, d3.max(data, function (d){ return d.size; })]),
-				xAxis = d3.svg.axis().scale(xScale).tickSize(-h+maxRadius()*2).orient("bottom")//.tickSubdivide(true),
+		var xScale = x.type() == "Date"
+				? d3.time.scale().range([marginLeft,width()-maxRadius()]).domain(xExtent)
+				: d3.scale.linear().range([marginLeft,width()-maxRadius()]).domain(xExtent),
+			yScale = y.type() == "Date"
+				? d3.time.scale().range([h-maxRadius(), maxRadius()]).domain(yExtent)
+				: d3.scale.linear().range([h-maxRadius(), maxRadius()]).domain(yExtent),
+			sizeScale = d3.scale.linear().range([1, Math.pow(+maxRadius(),2)*Math.PI]).domain([0, d3.max(data, function (d){ return d.size; })]),
+			xAxis = d3.svg.axis().scale(xScale).tickSize(-h+maxRadius()*2).orient("bottom")//.tickSubdivide(true),
     		yAxis = d3.svg.axis().scale(yScale).ticks(10).tickSize(-w+maxRadius()).orient("left");
 
 

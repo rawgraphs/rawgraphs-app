@@ -38,6 +38,10 @@
 		.defaultValue(true)
 
 	chart.draw(function (selection, data){
+
+		// Retrieving dimensions from model
+		var x = points.dimensions().get('x'),
+			y = points.dimensions().get('y');
 			
 		var g = selection
 			.attr("width", +width() )
@@ -52,8 +56,12 @@
 		var xExtent = !useZero()? d3.extent(data, function (d){ return d.x; }) : [0, d3.max(data, function (d){ return d.x; })],
 			yExtent = !useZero()? d3.extent(data, function (d){ return d.y; }) : [0, d3.max(data, function (d){ return d.y; })];
 
-		var xScale = d3.scale.linear().range([marginLeft,width()]).domain(xExtent),
-			yScale = d3.scale.linear().range([h, 0]).domain(yExtent),
+		var xScale = x.type() == "Date"
+				? d3.time.scale().range([marginLeft,width()]).domain(xExtent)
+				: d3.scale.linear().range([marginLeft,width()]).domain(xExtent),
+			yScale = y.type() == "Date"
+				? d3.time.scale().range([h, 0]).domain(yExtent)
+				: d3.scale.linear().range([h, 0]).domain(yExtent),
 			xAxis = d3.svg.axis().scale(xScale).tickSize(-h).orient("bottom"),
     		yAxis = d3.svg.axis().scale(yScale).ticks(10).tickSize(-w).orient("left");
 

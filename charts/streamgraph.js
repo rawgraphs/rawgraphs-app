@@ -8,6 +8,7 @@
     var date = stream.dimension()
         .title('Date')
         .types(Number,Date)
+        .accessor(function (d){ return this.type() == "Date" ? moment(d).toDate() : +d; })
 
     var size = stream.dimension()
         .title('Size')
@@ -16,18 +17,18 @@
     stream.map(function (data){
         if (!group()) return [];
 
-        var dates = d3.set(data.map(function (d){ return date(d); })).values();
+        var dates = d3.set(data.map(function (d){ return +date(d); })).values();
 
         var groups = d3.nest()
             .key(group)
             .rollup(function (g){
 
                 var singles = d3.nest()
-                    .key(date)
+                    .key(function(d){ return +date(d); })
                     .rollup(function (d){
                         return {
                             group : group(d[0]),
-                            x : +date(d[0]),
+                            x : date(d[0]),
                             y : size() ? d3.sum(d,size) : d.length 
                         }
                     })
@@ -35,14 +36,18 @@
 
                 // let's create the empty ones
                 dates.forEach(function(d){
-                    if (!singles[d]) singles[d] = { group : group(g[0]), x : +d, y : 0 }
+                    if (!singles.hasOwnProperty(d)) {
+                        //console.log(singles, d);
+                        singles[d] = { group : group(g[0]), x : d, y : 0 }
+                    }
                 })
 
                 return d3.values(singles);
             })
             .map(data)
 
-        return d3.values(groups);
+        return d3.values(groups).map(function(d){ return d.sort(function(a,b){ return a.x - b.x; }) });
+
     })
 
     var chart = raw.chart()
@@ -85,15 +90,22 @@
 
         var layers = stack(data);
 
-        var x = d3.scale.linear()
+        /*var x = d3.scale.linear()
             .domain( [ d3.min(layers, function(layer) { return d3.min(layer, function(d) { return d.x; }); }), d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.x; }); }) ])
-            .range([0, +width()]);
+            .range([0, +width()]);*/
+        var x = date.type() == "Date"
+            ? d3.time.scale()
+                .domain( [ d3.min(layers, function(layer) { return d3.min(layer, function(d) { return d.x; }); }), d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.x; }); }) ])
+                .range([0, +width()])
+            : d3.scale.linear()
+                .domain( [ d3.min(layers, function(layer) { return d3.min(layer, function(d) { return d.x; }); }), d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.x; }); }) ])
+                .range([0, +width()]);
 
         var y = d3.scale.linear()
             .domain([0, d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); })])
             .range([+height()-20, 0]);
 
-        var xAxis = d3.svg.axis().scale(x).tickSize(-height()+20).orient("bottom").tickFormat(d3.format("d"))
+        var xAxis = d3.svg.axis().scale(x).tickSize(-height()+20).orient("bottom")//.tickFormat(d3.format("d"))
 
         g.append("g")
             .attr("class", "x axis")
