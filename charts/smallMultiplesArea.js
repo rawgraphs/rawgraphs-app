@@ -8,7 +8,7 @@
     var date = stream.dimension()
         .title('Date')
         .types(Date)
-        .accessor(function (d){ return this.type() == "Date" ? moment(d).toDate() : +d; })
+        .accessor(function (d){ return this.type() == "Date" ? new Date(moment(d,raw.dateFormats,true).toISOString()) : +d; })
 
     var size = stream.dimension()
         .title('Size')
@@ -22,7 +22,6 @@
         var groups = d3.nest()
             .key(group)
             .rollup(function (g){
-
                 var singles = d3.nest()
                     .key(function(d){ return +date(d); })
                     .rollup(function (d){
@@ -69,6 +68,8 @@
         .title("Color scale")
 
     chart.draw(function (selection, data){
+
+        console.log(data)
 
         var w = +width(),
             h = (+height() - (+padding()*(data.length-1))) / (data.length);
