@@ -38,9 +38,10 @@
 <div raw-table class="data-table" data-ng-show="dataView == 'table'"></div>
 
 <div>
-	<div data-ng-show="!data.length && !error" class="alert"><i class="fa fa-hand-o-right breath-right"></i> Not sure how it works? <a href="https://github.com/densitydesign/raw/wiki/FAQs">Visit our FAQ</a></div>
-	<div data-ng-show="!error && data.length" class="alert alert-success"><i class="fa fa-thumbs-up breath-right"></i><strong>{{data.length}}</strong> records in your data have been successfully parsed!</div>
+	<div data-ng-show="!loading && !data.length && !error" class="alert"><i class="fa fa-hand-o-right breath-right"></i> Not sure how it works? <a href="http://raw.densitydesign.org/how-it-works/">Take a look at this video</a> or <a href="https://github.com/densitydesign/raw/wiki/FAQs">visit our FAQs</a></div>
+	<div data-ng-show="!loading && !error && data.length" class="alert alert-success"><i class="fa fa-thumbs-up breath-right"></i><strong>{{data.length}}</strong> records in your data have been successfully parsed!</div>
 	<div data-ng-show="error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops!</strong> Please, check line {{error+1}}</div>
+	<div data-ng-show="loading" class="alert"><i class="fa breath-right fa-refresh fa-spin"></i>Loading your data. Please wait.</div>
 </div>
 
 </div>
@@ -68,7 +69,7 @@
 
 			<div class="row">
 
-				<div class="col-lg-3">
+				<div class="col-lg-3 col-md-3">
 					<div class="chart-description">
 						<h4>{{chart.title()}}</h4>
 						<hr>
@@ -77,10 +78,10 @@
 					</div>
 				</div>		
 
-				<div class="col-lg-9">
+				<div class="col-lg-9 col-md-9">
 
 					<div class="row" group every="3" watch="charts">
-						<div class="col-lg-4" ng-repeat="c in charts track by $index">
+						<div class="col-lg-4 col-md-4" ng-repeat="c in charts track by $index">
 							<div ng-class="{selected: c == chart}" class="layout"  ng-click="selectChart(c)">
 								<div class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}">
 								</div>
@@ -90,15 +91,14 @@
 								</p>
 							</div>
 						</div>
-						<div class="col-lg-4">
+						<div class="col-lg-4 col-md-4">
 							<a href="https://github.com/densitydesign/raw/wiki/Adding-New-Charts">
 								<div class="layout yours">
 									<div class="layout-thumb">
-										<i class="fa fa-plus-circle"></i>
+										<i class="fa fa-plus-square"></i>
 									</div>
 									<p class="layout-inner" >
 										<span class="layout-title">Add your charts!</span>
-										<i data-ng-show="c==chart" class="fa fa-check pull-right"></i>
 									</p>
 								</div>
 							</a>
@@ -133,11 +133,11 @@
 
 			<div class="row">
 
-				<div class="col-lg-3">
+				<div class="col-lg-3 col-md-3">
 					<div draggable>
 						<ul class="list-unstyled dimensions-list">
 							<li class="dimension" data-dimension="{{dimension}}" ng-repeat="dimension in metadata track by $index">
-								{{ dimension.key }} 
+								<span class="dimension-key">{{ dimension.key }}</span>
 								<span class="dimension-type">{{dimension.type}}</span>
 								<span class="dimension-icon pull-right"><i class="fa fa-bars"></i></span>
 							</li>
@@ -145,7 +145,7 @@
 					</div>
 				</div>
 
-				<div class="col-lg-9">
+				<div class="col-lg-9 col-md-9">
 					<div class="sticky">
 						<div
 						class="row"
@@ -153,7 +153,7 @@
 						watch="model">
 
 						<div
-						class="col-lg-4 dimensions-wrapper"
+						class="col-lg-4 col-md-4 dimensions-wrapper"
 						ng-repeat="dimension in model.dimensions().values() track by $index" ng-init="open=false">
 
 						<div class="dimensions-model">
@@ -253,7 +253,7 @@
 		<div class="col-lg-9">
 			<div class="chart-resize">
 				<div ng-show="!isEmpty()" id="chart" chart></div>
-				<p class="light" ng-show="isEmpty()">Map your dimensions in the panels above to build the visualization</p>
+				<p class="light" ng-show="isEmpty()"><i class="fa fa-hand-o-up breath-right"></i> Map your dimensions in the panels above to build the visualization</p>
 			</div>
 		</div>
 
@@ -271,7 +271,7 @@
 			<div id="export" class="row">
 
 				<div class="col-lg-3">
-					<h3><i class="fa fa-arrow-circle-down breath-right"></i>Download</h3>
+					<h3><i class="fa fa-arrow-circle-o-down breath-right"></i>Download</h3>
 					<downloader></downloader>
 				</div>
 

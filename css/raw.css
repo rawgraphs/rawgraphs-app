@@ -83,14 +83,14 @@ h4 {
   height: auto !important;
   height: 100%;
   /* Negative indent footer by it's height */
-  margin: 0 auto -200px;
-  padding-bottom: 200px;
+  margin: 0 auto -215px;
+  padding-bottom: 215px;
 
 }
 
 #push,
 #footer {
-  height: 200px;
+  height: 215px;
 }
 
 #footer {
@@ -111,7 +111,7 @@ h4 {
 }
 
 #footer p {
-  margin: 0 0 2px; 
+  margin: 0 0 2px;
 }
 
 #footer .container {
@@ -315,7 +315,7 @@ textarea:focus {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
-  font-weight: 400; 
+  font-weight: 400;
   font-size: 14px;
 }
 
@@ -401,7 +401,7 @@ textarea:focus {
 
 .dimensions-container {
   padding: 0px;
-  min-height: 56px;
+  min-height: 55px;
   margin-bottom: 0px;
 }
 
@@ -448,6 +448,10 @@ textarea:focus {
 
 }
 
+.dimension-key {
+  margin-right: 3px;
+}
+
 .layout {
   background-color: #fff;
   cursor: pointer;
@@ -478,7 +482,7 @@ textarea:focus {
 
 .layout-thumb {
   width: 100%;
-  height: 100px;
+  height: 80px;
   margin-bottom: 5px;
   bottom: 0px;
   background-position: center;
@@ -499,7 +503,7 @@ filter: gray;
 }
 
 .layout.selected .layout-thumb{
-  opacity: .6; 
+  opacity: .3;
 }
 
 .layout.selected .layout-inner{
@@ -533,9 +537,9 @@ filter: gray;
   background-color: transparent;
   text-align: center;
   font-size: 60px;
-  line-height: 110px;
+  line-height: 96px;
   opacity: .1;
-  height: 96px;
+  height: 76px;
 
   -webkit-transition: opacity .1s ease-in-out;
   -moz-transition: opacity .1s ease-in-out;
@@ -549,7 +553,7 @@ filter: gray;
 }
 
 .layout.yours .layout-inner {
-  
+
 }
 
 
@@ -579,7 +583,6 @@ filter: gray;
   font-size: 14px;
   font-weight: 400;
   text-transform: lowercase;
-  margin-left: 3px;
 }
 
 .dimension-type-valid {
@@ -635,7 +638,7 @@ filter: gray;
 }
 
 .dimension.invalid .dimension-type {
-  color: rgba(0,0,0,.6)  
+  color: rgba(0,0,0,.6)
 }
 
 .dimension-placeholder {
@@ -726,7 +729,7 @@ div[colors] .colors-table {
   -moz-border-radius: 2px;
   border-radius: 2px;
   overflow: scroll;
-  margin-top: 10px; 
+  margin-top: 10px;
   position: relative;
 }
 
@@ -829,7 +832,9 @@ div[colors] input[type="text"] {
 }
 
 #chart svg {
-  border: 1px dashed #ddd;
+  padding: 10px;
+  background: #fff;
+
 }
 
 .chart-resize {
@@ -1025,4 +1030,3 @@ pre.CodeMirror-placeholder {
   background-color: #FFF3B8;
   color: #3F403F;
 }
-

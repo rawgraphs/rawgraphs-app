@@ -25,10 +25,12 @@ angular.module('raw.controllers', [])
       );
     });
 
+    // init
     $scope.raw = raw;
     $scope.data = [];
     $scope.metadata = [];
     $scope.error = false;
+    $scope.loading = true;
 
     $scope.parse = function(text){
 
@@ -50,11 +52,13 @@ angular.module('raw.controllers', [])
         $scope.error = e.name == "ParseError" ? +e.message : false;
       }
       if (!$scope.data.length && $scope.model) $scope.model.clear();
+      $scope.loading = false;
     }
 
     $scope.delayParse = dataService.debounce($scope.parse, 500, false);
 
     $scope.$watch("text", function (text){
+      $scope.loading = true;
       $scope.delayParse(text);
     });
 
