@@ -831,7 +831,7 @@ div[colors] input[type="text"] {
   outline: none;
 }
 
-#chart svg {
+#chart {
   padding: 10px;
   background: #fff;
 
