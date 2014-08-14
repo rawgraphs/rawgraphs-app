@@ -37,9 +37,9 @@
 
 		var g = selection
 		    .attr("width", +width() )
-		    .attr("height", +height() )
+		    .attr("height", +height() + 20 )
 		  	.append("g")
-		    .attr("transform", "translate(" + 0 + "," + 0 + ")");
+		    .attr("transform", "translate(" + 0 + "," + 10 + ")");
 
 		// Calculating the best nodePadding
 
