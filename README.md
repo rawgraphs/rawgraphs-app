@@ -124,7 +124,7 @@ Want to contribute to RAW's development? You are more than welcome! Start by for
 
 ##License
 
-RAW is provided under the LGPL (Lesser General Public License) v.3:
+RAW is provided under the [LGPL (Lesser General Public License)](https://github.com/densitydesign/raw/blob/master/COPYING.LESSER) v.3:
 
 	Copyright (c), 2013-2014 DensityDesign Lab, Giorgio Caviglia, Michele Mauri,
 	Giorgio Uboldi, Matteo Azzi
