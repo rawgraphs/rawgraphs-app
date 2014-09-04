@@ -65,14 +65,27 @@
         .title("Height")
         .defaultValue(500)
 
-    var showLabels = chart.checkbox()
-        .title("show labels")
-        .defaultValue(true)
+    var padding = chart.number()
+        .title("Padding")
+        .defaultValue(1)
+
+    var normalize = chart.checkbox()
+        .title("normalize")
+        .defaultValue(false)
 
     var curve = chart.list()
         .title("Curve")
         .values(['basis','linear'])
         .defaultValue('basis')
+
+    var sort = chart.list()
+        .title("sort by")
+        .values(['value (descending)', 'value (ascending)', 'group'])
+        .defaultValue('value (descending)')
+
+    var showLabels = chart.checkbox()
+        .title("show labels")
+        .defaultValue(true)
 
     var colors = chart.color()
         .title("Color scale")
@@ -85,7 +98,13 @@
             .attr("height", +height() )
             .append("g")
         
-        var layers = data;//stack(data);
+        var layers = data;
+
+        function sortBy(a,b){
+            if (sort() == 'value (descending)') return a.y - b.y;
+            if (sort() == 'value (ascending)') return b.y - a.y;
+            if (sort() == 'group') return a.group - b.group;
+        }
 
 
         layers[0].forEach(function(d,i){
@@ -93,17 +112,15 @@
             var values = layers.map(function(layer){
                 return layer[i];
             })
-            .sort(function(a,b) {
-                return a.y - b.y;
-            });
+            .sort(sortBy);
 
             var sum = d3.sum(values, function(layer){ return layer.y; });
             var y0 = 0;
             values.forEach(function(layer){
                 layer.original = layer.y;
-                layer.y *= 100 / sum;
+                layer.y *= normalize() ? 100 / sum : 1;
                 layer.y0 = y0;
-                y0 += layer.y + 1; 
+                y0 += layer.y + padding(); 
             })
 
         })
@@ -119,6 +136,25 @@
         var y = d3.scale.linear()
             .domain([0, d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); })])
             .range([+height()-20, 0]);
+
+        // to be improved
+        layers[0].forEach(function(d,i){
+
+            var values = layers.map(function(layer){
+                return layer[i];
+            })
+            .sort(sortBy);
+
+            var sum = d3.sum(values, function(layer){ return layer.y; });
+            var y0 = normalize() ? 0 : -sum/2 + y.invert( (+height()-20)/2 ) - padding()*(values.length-1)/2;
+
+            values.forEach(function(layer){
+                layer.y *= normalize() ? 100 / sum : 1;
+                layer.y0 = y0;
+                y0 += layer.y + padding(); 
+            })
+
+        })
 
         var xAxis = d3.svg.axis().scale(x).tickSize(-height()+20).orient("bottom")//.tickFormat(d3.format("d"))
 
