@@ -53,7 +53,7 @@
         .title('Bump Chart')
         .thumbnail("imgs/bumpChart.png")
         .description(
-            "Based on <a href='http://www.nytimes.com/interactive/2014/08/13/upshot/where-people-in-each-state-were-born.html'>New York Times</a>")
+            "Based on New York Times's <a href='http://www.nytimes.com/interactive/2014/08/13/upshot/where-people-in-each-state-were-born.html'>interactive visualization.</a>")
         .model(stream)
 
     var width = chart.number()
