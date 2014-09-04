@@ -37,7 +37,6 @@
                 // let's create the empty ones
                 dates.forEach(function(d){
                     if (!singles.hasOwnProperty(d)) {
-                        //console.log(singles, d);
                         singles[d] = { group : group(g[0]), x : d, y : 0 }
                     }
                 })
@@ -51,10 +50,10 @@
     })
 
     var chart = raw.chart()
-        .title('Streamgraph')
-        .thumbnail("imgs/streamgraph.png")
+        .title('Bump Chart')
+        .thumbnail("imgs/bumpChart.png")
         .description(
-            "For continuous data such as time series, a streamgraph can be used in place of stacked bars. <br/>Based on <a href='http://bl.ocks.org/mbostock/4060954'>http://bl.ocks.org/mbostock/4060954</a>")
+            "Based on <a href='http://www.nytimes.com/interactive/2014/08/13/upshot/where-people-in-each-state-were-born.html'>New York Times</a>")
         .model(stream)
 
     var width = chart.number()
@@ -66,14 +65,14 @@
         .title("Height")
         .defaultValue(500)
 
-    var offset = chart.list()
-        .title("Offset")
-        .values(['silhouette','wiggle','expand','zero'])
-        .defaultValue('silhouette')
-
     var showLabels = chart.checkbox()
         .title("show labels")
         .defaultValue(true)
+
+    var curve = chart.list()
+        .title("Curve")
+        .values(['basis','linear'])
+        .defaultValue('basis')
 
     var colors = chart.color()
         .title("Color scale")
@@ -82,18 +81,34 @@
 
         var g = selection
             .attr("width", +width() )
+            .attr("xmlns:xmlns:xlink", "http://www.w3.org/1999/xlink")
             .attr("height", +height() )
             .append("g")
-   
-        var stack = d3.layout.stack()
-            .offset(offset());
+        
+        var layers = data;//stack(data);
 
-        var layers = stack(data);
 
-        /*var x = d3.scale.linear()
-            .domain( [ d3.min(layers, function(layer) { return d3.min(layer, function(d) { return d.x; }); }), d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.x; }); }) ])
-            .range([0, +width()]);*/
-        var x = date.type() == "Date"
+        layers[0].forEach(function(d,i){
+
+            var values = layers.map(function(layer){
+                return layer[i];
+            })
+            .sort(function(a,b) {
+                return a.y - b.y;
+            });
+
+            var sum = d3.sum(values, function(layer){ return layer.y; });
+            var y0 = 0;
+            values.forEach(function(layer){
+                layer.original = layer.y;
+                layer.y *= 100 / sum;
+                layer.y0 = y0;
+                y0 += layer.y + 1; 
+            })
+
+        })
+        
+        var x = date && date.type() == "Date"
             ? d3.time.scale()
                 .domain( [ d3.min(layers, function(layer) { return d3.min(layer, function(d) { return d.x; }); }), d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.x; }); }) ])
                 .range([0, +width()])
@@ -123,44 +138,65 @@
         colors.domain(layers, function (d){ return d[0].group; })
 
         var area = d3.svg.area()
-            .x(function(d) { return x(d.x); })
+            .interpolate(curve())
+            .x(function(d) {  return x(d.x); })
             .y0(function(d) { return y(d.y0); })
-            .y1(function(d) { return y(d.y0 + d.y); });
+            .y1(function(d) { return Math.min(y(d.y0)-1, y(d.y0 + d.y)); });
 
-        g.selectAll("path.layer")
+        var line = d3.svg.line()
+            .interpolate(curve())
+            .x(function(d) { return x(d.x); })
+            .y(function(d) { 
+                var y0 = y(d.y0), y1 = y(d.y0 + d.y);
+                return y0 + (y1 - y0) * 0.5;
+            });
+
+        var gLayers = g.selectAll("path.layer")
             .data(layers)
             .enter().append("path")
                 .attr("class","layer")
                 .attr("d", area)
                 .attr("title", function (d){ return d[0].group; })
+                .style("fill-opacity",.9)
                 .style("fill", function (d) { return colors()(d[0].group); });
 
         if (!showLabels()) return;
 
+        g.append('defs');
+
+        g.select('defs')
+            .selectAll('path')
+            .data(layers)
+            .enter().append('path')
+            .attr('id', function(d) { return 'path-'+d[0].group.replace(/ /g, '_'); })
+            .attr('d', line);
+        
         g.selectAll("text.label")
-            .data(labels(layers))
-            .enter().append("text")
-                .attr("x", function(d){ return x(d.x); })
-                .attr("y", function(d){ return y(d.y0 + d.y/2); })
-                .text(function(d){ return d.group; })
-                .style("font-size","11px")
-                .style("font-family","Arial, Helvetica")
-
-
-        function labels(layers){
-            return layers.map(function(layer){
-                var l = layer[0], max = 0;
-                layer.forEach(function(d){
-                    if ( d.y > max ) {
-                        max = d.y;
-                        l = d;
+            .data(layers)
+            .enter().append('text')
+            .attr('dy', '0.5ex')
+            .attr("class","label")
+           .append('textPath')
+            .attr('xlink:xlink:href', function(d) { return '#path-'+d[0].group.replace(/ /g, '_'); })
+            .attr('startOffset', function(d) {
+                var maxYr = 0, maxV = 0;
+                d3.range(layers[0].length).forEach(function(i) {
+                    if (d[i].y > maxV) {
+                        maxV = d[i].y;
+                        maxYr = i;
                     }
-                })
-                return l;
+                });
+                d.maxVal = d[maxYr].y;
+                d.offset = Math.round(x(d[maxYr].x) / x.range()[1] * 100);
+                return Math.min(95, Math.max(5, d.offset))+'%';
             })
-
-        }
-
+            .attr('text-anchor', function(d) {
+                return d.offset > 90 ? 'end' : d.offset < 10 ? 'start' : 'middle';
+            })
+            .text(function(d){ return d[0].group; })
+            .style("font-size","11px")
+            .style("font-family","Arial, Helvetica")
+            .style("font-weight","normal")
     })
 
 })();

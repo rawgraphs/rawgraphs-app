@@ -324,6 +324,10 @@ textarea:focus {
   background-color: #0dc4a3;
 }
 
+.btn-success.disabled {
+  opacity: .2;
+}
+
 .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success {
   background-color: #0dc4a3;
 }
@@ -1029,4 +1033,11 @@ pre.CodeMirror-placeholder {
 .CodeMirror .line-error {
   background-color: #FFF3B8;
   color: #3F403F;
+}
+
+.cm-tab {
+   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+   background-position: right;
+   background-repeat: no-repeat;
+   opacity: .3;
 }

@@ -26,12 +26,7 @@
 		</h3>
 
 		<div data-ng-show="dataView != 'table'">
-			<textarea ui-codemirror="{ 
-			lineNumbers : true,
-			lineWrapping : true,
-			placeholder : 'Paste your text or drop a file here. No data on hand? Try one of our sample datasets!'
-		}"
-		ng-model="text">
+			<textarea ui-codemirror="codeMirrorOptions" ng-model="text">
 	</textarea>
 </div>
 
