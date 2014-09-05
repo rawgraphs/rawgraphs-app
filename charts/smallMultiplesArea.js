@@ -45,6 +45,7 @@
         .title('Small Multiples (Area)')
         .thumbnail("imgs/smallMultiples.png")
         .description("A small multiple is a series of small similar graphics or charts, allowing them to be easily compared.<br/>Based on <a href='http://bl.ocks.org/mbostock/9490313'>http://bl.ocks.org/mbostock/9490313</a>")
+        .category('Time Series')
         .model(stream)
 
     var width = chart.number()

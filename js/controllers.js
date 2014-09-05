@@ -32,6 +32,8 @@ angular.module('raw.controllers', [])
     $scope.error = false;
     $scope.loading = true;
 
+    $scope.categories = ['Correlations', 'Distributions', 'Time Series', 'Hierarchies', 'Others'];
+
     $scope.parse = function(text){
 
       if ($scope.model) $scope.model.clear();

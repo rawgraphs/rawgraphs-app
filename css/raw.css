@@ -215,6 +215,10 @@ section.dark {
   background-color: transparent;
   color: #5A5E5A;
 
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
+
 }
 
 .alert-success {
@@ -463,7 +467,7 @@ textarea:focus {
   margin-bottom: 10px;
   display: table;
   width: 100%;
-  height: 140px;
+  height: 120px;
 
   -webkit-border-radius: 2px;
      -moz-border-radius: 2px;
@@ -473,11 +477,10 @@ textarea:focus {
    -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.1);
         box-shadow: 0px 1px 1px rgba(0,0,0,.1);
 
-
 }
 
 .layout.selected {
-  background-color: #0dc4a3;
+  background-color: #14E2B9;
 }
 
 .layout-title {
@@ -485,34 +488,38 @@ textarea:focus {
   color: #000;
   font-size: 18px;
   font-weight: 400;
-
 }
 
-.layout-category {
-  color: #bbbbbb;
-  font-weight: 400;
-}
 
 .layout-thumb {
   background-position: center;
-  background-size: 170%;
+  background-size: 180%;
   background-color: #fff;
+
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
 
   position: absolute;
   top: 0px;
   bottom: 0px;
   left: 0px;
   right: 0px;
+}
+
+.layout.selected .layout-thumb,
+.layout:hover .layout-thumb {
+  opacity: .15;
+      -webkit-transition: opacity .2s ease-in-out;
+  -moz-transition: opacity .2s ease-in-out;
+  -ms-transition: opacity .2s ease-in-out;
+  -o-transition: opacity .2s ease-in-out;
+  transition: opacity .2s ease-in-out;
 
 }
 
 .layout.selected .layout-title{
-  color: #fff;
-}
 
-.layout.selected .layout-inner{
-  opacity: .9;
-  background-color: #0dc4a3;
 }
 
 .layout-inner {
@@ -522,7 +529,10 @@ textarea:focus {
   bottom: 0px;
   left: 0px;
   right: 0px;
-  background-color: #fff;
+
+  -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+        border-radius: 2px;
 
   text-align: center;
   margin: 0px;
@@ -550,25 +560,32 @@ textarea:focus {
   
 }
 
+.layout.selected .layout-inner,
 .layout:hover .layout-inner {
-  opacity: .9;
-  -webkit-transition: opacity .2s ease-in-out;
+  opacity: 1;
+
+    -webkit-transition: opacity .2s ease-in-out;
   -moz-transition: opacity .2s ease-in-out;
   -ms-transition: opacity .2s ease-in-out;
   -o-transition: opacity .2s ease-in-out;
   transition: opacity .2s ease-in-out;
+
 }
 
 .layout.yours {
   background-color: transparent;
   border: 2px dashed #ddd;
+
+  -webkit-box-shadow: none;
+   -moz-box-shadow: none;
+        box-shadow: none;
 }
 
 .layout.yours .layout-thumb {
   background-color: transparent;
   text-align: center;
   font-size: 60px;
-  line-height: 134px;
+  line-height: 118px;
   opacity: .1;
   height: 76px;
 }
@@ -648,7 +665,6 @@ textarea:focus {
   width: 100%;
   border-top: 1px solid rgba(100,100,100,.1);
 
-
 }
 
 .dimension.invalid {
@@ -713,7 +729,7 @@ textarea:focus {
 }
 
 .msg {
-  color: #666;
+  color: #888;
   font-size: 12px;
   font-weight: 400;
   margin-bottom: 10px;

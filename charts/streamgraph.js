@@ -7,8 +7,8 @@
 
     var date = stream.dimension()
         .title('Date')
-        .types(Number,Date)
-        .accessor(function (d){ return this.type() == "Date" ? new Date(d) : +d; })
+        .types(Number, Date, String)
+        .accessor(function (d){ return this.type() == "Date" ? new Date(d) : this.type() == "String" ? d : +d; })
 
     var size = stream.dimension()
         .title('Size')
@@ -17,14 +17,14 @@
     stream.map(function (data){
         if (!group()) return [];
 
-        var dates = d3.set(data.map(function (d){ return +date(d); })).values();
+        var dates = d3.set(data.map(function (d){ return date(d); })).values();
 
         var groups = d3.nest()
             .key(group)
             .rollup(function (g){
 
                 var singles = d3.nest()
-                    .key(function(d){ return +date(d); })
+                    .key(function(d){ return date(d); })
                     .rollup(function (d){
                         return {
                             group : group(d[0]),
@@ -55,6 +55,7 @@
         .thumbnail("imgs/streamgraph.png")
         .description(
             "For continuous data such as time series, a streamgraph can be used in place of stacked bars. <br/>Based on <a href='http://bl.ocks.org/mbostock/4060954'>http://bl.ocks.org/mbostock/4060954</a>")
+        .category('Time Series')
         .model(stream)
 
     var width = chart.number()
@@ -71,6 +72,11 @@
         .values(['silhouette','wiggle','expand','zero'])
         .defaultValue('silhouette')
 
+    var curve = chart.list()
+        .title("Interpolation")
+        .values(['Sankey curves','Linear'])
+        .defaultValue('Sankey curves')
+
     var showLabels = chart.checkbox()
         .title("show labels")
         .defaultValue(true)
@@ -84,22 +90,31 @@
             .attr("width", +width() )
             .attr("height", +height() )
             .append("g")
+
+        var curves = {
+          'Sankey curves' : interpolate,
+          'Linear' : 'linear'
+        }
    
         var stack = d3.layout.stack()
             .offset(offset());
 
         var layers = stack(data);
 
-        /*var x = d3.scale.linear()
-            .domain( [ d3.min(layers, function(layer) { return d3.min(layer, function(d) { return d.x; }); }), d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.x; }); }) ])
-            .range([0, +width()]);*/
         var x = date.type() == "Date"
+            // Date
             ? d3.time.scale()
                 .domain( [ d3.min(layers, function(layer) { return d3.min(layer, function(d) { return d.x; }); }), d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.x; }); }) ])
                 .range([0, +width()])
-            : d3.scale.linear()
-                .domain( [ d3.min(layers, function(layer) { return d3.min(layer, function(d) { return d.x; }); }), d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.x; }); }) ])
-                .range([0, +width()]);
+            : date && date.type() == "String"
+              // String
+              ? d3.scale.ordinal()
+                  .domain(layers[0].map(function(d){ return d.x; }) )
+                  .rangePoints([0, +width()],0)
+              // Number
+              : d3.scale.linear()
+                  .domain( [ d3.min(layers, function(layer) { return d3.min(layer, function(d) { return d.x; }); }), d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.x; }); }) ])
+                  .range([0, +width()]);
 
         var y = d3.scale.linear()
             .domain([0, d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); })])
@@ -123,9 +138,19 @@
         colors.domain(layers, function (d){ return d[0].group; })
 
         var area = d3.svg.area()
+            .interpolate(curves[curve()])
             .x(function(d) { return x(d.x); })
             .y0(function(d) { return y(d.y0); })
             .y1(function(d) { return y(d.y0 + d.y); });
+
+        var line = d3.svg.line()
+            .interpolate(curves[curve()])
+            .x(function(d) { return x(d.x); })
+            .y(function(d) { 
+                var y0 = y(d.y0), y1 = y(d.y0 + d.y);
+                return y0 + (y1 - y0) * 0.5;
+            });
+
 
         g.selectAll("path.layer")
             .data(layers)
@@ -137,7 +162,43 @@
 
         if (!showLabels()) return;
 
+        g.append('defs');
+
+        g.select('defs')
+            .selectAll('path')
+            .data(layers)
+            .enter().append('path')
+            .attr('id', function(d,i) { return 'path-' + i; })
+            .attr('d', line);
+        
         g.selectAll("text.label")
+            .data(layers)
+            .enter().append('text')
+            .attr('dy', '0.5ex')
+            .attr("class","label")
+           .append('textPath')
+            .attr('xlink:xlink:href', function(d,i) { return '#path-' + i; })
+            .attr('startOffset', function(d) {
+                var maxYr = 0, maxV = 0;
+                d3.range(layers[0].length).forEach(function(i) {
+                    if (d[i].y > maxV) {
+                        maxV = d[i].y;
+                        maxYr = i;
+                    }
+                });
+                d.maxVal = d[maxYr].y;
+                d.offset = Math.round(x(d[maxYr].x) / x.range()[1] * 100);
+                return Math.min(95, Math.max(5, d.offset))+'%';
+            })
+            .attr('text-anchor', function(d) {
+                return d.offset > 90 ? 'end' : d.offset < 10 ? 'start' : 'middle';
+            })
+            .text(function(d){ return d[0].group; })
+            .style("font-size","11px")
+            .style("font-family","Arial, Helvetica")
+            .style("font-weight","normal")
+
+        /*g.selectAll("text.label")
             .data(labels(layers))
             .enter().append("text")
                 .attr("x", function(d){ return x(d.x); })
@@ -145,6 +206,7 @@
                 .text(function(d){ return d.group; })
                 .style("font-size","11px")
                 .style("font-family","Arial, Helvetica")
+
 
 
         function labels(layers){
@@ -159,6 +221,20 @@
                 return l;
             })
 
+        }*/
+
+        function interpolate(points) {
+          var x0 = points[0][0], y0 = points[0][1], x1, y1, x2,
+              path = [x0, ",", y0],
+              i = 0,
+              n = points.length;
+
+          while (++i < n) {
+            x1 = points[i][0], y1 = points[i][1], x2 = (x0 + x1) / 2;
+            path.push("C", x2, ",", y0, " ", x2, ",", y1, " ", x1, ",", y1);
+            x0 = x1, y0 = y1;
+          }
+          return path.join("");
         }
 
     })
