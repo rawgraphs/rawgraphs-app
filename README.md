@@ -87,14 +87,11 @@ If you have any suggestion or request about new layouts to include, please let u
 [bootstrap-colorpicker](http://www.eyecon.ro/bootstrap-colorpicker/)  
 [Bower](https://github.com/bower/bower)  
 [canvas-toBlob.js](https://github.com/eligrey/canvas-toBlob.js)  
-[canvg.js](http://code.google.com/p/canvg/)  
 [CodeMirror](https://github.com/marijnh/codemirror)  
 [d3.js](https://github.com/mbostock/d3)  
 [FileSaver.js](https://github.com/eligrey/FileSaver.js)  
 [jQuery](https://github.com/jquery/jquery)  
 [jQuery UI Touch Punch](https://github.com/furf/jquery-ui-touch-punch/)  
-[moment.js](https://github.com/moment/moment/)  
-[rgbcolor.js](http://www.phpied.com/rgb-color-parser-in-javascript/)  
 [ZeroClipboard](https://github.com/zeroclipboard/zeroclipboard)
 
 ##Roadmap

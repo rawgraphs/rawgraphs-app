@@ -8,7 +8,7 @@
     var date = stream.dimension()
         .title('Date')
         .types(Number,Date)
-        .accessor(function (d){ return this.type() == "Date" ? new Date(moment(d,raw.dateFormats,true).toISOString()) : +d; })
+        .accessor(function (d){ return this.type() == "Date" ? new Date(d) : +d; })
 
     var size = stream.dimension()
         .title('Size')

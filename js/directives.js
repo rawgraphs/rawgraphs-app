@@ -496,7 +496,7 @@ angular.module('raw.directives', [])
                       'Select <span class="caret"></span>' +
                       '</button>' +
                       '<input class="form-control col-lg-12" placeholder="Filename" type="text" ng-model="filename">' +
-                      '<button class="btn btn-success form-control" ng-class="{disabled:!mode}" ng-click="mode.download()">Download</button>' +
+                      '<button class="btn btn-success form-control" ng-class="{disabled:!mode.label}" ng-click="mode.download()">Download</button>' +
                     '</form>' +
                   '</div>',
 
@@ -508,6 +508,13 @@ angular.module('raw.directives', [])
             return window.Blob || window.WebKitBlob || window.MozBlob;
           }
 
+        // Removing HTML entities from svg
+        function decodeHtml(html) {
+		    	var txt = document.createElement("textarea");
+		    	txt.innerHTML = html;
+		    	return txt.value;
+				}
+
         function downloadSvg(){
           var BB = getBlob();
          
@@ -515,6 +522,8 @@ angular.module('raw.directives', [])
             .attr("version", 1.1)
             .attr("xmlns", "http://www.w3.org/2000/svg")
             .node().parentNode.innerHTML;
+
+          html = decodeHtml(html);
 
           var isSafari = (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1);
 
@@ -537,19 +546,37 @@ angular.module('raw.directives', [])
           var html = d3.select(source)
               .node().parentNode.innerHTML;
 
-          canvg('canvas', html);
-          var canvas = document.getElementById("canvas");//, ctx = canvas.getContext("2d");
+          var image = new Image;
+					image.src = 'data:image/svg+xml;base64,' + window.btoa(html);
+
+          var canvas = document.getElementById("canvas");
+          canvas.width = image.width;
+  				canvas.height = image.height;
+          var context = canvas.getContext("2d");
+					
+					image.onload = function() {
+					  context.drawImage(image, 0, 0);
+
+					  var isSafari = (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1);
           
-          var isSafari = (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1);
+	          if (isSafari) {
+	            var img = canvas.toDataURL("image/png;base64");
+            	var newWindow = window.open(img, 'download');
+            	window.location = img;
+	          } else {
+	          	var a = document.createElement("a");
+					  	a.download = (scope.filename || element.find('input').attr("placeholder")) + ".png";
+					  	a.href = canvas.toDataURL("image/png;base64");
+					    var event = document.createEvent("MouseEvents");
+				        event.initMouseEvent(
+				                "click", true, false, window, 0, 0, 0, 0, 0
+				                , false, false, false, false, 0, null
+				        );
+					    a.dispatchEvent(event);
+					  }
+					};
+
           
-          if (isSafari) {
-            var img = canvas.toDataURL("image/png;base64");
-            var newWindow = window.open(img, 'download');
-          } else {
-            canvas.toBlob(function (blob) {
-              saveAs(blob, (scope.filename || element.find('input').attr("placeholder")) + ".png");
-            }, "image/png");
-          }
 
           d3.select("#canvas").remove();
       } 

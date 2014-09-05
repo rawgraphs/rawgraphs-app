@@ -26,12 +26,7 @@
 		</h3>
 
 		<div data-ng-show="dataView != 'table'">
-			<textarea ui-codemirror="{ 
-			lineNumbers : true,
-			lineWrapping : true,
-			placeholder : 'Paste your text or drop a file here. No data on hand? Try one of our sample datasets!'
-		}"
-		ng-model="text">
+			<textarea ui-codemirror="codeMirrorOptions" ng-model="text">
 	</textarea>
 </div>
 
@@ -87,7 +82,6 @@
 								</div>
 								<p class="layout-inner" >
 									<span class="layout-title">{{c.title()}}</span>
-									<i data-ng-show="c==chart" class="fa fa-check pull-right"></i>
 								</p>
 							</div>
 						</div>

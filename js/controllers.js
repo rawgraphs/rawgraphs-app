@@ -86,12 +86,16 @@ angular.module('raw.controllers', [])
         angular.element(this).scope().$apply();
       })
     })
-    
 
-    /*$scope.$watch('dataView', function(){
-      if (!$('.CodeMirror')[0]) return;
-      var cm = $('.CodeMirror')[0].CodeMirror;
-    })*/
+    $scope.codeMirrorOptions = {
+      lineNumbers : true,
+      lineWrapping : true,
+      placeholder : 'Paste your text or drop a file here. No data on hand? Try one of our sample datasets!'
+    }
+
+    var charNames = {
+      "\x00": "Null",
+    };
 
     $scope.selectChart = function(chart){
       if (chart == $scope.chart) return;
