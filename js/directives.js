@@ -16,19 +16,19 @@ angular.module('raw.directives', [])
 	        	d3.select(element[0]).select("*").remove();
 
 	        	if (!scope.chart || !scope.data.length) return;
-						if (scope.isEmpty()) return;
+						if (!scope.model.isValid()) return;
 
 	        	d3.select(element[0])
 	        		.append("svg")
 	        		.datum(scope.data)
 	        		.call(scope.chart)
 
-    			scope.svgCode = d3.select(element[0])
-        			.select('svg')
-    				.attr("xmlns", "http://www.w3.org/2000/svg")
-    				.node().parentNode.innerHTML;
-    			
-    			$rootScope.$broadcast("completeGraph");
+	    			scope.svgCode = d3.select(element[0])
+	        			.select('svg')
+	    				.attr("xmlns", "http://www.w3.org/2000/svg")
+	    				.node().parentNode.innerHTML;
+	    			
+	    			$rootScope.$broadcast("completeGraph");
 
 	        }
 

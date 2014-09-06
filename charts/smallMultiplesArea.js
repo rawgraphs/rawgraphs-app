@@ -4,15 +4,18 @@
 
     var group = stream.dimension()
         .title('Group')
+        .required(1)
 
     var date = stream.dimension()
         .title('Date')
         .types(Date)
         .accessor(function (d){ return this.type() == "Date" ? new Date(d) : +d; })
+        .required(1)
 
     var size = stream.dimension()
         .title('Size')
         .types(Number)
+        .required(1)
 
     stream.map(function (data){
         if (!group()) return [];
@@ -69,8 +72,6 @@
         .title("Color scale")
 
     chart.draw(function (selection, data){
-
-        console.log(data)
 
         var w = +width(),
             h = (+height() - (+padding()*(data.length-1))) / (data.length);

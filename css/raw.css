@@ -413,6 +413,11 @@ textarea:focus {
   margin-bottom: 0px;
 }
 
+
+.dimensions-wrapper {
+  margin-bottom: 20px;
+}
+
 .dimensions-model {
   position: relative;
   -webkit-border-radius: 2px;
@@ -420,8 +425,9 @@ textarea:focus {
   border-radius: 2px;
   background-color: white;
   padding: 10px;
-  margin-bottom: 20px;
   overflow: hidden;
+
+  margin-bottom: 5px;  
 
   -webkit-transition: border .15s ease-in-out;
   -moz-transition: border .15s ease-in-out;
@@ -614,6 +620,13 @@ textarea:focus {
   color: #bbbbbb;
 }
 
+.dimension-required {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  color: #0dc4a3;
+}
+
 .dimension-type {
   color: rgba(255,255,255,.6);
   font-size: 14px;
@@ -630,13 +643,12 @@ textarea:focus {
 }
 
 .dimension-title {
-  font-size: 14px;
-  font-weight: 700;
   text-align: center;
-  letter-spacing: 1px;
-  text-transform: uppercase;
   padding-bottom: 5px;
   margin: 10px 0px 5px 0px;
+  color: #000;
+  font-size: 18px;
+  font-weight: 400;
 
 }
 

@@ -95,19 +95,11 @@ angular.module('raw.controllers', [])
       placeholder : 'Paste your text or drop a file here. No data on hand? Try one of our sample datasets!'
     }
 
-    var charNames = {
-      "\x00": "Null",
-    };
-
     $scope.selectChart = function(chart){
       if (chart == $scope.chart) return;
       $scope.model.clear();
       $scope.chart = chart;
       $scope.model = $scope.chart.model();
-    }
-
-    $scope.isEmpty = function(){
-      return $scope.model && !$scope.model.dimensions().values().filter(function (d){ return d.value.length } ).length;
     }
 
     function refreshScroll(){

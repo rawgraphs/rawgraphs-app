@@ -6,6 +6,7 @@
         .title('Dimensions')
         .multiple(true)
         .types(Number)
+        .required(2);
 
     var color = model.dimension()
         .title("Color")
