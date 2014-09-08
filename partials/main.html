@@ -198,9 +198,9 @@
 							
 						</div>
 
-						<div class="text-muted small" ng-show="dimension.required() && dimension.required() - dimension.value.length > 0">
-							{{dimension.required() - dimension.value.length}} more dimensions required
-						</div>
+						<!--<div class="text-muted small" ng-show="dimension.required() && dimension.required() - dimension.value.length > 0">
+							{{dimension.required() - dimension.value.length}} more dimension(s) required
+						</div>-->
 
 					</div>
 
@@ -274,7 +274,8 @@
 				<div ng-show="model.isValid()" id="chart" chart></div>
 			</div>
 			<div class="text-muted text-center" ng-show="!model.isValid()">
-				<i class="fa fa-hand-o-up breath-right"></i><h4 ng-bind-html="model.instruction()"></h4>
+				<!--<i class="fa fa-hand-o-up breath-right"></i>-->
+				<h4><span ng-bind-html="model.instruction()"></span></h4>
 			</div>
 
 		</div>
