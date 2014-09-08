@@ -46,7 +46,7 @@
 
 		var pack = d3.layout.pack()
 		    .padding(+padding())
-		    .sort(function (a,b){ return sort() ? a.value-b.value : null; })
+		    .sort(function (a,b){ return sort() ? b.value - a.value : null; })
 		    .size([innerDiameter, innerDiameter])
 		    .value(function(d) { return +d.size; })
 

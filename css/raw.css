@@ -115,7 +115,7 @@ h4 {
 }
 
 #footer .container {
-  padding: 30px;
+  padding: 30px 15px;
 }
 
 @media (max-width: 767px) {
