@@ -1,6 +1,8 @@
 <p align="center"><img src="http://raw.densitydesign.org/wp-content/uploads/2014/04/header.png"></p>
 
 
+Spreadsheet -> d3.js powered charts
+
 ##About
 
 **RAW** is an open web tool developed at the [DensityDesign Research Lab](http://www.densitydesign.org) (Politecnico di Milano) to create custom vector-based visualizations on top of the amazing [d3.js](https://github.com/mbostock/d3) library by [Mike Bostock](http://bost.ocks.org/mike/).
