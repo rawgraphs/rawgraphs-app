@@ -46,7 +46,7 @@
 						+ "and the relationships between them are shown using quadratic Bézier curves.</p>"
 						+ "<p>Note that input data must compute down to a <a href='http://en.wikipedia.org/wiki/Square_matrix'>square matrix</a>. "
 						+ "In other words, the <b>input data must describe a numerical relationship between every possible group (source and target) combination</b>. "
-						+ "For example, if there are N unique entities in the sources column, there must be N^2 lines of input data.</p>"
+						+ "For example, if there are n unique entities in the sources column, there must be n*(n-1)/2 lines of input data.</p>"
 						+ "<p>Based on <a href='http://www.delimited.io/blog/2013/12/8/chord-diagrams-in-d3'>http://www.delimited.io/blog/2013/12/8/chord-diagrams-in-d3</a></p>")
 		.category("Correlations")
 		.model(model)
