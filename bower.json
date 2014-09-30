@@ -35,6 +35,8 @@
     "zeroclipboard": "1.3.2",
     "canvas-toBlob.js": "https://github.com/eligrey/canvas-toBlob.js.git",
     "jqueryui-touch-punch": "*",
-    "codemirror": "~4.5.0"
+    "codemirror": "~4.5.0",
+    "underscore": "1.7.0",
+    "d3-chord-diagrams": "https://github.com/sghall/d3-chord-diagrams.git"
   }
 }

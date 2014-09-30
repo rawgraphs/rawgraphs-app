@@ -10,7 +10,8 @@ angular.module('raw.controllers', [])
       { title : 'Cars (multivariate)', url : 'data/multivariate.csv' },
       { title : 'Movies (dispersions)', url : 'data/dispersions.csv' },
       { title : 'Music (flows)', url : 'data/flows.csv' },
-      { title : 'Cocktails (correlations)', url : 'data/correlations.csv' }
+      { title : 'Cocktails (correlations)', url : 'data/correlations.csv' },
+      { title : 'Debts (chord)', url : 'data/debts.csv' }
     ]
 
     $scope.$watch('sample', function (sample){
