@@ -11,7 +11,7 @@
     document.write('<base href="' + document.location + '" />');
   </script>
 
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic|Lato:400,700,900|Open+Sans:400,300,600,700,800|Roboto+Slab:400,300,100,700|Roboto:400,100,300,500,700,900&subset=latin,latin-ext"/>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic|Lato:100,200,400,700,900&subset=latin,latin-ext"/>
 
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
   <link rel="stylesheet" type="text/css" href="bower_components/angular-bootstrap-colorpicker/css/colorpicker.css">
@@ -25,9 +25,8 @@
 
 <body data-spy="scroll" data-target="#raw-nav">
 
-  <nav class="navbar" role="navigation" id="raw-nav">
+  <header class="navbar navbar-static-top" role="navigation" id="raw-nav" role="banner">
     <div class="container">
-
      <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#raw-navbar">
           <span class="sr-only">Toggle navigation</span>
@@ -38,19 +37,19 @@
         <a class="navbar-brand" href="/#">RAW</a>
       </div>
 
-      <div class="collapse navbar-collapse navbar-right" id="raw-navbar">
-        <ul class="nav navbar-nav">
+      <nav class="collapse navbar-collapse" role="navigation" id="raw-navbar">
+        <ul class="nav navbar-nav navbar-right">
           <li><a href="http://raw.densitydesign.org">About</a></li>
+          <li><a href="https://github.com/densitydesign/raw/wiki/FAQs">FAQs</a></li>
           <li><a href="https://github.com/densitydesign/raw/wiki/Developer-Guide">Developer Guide</a></li>
-          <li><a href="https://github.com/densitydesign/raw/wiki/API-Reference">API Reference</a></li>
-          <li><a href="https://github.com/densitydesign/raw/wiki/FAQs">FAQ</a></li>
-          <li><a href="https://github.com/densitydesign/raw">Github</a></li>
+          <li><a href="https://github.com/densitydesign/raw" style="font-size:23px"><i class="fa fa-github"></i></a></li>
         </ul>
-      </div>
+      </nav>
 
+      <!--<span class="pull-left">The missing link between spreadsheets and vector graphics</span class="pull-left">-->
 
     </div>
-  </nav>
+  </header>
 
   <div ng-view class="wrap"></div>
 
@@ -58,15 +57,15 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6">
-          <p><strong>RAW</strong> is a project by <a href="http://www.densitydesign.org">DensityDesign Lab</a></p>
+          <p><strong>RAW</strong> is an open source project by <a href="http://www.densitydesign.org">DensityDesign Lab</a></p>
           <p><a href="https://www.giorgiocaviglia.com">Giorgio Caviglia,</a> Michele Mauri, Giorgio Uboldi, Matteo Azzi</p>
           <p>&copy; 2013-2014 (<a href="https://raw.github.com/densitydesign/raw/master/LICENSE">LGPL License</a>)</p>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
           <p><a href="mailto:raw@densitydesign.org"><i class="fa fa-envelope breath-right"></i>raw@densitydesign.org</a></p>
           <p><a href="http://twitter.com/densitydesign"><i class="fa fa-twitter breath-right"></i>densitydesign</a></p>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
           <p><a href="http://github.com/densitydesign/raw"><i class="fa fa-github breath-right"></i>GitHub</a></p>
           <p><a href="https://groups.google.com/forum/?hl=en#!forum/densitydesign-raw"><i class="fa fa-google breath-right"></i>Google group</a></p>
         </div>
@@ -94,7 +93,6 @@
   <script type="text/javascript" src="bower_components/FileSaver/FileSaver.js"></script>
   <!-- zeroclipboard -->
   <script type="text/javascript" src="bower_components/zeroclipboard/ZeroClipboard.min.js"></script>
-
   <!-- raw -->
   <script type="text/javascript" src="lib/raw.js"></script>
 
@@ -115,6 +113,7 @@
   <script src="charts/circularDendrogram.js"></script>
   <script src="charts/smallMultiplesArea.js"></script>
   <script src="charts/bumpChart.js"></script>
+  <script src="charts/gantt.js"></script>
 
   <!-- angular -->
   <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>

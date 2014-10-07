@@ -18,6 +18,7 @@
         .required(1)
 
     stream.map(function (data){
+        console.log("asadsas")
         if (!group()) return [];
 
         var dates = d3.set(data.map(function (d){ return +date(d); })).values();

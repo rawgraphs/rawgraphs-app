@@ -33,6 +33,13 @@ angular.module('raw.controllers', [])
     $scope.loading = true;
 
     $scope.categories = ['Correlations', 'Distributions', 'Time Series', 'Hierarchies', 'Others'];
+    $scope.bgColors = {
+      'Correlations': '#df0',
+      'Distributions': 'rgb(5, 205, 255)',
+      'Time Series': 'rgb(255, 185, 5)',
+      'Hierarchies': '#0f0',
+      'Others': '#0f0'
+    }
 
     $scope.parse = function(text){
 

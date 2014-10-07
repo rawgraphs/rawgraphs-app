@@ -15,11 +15,11 @@
 			<span class="list-type pull-right">
 				<i class="type fa fa-align-left breath-left"
 				data-toggle="tooltip"
-				data-title="Text"
+				data-title="View as Text"
 				ng-click="dataView='text'" ng-class="{selected:dataView!='table'}"></i>
 				<i class="type fa fa-table breath-left"
 				data-toggle="tooltip"
-				data-title="Table"
+				data-title="View as Table"
 				ng-click="dataView='table'" ng-class="{selected:dataView=='table'}"></i>
 			</span>
 			<span class="clearfix"></span>
@@ -35,7 +35,7 @@
 		<div>
 			<div data-ng-show="!loading && !data.length && !error" class="alert"><i class="fa fa-hand-o-right breath-right"></i> Not sure how it works? <a href="http://raw.densitydesign.org/how-it-works/">Take a look at this video</a> or <a href="https://github.com/densitydesign/raw/wiki/FAQs">visit our FAQs</a></div>
 			<div data-ng-show="!loading && !error && data.length" class="alert alert-success"><i class="fa fa-thumbs-up breath-right"></i><strong>{{data.length}}</strong> records in your data have been successfully parsed!</div>
-			<div data-ng-show="error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops!</strong> Please, check line {{error+1}}</div>
+			<div data-ng-show="error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops!</strong> Please check line {{error+1}}</div>
 			<div data-ng-show="loading" class="alert"><i class="fa breath-right fa-refresh fa-spin"></i>Loading your data. Please wait.</div>
 		</div>
 
@@ -51,7 +51,7 @@
 
 		</section>
 
-		<section class="" data-ng-show="!error && data.length">
+		<section class="dark" data-ng-show="!error && data.length">
 
 			<div class="container">
 
@@ -76,7 +76,7 @@
 						<div class="col-lg-9 col-md-9">
 
 							<div ng-repeat="category in categories">
-								<h4 class="text-muted">{{category}}</h4>
+								<h4 class="">{{category}}</h4>
 								<div class="row" group every="3" watch="charts">
 									<div class="col-lg-4 col-md-4" ng-repeat="c in filtered = (charts | categoryFilter:category) track by $index">
 										<div ng-class="{selected: c == chart}" class="layout"  ng-click="selectChart(c)">
@@ -118,7 +118,7 @@
 
 		</section>
 
-		<section class="dark" data-ng-show="!error && data.length">
+		<section class="" data-ng-show="!error && data.length">
 
 			<div class="container">
 
@@ -198,16 +198,10 @@
 							
 						</div>
 
-						<!--<div class="text-muted small" ng-show="dimension.required() && dimension.required() - dimension.value.length > 0">
-							{{dimension.required() - dimension.value.length}} more dimension(s) required
-						</div>-->
-
 					</div>
 
 				</div>
 			</div>
-
-			<!--<div class="text-muted" ng-show="!model.isValid()" ng-bind-html="model.instruction()"></div>-->
 
 		</div>
 
@@ -220,7 +214,7 @@
 
 </section>
 
-<section class="" data-ng-show="!error && data.length">
+<section class="dark" data-ng-show="!error && data.length">
 
 	<div class="container">
 
@@ -294,14 +288,14 @@
 			<div id="export" class="row">
 
 				<div class="col-lg-3">
-					<h3><i class="fa fa-arrow-circle-o-down breath-right"></i>Download</h3>
+					<h3><i class="fa fa-arrow-down breath-right"></i>Download</h3>
 					<downloader></downloader>
 				</div>
 
 				<div class="col-lg-9">
 					<h3 id="data"><i class="fa fa-code breath-right"></i>Embed Code</h3>
 					<coder></coder>
-					<p class="light">Copy the code above into your HTML to embed the visualization
+					<p class="light">Copy the snippet above into your HTML code to embed the visualization
 						<a class="pull-right" id="copy-button" copy-button data-clipboard-target="source" data-container="body"><i class="fa fa-clipboard"></i></a>
 					</p>
 				</div>

@@ -25,7 +25,7 @@ h3 {
   line-height: 48px;
   margin: 0px;
   font-size: 21px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-family: 'Karla', sans-serif;
 }
 
@@ -146,7 +146,7 @@ section.dark {
 /* Navbar */
 
 .navbar {
-  color: #E5E5E5;
+  color: #888;
   text-align: center;
   opacity: .97;
   z-index: 10000;
@@ -473,7 +473,7 @@ textarea:focus {
   margin-bottom: 10px;
   display: table;
   width: 100%;
-  height: 120px;
+  height: 100px;
 
   -webkit-border-radius: 2px;
      -moz-border-radius: 2px;
@@ -516,7 +516,7 @@ textarea:focus {
 .layout.selected .layout-thumb,
 .layout:hover .layout-thumb {
   opacity: .15;
-      -webkit-transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity .2s ease-in-out;
   -moz-transition: opacity .2s ease-in-out;
   -ms-transition: opacity .2s ease-in-out;
   -o-transition: opacity .2s ease-in-out;
@@ -570,7 +570,7 @@ textarea:focus {
 .layout:hover .layout-inner {
   opacity: 1;
 
-    -webkit-transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity .2s ease-in-out;
   -moz-transition: opacity .2s ease-in-out;
   -ms-transition: opacity .2s ease-in-out;
   -o-transition: opacity .2s ease-in-out;
@@ -591,7 +591,7 @@ textarea:focus {
   background-color: transparent;
   text-align: center;
   font-size: 60px;
-  line-height: 118px;
+  line-height: 78px;
   opacity: .1;
   height: 76px;
 }
@@ -629,7 +629,7 @@ textarea:focus {
 
 .dimension-type {
   color: rgba(255,255,255,.6);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   text-transform: lowercase;
 }
@@ -749,10 +749,8 @@ textarea:focus {
 }
 
 .option-title {
-  text-transform: uppercase;
   font-weight: 400;
-  font-size: 11px;
-  letter-spacing: 1px;
+  font-size: 13px;
   margin: 8px 0px;
   padding: 10px 0px;
   padding-bottom: 0px;
@@ -1083,4 +1081,20 @@ pre.CodeMirror-placeholder {
    background-position: right;
    background-repeat: no-repeat;
    opacity: .3;
+}
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) { 
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) { 
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) { 
+
 }
