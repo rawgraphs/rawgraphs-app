@@ -40,7 +40,9 @@
     	  	.append("g")
     	    .attr("transform", "translate(" + (+diameter() / 2) + "," + (+diameter() / 2) + ")");
 
-		var nodes = layout.nodes(data)
+		var nodes = layout.nodes(data);
+
+		colors.domain(nodes, function (d){ return seek(d); });
 
 		var slicesGroups = g.selectAll("g")
     	    .data(nodes)
@@ -50,11 +52,10 @@
 		slicesGroups.append("path")
 			.attr("d", arc)
 		      .style("stroke", "#fff")
-		      .style("fill", function(d) { return colors()(d.children ? d.name : d.parent.name); })
+		      .style("fill", function(d) { return colors()(seek(d)); })
 		      .style("fill-rule", "evenodd")
 
 		slicesGroups.append("text")
-			//.attr("text-anchor", function(d) { return ((d.x + d.dx / 2 - Math.PI / 2) / Math.PI * 180) < 90 ? "start" : "end"; })
 		      .attr("transform", function(d) { return "rotate(" + (d.x + d.dx / 2 - Math.PI / 2) / Math.PI * 180 + ")"; })
 		      .attr("x", function(d) { return Math.sqrt(d.y); })
 		      .attr("dx", "6")
@@ -68,6 +69,11 @@
 		 		var size = d.size ? format(d.size) : "none";
 		 		return d.name + ": " + size; 
 		 	});
+
+		 function seek(d){
+		 	if (d.children) return seek(d.children[0]);
+		 	else return d.color;
+		 }
 
 	})
 })();
