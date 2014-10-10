@@ -15,11 +15,11 @@
 			<span class="list-type pull-right">
 				<i class="type fa fa-align-left breath-left"
 				data-toggle="tooltip"
-				data-title="Text"
+				data-title="View as Text"
 				ng-click="dataView='text'" ng-class="{selected:dataView!='table'}"></i>
 				<i class="type fa fa-table breath-left"
 				data-toggle="tooltip"
-				data-title="Table"
+				data-title="View as Table"
 				ng-click="dataView='table'" ng-class="{selected:dataView=='table'}"></i>
 			</span>
 			<span class="clearfix"></span>
@@ -27,85 +27,190 @@
 
 		<div data-ng-show="dataView != 'table'">
 			<textarea ui-codemirror="codeMirrorOptions" ng-model="text">
-	</textarea>
-</div>
+			</textarea>
+		</div>
 
-<div raw-table class="data-table" data-ng-show="dataView == 'table'"></div>
-
-<div>
-	<div data-ng-show="!loading && !data.length && !error" class="alert"><i class="fa fa-hand-o-right breath-right"></i> Not sure how it works? <a href="http://raw.densitydesign.org/how-it-works/">Take a look at this video</a> or <a href="https://github.com/densitydesign/raw/wiki/FAQs">visit our FAQs</a></div>
-	<div data-ng-show="!loading && !error && data.length" class="alert alert-success"><i class="fa fa-thumbs-up breath-right"></i><strong>{{data.length}}</strong> records in your data have been successfully parsed!</div>
-	<div data-ng-show="error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops!</strong> Please, check line {{error+1}}</div>
-	<div data-ng-show="loading" class="alert"><i class="fa breath-right fa-refresh fa-spin"></i>Loading your data. Please wait.</div>
-</div>
-
-</div>
-
-</section>
-
-<section data-ng-show="error">
-
-	<div class="container">
-		<h2>Ouch. It seems like RAW encountered some problems while parsing your data. Please, be sure everything is ok with your data. Often this is due to some missing delimiters. If you want to use a <a href="http://en.wikipedia.org/wiki/Delimiter">delimiter char</a> as string literal, please include it in double quotes. See our <a href="https://github.com/densitydesign/raw/wiki/FAQs#raw-says-there-is-something-wrong-with-my-data">FAQs</a> for more information.</h2>
-	</div>
-
-</section>
-
-<section class="" data-ng-show="!error && data.length">
-
-	<div class="container">
+		<div raw-table class="data-table" data-ng-show="dataView == 'table'"></div>
 
 		<div>
+			<div data-ng-show="!loading && !data.length && !error" class="alert"><i class="fa fa-hand-o-right breath-right"></i> Not sure how it works? <a href="http://raw.densitydesign.org/how-it-works/">Take a look at this video</a> or <a href="https://github.com/densitydesign/raw/wiki/FAQs">visit our FAQs</a></div>
+			<div data-ng-show="!loading && !error && data.length" class="alert alert-success"><i class="fa fa-thumbs-up breath-right"></i><strong>{{data.length}}</strong> records in your data have been successfully parsed!</div>
+			<div data-ng-show="error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops!</strong> Please check line {{error+1}}</div>
+			<div data-ng-show="loading" class="alert"><i class="fa breath-right fa-refresh fa-spin"></i>Loading your data. Please wait.</div>
+		</div>
 
-			<h3 id="layout">
-				Choose a Chart	
-			</h3>
+		</div>
+
+		</section>
+
+		<section data-ng-show="error">
+
+			<div class="container">
+				<h2>Ouch. It seems like RAW encountered some problems while parsing your data. Please, be sure everything is ok with your data. Often this is due to some missing delimiters. If you want to use a <a href="http://en.wikipedia.org/wiki/Delimiter">delimiter char</a> as string literal, please include it in double quotes. See our <a href="https://github.com/densitydesign/raw/wiki/FAQs#raw-says-there-is-something-wrong-with-my-data">FAQs</a> for more information.</h2>
+			</div>
+
+		</section>
+
+		<section class="dark" data-ng-show="!error && data.length">
+
+			<div class="container">
+
+				<div>
+
+					<h3 id="layout">
+						Choose a Chart	
+					</h3>
 
 
-			<div class="row">
+					<div class="row">
 
-				<div class="col-lg-3 col-md-3">
-					<div class="chart-description">
-						<h4>{{chart.title()}}</h4>
-						<hr>
-						<p class="light" ng-bind-html="chart.description()"></p>
-						<p class="light" data-ng-show="!chart.description()">No description given</p>
-					</div>
-				</div>		
-
-				<div class="col-lg-9 col-md-9">
-
-					<div class="row" group every="3" watch="charts">
-						<div class="col-lg-4 col-md-4" ng-repeat="c in charts track by $index">
-							<div ng-class="{selected: c == chart}" class="layout"  ng-click="selectChart(c)">
-								<div class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}">
-								</div>
-								<p class="layout-inner" >
-									<span class="layout-title">{{c.title()}}</span>
-								</p>
+						<div class="col-lg-3 col-md-3">
+							<div class="chart-description">
+								<h4>{{chart.title()}}</h4>
+								<hr>
+								<p class="light" ng-bind-html="chart.description()"></p>
+								<p class="light" data-ng-show="!chart.description()">No description given</p>
 							</div>
-						</div>
-						<div class="col-lg-4 col-md-4">
-							<a href="https://github.com/densitydesign/raw/wiki/Adding-New-Charts">
-								<div class="layout yours">
-									<div class="layout-thumb">
-										<i class="fa fa-plus-square"></i>
+						</div>		
+
+						<div class="col-lg-9 col-md-9">
+
+							<div ng-repeat="category in categories">
+								<h4 class="">{{category}}</h4>
+								<div class="row" group every="3" watch="charts">
+									<div class="col-lg-4 col-md-4" ng-repeat="c in filtered = (charts | categoryFilter:category) track by $index">
+										<div ng-class="{selected: c == chart}" class="layout"  ng-click="selectChart(c)">
+											<div class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}">
+											</div>
+											<p class="layout-inner" >
+												<span class="layout-title">{{c.title()}}</span>
+											</p>
+										</div>
 									</div>
-									<p class="layout-inner" >
-										<span class="layout-title">Add your charts!</span>
-									</p>
+									
+								<div class="col-lg-4 col-md-4" ng-show="category=='Others'">
+									<a href="https://github.com/densitydesign/raw/wiki/Adding-New-Charts">
+										<div class="layout yours">
+											<div class="layout-thumb">
+												<i class="fa fa-plus-square"></i>
+											</div>
+											<p class="layout-inner" >
+												<span class="layout-title">Add your charts!</span>
+											</p>
+										</div>
+									</a>
 								</div>
-							</a>
+
+								</div><!-- end of group -->
+
+							</div>
+
+							
+
 						</div>
+
 					</div>
+
+
 				</div>
 
 			</div>
 
+		</section>
+
+		<section class="" data-ng-show="!error && data.length">
+
+			<div class="container">
+
+				<div id="mapping" class="row-fluid">
+
+					<div>
+						<h3>Map your Dimensions
+							<a data-toggle="tooltip"
+							data-title="Clear all"
+							ng-click="model.clear()" class="pull-right light"><i class="fa fa-trash-o"></i></a>
+							<span class="clearfix"></span>
+						</h3>
+					</div>
+
+
+					<div class="row">
+
+						<div class="col-lg-3 col-md-3">
+							<div draggable>
+								<ul class="list-unstyled dimensions-list">
+									<li class="dimension" data-dimension="{{dimension}}" ng-repeat="dimension in metadata track by $index">
+										<span class="dimension-key">{{ dimension.key }}</span>
+										<span class="dimension-type">{{dimension.type}}</span>
+										<span class="dimension-icon pull-right"><i class="fa fa-bars"></i></span>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-lg-9 col-md-9">
+							<div class="sticky">
+								<div
+								class="row"
+								group every="3"
+								watch="model">
+
+								<div
+								class="col-lg-4 col-md-4 dimensions-wrapper"
+								ng-repeat="dimension in model.dimensions().values() track by $index" ng-init="open=false">
+
+								<div class="dimensions-model">
+
+									<!--<div class="dimension-multiple">
+
+										<i class="fa fa-tag"
+										data-toggle="tooltip"
+										data-title="You can drag only one dimension here"
+										data-ng-show="!dimension.multiple()"></i>
+
+										<i class="fa fa-tags"
+										data-toggle="tooltip"
+										data-title="You can drag more than one dimension here"
+										data-ng-show="dimension.multiple()"></i>
+									</div>-->
+
+									<i class="fa fa-asterisk dimension-required"
+										data-toggle="tooltip"
+										data-title="Required"
+										data-ng-show="dimension.required()"></i>
+
+									<!--<a class="dimension-info"
+									data-toggle="tooltip"
+									data-title="Show description"
+									ng-click="open = !open" ng-show="dimension.description()">
+									<i class="fa fa-info dimension-info-toggle"></i>
+									</a>-->
+
+								<p class="dimension-title">{{dimension.title()}}</p>
+								<ul
+									sortable
+									title="dimension.title()"
+									value="dimension.value"
+									multiple="dimension.multiple()"
+									types="dimension.types()"
+									class="dimensions-container list-unstyled">
+								</ul>
+							
+						</div>
+
+					</div>
+
+				</div>
+			</div>
 
 		</div>
 
 	</div>
+
+</div>
+
+
+</div>
 
 </section>
 
@@ -113,102 +218,17 @@
 
 	<div class="container">
 
-		<div id="mapping" class="row-fluid">
-
-			<div>
-				<h3>Map your dimensions
-					<a data-toggle="tooltip"
-					data-title="Clear all"
-					ng-click="model.clear()" class="pull-right light"><i class="fa fa-trash-o"></i></a>
-					<span class="clearfix"></span>
-				</h3>
-			</div>
-
-
-			<div class="row">
-
-				<div class="col-lg-3 col-md-3">
-					<div draggable>
-						<ul class="list-unstyled dimensions-list">
-							<li class="dimension" data-dimension="{{dimension}}" ng-repeat="dimension in metadata track by $index">
-								<span class="dimension-key">{{ dimension.key }}</span>
-								<span class="dimension-type">{{dimension.type}}</span>
-								<span class="dimension-icon pull-right"><i class="fa fa-bars"></i></span>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="col-lg-9 col-md-9">
-					<div class="sticky">
-						<div
-						class="row"
-						group every="3"
-						watch="model">
-
-						<div
-						class="col-lg-4 col-md-4 dimensions-wrapper"
-						ng-repeat="dimension in model.dimensions().values() track by $index" ng-init="open=false">
-
-						<div class="dimensions-model">
-							<div class="dimension-multiple">
-
-								<i class="fa fa-tag"
-								data-toggle="tooltip"
-								data-title="Single dimension"
-								data-ng-show="!dimension.multiple()"></i>
-
-								<i class="fa fa-tags"
-								data-toggle="tooltip"
-								data-title="Multiple dimension"
-								data-ng-show="dimension.multiple()"></i>
-							</div>
-
-							<a class="dimension-info"
-							data-toggle="tooltip"
-							data-title="Show description"
-							ng-click="open = !open" ng-show="dimension.description()">
-							<!--<i class="fa fa-info dimension-info-toggle"></i>-->
-						</a>
-
-						<p class="dimension-title">{{dimension.title()}}</p>
-						<ul
-						sortable
-						title="dimension.title()"
-						value="dimension.value"
-						multiple="dimension.multiple()"
-						types="dimension.types()"
-						class="dimensions-container list-unstyled">
-					</ul>
-					<!--<div class="dimension-description" ng-class="{open: open}">{{dimension.description()}}</div>-->
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="" data-ng-show="!error && data.length">
-
-	<div class="container">
-
-		<h3 id="options">Customize your Visualization</h3>
+		<h3 id="options">
+			Customize your Visualization
+		</h3>
 
 		<div class="row">
 
 			<div class="col-lg-3">
 				<ul class="list-unstyled">
 					<li ng-repeat="option in chart.options() track by $index" chart-option>
-						<p class="option-title">{{option.title()}}
+						<p class="option-title">
+							{{option.title()}}
 							<a data-ng-show="option.fitToWidth()"
 							data-toggle="tooltip"
 							data-title="Fit to width"
@@ -224,8 +244,7 @@
 								</label>
 							</div>
 
-							<div colors="option.value" ng-switch-when="color">
-							</div>
+							<div colors="option.value" ng-switch-when="color"></div>
 							
 							<button
 							type="button"
@@ -246,9 +265,13 @@
 
 		<div class="col-lg-9">
 			<div class="chart-resize">
-				<div ng-show="!isEmpty()" id="chart" chart></div>
-				<p class="light" ng-show="isEmpty()"><i class="fa fa-hand-o-up breath-right"></i> Map your dimensions in the panels above to build the visualization</p>
+				<div ng-show="model.isValid()" id="chart" chart></div>
 			</div>
+			<div class="text-muted text-center" ng-show="!model.isValid()">
+				<!--<i class="fa fa-hand-o-up breath-right"></i>-->
+				<h4><span ng-bind-html="model.instruction()"></span></h4>
+			</div>
+
 		</div>
 
 	</div>
@@ -256,7 +279,7 @@
 
 </section>
 
-<section class="dark" ng-show="!isEmpty()" style="padding-bottom:50px">
+<section class="dark" ng-show="model.isValid()" style="padding-bottom:50px">
 
 	<div class="container">
 
@@ -265,14 +288,14 @@
 			<div id="export" class="row">
 
 				<div class="col-lg-3">
-					<h3><i class="fa fa-arrow-circle-o-down breath-right"></i>Download</h3>
+					<h3><i class="fa fa-arrow-down breath-right"></i>Download</h3>
 					<downloader></downloader>
 				</div>
 
 				<div class="col-lg-9">
 					<h3 id="data"><i class="fa fa-code breath-right"></i>Embed Code</h3>
 					<coder></coder>
-					<p class="light">Copy the code above into your HTML to embed the visualization
+					<p class="light">Copy the snippet above into your HTML code to embed the visualization
 						<a class="pull-right" id="copy-button" copy-button data-clipboard-target="source" data-container="body"><i class="fa fa-clipboard"></i></a>
 					</p>
 				</div>

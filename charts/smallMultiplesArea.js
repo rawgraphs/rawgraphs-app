@@ -4,17 +4,21 @@
 
     var group = stream.dimension()
         .title('Group')
+        .required(1)
 
     var date = stream.dimension()
         .title('Date')
         .types(Date)
         .accessor(function (d){ return this.type() == "Date" ? new Date(d) : +d; })
+        .required(1)
 
     var size = stream.dimension()
         .title('Size')
         .types(Number)
+        .required(1)
 
     stream.map(function (data){
+        console.log("asadsas")
         if (!group()) return [];
 
         var dates = d3.set(data.map(function (d){ return +date(d); })).values();
@@ -45,6 +49,7 @@
         .title('Small Multiples (Area)')
         .thumbnail("imgs/smallMultiples.png")
         .description("A small multiple is a series of small similar graphics or charts, allowing them to be easily compared.<br/>Based on <a href='http://bl.ocks.org/mbostock/9490313'>http://bl.ocks.org/mbostock/9490313</a>")
+        .category('Time Series')
         .model(stream)
 
     var width = chart.number()
@@ -68,8 +73,6 @@
         .title("Color scale")
 
     chart.draw(function (selection, data){
-
-        console.log(data)
 
         var w = +width(),
             h = (+height() - (+padding()*(data.length-1))) / (data.length);

@@ -3,7 +3,8 @@
     var nodes = raw.model();
 
     var cluster = nodes.dimension()
-        .title("Clusters");
+        .title("Clusters")
+        .required(1);
 
     var size = nodes.dimension()
         .title("Size")

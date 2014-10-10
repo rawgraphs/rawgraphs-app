@@ -10,35 +10,34 @@ angular.module('raw.directives', [])
 	      link: function postLink(scope, element, attrs) {
 
 	        function update(){
-
 	        	$('*[data-toggle="tooltip"]').tooltip({ container:'body' });
 
 	        	d3.select(element[0]).select("*").remove();
 
 	        	if (!scope.chart || !scope.data.length) return;
-						if (scope.isEmpty()) return;
+						if (!scope.model.isValid()) return;
 
 	        	d3.select(element[0])
 	        		.append("svg")
 	        		.datum(scope.data)
 	        		.call(scope.chart)
 
-    			scope.svgCode = d3.select(element[0])
-        			.select('svg')
-    				.attr("xmlns", "http://www.w3.org/2000/svg")
-    				.node().parentNode.innerHTML;
-    			
-    			$rootScope.$broadcast("completeGraph");
+	    			scope.svgCode = d3.select(element[0])
+	        			.select('svg')
+	    				.attr("xmlns", "http://www.w3.org/2000/svg")
+	    				.node().parentNode.innerHTML;
+	    			
+	    			$rootScope.$broadcast("completeGraph");
 
 	        }
 
 	        scope.delayUpdate = dataService.debounce(update, 300, false);
 
-	        scope.$watch('chart', update);
-	        scope.$on('update', update);
+	        scope.$watch('chart', function(){ console.log("> chart"); update(); });
+	        scope.$on('update', function(){ console.log("> update"); update(); });
 	        //scope.$watch('data', update)
-	        scope.$watch(function(){ if (scope.model) return scope.model(scope.data); }, update, true);
-	        scope.$watch(function(){ if (scope.chart) return scope.chart.options().map(function (d){ return d.value }); }, scope.delayUpdate, true);
+	        scope.$watch(function(){ console.log("> model"); if (scope.model) return scope.model(scope.data); }, update, true);
+	        scope.$watch(function(){ console.log("> chart option"); if (scope.chart) return scope.chart.options().map(function (d){ return d.value }); }, scope.delayUpdate, true);
 
 	      }
 	    };
@@ -174,8 +173,7 @@ angular.module('raw.directives', [])
 
 	        scope.$watch('option.value', function (value){
 	        	if(!value) scope.setScale();
-	        })
-	        
+	        })	        
 
 	      }
 	    };
@@ -214,15 +212,15 @@ angular.module('raw.directives', [])
 	      }
 
 		    function onStart(e,ui){
-		    	var dimension = ui.item.data().dimension,
+		 	    
+			   	var dimension = ui.item.data().dimension,
 		    			html = isValidType(dimension) ? '<i class="fa fa-arrow-circle-down breath-right"></i>Drop here' : '<i class="fa fa-times-circle breath-right"></i>Don\'t drop here'
 		    	element.find('.drop').html(html);
 		      element.parent().css("overflow","visible");
-		     	angular.element(element).scope().open=false;
+					angular.element(element).scope().open=false;
 		    }
 
 		    function onUpdate(e,ui){
-
 					ui.item.find('.dimension-icon').remove();
 
 		    	if (ui.item.find('span.remove').length == 0) {
@@ -271,11 +269,13 @@ angular.module('raw.directives', [])
 		     	}
 		    	scope.value = values();
 					ui.item.find('span.remove').click(function(){  ui.item.remove(); onRemove(); })
+
 		    }
 
 		    function onRemove(e,ui) {
 		    	scope.value = values();
 		    	scope.$apply();
+		    	$rootScope.$broadcast("update");
 				}
 
 				function values(){
@@ -510,9 +510,12 @@ angular.module('raw.directives', [])
 
         // Removing HTML entities from svg
         function decodeHtml(html) {
-		    	var txt = document.createElement("textarea");
+		    	/*var txt = document.createElement("textarea");
 		    	txt.innerHTML = html;
-		    	return txt.value;
+		    	return txt.value;*/
+		    	return html.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+					   return '&#'+i.charCodeAt(0)+';';
+					});
 				}
 
         function downloadSvg(){
@@ -521,9 +524,9 @@ angular.module('raw.directives', [])
           var html = d3.select(source)
             .attr("version", 1.1)
             .attr("xmlns", "http://www.w3.org/2000/svg")
-            .node().parentNode.innerHTML;
+						.node().parentNode.innerHTML;
 
-          html = decodeHtml(html);
+          //html = he.encode(html);
 
           var isSafari = (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1);
 

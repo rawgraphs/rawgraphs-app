@@ -32,6 +32,15 @@ angular.module('raw.controllers', [])
     $scope.error = false;
     $scope.loading = true;
 
+    $scope.categories = ['Correlations', 'Distributions', 'Time Series', 'Hierarchies', 'Others'];
+    $scope.bgColors = {
+      'Correlations': '#df0',
+      'Distributions': 'rgb(5, 205, 255)',
+      'Time Series': 'rgb(255, 185, 5)',
+      'Hierarchies': '#0f0',
+      'Others': '#0f0'
+    }
+
     $scope.parse = function(text){
 
       if ($scope.model) $scope.model.clear();
@@ -93,19 +102,11 @@ angular.module('raw.controllers', [])
       placeholder : 'Paste your text or drop a file here. No data on hand? Try one of our sample datasets!'
     }
 
-    var charNames = {
-      "\x00": "Null",
-    };
-
     $scope.selectChart = function(chart){
       if (chart == $scope.chart) return;
       $scope.model.clear();
       $scope.chart = chart;
       $scope.model = $scope.chart.model();
-    }
-
-    $scope.isEmpty = function(){
-      return $scope.model && !$scope.model.dimensions().values().filter(function (d){ return d.value.length } ).length;
     }
 
     function refreshScroll(){
