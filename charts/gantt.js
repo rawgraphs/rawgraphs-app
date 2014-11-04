@@ -32,7 +32,7 @@
 					level=0;
 					g.forEach(function (item,i){
 						l=0;
-						//while(overlap(item, levels[l])) l++;
+						while(overlap(item, levels[l])) l++;
 						if (!levels[l]) levels[l] = [];
 						levels[l].push({
 							level: l+level,
