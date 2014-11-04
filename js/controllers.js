@@ -32,12 +32,12 @@ angular.module('raw.controllers', [])
     $scope.error = false;
     $scope.loading = true;
 
-    $scope.categories = ['Correlations', 'Distributions', 'Time Series', 'Hierarchies', 'Others'];
+    $scope.categories = ['Hierarchies', 'Time Series', 'Distributions', 'Correlations', 'Others'];
     $scope.bgColors = {
-      'Correlations': '#df0',
-      'Distributions': 'rgb(5, 205, 255)',
-      'Time Series': 'rgb(255, 185, 5)',
       'Hierarchies': '#0f0',
+      'Time Series': 'rgb(255, 185, 5)',
+      'Distributions': 'rgb(5, 205, 255)',
+      'Correlations': '#df0',
       'Others': '#0f0'
     }
 
@@ -152,6 +152,10 @@ angular.module('raw.controllers', [])
         .css("width", "");
 
     })
+
+      $scope.sortCategory = function (chart) {
+        return chart.category();
+      };
 
     $(document).ready(refreshScroll);
 

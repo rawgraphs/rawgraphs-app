@@ -74,7 +74,7 @@
         .defaultValue(1)
 
     var normalize = chart.checkbox()
-        .title("normalize")
+        .title("Normalize")
         .defaultValue(false)
 
     var curve = chart.list()
@@ -83,12 +83,12 @@
         .defaultValue('Sankey')
 
     var sort = chart.list()
-        .title("sort by")
+        .title("Sort by")
         .values(['value (descending)', 'value (ascending)', 'group'])
         .defaultValue('value (descending)')
 
     var showLabels = chart.checkbox()
-        .title("show labels")
+        .title("Show labels")
         .defaultValue(true)
 
     var colors = chart.color()

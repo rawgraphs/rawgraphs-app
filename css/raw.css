@@ -4,7 +4,7 @@ body {
   background-color: #F5F5F5;
   font-family: 'Karla', Arial, Helvetica, sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 h2 {
@@ -151,8 +151,8 @@ section.dark {
   opacity: .97;
   z-index: 10000;
   border-radius: 0px;
-  padding: 20px 0px;
-  margin-bottom: 30px;
+  padding: 10px 0px;
+  margin-bottom: 20px;
   background-color: #fff;
 }
 
@@ -370,11 +370,14 @@ textarea:focus {
 /* Charts */
 
 .chart-description {
-  font-size: 14px;
+  background-color: #fff;
+  padding: 14px;
+  box-shadow: 0px 1px 1px rgba(0,0,0,.1);
+  border-radius: 1px;
 }
 
 .chart-description h4{
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   margin-bottom: 1px;
   font-family: 'Karla', sans-serif;
@@ -382,7 +385,7 @@ textarea:focus {
 
 .chart-description p{
   margin-top: 9px;
-  font-size: 14px;
+  font-size: 13px;
   font-family: 'Karla', sans-serif;
   font-weight: 300;
 }
@@ -470,14 +473,15 @@ textarea:focus {
   position: relative;
   background-color: #fff;
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   display: table;
   width: 100%;
-  height: 100px;
+  height: 150px;
+  padding: 10px;
 
-  -webkit-border-radius: 2px;
-     -moz-border-radius: 2px;
-          border-radius: 2px;
+  -webkit-border-radius: 1px;
+     -moz-border-radius: 1px;
+          border-radius: 1px;
 
   -webkit-box-shadow: 0px 1px 1px rgba(0,0,0,.1);
    -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.1);
@@ -486,36 +490,32 @@ textarea:focus {
 }
 
 .layout.selected {
-  background-color: #14E2B9;
+  
 }
 
 .layout-title {
   font-family: 'Karla', sans-serif; 
   color: #000;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
 }
 
 
 .layout-thumb {
-  background-position: center;
-  background-size: 180%;
-  background-color: #fff;
-
-  -webkit-border-radius: 2px;
-     -moz-border-radius: 2px;
-          border-radius: 2px;
-
+  background-position: 60% 40%;
+  background-size: 170%;
+  background-color: #F5F5F5;
   position: absolute;
-  top: 0px;
+  top: 60px;
   bottom: 0px;
   left: 0px;
   right: 0px;
+  opacity: .8;
 }
 
 .layout.selected .layout-thumb,
 .layout:hover .layout-thumb {
-  opacity: .15;
+  opacity: 1;
   -webkit-transition: opacity .2s ease-in-out;
   -moz-transition: opacity .2s ease-in-out;
   -ms-transition: opacity .2s ease-in-out;
@@ -525,44 +525,32 @@ textarea:focus {
 }
 
 .layout.selected .layout-title{
-
+   font-weight: 600;
+ 
 }
 
 .layout-inner {
-  opacity: 0;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
+  opacity: 1;
 
-  -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-        border-radius: 2px;
-
-  text-align: center;
   margin: 0px;
 
-  /* Internet Explorer 10 */
+  /* Internet Explorer 10 
   display:-ms-flexbox;
   -ms-flex-pack:center;
   -ms-flex-align:center;
 
-  /* Firefox */
   display:-moz-box;
   -moz-box-pack:center;
   -moz-box-align:center;
 
-  /* Safari, Opera, and Chrome */
   display:-webkit-box;
   -webkit-box-pack:center;
   -webkit-box-align:center;
 
-  /* W3C */
   display:box;
   box-pack:center;
   box-align:center;
-
+*/
   
 }
 
@@ -702,6 +690,9 @@ textarea:focus {
 
 .dimension-icon {
   opacity: .5;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .dimension-description {

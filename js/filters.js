@@ -10,4 +10,4 @@ angular.module('raw.filters', [])
             	return !chart.category() && category == 'Others' || chart.category() == category;
             });
 	    };
-	}]);
+	}])

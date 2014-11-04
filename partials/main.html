@@ -66,25 +66,23 @@
 
 						<div class="col-lg-3 col-md-3">
 							<div class="chart-description">
+								<span class="text-muted">Current Chart</span>
 								<h4>{{chart.title()}}</h4>
-								<hr>
 								<p class="light" ng-bind-html="chart.description()"></p>
 								<p class="light" data-ng-show="!chart.description()">No description given</p>
 							</div>
 						</div>		
 
 						<div class="col-lg-9 col-md-9">
-
-							<div ng-repeat="category in categories">
-								<h4 class="">{{category}}</h4>
 								<div class="row" group every="3" watch="charts">
-									<div class="col-lg-4 col-md-4" ng-repeat="c in filtered = (charts | categoryFilter:category) track by $index">
+									<div class="col-lg-4 col-md-4" ng-repeat="c in charts  | orderBy:sortCategory:true track by $index">
 										<div ng-class="{selected: c == chart}" class="layout"  ng-click="selectChart(c)">
-											<div class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}">
-											</div>
+											<span class="text-muted">{{c.category() || 'Other'}}</span>
 											<p class="layout-inner" >
 												<span class="layout-title">{{c.title()}}</span>
 											</p>
+											<div class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}">
+											</div>
 										</div>
 									</div>
 									
@@ -99,7 +97,6 @@
 											</p>
 										</div>
 									</a>
-								</div>
 
 								</div><!-- end of group -->
 

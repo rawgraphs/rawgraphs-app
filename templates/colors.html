@@ -15,7 +15,7 @@
 		<tbody>
 			<tr ng-repeat="color in colors | filter:{'key':searchColor} track by $index">
 				<td>
-					<p class="light small sample-name">{{color.key || 'All'}}</p>
+					<p class="light small sample-name">{{color.key}}</p>
 				</td>
 				<td class="sample">
 					<input type="text"

@@ -89,12 +89,9 @@
 
         var area = d3.svg.area()
             .x(function(d) { return x(d.date); })
-            .y0(h)
-            .y1(function(d) { return y(d.size); });
-
-        var line = d3.svg.line()
-            .x(function(d) { return x(d.date); })
-            .y(function(d) { return y(d.size); });
+            .y0(function(d) { return h-y(d.size)/2; })
+            .y1(function(d) { return y(d.size)/2; })
+            .interpolate("basis")
 
         x.domain([
             d3.min(data, function(layer) { return d3.min(layer, function(d) { return d.date; }); }),
@@ -131,14 +128,6 @@
               .attr("class", "area")
               .style("fill", function(d){ return colors()(d[0].group); })
               .attr("d", area(single));
-
-            /*g.append("path")
-              .attr("class", "line")
-              .style("fill","none")
-              .style("stroke","#666")
-              .style("stroke-width","1.5px")
-              .attr("d", line(single));*/
-
         }
 
     })
