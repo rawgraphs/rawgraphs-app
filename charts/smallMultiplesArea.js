@@ -9,7 +9,7 @@
     var date = stream.dimension()
         .title('Date')
         .types(Date)
-        .accessor(function (d){ return this.type() == "Date" ? new Date(d) : +d; })
+        .accessor(function (d){ return this.type() == "Date" ? Date.parse(d) : +d; })
         .required(1)
 
     var size = stream.dimension()
@@ -18,7 +18,6 @@
         .required(1)
 
     stream.map(function (data){
-        console.log("asadsas")
         if (!group()) return [];
 
         var dates = d3.set(data.map(function (d){ return +date(d); })).values();
@@ -63,7 +62,7 @@
 
     var padding = chart.number()
         .title("Padding")
-        .defaultValue(10)
+        .defaultValue(5)
 
     var scale = chart.checkbox()
         .title("Use same scale")
@@ -75,7 +74,7 @@
     chart.draw(function (selection, data){
 
         var w = +width(),
-            h = (+height() - (+padding()*(data.length-1))) / (data.length);
+            h = (+height()-20 - (+padding()*(data.length-1))) / data.length;
 
         var svg = selection
             .attr("width", +width())
@@ -100,14 +99,31 @@
 
         colors.domain(data, function (d){ return d[0].group; })
 
-        svg.selectAll("g")
+        var xAxis = d3.svg.axis().scale(x).tickSize(-height()+15).orient("bottom");
+
+        svg.append("g")
+            .attr("class", "x axis")
+            .style("stroke-width", "1px")
+            .style("font-size","10px")
+            .style("font-family","Arial, Helvetica")
+            .attr("transform", "translate(" + 0 + "," + (height()-15) + ")")
+            .call(xAxis);
+
+        d3.selectAll(".x.axis line, .x.axis path")
+            .style("shape-rendering","crispEdges")
+            .style("fill","none")
+            .style("stroke","#ccc")
+
+
+        svg.selectAll("g.flow")
             .data(data)
             .enter().append("g")
+            .attr("class","flow")
             .attr("title", function(d) { return d[0].group; })
             .attr("transform", function(d,i) { return "translate(0," + ((h+padding())*i) + ")"})
             .each(multiple);
 
-        svg.selectAll("g")
+        svg.selectAll("g.flow")
             .append("text")
             .attr("x", w - 6)
             .attr("y", h - 6)

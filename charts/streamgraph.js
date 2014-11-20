@@ -81,7 +81,7 @@
         .defaultValue('Sankey curves')
 
     var showLabels = chart.checkbox()
-        .title("show labels")
+        .title("Show labels")
         .defaultValue(true)
 
     var colors = chart.color()
