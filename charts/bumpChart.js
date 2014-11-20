@@ -9,7 +9,7 @@
     var date = stream.dimension()
         .title('Date')
         .types(Number, Date, String)
-        .accessor(function (d){ return this.type() == "Date" ? new Date(d) : this.type() == "String" ? d : +d; })
+        .accessor(function (d){ return this.type() == "Date" ? Date.parse(d) : this.type() == "String" ? d : +d; })
         .required(1)
 
     var size = stream.dimension()
@@ -91,6 +91,10 @@
         .title("Show labels")
         .defaultValue(true)
 
+    var showGrid = chart.checkbox()
+        .title("Show grid")
+        .defaultValue(true)
+
     var colors = chart.color()
         .title("Color scale")
 
@@ -126,8 +130,9 @@
             })
 
         })
+
         
-        var x = date && date.type() == "Date"
+        var x = date() && date.type() == "Date"
             // Date
             ? d3.time.scale()
                 .domain( [ d3.min(layers, function(layer) { return d3.min(layer, function(d) { return d.x; }); }), d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.x; }); }) ])
@@ -173,6 +178,7 @@
             .style("font-size","10px")
             .style("font-family","Arial, Helvetica")
             .attr("transform", "translate(" + 0 + "," + (height()-20) + ")")
+            .style("display",function(){ return showGrid() ? 'block' : 'none'; })
             .call(xAxis);
 
         d3.selectAll(".x.axis line, .x.axis path")
@@ -184,7 +190,7 @@
 
         var area = d3.svg.area()
             .interpolate(curves[curve()])
-            .x(function(d) {  return x(d.x); })
+            .x(function(d) { return x(d.x); })
             .y0(function(d) { return y(d.y0); })
             .y1(function(d) { return Math.min(y(d.y0)-1, y(d.y0 + d.y)); });
 

@@ -36,8 +36,8 @@ angular.module('raw.directives', [])
 	        scope.$watch('chart', function(){ console.log("> chart"); update(); });
 	        scope.$on('update', function(){ console.log("> update"); update(); });
 	        //scope.$watch('data', update)
-	        scope.$watch(function(){ console.log("> model"); if (scope.model) return scope.model(scope.data); }, update, true);
-	        scope.$watch(function(){ console.log("> chart option"); if (scope.chart) return scope.chart.options().map(function (d){ return d.value }); }, scope.delayUpdate, true);
+	        scope.$watch(function(){ if (scope.model) return scope.model(scope.data); }, update, true);
+	        scope.$watch(function(){ if (scope.chart) return scope.chart.options().map(function (d){ return d.value }); }, scope.delayUpdate, true);
 
 	      }
 	    };

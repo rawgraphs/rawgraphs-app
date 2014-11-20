@@ -28,14 +28,14 @@
 		.defaultValue(20)
 
 	var useZero = chart.checkbox()
-		.title("set origin at (0,0)")
+		.title("Set origin at (0,0)")
 		.defaultValue(false)
 
 	var colors = chart.color()
 		 .title("Color scale")
 
 	var showPoints = chart.checkbox()
-		.title("show points")
+		.title("Show points")
 		.defaultValue(true)
 
 	chart.draw(function (selection, data){

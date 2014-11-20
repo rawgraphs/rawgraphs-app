@@ -9,7 +9,7 @@
     var date = stream.dimension()
         .title('Date')
         .types(Number, Date, String)
-        .accessor(function (d){ return this.type() == "Date" ? new Date(d) : this.type() == "String" ? d : +d; })
+        .accessor(function (d){ return this.type() == "Date" ? Date.parse(d) : this.type() == "String" ? d : +d; })
         .required(1)
 
     var size = stream.dimension()

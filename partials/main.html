@@ -6,24 +6,23 @@
 
 			<h3 id="data">Insert your data
 				<button type="button"
-				class="choose btn btn-default"
-				ng-model="sample"
-				placeholder="or choose one of our samples"
-				ng-options="s as s.title for s in samples" bs-select>
-			</button>
-
-			<span class="list-type pull-right">
-				<i class="type fa fa-align-left breath-left"
-				data-toggle="tooltip"
-				data-title="View as Text"
-				ng-click="dataView='text'" ng-class="{selected:dataView!='table'}"></i>
-				<i class="type fa fa-table breath-left"
-				data-toggle="tooltip"
-				data-title="View as Table"
-				ng-click="dataView='table'" ng-class="{selected:dataView=='table'}"></i>
-			</span>
-			<span class="clearfix"></span>
-		</h3>
+					class="choose btn btn-default"
+					ng-model="sample"
+					placeholder="or choose one of our samples"
+					ng-options="s as s.title for s in samples" bs-select>
+				</button>
+				<span class="list-type pull-right">
+					<i class="type fa fa-align-left breath-left"
+					data-toggle="tooltip"
+					data-title="View as Text"
+					ng-click="dataView='text'" ng-class="{selected:dataView!='table'}"></i>
+					<i class="type fa fa-table breath-left"
+					data-toggle="tooltip"
+					data-title="View as Table"
+					ng-click="dataView='table'" ng-class="{selected:dataView=='table'}"></i>
+				</span>
+				<span class="clearfix"></span>
+			</h3>
 
 		<div data-ng-show="dataView != 'table'">
 			<textarea ui-codemirror="codeMirrorOptions" ng-model="text">
@@ -65,38 +64,47 @@
 					<div class="row">
 
 						<div class="col-lg-3 col-md-3">
-							<div class="chart-description">
-								<span class="text-muted">Current Chart</span>
-								<h4>{{chart.title()}}</h4>
-								<p class="light" ng-bind-html="chart.description()"></p>
-								<p class="light" data-ng-show="!chart.description()">No description given</p>
+							<div class="row">
+								<div class="col-lg-12 col-mf-12">
+									<div class="chart-description">
+										<span class="text-muted">Current selection</span>
+										<h4>{{chart.title()}}</h4>
+										<!--<div class="chart-thumb" ng-style="{'background-image':'url(' + chart.thumbnail() + ')'}"></div>-->
+										<p class="light" ng-bind-html="chart.description()"></p>
+										<p class="light" data-ng-show="!chart.description()">No description given</p>
+									</div>
+								</div>
 							</div>
 						</div>		
 
 						<div class="col-lg-9 col-md-9">
-								<div class="row" group every="3" watch="charts">
-									<div class="col-lg-4 col-md-4" ng-repeat="c in charts  | orderBy:sortCategory:true track by $index">
+								<div class="row">
+									<div class="col-lg-3 col-md-4 col-sm-6" ng-repeat="c in charts  | orderBy:sortCategory:true track by $index">
 										<div ng-class="{selected: c == chart}" class="layout"  ng-click="selectChart(c)">
-											<span class="text-muted">{{c.category() || 'Other'}}</span>
+											<div class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}"></div>
 											<p class="layout-inner" >
 												<span class="layout-title">{{c.title()}}</span>
+												<span class="text-muted layout-category">{{c.category() || 'Other'}}</span>
 											</p>
-											<div class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}">
-											</div>
+											<div class="layout-check">
+													<i class="fa fa-check"></i>
+												</div>
 										</div>
 									</div>
 									
-								<div class="col-lg-4 col-md-4" ng-show="category=='Others'">
-									<a href="https://github.com/densitydesign/raw/wiki/Adding-New-Charts">
-										<div class="layout yours">
-											<div class="layout-thumb">
-												<i class="fa fa-plus-square"></i>
+									<div class="col-lg-3 col-md-4 col-sm-6">
+										<a href="https://github.com/densitydesign/raw/wiki/Adding-New-Charts" target="_blank">
+											<div class="layout yours">
+												<div class="layout-thumb">
+													<i class="fa fa-plus-circle"></i>
+												</div>
+												
+												<p class="layout-inner" >
+													<span class="layout-title">Add your charts!</span>
+													<span class="text-muted layout-category">Customize</span>
+												</p>
 											</div>
-											<p class="layout-inner" >
-												<span class="layout-title">Add your charts!</span>
-											</p>
-										</div>
-									</a>
+										</a>
 
 								</div><!-- end of group -->
 
@@ -236,7 +244,7 @@
 							<input type="number" min="0" class="form-control" ng-model="option.value" ng-switch-when="number"></input>
 
 							<div ng-switch-when="checkbox">
-								<label class="checkbox">
+								<label class="">
 									<input type="checkbox" ng-model="option.value"/>
 								</label>
 							</div>

@@ -9,13 +9,13 @@
     var startDate = sequence.dimension()
         .title('Start Date')
         .types(Number, Date)
-        .accessor(function (d){ return this.type() == "Date" ? new Date(d) : +d; })
+        .accessor(function (d){ return this.type() == "Date" ?  Date.parse(d) : +d; })
         .required(1)
 
     var endDate = sequence.dimension()
         .title('End Date')
         .types(Number, Date)
-        .accessor(function (d){ return this.type() == "Date" ? new Date(d) : +d; })
+        .accessor(function (d){ return this.type() == "Date" ?  Date.parse(d) : +d; })
         .required(1)
 
     var color = sequence.dimension()

@@ -2,14 +2,13 @@ html,
 body {
   height: 100%;
   background-color: #F5F5F5;
-  font-family: 'Karla', Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 13px;
+  font-family: 'proxima nova', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 14px;
 }
 
 h2 {
   font-size: 18px;
-  font-family: 'Karla', sans-serif;
   font-weight: 300;
   line-height: 26px;
   margin-top: 0px;
@@ -20,13 +19,12 @@ h2 a {
 }
 
 h3 {
-  font-weight: 400;
+  font-weight: 300;
   letter-spacing: -0.01em;
   line-height: 48px;
   margin: 0px;
   font-size: 21px;
   margin-bottom: 20px;
-  font-family: 'Karla', sans-serif;
 }
 
 a {
@@ -97,7 +95,6 @@ h4 {
   background-color: #565656;
   font-size: 14px;
   color: #bbb;
-  font-weight: 400;
   padding: 0px 20px;
 }
 
@@ -171,8 +168,7 @@ section.dark {
 }
 
 .navbar .nav>li>a {
-  font-size: 17px;
-  font-weight: 400;
+  font-size: 16px;
   color: #0dc4a3;
 
   -webkit-transition: color .15s ease-in-out;
@@ -210,7 +206,6 @@ section.dark {
 
 .alert {
   border: none;
-  font-weight: 400;
   padding: 10px 12px;
   background-color: transparent;
   color: #5A5E5A;
@@ -222,7 +217,7 @@ section.dark {
 }
 
 .alert-success {
-  background-color: #0dc4a3;
+  background-color: #0DC47F;
   color:#fff;
 }
 
@@ -284,7 +279,6 @@ textarea:focus {
   letter-spacing: -0.01em;
   margin: 0px;
   font-size: 21px;
-  font-family: 'Karla', sans-serif;
   background-color: transparent;
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0px;
@@ -307,7 +301,6 @@ textarea:focus {
 /* Tooltips */
 
 .tooltip-inner {
-  font-weight: 400;
   padding: 10px 15px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -351,12 +344,12 @@ textarea:focus {
 }
 
 .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
-  background-color: #0dc4a3;
+  background-color: #0DC47F;
 }
 
 .dropdown-menu>li>a {
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 #export .btn {
@@ -372,22 +365,21 @@ textarea:focus {
 .chart-description {
   background-color: #fff;
   padding: 14px;
-  box-shadow: 0px 1px 1px rgba(0,0,0,.1);
-  border-radius: 1px;
+  border-radius: 2px;
+  margin-bottom: 20px;
+  box-shadow: 0px 1px 2px rgba(0,0,0,.1);
 }
 
 .chart-description h4{
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 1px;
-  font-family: 'Karla', sans-serif;
 }
 
 .chart-description p{
-  margin-top: 9px;
-  font-size: 13px;
-  font-family: 'Karla', sans-serif;
+  margin-top: 10px;
   font-weight: 300;
+  overflow: hidden;
 }
 
 .chart-description hr{
@@ -405,6 +397,16 @@ textarea:focus {
 
 .chart-description a:hover {
 
+}
+
+.chart-thumb {
+/*  background-color: #F5F5F5; */
+  width: 100%;
+  height: 130px;
+  background-size: 140%;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  margin-top: 10px;
 }
 
 
@@ -449,14 +451,12 @@ textarea:focus {
   padding: 8px 10px;
   position: relative;
   margin-bottom: 3px;
-  font-size: 14px;
-  font-weight: 400;
   line-height: 18px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
   opacity: .85;
-
+  font-weight: 400;
   -webkit-transition: background .1s ease-in-out;
   -moz-transition: background .1s ease-in-out;
   -ms-transition: background .1s ease-in-out;
@@ -476,62 +476,88 @@ textarea:focus {
   margin-bottom: 20px;
   display: table;
   width: 100%;
-  height: 150px;
-  padding: 10px;
+  padding: 0px;
 
-  -webkit-border-radius: 1px;
-     -moz-border-radius: 1px;
-          border-radius: 1px;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
 
-  -webkit-box-shadow: 0px 1px 1px rgba(0,0,0,.1);
-   -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.1);
-        box-shadow: 0px 1px 1px rgba(0,0,0,.1);
-
+  box-shadow: 0px 1px 2px rgba(0,0,0,.1);
 }
 
 .layout.selected {
-  
+  background-color: #27CD88;
 }
 
 .layout-title {
-  font-family: 'Karla', sans-serif; 
   color: #000;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.layout-category {
+  font-size: 12px;
   font-weight: 400;
+  color: #aaa;
+  margin: 0px;
+  display: block;
+}
+
+.layout.selected .layout-category {
+  color: #eee;
+}
+
+.layout-check {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  font-size: 42px;
+  text-align: center;
+  color: #fff;
+  opacity: .9;
+  line-height: 65px;
+}
+
+.layout.selected .layout-check {
+  display: block;
 }
 
 
 .layout-thumb {
-  background-position: 60% 40%;
+  height: 70px;
+  background-position: 50% 10%;
   background-size: 170%;
   background-color: #F5F5F5;
-  position: absolute;
-  top: 60px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  opacity: .8;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+    -webkit-transition: background-position .2s ease-in-out;
+  -moz-transition: background-position .2s ease-in-out;
+  -ms-transition: background-position .2s ease-in-out;
+  -o-transition: background-position .2s ease-in-out;
+  transition: background-position .2s ease-in-out;
+
 }
 
-.layout.selected .layout-thumb,
 .layout:hover .layout-thumb {
   opacity: 1;
-  -webkit-transition: opacity .2s ease-in-out;
-  -moz-transition: opacity .2s ease-in-out;
-  -ms-transition: opacity .2s ease-in-out;
-  -o-transition: opacity .2s ease-in-out;
-  transition: opacity .2s ease-in-out;
+  background-position: 50% 50%;
+}
 
+.layout.selected .layout-thumb {
+  background-position: 50% 50%;
+  opacity: .2;
 }
 
 .layout.selected .layout-title{
-   font-weight: 600;
- 
+   color: #fff;
 }
 
 .layout-inner {
   opacity: 1;
-
+  padding: 10px;
   margin: 0px;
 
   /* Internet Explorer 10 
@@ -557,6 +583,7 @@ textarea:focus {
 .layout.selected .layout-inner,
 .layout:hover .layout-inner {
   opacity: 1;
+  color: #fff;
 
   -webkit-transition: opacity .2s ease-in-out;
   -moz-transition: opacity .2s ease-in-out;
@@ -578,10 +605,9 @@ textarea:focus {
 .layout.yours .layout-thumb {
   background-color: transparent;
   text-align: center;
-  font-size: 60px;
-  line-height: 78px;
-  opacity: .1;
-  height: 76px;
+  font-size: 45px;
+  line-height: 75px;
+  opacity: .2;
 }
 
 .layout.yours:hover .layout-thumb {
@@ -591,7 +617,7 @@ textarea:focus {
 .dimension {
   cursor: move;
   color: #ffffff;
-  background-color: #0dc4a3;
+  background-color: #0DC47F;
   border-bottom: 1px solid rgba(0,0,0,.1);
 }
 
@@ -616,9 +642,8 @@ textarea:focus {
 }
 
 .dimension-type {
-  color: rgba(255,255,255,.6);
+  color: rgba(255,255,255,.7);
   font-size: 12px;
-  font-weight: 400;
   text-transform: lowercase;
 }
 
@@ -636,7 +661,6 @@ textarea:focus {
   margin: 10px 0px 5px 0px;
   color: #000;
   font-size: 18px;
-  font-weight: 400;
 
 }
 
@@ -733,14 +757,12 @@ textarea:focus {
 
 .msg {
   color: #888;
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 13px;
   margin-bottom: 10px;
   text-align: center;
 }
 
 .option-title {
-  font-weight: 400;
   font-size: 13px;
   margin: 8px 0px;
   padding: 10px 0px;
