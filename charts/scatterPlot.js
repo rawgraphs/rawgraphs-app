@@ -39,7 +39,7 @@
 		// Retrieving dimensions from model
 		var x = points.dimensions().get('x'),
 			y = points.dimensions().get('y');
-			
+
 		var g = selection
 			.attr("width", +width() )
 			.attr("height", +height() )

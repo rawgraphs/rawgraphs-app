@@ -33,7 +33,7 @@
 
 		var x = d3.scale.linear().range([0,+width()]).domain(d3.extent(data, function (d){ return d.x; })),
 			y = d3.scale.linear().range([+height(), 0]).domain(d3.extent(data, function (d){ return d.y; }));
-		
+
 		var voronoi = d3.geom.voronoi()
 			.x(function (d){ return x(d.x); })
 			.y(function (d){ return y(d.y); })

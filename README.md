@@ -34,7 +34,7 @@ If you want to run your instance of RAW locally on your machine, be sure you hav
 Clone RAW from the command line:
 
 ``` sh
-$ git clone git://github.com/densitydesign/raw.git
+$ git clone https://github.com/densitydesign/raw.git
 ```
 
 browse to RAW root folder:
@@ -48,7 +48,7 @@ install client-side dependencies:
 ``` sh
 $ bower install
 ```
-	
+
 You can now run RAW from your local web server. For example, you can run Python's built-in server:
 
 ``` sh
@@ -106,7 +106,7 @@ If you have any suggestion or request about new layouts to include, please let u
 ##Team and Contacts
 
 **RAW** has been developed and maintained at DensityDesign Research Lab by:
- 
+
 Giorgio Caviglia <giorgio.caviglia@gmail.com>  
 Michele Mauri <michele.mauri@polimi.it>  
 Giorgio Uboldi <giorgio.uboldi@polimi.it>  
@@ -125,22 +125,22 @@ RAW is provided under the [LGPL (Lesser General Public License)](https://github.
 
 	Copyright (c), 2013-2014 DensityDesign Lab, Giorgio Caviglia, Michele Mauri,
 	Giorgio Uboldi, Matteo Azzi
-	
+
 	<info@densitydesign.org>  
 	<giorgio.caviglia@gmail.com>  
 	<michele.mauri@polimi.it>  
 	<giorgio.uboldi@polimi.it>  
 	<matteo.azzi@polimi.it>  
-	 
+
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU Lesser General Public License as published by
 	the Free Software Foundation, either version 3 of the License, or
 	(at your option) any later version.
-	 
+
 	This program is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 	GNU Lesser General Public License for more details.
-	 
+
 	You should have received a copy of the GNU Lesser General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.

@@ -7,7 +7,7 @@
 		.description(
             "Alluvial diagrams allow to represent flows and to see correlations between categorical dimensions, visually linking to the number of elements sharing the same categories. It is useful to see the evolution of cluster (such as the number of people belonging to a specific group). It can also be used to represent bipartite graphs, using each node group as dimensions.<br/>Mainly based on DensityDesign's work with Fineo, it is inspired by <a href='http://bost.ocks.org/mike/sankey/'>http://bost.ocks.org/mike/sankey/</a>")
 		.thumbnail("imgs/alluvial.png")
-		.category("Correlations")
+		.category("Categorical")
 		.model(graph)
 
 	var width = chart.number()
@@ -74,10 +74,10 @@
 	    d3.values(nested)
 	    	.forEach(function (d){
 		    	var y = ( height() - d3.sum(d,function(n){ return n.dy+sankey.nodePadding();}) ) / 2 + sankey.nodePadding()/2;
-		    	d.sort(function (a,b){ 
+		    	d.sort(function (a,b){
 		    		if (sortBy() == "automatic") return b.y - a.y;
 		    		if (sortBy() == "size") return b.dy - a.dy;
-		    		if (sortBy() == "name") return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;		
+		    		if (sortBy() == "name") return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
 		    	})
 		    	d.forEach(function (node){
 		    		node.y = y;
@@ -100,11 +100,11 @@
 		    			link.sy = ly;
 		    			ly += link.dy;
 		    		})
-		    	
+
 		    	ly = 0;
 
 		    	node.targetLinks
-		    		.sort(function(a,b){ 
+		    		.sort(function(a,b){
 		    			return a.source.y - b.source.y;
 		    		})
 		    		.forEach(function (link){
@@ -113,7 +113,7 @@
 		    		})
 			})
 		})
-	   
+
 	 	colors.domain(links, function (d){ return d.source.name; });
 
 		var link = g.append("g").selectAll(".link")

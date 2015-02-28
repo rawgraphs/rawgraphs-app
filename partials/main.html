@@ -32,7 +32,7 @@
 		<div raw-table class="data-table" data-ng-show="dataView == 'table'"></div>
 
 		<div>
-			<div data-ng-show="!loading && !data.length && !error" class="alert"><i class="fa fa-hand-o-right breath-right"></i> Not sure how it works? <a href="http://raw.densitydesign.org/how-it-works/">Take a look at this video</a> or <a href="https://github.com/densitydesign/raw/wiki/FAQs">visit our FAQs</a></div>
+			<div data-ng-show="!loading && !data.length && !error" class="alert"><i class="fa fa-hand-o-right breath-right"></i> Not sure how this works? <a href="http://raw.densitydesign.org/how-it-works/">Take a look at this video</a> or <a href="https://github.com/densitydesign/raw/wiki/FAQs">visit our FAQs</a></div>
 			<div data-ng-show="!loading && !error && data.length" class="alert alert-success"><i class="fa fa-thumbs-up breath-right"></i><strong>{{data.length}}</strong> records in your data have been successfully parsed!</div>
 			<div data-ng-show="error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops!</strong> Please check line {{error+1}}</div>
 			<div data-ng-show="loading" class="alert"><i class="fa breath-right fa-refresh fa-spin"></i>Loading your data. Please wait.</div>
@@ -45,7 +45,7 @@
 		<section data-ng-show="error">
 
 			<div class="container">
-				<h2>Ouch. It seems like RAW encountered some problems while parsing your data. Please, be sure everything is ok with your data. Often this is due to some missing delimiters. If you want to use a <a href="http://en.wikipedia.org/wiki/Delimiter">delimiter char</a> as string literal, please include it in double quotes. See our <a href="https://github.com/densitydesign/raw/wiki/FAQs#raw-says-there-is-something-wrong-with-my-data">FAQs</a> for more information.</h2>
+				<h2><strong>Ouch.</strong> It seems like RAW encountered some problems while parsing your data. Please, be sure everything is ok with your data. Often this is due to some missing delimiters. If you want to use a <a href="http://en.wikipedia.org/wiki/Delimiter">delimiter char</a> as string literal, please include it in double quotes. See our <a href="https://github.com/densitydesign/raw/wiki/FAQs#raw-says-there-is-something-wrong-with-my-data">FAQs</a> for more information.</h2>
 			</div>
 
 		</section>
@@ -57,29 +57,35 @@
 				<div>
 
 					<h3 id="layout">
-						Choose a Chart	
+						Choose a Chart
 					</h3>
 
 
 					<div class="row">
 
-						<div class="col-lg-3 col-md-3">
+						<div class="col-lg-3 col-md-4">
 							<div class="row">
-								<div class="col-lg-12 col-mf-12">
+								<div class="col-lg-12 col-md-12">
 									<div class="chart-description">
-										<span class="text-muted">Current selection</span>
 										<h4>{{chart.title()}}</h4>
-										<!--<div class="chart-thumb" ng-style="{'background-image':'url(' + chart.thumbnail() + ')'}"></div>-->
-										<p class="light" ng-bind-html="chart.description()"></p>
-										<p class="light" data-ng-show="!chart.description()">No description given</p>
+										<span class="text-muted">{{chart.category()}}</span>
+										<div class="row">
+											<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+												<div class="chart-thumb" ng-style="{'background-image':'url(' + chart.thumbnail() + ')'}"></div>
+											</div>
+											<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+												<p class="light" ng-bind-html="chart.description()"></p>
+												<p class="light" data-ng-show="!chart.description()">No description given</p>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>		
+						</div>
 
-						<div class="col-lg-9 col-md-9">
+						<div class="col-lg-9 col-md-8">
 								<div class="row">
-									<div class="col-lg-3 col-md-4 col-sm-6" ng-repeat="c in charts  | orderBy:sortCategory:true track by $index">
+									<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" ng-repeat="c in charts  | orderBy:sortCategory:true track by $index">
 										<div ng-class="{selected: c == chart}" class="layout"  ng-click="selectChart(c)">
 											<div class="layout-thumb" ng-style="{'background-image':'url(' + c.thumbnail() + ')'}"></div>
 											<p class="layout-inner" >
@@ -91,17 +97,17 @@
 												</div>
 										</div>
 									</div>
-									
-									<div class="col-lg-3 col-md-4 col-sm-6">
+
+									<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
 										<a href="https://github.com/densitydesign/raw/wiki/Adding-New-Charts" target="_blank">
 											<div class="layout yours">
 												<div class="layout-thumb">
-													<i class="fa fa-plus-circle"></i>
+													<i class="fa fa-plus"></i>
 												</div>
-												
+
 												<p class="layout-inner" >
-													<span class="layout-title">Add your charts!</span>
-													<span class="text-muted layout-category">Customize</span>
+													<span class="layout-title">Custom</span>
+													<span class="text-muted layout-category">Add your charts!</span>
 												</p>
 											</div>
 										</a>
@@ -110,7 +116,7 @@
 
 							</div>
 
-							
+
 
 						</div>
 
@@ -136,24 +142,25 @@
 							ng-click="model.clear()" class="pull-right light"><i class="fa fa-trash-o"></i></a>
 							<span class="clearfix"></span>
 						</h3>
+						<!--<p class="help-block">Drag your into </p>-->
 					</div>
 
 
 					<div class="row">
 
-						<div class="col-lg-3 col-md-3">
+						<div class="col-lg-3 col-md-3 col-sm-6">
 							<div draggable>
 								<ul class="list-unstyled dimensions-list">
 									<li class="dimension" data-dimension="{{dimension}}" ng-repeat="dimension in metadata track by $index">
 										<span class="dimension-key">{{ dimension.key }}</span>
 										<span class="dimension-type">{{dimension.type}}</span>
-										<span class="dimension-icon pull-right"><i class="fa fa-bars"></i></span>
+										<span class="dimension-icon pull-right"><i class="fa fa-arrow-right"></i></span>
 									</li>
 								</ul>
 							</div>
 						</div>
 
-						<div class="col-lg-9 col-md-9">
+						<div class="col-lg-9 col-md-9 col-sm-6 mapping">
 							<div class="sticky">
 								<div
 								class="row"
@@ -200,7 +207,7 @@
 									types="dimension.types()"
 									class="dimensions-container list-unstyled">
 								</ul>
-							
+
 						</div>
 
 					</div>
@@ -250,7 +257,7 @@
 							</div>
 
 							<div colors="option.value" ng-switch-when="color"></div>
-							
+
 							<button
 							type="button"
 							class="btn btn-default"
@@ -306,7 +313,7 @@
 				</div>
 
 			</div>
-		</div>	
+		</div>
 
 	</div>
 </section>

@@ -7,7 +7,7 @@ angular.module('raw.controllers', [])
   .controller('RawCtrl', function ($scope, dataService) {
 
     $scope.samples = [
-      { title : 'Cars (multivariate)', url : 'data/multivariate.csv' },
+      { title : 'Cars (Time series)', url : 'data/multivariate.csv' },
       { title : 'Movies (dispersions)', url : 'data/dispersions.csv' },
       { title : 'Music (flows)', url : 'data/flows.csv' },
       { title : 'Cocktails (correlations)', url : 'data/correlations.csv' }
@@ -18,7 +18,7 @@ angular.module('raw.controllers', [])
       dataService.loadSample(sample.url).then(
         function(data){
           $scope.text = data;
-        }, 
+        },
         function(error){
           $scope.error = error;
         }
@@ -99,7 +99,7 @@ angular.module('raw.controllers', [])
     $scope.codeMirrorOptions = {
       lineNumbers : true,
       lineWrapping : true,
-      placeholder : 'Paste your text or drop a file here. No data on hand? Try one of our sample datasets!'
+      placeholder : 'Paste your text or drop a file from your computer here. No data on hand? Try one of our sample datasets!'
     }
 
     $scope.selectChart = function(chart){
@@ -125,8 +125,8 @@ angular.module('raw.controllers', [])
           mappingHeight = $('#mapping').height(),
           isBetween = scrollTop > mappingTop + 50 && scrollTop <= mappingTop + mappingHeight - $(".sticky").height() - 20,
           isOver = scrollTop > mappingTop + mappingHeight - $(".sticky").height() - 20,
-          mappingWidth = mappingWidth ? mappingWidth : $('.col-lg-9').width();
-     
+          mappingWidth = mappingWidth ? mappingWidth : $('.mapping').width();
+
       if (mappingHeight-$('.dimensions-list').height() > 90) return;
       //console.log(mappingHeight-$('.dimensions-list').height())
       if (isBetween) {
@@ -134,7 +134,7 @@ angular.module('raw.controllers', [])
           .css("position","fixed")
           .css("width", mappingWidth+"px")
           .css("top","20px")
-      } 
+      }
 
      if(isOver) {
         $(".sticky")
