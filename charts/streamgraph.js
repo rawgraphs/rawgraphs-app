@@ -32,7 +32,7 @@
                         return {
                             group : group(d[0]),
                             x : date(d[0]),
-                            y : size() ? d3.sum(d,size) : d.length 
+                            y : size() ? d3.sum(d,size) : d.length
                         }
                     })
                     .map(g);
@@ -58,7 +58,7 @@
         .thumbnail("imgs/streamgraph.png")
         .description(
             "For continuous data such as time series, a streamgraph can be used in place of stacked bars. <br/>Based on <a href='http://bl.ocks.org/mbostock/4060954'>http://bl.ocks.org/mbostock/4060954</a>")
-        .category('Time Series')
+        .category('Time series')
         .model(stream)
 
     var width = chart.number()
@@ -98,7 +98,7 @@
           'Sankey curves' : interpolate,
           'Linear' : 'linear'
         }
-   
+
         var stack = d3.layout.stack()
             .offset(offset());
 
@@ -149,7 +149,7 @@
         var line = d3.svg.line()
             .interpolate(curves[curve()])
             .x(function(d) { return x(d.x); })
-            .y(function(d) { 
+            .y(function(d) {
                 var y0 = y(d.y0), y1 = y(d.y0 + d.y);
                 return y0 + (y1 - y0) * 0.5;
             });
@@ -173,7 +173,7 @@
             .enter().append('path')
             .attr('id', function(d,i) { return 'path-' + i; })
             .attr('d', line);
-        
+
         g.selectAll("text.label")
             .data(layers)
             .enter().append('text')

@@ -7,10 +7,13 @@ angular.module('raw.controllers', [])
   .controller('RawCtrl', function ($scope, dataService) {
 
     $scope.samples = [
-      { title : 'Cars (Time series)', url : 'data/multivariate.csv' },
-      { title : 'Movies (dispersions)', url : 'data/dispersions.csv' },
-      { title : 'Music (flows)', url : 'data/flows.csv' },
-      { title : 'Cocktails (correlations)', url : 'data/correlations.csv' }
+      { title : 'Cars (Multivariate)', url : 'data/multivariate.csv' },
+      { title : 'Movies (Dispersion)', url : 'data/dispersions.csv' },
+      { title : 'Music industry (Time series)', url : 'data/music.csv' },
+      { title : 'Lineup (Time chunks)', url : 'data/lineup.tsv' },
+      { title : 'Orchestra (Weighted hierarchy)', url : 'data/orchestra.csv' },
+      { title : 'Animal kingdom (Hierarchy)', url : 'data/animals.tsv' },
+      { title : 'Titanic\'s passengers (Multi categorical)', url : 'data/titanic.tsv' }
     ]
 
     $scope.$watch('sample', function (sample){

@@ -11,7 +11,7 @@
         .description(
             "Dendrograms are tree-like diagrams used to represent the distribution of a hierarchical clustering. The different depth levels represented by each node are visualized on the horizontal axes and it is useful to visualize a non-weighted hierarchy.<br />Based on <br /><a href='http://bl.ocks.org/mbostock/4063570'>http://bl.ocks.org/mbostock/4063570</a>")
         .thumbnail("imgs/dendrogram.png")
-        .category('Hierarchies')
+        .category('Hierarchy')
         .model(tree)
 
     var width = chart.number()
@@ -24,7 +24,7 @@
         .defaultValue(500)
 
     chart.draw(function (selection, data){
-      
+
         var g = selection
             .attr("width", +width() )
             .attr("height", +height() )

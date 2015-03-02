@@ -12,7 +12,7 @@
             "The Delaunay triangulation, the dual of Voronoi tesselation, creates a planar, triangular mesh for a given set of points.  <br/>Based on <a href='http://bl.ocks.org/mbostock/4341156'>http://bl.ocks.org/mbostock/4341156</a>")
 		.thumbnail("imgs/delaunay.png")
 		.model(points)
-		.category('Distributions')
+		.category('Dispersion')
 
 	var width = chart.number()
 		.title("Width")

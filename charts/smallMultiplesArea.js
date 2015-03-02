@@ -31,7 +31,7 @@
                         return {
                             group : group(d[0]),
                             date : date(d[0]),
-                            size : size() ? d3.sum(d,size) : d.length 
+                            size : size() ? d3.sum(d,size) : d.length
                         }
                     })
                     .map(g);
@@ -48,7 +48,7 @@
         .title('Small Multiples (Area)')
         .thumbnail("imgs/smallMultiples.png")
         .description("A small multiple is a series of small similar graphics or charts, allowing them to be easily compared.<br/>Based on <a href='http://bl.ocks.org/mbostock/9490313'>http://bl.ocks.org/mbostock/9490313</a>")
-        .category('Time Series')
+        .category('Time series')
         .model(stream)
 
     var width = chart.number()
