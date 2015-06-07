@@ -26,7 +26,7 @@ angular.module('raw.directives', [])
 	        			.select('svg')
 	    				.attr("xmlns", "http://www.w3.org/2000/svg")
 	    				.node().parentNode.innerHTML;
-	    			
+
 	    			$rootScope.$broadcast("completeGraph");
 
 	        }
@@ -74,8 +74,8 @@ angular.module('raw.directives', [])
 	      templateUrl : 'templates/colors.html',
 	      link: function postLink(scope, element, attrs) {
 
-	        scope.scales = [ 
-	        	
+	        scope.scales = [
+
 	        	{
 	        		type : 'Ordinal (categories)',
 	        		value : d3.scale.ordinal().range(raw.divergingRange(1)),
@@ -162,7 +162,7 @@ angular.module('raw.directives', [])
 	          var domain = scope.colorScale.value.domain(),
 	          		index = domain.indexOf(key),
 	          		range = scope.colorScale.value.range();
-	          range[index] = color;	         	
+	          range[index] = color;
 						scope.option.value.range(range);
 	          $rootScope.$broadcast("update");
 	        }
@@ -173,7 +173,7 @@ angular.module('raw.directives', [])
 
 	        scope.$watch('option.value', function (value){
 	        	if(!value) scope.setScale();
-	        })	        
+	        })
 
 	      }
 	    };
@@ -212,7 +212,7 @@ angular.module('raw.directives', [])
 	      }
 
 		    function onStart(e,ui){
-		 	    
+
 			   	var dimension = ui.item.data().dimension,
 		    			html = isValidType(dimension) ? '<i class="fa fa-arrow-circle-down breath-right"></i>Drop here' : '<i class="fa fa-times-circle breath-right"></i>Don\'t drop here'
 		    	element.find('.drop').html(html);
@@ -231,7 +231,7 @@ angular.module('raw.directives', [])
 		     	if (removeLast) {
 		     		ui.item.remove();
 		     		removeLast = false;
-		     	}    	
+		     	}
 
 		     	scope.value = values();
 		     	scope.$apply();
@@ -300,7 +300,7 @@ angular.module('raw.directives', [])
 				function isValidType(dimension) {
 					if (!dimension) return;
 					return scope.types.map(function (d){ return d.name; }).indexOf(dimension.type) != -1;
-					
+
 				}
 
 				function message(){
@@ -392,12 +392,12 @@ angular.module('raw.directives', [])
 					.data(scope.metadata)
 					.enter().append("th")
 						.text( function(d){ return d.key; } )
-						.on('click', function (d){ 
+						.on('click', function (d){
 							descending = sortBy == d.key ? !descending : descending;
 							sortBy = d.key;
 							update();
 						})
-				
+
 				headers.append("i")
 					.attr("class", function (d){ return descending ? "fa fa-sort-desc pull-right" : "fa fa-sort-asc pull-right"})
 					.style("opacity", function (d){ return d.key == sortBy ? 1 : 0; })
@@ -520,7 +520,7 @@ angular.module('raw.directives', [])
 
         function downloadSvg(){
           var BB = getBlob();
-         
+
           var html = d3.select(source)
             .attr("version", 1.1)
             .attr("xmlns", "http://www.w3.org/2000/svg")
@@ -541,7 +541,7 @@ angular.module('raw.directives', [])
         }
 
         function downloadPng(){
-          
+
           var content = d3.select("body").append("canvas")
               .attr("id", "canvas")
               .style("display","none")
@@ -556,12 +556,12 @@ angular.module('raw.directives', [])
           canvas.width = image.width;
   				canvas.height = image.height;
           var context = canvas.getContext("2d");
-					
+
 					image.onload = function() {
 					  context.drawImage(image, 0, 0);
 
 					  var isSafari = (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1);
-          
+
 	          if (isSafari) {
 	            var img = canvas.toDataURL("image/png;base64");
             	var newWindow = window.open(img, 'download');
@@ -579,10 +579,10 @@ angular.module('raw.directives', [])
 					  }
 					};
 
-          
+
 
           d3.select("#canvas").remove();
-      } 
+      }
 
       var downloadData = function() {
         var json = JSON.stringify(scope.model(scope.data));

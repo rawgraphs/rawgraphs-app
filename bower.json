@@ -35,6 +35,9 @@
     "zeroclipboard": "1.3.2",
     "canvas-toBlob.js": "https://github.com/eligrey/canvas-toBlob.js.git",
     "jqueryui-touch-punch": "*",
-    "codemirror": "~4.5.0"
+    "codemirror": "latest",
+    "ng-file-upload": "~5.0.0",
+    "is_js": "~0.7.4",
+    "js-xlsx": "~0.8.0"
   }
 }

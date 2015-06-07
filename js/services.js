@@ -5,9 +5,46 @@
 angular.module('raw.services', [])
 
 	.factory('dataService', function ($http, $q, $timeout) {
-		  
+
 		  return {
-		    
+
+				loadExcel : function(file){
+
+					var deferred = $q.defer();
+
+					var reader = new FileReader();
+
+					reader.onload = function(e) {
+
+						var worksheets = [];
+			      var data = e.target.result;
+			      var workbook = XLSX.read(data, {type: 'binary'});
+						var sheet_name_list = workbook.SheetNames;
+						
+						sheet_name_list.forEach(function(y) { /* iterate through sheets */
+						  var worksheet = workbook.Sheets[y];
+							worksheets.push({
+								name: y,
+								text : XLSX.utils.sheet_to_csv(worksheet)
+							})
+						});
+						deferred.resolve(worksheets);
+			    };
+
+					reader.readAsBinaryString(file);
+
+					return deferred.promise;
+
+				},
+
+				loadJson : function(file){
+					console.log('sono io', file)
+				},
+
+				loadText : function(file){
+					console.log('sono io', file)
+				},
+
 		    loadSample : function(sample){
 		      var deferred = $q.defer();
 		      $http.get(sample)
@@ -17,7 +54,7 @@ angular.module('raw.services', [])
 			      function(){
 			          deferred.reject("An error occured while getting sample (" + sample.title + ")");
 			      });
-		      
+
 		      return deferred.promise;
 		    },
 

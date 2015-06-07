@@ -4,7 +4,7 @@
 
 angular.module('raw.controllers', [])
 
-  .controller('RawCtrl', function ($scope, dataService) {
+  .controller('RawCtrl', function ($scope, dataService, $http, $timeout) {
 
     $scope.samples = [
       { title : 'Cars (Multivariate)', url : 'data/multivariate.csv' },
@@ -28,6 +28,27 @@ angular.module('raw.controllers', [])
       );
     });
 
+    $(document).on('dragenter', function(){
+      $scope.importMode = 'file';
+      $scope.$digest();
+    })
+
+    $scope.$watch('importMode', function (n,o){
+      $scope.text = "";
+      $scope.data = [];
+  //    if (!$('.CodeMirror')[0]) return;
+  //    var cm = $('.CodeMirror')[0].CodeMirror;
+    //  cm.refresh();
+  //    cm.refresh(); // <-- magic
+
+    });
+
+    $scope.$watch('dataView', function (n,o){
+      if (!$('.CodeMirror')[0]) return;
+      var cm = $('.CodeMirror')[0].CodeMirror;
+      $timeout(function() { cm.refresh()} ,100);
+    });
+
     // init
     $scope.raw = raw;
     $scope.data = [];
@@ -35,7 +56,10 @@ angular.module('raw.controllers', [])
     $scope.error = false;
     $scope.loading = true;
 
+    $scope.importMode = 'clipboard';
+
     $scope.categories = ['Hierarchies', 'Time Series', 'Distributions', 'Correlations', 'Others'];
+
     $scope.bgColors = {
       'Hierarchies': '#0f0',
       'Time Series': 'rgb(255, 185, 5)',
@@ -44,14 +68,112 @@ angular.module('raw.controllers', [])
       'Others': '#0f0'
     }
 
+
+    $scope.$watch('files', function () {
+        $scope.uploadFile($scope.files);
+    });
+
+    $scope.log = '';
+
+    $scope.files=[];
+
+
+    $scope.$watch('importMode', function(){
+      // reset
+      $scope.url = "";
+      //$scope.$apply();
+    })
+
+    $scope.uploadFile = function (files) {
+        if (files && files.length) {
+
+          var file = files[0];
+
+          // excel
+          if (file.name.search(/\.xls|\.xlsx/) != -1 || file.type.search('sheet') != -1) {
+            dataService.loadExcel(file)
+            .then(function(worksheets){
+              // multiple sheets
+              if (worksheets.length > 1) {
+                $scope.worksheets = worksheets;
+
+              // single > parse
+              } else {
+                $scope.parse(worksheets[0].text);
+              }
+            })
+
+          }
+
+          // json
+          if (file.type.search('json') != -1) dataService.loadJson(file);
+
+          // txt
+          if (file.type.search('text') != -1) dataService.loadText(file);
+
+
+          /*var reader = new FileReader();
+
+          reader.onload = function(e) {
+            $scope.text = reader.result;
+            $scope.importMode=null;
+            $scope.$digest();
+
+          }
+          reader.readAsText(file);*/
+        }
+    };
+
+
+    $scope.parseFromUrl = function(value){
+
+      if(!value.length || is.not.url(value)) return;
+
+      // first trying jsonp
+      $http.jsonp(value+'&callback=JSON_CALLBACK').
+      success(function(data, status, headers, config) {
+        // this callback will be called asynchronously
+        // when the response is available
+        console.log('andata jsonp', data)
+
+      }).
+      error(function(data, status, headers, config) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log(data,status, 'ora provo get')
+
+        $http.get(value).
+        success(function(data, status, headers, config) {
+          // this callback will be called asynchronously
+          // when the response is available
+          $scope.text = data;
+          $scope.importMode=null;
+
+        }).
+        error(function(data, status, headers, config) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+          console.log(data,status)
+        });
+
+      });
+
+
+
+
+    }
+
+
     $scope.parse = function(text){
 
       if ($scope.model) $scope.model.clear();
 
+      $scope.text = text;
       $scope.data = [];
       $scope.metadata = [];
       $scope.error = false;
-      $scope.$apply();
+      //$scope.importMode = null;
+      //$scope.$apply();
 
       try {
         var parser = raw.parser();
@@ -65,6 +187,10 @@ angular.module('raw.controllers', [])
       }
       if (!$scope.data.length && $scope.model) $scope.model.clear();
       $scope.loading = false;
+      var cm = $('.CodeMirror')[0].CodeMirror;
+    //  cm.refresh();
+    //  cm.refresh(); // <-- magic
+      $timeout(function() { cm.refresh()} ,100);
     }
 
     $scope.delayParse = dataService.debounce($scope.parse, 500, false);
@@ -100,9 +226,10 @@ angular.module('raw.controllers', [])
     })
 
     $scope.codeMirrorOptions = {
+      dragDrop : false,
       lineNumbers : true,
       lineWrapping : true,
-      placeholder : 'Paste your text or drop a file from your computer here. No data on hand? Try one of our sample datasets!'
+      placeholder : 'Paste your data here'
     }
 
     $scope.selectChart = function(chart){

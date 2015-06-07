@@ -4,14 +4,14 @@
 
 		<div class="container">
 
-			<h3 id="data">Insert your data
-				<button type="button"
+			<h3 id="data">Load your data
+				<!--<button type="button"
 					class="choose btn btn-default"
 					ng-model="sample"
 					placeholder="or choose one of our samples"
 					ng-options="s as s.title for s in samples" bs-select>
-				</button>
-				<span class="list-type pull-right">
+				</button>-->
+				<span class="list-type pull-right" ng-show="data.length">
 					<i class="type fa fa-align-left breath-left"
 					data-toggle="tooltip"
 					data-title="View as Text"
@@ -24,19 +24,77 @@
 				<span class="clearfix"></span>
 			</h3>
 
-		<div data-ng-show="dataView != 'table'">
-			<textarea ui-codemirror="codeMirrorOptions" ng-model="text">
-			</textarea>
-		</div>
 
-		<div raw-table class="data-table" data-ng-show="dataView == 'table'"></div>
+			<div class="row">
 
-		<div>
-			<div data-ng-show="!loading && !data.length && !error" class="alert"><i class="fa fa-hand-o-right breath-right"></i> Not sure how this works? <a href="http://raw.densitydesign.org/how-it-works/">Take a look at this video</a> or <a href="https://github.com/densitydesign/raw/wiki/FAQs">visit our FAQs</a></div>
-			<div data-ng-show="!loading && !error && data.length" class="alert alert-success"><i class="fa fa-thumbs-up breath-right"></i><strong>{{data.length}}</strong> records in your data have been successfully parsed!</div>
-			<div data-ng-show="error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops!</strong> Please check line {{error+1}}</div>
-			<div data-ng-show="loading" class="alert"><i class="fa breath-right fa-refresh fa-spin"></i>Loading your data. Please wait.</div>
-		</div>
+					<div class="col-lg-2">
+
+						<ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
+							<li role="presentation" ng-class="{active:importMode=='clipboard'}"><a href="#" ng-click="importMode='clipboard'"><i class="fa fa-clipboard breath-right"></i>Paste</a></li>
+				      <li role="presentation" ng-class="{active:importMode=='file'}"><a href="#" ng-click="importMode='file'"><i class="fa fa-file-text breath-right"></i>From file</a></li>
+				      <li role="presentation" ng-class="{active:importMode=='url'}"><a href="#" ng-click="importMode='url'"><i class="fa fa-cloud breath-right"></i>From URL</a></li>
+							<li role="presentation" ng-class="{active:importMode=='sample'}"><a href="#" ng-click="importMode='sample'"><i class="fa fa-archive breath-right"></i>Try our samples</a></li>
+				    </ul>
+
+					</div>
+
+					<div class="col-lg-10">
+
+						<!-- Clipboard -->
+						<div ng-show="importMode=='clipboard' && !data.length">
+							<textarea class="text-clipboard" ng-model="text" placeholder="Paste your data here"></textarea>
+						</div>
+
+						<!-- File -->
+						<div ng-show="importMode=='file' && !data.length">
+
+							<div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="false" ng-show="!worksheets.length">
+								<a>Drop your file here or click to upload</a>
+							</div>
+
+							<p class="help-block">You can upload file</p>
+
+							<div class="row">
+								<div class="col-lg-3" ng-repeat="worksheet in worksheets" ng-click="parse(worksheet.text)">
+									{{worksheet.name}}
+								</div>
+							</div>
+
+							<!--<a class="btn btn-default" ng-click="importMode=null">Cancel</a>-->
+
+						</div>
+
+
+						<!-- URl -->
+						<div ng-show="importMode=='url' && !data.length">
+							<input type="text" class="form-control" ng-change="parseFromUrl(url)" ng-model="url" placeholder="http://"></input>
+						</div>
+
+						<!-- Default -->
+						<div ng-show="data.length">
+
+							<div data-ng-show="dataView != 'table'">
+								<textarea ui-codemirror="codeMirrorOptions" ng-model="text"></textarea>
+							</div>
+
+							<div raw-table class="data-table" data-ng-show="dataView == 'table'"></div>
+
+							<div>
+								<div data-ng-show="!loading && !data.length && !error" class="alert"><i class="fa fa-hand-o-right breath-right"></i> Not sure how this works? <a href="http://raw.densitydesign.org/how-it-works/">Take a look at this video</a> or <a href="https://github.com/densitydesign/raw/wiki/FAQs">visit our FAQs</a></div>
+								<div data-ng-show="!loading && !error && data.length" class="alert alert-success"><i class="fa fa-thumbs-up breath-right"></i><strong>{{data.length}}</strong> records in your data have been successfully parsed!</div>
+								<div data-ng-show="error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops!</strong> Please check line {{error+1}}</div>
+								<div data-ng-show="loading" class="alert"><i class="fa breath-right fa-refresh fa-spin"></i>Loading your data. Please wait.</div>
+							</div>
+
+						</div>
+
+
+
+					</div>
+
+			</div>
+
+
 
 		</div>
 
@@ -240,7 +298,7 @@
 			<div class="col-lg-3">
 				<ul class="list-unstyled">
 					<li ng-repeat="option in chart.options() track by $index" chart-option>
-						<p class="option-title">
+						<p class="option-title text-capitalize">
 							{{option.title()}}
 							<a data-ng-show="option.fitToWidth()"
 							data-toggle="tooltip"
@@ -306,7 +364,7 @@
 				</div>
 
 				<div class="col-lg-9">
-					<h3 id="data"><i class="fa fa-code breath-right"></i>Embed Code</h3>
+					<h3 id="data"><i class="fa fa-code breath-right"></i>Embed SVG Code</h3>
 					<coder></coder>
 					<p class="light">Copy the snippet above into your HTML code to embed the visualization
 						<a class="pull-right" id="copy-button" copy-button data-clipboard-target="source" data-container="body"><i class="fa fa-clipboard"></i></a>
