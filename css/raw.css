@@ -305,7 +305,7 @@ textarea:focus {
 }
 
 .drop-box {
-    background: #F8F8F8;
+    background: transparent;
     border: 2px dashed #DDD;
     height: 275px;
     text-align: center;

@@ -28,7 +28,7 @@ angular.module('raw.controllers', [])
       );
     });
 
-    $(document).on('dragenter', function(){
+    $(document).on('dragenter', function(e){
       $scope.importMode = 'file';
       $scope.$digest();
     })
@@ -36,17 +36,14 @@ angular.module('raw.controllers', [])
     $scope.$watch('importMode', function (n,o){
       $scope.text = "";
       $scope.data = [];
-  //    if (!$('.CodeMirror')[0]) return;
-  //    var cm = $('.CodeMirror')[0].CodeMirror;
-    //  cm.refresh();
-  //    cm.refresh(); // <-- magic
-
+      $scope.worksheets = [];
+      $scope.fileName = null;
     });
 
     $scope.$watch('dataView', function (n,o){
       if (!$('.CodeMirror')[0]) return;
       var cm = $('.CodeMirror')[0].CodeMirror;
-      $timeout(function() { cm.refresh()} ,100);
+      $timeout(function() { cm.refresh()});
     });
 
     // init
@@ -70,7 +67,7 @@ angular.module('raw.controllers', [])
 
 
     $scope.$watch('files', function () {
-        $scope.uploadFile($scope.files);
+      $scope.uploadFile($scope.files);
     });
 
     $scope.log = '';
@@ -93,10 +90,10 @@ angular.module('raw.controllers', [])
           if (file.name.search(/\.xls|\.xlsx/) != -1 || file.type.search('sheet') != -1) {
             dataService.loadExcel(file)
             .then(function(worksheets){
+              $scope.fileName = file.name;
               // multiple sheets
               if (worksheets.length > 1) {
                 $scope.worksheets = worksheets;
-
               // single > parse
               } else {
                 $scope.parse(worksheets[0].text);
@@ -106,10 +103,22 @@ angular.module('raw.controllers', [])
           }
 
           // json
-          if (file.type.search('json') != -1) dataService.loadJson(file);
+          if (file.type.search('json') != -1) {
+            dataService.loadJson(file)
+            .then(function(json){
+              $scope.fileName = file.name;
+              jsonTree(json);
+            })
+          }
 
           // txt
-          if (file.type.search('text') != -1) dataService.loadText(file);
+          if (file.type.search('text') != -1) {
+            dataService.loadText(file)
+            .then(function(text){
+              $scope.parse(text);
+              $scope.fileName = file.name;
+            })
+          }
 
 
           /*var reader = new FileReader();
@@ -123,6 +132,20 @@ angular.module('raw.controllers', [])
           reader.readAsText(file);*/
         }
     };
+
+    function jsonTree(json){
+      // mettere try
+      var tree = JSON.parse(json)
+      //console.log(JSON.parse(json));
+      expand(tree);
+    }
+
+    function expand(parent){
+      for (var child in parent) {
+        if (typeof parent[child] == 'object') expand(parent[child]);
+      }
+      console.log(child,parent[child])
+    }
 
 
     $scope.parseFromUrl = function(value){
@@ -190,7 +213,7 @@ angular.module('raw.controllers', [])
       var cm = $('.CodeMirror')[0].CodeMirror;
     //  cm.refresh();
     //  cm.refresh(); // <-- magic
-      $timeout(function() { cm.refresh()} ,100);
+      $timeout(function() { cm.refresh()} );
     }
 
     $scope.delayParse = dataService.debounce($scope.parse, 500, false);

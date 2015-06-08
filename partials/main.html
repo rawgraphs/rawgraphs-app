@@ -4,25 +4,39 @@
 
 		<div class="container">
 
-			<h3 id="data">Load your data
-				<!--<button type="button"
-					class="choose btn btn-default"
-					ng-model="sample"
-					placeholder="or choose one of our samples"
-					ng-options="s as s.title for s in samples" bs-select>
-				</button>-->
-				<span class="list-type pull-right" ng-show="data.length">
-					<i class="type fa fa-align-left breath-left"
-					data-toggle="tooltip"
-					data-title="View as Text"
-					ng-click="dataView='text'" ng-class="{selected:dataView!='table'}"></i>
-					<i class="type fa fa-table breath-left"
-					data-toggle="tooltip"
-					data-title="View as Table"
-					ng-click="dataView='table'" ng-class="{selected:dataView=='table'}"></i>
-				</span>
-				<span class="clearfix"></span>
-			</h3>
+			<div class="row">
+
+					<div class="col-lg-2">
+
+						<h3 id="data">Load your data
+							<!--<button type="button"
+								class="choose btn btn-default"
+								ng-model="sample"
+								placeholder="or choose one of our samples"
+								ng-options="s as s.title for s in samples" bs-select>
+							</button>-->
+
+						</h3>
+
+					</div>
+
+					<div class="col-lg-10">
+						<h3><span class="small">{{fileName}}</span>
+							<span class="list-type pull-right" ng-show="data.length">
+								<i class="type fa fa-align-left breath-left"
+								data-toggle="tooltip"
+								data-title="View as Text"
+								ng-click="dataView='text'" ng-class="{selected:dataView!='table'}"></i>
+								<i class="type fa fa-table breath-left"
+								data-toggle="tooltip"
+								data-title="View as Table"
+								ng-click="dataView='table'" ng-class="{selected:dataView=='table'}"></i>
+							</span>
+							<span class="clearfix"></span>
+						</h3>
+					</div>
+
+				</div>
 
 
 			<div class="row">
@@ -52,7 +66,7 @@
 								<a>Drop your file here or click to upload</a>
 							</div>
 
-							<p class="help-block">You can upload file</p>
+							<p class="help-block">You can upload .txt, .csv., .tsv, .json and Excel files (.xls, .xlsx)</p>
 
 							<div class="row">
 								<div class="col-lg-3" ng-repeat="worksheet in worksheets" ng-click="parse(worksheet.text)">

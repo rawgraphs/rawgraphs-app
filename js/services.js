@@ -20,7 +20,7 @@ angular.module('raw.services', [])
 			      var data = e.target.result;
 			      var workbook = XLSX.read(data, {type: 'binary'});
 						var sheet_name_list = workbook.SheetNames;
-						
+
 						sheet_name_list.forEach(function(y) { /* iterate through sheets */
 						  var worksheet = workbook.Sheets[y];
 							worksheets.push({
@@ -38,11 +38,35 @@ angular.module('raw.services', [])
 				},
 
 				loadJson : function(file){
-					console.log('sono io', file)
+					var deferred = $q.defer();
+
+					var reader = new FileReader();
+
+					reader.onload = function(e) {
+						var text = reader.result;
+						deferred.resolve(text);
+			    };
+
+					reader.readAsText(file);
+
+					return deferred.promise;
 				},
 
+				// text file
 				loadText : function(file){
-					console.log('sono io', file)
+
+					var deferred = $q.defer();
+
+					var reader = new FileReader();
+
+					reader.onload = function(e) {
+						var text = reader.result;
+						deferred.resolve(text);
+			    };
+
+					reader.readAsText(file);
+
+					return deferred.promise;
 				},
 
 		    loadSample : function(sample){
