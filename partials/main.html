@@ -21,7 +21,7 @@
 					</div>
 
 					<div class="col-lg-10">
-						<h3><span class="small">{{fileName}}</span>
+						<h3><span class="small text-mono">{{fileName}}</span>
 							<span class="list-type pull-right" ng-show="data.length">
 								<i class="type fa fa-align-left breath-left"
 								data-toggle="tooltip"
@@ -31,6 +31,10 @@
 								data-toggle="tooltip"
 								data-title="View as Table"
 								ng-click="dataView='table'" ng-class="{selected:dataView=='table'}"></i>
+								<i class="type fa fa-download breath-left"
+								data-toggle="tooltip"
+								data-title="Download"
+								></i>
 							</span>
 							<span class="clearfix"></span>
 						</h3>
@@ -45,7 +49,7 @@
 
 						<ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
 							<li role="presentation" ng-class="{active:importMode=='clipboard'}"><a href="#" ng-click="importMode='clipboard'"><i class="fa fa-clipboard breath-right"></i>Paste</a></li>
-				      <li role="presentation" ng-class="{active:importMode=='file'}"><a href="#" ng-click="importMode='file'"><i class="fa fa-file-text breath-right"></i>From file</a></li>
+				      <li role="presentation" ng-class="{active:importMode=='file'}"><a href="#" ng-click="importMode='file'"><i class="fa fa-file-text breath-right"></i>Upload a file</a></li>
 				      <li role="presentation" ng-class="{active:importMode=='url'}"><a href="#" ng-click="importMode='url'"><i class="fa fa-cloud breath-right"></i>From URL</a></li>
 							<li role="presentation" ng-class="{active:importMode=='sample'}"><a href="#" ng-click="importMode='sample'"><i class="fa fa-archive breath-right"></i>Try our samples</a></li>
 				    </ul>
@@ -56,14 +60,14 @@
 
 						<!-- Clipboard -->
 						<div ng-show="importMode=='clipboard' && !data.length">
-							<textarea class="text-clipboard" ng-model="text" placeholder="Paste your data here"></textarea>
+							<textarea class="text-clipboard" ng-model="text" placeholder="Paste your data from other applications (e.g. text, spreadsheet, json) here"></textarea>
 						</div>
 
 						<!-- File -->
 						<div ng-show="importMode=='file' && !data.length">
 
 							<div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="false" ng-show="!worksheets.length">
-								<a>Drop your file here or click to upload</a>
+								<a>Drag a file here or click to select a file from your computer</a>
 							</div>
 
 							<p class="help-block">You can upload .txt, .csv., .tsv, .json and Excel files (.xls, .xlsx)</p>
@@ -101,6 +105,8 @@
 							</div>
 
 						</div>
+
+						<div class="json-viewer" json-viewer json="json" ng-show="json"></div>
 
 
 

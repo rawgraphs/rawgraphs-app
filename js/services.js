@@ -8,6 +8,51 @@ angular.module('raw.services', [])
 
 		  return {
 
+				flatJSON : function(array){
+
+					for (var a in array) {
+						console.log(parse_object(array[a]));
+					}
+
+
+					/*function getParam(name) {
+					    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+					    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+					        results = regex.exec(location.search);
+					    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+					}*/
+
+
+					function parse_object(obj, path) {
+					    if (path == undefined)
+					        path = "";
+
+					    var type = $.type(obj);
+					    var scalar = (type == "number" || type == "string" || type == "boolean" || type == "null");
+
+					    if (type == "array" || type == "object") {
+					        var d = {};
+					        for (var i in obj) {
+					            var newD = parse_object(obj[i], path + i + ".");
+					            $.extend(d, newD);
+					        }
+
+					        return d;
+					    }
+
+					    else if (scalar) {
+					        var d = {};
+					        var endPath = path.substr(0, path.length-1);
+					        d[endPath] = obj;
+					        return d;
+					    }
+
+					    // ?
+					    else return {};
+					}
+
+				},
+
 				loadExcel : function(file){
 
 					var deferred = $q.defer();

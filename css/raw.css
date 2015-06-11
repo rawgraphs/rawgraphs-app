@@ -73,6 +73,10 @@ h4 {
   margin-right: 8px;
 }
 
+.text-mono {
+  font-family: Cousine, Menlo, Monaco, Courier, monospace;
+}
+
 /* Header and footer */
 
 .wrap {
@@ -238,7 +242,7 @@ section.dark {
 }
 
 .alert-success {
-  background-color: #0dc4a3;
+  background-color: #2DD8B1;/*#0dc4a3;*/
   color: #FFF;
 }
 
@@ -992,6 +996,38 @@ textarea.source-area {
   -ms-transition: border .15s ease-in-out;
   -o-transition: border .15s ease-in-out;
   transition: border .15s ease-in-out;
+}
+
+.json-viewer {
+  height: 400px;
+  overflow: scroll;
+}
+
+.json-icon {
+  margin-top: 2px;
+  opacity: .5;
+  cursor: pointer;
+  margin-left: -15px;
+}
+
+.json-icon:hover {
+  opacity: 1;
+}
+
+.json-node {
+    font-family: Cousine, Menlo, Monaco, Courier, monospace;
+    font-size: 11px;
+    padding: 3px;
+    margin-left: 15px;
+}
+
+.json-hover {
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.json-closed .json-node {
+  display: none;
 }
 
 .list-type {

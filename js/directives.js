@@ -4,6 +4,111 @@
 
 angular.module('raw.directives', [])
 
+	.directive('jsonViewer', function (dataService) {
+		return {
+			scope : {
+				json : "="
+			},
+
+			link: function postLink(scope, element, attrs) {
+
+				scope.$watch('json', function(json){
+					update();
+				})
+
+				function update(){
+
+					d3.select(element[0]).selectAll("*").remove();
+
+					var tree = d3.select(element[0])
+						.append("div")
+						.classed("json-node","true")
+
+					var j = scope.json;
+
+					explore(j, tree);
+
+
+					function explore(n, el){
+
+						if ( el === tree && is.object(n) && is.not.empty(n) ) {
+							el.append("div")
+							//	.classed("json-node","true")
+								.text(function(d){
+									var text = is.array(n) ? "[" : "{";
+									return text;
+							})
+						}
+
+						for (var c in n) {
+
+							var cel = el.append("div")
+								.datum(n)
+								.classed("json-node","true")
+
+							if ( is.array(n[c]) && is.not.empty(n[c]) ) {
+
+								cel.classed("json-closed","true")
+
+								cel.append("i")
+								.classed("json-icon fa fa-plus-square-o pull-left","true")
+								.on("click", function(d){
+									d3.event.stopPropagation();
+									d3.select(this.parentNode).classed("json-closed", function(){
+										return !d3.select(this).classed("json-closed");
+									})
+									d3.select(this).classed("fa-plus-square-o", d3.select(this.parentNode).classed("json-closed"))
+									d3.select(this).classed("fa-minus-square-o", !d3.select(this.parentNode).classed("json-closed"))
+								})
+							}
+
+							cel.append("div")
+							.html(function(d){
+									var pre = is.array(n) ? "" : "<b>"+c + "</b> : ";
+									var text = is.array(n[c]) ? "[" : is.object(n[c]) ? "{" : n[c];
+									text += is.array(n[c]) && !n[c].length ? "]" : is.object(n[c]) && is.empty(n[c]) ? "}" : "";
+									return pre + text;
+								})
+
+							if (is.object(n[c])) explore(n[c], cel);
+						}
+
+						if (el !== tree && is.object(n) && is.not.array(n)) {
+
+							el.on("mouseover", function(d){
+								d3.event.stopPropagation();
+								d3.select(this).classed("json-hover", true)
+							})
+							.on("mouseout", function(d){
+								d3.event.stopPropagation();
+								d3.select(this).classed("json-hover", false)
+							})
+							.on("click", function(d){
+								d3.event.stopPropagation();
+								dataService.flatJSON(d);
+							})
+						}
+
+						if ( is.object(n) && is.not.empty(n) ) {
+
+							el.append("div")
+							//	.classed("json-node","true")
+								.text(function(d){
+									var text = is.array(n) ? "]" : "}";
+									return text;
+							})
+						}
+
+					}
+
+
+				}
+
+
+			}
+		};
+	})
+
 	.directive('chart', function ($rootScope, dataService) {
 	    return {
 	      restrict: 'A',

@@ -85,6 +85,7 @@ angular.module('raw.controllers', [])
         if (files && files.length) {
 
           var file = files[0];
+          console.log(file)
 
           // excel
           if (file.name.search(/\.xls|\.xlsx/) != -1 || file.type.search('sheet') != -1) {
@@ -113,6 +114,7 @@ angular.module('raw.controllers', [])
 
           // txt
           if (file.type.search('text') != -1) {
+
             dataService.loadText(file)
             .then(function(text){
               $scope.parse(text);
@@ -133,18 +135,27 @@ angular.module('raw.controllers', [])
         }
     };
 
+    var arrays = [];
+
+
     function jsonTree(json){
       // mettere try
-      var tree = JSON.parse(json)
+      var tree = JSON.parse(json);
+      $scope.json = tree;
+      $scope.structure = [];
       //console.log(JSON.parse(json));
       expand(tree);
     }
 
+
     function expand(parent){
       for (var child in parent) {
-        if (typeof parent[child] == 'object') expand(parent[child]);
+        if (is.object(parent[child]) || is.array(parent[child])) {
+          expand(parent[child]);
+          if (is.array(parent[child])) arrays.push(child);
+        }
       }
-      console.log(child,parent[child])
+      //console.log(child,parent[child])
     }
 
 
