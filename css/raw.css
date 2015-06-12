@@ -310,7 +310,7 @@ textarea:focus {
 
 .drop-box {
     background: transparent;
-    border: 2px dashed #DDD;
+    border: 3px dashed #DDD;
     height: 275px;
     text-align: center;
     padding: 0px;
@@ -341,7 +341,7 @@ textarea:focus {
 }
 
 .dragover {
-  border: 2px dashed #0dc4a3;
+  border-color: #0dc4a3;
 }
 
 .btn.choose {

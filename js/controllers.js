@@ -6,27 +6,182 @@ angular.module('raw.controllers', [])
 
   .controller('RawCtrl', function ($scope, dataService, $http, $timeout) {
 
+    // Clipboard
+    $scope.$watch('clipboardText', function (text) {
+      if (!text) return;
+      try {
+        var json = JSON.parse(text);
+        selectArray(json);
+      }
+      catch(error) {
+        parseText(text);
+      }
+
+    });
+
+    // select Array in JSON
+    function selectArray(json){
+      $scope.json = json;
+      $scope.structure = [];
+      expand(json);
+    }
+
+    // parse Text
+    function parseText(text){
+      $scope.json = null;
+      $scope.text = text;
+      $scope.parse(text);
+    }
+
+    // load File
+    $scope.uploadFile = function (files) {
+
+      if (files && files.length) {
+
+        var file = files[0];
+
+        // excel
+        if (file.name.search(/\.xls|\.xlsx/) != -1 || file.type.search('sheet') != -1) {
+          dataService.loadExcel(file)
+          .then(function(worksheets){
+            $scope.fileName = file.name;
+            // multiple sheets
+            if (worksheets.length > 1) {
+              $scope.worksheets = worksheets;
+            // single > parse
+            } else {
+              $scope.parse(worksheets[0].text);
+            }
+          })
+        }
+
+        // json
+        if (file.type.search('json') != -1) {
+          dataService.loadJson(file)
+          .then(function(json){
+            $scope.fileName = file.name;
+            selectArray(json);
+          })
+        }
+
+        // txt
+        if (file.type.search('text') != -1) {
+          dataService.loadText(file)
+          .then(function(text){
+            $scope.fileName = file.name;
+            parseText(text);
+          })
+        }
+      }
+    };
+
+
+    function parseData(data){
+      console.log(data);
+
+      if (!text) return;
+      try {
+        var json = JSON.parse(text);
+        selectArray(json);
+      }
+      catch(error) {
+        parseText(text);
+      }
+
+    }
+
+    // load URl
+    $scope.parseFromUrl = function(url){
+
+      if(!url.length || is.not.url(url)) return;
+
+      // first trying jsonp
+      $http.jsonp(url+'&callback=JSON_CALLBACK')
+      .success(function(data, status, headers, config) {
+        parseData(data);
+      })
+      .error(function(data, status, headers, config) {
+
+        $http.get(url, {responseType:'arraybuffer'})
+        .success(function(arraybuffer, status, headers, config) {
+
+          var data = new Uint8Array(arraybuffer);
+          var arr = new Array();
+          for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+          var bstr = arr.join("");
+
+          try {
+            var workbook = XLS.read(bstr, {type:"binary"});
+            var worksheets = [];
+						var sheet_name_list = workbook.SheetNames;
+
+						sheet_name_list.forEach(function(y) {
+						  var worksheet = workbook.Sheets[y];
+							worksheets.push({
+								name: y,
+								text : XLSX.utils.sheet_to_csv(worksheet)
+							})
+						});
+
+            $scope.fileName = url;
+
+            // multiple sheets
+            if (worksheets.length > 1) {
+              $scope.worksheets = worksheets;
+            // single > parse
+            } else {
+              $scope.parse(worksheets[0].text);
+            }
+          }
+          catch(error) {
+            try {
+              var json = JSON.parse(bstr);
+              selectArray(json);
+            }
+            catch(error) {
+              parseText(bstr);
+            }
+          }
+
+        })
+        .error(function(data, status, headers, config) {
+          // do something
+        });
+
+      });
+
+
+
+
+    }
+
+
     $scope.samples = [
-      { title : 'Cars (Multivariate)', url : 'data/multivariate.csv' },
-      { title : 'Movies (Dispersion)', url : 'data/dispersions.csv' },
-      { title : 'Music industry (Time series)', url : 'data/music.csv' },
-      { title : 'Lineup (Time chunks)', url : 'data/lineup.tsv' },
-      { title : 'Orchestra (Weighted hierarchy)', url : 'data/orchestra.csv' },
-      { title : 'Animal kingdom (Hierarchy)', url : 'data/animals.tsv' },
-      { title : 'Titanic\'s passengers (Multi categorical)', url : 'data/titanic.tsv' }
+      { title : 'Cars', type : 'Multivariate', url : 'data/multivariate.csv' },
+      { title : 'Movies', type : 'Dispersion', url : 'data/dispersions.csv' },
+      { title : 'Music industry', type: 'Time Series', url : 'data/music.csv' },
+      { title : 'Lineup', type : 'Time chunks', url : 'data/lineup.tsv' },
+      { title : 'Orchestra', type : 'Weighted hierarchy', url : 'data/orchestra.csv' },
+      { title : 'Animal kingdom', type: 'Hierarachy', url : 'data/animals.tsv' },
+      { title : 'Titanic\'s passengers', type : 'Multi categorical', url : 'data/titanic.tsv' }
     ]
 
-    $scope.$watch('sample', function (sample){
+    $scope.selectSample = function(sample) {
+
+//    $scope.$watch('sample', function (sample){
       if (!sample) return;
+      $scope.loading = true;
       dataService.loadSample(sample.url).then(
         function(data){
           $scope.text = data;
+          $scope.loading = false;
         },
         function(error){
           $scope.error = error;
+          $scope.loading = false;
         }
       );
-    });
+    }//);
 
     $(document).on('dragenter', function(e){
       $scope.importMode = 'file';
@@ -81,59 +236,7 @@ angular.module('raw.controllers', [])
       //$scope.$apply();
     })
 
-    $scope.uploadFile = function (files) {
-        if (files && files.length) {
 
-          var file = files[0];
-          console.log(file)
-
-          // excel
-          if (file.name.search(/\.xls|\.xlsx/) != -1 || file.type.search('sheet') != -1) {
-            dataService.loadExcel(file)
-            .then(function(worksheets){
-              $scope.fileName = file.name;
-              // multiple sheets
-              if (worksheets.length > 1) {
-                $scope.worksheets = worksheets;
-              // single > parse
-              } else {
-                $scope.parse(worksheets[0].text);
-              }
-            })
-
-          }
-
-          // json
-          if (file.type.search('json') != -1) {
-            dataService.loadJson(file)
-            .then(function(json){
-              $scope.fileName = file.name;
-              jsonTree(json);
-            })
-          }
-
-          // txt
-          if (file.type.search('text') != -1) {
-
-            dataService.loadText(file)
-            .then(function(text){
-              $scope.parse(text);
-              $scope.fileName = file.name;
-            })
-          }
-
-
-          /*var reader = new FileReader();
-
-          reader.onload = function(e) {
-            $scope.text = reader.result;
-            $scope.importMode=null;
-            $scope.$digest();
-
-          }
-          reader.readAsText(file);*/
-        }
-    };
 
     var arrays = [];
 
@@ -159,43 +262,7 @@ angular.module('raw.controllers', [])
     }
 
 
-    $scope.parseFromUrl = function(value){
 
-      if(!value.length || is.not.url(value)) return;
-
-      // first trying jsonp
-      $http.jsonp(value+'&callback=JSON_CALLBACK').
-      success(function(data, status, headers, config) {
-        // this callback will be called asynchronously
-        // when the response is available
-        console.log('andata jsonp', data)
-
-      }).
-      error(function(data, status, headers, config) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-        console.log(data,status, 'ora provo get')
-
-        $http.get(value).
-        success(function(data, status, headers, config) {
-          // this callback will be called asynchronously
-          // when the response is available
-          $scope.text = data;
-          $scope.importMode=null;
-
-        }).
-        error(function(data, status, headers, config) {
-          // called asynchronously if an error occurs
-          // or server returns response with an error status.
-          console.log(data,status)
-        });
-
-      });
-
-
-
-
-    }
 
 
     $scope.parse = function(text){
