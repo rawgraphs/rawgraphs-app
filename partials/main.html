@@ -59,12 +59,12 @@
 					<div class="col-lg-10">
 
 						<!-- Clipboard -->
-						<div ng-show="importMode=='clipboard' && !text.length">
+						<div ng-show="importMode=='clipboard' && !text.length && !json">
 							<textarea class="text-clipboard" ng-model="clipboardText" placeholder="Paste your data here from other applications (e.g. text, spreadsheet, json)"></textarea>
 						</div>
 
 						<!-- File -->
-						<div ng-show="importMode=='file' && !text.length">
+						<div ng-show="importMode=='file' && !text.length && !json">
 
 							<div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="false" ng-show="!worksheets.length">
 								<a>Drag a file here or click to select a file from your computer</a>
@@ -84,7 +84,7 @@
 
 
 						<!-- URl -->
-						<div ng-show="importMode=='url' && !text.length">
+						<div ng-show="importMode=='url' && !text.length && !json">
 							<input type="text" class="form-control" ng-change="parseFromUrl(url)" ng-model="url" placeholder="http://"></input>
 						</div>
 
@@ -100,7 +100,7 @@
 
 						</div>
 
-						<div class="json-viewer" json-viewer json="json" ng-show="json"></div>
+						<div class="json-viewer" json-viewer json="json" ng-show="json" on-select="antani"></div>
 
 						<!-- Sample -->
 						<div ng-show="importMode=='sample' && !text.length">

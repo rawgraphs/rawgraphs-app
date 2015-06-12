@@ -999,8 +999,11 @@ textarea.source-area {
 }
 
 .json-viewer {
-  height: 400px;
+  max-height: 400px;
   overflow: scroll;
+  background-color: #fff;
+  padding: 15px 0px;
+  border-radius: 2px;
 }
 
 .json-icon {
@@ -1015,15 +1018,22 @@ textarea.source-area {
 }
 
 .json-node {
-    font-family: Cousine, Menlo, Monaco, Courier, monospace;
-    font-size: 11px;
-    padding: 3px;
-    margin-left: 15px;
+  font-family: Cousine, Menlo, Monaco, Courier, monospace;
+  font-size: 11px;
+  padding: 3px;
+  margin-left: 15px;
+  color: rgba(0,0,0,.4);
+  border: 1px dashed transparent;
+}
+
+.json-array {
+  color: rgba(0,0,0,1);
 }
 
 .json-hover {
-  background-color: #fff;
+  background-color: #FFFDD2;
   cursor: pointer;
+  border-color: #ddd;
 }
 
 .json-closed .json-node {

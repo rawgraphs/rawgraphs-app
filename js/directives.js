@@ -7,7 +7,8 @@ angular.module('raw.directives', [])
 	.directive('jsonViewer', function (dataService) {
 		return {
 			scope : {
-				json : "="
+				json : "=",
+				onSelect : "="
 			},
 
 			link: function postLink(scope, element, attrs) {
@@ -43,12 +44,14 @@ angular.module('raw.directives', [])
 						for (var c in n) {
 
 							var cel = el.append("div")
-								.datum(n)
+								.datum(n[c])
 								.classed("json-node","true")
 
 							if ( is.array(n[c]) && is.not.empty(n[c]) ) {
 
 								cel.classed("json-closed","true")
+
+								cel.classed("json-array","true")
 
 								cel.append("i")
 								.classed("json-icon fa fa-plus-square-o pull-left","true")
@@ -73,19 +76,19 @@ angular.module('raw.directives', [])
 							if (is.object(n[c])) explore(n[c], cel);
 						}
 
-						if (el !== tree && is.object(n) && is.not.array(n)) {
+						if (el !== tree && is.array(n)) {
 
-							el.on("mouseover", function(d){
+							el.select('div').on("mouseover", function(d){
 								d3.event.stopPropagation();
-								d3.select(this).classed("json-hover", true)
+								d3.select(this.parentNode).classed("json-hover", true)
 							})
 							.on("mouseout", function(d){
 								d3.event.stopPropagation();
-								d3.select(this).classed("json-hover", false)
+								d3.select(this.parentNode).classed("json-hover", false)
 							})
 							.on("click", function(d){
 								d3.event.stopPropagation();
-								dataService.flatJSON(d);
+								scope.onSelect(d);
 							})
 						}
 

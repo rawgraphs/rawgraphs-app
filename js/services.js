@@ -9,19 +9,11 @@ angular.module('raw.services', [])
 		  return {
 
 				flatJSON : function(array){
+					console.log(array);
 
-					for (var a in array) {
-						console.log(parse_object(array[a]));
-					}
-
-
-					/*function getParam(name) {
-					    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-					    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-					        results = regex.exec(location.search);
-					    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-					}*/
-
+					return array.map(function(d){
+						return parse_object(d);
+					});
 
 					function parse_object(obj, path) {
 					    if (path == undefined)
@@ -50,6 +42,12 @@ angular.module('raw.services', [])
 					    // ?
 					    else return {};
 					}
+
+				},
+
+				loadURL : function(url) {
+
+
 
 				},
 
@@ -89,7 +87,8 @@ angular.module('raw.services', [])
 
 					reader.onload = function(e) {
 						var text = reader.result;
-						deferred.resolve(text);
+						var json = JSON.parse(text);
+						deferred.resolve(json);
 			    };
 
 					reader.readAsText(file);

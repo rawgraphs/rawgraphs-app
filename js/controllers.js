@@ -19,6 +19,13 @@ angular.module('raw.controllers', [])
 
     });
 
+    $scope.antani = function(d){
+      var json = dataService.flatJSON(d);
+
+      parseText(d3.tsv.format(json))
+
+    }
+
     // select Array in JSON
     function selectArray(json){
       $scope.json = json;
@@ -191,6 +198,7 @@ angular.module('raw.controllers', [])
     $scope.$watch('importMode', function (n,o){
       $scope.text = "";
       $scope.data = [];
+      $scope.json = null;
       $scope.worksheets = [];
       $scope.fileName = null;
     });
