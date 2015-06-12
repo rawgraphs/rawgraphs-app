@@ -21,9 +21,7 @@ angular.module('raw.controllers', [])
 
     $scope.antani = function(d){
       var json = dataService.flatJSON(d);
-
       parseText(d3.tsv.format(json))
-
     }
 
     // select Array in JSON
@@ -135,9 +133,11 @@ angular.module('raw.controllers', [])
             // multiple sheets
             if (worksheets.length > 1) {
               $scope.worksheets = worksheets;
+              console.log(worksheets)
             // single > parse
             } else {
-              $scope.parse(worksheets[0].text);
+              console.log('non farmi')
+              parseText(worksheets[0].text);
             }
           }
           catch(error) {

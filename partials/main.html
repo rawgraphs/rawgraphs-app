@@ -85,7 +85,14 @@
 
 						<!-- URl -->
 						<div ng-show="importMode=='url' && !text.length && !json">
-							<input type="text" class="form-control" ng-change="parseFromUrl(url)" ng-model="url" placeholder="http://"></input>
+							<input type="text" class="form-control" ng-change="parseFromUrl(url)" ng-model="url" placeholder="http://" ng-show="!worksheets.length"></input>
+
+							<div class="row">
+								<div class="col-lg-3" ng-repeat="worksheet in worksheets" ng-click="parse(worksheet.text)">
+									{{worksheet.name}}
+								</div>
+							</div>
+
 						</div>
 
 						<!-- Default -->
