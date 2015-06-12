@@ -74,7 +74,12 @@
 
 							<div class="row">
 								<div class="col-lg-3" ng-repeat="worksheet in worksheets" ng-click="parse(worksheet.text)">
-									{{worksheet.name}}
+									<div class="layout">
+										<div class="layout-inner">
+											<span>{{worksheet.name}}</span>
+											<span class="text-muted layout-category">{{worksheet.rows}} rows</span>
+										</div>
+									</div>
 								</div>
 							</div>
 
@@ -85,11 +90,16 @@
 
 						<!-- URl -->
 						<div ng-show="importMode=='url' && !text.length && !json">
-							<input type="text" class="form-control" ng-change="parseFromUrl(url)" ng-model="url" placeholder="http://" ng-show="!worksheets.length"></input>
+							<input type="text" class="form-control" ng-model="url" placeholder="http://" ng-show="!worksheets.length"></input>
 
 							<div class="row">
 								<div class="col-lg-3" ng-repeat="worksheet in worksheets" ng-click="parse(worksheet.text)">
-									{{worksheet.name}}
+									<div class="layout">
+										<div class="layout-inner">
+											<span>{{worksheet.name}}</span>
+											<span class="text-muted layout-category">{{worksheet.rows}} rows</span>
+										</div>
+									</div>
 								</div>
 							</div>
 

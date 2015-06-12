@@ -9,6 +9,13 @@ angular.module('raw.controllers', [])
     // Clipboard
     $scope.$watch('clipboardText', function (text) {
       if (!text) return;
+
+      if (is.url(text)) {
+        $scope.importMode = 'url';
+        $timeout(function() { $scope.url = text; });
+        return;
+      }
+
       try {
         var json = JSON.parse(text);
         selectArray(json);
@@ -82,7 +89,6 @@ angular.module('raw.controllers', [])
 
 
     function parseData(data){
-      console.log(data);
 
       if (!text) return;
       try {
@@ -96,13 +102,14 @@ angular.module('raw.controllers', [])
     }
 
     // load URl
-    $scope.parseFromUrl = function(url){
+    $scope.$watch('url', function (url) {
 
-      if(!url.length || is.not.url(url)) return;
+      if(!url || !url.length || is.not.url(url)) return;
 
       // first trying jsonp
       $http.jsonp(url+'&callback=JSON_CALLBACK')
       .success(function(data, status, headers, config) {
+        $scope.fileName = url;
         parseData(data);
       })
       .error(function(data, status, headers, config) {
@@ -124,7 +131,8 @@ angular.module('raw.controllers', [])
 						  var worksheet = workbook.Sheets[y];
 							worksheets.push({
 								name: y,
-								text : XLSX.utils.sheet_to_csv(worksheet)
+								text : XLSX.utils.sheet_to_csv(worksheet),
+                rows: worksheet['!range'].e.r
 							})
 						});
 
@@ -133,7 +141,7 @@ angular.module('raw.controllers', [])
             // multiple sheets
             if (worksheets.length > 1) {
               $scope.worksheets = worksheets;
-              console.log(worksheets)
+              console.log('alura?')
             // single > parse
             } else {
               console.log('non farmi')
@@ -141,6 +149,7 @@ angular.module('raw.controllers', [])
             }
           }
           catch(error) {
+            $scope.fileName = url;
             try {
               var json = JSON.parse(bstr);
               selectArray(json);
@@ -160,7 +169,7 @@ angular.module('raw.controllers', [])
 
 
 
-    }
+    });
 
 
     $scope.samples = [
@@ -240,6 +249,7 @@ angular.module('raw.controllers', [])
 
     $scope.$watch('importMode', function(){
       // reset
+      $scope.clipboardText = "";
       $scope.url = "";
       //$scope.$apply();
     })

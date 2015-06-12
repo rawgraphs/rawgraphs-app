@@ -68,7 +68,8 @@ angular.module('raw.services', [])
 						  var worksheet = workbook.Sheets[y];
 							worksheets.push({
 								name: y,
-								text : XLSX.utils.sheet_to_csv(worksheet)
+								text : XLSX.utils.sheet_to_csv(worksheet),
+								rows: worksheet['!range'].e.r
 							})
 						});
 						deferred.resolve(worksheets);
