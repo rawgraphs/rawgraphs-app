@@ -1019,8 +1019,9 @@ textarea.source-area {
   max-height: 400px;
   overflow: scroll;
   background-color: #fff;
-  padding: 15px 0px;
+  padding: 10px 0px;
   border-radius: 2px;
+  border: 10px solid #fff;
 }
 
 .json-icon {

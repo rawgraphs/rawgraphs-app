@@ -62,7 +62,7 @@
 						<div ng-show="importMode=='clipboard' && !json && !parsed">
 							<textarea class="text-clipboard margin-bottom" ng-model="clipboardText" placeholder="Paste your data here from other applications (e.g. text, spreadsheet, json)"></textarea>
 
-							<p class="help-block">You can paste data from applications such as </p>
+							<p class="help-block">Copy and paste your tabular and json data from other applications such as TextEdit, TextWrangler, Notepad, OpenOffice, LibreOffice, Microsoft Excel, Apple Numbers, Google Docs and many others. Not sure how it works? Click here for a video tutorial.<p>
 
 						</div>
 
@@ -73,9 +73,7 @@
 								<a>Drag a file here or click to select a file from your computer</a>
 							</div>
 
-							<!--<p class="help-block">You can upload .txt, .csv., .tsv, .json and Excel files (.xls, .xlsx)</p>-->
-
-							<p class="help-block">You can paste data from applications such as </p>
+							<p ng-show="!worksheets.length" class="help-block">You can upload .txt, .csv., .tsv, .json and Microsoft Excel files (.xls, .xlsx). Spreadsheet files with multiple sheets are fine too.</p>
 
 							<div class="row">
 								<div class="col-lg-3" ng-repeat="worksheet in worksheets" ng-click="parse(worksheet.text)">
@@ -88,9 +86,7 @@
 								</div>
 							</div>
 
-							<!--<a class="btn btn-default" ng-click="importMode=null">Cancel</a>-->
-
-
+							<p ng-show="worksheets.length" class="help-block">Your file has multiple sheets. Please choose one from above.</p>
 
 						</div>
 
@@ -99,7 +95,6 @@
 						<div ng-show="importMode=='url' && !json && !parsed">
 							<input type="text" class="form-control margin-bottom" ng-model="url" placeholder="http://" ng-show="!worksheets.length"></input>
 
-							<p class="help-block">You can paste data from applications such as </p>
 
 							<div class="row">
 								<div class="col-lg-3" ng-repeat="worksheet in worksheets" ng-click="parse(worksheet.text)">
@@ -111,6 +106,8 @@
 									</div>
 								</div>
 							</div>
+
+							<p ng-show="worksheets.length" class="help-block">Your file has multiple sheets. Please choose one from above.</p>
 
 						</div>
 
@@ -127,6 +124,8 @@
 						</div>
 
 						<div class="json-viewer margin-bottom" json-viewer json="json" ng-show="json" on-select="antani"></div>
+
+						<p ng-show="json" class="help-block">Please select the array [ ] with the records you want to load.</p>
 
 						<!-- Sample -->
 						<div ng-show="importMode=='sample' && !parsed">
@@ -171,7 +170,7 @@
 		</section>
 
 
-		<section class="dark" data-ng-show="!error && data.length">
+		<section class="dark" data-ng-show="!error && data.length && parsed">
 
 			<div class="container">
 
@@ -250,7 +249,7 @@
 
 		</section>
 
-		<section class="" data-ng-show="!error && data.length">
+		<section class="" data-ng-show="!error && data.length && parsed">
 
 			<div class="container">
 
@@ -347,7 +346,7 @@
 
 </section>
 
-<section class="dark" data-ng-show="!error && data.length">
+<section class="dark" data-ng-show="!error && data.length && parsed">
 
 	<div class="container">
 

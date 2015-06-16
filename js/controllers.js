@@ -224,6 +224,7 @@ angular.module('raw.controllers', [])
 
     $(document).on('dragenter', function(e){
       $scope.importMode = 'file';
+      $scope.parsed = false;
       $scope.$digest();
     })
 
@@ -311,8 +312,6 @@ angular.module('raw.controllers', [])
 
     $scope.parse = function(text){
 
-      if (!text) return;
-
       if ($scope.model) $scope.model.clear();
 
       $scope.text = text;
@@ -321,6 +320,8 @@ angular.module('raw.controllers', [])
       $scope.error = false;
       //$scope.importMode = null;
       //$scope.$apply();
+
+      if (!text) return;
 
       try {
         var parser = raw.parser();
@@ -376,8 +377,7 @@ angular.module('raw.controllers', [])
     $scope.codeMirrorOptions = {
       dragDrop : false,
       lineNumbers : true,
-      lineWrapping : true,
-      placeholder : 'Paste your data here'
+      lineWrapping : true
     }
 
     $scope.selectChart = function(chart){
