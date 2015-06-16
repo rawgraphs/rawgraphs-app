@@ -21,7 +21,7 @@
 					</div>
 
 					<div class="col-lg-10">
-						<h3><span class="small text-mono">{{fileName}}</span>
+						<h3><span ng-show="parsed && text.length" class="small text-mono">{{fileName}}</span>
 							<span class="list-type pull-right" ng-show="data.length">
 								<i class="type fa fa-align-left breath-left"
 								data-toggle="tooltip"
@@ -48,10 +48,10 @@
 					<div class="col-lg-2">
 
 						<ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-							<li role="presentation" ng-class="{active:importMode=='clipboard'}"><a href="#" ng-click="importMode='clipboard'"><i class="fa fa-clipboard breath-right"></i>Paste</a></li>
-				      <li role="presentation" ng-class="{active:importMode=='file'}"><a href="#" ng-click="importMode='file'"><i class="fa fa-file-text breath-right"></i>Upload a file</a></li>
-				      <li role="presentation" ng-class="{active:importMode=='url'}"><a href="#" ng-click="importMode='url'"><i class="fa fa-cloud breath-right"></i>From URL</a></li>
-							<li role="presentation" ng-class="{active:importMode=='sample'}"><a href="#" ng-click="importMode='sample'"><i class="fa fa-archive breath-right"></i>Try our samples</a></li>
+							<li role="presentation" ng-class="{active:!parsed && importMode=='clipboard'}"><a href="#" ng-click="parsed=false;importMode='clipboard'"><i class="fa fa-clipboard breath-right"></i>Paste</a></li>
+				      <li role="presentation" ng-class="{active:!parsed && importMode=='file'}"><a href="#" ng-click="parsed=false;importMode='file'"><i class="fa fa-file-text breath-right"></i>Upload a file</a></li>
+				      <li role="presentation" ng-class="{active:!parsed && importMode=='url'}"><a href="#" ng-click="parsed=false;importMode='url'"><i class="fa fa-cloud breath-right"></i>From URL</a></li>
+							<li role="presentation" ng-class="{active:!parsed && importMode=='sample'}"><a href="#" ng-click="parsed=false;importMode='sample'"><i class="fa fa-archive breath-right"></i>Try our samples</a></li>
 				    </ul>
 
 					</div>
@@ -59,7 +59,7 @@
 					<div class="col-lg-10">
 
 						<!-- Clipboard -->
-						<div ng-show="importMode=='clipboard' && !text.length && !json">
+						<div ng-show="importMode=='clipboard' && !json && !parsed">
 							<textarea class="text-clipboard margin-bottom" ng-model="clipboardText" placeholder="Paste your data here from other applications (e.g. text, spreadsheet, json)"></textarea>
 
 							<p class="help-block">You can paste data from applications such as </p>
@@ -67,7 +67,7 @@
 						</div>
 
 						<!-- File -->
-						<div ng-show="importMode=='file' && !text.length && !json">
+						<div ng-show="importMode=='file'&& !json && !parsed">
 
 							<div ngf-drop ngf-select ng-model="files" class="drop-box margin-bottom" ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="false" ng-show="!worksheets.length">
 								<a>Drag a file here or click to select a file from your computer</a>
@@ -96,7 +96,7 @@
 
 
 						<!-- URl -->
-						<div ng-show="importMode=='url' && !text.length && !json">
+						<div ng-show="importMode=='url' && !json && !parsed">
 							<input type="text" class="form-control margin-bottom" ng-model="url" placeholder="http://" ng-show="!worksheets.length"></input>
 
 							<p class="help-block">You can paste data from applications such as </p>
@@ -115,7 +115,7 @@
 						</div>
 
 						<!-- Default -->
-						<div ng-show="text.length">
+						<div ng-show="parsed">
 
 							<div data-ng-show="dataView != 'table'">
 								<textarea ui-codemirror="codeMirrorOptions" ng-model="text"></textarea>
@@ -129,7 +129,7 @@
 						<div class="json-viewer margin-bottom" json-viewer json="json" ng-show="json" on-select="antani"></div>
 
 						<!-- Sample -->
-						<div ng-show="importMode=='sample' && !text.length">
+						<div ng-show="importMode=='sample' && !parsed">
 							<div class="row">
 								<div class="col-lg-3" ng-repeat="s in samples" ng-click="selectSample(s)">
 									<div class="layout">
@@ -144,9 +144,9 @@
 
 						<div>
 							<!--<div data-ng-show="!loading && !data.length && !error" class="alert"><i class="fa fa-hand-o-right breath-right"></i> Not sure how this works? <a href="http://raw.densitydesign.org/how-it-works/">Take a look at this video</a> or <a href="https://github.com/densitydesign/raw/wiki/FAQs">visit our FAQs</a></div>-->
-							<div data-ng-show="!loading && !error && data.length" class="alert alert-success"><i class="fa fa-thumbs-up breath-right"></i><strong>{{data.length}}</strong> records in your data have been successfully parsed!</div>
-							<div data-ng-show="!loading && error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops!</strong> Please check line {{error+1}}</div>
-							<div data-ng-show="loading" class="alert alert-loading"><i class="fa breath-right fa-refresh fa-spin"></i>Loading your data. Please wait.</div>
+							<div data-ng-show="!loading && !error && data.length && parsed" class="alert alert-success"><i class="fa fa-thumbs-up breath-right"></i><strong>{{data.length}}</strong> records in your data have been successfully parsed!</div>
+							<div data-ng-show="!loading && error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops! </strong>{{error}}</div>
+							<div data-ng-show="loading && text.length" class="alert alert-loading"><i class="fa breath-right fa-refresh fa-spin"></i>Loading your data. Please wait.</div>
 						</div>
 
 

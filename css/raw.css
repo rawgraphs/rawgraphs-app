@@ -223,8 +223,8 @@ section.dark {
 }
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus {
-  color: #222;
-  background-color: #eee;
+  color: #fff;
+  background-color: #2DD8B1;
 }
 
 .margin-bottom {

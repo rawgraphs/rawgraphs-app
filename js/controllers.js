@@ -99,6 +99,7 @@ angular.module('raw.controllers', [])
     function parseData(data){
 
       $scope.loading = false;
+      $scope.parsed = true;
 
       if (!text) return;
       try {
@@ -114,7 +115,14 @@ angular.module('raw.controllers', [])
     // load URl
     $scope.$watch('url', function (url) {
 
-      if(!url || !url.length || is.not.url(url)) return;
+      if(!url || !url.length) {
+        return;
+      }
+
+      if (is.not.url(url)) {
+        $scope.error = "Please insert a valid URL";
+        return;
+      }
 
       $scope.loading = true;
       var error = null;
@@ -175,9 +183,8 @@ angular.module('raw.controllers', [])
 
         })
         .error(function(data, status, headers, config) {
-          // do something
-          console.log(data,status,headers)
-
+          $scope.loading = false;
+          $scope.error = "Something wrong with the URL you provided. Please be sure it is the correct address.";
         });
 
       });
@@ -221,6 +228,9 @@ angular.module('raw.controllers', [])
     })
 
     $scope.$watch('importMode', function (n,o){
+
+      $scope.parsed = false;
+
       $scope.text = "";
       $scope.data = [];
       $scope.json = null;
@@ -301,6 +311,8 @@ angular.module('raw.controllers', [])
 
     $scope.parse = function(text){
 
+      if (!text) return;
+
       if ($scope.model) $scope.model.clear();
 
       $scope.text = text;
@@ -315,6 +327,8 @@ angular.module('raw.controllers', [])
         $scope.data = parser(text);
         $scope.metadata = parser.metadata(text);
         $scope.error = false;
+        $scope.parsed = true;
+
       } catch(e){
         $scope.data = [];
         $scope.metadata = [];
@@ -349,7 +363,6 @@ angular.module('raw.controllers', [])
       cm.addLineClass(error, 'wrap', 'line-error');
       cm.scrollIntoView(error);
       $scope.lastError = error;
-
     })
 
     $('body').mousedown(function (e,ui){

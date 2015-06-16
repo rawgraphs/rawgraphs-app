@@ -9,7 +9,6 @@ angular.module('raw.services', [])
 		  return {
 
 				flatJSON : function(array){
-					console.log(array);
 
 					return array.map(function(d){
 						return parse_object(d);
