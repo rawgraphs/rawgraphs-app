@@ -10,6 +10,8 @@ angular.module('raw.controllers', [])
     $scope.$watch('clipboardText', function (text) {
       if (!text) return;
 
+      $scope.loading = true;
+
       if (is.url(text)) {
         $scope.importMode = 'url';
         $timeout(function() { $scope.url = text; });
@@ -19,6 +21,7 @@ angular.module('raw.controllers', [])
       try {
         var json = JSON.parse(text);
         selectArray(json);
+        $scope.loading = false;
       }
       catch(error) {
         parseText(text);
@@ -27,6 +30,7 @@ angular.module('raw.controllers', [])
     });
 
     $scope.antani = function(d){
+      $scope.loading = true;
       var json = dataService.flatJSON(d);
       parseText(d3.tsv.format(json))
     }
@@ -40,6 +44,7 @@ angular.module('raw.controllers', [])
 
     // parse Text
     function parseText(text){
+    //  $scope.loading = false;
       $scope.json = null;
       $scope.text = text;
       $scope.parse(text);
@@ -50,6 +55,8 @@ angular.module('raw.controllers', [])
 
       if (files && files.length) {
 
+        $scope.loading = true;
+
         var file = files[0];
 
         // excel
@@ -57,6 +64,7 @@ angular.module('raw.controllers', [])
           dataService.loadExcel(file)
           .then(function(worksheets){
             $scope.fileName = file.name;
+            $scope.loading = false;
             // multiple sheets
             if (worksheets.length > 1) {
               $scope.worksheets = worksheets;
@@ -90,6 +98,8 @@ angular.module('raw.controllers', [])
 
     function parseData(data){
 
+      $scope.loading = false;
+
       if (!text) return;
       try {
         var json = JSON.parse(text);
@@ -106,6 +116,9 @@ angular.module('raw.controllers', [])
 
       if(!url || !url.length || is.not.url(url)) return;
 
+      $scope.loading = true;
+      var error = null;
+
       // first trying jsonp
       $http.jsonp(url+'&callback=JSON_CALLBACK')
       .success(function(data, status, headers, config) {
@@ -113,9 +126,11 @@ angular.module('raw.controllers', [])
         parseData(data);
       })
       .error(function(data, status, headers, config) {
+        console.log(data,status,headers)
 
         $http.get(url, {responseType:'arraybuffer'})
         .success(function(arraybuffer, status, headers, config) {
+          console.log(arraybuffer,status,headers)
 
           var data = new Uint8Array(arraybuffer);
           var arr = new Array();
@@ -137,14 +152,13 @@ angular.module('raw.controllers', [])
 						});
 
             $scope.fileName = url;
+            $scope.loading = false;
 
             // multiple sheets
             if (worksheets.length > 1) {
               $scope.worksheets = worksheets;
-              console.log('alura?')
             // single > parse
             } else {
-              console.log('non farmi')
               parseText(worksheets[0].text);
             }
           }
@@ -162,6 +176,8 @@ angular.module('raw.controllers', [])
         })
         .error(function(data, status, headers, config) {
           // do something
+          console.log(data,status,headers)
+
         });
 
       });

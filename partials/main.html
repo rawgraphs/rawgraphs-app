@@ -60,17 +60,22 @@
 
 						<!-- Clipboard -->
 						<div ng-show="importMode=='clipboard' && !text.length && !json">
-							<textarea class="text-clipboard" ng-model="clipboardText" placeholder="Paste your data here from other applications (e.g. text, spreadsheet, json)"></textarea>
+							<textarea class="text-clipboard margin-bottom" ng-model="clipboardText" placeholder="Paste your data here from other applications (e.g. text, spreadsheet, json)"></textarea>
+
+							<p class="help-block">You can paste data from applications such as </p>
+
 						</div>
 
 						<!-- File -->
 						<div ng-show="importMode=='file' && !text.length && !json">
 
-							<div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="false" ng-show="!worksheets.length">
+							<div ngf-drop ngf-select ng-model="files" class="drop-box margin-bottom" ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="false" ng-show="!worksheets.length">
 								<a>Drag a file here or click to select a file from your computer</a>
 							</div>
 
 							<!--<p class="help-block">You can upload .txt, .csv., .tsv, .json and Excel files (.xls, .xlsx)</p>-->
+
+							<p class="help-block">You can paste data from applications such as </p>
 
 							<div class="row">
 								<div class="col-lg-3" ng-repeat="worksheet in worksheets" ng-click="parse(worksheet.text)">
@@ -85,12 +90,16 @@
 
 							<!--<a class="btn btn-default" ng-click="importMode=null">Cancel</a>-->
 
+
+
 						</div>
 
 
 						<!-- URl -->
 						<div ng-show="importMode=='url' && !text.length && !json">
-							<input type="text" class="form-control" ng-model="url" placeholder="http://" ng-show="!worksheets.length"></input>
+							<input type="text" class="form-control margin-bottom" ng-model="url" placeholder="http://" ng-show="!worksheets.length"></input>
+
+							<p class="help-block">You can paste data from applications such as </p>
 
 							<div class="row">
 								<div class="col-lg-3" ng-repeat="worksheet in worksheets" ng-click="parse(worksheet.text)">
@@ -117,7 +126,7 @@
 
 						</div>
 
-						<div class="json-viewer" json-viewer json="json" ng-show="json" on-select="antani"></div>
+						<div class="json-viewer margin-bottom" json-viewer json="json" ng-show="json" on-select="antani"></div>
 
 						<!-- Sample -->
 						<div ng-show="importMode=='sample' && !text.length">
@@ -133,12 +142,12 @@
 							</div>
 						</div>
 
-					<!--	<div>
-							<div data-ng-show="!loading && !data.length && !error" class="alert"><i class="fa fa-hand-o-right breath-right"></i> Not sure how this works? <a href="http://raw.densitydesign.org/how-it-works/">Take a look at this video</a> or <a href="https://github.com/densitydesign/raw/wiki/FAQs">visit our FAQs</a></div>
+						<div>
+							<!--<div data-ng-show="!loading && !data.length && !error" class="alert"><i class="fa fa-hand-o-right breath-right"></i> Not sure how this works? <a href="http://raw.densitydesign.org/how-it-works/">Take a look at this video</a> or <a href="https://github.com/densitydesign/raw/wiki/FAQs">visit our FAQs</a></div>-->
 							<div data-ng-show="!loading && !error && data.length" class="alert alert-success"><i class="fa fa-thumbs-up breath-right"></i><strong>{{data.length}}</strong> records in your data have been successfully parsed!</div>
-							<div data-ng-show="error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops!</strong> Please check line {{error+1}}</div>
-							<div data-ng-show="loading" class="alert"><i class="fa breath-right fa-refresh fa-spin"></i>Loading your data. Please wait.</div>
-						</div>-->
+							<div data-ng-show="!loading && error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops!</strong> Please check line {{error+1}}</div>
+							<div data-ng-show="loading" class="alert alert-loading"><i class="fa breath-right fa-refresh fa-spin"></i>Loading your data. Please wait.</div>
+						</div>
 
 
 

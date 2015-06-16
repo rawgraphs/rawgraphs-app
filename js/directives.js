@@ -29,29 +29,36 @@ angular.module('raw.directives', [])
 
 					explore(j, tree);
 
+					function explore(m, el){
 
-					function explore(n, el){
 
-						if ( el === tree && is.object(n) && is.not.empty(n) ) {
+						if ( el === tree && is.object(m) && is.not.array(m) && is.not.empty(m) ) {
+
 							el.append("div")
 							//	.classed("json-node","true")
 								.text(function(d){
-									var text = is.array(n) ? "[" : "{";
-									return text;
+									return "{";
 							})
+
 						}
+
+
+						var n = el === tree && is.array(m) && is.not.empty(m) ? [m] : m;
 
 						for (var c in n) {
 
 							var cel = el.append("div")
-								.datum(n[c])
+								.datum(n[c])//function(d){console.log(el === tree, n); return el === tree ? {tree:n} : n[c]})
 								.classed("json-node","true")
 
-							if ( is.array(n[c]) && is.not.empty(n[c]) ) {
+							if ( is.array(n[c]) && is.not.empty(n[c])) {
 
-								cel.classed("json-closed","true")
+								cel.classed("json-closed", function(d){ return el === tree ? "false" : "true"})
 
-								cel.classed("json-array","true")
+								cel.classed("json-array", function(d){ return el === tree ? "false" : "true"})
+
+								//data-toggle="tooltip"
+								//data-title="Clear all"
 
 								cel.append("i")
 								.classed("json-icon fa fa-plus-square-o pull-left","true")
@@ -76,9 +83,14 @@ angular.module('raw.directives', [])
 							if (is.object(n[c])) explore(n[c], cel);
 						}
 
-						if (el !== tree && is.array(n)) {
+						if (is.array(n) && el !== tree) {
 
-							el.select('div').on("mouseover", function(d){
+							el.select('div')
+							.attr("data-toggle","tooltip")
+							.attr("data-title", function(d){
+								return "Load " + d.length + " records";
+							})
+							.on("mouseover", function(d){
 								d3.event.stopPropagation();
 								d3.select(this.parentNode).classed("json-hover", true)
 							})
@@ -94,6 +106,8 @@ angular.module('raw.directives', [])
 
 						if ( is.object(n) && is.not.empty(n) ) {
 
+							if (is.array(n) && el === tree) return;
+
 							el.append("div")
 							//	.classed("json-node","true")
 								.text(function(d){
@@ -101,6 +115,8 @@ angular.module('raw.directives', [])
 									return text;
 							})
 						}
+
+						$('[data-toggle="tooltip"]').tooltip({animation:false});
 
 					}
 

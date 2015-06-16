@@ -227,6 +227,10 @@ section.dark {
   background-color: #eee;
 }
 
+.margin-bottom {
+  margin-bottom: 10px;
+}
+
 /* Alerts */
 
 .alert {
@@ -247,6 +251,11 @@ section.dark {
 }
 
 .alert-warning {
+  color: #fff;
+  background-color: #FA7070
+}
+
+.alert-loading {
   color: #444;
   background-color: #FFE666;
 }
@@ -301,6 +310,7 @@ textarea:focus {
 
 
 .text-clipboard {
+    display: block;
     width: 100%;
     height: 275px;
     resize: none;
@@ -340,6 +350,10 @@ textarea:focus {
     cursor: pointer;
 }
 
+.drop-box:hover a {
+  color: #444;
+}
+
 .dragover {
   border-color: #0dc4a3;
 }
@@ -370,6 +384,11 @@ textarea:focus {
 
 
 /* Tooltips */
+
+.tooltip {
+  font-family: 'karla', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
 
 .tooltip-inner {
   padding: 10px 15px;
@@ -558,8 +577,6 @@ textarea:focus {
    -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.1);
         box-shadow: 0px 1px 1px rgba(0,0,0,.1);
 
-  border: 5px solid white;
-
 }
 
 .layout.selected {
@@ -602,9 +619,9 @@ textarea:focus {
 
 
 .layout-thumb {
-  height: 80px;
+  height: 100px;
   background-position: 50% 50%;
-  background-size: cover;
+  background-size: 120%;
   background-color: #F5F5F5;
   opacity: .85;
 
@@ -630,7 +647,7 @@ textarea:focus {
 
 .layout-inner {
   opacity: 1;
-  padding: 8px 5px;
+  padding: 8px;
   margin: 0px;
 }
 
