@@ -62,7 +62,7 @@
 						<div ng-show="importMode=='clipboard' && !json && !parsed">
 							<textarea class="text-clipboard margin-bottom" ng-model="clipboardText" placeholder="Paste your data here from other applications (e.g. text, spreadsheet, json)"></textarea>
 
-							<p class="help-block">Copy and paste your tabular and json data from other applications such as TextEdit, TextWrangler, Notepad, OpenOffice, LibreOffice, Microsoft Excel, Apple Numbers, Google Docs and many others. Not sure how it works? Click here for a video tutorial.<p>
+							<p class="help-block">Copy and paste your tabular or json data from other applications or websites. Not sure how it works? Click here for a video tutorial.<p>
 
 						</div>
 
@@ -147,6 +147,8 @@
 							<div data-ng-show="!loading && error" class="alert alert-warning"><i class="fa fa-thumbs-down breath-right"></i><strong>Whoops! </strong>{{error}}</div>
 							<div data-ng-show="loading && text.length" class="alert alert-loading"><i class="fa breath-right fa-refresh fa-spin"></i>Loading your data. Please wait.</div>
 						</div>
+
+						<div ng-show="parsed">Unpivot? <strong ng-show="pivot>0">NO</strong><strong ng-show="pivot<=0">YES</strong> ({{pivot}})</div>
 
 
 

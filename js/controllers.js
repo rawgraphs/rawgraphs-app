@@ -307,6 +307,40 @@ angular.module('raw.controllers', [])
     }
 
 
+    // very improbable function to determine if pivot table or not.
+    // pivotable index
+    // calculate if values repeat themselves
+    // calculate if values usually appear in more columns
+
+    function pivotable(array) {
+
+      var n = array.length;
+      var rows = {};
+
+      array.forEach(function(o){
+        for (var p in o) {
+          if (!rows.hasOwnProperty(p)) rows[p] = {};
+          if (!rows[p].hasOwnProperty(o[p])) rows[p][o[p]] = -1;
+          rows[p][o[p]]+=1;
+        }
+      })
+
+      for (var r in rows) {
+        for (var p in rows[r]) {
+          for (var ra in rows) {
+            if (r == ra) break;
+            if (rows[ra].hasOwnProperty(p)) rows[r][p]-=2.5;
+
+          }
+        }
+      }
+
+      var m = d3.values(rows).map(d3.values).map(function(d){ return d3.sum(d)/n; });
+      console.log(d3.mean(m),m)
+      $scope.pivot = d3.mean(m);
+
+    }
+
 
 
 
@@ -328,7 +362,9 @@ angular.module('raw.controllers', [])
         $scope.data = parser(text);
         $scope.metadata = parser.metadata(text);
         $scope.error = false;
+        pivotable($scope.data);
         $scope.parsed = true;
+
 
       } catch(e){
         $scope.data = [];
@@ -338,8 +374,6 @@ angular.module('raw.controllers', [])
       if (!$scope.data.length && $scope.model) $scope.model.clear();
       $scope.loading = false;
       var cm = $('.CodeMirror')[0].CodeMirror;
-    //  cm.refresh();
-    //  cm.refresh(); // <-- magic
       $timeout(function() { cm.refresh()} );
     }
 
