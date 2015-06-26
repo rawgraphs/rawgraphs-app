@@ -240,8 +240,8 @@ angular.module('raw.controllers', [])
     });
 
     $scope.$watch('dataView', function (n,o){
-      if (!$('.CodeMirror')[0]) return;
-      var cm = $('.CodeMirror')[0].CodeMirror;
+      if (!$('.parsed .CodeMirror')[0]) return;
+      var cm = $('.parsed .CodeMirror')[0].CodeMirror;
       $timeout(function() { cm.refresh()});
     });
 
@@ -329,6 +329,7 @@ angular.module('raw.controllers', [])
         for (var p in rows[r]) {
           for (var ra in rows) {
             if (r == ra) break;
+        //    if (p == "") break;
             if (rows[ra].hasOwnProperty(p)) rows[r][p]-=2.5;
 
           }
@@ -373,7 +374,7 @@ angular.module('raw.controllers', [])
       }
       if (!$scope.data.length && $scope.model) $scope.model.clear();
       $scope.loading = false;
-      var cm = $('.CodeMirror')[0].CodeMirror;
+      var cm = $('.parsed .CodeMirror')[0].CodeMirror;
       $timeout(function() { cm.refresh()} );
     }
 
@@ -389,8 +390,8 @@ angular.module('raw.controllers', [])
     $scope.model = $scope.chart ? $scope.chart.model() : null;
 
     $scope.$watch('error', function (error){
-      if (!$('.CodeMirror')[0]) return;
-      var cm = $('.CodeMirror')[0].CodeMirror;
+      if (!$('.parsed .CodeMirror')[0]) return;
+      var cm = $('.parsed .CodeMirror')[0].CodeMirror;
       if (!error) {
         cm.removeLineClass($scope.lastError,'wrap','line-error');
         return;

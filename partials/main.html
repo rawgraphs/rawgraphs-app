@@ -60,8 +60,7 @@
 
 						<!-- Clipboard -->
 						<div ng-show="importMode=='clipboard' && !json && !parsed">
-							<textarea class="text-clipboard margin-bottom" ng-model="clipboardText" placeholder="Paste your data here from other applications (e.g. text, spreadsheet, json)"></textarea>
-
+							<textarea ui-codemirror="{lineWrapping : true}" class="text-clipboard margin-bottom" ng-model="clipboardText" placeholder="Paste your data here from other applications (e.g. text, spreadsheet, json)"></textarea>
 							<p class="help-block">Copy and paste your tabular or json data from other applications or websites. Not sure how it works? Click here for a video tutorial.<p>
 
 						</div>
@@ -115,7 +114,9 @@
 						<div ng-show="parsed">
 
 							<div data-ng-show="dataView != 'table'">
-								<textarea ui-codemirror="codeMirrorOptions" ng-model="text"></textarea>
+								<div class="parsed">
+									<textarea ui-codemirror="codeMirrorOptions" ng-model="text"></textarea>
+								</div>
 							</div>
 
 							<div raw-table class="data-table" data-ng-show="dataView == 'table'"></div>
