@@ -77,6 +77,14 @@ h4 {
   font-family: Cousine, Menlo, Monaco, Courier, monospace;
 }
 
+.help-block {
+  color: #222;
+}
+
+.nav-pills .fa {
+  width: 15px;
+}
+
 /* Header and footer */
 
 .wrap {
@@ -217,12 +225,7 @@ section.dark {
 }
 
 
-.nav-pills>li.active>a:hover {
-  color: #000;
-  background-color: #eee;
-}
-
-.nav-pills>li.active>a, .nav-pills>li.active>a:focus {
+.nav-pills>li.active>a:hover, .nav-pills>li.active>a, .nav-pills>li.active>a:focus {
   color: #fff;
   background-color: #2DD8B1;
 }
@@ -356,6 +359,7 @@ textarea:focus {
 
 .dragover {
   border-color: #0dc4a3;
+  background-color: #fff;
 }
 
 .btn.choose {
@@ -430,7 +434,8 @@ textarea:focus {
   -moz-border-radius: 2px;
   border-radius: 2px;
   box-shadow: 0px 1px 2px rgba(0,0,0,.2);
-
+  max-height: 200px;
+  overflow: scroll;
 }
 
 .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
@@ -1135,6 +1140,7 @@ textarea.source-area {
 
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
   border-top: none;
+  border-right: 1px solid #eee;
 }
 
 .data-table table {

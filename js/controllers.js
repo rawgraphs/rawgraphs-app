@@ -6,6 +6,8 @@ angular.module('raw.controllers', [])
 
   .controller('RawCtrl', function ($scope, dataService, $http, $timeout) {
 
+    $scope.loading = false;
+
     // Clipboard
     $scope.$watch('clipboardText', function (text) {
       if (!text) return;
@@ -96,18 +98,18 @@ angular.module('raw.controllers', [])
     };
 
 
-    function parseData(data){
+    function parseData(json){
 
       $scope.loading = false;
-      $scope.parsed = true;
+    //  $scope.parsed = true;
 
-      if (!text) return;
+      if (!json) return;
       try {
-        var json = JSON.parse(text);
         selectArray(json);
       }
       catch(error) {
-        parseText(text);
+        console.log(error)
+        parseText(json);
       }
 
     }
@@ -128,7 +130,7 @@ angular.module('raw.controllers', [])
       var error = null;
 
       // first trying jsonp
-      $http.jsonp(url+'&callback=JSON_CALLBACK')
+      $http.jsonp(url+'?callback=JSON_CALLBACK')
       .success(function(data, status, headers, config) {
         $scope.fileName = url;
         parseData(data);
@@ -231,7 +233,9 @@ angular.module('raw.controllers', [])
     $scope.$watch('importMode', function (n,o){
 
       $scope.parsed = false;
-
+      $scope.loading = false;
+      $scope.clipboardText = "";
+      $scope.unstacked = false;
       $scope.text = "";
       $scope.data = [];
       $scope.json = null;
@@ -250,7 +254,7 @@ angular.module('raw.controllers', [])
     $scope.data = [];
     $scope.metadata = [];
     $scope.error = false;
-    $scope.loading = true;
+  //  $scope.loading = true;
 
     $scope.importMode = 'clipboard';
 
@@ -284,6 +288,35 @@ angular.module('raw.controllers', [])
 
 
     var arrays = [];
+
+    $scope.unstack = function(){
+      if (!$scope.stackDimension) return;
+      var data = $scope.data;
+      var base = $scope.stackDimension.key;
+
+      var unstacked = [];
+
+      data.forEach(function(row){
+        for (var column in row) {
+            if (column == base) continue;
+            var obj = {};
+            obj[base] = row[base];
+            obj.column = column;
+            obj.value = row[column];
+            unstacked.push(obj);
+          }
+      })
+      $scope.oldData = data;
+      parseText(d3.tsv.format(unstacked));
+
+      $scope.unstacked = true;
+
+    }
+
+    $scope.stack = function(){
+      parseText(d3.tsv.format($scope.oldData));
+      $scope.unstacked = false;
+    }
 
 
     function jsonTree(json){
@@ -381,6 +414,7 @@ angular.module('raw.controllers', [])
     $scope.delayParse = dataService.debounce($scope.parse, 500, false);
 
     $scope.$watch("text", function (text){
+      if (!text) return;
       $scope.loading = true;
       $scope.delayParse(text);
     });

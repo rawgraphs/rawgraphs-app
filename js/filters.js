@@ -11,3 +11,10 @@ angular.module('raw.filters', [])
             });
 	    };
 	}])
+
+	.filter('decodeUrl', [function () {
+	    return function (url) {
+				if (!url) return url;
+        return decodeURIComponent(url);
+	    };
+	}])

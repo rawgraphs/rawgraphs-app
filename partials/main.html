@@ -21,7 +21,7 @@
 					</div>
 
 					<div class="col-lg-10">
-						<h3><span ng-show="parsed && text.length" class="small text-mono">{{fileName}}</span>
+						<h3><span ng-show="parsed && text.length" class="small text-mono">{{fileName | decodeUrl}}</span>
 							<span class="list-type pull-right" ng-show="data.length">
 								<i class="type fa fa-align-left breath-left"
 								data-toggle="tooltip"
@@ -51,7 +51,7 @@
 							<li role="presentation" ng-class="{active:!parsed && importMode=='clipboard'}"><a href="#" ng-click="parsed=false;importMode='clipboard'"><i class="fa fa-clipboard breath-right"></i>Paste</a></li>
 				      <li role="presentation" ng-class="{active:!parsed && importMode=='file'}"><a href="#" ng-click="parsed=false;importMode='file'"><i class="fa fa-file-text breath-right"></i>Upload a file</a></li>
 				      <li role="presentation" ng-class="{active:!parsed && importMode=='url'}"><a href="#" ng-click="parsed=false;importMode='url'"><i class="fa fa-cloud breath-right"></i>From URL</a></li>
-							<li role="presentation" ng-class="{active:!parsed && importMode=='sample'}"><a href="#" ng-click="parsed=false;importMode='sample'"><i class="fa fa-archive breath-right"></i>Try our samples</a></li>
+							<li role="presentation" ng-class="{active:!parsed && importMode=='sample'}"><a href="#" ng-click="parsed=false;importMode='sample'"><i class="fa fa-gift breath-right"></i>Try our samples</a></li>
 				    </ul>
 
 					</div>
@@ -60,8 +60,8 @@
 
 						<!-- Clipboard -->
 						<div ng-show="importMode=='clipboard' && !json && !parsed">
-							<textarea ui-codemirror="{lineWrapping : true}" class="text-clipboard margin-bottom" ng-model="clipboardText" placeholder="Paste your data here from other applications (e.g. text, spreadsheet, json)"></textarea>
-							<p class="help-block">Copy and paste your tabular or json data from other applications or websites. Not sure how it works? Click here for a video tutorial.<p>
+							<textarea ui-codemirror="{lineWrapping : true,   dragDrop : false}" class="text-clipboard margin-bottom" ng-model="clipboardText" placeholder="Paste your data here from other applications"></textarea>
+							<p class="help-block">Copy and paste your data from other applications or websites. You can use tabular (TSV, CSV, DSV) or JSON data<p>
 
 						</div>
 
@@ -72,7 +72,7 @@
 								<a>Drag a file here or click to select a file from your computer</a>
 							</div>
 
-							<p ng-show="!worksheets.length" class="help-block">You can upload .txt, .csv., .tsv, .json and Microsoft Excel files (.xls, .xlsx). Spreadsheet files with multiple sheets are fine too.</p>
+							<p ng-show="!worksheets.length" class="help-block">You can upload .txt, .csv., .tsv, JSON and Excel files (.xls, .xlsx). Spreadsheet files with multiple sheets are fine too.</p>
 
 							<div class="row">
 								<div class="col-lg-3" ng-repeat="worksheet in worksheets" ng-click="parse(worksheet.text)">
@@ -89,11 +89,12 @@
 
 						</div>
 
-
 						<!-- URl -->
 						<div ng-show="importMode=='url' && !json && !parsed">
 							<input type="text" class="form-control margin-bottom" ng-model="url" placeholder="http://" ng-show="!worksheets.length"></input>
+							<p class="help-block">Enter a web address (URL) pointing to the data (e.g. a public Dropbox file, a public API, ...). Please, be sure the server is CORS-enabled.<p>
 
+							<div data-ng-show="loading" class="alert alert-loading"><i class="fa breath-right fa-refresh fa-spin"></i>Loading your data. Please wait.</div>
 
 							<div class="row">
 								<div class="col-lg-3" ng-repeat="worksheet in worksheets" ng-click="parse(worksheet.text)">
@@ -106,7 +107,7 @@
 								</div>
 							</div>
 
-							<p ng-show="worksheets.length" class="help-block">Your file has multiple sheets. Please choose one from above.</p>
+							<p ng-show="worksheets.length" class="help-block">Your file contains multiple sheets. Please choose one from above.</p>
 
 						</div>
 
@@ -126,7 +127,7 @@
 
 						<div class="json-viewer margin-bottom" json-viewer json="json" ng-show="json" on-select="antani"></div>
 
-						<p ng-show="json" class="help-block">Please select the array [ ] with the records you want to load.</p>
+						<p ng-show="json" class="help-block">Please select the array <strong>[ ]</strong> containing the records you want to load from the JSON above.</p>
 
 						<!-- Sample -->
 						<div ng-show="importMode=='sample' && !parsed">
@@ -149,7 +150,33 @@
 							<div data-ng-show="loading && text.length" class="alert alert-loading"><i class="fa breath-right fa-refresh fa-spin"></i>Loading your data. Please wait.</div>
 						</div>
 
-						<div ng-show="parsed">Unpivot? <strong ng-show="pivot>0">NO</strong><strong ng-show="pivot<=0">YES</strong> ({{pivot}})</div>
+						<div ng-show="parsed">
+
+							<div class="pull-right">
+
+								<p ng-show="pivot<=0 && !unstacked">This data seems unstacked. <a ng-click="unstacking=true">Click here to stack it</a></p>
+								<p ng-show="pivot>0 && !unstacked">This data seems ok. But if you want to stack it, <a ng-click="unstacking=true">click here</a></p>
+								<p ng-show="unstacked">Data is stacked now. <a ng-click="stack()">Click here to revert to your original data</a></p>
+
+								<div ng-show="unstacking">
+									<select
+										type="button"
+										class="btn btn-default"
+										ng-model="stackDimension"
+										ng-change="unstack();unstacking=false"
+										placeholder="Select a dimension"
+										ng-options="dimension.key for dimension in metadata" bs-select>
+									</select>
+								</div>
+
+							</div>
+
+							<!--<a ng-show="!unstacked" ng-click="unstack()" class="btn btn-default">Stack data</a>
+							<a ng-show="unstacked" ng-click="stack()" class="pull-right">Unstack data<i class="fa fa-toggle-on breath-left"></i></a>-->
+
+
+
+						</div>
 
 
 
