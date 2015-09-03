@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="raw">
+<html lang="en">
 <head>
   <title>RAW</title>
   <meta charset="utf-8">
@@ -20,6 +20,9 @@
   <link rel="stylesheet" href="css/raw.css"/>
   <link rel="icon" href="favicon.ico?v=2" type="image/x-icon">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+  <script type="text/javascript" src="bower_components/requirejs/require.js" data-main='js/boot.js'></script>
+
 
 </head>
 
@@ -74,62 +77,6 @@
     </div>
   </div>
 
-  <!-- jquery -->
-  <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
-  <!-- bootstrap -->
-  <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="bower_components/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
-  <!-- d3 -->
-  <script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
-  <script type="text/javascript" src="bower_components/d3-plugins/sankey/sankey.js"></script>
-  <script type="text/javascript" src="bower_components/d3-plugins/hexbin/hexbin.js"></script>
-  <!-- codemirror -->
-  <script type="text/javascript" src="bower_components/codemirror/lib/codemirror.js"></script>
-  <script type="text/javascript" src="bower_components/codemirror/addon/display/placeholder.js"></script>
-  <!-- canvastoblob -->
-  <script type="text/javascript" src="bower_components/canvas-toBlob.js/canvas-toBlob.js"></script>
-  <!-- filesaver -->
-  <script type="text/javascript" src="bower_components/FileSaver/FileSaver.js"></script>
-  <!-- zeroclipboard -->
-  <script type="text/javascript" src="bower_components/zeroclipboard/ZeroClipboard.min.js"></script>
-
-  <!-- raw -->
-  <script type="text/javascript" src="lib/raw.js"></script>
-
-  <!-- charts -->
-  <script src="charts/treemap.js"></script>
-  <script src="charts/streamgraph.js"></script>
-  <script src="charts/scatterPlot.js"></script>
-  <script src="charts/packing.js"></script>
-  <script src="charts/clusterDendrogram.js"></script>
-  <script src="charts/voronoi.js"></script>
-  <script src="charts/delaunay.js"></script>
-  <script src="charts/alluvial.js"></script>
-  <script src="charts/clusterForce.js"></script>
-  <script src="charts/convexHull.js"></script>
-  <script src="charts/hexagonalBinning.js"></script>
-  <script src="charts/reingoldTilford.js"></script>
-  <script src="charts/parallelCoordinates.js"></script>
-  <script src="charts/circularDendrogram.js"></script>
-  <script src="charts/smallMultiplesArea.js"></script>
-  <script src="charts/bumpChart.js"></script>
-
-  <!-- angular -->
-  <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-strap/dist/angular-strap.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-ui/build/angular-ui.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js"></script>
-
-  <script src="js/app.js"></script>
-  <script src="js/services.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/filters.js"></script>
-  <script src="js/directives.js"></script>
 
   <!-- google analytics -->
   <script src="js/analytics.js"></script>
