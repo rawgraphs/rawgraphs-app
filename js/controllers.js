@@ -1,18 +1,19 @@
 'use strict';
 
 /* Controllers */
+
 define(['jquery', 'angular', 'raw'], function($, angular, raw) {
 
-  angular.module('raw.controllers', [])
+angular.module('raw.controllers', [])
 
-    .controller('RawCtrl', function ($scope, dataService) {
+  .controller('RawCtrl', function ($scope, dataService) {
 
     $scope.samples = [
       { title : 'Cars (multivariate)', url : 'data/multivariate.csv' },
       { title : 'Movies (dispersions)', url : 'data/dispersions.csv' },
       { title : 'Music (flows)', url : 'data/flows.csv' },
       { title : 'Cocktails (correlations)', url : 'data/correlations.csv' }
-    ];
+    ]
 
     $scope.$watch('sample', function (sample){
       if (!sample) return;
@@ -150,5 +151,6 @@ define(['jquery', 'angular', 'raw'], function($, angular, raw) {
     $(document).ready(refreshScroll);
 
 
-  });
+  })
+
 });
