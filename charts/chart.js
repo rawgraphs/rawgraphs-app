@@ -1,3 +1,5 @@
+define(['raw', 'd3'], function (raw, d3) {
+
 (function(){
 
 	// A simple scatterplot for APIs demo
@@ -85,3 +87,5 @@
 
 	})
 })();
+
+});

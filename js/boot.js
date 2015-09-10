@@ -128,8 +128,23 @@ require([
 
   // raw + d3 charts
   '/charts/alluvial.js',
+  '/charts/bumpChart.js',
+  '/charts/chart.js',               // simple scatterplot chart
+  '/charts/circularDendrogram.js',
+  '/charts/clusterDendrogram.js',
+  '/charts/clusterForce.js',
+  '/charts/convexHull.js',
+  '/charts/delaunay.js',
+  '/charts/hexagonalBinning.js',
+  '/charts/packing.js',             // circle packing
   '/charts/parallelCoordinates.js',
-  '/charts/hexagonalBinning.js'
+  '/charts/reingoldTilford.js',
+  '/charts/scatterPlot.js',
+  '/charts/smallMultiplesArea.js',  // none of the sample datasets works for testing this, build your own
+  '/charts/streamgraph.js',
+  '/charts/treemap.js',
+  '/charts/voronoi.js'
+
 
 
 ], function(angular, raw, cm) {
