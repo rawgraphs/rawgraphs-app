@@ -271,6 +271,7 @@
 
 		<div class="col-lg-9">
 			<div class="chart-resize">
+				<ng-include src="chart.template()" ng-show="chart.hasTemplate()"></ng-include>
 				<div ng-show="model.isValid()" id="chart" chart></div>
 			</div>
 			<div class="text-muted text-center" ng-show="!model.isValid()">
