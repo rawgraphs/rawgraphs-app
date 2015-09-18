@@ -1,6 +1,7 @@
 'use strict';
 
 /* Directives */
+define(['angular', 'zeroclip'], function(angular, ZeroClipboard ) {
 
 angular.module('raw.directives', [])
 
@@ -596,4 +597,6 @@ angular.module('raw.directives', [])
 
     }
   };
+});
+
 });

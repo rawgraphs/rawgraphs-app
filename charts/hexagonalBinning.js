@@ -1,3 +1,5 @@
+define(['raw', 'd3', 'd3-hexbin'], function (raw, d3, d3hexbin) {
+
 (function(){
 
 	var points = raw.models.points();
@@ -142,3 +144,5 @@
 			.style("shape-rendering","crispEdges")
 	})
 })();
+
+});

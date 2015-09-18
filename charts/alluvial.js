@@ -1,3 +1,5 @@
+define(['raw', 'd3', 'd3-sankey'], function (raw, d3) {
+
 (function(){
 
 	var graph = raw.models.graph();
@@ -157,3 +159,5 @@
 	})
 
 })();
+
+});

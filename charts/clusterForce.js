@@ -1,3 +1,5 @@
+define(['raw', 'd3'], function (raw, d3) {
+
 (function(){
 
     var nodes = raw.model();
@@ -186,3 +188,5 @@
   })
 
 })();
+
+});

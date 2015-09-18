@@ -1,6 +1,7 @@
 'use strict';
 
 /* Filters */
+define(['angular'], function(angular) {
 
 angular.module('raw.filters', [])
 
@@ -11,3 +12,5 @@ angular.module('raw.filters', [])
             });
 	    };
 	}]);
+
+});

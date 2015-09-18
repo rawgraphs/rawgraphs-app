@@ -1,6 +1,7 @@
 'use strict';
 
 /* Services */
+define(['angular'], function(angular) {
 
 angular.module('raw.services', [])
 
@@ -48,3 +49,5 @@ angular.module('raw.services', [])
 
 	  	}
 	})
+
+});

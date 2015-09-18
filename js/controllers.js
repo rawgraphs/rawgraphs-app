@@ -2,6 +2,8 @@
 
 /* Controllers */
 
+define(['jquery', 'angular', 'raw'], function($, angular, raw) {
+
 angular.module('raw.controllers', [])
 
   .controller('RawCtrl', function ($scope, dataService) {
@@ -150,3 +152,5 @@ angular.module('raw.controllers', [])
 
 
   })
+
+});
