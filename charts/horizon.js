@@ -33,6 +33,9 @@
   var chart = raw.chart()
     .model(model)
     .title('Horizon')
+    .thumbnail("imgs/horizon.png")
+    .description("Horizon charts combine position and color to reduce vertical space.<br/>Based on <a href='http://bl.ocks.org/mbostock/1483226'>http://bl.ocks.org/mbostock/1483226</a>")
+    .category('Time series')
 
   var width = chart.number()
     .title('Width')
