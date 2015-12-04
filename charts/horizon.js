@@ -1,6 +1,9 @@
 !function(){
 
   var model = raw.model();
+  
+  var group = model.dimension()
+    .title('Group');
 
   var date = model.dimension()
     .title('Date')
@@ -11,9 +14,6 @@
     .title('Size')
     .types(Number)
     .required(true);
-
-  var group = model.dimension()
-    .title('Group');
 
   model.map(function(data){
 
@@ -45,6 +45,10 @@
   var padding = chart.number()
     .title('Padding')
     .defaultValue(10)
+  
+  var scale = chart.checkbox()
+    .title("Use same scale")
+    .defaultValue(false)
 
   var bands = chart.number()
     .title('Bands')

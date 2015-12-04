@@ -101,11 +101,20 @@
           .attr("d", arc)
           .style("fill", function(d) { return color(d.data.key); });
 
-      p.append("text")
+      /*p.append("text")
           .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
           .attr("dy", ".35em")
           .style("text-anchor", "middle")
-          .text(function(d) { return d.data.key; });
+          .text(function(d) { return d.data.key; });*/
+          
+    console.log(l, l.values)
+    
+    var label = g.selectAll(".label")
+    	.data(l.values)
+    	.enter().append("text")
+    	
+    	label.text(function(d){return l.key})
+    	label.style("text-anchor", "middle")
 
 
     })
