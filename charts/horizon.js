@@ -80,7 +80,19 @@
       'Offset' : 'offset'
     }
 
-    var h = (+height() - (+padding()*(data.length-1))) / data.length;
+    var h = (+height() - 15 - (+padding()*(data.length-1))) / data.length;
+    
+    //draw scale
+    var x = d3.time.scale()
+            .range([0, +width()]);
+    
+    
+    x.domain([
+            d3.min(data, function(layer) { return d3.min(layer.values, function(d) { return d[0]; }); }),
+            d3.max(data, function(layer) { return d3.max(layer.values, function(d) { return d[0]; }); })
+        ])    
+      
+    var xAxis = d3.svg.axis().scale(x).tickSize(-height() + 15).orient("bottom");
 
     var horizon = d3.horizon()
       .scale(scale() ? "global" : "local")
@@ -90,19 +102,32 @@
       .mode(modes[mode()])
       .interpolate(curves[curve()])
     
-    console.log(horizon.scale());
-    
     selection
       .attr('width', +width())
       .attr('height', +height());
+    
+    
+    selection.append("g")
+        .attr("class", "x axis")
+        .style("stroke-width", "1px")
+        .style("font-size", "10px")
+        .style("font-family", "Arial, Helvetica")
+        .attr("transform", "translate(" + 0 + "," + (height() - 15) + ")")
+        .call(xAxis);
 
+    d3.selectAll(".x.axis line, .x.axis path")
+        .style("shape-rendering", "crispEdges")
+        .style("fill", "none")
+        .style("stroke", "#ccc")
+    
+    
     var g = selection
-      .selectAll('g')
+      .selectAll('g.horizon')
       .data(data)
       .enter().append('g')
       .attr("transform", function(d,i){ return 'translate(0,' + (h+padding()) * i  + ')'})
 
-    g.selectAll('g')
+    g.selectAll('g.horizon')
       .data(function(d){ return [d.values]; })
       .enter().append('g')
       .call(horizon);
