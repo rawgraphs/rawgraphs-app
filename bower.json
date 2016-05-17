@@ -38,6 +38,7 @@
     "codemirror": "latest",
     "ng-file-upload": "~5.0.0",
     "is_js": "~0.7.4",
-    "js-xlsx": "~0.8.0"
+    "js-xlsx": "~0.8.0",
+    "d3-plugins-density": "latest"
   }
 }

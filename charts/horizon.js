@@ -83,12 +83,15 @@
     var h = (+height() - (+padding()*(data.length-1))) / data.length;
 
     var horizon = d3.horizon()
+      .scale(scale() ? "global" : "local")
       .width(+width())
       .height(h)
       .bands(+bands())
       .mode(modes[mode()])
       .interpolate(curves[curve()])
-
+    
+    console.log(horizon.scale());
+    
     selection
       .attr('width', +width())
       .attr('height', +height());
