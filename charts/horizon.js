@@ -66,8 +66,29 @@
         .title("Mode")
         .values(['Mirror', 'Offset'])
         .defaultValue('Mirror')
+    
+    var sorting = chart.list()
+        .title("Sort by")
+        .values(['Original','Total (descending)', 'Total (ascending)', 'Name'])
+        .defaultValue('Original')
 
     chart.draw(function (selection, data) {
+        
+        //sort data
+        function sortBy(a,b){
+            if (sorting() == 'Total (descending)'){                
+                return b.values.reduce(function (c,d) {return c + d[1]}, 0) - a.values.reduce(function (c,d) {return c + d[1]}, 0)
+            }
+            if (sorting() == 'Total (ascending)') return a.values.reduce(function (c,d) {return c + d[1]}, 0) - b.values.reduce(function (c,d) {return c + d[1]}, 0);
+            if (sorting() == 'Name'){
+                if(a.key < b.key) return -1;
+                if(a.key > b.key) return 1;
+            }
+        }
+        
+        data.sort(sortBy);
+        
+        console.log(data);
 
         var curves = {
             'Basis spline': 'basis',
