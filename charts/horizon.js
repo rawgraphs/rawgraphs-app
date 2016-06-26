@@ -21,7 +21,8 @@
       .key(group)
       .rollup(function(g){
         return g.map(function(d){
-          return [ Date.UTC(date(d),1), +size(d) ]
+          //return [ Date.UTC(date(d),1), +size(d) ]
+            return [ Date.parse(date(d)), +size(d) ]
         })
       })
       .entries(data)

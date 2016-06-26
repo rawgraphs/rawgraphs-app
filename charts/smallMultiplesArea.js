@@ -39,6 +39,7 @@
                 return d3.values(singles);
             })
             .map(data)
+        
 
         return d3.values(groups).map(function(d){ return d.sort(function(a,b){ return a.date - b.date; }) });
 
@@ -72,7 +73,12 @@
         .title("Color scale")
 
     chart.draw(function (selection, data){
+		
+		data = data.sort(function(a,b){
+			return d3.descending(d3.sum(a, function(d){return d.size}),d3.sum(b, function(d){return d.size}))
+			})
 
+		
         var w = +width(),
             h = (+height()-20 - (+padding()*(data.length-1))) / data.length;
 
