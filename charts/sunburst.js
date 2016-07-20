@@ -14,6 +14,11 @@
 		.title('Diameter')
 		.defaultValue(600)
 		.fitToWidth(true)
+    
+    var sortBy = chart.list()
+        .title("Sort by")
+        .values(['size','name','automatic'])
+        .defaultValue('size')
 
 	var colors = chart.color()
 		.title("Color scale")
@@ -21,9 +26,25 @@
 	chart.draw(function (selection, data){
 
 		var radius = +diameter() / 2;
+        
+        //sorting options
+        var sortfunction = null;
+        if(sortBy() == "automatic") {
+            sortfunction = function(a,b){
+                return false;
+            }
+        } else if(sortBy() == "size") {
+            sortfunction = function(a,b){
+                return b.size - a.size;
+            }
+        } else if(sortBy() == "name") {
+            sortfunction = function(a,b){
+                return a.name.localeCompare(b.name);
+            }
+        }
 
 		var layout = d3.layout.partition()
-		    .sort(null)
+		    .sort(sortfunction)
 		    .size([2 * Math.PI, radius * radius])
 		    .value(function(d) { return d.size; });
 
