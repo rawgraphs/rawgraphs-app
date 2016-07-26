@@ -73,7 +73,9 @@ angular.module('raw.directives', [])
 	      restrict: 'A',
 	      templateUrl : 'templates/colors.html',
 	      link: function postLink(scope, element, attrs) {
-
+            
+            scope.searchColor = "";
+              
 	        scope.scales = [ 
 	        	
 	        	{
