@@ -512,9 +512,6 @@ angular.module('raw.directives', [])
 
         // Removing HTML entities from svg
         function decodeHtml(html) {
-		    	/*var txt = document.createElement("textarea");
-		    	txt.innerHTML = html;
-		    	return txt.value;*/
 		    	return html.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
 					   return '&#'+i.charCodeAt(0)+';';
 					});
