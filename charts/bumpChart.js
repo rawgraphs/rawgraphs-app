@@ -102,7 +102,7 @@
 
         var g = selection
             .attr("width", +width() )
-            .attr("xmlns:xmlns:xlink", "http://www.w3.org/1999/xlink")
+            //.attr("xmlns:xmlns:xlink", "http://www.w3.org/1999/xlink")
             .attr("height", +height() )
             .append("g")
 

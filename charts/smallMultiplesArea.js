@@ -70,8 +70,40 @@
 
     var colors = chart.color()
         .title("Color scale")
+    
+    var curve = chart.list()
+      .title("Interpolation")
+      .values(['Basis spline','Sankey','Linear'])
+      .defaultValue('Basis spline')
+    
+    var sorting = chart.list()
+        .title("Sort by")
+        .values(['Original','Total (descending)', 'Total (ascending)', 'Name'])
+        .defaultValue('Original')
 
     chart.draw(function (selection, data){
+        
+        //sort data
+        function sortBy(a,b){
+            if (sorting() == 'Total (descending)'){                
+                return a.reduce(function (c,d) {return c + d.size}, 0) - b.reduce(function (c,d) {return c + d.size}, 0)
+            }
+            if (sorting() == 'Total (ascending)') return b.reduce(function (c,d) {return c + d.size}, 0) - a.reduce(function (c,d) {return c + d.size}, 0);
+            if (sorting() == 'Name'){
+                if(a[0].group < b[0].group) return -1;
+                if(a[0].group > b[0].group) return 1;
+            }
+        }
+        
+        data.sort(sortBy);
+        
+        console.log(data);
+        
+        var curves = {
+            'Basis spline' : 'basis',
+            'Sankey' : interpolate,
+            'Linear' : 'linear'
+            }
 
         var w = +width(),
             h = (+height()-20 - (+padding()*(data.length-1))) / data.length;
@@ -90,7 +122,7 @@
             .x(function(d) { return x(d.date); })
             .y0(function(d) { return h-y(d.size)/2; })
             .y1(function(d) { return y(d.size)/2; })
-            .interpolate("basis")
+            .interpolate(curves[curve()])
 
         x.domain([
             d3.min(data, function(layer) { return d3.min(layer, function(d) { return d.date; }); }),
@@ -144,6 +176,20 @@
               .attr("class", "area")
               .style("fill", function(d){ return colors()(d[0].group); })
               .attr("d", area(single));
+        }
+        
+        function interpolate(points) {
+          var x0 = points[0][0], y0 = points[0][1], x1, y1, x2,
+              path = [x0, ",", y0],
+              i = 0,
+              n = points.length;
+
+          while (++i < n) {
+            x1 = points[i][0], y1 = points[i][1], x2 = (x0 + x1) / 2;
+            path.push("C", x2, ",", y0, " ", x2, ",", y1, " ", x1, ",", y1);
+            x0 = x1, y0 = y1;
+          }
+          return path.join("");
         }
 
     })
