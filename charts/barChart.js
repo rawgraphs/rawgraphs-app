@@ -37,6 +37,40 @@
 	// for the X and Y dimensions and casts them as numbers
 	model.map(function(data) {
 
+		var results = d3.nest()
+						.key(groups)
+						.key(categories)
+						.rollup(function(g){
+							//get all the variables from the first item
+							var result = g.map(function(d){
+														return {
+															group: groups(d),
+															category: categories(d),
+															color: colorsDimesion(d)
+														}
+													})[0];
+							//If the size is defined, sum the size, otherwise count items
+							result.size = sizes() != null ? d3.sum(g, function(d) {return sizes(d) }) : g.length;
+
+							return result;
+						})
+						.entries(data);
+
+		//for each group, flatten the second level of nest
+		results.forEach(function(group){
+			temp_values = [];
+			//get the values, flatten them
+			group.values.forEach(function(category){
+				temp_values.push(category.values);
+			})
+			group.values = temp_values;
+		});
+
+		console.log(results);
+
+		return results;
+
+		/*
 		if(groups() != null) {
 
 			var nest = d3.nest()
@@ -78,7 +112,7 @@
 			}
 
 			return [results];
-		}
+		}*/
 
 	})
 
@@ -136,7 +170,7 @@
 
     	if(sameScale()) {
     		maxValue = d3.max(data, function(item) { 
-    			return d3.max(item.values, function(d) { 
+    			return d3.max(item.values, function(d) {  
     				return d.size; }); })
     		console.log(maxValue);
     	}
