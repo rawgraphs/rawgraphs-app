@@ -69,51 +69,6 @@
 		console.log(results);
 
 		return results;
-
-		/*
-		if(groups() != null) {
-
-			var nest = d3.nest()
-				.key(groups)
-				.rollup(function(g) {
-					return g.map(function(d) {
-						return {
-							group: groups(d),
-							category: categories(d),
-							size: +sizes(d),
-							color: colorsDimesion(d)
-						};
-					})
-				})
-				.entries(data)
-
-			return nest;
-		} else {
-			var catNest = d3.nest()
-					.key(categories)
-					.rollup(function(g) {
-						if(sizes() != null) {
-							return d3.sum(g, function(d) {return sizes(d) })
-						} else {
-							return g.length
-						}
-					})
-					.entries(data);
-			
-			var results = {};
-			results.key = "";
-			results.values = [];
-			for(cat in catNest){
-				results.values.push({group: "",
-									category: catNest[cat].key,
-									size: catNest[cat].values,
-									color: ""
-				})
-			}
-
-			return [results];
-		}*/
-
 	})
 
 
