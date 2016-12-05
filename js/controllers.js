@@ -370,7 +370,7 @@ angular.module('raw.controllers', [])
       }
 
       var m = d3.values(rows).map(d3.values).map(function(d){ return d3.sum(d)/n; });
-      console.log(d3.mean(m),m)
+      //console.log(d3.mean(m),m)
       $scope.pivot = d3.mean(m);
 
     }
