@@ -40,6 +40,7 @@
 		var results = d3.nest()
 						.key(groups)
 						.key(categories)
+						.sortKeys(function(d){ return 1})
 						.rollup(function(g){
 							//get all the variables from the first item
 							var result = g.map(function(d){
