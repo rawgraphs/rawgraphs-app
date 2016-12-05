@@ -66,8 +66,6 @@
 			group.values = temp_values;
 		});
 
-		console.log(results);
-
 		return results;
 	})
 
@@ -76,7 +74,7 @@
 
 	var chart = raw.chart()
 		.title("Bar chart")
-		.description("A bar chart or bar graph is a chart or graph that presents grouped data with rectangular bars with heights proportional to the values that they represent.</br>Chart based on <a href='https://bl.ocks.org/mbostock/3310560'>https://bl.ocks.org/mbostock/3310560</a>")
+		.description("A bar chart or bar graph is a chart or graph that presents grouped data with rectangular bars with heights proportional to the values that they represent.</br> Chart based on <a href='https://bl.ocks.org/mbostock/3310560'>https://bl.ocks.org/mbostock/3310560</a>")
 		.thumbnail("imgs/barChart.png")
 		.model(model)
 
@@ -84,17 +82,17 @@
 	// Width
 	var width = chart.number()
 		.title('Width')
-		.defaultValue(900)
+		.defaultValue(1000)
 
 	// Height
 	var height = chart.number()
 		.title('Height')
-		.defaultValue(600)
+		.defaultValue(1000)
 
 	// Space between barcharts
 	var padding = chart.number()
 		.title('Vertical padding')
-		.defaultValue(10);
+		.defaultValue(0);
 
 	// Padding between bars
 	var xPadding = chart.number()
@@ -118,6 +116,8 @@
 
 		// Define margins
 		var margin = {top: 0, right: 0, bottom: 50, left: 50};
+		//define title space
+		var titleSpace = groups() == null ? 0 : 30;
 
 		// Define common variables.
     	// Find the overall maximum value
@@ -127,7 +127,6 @@
     		maxValue = d3.max(data, function(item) { 
     			return d3.max(item.values, function(d) {  
     				return d.size; }); })
-    		console.log(maxValue);
     	}
 
     	// Check consistency among categories and colors, save them all
@@ -158,7 +157,7 @@
 		// define single barchart height,
 		// depending on the number of bar charts
 		var w = +width() - margin.left,
-			h = (+height() - margin.bottom - (+padding() * (data.length - 1))) / data.length;
+			h = (+height() - margin.bottom - ((titleSpace+padding()) * (data.length - 1))) / data.length;
 
 
 		// Define scales
@@ -188,17 +187,30 @@
 			// Append a grupo containing axis and bars,
 			// move it according the index
 			barchart = selection.append("g")
-				.attr("transform", "translate(" + margin.left + "," + index * (h + padding()) + ")");
+				.attr("transform", "translate(" + margin.left + "," + index * (h + padding() + titleSpace) + ")");
+
+			console.log(item);
+			// Draw title
+			barchart.append("text")
+	            .attr("x", -margin.left)
+	            .attr("y", titleSpace - 7)
+	            .style("font-size","10px")
+	            .style("font-family","Arial, Helvetica")
+	            .text(item.key);
 
 			// Draw y axis
 			barchart.append("g")
 				.attr("class", "y axis")
-				.call(d3.svg.axis().scale(yScale).orient("left").ticks(h/20));
+				.style("font-size","10px")
+				.style("font-family","Arial, Helvetica")
+				.attr("transform", "translate(0," + titleSpace + ")")
+				.call(d3.svg.axis().scale(yScale).orient("left").ticks(h/15));
 
 			// Draw the bars
 			barchart.selectAll(".bar")
 				.data(item.values)
 				.enter().append("rect")
+				.attr("transform", "translate(0," + titleSpace + ")")
 				.attr("class", "bar")
 				.attr("x", function(d) {
 					return xScale(d.category);
@@ -220,7 +232,9 @@
 		// After all the charts, draw x axis
 		selection.append("g")
 			.attr("class", "x axis")
-			.attr("transform", "translate(" + margin.bottom + "," + ((h + padding()) * data.length - padding()) + ")")
+			.style("font-size","10px")
+			.style("font-family","Arial, Helvetica")
+			.attr("transform", "translate(" + margin.left + "," + ((h + padding() + titleSpace) * data.length - padding()) + ")")
 			.call(d3.svg.axis().scale(xScale).orient("bottom"));
 
 
@@ -229,7 +243,7 @@
 		d3.selectAll(".axis line, .axis path")
 			.style("shape-rendering", "crispEdges")
 			.style("fill", "none")
-			.style("stroke", "#ccc")
+			.style("stroke", "#ccc");
 
 	})
 })();
