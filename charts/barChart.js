@@ -157,7 +157,7 @@
 		// define single barchart height,
 		// depending on the number of bar charts
 		var w = +width() - margin.left,
-			h = (+height() - margin.bottom - ((titleSpace+padding()) * (data.length - 1))) / data.length;
+			h = (+height() - margin.bottom - ((titleSpace + padding()) * (data.length - 1))) / data.length;
 
 
 		// Define scales
@@ -189,7 +189,6 @@
 			barchart = selection.append("g")
 				.attr("transform", "translate(" + margin.left + "," + index * (h + padding() + titleSpace) + ")");
 
-			console.log(item);
 			// Draw title
 			barchart.append("text")
 	            .attr("x", -margin.left)
@@ -227,7 +226,6 @@
 				});
 
 		})
-
 
 		// After all the charts, draw x axis
 		selection.append("g")
