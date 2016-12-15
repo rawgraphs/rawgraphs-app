@@ -20,7 +20,6 @@
   // Records are grouped according the 'group' variable.
 
   model.map(function(data) {
-    console.log('call mapping');
 
     // Check if dimensions are set.
     // In theory should be not necessary, to be fixed.
