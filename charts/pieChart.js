@@ -56,6 +56,10 @@
     .title('Donut chart')
     .defaultValue(false)
 
+  var showValues = chart.checkbox()
+    .title('Show values')
+    .defaultValue(false)
+
   var thickness = chart.number()
     .title('Thickness')
     .defaultValue(10)
@@ -132,20 +136,26 @@
         .style("fill", function(d) {
           return colors()(d.data.key); });
 
-      /*p.append("text")
-          .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-          .attr("dy", ".35em")
-          .style("text-anchor", "middle")
-          .text(function(d) { return d.data.key; });*/
+      if(showValues() == true) {
 
-      var label = g.selectAll(".label")
-        .data(l.values)
-        .enter().append("text")
+        var labels = g.selectAll(".numbers")
+            .data(pie(l.values))
+            .enter().append("text")
+            .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+            .attr("dy", ".35em")
+            .style("text-anchor", "middle")
+            .style("font-size","10px")
+            .style("font-family","Arial, Helvetica")
+            .style("fill", "#424242")
+            .text(function(d) {return d.data.size.toLocaleString() });
+      }
 
-      label.text(function(d) {
-        return l.key })
-      label.style("text-anchor", "middle")
-
+      var label = g.append("text")
+        .attr("y", outerRadius+10)
+        .text(l.key)
+        .style("text-anchor", "middle")
+        .style("font-size","11px")
+        .style("font-family","Arial, Helvetica")
 
     })
 
