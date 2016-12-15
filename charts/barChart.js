@@ -18,7 +18,7 @@
 	// Categories dimension. each category will define a bar
 	// It can accept both numbers and strings
 	var categories = model.dimension()
-		.title('Categories')
+		.title('X Axis')
 		.types(Number, String)
 		.required(1)
 
@@ -83,7 +83,7 @@
 	// Width
 	var width = chart.number()
 		.title('Width')
-		.defaultValue(1000)
+		.defaultValue(800)
 
 	// Height
 	var height = chart.number()
