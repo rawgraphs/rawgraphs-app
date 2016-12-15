@@ -13,31 +13,43 @@
   // chart. If multiple lines share the same value in the 
   // group dimension, they will be grouped. 
   var group = model.dimension()
-    .title('Group');
+    .title('Labels');
 
   // Mapping function.
   // For each record in the dataset a pie chart abstraction is created.
   // Records are grouped according the 'group' variable.
 
   model.map(function(data) {
-    var index = 0;
-    var nest = d3.nest()
-      // If groups are not defined, assign a number to each record.
-      .key(function(d) {
-        return group() ? group(d) : ++index; })
-      .rollup(function(d) {
-        return dimensions().map(function(dimension) {
-          return { key: dimension, size: d3.sum(d, function(a) {
-              return +a[dimension]; }) }
-        })
-      })
-      .entries(data);
+    console.log('call mapping');
 
-    return nest;
+    // Check if dimensions are set.
+    // In theory should be not necessary, to be fixed.
+    if(dimensions() != null){
+    
+      var index = 0;
+      var nest = d3.nest()
+        // If groups are not defined, assign a number to each record.
+        .key(function(d) {
+          return group() ? group(d) : ++index; })
+        .rollup(function(d) {
+          return dimensions().map(function(dimension) {
+            return { key: dimension, size: d3.sum(d, function(a) {
+                return +a[dimension]; }) }
+          })
+        })
+        .entries(data);
+
+      return nest;
+    }
+
   })
+
+  // The chart object
 
   var chart = raw.chart()
     .title("Pie chart")
+    .description("A pie chart (or a circle chart) is a circular statistical graphic which is divided into slices to illustrate numerical proportion.")
+    //.thumbnail("imgs/pieChart.png")
     .model(model);
 
   var width = chart.number()
