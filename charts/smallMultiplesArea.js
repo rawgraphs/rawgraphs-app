@@ -68,6 +68,10 @@
         .title("Use same scale")
         .defaultValue(false)
 
+    var specular = chart.checkbox()
+        .title("Center values vertically")
+        .defaultValue(false)
+
     var colors = chart.color()
         .title("Color scale")
     
@@ -120,9 +124,18 @@
 
         var area = d3.svg.area()
             .x(function(d) { return x(d.date); })
-            .y0(function(d) { return h-y(d.size)/2; })
-            .y1(function(d) { return y(d.size)/2; })
             .interpolate(curves[curve()])
+
+        //@TODO: expose this in options
+        //var specular = false;
+        // if specular
+        if(specular() == true) {
+            area.y0(function(d) { return h-y(d.size)/2; })
+                .y1(function(d) { return y(d.size)/2; })  
+        } else {
+            area.y0(h) //align to baseline
+                .y1(function(d) { return y(d.size); })
+        }
 
         x.domain([
             d3.min(data, function(layer) { return d3.min(layer, function(d) { return d.date; }); }),
