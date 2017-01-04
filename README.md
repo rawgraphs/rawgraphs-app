@@ -3,23 +3,25 @@
 
 ##About
 
-**RAW** is an open web tool developed at the [DensityDesign Research Lab](http://www.densitydesign.org) (Politecnico di Milano) to create custom vector-based visualizations on top of the amazing [d3.js](https://github.com/mbostock/d3) library by [Mike Bostock](http://bost.ocks.org/mike/).
+**RAW** is an open web tool to create custom vector-based visualizations on top of the amazing [d3.js](https://github.com/mbostock/d3) library by [Mike Bostock](http://bost.ocks.org/mike/).
+It has been developed by [DensityDesign Research Lab](http://www.densitydesign.org/) ([Politecnico di Milano](http://www.polimi.it/)) and [Calibro](http://calib.ro/), and sustained through a corporate stewardship by [ContactLab](http://contactlab.com/it/).
+
 Primarily conceived as a tool for designers and vis geeks, RAW aims at providing a missing link  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, Google Docs, OpenRefine, …) and vector graphics editors (e.g. Adobe Illustrator, Inkscape, …).
 
-RAW works with [delimiter-separated values](http://en.wikipedia.org/wiki/Delimiter-separated_values) (i.e. csv and tsv files) as well as with copied-and-pasted texts from other applications (e.g. Microsoft Excel, TextWrangler, TextEdit, …). Based on the [svg](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily edited with vector graphics applications for further refinements, or directly embedded into web pages.
+RAW works with [delimiter-separated values](http://en.wikipedia.org/wiki/Delimiter-separated_values) (i.e. csv and tsv files) as well as with copied-and-pasted texts from other applications (e.g. Microsoft Excel, TextWrangler, TextEdit, …). Based on the [SVG](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily edited with vector graphics applications for further refinements, or directly embedded into web pages.
 
 Knowing the need of working with sensitive information, the data uploaded to RAW is processed only by the web browser: **no server-side operations or storages are performed** and no one will see, touch or copy your data!
 
 RAW is also highly customizable and extensible, accepting new custom layouts defined by users. For more information about how to add or edit layouts, see the [Developer Guide](https://github.com/densitydesign/raw/wiki/Developer-Guide).
 
-- App page: [app.raw.densitydesign.org](http://app.raw.densitydesign.org)
-- Project official page: [raw.densitydesign.org](http://raw.densitydesign.org)
+- App page: [app.rawgraphs.io](http://app.rawgraphs.io)
+- Project official page: [rawgraphs.io](http://rawgraphs.io)
 - Documentation: [github.com/densitydesign/raw/wiki](https://github.com/densitydesign/raw/wiki)
 - Google group: [groups.google.com/forum/#!forum/densitydesign-raw](https://groups.google.com/forum/#!forum/densitydesign-raw)
 
 
 ##Usage
-The easiest way to use RAW is by accessing the most updated version on the **[official app page](http://app.raw.densitydesign.org)**. However, RAW can also run locally on your machine: see the installation instructions below to know how.
+The easiest way to use RAW is by accessing the most updated version on the **[official app page](http://app.rawgraphs.io)**. However, RAW can also run locally on your machine: see the installation instructions below to know how.
 
 ##Installation
 If you want to run your instance of RAW locally on your machine, be sure you have the following requirements installed.
@@ -103,44 +105,40 @@ If you have any suggestion or request about new layouts to include, please let u
 - Creating and exporting legends
 - PDF export
 
-##Team and Contacts
+##Core Team
 
-**RAW** has been developed and maintained at DensityDesign Research Lab by:
+**RAW** is maintained by [DensityDesign Research Lab](http://www.densitydesign.org/) and [Calibro](http://calib.ro/).
 
-Giorgio Caviglia <giorgio.caviglia@gmail.com>  
-Michele Mauri <michele.mauri@polimi.it>  
-Giorgio Uboldi <giorgio.uboldi@polimi.it>  
-Matteo Azzi <matteo.azzi@polimi.it>  
-
-If you want to know more about RAW, how it works and future developments, please visit the [official website](http://raw.densitydesign.org). For any specific request or comment we suggest you to use Github or the [Google group](https://groups.google.com/forum/#!forum/densitydesign-raw). If none of these worked for you, you can write us at <raw@densitydesign.org>.
+If you want to know more about RAW, how it works and future developments, please visit the [official website](http://rawgraphs.io). For any specific request or comment we suggest you to use Github or the [Google group](https://groups.google.com/forum/#!forum/densitydesign-raw). If none of these worked for you, you can write us at <raw@densitydesign.org>.
 
 ##Contributing
 
 Want to contribute to RAW's development? You are more than welcome! Start by forking the repository (the "Fork" button at the top-right corner of this page) and follow the instructions above to clone it and install dependencies. Then you can use Github's issues and pull requests to discuss and share your work.
 
+##Autors
+**RAW** has been originally developed by:
+
+Giorgio Caviglia <giorgio.caviglia@gmail.com>
+Michele Mauri <mikimauri@gmail.com>
+Giorgio Uboldi <giorgio@calib.ro>
+Matteo Azzi <matteo@calib.ro>
 
 ##License
 
-RAW is provided under the [LGPL (Lesser General Public License)](https://github.com/densitydesign/raw/blob/master/COPYING.LESSER) v.3:
+RAW is provided under the [Apache License 2.0](https://github.com/densitydesign/raw/blob/master/LICENSE):
 
-	Copyright (c), 2013-2014 DensityDesign Lab, Giorgio Caviglia, Michele Mauri,
-	Giorgio Uboldi, Matteo Azzi
+	Copyright (c), 2013-2016 DensityDesign Lab, Giorgio Caviglia, Michele Mauri, Giorgio Uboldi, Matteo Azzi
 
-	<info@densitydesign.org>  
-	<giorgio.caviglia@gmail.com>  
-	<michele.mauri@polimi.it>  
-	<giorgio.uboldi@polimi.it>  
-	<matteo.azzi@polimi.it>  
+	<info@densitydesign.org>
+	<giorgio.caviglia@gmail.com>
+	<mikimauri@gmail.com>
+	<giorgio@calib.ro>
+	<matteo@calib.ro>
 
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU Lesser General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
+	Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
 
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-	GNU Lesser General Public License for more details.
+		http://www.apache.org/licenses/LICENSE-2.0
 
-	You should have received a copy of the GNU Lesser General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and limitations under the License.
