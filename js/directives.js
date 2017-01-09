@@ -666,8 +666,6 @@ angular.module('raw.directives', [])
 
         function downloadPng() {
 
-			console.log('download png')
-
 			var content = d3.select("body").append("canvas")
 				.attr("id", "canvas")
 				.style("display", "none")
@@ -683,8 +681,6 @@ angular.module('raw.directives', [])
 			var context = canvas.getContext("2d");
 
 			image.onload = function() {
-
-				console.log('image ready');
 
 				canvas.width = image.width;
 				canvas.height = image.height;
