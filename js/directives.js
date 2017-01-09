@@ -664,49 +664,52 @@ angular.module('raw.directives', [])
 
         }
 
-        function downloadPng(){
+        function downloadPng() {
 
-          var content = d3.select("body").append("canvas")
-              .attr("id", "canvas")
-              .style("display","none")
+			console.log('download png')
 
-          var html = d3.select(source)
-              .node().parentNode.innerHTML;
+			var content = d3.select("body").append("canvas")
+				.attr("id", "canvas")
+				.style("display", "none")
 
-          var image = new Image;
-					image.src = 'data:image/svg+xml;base64,' + window.btoa(html);
+			var html = d3.select(source)
+				.node().parentNode.innerHTML;
 
-          var canvas = document.getElementById("canvas");
-          canvas.width = image.width;
-  				canvas.height = image.height;
-          var context = canvas.getContext("2d");
+			var image = new Image;
+			image.src = 'data:image/svg+xml;base64,' + window.btoa(html);
 
-					image.onload = function() {
-					  context.drawImage(image, 0, 0);
+			var canvas = document.getElementById("canvas");
+			
+			var context = canvas.getContext("2d");
 
-					  var isSafari = (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1);
+			image.onload = function() {
 
-	          if (isSafari) {
-	            var img = canvas.toDataURL("image/png;base64");
-            	var newWindow = window.open(img, 'download');
-            	window.location = img;
-	          } else {
-	          	var a = document.createElement("a");
-					  	a.download = (scope.filename || element.find('input').attr("placeholder")) + ".png";
-					  	a.href = canvas.toDataURL("image/png;base64");
-					    var event = document.createEvent("MouseEvents");
-				        event.initMouseEvent(
-				                "click", true, false, window, 0, 0, 0, 0, 0
-				                , false, false, false, false, 0, null
-				        );
-					    a.dispatchEvent(event);
-					  }
-					};
+				console.log('image ready');
 
+				canvas.width = image.width;
+				canvas.height = image.height;
+				context.drawImage(image, 0, 0);
 
+				var isSafari = (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1);
 
-          d3.select("#canvas").remove();
-      }
+				if (isSafari) {
+					var img = canvas.toDataURL("image/png;base64");
+					var newWindow = window.open(img, 'download');
+					window.location = img;
+				} else {
+					var a = document.createElement("a");
+					a.download = (scope.filename || element.find('input').attr("placeholder")) + ".png";
+					a.href = canvas.toDataURL("image/png;base64");
+					var event = document.createEvent("MouseEvents");
+					event.initMouseEvent(
+						"click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null
+					);
+					a.dispatchEvent(event);
+				}
+			};
+			d3.select("#canvas").remove();
+
+}
 
       var downloadData = function() {
         var json = JSON.stringify(scope.model(scope.data));
