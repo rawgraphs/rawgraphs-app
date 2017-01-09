@@ -651,7 +651,7 @@ textarea:focus {
 }
 
 .layout-inner {
-  opacity: 1;
+  opacity: 0.85;
   padding: 8px;
   margin: 0px;
 }
@@ -659,7 +659,6 @@ textarea:focus {
 .layout.selected .layout-inner,
 .layout:hover .layout-inner {
   opacity: 1;
-  color: #fff;
 
   -webkit-transition: opacity .2s ease-in-out;
   -moz-transition: opacity .2s ease-in-out;
@@ -703,7 +702,6 @@ textarea:focus {
   border-bottom: 1px solid rgba(0,0,0,.1);
 }
 
-.layout:hover,
 .ui-draggable-dragging,
 .dimension:hover {
   opacity: 1;
