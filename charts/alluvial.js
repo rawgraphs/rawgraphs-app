@@ -125,7 +125,9 @@
 			    .style("fill","none")
 			    .style("stroke", function (d){ return colors()(d.source.name); })
 			    .style("stroke-opacity",".4")
-			    .sort(function(a, b) { return b.dy - a.dy; });
+			    .sort(function(a, b) { return b.dy - a.dy; })
+			    .append("title")
+			    .text(function(d) { console.log(d); return d.value});
 
 		var node = g.append("g").selectAll(".node")
 	    	.data(nodes)
