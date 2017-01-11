@@ -674,7 +674,7 @@ angular.module('raw.directives', [])
 				.node().parentNode.innerHTML;
 
 			var image = new Image;
-			image.src = 'data:image/svg+xml;base64,' + window.btoa(html);
+			image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(html)));
 
 			var canvas = document.getElementById("canvas");
 			
