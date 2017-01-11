@@ -77,6 +77,7 @@
 		.title("Bar chart")
 		.description("A bar chart or bar graph is a chart or graph that presents grouped data with rectangular bars with heights proportional to the values that they represent.</br> Chart based on <a href='https://bl.ocks.org/mbostock/3310560'>https://bl.ocks.org/mbostock/3310560</a>")
 		.thumbnail("imgs/barChart.png")
+		.category('Matrix (narrow)')
 		.model(model)
 
 	// visualiziation options

@@ -23,6 +23,7 @@
         var dates = d3.set(data.map(function (d){ return +date(d); })).values();
 
         var groups = d3.nest()
+            .sortKeys(function(d){ return 1})
             .key(group)
             .rollup(function (g){
                 var singles = d3.nest()
