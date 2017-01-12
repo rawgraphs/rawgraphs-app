@@ -22,7 +22,7 @@
             .rollup(function (g) {
                 return g.map(function (d) {
                     return [Date.UTC(date(d), 1), +size(d)]
-                })
+                }).sort( function(a,b){return a[0] - b[0]}) //sort temporally
             })
             .entries(data)
 
@@ -34,7 +34,7 @@
         .model(model)
         .title('Horizon graph')
         .thumbnail("imgs/horizon.png")
-        .description("Horizon charts combine position and color to reduce vertical space.<br/>Based on <a href='http://bl.ocks.org/mbostock/1483226'>http://bl.ocks.org/mbostock/1483226</a>")
+        .description("Horizon charts combine position and color to reduce vertical space.<br/><br/>Based on <a href='http://bl.ocks.org/mbostock/1483226'>http://bl.ocks.org/mbostock/1483226</a>")
         .category('Time series')
 
     var width = chart.number()
@@ -73,7 +73,7 @@
         .defaultValue('Original')
 
     chart.draw(function (selection, data) {
-        
+
         //sort data
         function sortBy(a,b){
             if (sorting() == 'Total (descending)'){                
@@ -87,8 +87,6 @@
         }
         
         data.sort(sortBy);
-        
-        console.log(data);
 
         var curves = {
             'Basis spline': 'basis',
