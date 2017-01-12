@@ -77,7 +77,7 @@
 
     var curve = chart.list()
         .title("Interpolation")
-        .values(['Sankey curves','Linear'])
+        .values(['Sankey curves','Linear','Basis spline'])
         .defaultValue('Sankey curves')
 
     var showLabels = chart.checkbox()
@@ -95,8 +95,9 @@
             .append("g")
 
         var curves = {
+          'Basis spline' : 'basis',
           'Sankey curves' : interpolate,
-          'Linear' : 'linear'
+          'Linear' : 'linear',
         }
 
         var stack = d3.layout.stack()
