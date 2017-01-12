@@ -2,18 +2,18 @@
 
   var model = raw.model();
 
+  // Group dimension. It will mainly provide a label for each
+  // chart. If multiple lines share the same value in the 
+  // group dimension, they will be grouped. 
+  var group = model.dimension()
+    .title('Label');
+
   // 'Dimensions' dimension. accept multiple values.
   // Each value represent a slice of the pie.
   var dimensions = model.dimension()
     .title('Dimensions')
     .required(true)
     .multiple(true);
-
-  // Group dimension. It will mainly provide a label for each
-  // chart. If multiple lines share the same value in the 
-  // group dimension, they will be grouped. 
-  var group = model.dimension()
-    .title('Groups');
 
   // Mapping function.
   // For each record in the dataset a pie chart abstraction is created.
@@ -49,7 +49,7 @@
     .title("Pie chart")
     .description("A pie chart (or a circle chart) is a circular statistical graphic which is divided into slices to illustrate numerical proportion.")
     .thumbnail("imgs/pieChart.png")
-    .category('Matrix (wide)')
+    .category('Other')
     .model(model);
 
   var width = chart.number()

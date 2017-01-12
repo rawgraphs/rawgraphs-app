@@ -198,12 +198,14 @@ angular.module('raw.controllers', [])
 
 
     $scope.samples = [
+      { title : 'Biggest cities per continent', type : 'Distributions', url : 'data/cities.csv'},
+      { title : 'Countries GDP', type : 'Other', url : 'data/countriesGDP.csv'},
       { title : 'Cars', type : 'Multivariate', url : 'data/multivariate.csv' },
-      { title : 'Movies', type : 'Dispersion', url : 'data/dispersions.csv' },
+      { title : 'Movies', type : 'Dispersions', url : 'data/dispersions.csv' },
       { title : 'Music industry', type: 'Time Series', url : 'data/music.csv' },
       { title : 'Lineup', type : 'Time chunks', url : 'data/lineup.tsv' },
-      { title : 'Orchestra', type : 'Weighted hierarchy', url : 'data/orchestra.csv' },
-      { title : 'Animal kingdom', type: 'Hierarachy', url : 'data/animals.tsv' },
+      { title : 'Orchestras', type : 'Hierarchies (weighted)', url : 'data/orchestra.csv' },
+      { title : 'Animal kingdom', type: 'Hierarchies', url : 'data/animals.tsv' },
       { title : 'Titanic\'s passengers', type : 'Multi categorical', url : 'data/titanic.tsv' }
     ]
 
@@ -419,7 +421,7 @@ angular.module('raw.controllers', [])
       $scope.delayParse(text);
     });
 
-    $scope.charts = raw.charts.values().sort(function (a,b){ return a.title() < b.title() ? -1 : a.title() > b.title() ? 1 : 0; });
+    $scope.charts = raw.charts.values().sort(function (a,b){ return a.title() < b.title() ? -1 : a.title() > b.title() ? 1 : 0; }).sort(function (a,b){return a.category() < b.category() ? -1 : 1;});
     $scope.chart = $scope.charts[0];
     $scope.model = $scope.chart ? $scope.chart.model() : null;
 
@@ -501,7 +503,8 @@ angular.module('raw.controllers', [])
     })
 
       $scope.sortCategory = function (chart) {
-        return chart.category();
+        // sort first by category, then by title
+        return [chart.category(),chart.title()];
       };
 
     $(document).ready(refreshScroll);
