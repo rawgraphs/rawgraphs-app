@@ -18,8 +18,10 @@
         })
         .required(1);
 
+    var mlabel = model.dimension()
+        .title('label')
+
     var mgroup = model.dimension().title('Group')
-        .required(true);
 
     model.map(function (data) {
 
@@ -30,7 +32,8 @@
                     return {
                         group: mgroup(d),
                         y: my(d),
-                        x: mx(d)
+                        x: mx(d),
+                        label: mlabel(d)
                     };
                 })
             })
@@ -42,7 +45,7 @@
 
 
     var chart = raw.chart()
-        .title('Multiple Convex Hull')
+        .title('Convex Hull')
         .description(
             "In mathematics, the <a href='https://en.wikipedia.org/wiki/Convex_hull'>convex hull</a> is the smallest convex shape containing a set of points. Applied to a scatterplot, it is useful to identify points belonging to the same category.<br /> <br/>Based on <a href='http://bl.ocks.org/mbostock/4341699'>http://bl.ocks.org/mbostock/4341699</a>")
         .thumbnail("imgs/multipleConvexHull.png")
@@ -52,16 +55,16 @@
 
     var width = chart.number()
         .title("Width")
-        .defaultValue(1000)
+        .defaultValue(800)
         .fitToWidth(true);
 
     var height = chart.number()
         .title("Height")
-        .defaultValue(500);
+        .defaultValue(600);
 
     var dotRadius = chart.number()
         .title("Dots Diameter")
-        .defaultValue(4);
+        .defaultValue(6);
 
     var useZero = chart.checkbox()
         .title("set origin at (0,0)")
@@ -197,6 +200,25 @@
                     return "translate(" + d + ")";
                 })
         })
+        
+        // now, add label above all
+        if(mlabel() != null) {
+            var txt_group = svg.append('g')
+                                .attr("transform", "translate(" + (stroke() / 2 + leftPadding) + "," + stroke() / 2 + ")");
+            
+            data.forEach(function (layer) {
 
+                layer.values.forEach(function(item){
+                    txt_group.append("text")
+                        .attr("transform", "translate(" + x(item.x) +"," + y(item.y) + ")")
+                        .attr("text-anchor", "middle")
+                        .style("font-size","10px")
+                        .style("font-family","Arial, Helvetica")
+                        .text(item.label)
+
+                    console.log(item);
+                })
+            });
+        }
     })
 })();
