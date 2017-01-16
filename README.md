@@ -118,7 +118,7 @@ Want to contribute to RAW's development? You are more than welcome! Start by for
 You will need to sign a [Contributor License Agreement (CLA)](https://en.wikipedia.org/wiki/Contributor_License_Agreement) before making a submission. We adopted CLA to be sure that the project will remain open source. For more information, write us: <hello@rawgraphs.io>.
 
 
-##Autors
+##Authors
 **RAW** has been originally developed by:
 
 * Giorgio Caviglia <giorgio.caviglia@gmail.com>
