@@ -230,6 +230,10 @@ section.dark {
   background-color: #2DD8B1;
 }
 
+.navbar-brand>img {
+    max-height: 20px;
+}
+
 .margin-bottom {
   margin-bottom: 10px;
 }
