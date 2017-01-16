@@ -51,6 +51,14 @@ install client-side dependencies:
 $ bower install
 ```
 
+add analytics script:
+
+``` sh
+$ mv js/analytics.sample.js js/analytics.js
+```
+
+open the file ```js/analytics.js``` and add your analytics code (if any), otherwise leave the file as is.
+
 You can now run RAW from your local web server. For example, you can run Python's built-in server:
 
 ``` sh
