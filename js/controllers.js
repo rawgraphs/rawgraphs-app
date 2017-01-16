@@ -421,8 +421,8 @@ angular.module('raw.controllers', [])
       $scope.delayParse(text);
     });
 
-    $scope.charts = raw.charts.values().sort(function (a,b){ return a.title() < b.title() ? -1 : a.title() > b.title() ? 1 : 0; }).sort(function (a,b){return a.category() < b.category() ? -1 : 1;});
-    $scope.chart = $scope.charts[0];
+    $scope.charts = raw.charts.values().sort(function (a,b){ return d3.ascending(a.category(),b.category()) || d3.ascending(a.title(),b.title()) })
+    $scope.chart = $scope.charts.filter(function(d){return d.title() == 'Scatter Plot'})[0];
     $scope.model = $scope.chart ? $scope.chart.model() : null;
 
     $scope.$watch('error', function (error){
