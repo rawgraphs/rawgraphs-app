@@ -54,7 +54,7 @@ $ bower install
 add analytics script:
 
 ``` sh
-$ mv js/analytics.sample.js js/analytics.js
+$ cp js/analytics.sample.js js/analytics.js
 ```
 
 open the file ```js/analytics.js``` and add your analytics code (if any), otherwise leave the file as is.
