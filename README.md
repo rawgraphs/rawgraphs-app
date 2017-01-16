@@ -1,5 +1,4 @@
-<p align="center"><img src="http://raw.densitydesign.org/wp-content/uploads/2014/04/header.png"></p>
-
+![raw header](imgs/raw_header.jpg)
 
 ##About
 
@@ -122,10 +121,10 @@ You will need to sign a [Contributor License Agreement (CLA)](https://en.wikiped
 ##Autors
 **RAW** has been originally developed by:
 
-Giorgio Caviglia <giorgio.caviglia@gmail.com>
-Michele Mauri <mikimauri@gmail.com>
-Giorgio Uboldi <giorgio@calib.ro>
-Matteo Azzi <matteo@calib.ro>
+* Giorgio Caviglia <giorgio.caviglia@gmail.com>
+* Michele Mauri <mikimauri@gmail.com>
+* Giorgio Uboldi <giorgio@calib.ro>
+* Matteo Azzi <matteo@calib.ro>
 
 ##License
 
