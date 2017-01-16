@@ -8,7 +8,7 @@ It has been developed by [DensityDesign Research Lab](http://www.densitydesign.o
 
 Primarily conceived as a tool for designers and vis geeks, RAW aims at providing a missing link  between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, Google Docs, OpenRefine, …) and vector graphics editors (e.g. Adobe Illustrator, Inkscape, …).
 
-RAW works with [delimiter-separated values](http://en.wikipedia.org/wiki/Delimiter-separated_values) (i.e. csv and tsv files) as well as with copied-and-pasted texts from other applications (e.g. Microsoft Excel, TextWrangler, TextEdit, …). Based on the [SVG](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily edited with vector graphics applications for further refinements, or directly embedded into web pages.
+RAW works with [tabular data](https://en.wikipedia.org/wiki/Table_(information)) (e.g. spreadhseets and comma-separated values) as well as with copied-and-pasted texts from other applications (e.g. Microsoft Excel, TextWrangler, TextEdit, …). Based on the [SVG](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily edited with vector graphics applications for further refinements, or directly embedded into web pages.
 
 Knowing the need of working with sensitive information, the data uploaded to RAW is processed only by the web browser: **no server-side operations or storages are performed** and no one will see, touch or copy your data!
 
@@ -111,12 +111,12 @@ If you have any suggestion or request about new layouts to include, please let u
 
 **RAW** is maintained by [DensityDesign Research Lab](http://www.densitydesign.org/) and [Calibro](http://calib.ro/).
 
-If you want to know more about RAW, how it works and future developments, please visit the [official website](http://rawgraphs.io). For any specific request or comment we suggest you to use Github or the [Google group](https://groups.google.com/forum/#!forum/densitydesign-raw). If none of these worked for you, you can write us at <raw@densitydesign.org>.
+If you want to know more about RAW, how it works and future developments, please visit the [official website](http://rawgraphs.io). For any specific request or comment we suggest you to use Github or the [Google group](https://groups.google.com/forum/#!forum/densitydesign-raw). If none of these worked for you, you can write us at <hello@rawgraphs.io>.
 
 ##Contributing
 
 Want to contribute to RAW's development? You are more than welcome! Start by forking the repository (the "Fork" button at the top-right corner of this page) and follow the instructions above to clone it and install dependencies. Then you can use Github's issues and pull requests to discuss and share your work.
-You will need to sign a [Contributor License Agreement (CLA)](https://en.wikipedia.org/wiki/Contributor_License_Agreement) before making a submission. We adopted CLA to be sure that the project will remain open source. For more information, write us: hello (at) rawgraphs.io.
+You will need to sign a [Contributor License Agreement (CLA)](https://en.wikipedia.org/wiki/Contributor_License_Agreement) before making a submission. We adopted CLA to be sure that the project will remain open source. For more information, write us: <hello@rawgraphs.io>.
 
 
 ##Autors
