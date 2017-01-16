@@ -131,7 +131,7 @@ Matteo Azzi <matteo@calib.ro>
 
 RAW is provided under the [Apache License 2.0](https://github.com/densitydesign/raw/blob/master/LICENSE):
 
-	Copyright (c), 2013-2017 DensityDesign Lab, Giorgio Caviglia, Michele Mauri, Giorgio Uboldi, Matteo Azzi, Tommaso Elli
+	Copyright (c), 2013-2017 DensityDesign Lab, Giorgio Caviglia, Michele Mauri, Giorgio Uboldi, Matteo Azzi
 
 	<info@densitydesign.org>
 	<giorgio.caviglia@gmail.com>
