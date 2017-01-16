@@ -100,18 +100,12 @@ If you have any suggestion or request about new layouts to include, please let u
 [CodeMirror](https://github.com/marijnh/codemirror)  
 [d3.js](https://github.com/mbostock/d3)  
 [FileSaver.js](https://github.com/eligrey/FileSaver.js)  
+[is.js](http://is.js.org/)
 [jQuery](https://github.com/jquery/jquery)  
-[jQuery UI Touch Punch](https://github.com/furf/jquery-ui-touch-punch/)  
+[jQuery UI Touch Punch](https://github.com/furf/jquery-ui-touch-punch/)
+[NG file upload](https://github.com/danialfarid/ng-file-upload)
+[Sheet JS](https://github.com/SheetJS)
 [ZeroClipboard](https://github.com/zeroclipboard/zeroclipboard)
-
-##Roadmap
-
-- ~~Refactoring using [reusable charts](http://bost.ocks.org/mike/chart/) as layouts~~
-- ~~Introducing continuous color scales (for numeric values)~~
-- ~~Mobile support~~
-- Improving documentation and API Reference
-- Creating and exporting legends
-- PDF export
 
 ##Core Team
 
@@ -122,6 +116,8 @@ If you want to know more about RAW, how it works and future developments, please
 ##Contributing
 
 Want to contribute to RAW's development? You are more than welcome! Start by forking the repository (the "Fork" button at the top-right corner of this page) and follow the instructions above to clone it and install dependencies. Then you can use Github's issues and pull requests to discuss and share your work.
+You will need to sign a [Contributor License Agreement (CLA)](https://en.wikipedia.org/wiki/Contributor_License_Agreement) before making a submission. We adopted CLA to be sure that the project will remain open source. For more information, write us: hello (at) rawgraphs.io.
+
 
 ##Autors
 **RAW** has been originally developed by:
@@ -135,7 +131,7 @@ Matteo Azzi <matteo@calib.ro>
 
 RAW is provided under the [Apache License 2.0](https://github.com/densitydesign/raw/blob/master/LICENSE):
 
-	Copyright (c), 2013-2016 DensityDesign Lab, Giorgio Caviglia, Michele Mauri, Giorgio Uboldi, Matteo Azzi
+	Copyright (c), 2013-2017 DensityDesign Lab, Giorgio Caviglia, Michele Mauri, Giorgio Uboldi, Matteo Azzi, Tommaso Elli
 
 	<info@densitydesign.org>
 	<giorgio.caviglia@gmail.com>
