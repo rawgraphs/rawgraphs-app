@@ -21,7 +21,7 @@
             .key(group)
             .rollup(function (g) {
                 return g.map(function (d) {
-                    return [Date.UTC(date(d), 1), +size(d)]
+                    return [new Date(date(d)), +size(d)]
                 }).sort( function(a,b){return a[0] - b[0]}) //sort temporally
             })
             .entries(data)
