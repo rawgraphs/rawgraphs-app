@@ -1228,6 +1228,16 @@ pre.CodeMirror-placeholder {
    opacity: .3;
 }
 
+.glyphicon-refresh.spinning {
+    animation: spin 1s infinite linear;
+    font-size: 11px;
+    margin-left: 5px;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
+}
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @screen-sm-min) {

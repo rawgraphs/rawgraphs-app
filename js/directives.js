@@ -144,7 +144,22 @@ angular.module('raw.directives', [])
 	        	d3.select(element[0])
 	        		.append("svg")
 	        		.datum(scope.data)
-	        		.call(scope.chart)
+	        		.call(
+								scope.chart
+									.on('startDrawing', function(){
+										if(!scope.$$phase) {
+													scope.chart.isDrawing(true)
+                   				scope.$apply()
+                  	}
+									})
+									.on('endDrawing', function(){
+										$rootScope.$broadcast("completeGraph");
+										if(!scope.$$phase) {
+													scope.chart.isDrawing(false)
+													scope.$apply()
+										}
+									})
+							)
 
 	    			scope.svgCode = d3.select(element[0])
 	        			.select('svg')
@@ -590,7 +605,13 @@ angular.module('raw.directives', [])
     link: function postLink(scope, element, attrs) {
 
     	scope.$on('completeGraph',function(){
-    		element.find('textarea').val(scope.svgCode)
+
+				var svgCode = d3.select('#chart > svg')
+					.attr("version", 1.1)
+        	.attr("xmlns", "http://www.w3.org/2000/svg")
+        	.node().parentNode.innerHTML;
+
+    		element.find('textarea').val(svgCode)
     	})
 
       /*function asHTML(){
@@ -677,7 +698,7 @@ angular.module('raw.directives', [])
 			image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(html)));
 
 			var canvas = document.getElementById("canvas");
-			
+
 			var context = canvas.getContext("2d");
 
 			image.onload = function() {

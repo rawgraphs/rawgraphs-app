@@ -455,9 +455,10 @@
 				</div>
 
 				<div class="col-lg-9">
-					<h3 id="data"><i class="fa fa-code breath-right"></i>Embed SVG Code</h3>
-					<coder></coder>
-					<p class="light">Copy the snippet above into your HTML code to embed the visualization
+					<h3 ng-show="!chart.isDrawing()" id="data"><i class="fa fa-code breath-right"></i>Embed SVG Code</h3>
+					<h3 ng-show="chart.isDrawing()">loading <span class="glyphicon glyphicon-refresh spinning"></span></h3>
+					<coder ng-show="!chart.isDrawing()"></coder>
+					<p ng-show="!chart.isDrawing()" class="light">Copy the snippet above into your HTML code to embed the visualization
 						<a class="pull-right" id="copy-button" copy-button data-clipboard-target="source" data-container="body"><i class="fa fa-clipboard"></i></a>
 					</p>
 				</div>

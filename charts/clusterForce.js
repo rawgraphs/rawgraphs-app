@@ -94,6 +94,9 @@
         .gravity(.01)
         .charge(0)
         .on("tick", tick)
+        .on("end", function(){
+          chart.dispatchEndDrawing()
+        })
         .start();
 
     var g = selection
@@ -136,6 +139,8 @@
           .each(collide(.5))
           .attr("x", function(d) { return d.x; })
           .attr("y", function(d) { return d.y; });
+
+        chart.dispatchStartDrawing()
     }
 
     function cluster(alpha) {
