@@ -52,7 +52,7 @@ angular.module('raw.controllers', [])
       $scope.parse(text);
     }
 
-    // display Dragenter option
+    // file/text dragged
     function dragEnter() {
       $scope.importMode = 'file';
       $scope.parsed = false;
@@ -407,7 +407,7 @@ angular.module('raw.controllers', [])
         $scope.error = false;
         pivotable($scope.data);
         $scope.parsed = true;
-
+        $scope.clipboardText = "";
 
       } catch(e){
         $scope.data = [];
