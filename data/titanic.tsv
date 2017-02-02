@@ -1,0 +1,1310 @@
+Class	Survival	Name	Gender	Age group	Age	Siblings / Spouse aboard	Parents / Children aboard	Ticket number	Fare	Fare group	Cabin	Port of Embarkation	Boat	Destination
+1	yes	Allen, Miss. Elisabeth Walton	female	20 - 29	29	0	0	24160	211.3375	210	B5	Southampton	2	St Louis, MO
+1	yes	Allison, Master. Hudson Trevor	male	0 - 9	0.9167	1	2	113781	151.5500	150	C22 C26	Southampton	11	Montreal, PQ / Chesterville, ON
+1	no	Allison, Miss. Helen Loraine	female	0 - 9	2	1	2	113781	151.5500	150	C22 C26	Southampton		Montreal, PQ / Chesterville, ON
+1	no	Allison, Mr. Hudson Joshua Creighton	male	30 - 39	30	1	2	113781	151.5500	150	C22 C26	Southampton		Montreal, PQ / Chesterville, ON
+1	no	Allison, Mrs. Hudson J C (Bessie Waldo Daniels)	female	20 - 29	25	1	2	113781	151.5500	150	C22 C26	Southampton		Montreal, PQ / Chesterville, ON
+1	yes	Anderson, Mr. Harry	male	40 - 49	48	0	0	19952	26.5500	30	E12	Southampton	3	New York, NY
+1	yes	Andrews, Miss. Kornelia Theodosia	female	60 - 69	63	1	0	13502	77.9583	80	D7	Southampton	10	Hudson, NY
+1	no	Andrews, Mr. Thomas Jr	male	30 - 39	39	0	0	112050	0.0000	0	A36	Southampton		Belfast, NI
+1	yes	Appleton, Mrs. Edward Dale (Charlotte Lamson)	female	50 - 59	53	2	0	11769	51.4792	50	C101	Southampton	D	Bayside, Queens, NY
+1	no	Artagaveytia, Mr. Ramon	male	70 - 79	71	0	0	PC 17609	49.5042	50		Cherbourg		Montevideo, Uruguay
+1	no	Astor, Col. John Jacob	male	40 - 49	47	1	0	PC 17757	227.5250	230	C62 C64	Cherbourg		New York, NY
+1	yes	Astor, Mrs. John Jacob (Madeleine Talmadge Force)	female	10 - 19	18	1	0	PC 17757	227.5250	230	C62 C64	Cherbourg	4	New York, NY
+1	yes	Aubart, Mme. Leontine Pauline	female	20 - 29	24	0	0	PC 17477	69.3000	70	B35	Cherbourg	9	Paris, France
+1	yes	Barber, Miss. Ellen "Nellie"	female	20 - 29	26	0	0	19877	78.8500	80		Southampton	6	
+1	yes	Barkworth, Mr. Algernon Henry Wilson	male	80 - 89	80	0	0	27042	30.0000	30	A23	Southampton	B	Hessle, Yorks
+1	no	Baumann, Mr. John D	male	unknown		0	0	PC 17318	25.9250	30		Southampton		New York, NY
+1	no	Baxter, Mr. Quigg Edmond	male	20 - 29	24	0	1	PC 17558	247.5208	250	B58 B60	Cherbourg		Montreal, PQ
+1	yes	Baxter, Mrs. James (Helene DeLaudeniere Chaput)	female	50 - 59	50	0	1	PC 17558	247.5208	250	B58 B60	Cherbourg	6	Montreal, PQ
+1	yes	Bazzani, Miss. Albina	female	30 - 39	32	0	0	11813	76.2917	80	D15	Cherbourg	8	
+1	no	Beattie, Mr. Thomson	male	30 - 39	36	0	0	13050	75.2417	80	C6	Cherbourg	A	Winnipeg, MN
+1	yes	Beckwith, Mr. Richard Leonard	male	30 - 39	37	1	1	11751	52.5542	50	D35	Southampton	5	New York, NY
+1	yes	Beckwith, Mrs. Richard Leonard (Sallie Monypeny)	female	40 - 49	47	1	1	11751	52.5542	50	D35	Southampton	5	New York, NY
+1	yes	Behr, Mr. Karl Howell	male	20 - 29	26	0	0	111369	30.0000	30	C148	Cherbourg	5	New York, NY
+1	yes	Bidois, Miss. Rosalie	female	40 - 49	42	0	0	PC 17757	227.5250	230		Cherbourg	4	
+1	yes	Bird, Miss. Ellen	female	20 - 29	29	0	0	PC 17483	221.7792	220	C97	Southampton	8	
+1	no	Birnbaum, Mr. Jakob	male	20 - 29	25	0	0	13905	26.0000	30		Cherbourg		San Francisco, CA
+1	yes	Bishop, Mr. Dickinson H	male	20 - 29	25	1	0	11967	91.0792	90	B49	Cherbourg	7	Dowagiac, MI
+1	yes	Bishop, Mrs. Dickinson H (Helen Walton)	female	10 - 19	19	1	0	11967	91.0792	90	B49	Cherbourg	7	Dowagiac, MI
+1	yes	Bissette, Miss. Amelia	female	30 - 39	35	0	0	PC 17760	135.6333	140	C99	Southampton	8	
+1	yes	Bjornstrom-Steffansson, Mr. Mauritz Hakan	male	20 - 29	28	0	0	110564	26.5500	30	C52	Southampton	D	Stockholm, Sweden / Washington, DC
+1	no	Blackwell, Mr. Stephen Weart	male	40 - 49	45	0	0	113784	35.5000	40	T	Southampton		Trenton, NJ
+1	yes	Blank, Mr. Henry	male	40 - 49	40	0	0	112277	31.0000	30	A31	Cherbourg	7	Glen Ridge, NJ
+1	yes	Bonnell, Miss. Caroline	female	30 - 39	30	0	0	36928	164.8667	160	C7	Southampton	8	Youngstown, OH
+1	yes	Bonnell, Miss. Elizabeth	female	50 - 59	58	0	0	113783	26.5500	30	C103	Southampton	8	Birkdale, England Cleveland, Ohio
+1	no	Borebank, Mr. John James	male	40 - 49	42	0	0	110489	26.5500	30	D22	Southampton		London / Winnipeg, MB
+1	yes	Bowen, Miss. Grace Scott	female	40 - 49	45	0	0	PC 17608	262.3750	260		Cherbourg	4	Cooperstown, NY
+1	yes	Bowerman, Miss. Elsie Edith	female	20 - 29	22	0	1	113505	55.0000	60	E33	Southampton	6	St Leonards-on-Sea, England Ohio
+1	yes	Bradley, Mr. George ("George Arthur Brayton")	male	unknown		0	0	111427	26.5500	30		Southampton	9	Los Angeles, CA
+1	no	Brady, Mr. John Bertram	male	40 - 49	41	0	0	113054	30.5000	30	A21	Southampton		Pomeroy, WA
+1	no	Brandeis, Mr. Emil	male	40 - 49	48	0	0	PC 17591	50.4958	50	B10	Cherbourg		Omaha, NE
+1	no	Brewe, Dr. Arthur Jackson	male	unknown		0	0	112379	39.6000	40		Cherbourg		Philadelphia, PA
+1	yes	Brown, Mrs. James Joseph (Margaret Tobin)	female	40 - 49	44	0	0	PC 17610	27.7208	30	B4	Cherbourg	6	Denver, CO
+1	yes	Brown, Mrs. John Murray (Caroline Lane Lamson)	female	50 - 59	59	2	0	11769	51.4792	50	C101	Southampton	D	Belmont, MA
+1	yes	Bucknell, Mrs. William Robert (Emma Eliza Ward)	female	60 - 69	60	0	0	11813	76.2917	80	D15	Cherbourg	8	Philadelphia, PA
+1	yes	Burns, Miss. Elizabeth Margaret	female	40 - 49	41	0	0	16966	134.5000	130	E40	Cherbourg	3	
+1	no	Butt, Major. Archibald Willingham	male	40 - 49	45	0	0	113050	26.5500	30	B38	Southampton		Washington, DC
+1	no	Cairns, Mr. Alexander	male	unknown		0	0	113798	31.0000	30		Southampton		
+1	yes	Calderhead, Mr. Edward Pennington	male	40 - 49	42	0	0	PC 17476	26.2875	30	E24	Southampton	5	New York, NY
+1	yes	Candee, Mrs. Edward (Helen Churchill Hungerford)	female	50 - 59	53	0	0	PC 17606	27.4458	30		Cherbourg	6	Washington, DC
+1	yes	Cardeza, Mr. Thomas Drake Martinez	male	30 - 39	36	0	1	PC 17755	512.3292	510	B51 B53 B55	Cherbourg	3	Austria-Hungary / Germantown, Philadelphia, PA
+1	yes	Cardeza, Mrs. James Warburton Martinez (Charlotte Wardle Drake)	female	50 - 59	58	0	1	PC 17755	512.3292	510	B51 B53 B55	Cherbourg	3	Germantown, Philadelphia, PA
+1	no	Carlsson, Mr. Frans Olof	male	30 - 39	33	0	0	695	5.0000	10	B51 B53 B55	Southampton		New York, NY
+1	no	Carrau, Mr. Francisco M	male	20 - 29	28	0	0	113059	47.1000	50		Southampton		Montevideo, Uruguay
+1	no	Carrau, Mr. Jose Pedro	male	10 - 19	17	0	0	113059	47.1000	50		Southampton		Montevideo, Uruguay
+1	yes	Carter, Master. William Thornton II	male	10 - 19	11	1	2	113760	120.0000	120	B96 B98	Southampton	4	Bryn Mawr, PA
+1	yes	Carter, Miss. Lucile Polk	female	10 - 19	14	1	2	113760	120.0000	120	B96 B98	Southampton	4	Bryn Mawr, PA
+1	yes	Carter, Mr. William Ernest	male	30 - 39	36	1	2	113760	120.0000	120	B96 B98	Southampton	C	Bryn Mawr, PA
+1	yes	Carter, Mrs. William Ernest (Lucile Polk)	female	30 - 39	36	1	2	113760	120.0000	120	B96 B98	Southampton	4	Bryn Mawr, PA
+1	no	Case, Mr. Howard Brown	male	40 - 49	49	0	0	19924	26.0000	30		Southampton		Ascot, Berkshire / Rochester, NY
+1	yes	Cassebeer, Mrs. Henry Arthur Jr (Eleanor Genevieve Fosdick)	female	unknown		0	0	17770	27.7208	30		Cherbourg	5	New York, NY
+1	no	Cavendish, Mr. Tyrell William	male	30 - 39	36	1	0	19877	78.8500	80	C46	Southampton		Little Onn Hall, Staffs
+1	yes	Cavendish, Mrs. Tyrell William (Julia Florence Siegel)	female	70 - 79	76	1	0	19877	78.8500	80	C46	Southampton	6	Little Onn Hall, Staffs
+1	no	Chaffee, Mr. Herbert Fuller	male	40 - 49	46	1	0	W.E.P. 5734	61.1750	60	E31	Southampton		Amenia, ND
+1	yes	Chaffee, Mrs. Herbert Fuller (Carrie Constance Toogood)	female	40 - 49	47	1	0	W.E.P. 5734	61.1750	60	E31	Southampton	4	Amenia, ND
+1	yes	Chambers, Mr. Norman Campbell	male	20 - 29	27	1	0	113806	53.1000	50	E8	Southampton	5	New York, NY / Ithaca, NY
+1	yes	Chambers, Mrs. Norman Campbell (Bertha Griggs)	female	30 - 39	33	1	0	113806	53.1000	50	E8	Southampton	5	New York, NY / Ithaca, NY
+1	yes	Chaudanson, Miss. Victorine	female	30 - 39	36	0	0	PC 17608	262.3750	260	B61	Cherbourg	4	
+1	yes	Cherry, Miss. Gladys	female	30 - 39	30	0	0	110152	86.5000	90	B77	Southampton	8	London, England
+1	yes	Chevre, Mr. Paul Romaine	male	40 - 49	45	0	0	PC 17594	29.7000	30	A9	Cherbourg	7	Paris, France
+1	yes	Chibnall, Mrs. (Edith Martha Bowerman)	female	unknown		0	1	113505	55.0000	60	E33	Southampton	6	St Leonards-on-Sea, England Ohio
+1	no	Chisholm, Mr. Roderick Robert Crispin	male	unknown		0	0	112051	0.0000	0		Southampton		Liverpool, England / Belfast
+1	no	Clark, Mr. Walter Miller	male	20 - 29	27	1	0	13508	136.7792	140	C89	Cherbourg		Los Angeles, CA
+1	yes	Clark, Mrs. Walter Miller (Virginia McDowell)	female	20 - 29	26	1	0	13508	136.7792	140	C89	Cherbourg	4	Los Angeles, CA
+1	yes	Cleaver, Miss. Alice	female	20 - 29	22	0	0	113781	151.5500	150		Southampton	11	
+1	no	Clifford, Mr. George Quincy	male	unknown		0	0	110465	52.0000	50	A14	Southampton		Stoughton, MA
+1	no	Colley, Mr. Edward Pomeroy	male	40 - 49	47	0	0	5727	25.5875	30	E58	Southampton		Victoria, BC
+1	yes	Compton, Miss. Sara Rebecca	female	30 - 39	39	1	1	PC 17756	83.1583	80	E49	Cherbourg	14	Lakewood, NJ
+1	no	Compton, Mr. Alexander Taylor Jr	male	30 - 39	37	1	1	PC 17756	83.1583	80	E52	Cherbourg		Lakewood, NJ
+1	yes	Compton, Mrs. Alexander Taylor (Mary Eliza Ingersoll)	female	60 - 69	64	0	2	PC 17756	83.1583	80	E45	Cherbourg	14	Lakewood, NJ
+1	yes	Cornell, Mrs. Robert Clifford (Malvina Helen Lamson)	female	50 - 59	55	2	0	11770	25.7000	30	C101	Southampton	2	New York, NY
+1	no	Crafton, Mr. John Bertram	male	unknown		0	0	113791	26.5500	30		Southampton		Roachdale, IN
+1	no	Crosby, Capt. Edward Gifford	male	70 - 79	70	1	1	WE/P 5735	71.0000	70	B22	Southampton		Milwaukee, WI
+1	yes	Crosby, Miss. Harriet R	female	30 - 39	36	0	2	WE/P 5735	71.0000	70	B22	Southampton	7	Milwaukee, WI
+1	yes	Crosby, Mrs. Edward Gifford (Catherine Elizabeth Halstead)	female	60 - 69	64	1	1	112901	26.5500	30	B26	Southampton	7	Milwaukee, WI
+1	no	Cumings, Mr. John Bradley	male	30 - 39	39	1	0	PC 17599	71.2833	70	C85	Cherbourg		New York, NY
+1	yes	Cumings, Mrs. John Bradley (Florence Briggs Thayer)	female	30 - 39	38	1	0	PC 17599	71.2833	70	C85	Cherbourg	4	New York, NY
+1	yes	Daly, Mr. Peter Denis 	male	50 - 59	51	0	0	113055	26.5500	30	E17	Southampton	5 9	Lima, Peru
+1	yes	Daniel, Mr. Robert Williams	male	20 - 29	27	0	0	113804	30.5000	30		Southampton	3	Philadelphia, PA
+1	yes	Daniels, Miss. Sarah	female	30 - 39	33	0	0	113781	151.5500	150		Southampton	8	
+1	no	Davidson, Mr. Thornton	male	30 - 39	31	1	0	F.C. 12750	52.0000	50	B71	Southampton		Montreal, PQ
+1	yes	Davidson, Mrs. Thornton (Orian Hays)	female	20 - 29	27	1	2	F.C. 12750	52.0000	50	B71	Southampton	3	Montreal, PQ
+1	yes	Dick, Mr. Albert Adrian	male	30 - 39	31	1	0	17474	57.0000	60	B20	Southampton	3	Calgary, AB
+1	yes	Dick, Mrs. Albert Adrian (Vera Gillespie)	female	10 - 19	17	1	0	17474	57.0000	60	B20	Southampton	3	Calgary, AB
+1	yes	Dodge, Dr. Washington	male	50 - 59	53	1	1	33638	81.8583	80	A34	Southampton	13	San Francisco, CA
+1	yes	Dodge, Master. Washington	male	0 - 9	4	0	2	33638	81.8583	80	A34	Southampton	5	San Francisco, CA
+1	yes	Dodge, Mrs. Washington (Ruth Vidaver)	female	50 - 59	54	1	1	33638	81.8583	80	A34	Southampton	5	San Francisco, CA
+1	no	Douglas, Mr. Walter Donald	male	50 - 59	50	1	0	PC 17761	106.4250	110	C86	Cherbourg		Deephaven, MN / Cedar Rapids, IA
+1	yes	Douglas, Mrs. Frederick Charles (Mary Helene Baxter)	female	20 - 29	27	1	1	PC 17558	247.5208	250	B58 B60	Cherbourg	6	Montreal, PQ
+1	yes	Douglas, Mrs. Walter Donald (Mahala Dutton)	female	40 - 49	48	1	0	PC 17761	106.4250	110	C86	Cherbourg	2	Deephaven, MN / Cedar Rapids, IA
+1	yes	Duff Gordon, Lady. (Lucille Christiana Sutherland) ("Mrs Morgan")	female	40 - 49	48	1	0	11755	39.6000	40	A16	Cherbourg	1	London / Paris
+1	yes	Duff Gordon, Sir. Cosmo Edmund ("Mr Morgan")	male	40 - 49	49	1	0	PC 17485	56.9292	60	A20	Cherbourg	1	London / Paris
+1	no	Dulles, Mr. William Crothers	male	30 - 39	39	0	0	PC 17580	29.7000	30	A18	Cherbourg		Philadelphia, PA
+1	yes	Earnshaw, Mrs. Boulton (Olive Potter)	female	20 - 29	23	0	1	11767	83.1583	80	C54	Cherbourg	7	Mt Airy, Philadelphia, PA
+1	yes	Endres, Miss. Caroline Louise	female	30 - 39	38	0	0	PC 17757	227.5250	230	C45	Cherbourg	4	New York, NY
+1	yes	Eustis, Miss. Elizabeth Mussey	female	50 - 59	54	1	0	36947	78.2667	80	D20	Cherbourg	4	Brookline, MA
+1	no	Evans, Miss. Edith Corse	female	30 - 39	36	0	0	PC 17531	31.6792	30	A29	Cherbourg		New York, NY
+1	no	Farthing, Mr. John	male	unknown		0	0	PC 17483	221.7792	220	C95	Southampton		
+1	yes	Flegenheim, Mrs. Alfred (Antoinette)	female	unknown		0	0	PC 17598	31.6833	30		Southampton	7	New York, NY
+1	yes	Fleming, Miss. Margaret	female	unknown		0	0	17421	110.8833	110		Cherbourg	4	
+1	yes	Flynn, Mr. John Irwin ("Irving")	male	30 - 39	36	0	0	PC 17474	26.3875	30	E25	Southampton	5	Brooklyn, NY
+1	no	Foreman, Mr. Benjamin Laventall	male	30 - 39	30	0	0	113051	27.7500	30	C111	Cherbourg		New York, NY
+1	yes	Fortune, Miss. Alice Elizabeth	female	20 - 29	24	3	2	19950	263.0000	260	C23 C25 C27	Southampton	10	Winnipeg, MB
+1	yes	Fortune, Miss. Ethel Flora	female	20 - 29	28	3	2	19950	263.0000	260	C23 C25 C27	Southampton	10	Winnipeg, MB
+1	yes	Fortune, Miss. Mabel Helen	female	20 - 29	23	3	2	19950	263.0000	260	C23 C25 C27	Southampton	10	Winnipeg, MB
+1	no	Fortune, Mr. Charles Alexander	male	10 - 19	19	3	2	19950	263.0000	260	C23 C25 C27	Southampton		Winnipeg, MB
+1	no	Fortune, Mr. Mark	male	60 - 69	64	1	4	19950	263.0000	260	C23 C25 C27	Southampton		Winnipeg, MB
+1	yes	Fortune, Mrs. Mark (Mary McDougald)	female	60 - 69	60	1	4	19950	263.0000	260	C23 C25 C27	Southampton	10	Winnipeg, MB
+1	yes	Francatelli, Miss. Laura Mabel	female	30 - 39	30	0	0	PC 17485	56.9292	60	E36	Cherbourg	1	
+1	no	Franklin, Mr. Thomas Parham	male	unknown		0	0	113778	26.5500	30	D34	Southampton		Westcliff-on-Sea, Essex
+1	yes	Frauenthal, Dr. Henry William	male	50 - 59	50	2	0	PC 17611	133.6500	130		Southampton	5	New York, NY
+1	yes	Frauenthal, Mr. Isaac Gerald	male	40 - 49	43	1	0	17765	27.7208	30	D40	Cherbourg	5	New York, NY
+1	yes	Frauenthal, Mrs. Henry William (Clara Heinsheimer)	female	unknown		1	0	PC 17611	133.6500	130		Southampton	5	New York, NY
+1	yes	Frolicher, Miss. Hedwig Margaritha	female	20 - 29	22	0	2	13568	49.5000	50	B39	Cherbourg	5	Zurich, Switzerland
+1	yes	Frolicher-Stehli, Mr. Maxmillian	male	60 - 69	60	1	1	13567	79.2000	80	B41	Cherbourg	5	Zurich, Switzerland
+1	yes	Frolicher-Stehli, Mrs. Maxmillian (Margaretha Emerentia Stehli)	female	40 - 49	48	1	1	13567	79.2000	80	B41	Cherbourg	5	Zurich, Switzerland
+1	no	Fry, Mr. Richard	male	unknown		0	0	112058	0.0000	0	B102	Southampton		
+1	no	Futrelle, Mr. Jacques Heath	male	30 - 39	37	1	0	113803	53.1000	50	C123	Southampton		Scituate, MA
+1	yes	Futrelle, Mrs. Jacques Heath (Lily May Peel)	female	30 - 39	35	1	0	113803	53.1000	50	C123	Southampton	D	Scituate, MA
+1	no	Gee, Mr. Arthur H	male	40 - 49	47	0	0	111320	38.5000	40	E63	Southampton		St Anne's-on-Sea, Lancashire
+1	yes	Geiger, Miss. Amalie	female	30 - 39	35	0	0	113503	211.5000	210	C130	Cherbourg	4	
+1	yes	Gibson, Miss. Dorothy Winifred	female	20 - 29	22	0	1	112378	59.4000	60		Cherbourg	7	New York, NY
+1	yes	Gibson, Mrs. Leonard (Pauline C Boeson)	female	40 - 49	45	0	1	112378	59.4000	60		Cherbourg	7	New York, NY
+1	no	Giglio, Mr. Victor	male	20 - 29	24	0	0	PC 17593	79.2000	80	B86	Cherbourg		
+1	yes	Goldenberg, Mr. Samuel L	male	40 - 49	49	1	0	17453	89.1042	90	C92	Cherbourg	5	Paris, France / New York, NY
+1	yes	Goldenberg, Mrs. Samuel L (Edwiga Grabowska)	female	unknown		1	0	17453	89.1042	90	C92	Cherbourg	5	Paris, France / New York, NY
+1	no	Goldschmidt, Mr. George B	male	70 - 79	71	0	0	PC 17754	34.6542	30	A5	Cherbourg		New York, NY
+1	yes	Gracie, Col. Archibald IV	male	50 - 59	53	0	0	113780	28.5000	30	C51	Cherbourg	B	Washington, DC
+1	yes	Graham, Miss. Margaret Edith	female	10 - 19	19	0	0	112053	30.0000	30	B42	Southampton	3	Greenwich, CT
+1	no	Graham, Mr. George Edward	male	30 - 39	38	0	1	PC 17582	153.4625	150	C91	Southampton		Winnipeg, MB
+1	yes	Graham, Mrs. William Thompson (Edith Junkins)	female	50 - 59	58	0	1	PC 17582	153.4625	150	C125	Southampton	3	Greenwich, CT
+1	yes	Greenfield, Mr. William Bertram	male	20 - 29	23	0	1	PC 17759	63.3583	60	D10 D12	Cherbourg	7	New York, NY
+1	yes	Greenfield, Mrs. Leo David (Blanche Strouse)	female	40 - 49	45	0	1	PC 17759	63.3583	60	D10 D12	Cherbourg	7	New York, NY
+1	no	Guggenheim, Mr. Benjamin	male	40 - 49	46	0	0	PC 17593	79.2000	80	B82 B84	Cherbourg		New York, NY
+1	yes	Harder, Mr. George Achilles	male	20 - 29	25	1	0	11765	55.4417	60	E50	Cherbourg	5	Brooklyn, NY
+1	yes	Harder, Mrs. George Achilles (Dorothy Annan)	female	20 - 29	25	1	0	11765	55.4417	60	E50	Cherbourg	5	Brooklyn, NY
+1	yes	Harper, Mr. Henry Sleeper	male	40 - 49	48	1	0	PC 17572	76.7292	80	D33	Cherbourg	3	New York, NY
+1	yes	Harper, Mrs. Henry Sleeper (Myna Haxtun)	female	40 - 49	49	1	0	PC 17572	76.7292	80	D33	Cherbourg	3	New York, NY
+1	no	Harrington, Mr. Charles H	male	unknown		0	0	113796	42.4000	40		Southampton		
+1	no	Harris, Mr. Henry Birkhardt	male	40 - 49	45	1	0	36973	83.4750	80	C83	Southampton		New York, NY
+1	yes	Harris, Mrs. Henry Birkhardt (Irene Wallach)	female	30 - 39	35	1	0	36973	83.4750	80	C83	Southampton	D	New York, NY
+1	no	Harrison, Mr. William	male	40 - 49	40	0	0	112059	0.0000	0	B94	Southampton		
+1	yes	Hassab, Mr. Hammad	male	20 - 29	27	0	0	PC 17572	76.7292	80	D49	Cherbourg	3	
+1	yes	Hawksford, Mr. Walter James	male	unknown		0	0	16988	30.0000	30	D45	Southampton	3	Kingston, Surrey
+1	yes	Hays, Miss. Margaret Bechstein	female	20 - 29	24	0	0	11767	83.1583	80	C54	Cherbourg	7	New York, NY
+1	no	Hays, Mr. Charles Melville	male	50 - 59	55	1	1	12749	93.5000	90	B69	Southampton		Montreal, PQ
+1	yes	Hays, Mrs. Charles Melville (Clara Jennings Gregg)	female	50 - 59	52	1	1	12749	93.5000	90	B69	Southampton	3	Montreal, PQ
+1	no	Head, Mr. Christopher	male	40 - 49	42	0	0	113038	42.5000	40	B11	Southampton		London / Middlesex
+1	no	Hilliard, Mr. Herbert Henry	male	unknown		0	0	17463	51.8625	50	E46	Southampton		Brighton, MA
+1	no	Hipkins, Mr. William Edward	male	50 - 59	55	0	0	680	50.0000	50	C39	Southampton		London / Birmingham
+1	yes	Hippach, Miss. Jean Gertrude	female	10 - 19	16	0	1	111361	57.9792	60	B18	Cherbourg	4	Chicago, IL
+1	yes	Hippach, Mrs. Louis Albert (Ida Sophia Fischer)	female	40 - 49	44	0	1	111361	57.9792	60	B18	Cherbourg	4	Chicago, IL
+1	yes	Hogeboom, Mrs. John C (Anna Andrews)	female	50 - 59	51	1	0	13502	77.9583	80	D11	Southampton	10	Hudson, NY
+1	no	Holverson, Mr. Alexander Oskar	male	40 - 49	42	1	0	113789	52.0000	50		Southampton		New York, NY
+1	yes	Holverson, Mrs. Alexander Oskar (Mary Aline Towner)	female	30 - 39	35	1	0	113789	52.0000	50		Southampton	8	New York, NY
+1	yes	Homer, Mr. Harry ("Mr E Haven")	male	30 - 39	35	0	0	111426	26.5500	30		Cherbourg	15	Indianapolis, IN
+1	yes	Hoyt, Mr. Frederick Maxfield	male	30 - 39	38	1	0	19943	90.0000	90	C93	Southampton	D	New York, NY /  Stamford CT
+1	no	Hoyt, Mr. William Fisher	male	unknown		0	0	PC 17600	30.6958	30		Cherbourg	14	New York, NY
+1	yes	Hoyt, Mrs. Frederick Maxfield (Jane Anne Forby)	female	30 - 39	35	1	0	19943	90.0000	90	C93	Southampton	D	New York, NY /  Stamford CT
+1	yes	Icard, Miss. Amelie	female	30 - 39	38	0	0	113572	80.0000	80	B28		6	
+1	no	Isham, Miss. Ann Elizabeth	female	50 - 59	50	0	0	PC 17595	28.7125	30	C49	Cherbourg		Paris, France New York, NY
+1	yes	Ismay, Mr. Joseph Bruce	male	40 - 49	49	0	0	112058	0.0000	0	B52 B54 B56	Southampton	C	Liverpool
+1	no	Jones, Mr. Charles Cresson	male	40 - 49	46	0	0	694	26.0000	30		Southampton		Bennington, VT
+1	no	Julian, Mr. Henry Forbes	male	50 - 59	50	0	0	113044	26.0000	30	E60	Southampton		London
+1	no	Keeping, Mr. Edwin	male	30 - 39	32.5	0	0	113503	211.5000	210	C132	Cherbourg		
+1	no	Kent, Mr. Edward Austin	male	50 - 59	58	0	0	11771	29.7000	30	B37	Cherbourg		Buffalo, NY
+1	no	Kenyon, Mr. Frederick R	male	40 - 49	41	1	0	17464	51.8625	50	D21	Southampton		Southington / Noank, CT
+1	yes	Kenyon, Mrs. Frederick R (Marion)	female	unknown		1	0	17464	51.8625	50	D21	Southampton	8	Southington / Noank, CT
+1	yes	Kimball, Mr. Edwin Nelson Jr	male	40 - 49	42	1	0	11753	52.5542	50	D19	Southampton	5	Boston, MA
+1	yes	Kimball, Mrs. Edwin Nelson Jr (Gertrude Parsons)	female	40 - 49	45	1	0	11753	52.5542	50	D19	Southampton	5	Boston, MA
+1	no	Klaber, Mr. Herman	male	unknown		0	0	113028	26.5500	30	C124	Southampton		Portland, OR
+1	yes	Kreuchen, Miss. Emilie	female	30 - 39	39	0	0	24160	211.3375	210		Southampton	2	
+1	yes	Leader, Dr. Alice (Farnham)	female	40 - 49	49	0	0	17465	25.9292	30	D17	Southampton	8	New York, NY
+1	yes	LeRoy, Miss. Bertha	female	30 - 39	30	0	0	PC 17761	106.4250	110		Cherbourg	2	
+1	yes	Lesurer, Mr. Gustave J	male	30 - 39	35	0	0	PC 17755	512.3292	510	B101	Cherbourg	3	
+1	no	Lewy, Mr. Ervin G	male	unknown		0	0	PC 17612	27.7208	30		Cherbourg		Chicago, IL
+1	no	Lindeberg-Lind, Mr. Erik Gustaf ("Mr Edward Lingrey")	male	40 - 49	42	0	0	17475	26.5500	30		Southampton		Stockholm, Sweden
+1	yes	Lindstrom, Mrs. Carl Johan (Sigrid Posse)	female	50 - 59	55	0	0	112377	27.7208	30		Cherbourg	6	Stockholm, Sweden
+1	yes	Lines, Miss. Mary Conover	female	10 - 19	16	0	1	PC 17592	39.4000	40	D28	Southampton	9	Paris, France
+1	yes	Lines, Mrs. Ernest H (Elizabeth Lindsey James)	female	50 - 59	51	0	1	PC 17592	39.4000	40	D28	Southampton	9	Paris, France
+1	no	Long, Mr. Milton Clyde	male	20 - 29	29	0	0	113501	30.0000	30	D6	Southampton		Springfield, MA
+1	yes	Longley, Miss. Gretchen Fiske	female	20 - 29	21	0	0	13502	77.9583	80	D9	Southampton	10	Hudson, NY
+1	no	Loring, Mr. Joseph Holland	male	30 - 39	30	0	0	113801	45.5000	50		Southampton		London / New York, NY
+1	yes	Lurette, Miss. Elise	female	50 - 59	58	0	0	PC 17569	146.5208	150	B80	Cherbourg		
+1	yes	Madill, Miss. Georgette Alexandra	female	10 - 19	15	0	1	24160	211.3375	210	B5	Southampton	2	St Louis, MO
+1	no	Maguire, Mr. John Edward	male	30 - 39	30	0	0	110469	26.0000	30	C106	Southampton		Brockton, MA
+1	yes	Maioni, Miss. Roberta	female	10 - 19	16	0	0	110152	86.5000	90	B79	Southampton	8	
+1	yes	Marechal, Mr. Pierre	male	unknown		0	0	11774	29.7000	30	C47	Cherbourg	7	Paris, France
+1	no	Marvin, Mr. Daniel Warner	male	10 - 19	19	1	0	113773	53.1000	50	D30	Southampton		New York, NY
+1	yes	Marvin, Mrs. Daniel Warner (Mary Graham Carmichael Farquarson)	female	10 - 19	18	1	0	113773	53.1000	50	D30	Southampton	10	New York, NY
+1	yes	Mayne, Mlle. Berthe Antonine ("Mrs de Villiers")	female	20 - 29	24	0	0	PC 17482	49.5042	50	C90	Cherbourg	6	Belgium  Montreal, PQ
+1	no	McCaffry, Mr. Thomas Francis	male	40 - 49	46	0	0	13050	75.2417	80	C6	Cherbourg		Vancouver, BC
+1	no	McCarthy, Mr. Timothy J	male	50 - 59	54	0	0	17463	51.8625	50	E46	Southampton		Dorchester, MA
+1	yes	McGough, Mr. James Robert	male	30 - 39	36	0	0	PC 17473	26.2875	30	E25	Southampton	7	Philadelphia, PA
+1	no	Meyer, Mr. Edgar Joseph	male	20 - 29	28	1	0	PC 17604	82.1708	80		Cherbourg		New York, NY
+1	yes	Meyer, Mrs. Edgar Joseph (Leila Saks)	female	unknown		1	0	PC 17604	82.1708	80		Cherbourg	6	New York, NY
+1	no	Millet, Mr. Francis Davis	male	60 - 69	65	0	0	13509	26.5500	30	E38	Southampton		East Bridgewater, MA
+1	no	Minahan, Dr. William Edward	male	40 - 49	44	2	0	19928	90.0000	90	C78	Queenstown		Fond du Lac, WI
+1	yes	Minahan, Miss. Daisy E	female	30 - 39	33	1	0	19928	90.0000	90	C78	Queenstown	14	Green Bay, WI
+1	yes	Minahan, Mrs. William Edward (Lillian E Thorpe)	female	30 - 39	37	1	0	19928	90.0000	90	C78	Queenstown	14	Fond du Lac, WI
+1	yes	Mock, Mr. Philipp Edmund	male	30 - 39	30	1	0	13236	57.7500	60	C78	Cherbourg	11	New York, NY
+1	no	Molson, Mr. Harry Markland	male	50 - 59	55	0	0	113787	30.5000	30	C30	Southampton		Montreal, PQ
+1	no	Moore, Mr. Clarence Bloomfield	male	40 - 49	47	0	0	113796	42.4000	40		Southampton		Washington, DC
+1	no	Natsch, Mr. Charles H	male	30 - 39	37	0	1	PC 17596	29.7000	30	C118	Cherbourg		Brooklyn, NY
+1	yes	Newell, Miss. Madeleine	female	30 - 39	31	1	0	35273	113.2750	110	D36	Cherbourg	6	Lexington, MA
+1	yes	Newell, Miss. Marjorie	female	20 - 29	23	1	0	35273	113.2750	110	D36	Cherbourg	6	Lexington, MA
+1	no	Newell, Mr. Arthur Webster	male	50 - 59	58	0	2	35273	113.2750	110	D48	Cherbourg		Lexington, MA
+1	yes	Newsom, Miss. Helen Monypeny	female	10 - 19	19	0	2	11752	26.2833	30	D47	Southampton	5	New York, NY
+1	no	Nicholson, Mr. Arthur Ernest	male	60 - 69	64	0	0	693	26.0000	30		Southampton		Isle of Wight, England
+1	yes	Oliva y Ocana, Dona. Fermina	female	30 - 39	39	0	0	PC 17758	108.9000	110	C105	Cherbourg	8	
+1	yes	Omont, Mr. Alfred Fernand	male	unknown		0	0	F.C. 12998	25.7417	30		Cherbourg	7	Paris, France
+1	yes	Ostby, Miss. Helene Ragnhild	female	20 - 29	22	0	1	113509	61.9792	60	B36	Cherbourg	5	Providence, RI
+1	no	Ostby, Mr. Engelhart Cornelius	male	60 - 69	65	0	1	113509	61.9792	60	B30	Cherbourg		Providence, RI
+1	no	Ovies y Rodriguez, Mr. Servando	male	20 - 29	28.5	0	0	PC 17562	27.7208	30	D43	Cherbourg		?Havana, Cuba
+1	no	Parr, Mr. William Henry Marsh	male	unknown		0	0	112052	0.0000	0		Southampton		Belfast
+1	no	Partner, Mr. Austen	male	40 - 49	45.5	0	0	113043	28.5000	30	C124	Southampton		Surbiton Hill, Surrey
+1	no	Payne, Mr. Vivian Ponsonby	male	20 - 29	23	0	0	12749	93.5000	90	B24	Southampton		Montreal, PQ
+1	no	Pears, Mr. Thomas Clinton	male	20 - 29	29	1	0	113776	66.6000	70	C2	Southampton		Isleworth, England
+1	yes	Pears, Mrs. Thomas (Edith Wearne)	female	20 - 29	22	1	0	113776	66.6000	70	C2	Southampton	8	Isleworth, England
+1	no	Penasco y Castellana, Mr. Victor de Satode	male	10 - 19	18	1	0	PC 17758	108.9000	110	C65	Cherbourg		Madrid, Spain
+1	yes	Penasco y Castellana, Mrs. Victor de Satode (Maria Josefa Perez de Soto y Vallejo)	female	10 - 19	17	1	0	PC 17758	108.9000	110	C65	Cherbourg	8	Madrid, Spain
+1	yes	Perreault, Miss. Anne	female	30 - 39	30	0	0	12749	93.5000	90	B73	Southampton	3	
+1	yes	Peuchen, Major. Arthur Godfrey	male	50 - 59	52	0	0	113786	30.5000	30	C104	Southampton	6	Toronto, ON
+1	no	Porter, Mr. Walter Chamberlain	male	40 - 49	47	0	0	110465	52.0000	50	C110	Southampton		Worcester, MA
+1	yes	Potter, Mrs. Thomas Jr (Lily Alexenia Wilson)	female	50 - 59	56	0	1	11767	83.1583	80	C50	Cherbourg	7	Mt Airy, Philadelphia, PA
+1	no	Reuchlin, Jonkheer. John George	male	30 - 39	38	0	0	19972	0.0000	0		Southampton		Rotterdam, Netherlands
+1	yes	Rheims, Mr. George Alexander Lucien	male	unknown		0	0	PC 17607	39.6000	40		Southampton	A	Paris /  New York, NY
+1	no	Ringhini, Mr. Sante	male	20 - 29	22	0	0	PC 17760	135.6333	140		Cherbourg		
+1	no	Robbins, Mr. Victor	male	unknown		0	0	PC 17757	227.5250	230		Cherbourg		
+1	yes	Robert, Mrs. Edward Scott (Elisabeth Walton McMillan)	female	40 - 49	43	0	1	24160	211.3375	210	B3	Southampton	2	St Louis, MO
+1	no	Roebling, Mr. Washington Augustus II	male	30 - 39	31	0	0	PC 17590	50.4958	50	A24	Southampton		Trenton, NJ
+1	yes	Romaine, Mr. Charles Hallace ("Mr C Rolmane")	male	40 - 49	45	0	0	111428	26.5500	30		Southampton	9	New York, NY
+1	no	Rood, Mr. Hugh Roscoe	male	unknown		0	0	113767	50.0000	50	A32	Southampton		Seattle, WA
+1	yes	Rosenbaum, Miss. Edith Louise	female	30 - 39	33	0	0	PC 17613	27.7208	30	A11	Cherbourg	11	Paris, France
+1	no	Rosenshine, Mr. George ("Mr George Thorne")	male	40 - 49	46	0	0	PC 17585	79.2000	80		Cherbourg		New York, NY
+1	no	Ross, Mr. John Hugo	male	30 - 39	36	0	0	13049	40.1250	40	A10	Cherbourg		Winnipeg, MB
+1	yes	Rothes, the Countess. of (Lucy Noel Martha Dyer-Edwards)	female	30 - 39	33	0	0	110152	86.5000	90	B77	Southampton	8	London  Vancouver, BC
+1	no	Rothschild, Mr. Martin	male	50 - 59	55	1	0	PC 17603	59.4000	60		Cherbourg		New York, NY
+1	yes	Rothschild, Mrs. Martin (Elizabeth L. Barrett)	female	50 - 59	54	1	0	PC 17603	59.4000	60		Cherbourg	6	New York, NY
+1	no	Rowe, Mr. Alfred G	male	30 - 39	33	0	0	113790	26.5500	30		Southampton		London
+1	yes	Ryerson, Master. John Borie	male	10 - 19	13	2	2	PC 17608	262.3750	260	B57 B59 B63 B66	Cherbourg	4	Haverford, PA / Cooperstown, NY
+1	yes	Ryerson, Miss. Emily Borie	female	10 - 19	18	2	2	PC 17608	262.3750	260	B57 B59 B63 B66	Cherbourg	4	Haverford, PA / Cooperstown, NY
+1	yes	Ryerson, Miss. Susan Parker "Suzette"	female	20 - 29	21	2	2	PC 17608	262.3750	260	B57 B59 B63 B66	Cherbourg	4	Haverford, PA / Cooperstown, NY
+1	no	Ryerson, Mr. Arthur Larned	male	60 - 69	61	1	3	PC 17608	262.3750	260	B57 B59 B63 B66	Cherbourg		Haverford, PA / Cooperstown, NY
+1	yes	Ryerson, Mrs. Arthur Larned (Emily Maria Borie)	female	40 - 49	48	1	3	PC 17608	262.3750	260	B57 B59 B63 B66	Cherbourg	4	Haverford, PA / Cooperstown, NY
+1	yes	Saalfeld, Mr. Adolphe	male	unknown		0	0	19988	30.5000	30	C106	Southampton	3	Manchester, England
+1	yes	Sagesser, Mlle. Emma	female	20 - 29	24	0	0	PC 17477	69.3000	70	B35	Cherbourg	9	
+1	yes	Salomon, Mr. Abraham L	male	unknown		0	0	111163	26.0000	30		Southampton	1	New York, NY
+1	yes	Schabert, Mrs. Paul (Emma Mock)	female	30 - 39	35	1	0	13236	57.7500	60	C28	Cherbourg	11	New York, NY
+1	yes	Serepeca, Miss. Augusta	female	30 - 39	30	0	0	113798	31.0000	30		Cherbourg	4	
+1	yes	Seward, Mr. Frederic Kimber	male	30 - 39	34	0	0	113794	26.5500	30		Southampton	7	New York, NY
+1	yes	Shutes, Miss. Elizabeth W	female	40 - 49	40	0	0	PC 17582	153.4625	150	C125	Southampton	3	New York, NY / Greenwich CT
+1	yes	Silverthorne, Mr. Spencer Victor	male	30 - 39	35	0	0	PC 17475	26.2875	30	E24	Southampton	5	St Louis, MO
+1	no	Silvey, Mr. William Baird	male	50 - 59	50	1	0	13507	55.9000	60	E44	Southampton		Duluth, MN
+1	yes	Silvey, Mrs. William Baird (Alice Munger)	female	30 - 39	39	1	0	13507	55.9000	60	E44	Southampton	11	Duluth, MN
+1	yes	Simonius-Blumer, Col. Oberst Alfons	male	50 - 59	56	0	0	13213	35.5000	40	A26	Cherbourg	3	Basel, Switzerland
+1	yes	Sloper, Mr. William Thompson	male	20 - 29	28	0	0	113788	35.5000	40	A6	Southampton	7	New Britain, CT
+1	no	Smart, Mr. John Montgomery	male	50 - 59	56	0	0	113792	26.5500	30		Southampton		New York, NY
+1	no	Smith, Mr. James Clinch	male	50 - 59	56	0	0	17764	30.6958	30	A7	Cherbourg		St James, Long Island, NY
+1	no	Smith, Mr. Lucien Philip	male	20 - 29	24	1	0	13695	60.0000	60	C31	Southampton		Huntington, WV
+1	no	Smith, Mr. Richard William	male	unknown		0	0	113056	26.0000	30	A19	Southampton		Streatham, Surrey
+1	yes	Smith, Mrs. Lucien Philip (Mary Eloise Hughes)	female	10 - 19	18	1	0	13695	60.0000	60	C31	Southampton	6	Huntington, WV
+1	yes	Snyder, Mr. John Pillsbury	male	20 - 29	24	1	0	21228	82.2667	80	B45	Southampton	7	Minneapolis, MN
+1	yes	Snyder, Mrs. John Pillsbury (Nelle Stevenson)	female	20 - 29	23	1	0	21228	82.2667	80	B45	Southampton	7	Minneapolis, MN
+1	yes	Spedden, Master. Robert Douglas	male	0 - 9	6	0	2	16966	134.5000	130	E34	Cherbourg	3	Tuxedo Park, NY
+1	yes	Spedden, Mr. Frederic Oakley	male	40 - 49	45	1	1	16966	134.5000	130	E34	Cherbourg	3	Tuxedo Park, NY
+1	yes	Spedden, Mrs. Frederic Oakley (Margaretta Corning Stone)	female	40 - 49	40	1	1	16966	134.5000	130	E34	Cherbourg	3	Tuxedo Park, NY
+1	no	Spencer, Mr. William Augustus	male	50 - 59	57	1	0	PC 17569	146.5208	150	B78	Cherbourg		Paris, France
+1	yes	Spencer, Mrs. William Augustus (Marie Eugenie)	female	unknown		1	0	PC 17569	146.5208	150	B78	Cherbourg	6	Paris, France
+1	yes	Stahelin-Maeglin, Dr. Max	male	30 - 39	32	0	0	13214	30.5000	30	B50	Cherbourg	3	Basel, Switzerland
+1	no	Stead, Mr. William Thomas	male	60 - 69	62	0	0	113514	26.5500	30	C87	Southampton		Wimbledon Park, London / Hayling Island, Hants
+1	yes	Stengel, Mr. Charles Emil Henry	male	50 - 59	54	1	0	11778	55.4417	60	C116	Cherbourg	1	Newark, NJ
+1	yes	Stengel, Mrs. Charles Emil Henry (Annie May Morris)	female	40 - 49	43	1	0	11778	55.4417	60	C116	Cherbourg	5	Newark, NJ
+1	yes	Stephenson, Mrs. Walter Bertram (Martha Eustis)	female	50 - 59	52	1	0	36947	78.2667	80	D20	Cherbourg	4	Haverford, PA
+1	no	Stewart, Mr. Albert A	male	unknown		0	0	PC 17605	27.7208	30		Cherbourg		Gallipolis, Ohio / ? Paris / New York
+1	yes	Stone, Mrs. George Nelson (Martha Evelyn)	female	60 - 69	62	0	0	113572	80.0000	80	B28		6	Cincinatti, OH
+1	no	Straus, Mr. Isidor	male	60 - 69	67	1	0	PC 17483	221.7792	220	C55 C57	Southampton		New York, NY
+1	no	Straus, Mrs. Isidor (Rosalie Ida Blun)	female	60 - 69	63	1	0	PC 17483	221.7792	220	C55 C57	Southampton		New York, NY
+1	no	Sutton, Mr. Frederick	male	60 - 69	61	0	0	36963	32.3208	30	D50	Southampton		Haddenfield, NJ
+1	yes	Swift, Mrs. Frederick Joel (Margaret Welles Barron)	female	40 - 49	48	0	0	17466	25.9292	30	D17	Southampton	8	Brooklyn, NY
+1	yes	Taussig, Miss. Ruth	female	10 - 19	18	0	2	110413	79.6500	80	E68	Southampton	8	New York, NY
+1	no	Taussig, Mr. Emil	male	50 - 59	52	1	1	110413	79.6500	80	E67	Southampton		New York, NY
+1	yes	Taussig, Mrs. Emil (Tillie Mandelbaum)	female	30 - 39	39	1	1	110413	79.6500	80	E67	Southampton	8	New York, NY
+1	yes	Taylor, Mr. Elmer Zebley	male	40 - 49	48	1	0	19996	52.0000	50	C126	Southampton	5 7	London /  East Orange, NJ
+1	yes	Taylor, Mrs. Elmer Zebley (Juliet Cummins Wright)	female	unknown		1	0	19996	52.0000	50	C126	Southampton	5 7	London /  East Orange, NJ
+1	no	Thayer, Mr. John Borland	male	40 - 49	49	1	1	17421	110.8833	110	C68	Cherbourg		Haverford, PA
+1	yes	Thayer, Mr. John Borland Jr	male	10 - 19	17	0	2	17421	110.8833	110	C70	Cherbourg	B	Haverford, PA
+1	yes	Thayer, Mrs. John Borland (Marian Longstreth Morris)	female	30 - 39	39	1	1	17421	110.8833	110	C68	Cherbourg	4	Haverford, PA
+1	yes	Thorne, Mrs. Gertrude Maybelle	female	unknown		0	0	PC 17585	79.2000	80		Cherbourg	D	New York, NY
+1	yes	Tucker, Mr. Gilbert Milligan Jr	male	30 - 39	31	0	0	2543	28.5375	30	C53	Cherbourg	7	Albany, NY
+1	no	Uruchurtu, Don. Manuel E	male	40 - 49	40	0	0	PC 17601	27.7208	30		Cherbourg		Mexico City, Mexico
+1	no	Van der hoef, Mr. Wyckoff	male	60 - 69	61	0	0	111240	33.5000	30	B19	Southampton		Brooklyn, NY
+1	no	Walker, Mr. William Anderson	male	40 - 49	47	0	0	36967	34.0208	30	D46	Southampton		East Orange, NJ
+1	yes	Ward, Miss. Anna	female	30 - 39	35	0	0	PC 17755	512.3292	510		Cherbourg	3	
+1	no	Warren, Mr. Frank Manley	male	60 - 69	64	1	0	110813	75.2500	80	D37	Cherbourg		Portland, OR
+1	yes	Warren, Mrs. Frank Manley (Anna Sophia Atkinson)	female	60 - 69	60	1	0	110813	75.2500	80	D37	Cherbourg	5	Portland, OR
+1	no	Weir, Col. John	male	60 - 69	60	0	0	113800	26.5500	30		Southampton		England Salt Lake City, Utah
+1	no	White, Mr. Percival Wayland	male	50 - 59	54	0	1	35281	77.2875	80	D26	Southampton		Brunswick, ME
+1	no	White, Mr. Richard Frasar	male	20 - 29	21	0	1	35281	77.2875	80	D26	Southampton		Brunswick, ME
+1	yes	White, Mrs. John Stuart (Ella Holmes)	female	50 - 59	55	0	0	PC 17760	135.6333	140	C32	Cherbourg	8	New York, NY / Briarcliff Manor NY
+1	yes	Wick, Miss. Mary Natalie	female	30 - 39	31	0	2	36928	164.8667	160	C7	Southampton	8	Youngstown, OH
+1	no	Wick, Mr. George Dennick	male	50 - 59	57	1	1	36928	164.8667	160		Southampton		Youngstown, OH
+1	yes	Wick, Mrs. George Dennick (Mary Hitchcock)	female	40 - 49	45	1	1	36928	164.8667	160		Southampton	8	Youngstown, OH
+1	no	Widener, Mr. George Dunton	male	50 - 59	50	1	1	113503	211.5000	210	C80	Cherbourg		Elkins Park, PA
+1	no	Widener, Mr. Harry Elkins	male	20 - 29	27	0	2	113503	211.5000	210	C82	Cherbourg		Elkins Park, PA
+1	yes	Widener, Mrs. George Dunton (Eleanor Elkins)	female	50 - 59	50	1	1	113503	211.5000	210	C80	Cherbourg	4	Elkins Park, PA
+1	yes	Willard, Miss. Constance	female	20 - 29	21	0	0	113795	26.5500	30		Southampton	8 10	Duluth, MN
+1	no	Williams, Mr. Charles Duane	male	50 - 59	51	0	1	PC 17597	61.3792	60		Cherbourg		Geneva, Switzerland / Radnor, PA
+1	yes	Williams, Mr. Richard Norris II	male	20 - 29	21	0	1	PC 17597	61.3792	60		Cherbourg	A	Geneva, Switzerland / Radnor, PA
+1	no	Williams-Lambert, Mr. Fletcher Fellows	male	unknown		0	0	113510	35.0000	40	C128	Southampton		London, England
+1	yes	Wilson, Miss. Helen Alice	female	30 - 39	31	0	0	16966	134.5000	130	E39 E41	Cherbourg	3	
+1	yes	Woolner, Mr. Hugh	male	unknown		0	0	19947	35.5000	40	C52	Southampton	D	London, England
+1	no	Wright, Mr. George	male	60 - 69	62	0	0	113807	26.5500	30		Southampton		Halifax, NS
+1	yes	Young, Miss. Marie Grice	female	30 - 39	36	0	0	PC 17760	135.6333	140	C32	Cherbourg	8	New York, NY / Washington, DC
+2	no	Abelson, Mr. Samuel	male	30 - 39	30	1	0	P/PP 3381	24.0000	20		Cherbourg		Russia New York, NY
+2	yes	Abelson, Mrs. Samuel (Hannah Wizosky)	female	20 - 29	28	1	0	P/PP 3381	24.0000	20		Cherbourg	10	Russia New York, NY
+2	no	Aldworth, Mr. Charles Augustus	male	30 - 39	30	0	0	248744	13.0000	10		Southampton		Bryn Mawr, PA, USA
+2	no	Andrew, Mr. Edgardo Samuel	male	10 - 19	18	0	0	231945	11.5000	10		Southampton		Buenos Aires, Argentina / New Jersey, NJ
+2	no	Andrew, Mr. Frank Thomas	male	20 - 29	25	0	0	C.A. 34050	10.5000	10		Southampton		Cornwall, England Houghton, MI
+2	no	Angle, Mr. William A	male	30 - 39	34	1	0	226875	26.0000	30		Southampton		Warwick, England
+2	yes	Angle, Mrs. William A (Florence "Mary" Agnes Hughes)	female	30 - 39	36	1	0	226875	26.0000	30		Southampton	11	Warwick, England
+2	no	Ashby, Mr. John	male	50 - 59	57	0	0	244346	13.0000	10		Southampton		West Hoboken, NJ
+2	no	Bailey, Mr. Percy Andrew	male	10 - 19	18	0	0	29108	11.5000	10		Southampton		Penzance, Cornwall / Akron, OH
+2	no	Baimbrigge, Mr. Charles Robert	male	20 - 29	23	0	0	C.A. 31030	10.5000	10		Southampton		Guernsey
+2	yes	Ball, Mrs. (Ada E Hall)	female	30 - 39	36	0	0	28551	13.0000	10	D	Southampton	10	Bristol, Avon / Jacksonville, FL
+2	no	Banfield, Mr. Frederick James	male	20 - 29	28	0	0	C.A./SOTON 34068	10.5000	10		Southampton		Plymouth, Dorset / Houghton, MI
+2	no	Bateman, Rev. Robert James	male	50 - 59	51	0	0	S.O.P. 1166	12.5250	10		Southampton		Jacksonville, FL
+2	yes	Beane, Mr. Edward	male	30 - 39	32	1	0	2908	26.0000	30		Southampton	13	Norwich / New York, NY
+2	yes	Beane, Mrs. Edward (Ethel Clarke)	female	10 - 19	19	1	0	2908	26.0000	30		Southampton	13	Norwich / New York, NY
+2	no	Beauchamp, Mr. Henry James	male	20 - 29	28	0	0	244358	26.0000	30		Southampton		England
+2	yes	Becker, Master. Richard F	male	0 - 9	1	2	1	230136	39.0000	40	F4	Southampton	11	Guntur, India / Benton Harbour, MI
+2	yes	Becker, Miss. Marion Louise	female	0 - 9	4	2	1	230136	39.0000	40	F4	Southampton	11	Guntur, India / Benton Harbour, MI
+2	yes	Becker, Miss. Ruth Elizabeth	female	10 - 19	12	2	1	230136	39.0000	40	F4	Southampton	13	Guntur, India / Benton Harbour, MI
+2	yes	Becker, Mrs. Allen Oliver (Nellie E Baumgardner)	female	30 - 39	36	0	3	230136	39.0000	40	F4	Southampton	11	Guntur, India / Benton Harbour, MI
+2	yes	Beesley, Mr. Lawrence	male	30 - 39	34	0	0	248698	13.0000	10	D56	Southampton	13	London
+2	yes	Bentham, Miss. Lilian W	female	10 - 19	19	0	0	28404	13.0000	10		Southampton	12	Rochester, NY
+2	no	Berriman, Mr. William John	male	20 - 29	23	0	0	28425	13.0000	10		Southampton		St Ives, Cornwall / Calumet, MI
+2	no	Botsford, Mr. William Hull	male	20 - 29	26	0	0	237670	13.0000	10		Southampton		Elmira, NY / Orange, NJ
+2	no	Bowenur, Mr. Solomon	male	40 - 49	42	0	0	211535	13.0000	10		Southampton		London
+2	no	Bracken, Mr. James H	male	20 - 29	27	0	0	220367	13.0000	10		Southampton		Lake Arthur, Chavez County, NM
+2	yes	Brown, Miss. Amelia "Mildred"	female	20 - 29	24	0	0	248733	13.0000	10	F33	Southampton	11	London / Montreal, PQ
+2	yes	Brown, Miss. Edith Eileen	female	10 - 19	15	0	2	29750	39.0000	40		Southampton	14	Cape Town, South Africa / Seattle, WA
+2	no	Brown, Mr. Thomas William Solomon	male	60 - 69	60	1	1	29750	39.0000	40		Southampton		Cape Town, South Africa / Seattle, WA
+2	yes	Brown, Mrs. Thomas William Solomon (Elizabeth Catherine Ford)	female	40 - 49	40	1	1	29750	39.0000	40		Southampton	14	Cape Town, South Africa / Seattle, WA
+2	yes	Bryhl, Miss. Dagmar Jenny Ingeborg 	female	20 - 29	20	1	0	236853	26.0000	30		Southampton	12	Skara, Sweden / Rockford, IL
+2	no	Bryhl, Mr. Kurt Arnold Gottfrid	male	20 - 29	25	1	0	236853	26.0000	30		Southampton		Skara, Sweden / Rockford, IL
+2	yes	Buss, Miss. Kate	female	30 - 39	36	0	0	27849	13.0000	10		Southampton	9	Sittingbourne, England / San Diego, CA
+2	no	Butler, Mr. Reginald Fenton	male	20 - 29	25	0	0	234686	13.0000	10		Southampton		Southsea, Hants
+2	no	Byles, Rev. Thomas Roussel Davids	male	40 - 49	42	0	0	244310	13.0000	10		Southampton		London
+2	yes	Bystrom, Mrs. (Karolina)	female	40 - 49	42	0	0	236852	13.0000	10		Southampton		New York, NY
+2	yes	Caldwell, Master. Alden Gates	male	0 - 9	0.8333	0	2	248738	29.0000	30		Southampton	13	Bangkok, Thailand / Roseville, IL
+2	yes	Caldwell, Mr. Albert Francis	male	20 - 29	26	1	1	248738	29.0000	30		Southampton	13	Bangkok, Thailand / Roseville, IL
+2	yes	Caldwell, Mrs. Albert Francis (Sylvia Mae Harbaugh)	female	20 - 29	22	1	1	248738	29.0000	30		Southampton	13	Bangkok, Thailand / Roseville, IL
+2	yes	Cameron, Miss. Clear Annie	female	30 - 39	35	0	0	F.C.C. 13528	21.0000	20		Southampton	14	Mamaroneck, NY
+2	no	Campbell, Mr. William	male	unknown		0	0	239853	0.0000	0		Southampton		Belfast
+2	no	Carbines, Mr. William	male	10 - 19	19	0	0	28424	13.0000	10		Southampton		St Ives, Cornwall / Calumet, MI
+2	no	Carter, Mrs. Ernest Courtenay (Lilian Hughes)	female	40 - 49	44	1	0	244252	26.0000	30		Southampton		London
+2	no	Carter, Rev. Ernest Courtenay	male	50 - 59	54	1	0	244252	26.0000	30		Southampton		London
+2	no	Chapman, Mr. Charles Henry	male	50 - 59	52	0	0	248731	13.5000	10		Southampton		Bronx, NY
+2	no	Chapman, Mr. John Henry	male	30 - 39	37	1	0	SC/AH 29037	26.0000	30		Southampton		Cornwall / Spokane, WA
+2	no	Chapman, Mrs. John Henry (Sara Elizabeth Lawry)	female	20 - 29	29	1	0	SC/AH 29037	26.0000	30		Southampton		Cornwall / Spokane, WA
+2	yes	Christy, Miss. Julie Rachel	female	20 - 29	25	1	1	237789	30.0000	30		Southampton	12	London
+2	yes	Christy, Mrs. (Alice Frances)	female	40 - 49	45	0	2	237789	30.0000	30		Southampton	12	London
+2	no	Clarke, Mr. Charles Valentine	male	20 - 29	29	1	0	2003	26.0000	30		Southampton		England / San Francisco, CA
+2	yes	Clarke, Mrs. Charles V (Ada Maria Winfield)	female	20 - 29	28	1	0	2003	26.0000	30		Southampton	14	England / San Francisco, CA
+2	no	Coleridge, Mr. Reginald Charles	male	20 - 29	29	0	0	W./C. 14263	10.5000	10		Southampton		Hartford, Huntingdonshire
+2	no	Collander, Mr. Erik Gustaf	male	20 - 29	28	0	0	248740	13.0000	10		Southampton		Helsinki, Finland Ashtabula, Ohio
+2	yes	Collett, Mr. Sidney C Stuart	male	20 - 29	24	0	0	28034	10.5000	10		Southampton	9	London / Fort Byron, NY
+2	yes	Collyer, Miss. Marjorie "Lottie"	female	0 - 9	8	0	2	C.A. 31921	26.2500	30		Southampton	14	Bishopstoke, Hants / Fayette Valley, ID
+2	no	Collyer, Mr. Harvey	male	30 - 39	31	1	1	C.A. 31921	26.2500	30		Southampton		Bishopstoke, Hants / Fayette Valley, ID
+2	yes	Collyer, Mrs. Harvey (Charlotte Annie Tate)	female	30 - 39	31	1	1	C.A. 31921	26.2500	30		Southampton	14	Bishopstoke, Hants / Fayette Valley, ID
+2	yes	Cook, Mrs. (Selena Rogers)	female	20 - 29	22	0	0	W./C. 14266	10.5000	10	F33	Southampton	14	Pennsylvania
+2	no	Corbett, Mrs. Walter H (Irene Colvin)	female	30 - 39	30	0	0	237249	13.0000	10		Southampton		Provo, UT
+2	no	Corey, Mrs. Percy C (Mary Phyllis Elizabeth Miller)	female	unknown		0	0	F.C.C. 13534	21.0000	20		Southampton		Upper Burma, India Pittsburgh, PA
+2	no	Cotterill, Mr. Henry "Harry"	male	20 - 29	21	0	0	29107	11.5000	10		Southampton		Penzance, Cornwall / Akron, OH
+2	no	Cunningham, Mr. Alfred Fleming	male	unknown		0	0	239853	0.0000	0		Southampton		Belfast
+2	yes	Davies, Master. John Morgan Jr	male	0 - 9	8	1	1	C.A. 33112	36.7500	40		Southampton	14	St Ives, Cornwall / Hancock, MI
+2	no	Davies, Mr. Charles Henry	male	10 - 19	18	0	0	S.O.C. 14879	73.5000	70		Southampton		Lyndhurst, England
+2	yes	Davies, Mrs. John Morgan (Elizabeth Agnes Mary White) 	female	40 - 49	48	0	2	C.A. 33112	36.7500	40		Southampton	14	St Ives, Cornwall / Hancock, MI
+2	yes	Davis, Miss. Mary	female	20 - 29	28	0	0	237668	13.0000	10		Southampton	13	London / Staten Island, NY
+2	no	de Brito, Mr. Jose Joaquim	male	30 - 39	32	0	0	244360	13.0000	10		Southampton		Portugal / Sau Paulo, Brazil
+2	no	Deacon, Mr. Percy William	male	10 - 19	17	0	0	S.O.C. 14879	73.5000	70		Southampton		
+2	no	del Carlo, Mr. Sebastiano	male	20 - 29	29	1	0	SC/PARIS 2167	27.7208	30		Cherbourg		Lucca, Italy / California
+2	yes	del Carlo, Mrs. Sebastiano (Argenia Genovesi)	female	20 - 29	24	1	0	SC/PARIS 2167	27.7208	30		Cherbourg	12	Lucca, Italy / California
+2	no	Denbury, Mr. Herbert	male	20 - 29	25	0	0	C.A. 31029	31.5000	30		Southampton		Guernsey / Elizabeth, NJ
+2	no	Dibden, Mr. William	male	10 - 19	18	0	0	S.O.C. 14879	73.5000	70		Southampton		New Forest, England
+2	yes	Doling, Miss. Elsie	female	10 - 19	18	0	1	231919	23.0000	20		Southampton		Southampton
+2	yes	Doling, Mrs. John T (Ada Julia Bone)	female	30 - 39	34	0	1	231919	23.0000	20		Southampton		Southampton
+2	no	Downton, Mr. William James	male	50 - 59	54	0	0	28403	26.0000	30		Southampton		Holley, NY
+2	yes	Drew, Master. Marshall Brines	male	0 - 9	8	0	2	28220	32.5000	30		Southampton	10	Greenport, NY
+2	no	Drew, Mr. James Vivian	male	40 - 49	42	1	1	28220	32.5000	30		Southampton		Greenport, NY
+2	yes	Drew, Mrs. James Vivian (Lulu Thorne Christian)	female	30 - 39	34	1	1	28220	32.5000	30		Southampton	10	Greenport, NY
+2	yes	Duran y More, Miss. Asuncion	female	20 - 29	27	1	0	SC/PARIS 2149	13.8583	10		Cherbourg	12	Barcelona, Spain / Havana, Cuba
+2	yes	Duran y More, Miss. Florentina	female	30 - 39	30	1	0	SC/PARIS 2148	13.8583	10		Cherbourg	12	Barcelona, Spain / Havana, Cuba
+2	no	Eitemiller, Mr. George Floyd	male	20 - 29	23	0	0	29751	13.0000	10		Southampton		England / Detroit, MI
+2	no	Enander, Mr. Ingvar	male	20 - 29	21	0	0	236854	13.0000	10		Southampton		Goteborg, Sweden / Rockford, IL
+2	no	Fahlstrom, Mr. Arne Jonas	male	10 - 19	18	0	0	236171	13.0000	10		Southampton		Oslo, Norway Bayonne, NJ
+2	no	Faunthorpe, Mr. Harry	male	40 - 49	40	1	0	2926	26.0000	30		Southampton		England / Philadelphia, PA
+2	yes	Faunthorpe, Mrs. Lizzie (Elizabeth Anne Wilkinson)	female	20 - 29	29	1	0	2926	26.0000	30		Southampton	16	
+2	no	Fillbrook, Mr. Joseph Charles	male	10 - 19	18	0	0	C.A. 15185	10.5000	10		Southampton		Cornwall / Houghton, MI
+2	no	Fox, Mr. Stanley Hubert	male	30 - 39	36	0	0	229236	13.0000	10		Southampton		Rochester, NY
+2	no	Frost, Mr. Anthony Wood "Archie"	male	unknown		0	0	239854	0.0000	0		Southampton		Belfast
+2	no	Funk, Miss. Annie Clemmer	female	30 - 39	38	0	0	237671	13.0000	10		Southampton		Janjgir, India / Pennsylvania
+2	no	Fynney, Mr. Joseph J	male	30 - 39	35	0	0	239865	26.0000	30		Southampton		Liverpool / Montreal, PQ
+2	no	Gale, Mr. Harry	male	30 - 39	38	1	0	28664	21.0000	20		Southampton		Cornwall / Clear Creek, CO
+2	no	Gale, Mr. Shadrach	male	30 - 39	34	1	0	28664	21.0000	20		Southampton		Cornwall / Clear Creek, CO
+2	yes	Garside, Miss. Ethel	female	30 - 39	34	0	0	243880	13.0000	10		Southampton	12	Brooklyn, NY
+2	no	Gaskell, Mr. Alfred	male	10 - 19	16	0	0	239865	26.0000	30		Southampton		Liverpool / Montreal, PQ
+2	no	Gavey, Mr. Lawrence	male	20 - 29	26	0	0	31028	10.5000	10		Southampton		Guernsey / Elizabeth, NJ
+2	no	Gilbert, Mr. William	male	40 - 49	47	0	0	C.A. 30769	10.5000	10		Southampton		Cornwall
+2	no	Giles, Mr. Edgar	male	20 - 29	21	1	0	28133	11.5000	10		Southampton		Cornwall / Camden, NJ
+2	no	Giles, Mr. Frederick Edward	male	20 - 29	21	1	0	28134	11.5000	10		Southampton		Cornwall / Camden, NJ
+2	no	Giles, Mr. Ralph	male	20 - 29	24	0	0	248726	13.5000	10		Southampton		West Kensington, London
+2	no	Gill, Mr. John William	male	20 - 29	24	0	0	233866	13.0000	10		Southampton		Clevedon, England
+2	no	Gillespie, Mr. William Henry	male	30 - 39	34	0	0	12233	13.0000	10		Southampton		Vancouver, BC
+2	no	Givard, Mr. Hans Kristensen	male	30 - 39	30	0	0	250646	13.0000	10		Southampton		
+2	no	Greenberg, Mr. Samuel	male	50 - 59	52	0	0	250647	13.0000	10		Southampton		Bronx, NY
+2	no	Hale, Mr. Reginald	male	30 - 39	30	0	0	250653	13.0000	10		Southampton		Auburn, NY
+2	yes	Hamalainen, Master. Viljo	male	0 - 9	0.6667	1	1	250649	14.5000	10		Southampton	4	Detroit, MI
+2	yes	Hamalainen, Mrs. William (Anna)	female	20 - 29	24	0	2	250649	14.5000	10		Southampton	4	Detroit, MI
+2	no	Harbeck, Mr. William H	male	40 - 49	44	0	0	248746	13.0000	10		Southampton		Seattle, WA / Toledo, OH
+2	yes	Harper, Miss. Annie Jessie "Nina"	female	0 - 9	6	0	1	248727	33.0000	30		Southampton	11	Denmark Hill, Surrey / Chicago
+2	no	Harper, Rev. John	male	20 - 29	28	0	1	248727	33.0000	30		Southampton		Denmark Hill, Surrey / Chicago
+2	yes	Harris, Mr. George	male	60 - 69	62	0	0	S.W./PP 752	10.5000	10		Southampton	15	London
+2	no	Harris, Mr. Walter	male	30 - 39	30	0	0	W/C 14208	10.5000	10		Southampton		Walthamstow, England
+2	yes	Hart, Miss. Eva Miriam	female	0 - 9	7	0	2	F.C.C. 13529	26.2500	30		Southampton	14	Ilford, Essex / Winnipeg, MB
+2	no	Hart, Mr. Benjamin	male	40 - 49	43	1	1	F.C.C. 13529	26.2500	30		Southampton		Ilford, Essex / Winnipeg, MB
+2	yes	Hart, Mrs. Benjamin (Esther Ada Bloomfield)	female	40 - 49	45	1	1	F.C.C. 13529	26.2500	30		Southampton	14	Ilford, Essex / Winnipeg, MB
+2	yes	Herman, Miss. Alice	female	20 - 29	24	1	2	220845	65.0000	70		Southampton	9	Somerset / Bernardsville, NJ
+2	yes	Herman, Miss. Kate	female	20 - 29	24	1	2	220845	65.0000	70		Southampton	9	Somerset / Bernardsville, NJ
+2	no	Herman, Mr. Samuel	male	40 - 49	49	1	2	220845	65.0000	70		Southampton		Somerset / Bernardsville, NJ
+2	yes	Herman, Mrs. Samuel (Jane Laver)	female	40 - 49	48	1	2	220845	65.0000	70		Southampton	9	Somerset / Bernardsville, NJ
+2	yes	Hewlett, Mrs. (Mary D Kingcome) 	female	50 - 59	55	0	0	248706	16.0000	20		Southampton	13	India / Rapid City, SD
+2	no	Hickman, Mr. Leonard Mark	male	20 - 29	24	2	0	S.O.C. 14879	73.5000	70		Southampton		West Hampstead, London / Neepawa, MB
+2	no	Hickman, Mr. Lewis	male	30 - 39	32	2	0	S.O.C. 14879	73.5000	70		Southampton		West Hampstead, London / Neepawa, MB
+2	no	Hickman, Mr. Stanley George	male	20 - 29	21	2	0	S.O.C. 14879	73.5000	70		Southampton		West Hampstead, London / Neepawa, MB
+2	no	Hiltunen, Miss. Marta	female	10 - 19	18	1	1	250650	13.0000	10		Southampton		Kontiolahti, Finland / Detroit, MI
+2	yes	Hocking, Miss. Ellen "Nellie"	female	20 - 29	20	2	1	29105	23.0000	20		Southampton	4	Cornwall / Akron, OH
+2	no	Hocking, Mr. Richard George	male	20 - 29	23	2	1	29104	11.5000	10		Southampton		Cornwall / Akron, OH
+2	no	Hocking, Mr. Samuel James Metcalfe	male	30 - 39	36	0	0	242963	13.0000	10		Southampton		Devonport, England
+2	yes	Hocking, Mrs. Elizabeth (Eliza Needs)	female	50 - 59	54	1	3	29105	23.0000	20		Southampton	4	Cornwall / Akron, OH
+2	no	Hodges, Mr. Henry Price	male	50 - 59	50	0	0	250643	13.0000	10		Southampton		Southampton
+2	no	Hold, Mr. Stephen	male	40 - 49	44	1	0	26707	26.0000	30		Southampton		England / Sacramento, CA
+2	yes	Hold, Mrs. Stephen (Annie Margaret Hill)	female	20 - 29	29	1	0	26707	26.0000	30		Southampton	10	England / Sacramento, CA
+2	no	Hood, Mr. Ambrose Jr	male	20 - 29	21	0	0	S.O.C. 14879	73.5000	70		Southampton		New Forest, England
+2	yes	Hosono, Mr. Masabumi	male	40 - 49	42	0	0	237798	13.0000	10		Southampton	10	Tokyo, Japan
+2	no	Howard, Mr. Benjamin	male	60 - 69	63	1	0	24065	26.0000	30		Southampton		Swindon, England
+2	no	Howard, Mrs. Benjamin (Ellen Truelove Arman)	female	60 - 69	60	1	0	24065	26.0000	30		Southampton		Swindon, England
+2	no	Hunt, Mr. George Henry	male	30 - 39	33	0	0	SCO/W 1585	12.2750	10		Southampton		Philadelphia, PA
+2	yes	Ilett, Miss. Bertha	female	10 - 19	17	0	0	SO/C 14885	10.5000	10		Southampton		Guernsey
+2	no	Jacobsohn, Mr. Sidney Samuel	male	40 - 49	42	1	0	243847	27.0000	30		Southampton		London
+2	yes	Jacobsohn, Mrs. Sidney Samuel (Amy Frances Christy)	female	20 - 29	24	2	1	243847	27.0000	30		Southampton	12	London
+2	no	Jarvis, Mr. John Denzil	male	40 - 49	47	0	0	237565	15.0000	20		Southampton		North Evington, England
+2	no	Jefferys, Mr. Clifford Thomas	male	20 - 29	24	2	0	C.A. 31029	31.5000	30		Southampton		Guernsey / Elizabeth, NJ
+2	no	Jefferys, Mr. Ernest Wilfred	male	20 - 29	22	2	0	C.A. 31029	31.5000	30		Southampton		Guernsey / Elizabeth, NJ
+2	no	Jenkin, Mr. Stephen Curnow	male	30 - 39	32	0	0	C.A. 33111	10.5000	10		Southampton		St Ives, Cornwall / Houghton, MI
+2	yes	Jerwan, Mrs. Amin S (Marie Marthe Thuillard)	female	20 - 29	23	0	0	SC/AH Basle 541	13.7917	10	D	Cherbourg	11	New York, NY
+2	no	Kantor, Mr. Sinai	male	30 - 39	34	1	0	244367	26.0000	30		Southampton		Moscow / Bronx, NY
+2	yes	Kantor, Mrs. Sinai (Miriam Sternin)	female	20 - 29	24	1	0	244367	26.0000	30		Southampton	12	Moscow / Bronx, NY
+2	no	Karnes, Mrs. J Frank (Claire Bennett)	female	20 - 29	22	0	0	F.C.C. 13534	21.0000	20		Southampton		India / Pittsburgh, PA
+2	yes	Keane, Miss. Nora A	female	unknown		0	0	226593	12.3500	10	E101	Queenstown	10	Harrisburg, PA
+2	no	Keane, Mr. Daniel	male	30 - 39	35	0	0	233734	12.3500	10		Queenstown		
+2	yes	Kelly, Mrs. Florence "Fannie"	female	40 - 49	45	0	0	223596	13.5000	10		Southampton	9	London / New York, NY
+2	no	Kirkland, Rev. Charles Leonard	male	50 - 59	57	0	0	219533	12.3500	10		Queenstown		Glasgow / Bangor, ME
+2	no	Knight, Mr. Robert J	male	unknown		0	0	239855	0.0000	0		Southampton		Belfast
+2	no	Kvillner, Mr. Johan Henrik Johannesson	male	30 - 39	31	0	0	C.A. 18723	10.5000	10		Southampton		Sweden / Arlington, NJ
+2	no	Lahtinen, Mrs. William (Anna Sylfven)	female	20 - 29	26	1	1	250651	26.0000	30		Southampton		Minneapolis, MN
+2	no	Lahtinen, Rev. William	male	30 - 39	30	1	1	250651	26.0000	30		Southampton		Minneapolis, MN
+2	no	Lamb, Mr. John Joseph	male	unknown		0	0	240261	10.7083	10		Queenstown		
+2	yes	Laroche, Miss. Louise	female	0 - 9	1	1	2	SC/Paris 2123	41.5792	40		Cherbourg	14	Paris / Haiti
+2	yes	Laroche, Miss. Simonne Marie Anne Andree	female	0 - 9	3	1	2	SC/Paris 2123	41.5792	40		Cherbourg	14	Paris / Haiti
+2	no	Laroche, Mr. Joseph Philippe Lemercier	male	20 - 29	25	1	2	SC/Paris 2123	41.5792	40		Cherbourg		Paris / Haiti
+2	yes	Laroche, Mrs. Joseph (Juliette Marie Louise Lafargue)	female	20 - 29	22	1	2	SC/Paris 2123	41.5792	40		Cherbourg	14	Paris / Haiti
+2	yes	Lehmann, Miss. Bertha	female	10 - 19	17	0	0	SC 1748	12.0000	10		Cherbourg	12	Berne, Switzerland / Central City, IA
+2	yes	Leitch, Miss. Jessie Wills	female	unknown		0	0	248727	33.0000	30		Southampton	11	London / Chicago, IL
+2	yes	Lemore, Mrs. (Amelia Milley)	female	30 - 39	34	0	0	C.A. 34260	10.5000	10	F33	Southampton	14	Chicago, IL
+2	no	Levy, Mr. Rene Jacques	male	30 - 39	36	0	0	SC/Paris 2163	12.8750	10	D	Cherbourg		Montreal, PQ
+2	no	Leyson, Mr. Robert William Norman	male	20 - 29	24	0	0	C.A. 29566	10.5000	10		Southampton		
+2	no	Lingane, Mr. John	male	60 - 69	61	0	0	235509	12.3500	10		Queenstown		
+2	no	Louch, Mr. Charles Alexander	male	50 - 59	50	1	0	SC/AH 3085	26.0000	30		Southampton		Weston-Super-Mare, Somerset
+2	yes	Louch, Mrs. Charles Alexander (Alice Adelaide Slow)	female	40 - 49	42	1	0	SC/AH 3085	26.0000	30		Southampton		Weston-Super-Mare, Somerset
+2	no	Mack, Mrs. (Mary)	female	50 - 59	57	0	0	S.O./P.P. 3	10.5000	10	E77	Southampton		Southampton / New York, NY
+2	no	Malachard, Mr. Noel	male	unknown		0	0	237735	15.0458	20	D	Cherbourg		Paris
+2	yes	Mallet, Master. Andre	male	0 - 9	1	0	2	S.C./PARIS 2079	37.0042	40		Cherbourg	10	Paris / Montreal, PQ
+2	no	Mallet, Mr. Albert	male	30 - 39	31	1	1	S.C./PARIS 2079	37.0042	40		Cherbourg		Paris / Montreal, PQ
+2	yes	Mallet, Mrs. Albert (Antoinette Magnin)	female	20 - 29	24	1	1	S.C./PARIS 2079	37.0042	40		Cherbourg	10	Paris / Montreal, PQ
+2	no	Mangiavacchi, Mr. Serafino Emilio	male	unknown		0	0	SC/A.3 2861	15.5792	20		Cherbourg		New York, NY
+2	no	Matthews, Mr. William John	male	30 - 39	30	0	0	28228	13.0000	10		Southampton		St Austall, Cornwall
+2	no	Maybery, Mr. Frank Hubert	male	40 - 49	40	0	0	239059	16.0000	20		Southampton		Weston-Super-Mare / Moose Jaw, SK
+2	no	McCrae, Mr. Arthur Gordon	male	30 - 39	32	0	0	237216	13.5000	10		Southampton		Sydney, Australia
+2	no	McCrie, Mr. James Matthew	male	30 - 39	30	0	0	233478	13.0000	10		Southampton		Sarnia, ON
+2	no	McKane, Mr. Peter David	male	40 - 49	46	0	0	28403	26.0000	30		Southampton		Rochester, NY
+2	yes	Mellinger, Miss. Madeleine Violet	female	10 - 19	13	0	1	250644	19.5000	20		Southampton	14	England / Bennington, VT
+2	yes	Mellinger, Mrs. (Elizabeth Anne Maidment)	female	40 - 49	41	0	1	250644	19.5000	20		Southampton	14	England / Bennington, VT
+2	yes	Mellors, Mr. William John	male	10 - 19	19	0	0	SW/PP 751	10.5000	10		Southampton	B	Chelsea, London
+2	no	Meyer, Mr. August	male	30 - 39	39	0	0	248723	13.0000	10		Southampton		Harrow-on-the-Hill, Middlesex
+2	no	Milling, Mr. Jacob Christian	male	40 - 49	48	0	0	234360	13.0000	10		Southampton		Copenhagen, Denmark
+2	no	Mitchell, Mr. Henry Michael	male	70 - 79	70	0	0	C.A. 24580	10.5000	10		Southampton		Guernsey / Montclair, NJ and/or Toledo, Ohio
+2	no	Montvila, Rev. Juozas	male	20 - 29	27	0	0	211536	13.0000	10		Southampton		Worcester, MA
+2	no	Moraweck, Dr. Ernest	male	50 - 59	54	0	0	29011	14.0000	10		Southampton		Frankfort, KY
+2	no	Morley, Mr. Henry Samuel ("Mr Henry Marshall")	male	30 - 39	39	0	0	250655	26.0000	30		Southampton		
+2	no	Mudd, Mr. Thomas Charles	male	10 - 19	16	0	0	S.O./P.P. 3	10.5000	10		Southampton		Halesworth, England
+2	no	Myles, Mr. Thomas Francis	male	60 - 69	62	0	0	240276	9.6875	10		Queenstown		Cambridge, MA
+2	no	Nasser, Mr. Nicholas	male	30 - 39	32.5	1	0	237736	30.0708	30		Cherbourg		New York, NY
+2	yes	Nasser, Mrs. Nicholas (Adele Achem)	female	10 - 19	14	1	0	237736	30.0708	30		Cherbourg		New York, NY
+2	yes	Navratil, Master. Edmond Roger	male	0 - 9	2	1	1	230080	26.0000	30	F2	Southampton	D	Nice, France
+2	yes	Navratil, Master. Michel M	male	0 - 9	3	1	1	230080	26.0000	30	F2	Southampton	D	Nice, France
+2	no	Navratil, Mr. Michel ("Louis M Hoffman")	male	30 - 39	36.5	0	2	230080	26.0000	30	F2	Southampton		Nice, France
+2	no	Nesson, Mr. Israel	male	20 - 29	26	0	0	244368	13.0000	10	F2	Southampton		Boston, MA
+2	no	Nicholls, Mr. Joseph Charles	male	10 - 19	19	1	1	C.A. 33112	36.7500	40		Southampton		Cornwall / Hancock, MI
+2	no	Norman, Mr. Robert Douglas	male	20 - 29	28	0	0	218629	13.5000	10		Southampton		Glasgow
+2	yes	Nourney, Mr. Alfred ("Baron von Drachstedt")	male	20 - 29	20	0	0	SC/PARIS 2166	13.8625	10	D38	Cherbourg	7	Cologne, Germany
+2	yes	Nye, Mrs. (Elizabeth Ramell)	female	20 - 29	29	0	0	C.A. 29395	10.5000	10	F33	Southampton	11	Folkstone, Kent / New York, NY
+2	no	Otter, Mr. Richard	male	30 - 39	39	0	0	28213	13.0000	10		Southampton		Middleburg Heights, OH
+2	yes	Oxenham, Mr. Percy Thomas	male	20 - 29	22	0	0	W./C. 14260	10.5000	10		Southampton	13	Pondersend, England / New Durham, NJ
+2	yes	Padro y Manent, Mr. Julian	male	unknown		0	0	SC/PARIS 2146	13.8625	10		Cherbourg	9	Spain / Havana, Cuba
+2	no	Pain, Dr. Alfred	male	20 - 29	23	0	0	244278	10.5000	10		Southampton		Hamilton, ON
+2	yes	Pallas y Castello, Mr. Emilio	male	20 - 29	29	0	0	SC/PARIS 2147	13.8583	10		Cherbourg	9	Spain / Havana, Cuba
+2	no	Parker, Mr. Clifford Richard	male	20 - 29	28	0	0	SC 14888	10.5000	10		Southampton		St Andrews, Guernsey
+2	no	Parkes, Mr. Francis "Frank"	male	unknown		0	0	239853	0.0000	0		Southampton		Belfast
+2	yes	Parrish, Mrs. (Lutie Davis)	female	50 - 59	50	0	1	230433	26.0000	30		Southampton	12	Woodford County, KY
+2	no	Pengelly, Mr. Frederick William	male	10 - 19	19	0	0	28665	10.5000	10		Southampton		Gunnislake, England / Butte, MT
+2	no	Pernot, Mr. Rene	male	unknown		0	0	SC/PARIS 2131	15.0500	20		Cherbourg		
+2	no	Peruschitz, Rev. Joseph Maria	male	40 - 49	41	0	0	237393	13.0000	10		Southampton		
+2	yes	Phillips, Miss. Alice Frances Louisa	female	20 - 29	21	0	1	S.O./P.P. 2	21.0000	20		Southampton	12	Ilfracombe, Devon
+2	yes	Phillips, Miss. Kate Florence ("Mrs Kate Louise Phillips Marshall")	female	10 - 19	19	0	0	250655	26.0000	30		Southampton	11	Worcester, England
+2	no	Phillips, Mr. Escott Robert	male	40 - 49	43	0	1	S.O./P.P. 2	21.0000	20		Southampton		Ilfracombe, Devon
+2	yes	Pinsky, Mrs. (Rosa)	female	30 - 39	32	0	0	234604	13.0000	10		Southampton	9	Russia
+2	no	Ponesell, Mr. Martin	male	30 - 39	34	0	0	250647	13.0000	10		Southampton		Denmark / New York, NY
+2	yes	Portaluppi, Mr. Emilio Ilario Giuseppe	male	30 - 39	30	0	0	C.A. 34644	12.7375	10		Cherbourg	14	Milford, NH
+2	no	Pulbaum, Mr. Franz	male	20 - 29	27	0	0	SC/PARIS 2168	15.0333	20		Cherbourg		Paris
+2	yes	Quick, Miss. Phyllis May	female	0 - 9	2	1	1	26360	26.0000	30		Southampton	11	Plymouth, Devon / Detroit, MI
+2	yes	Quick, Miss. Winifred Vera	female	0 - 9	8	1	1	26360	26.0000	30		Southampton	11	Plymouth, Devon / Detroit, MI
+2	yes	Quick, Mrs. Frederick Charles (Jane Richards)	female	30 - 39	33	0	2	26360	26.0000	30		Southampton	11	Plymouth, Devon / Detroit, MI
+2	no	Reeves, Mr. David	male	30 - 39	36	0	0	C.A. 17248	10.5000	10		Southampton		Brighton, Sussex
+2	no	Renouf, Mr. Peter Henry	male	30 - 39	34	1	0	31027	21.0000	20		Southampton	12	Elizabeth, NJ
+2	yes	Renouf, Mrs. Peter Henry (Lillian Jefferys)	female	30 - 39	30	3	0	31027	21.0000	20		Southampton		Elizabeth, NJ
+2	yes	Reynaldo, Ms. Encarnacion	female	20 - 29	28	0	0	230434	13.0000	10		Southampton	9	Spain
+2	no	Richard, Mr. Emile	male	20 - 29	23	0	0	SC/PARIS 2133	15.0458	20		Cherbourg		Paris / Montreal, PQ
+2	yes	Richards, Master. George Sibley	male	0 - 9	0.8333	1	1	29106	18.7500	20		Southampton	4	Cornwall / Akron, OH
+2	yes	Richards, Master. William Rowe	male	0 - 9	3	1	1	29106	18.7500	20		Southampton	4	Cornwall / Akron, OH
+2	yes	Richards, Mrs. Sidney (Emily Hocking)	female	20 - 29	24	2	3	29106	18.7500	20		Southampton	4	Cornwall / Akron, OH
+2	yes	Ridsdale, Miss. Lucy	female	50 - 59	50	0	0	W./C. 14258	10.5000	10		Southampton	13	London, England / Marietta, Ohio and Milwaukee, WI
+2	no	Rogers, Mr. Reginald Harry	male	10 - 19	19	0	0	28004	10.5000	10		Southampton		
+2	yes	Rugg, Miss. Emily	female	20 - 29	21	0	0	C.A. 31026	10.5000	10		Southampton	12	Guernsey / Wilmington, DE
+2	no	Schmidt, Mr. August	male	20 - 29	26	0	0	248659	13.0000	10		Southampton		Newark, NJ
+2	no	Sedgwick, Mr. Charles Frederick Waddington	male	20 - 29	25	0	0	244361	13.0000	10		Southampton		Liverpool
+2	no	Sharp, Mr. Percival James R	male	20 - 29	27	0	0	244358	26.0000	30		Southampton		Hornsey, England
+2	yes	Shelley, Mrs. William (Imanita Parrish Hall)	female	20 - 29	25	0	1	230433	26.0000	30		Southampton	12	Deer Lodge, MT
+2	yes	Silven, Miss. Lyyli Karoliina	female	10 - 19	18	0	2	250652	13.0000	10		Southampton	16	Finland / Minneapolis, MN
+2	yes	Sincock, Miss. Maude	female	20 - 29	20	0	0	C.A. 33112	36.7500	40		Southampton	11	Cornwall / Hancock, MI
+2	yes	Sinkkonen, Miss. Anna	female	30 - 39	30	0	0	250648	13.0000	10		Southampton	10	Finland / Washington, DC
+2	no	Sjostedt, Mr. Ernst Adolf	male	50 - 59	59	0	0	237442	13.5000	10		Southampton		Sault St Marie, ON
+2	yes	Slayter, Miss. Hilda Mary	female	30 - 39	30	0	0	234818	12.3500	10		Queenstown	13	Halifax, NS
+2	no	Slemen, Mr. Richard James	male	30 - 39	35	0	0	28206	10.5000	10		Southampton		Cornwall
+2	yes	Smith, Miss. Marion Elsie	female	40 - 49	40	0	0	31418	13.0000	10		Southampton	9	
+2	no	Sobey, Mr. Samuel James Hayden	male	20 - 29	25	0	0	C.A. 29178	13.0000	10		Southampton		Cornwall / Houghton, MI
+2	no	Stanton, Mr. Samuel Ward	male	40 - 49	41	0	0	237734	15.0458	20		Cherbourg		New York, NY
+2	no	Stokes, Mr. Philip Joseph	male	20 - 29	25	0	0	F.C.C. 13540	10.5000	10		Southampton		Catford, Kent / Detroit, MI
+2	no	Swane, Mr. George	male	10 - 19	18.5	0	0	248734	13.0000	10	F	Southampton		
+2	no	Sweet, Mr. George Frederick	male	10 - 19	14	0	0	220845	65.0000	70		Southampton		Somerset / Bernardsville, NJ
+2	yes	Toomey, Miss. Ellen	female	50 - 59	50	0	0	F.C.C. 13531	10.5000	10		Southampton	9	Indianapolis, IN
+2	no	Troupiansky, Mr. Moses Aaron	male	20 - 29	23	0	0	233639	13.0000	10		Southampton		
+2	yes	Trout, Mrs. William H (Jessie L)	female	20 - 29	28	0	0	240929	12.6500	10		Southampton		Columbus, OH
+2	yes	Troutt, Miss. Edwina Celia "Winnie"	female	20 - 29	27	0	0	34218	10.5000	10	E101	Southampton	16	Bath, England / Massachusetts
+2	no	Turpin, Mr. William John Robert	male	20 - 29	29	1	0	11668	21.0000	20		Southampton		Plymouth, England
+2	no	Turpin, Mrs. William John Robert (Dorothy Ann Wonnacott)	female	20 - 29	27	1	0	11668	21.0000	20		Southampton		Plymouth, England
+2	no	Veal, Mr. James	male	40 - 49	40	0	0	28221	13.0000	10		Southampton		Barre, Co Washington, VT
+2	yes	Walcroft, Miss. Nellie	female	30 - 39	31	0	0	F.C.C. 13528	21.0000	20		Southampton	14	Mamaroneck, NY
+2	no	Ware, Mr. John James	male	30 - 39	30	1	0	CA 31352	21.0000	20		Southampton		Bristol, England / New Britain, CT
+2	no	Ware, Mr. William Jeffery	male	20 - 29	23	1	0	28666	10.5000	10		Southampton		
+2	yes	Ware, Mrs. John James (Florence Louise Long)	female	30 - 39	31	0	0	CA 31352	21.0000	20		Southampton	10	Bristol, England / New Britain, CT
+2	no	Watson, Mr. Ennis Hastings	male	unknown		0	0	239856	0.0000	0		Southampton		Belfast
+2	yes	Watt, Miss. Bertha J	female	10 - 19	12	0	0	C.A. 33595	15.7500	20		Southampton	9	Aberdeen / Portland, OR
+2	yes	Watt, Mrs. James (Elizabeth "Bessie" Inglis Milne)	female	40 - 49	40	0	0	C.A. 33595	15.7500	20		Southampton	9	Aberdeen / Portland, OR
+2	yes	Webber, Miss. Susan	female	30 - 39	32.5	0	0	27267	13.0000	10	E101	Southampton	12	England / Hartford, CT
+2	no	Weisz, Mr. Leopold	male	20 - 29	27	1	0	228414	26.0000	30		Southampton		Bromsgrove, England / Montreal, PQ
+2	yes	Weisz, Mrs. Leopold (Mathilde Francoise Pede)	female	20 - 29	29	1	0	228414	26.0000	30		Southampton	10	Bromsgrove, England / Montreal, PQ
+2	yes	Wells, Master. Ralph Lester	male	0 - 9	2	1	1	29103	23.0000	20		Southampton	14	Cornwall / Akron, OH
+2	yes	Wells, Miss. Joan	female	0 - 9	4	1	1	29103	23.0000	20		Southampton	14	Cornwall / Akron, OH
+2	yes	Wells, Mrs. Arthur Henry ("Addie" Dart Trevaskis)	female	20 - 29	29	0	2	29103	23.0000	20		Southampton	14	Cornwall / Akron, OH
+2	yes	West, Miss. Barbara J	female	0 - 9	0.9167	1	2	C.A. 34651	27.7500	30		Southampton	10	Bournmouth, England
+2	yes	West, Miss. Constance Mirium	female	0 - 9	5	1	2	C.A. 34651	27.7500	30		Southampton	10	Bournmouth, England
+2	no	West, Mr. Edwy Arthur	male	30 - 39	36	1	2	C.A. 34651	27.7500	30		Southampton		Bournmouth, England
+2	yes	West, Mrs. Edwy Arthur (Ada Mary Worth)	female	30 - 39	33	1	2	C.A. 34651	27.7500	30		Southampton	10	Bournmouth, England
+2	no	Wheadon, Mr. Edward H	male	60 - 69	66	0	0	C.A. 24579	10.5000	10		Southampton		Guernsey, England / Edgewood, RI
+2	no	Wheeler, Mr. Edwin "Frederick"	male	unknown		0	0	SC/PARIS 2159	12.8750	10		Southampton		
+2	yes	Wilhelms, Mr. Charles	male	30 - 39	31	0	0	244270	13.0000	10		Southampton	9	London, England
+2	yes	Williams, Mr. Charles Eugene	male	unknown		0	0	244373	13.0000	10		Southampton	14	Harrow, England
+2	yes	Wright, Miss. Marion	female	20 - 29	26	0	0	220844	13.5000	10		Southampton	9	Yoevil, England / Cottage Grove, OR
+2	no	Yrois, Miss. Henriette ("Mrs Harbeck")	female	20 - 29	24	0	0	248747	13.0000	10		Southampton		Paris
+3	no	Abbing, Mr. Anthony	male	40 - 49	42	0	0	C.A. 5547	7.5500	10		Southampton		
+3	no	Abbott, Master. Eugene Joseph	male	10 - 19	13	0	2	C.A. 2673	20.2500	20		Southampton		East Providence, RI
+3	no	Abbott, Mr. Rossmore Edward	male	10 - 19	16	1	1	C.A. 2673	20.2500	20		Southampton		East Providence, RI
+3	yes	Abbott, Mrs. Stanton (Rosa Hunt)	female	30 - 39	35	1	1	C.A. 2673	20.2500	20		Southampton	A	East Providence, RI
+3	yes	Abelseth, Miss. Karen Marie	female	10 - 19	16	0	0	348125	7.6500	10		Southampton	16	Norway Los Angeles, CA
+3	yes	Abelseth, Mr. Olaus Jorgensen	male	20 - 29	25	0	0	348122	7.6500	10	F G63	Southampton	A	Perkins County, SD
+3	yes	Abrahamsson, Mr. Abraham August Johannes	male	20 - 29	20	0	0	SOTON/O2 3101284	7.9250	10		Southampton	15	Taalintehdas, Finland Hoboken, NJ
+3	yes	Abrahim, Mrs. Joseph (Sophie Halaut Easu)	female	10 - 19	18	0	0	2657	7.2292	10		Cherbourg	C	Greensburg, PA
+3	no	Adahl, Mr. Mauritz Nils Martin	male	30 - 39	30	0	0	C 7076	7.2500	10		Southampton		Asarum, Sweden Brooklyn, NY
+3	no	Adams, Mr. John	male	20 - 29	26	0	0	341826	8.0500	10		Southampton		Bournemouth, England
+3	no	Ahlin, Mrs. Johan (Johanna Persdotter Larsson)	female	40 - 49	40	1	0	7546	9.4750	10		Southampton		Sweden Akeley, MN
+3	yes	Aks, Master. Philip Frank	male	0 - 9	0.8333	0	1	392091	9.3500	10		Southampton	11	London, England Norfolk, VA
+3	yes	Aks, Mrs. Sam (Leah Rosen)	female	10 - 19	18	0	1	392091	9.3500	10		Southampton	13	London, England Norfolk, VA
+3	yes	Albimona, Mr. Nassef Cassem	male	20 - 29	26	0	0	2699	18.7875	20		Cherbourg	15	Syria Fredericksburg, VA
+3	no	Alexander, Mr. William	male	20 - 29	26	0	0	3474	7.8875	10		Southampton		England Albion, NY
+3	no	Alhomaki, Mr. Ilmari Rudolf	male	20 - 29	20	0	0	SOTON/O2 3101287	7.9250	10		Southampton		Salo, Finland Astoria, OR
+3	no	Ali, Mr. Ahmed	male	20 - 29	24	0	0	SOTON/O.Q. 3101311	7.0500	10		Southampton		
+3	no	Ali, Mr. William	male	20 - 29	25	0	0	SOTON/O.Q. 3101312	7.0500	10		Southampton		Argentina
+3	no	Allen, Mr. William Henry	male	30 - 39	35	0	0	373450	8.0500	10		Southampton		Lower Clapton, Middlesex or Erdington, Birmingham
+3	no	Allum, Mr. Owen George	male	10 - 19	18	0	0	2223	8.3000	10		Southampton		Windsor, England New York, NY
+3	no	Andersen, Mr. Albert Karvin	male	30 - 39	32	0	0	C 4001	22.5250	20		Southampton		Bergen, Norway
+3	yes	Andersen-Jensen, Miss. Carla Christine Nielsine	female	10 - 19	19	1	0	350046	7.8542	10		Southampton	16	
+3	no	Andersson, Master. Sigvard Harald Elias	male	0 - 9	4	4	2	347082	31.2750	30		Southampton		Sweden Winnipeg, MN
+3	no	Andersson, Miss. Ebba Iris Alfrida	female	0 - 9	6	4	2	347082	31.2750	30		Southampton		Sweden Winnipeg, MN
+3	no	Andersson, Miss. Ellis Anna Maria	female	0 - 9	2	4	2	347082	31.2750	30		Southampton		Sweden Winnipeg, MN
+3	yes	Andersson, Miss. Erna Alexandra	female	10 - 19	17	4	2	3101281	7.9250	10		Southampton	D	Ruotsinphyhtaa, Finland New York, NY
+3	no	Andersson, Miss. Ida Augusta Margareta	female	30 - 39	38	4	2	347091	7.7750	10		Southampton		Vadsbro, Sweden Ministee, MI
+3	no	Andersson, Miss. Ingeborg Constanzia	female	0 - 9	9	4	2	347082	31.2750	30		Southampton		Sweden Winnipeg, MN
+3	no	Andersson, Miss. Sigrid Elisabeth	female	10 - 19	11	4	2	347082	31.2750	30		Southampton		Sweden Winnipeg, MN
+3	no	Andersson, Mr. Anders Johan	male	30 - 39	39	1	5	347082	31.2750	30		Southampton		Sweden Winnipeg, MN
+3	yes	Andersson, Mr. August Edvard ("Wennerstrom")	male	20 - 29	27	0	0	350043	7.7958	10		Southampton	A	
+3	no	Andersson, Mr. Johan Samuel	male	20 - 29	26	0	0	347075	7.7750	10		Southampton		Hartford, CT
+3	no	Andersson, Mrs. Anders Johan (Alfrida Konstantia Brogren)	female	30 - 39	39	1	5	347082	31.2750	30		Southampton		Sweden Winnipeg, MN
+3	no	Andreasson, Mr. Paul Edvin	male	20 - 29	20	0	0	347466	7.8542	10		Southampton		Sweden Chicago, IL
+3	no	Angheloff, Mr. Minko	male	20 - 29	26	0	0	349202	7.8958	10		Southampton		Bulgaria Chicago, IL
+3	no	Arnold-Franchi, Mr. Josef	male	20 - 29	25	1	0	349237	17.8000	20		Southampton		Altdorf, Switzerland
+3	no	Arnold-Franchi, Mrs. Josef (Josefine Franchi)	female	10 - 19	18	1	0	349237	17.8000	20		Southampton		Altdorf, Switzerland
+3	no	Aronsson, Mr. Ernst Axel Algot	male	20 - 29	24	0	0	349911	7.7750	10		Southampton		Sweden Joliet, IL
+3	no	Asim, Mr. Adola	male	30 - 39	35	0	0	SOTON/O.Q. 3101310	7.0500	10		Southampton		
+3	no	Asplund, Master. Carl Edgar	male	0 - 9	5	4	2	347077	31.3875	30		Southampton		Sweden  Worcester, MA
+3	no	Asplund, Master. Clarence Gustaf Hugo	male	0 - 9	9	4	2	347077	31.3875	30		Southampton		Sweden Worcester, MA
+3	yes	Asplund, Master. Edvin Rojj Felix	male	0 - 9	3	4	2	347077	31.3875	30		Southampton	15	Sweden Worcester, MA
+3	no	Asplund, Master. Filip Oscar	male	10 - 19	13	4	2	347077	31.3875	30		Southampton		Sweden Worcester, MA
+3	yes	Asplund, Miss. Lillian Gertrud	female	0 - 9	5	4	2	347077	31.3875	30		Southampton	15	Sweden Worcester, MA
+3	no	Asplund, Mr. Carl Oscar Vilhelm Gustafsson	male	40 - 49	40	1	5	347077	31.3875	30		Southampton		Sweden  Worcester, MA
+3	yes	Asplund, Mr. Johan Charles	male	20 - 29	23	0	0	350054	7.7958	10		Southampton	13	Oskarshamn, Sweden Minneapolis, MN
+3	yes	Asplund, Mrs. Carl Oscar (Selma Augusta Emilia Johansson)	female	30 - 39	38	1	5	347077	31.3875	30		Southampton	15	Sweden  Worcester, MA
+3	yes	Assaf Khalil, Mrs. Mariana ("Miriam")	female	40 - 49	45	0	0	2696	7.2250	10		Cherbourg	C	Ottawa, ON
+3	no	Assaf, Mr. Gerios	male	20 - 29	21	0	0	2692	7.2250	10		Cherbourg		Ottawa, ON
+3	no	Assam, Mr. Ali	male	20 - 29	23	0	0	SOTON/O.Q. 3101309	7.0500	10		Southampton		
+3	no	Attalah, Miss. Malake	female	10 - 19	17	0	0	2627	14.4583	10		Cherbourg		
+3	no	Attalah, Mr. Sleiman	male	30 - 39	30	0	0	2694	7.2250	10		Cherbourg		Ottawa, ON
+3	no	Augustsson, Mr. Albert	male	20 - 29	23	0	0	347468	7.8542	10		Southampton		Krakoryd, Sweden Bloomington, IL
+3	yes	Ayoub, Miss. Banoura	female	10 - 19	13	0	0	2687	7.2292	10		Cherbourg	C	Syria Youngstown, OH
+3	no	Baccos, Mr. Raffull	male	20 - 29	20	0	0	2679	7.2250	10		Cherbourg		
+3	no	Backstrom, Mr. Karl Alfred	male	30 - 39	32	1	0	3101278	15.8500	20		Southampton	D	Ruotsinphytaa, Finland New York, NY
+3	yes	Backstrom, Mrs. Karl Alfred (Maria Mathilda Gustafsson)	female	30 - 39	33	3	0	3101278	15.8500	20		Southampton		Ruotsinphytaa, Finland New York, NY
+3	yes	Baclini, Miss. Eugenie	female	0 - 9	0.75	2	1	2666	19.2583	20		Cherbourg	C	Syria New York, NY
+3	yes	Baclini, Miss. Helene Barbara	female	0 - 9	0.75	2	1	2666	19.2583	20		Cherbourg	C	Syria New York, NY
+3	yes	Baclini, Miss. Marie Catherine	female	0 - 9	5	2	1	2666	19.2583	20		Cherbourg	C	Syria New York, NY
+3	yes	Baclini, Mrs. Solomon (Latifa Qurban)	female	20 - 29	24	0	3	2666	19.2583	20		Cherbourg	C	Syria New York, NY
+3	yes	Badman, Miss. Emily Louisa	female	10 - 19	18	0	0	A/4 31416	8.0500	10		Southampton	C	London Skanteales, NY
+3	no	Badt, Mr. Mohamed	male	40 - 49	40	0	0	2623	7.2250	10		Cherbourg		
+3	no	Balkic, Mr. Cerin	male	20 - 29	26	0	0	349248	7.8958	10		Southampton		
+3	yes	Barah, Mr. Hanna Assi	male	20 - 29	20	0	0	2663	7.2292	10		Cherbourg	15	
+3	no	Barbara, Miss. Saiide	female	10 - 19	18	0	1	2691	14.4542	10		Cherbourg		Syria Ottawa, ON
+3	no	Barbara, Mrs. (Catherine David)	female	40 - 49	45	0	1	2691	14.4542	10		Cherbourg		Syria Ottawa, ON
+3	no	Barry, Miss. Julia	female	20 - 29	27	0	0	330844	7.8792	10		Queenstown		New York, NY
+3	no	Barton, Mr. David John	male	20 - 29	22	0	0	324669	8.0500	10		Southampton		England New York, NY
+3	no	Beavan, Mr. William Thomas	male	10 - 19	19	0	0	323951	8.0500	10		Southampton		England
+3	no	Bengtsson, Mr. John Viktor	male	20 - 29	26	0	0	347068	7.7750	10		Southampton		Krakudden, Sweden Moune, IL
+3	no	Berglund, Mr. Karl Ivar Sven	male	20 - 29	22	0	0	PP 4348	9.3500	10		Southampton		Tranvik, Finland New York
+3	no	Betros, Master. Seman	male	unknown		0	0	2622	7.2292	10		Cherbourg		
+3	no	Betros, Mr. Tannous	male	20 - 29	20	0	0	2648	4.0125	0		Cherbourg		Syria
+3	yes	Bing, Mr. Lee	male	30 - 39	32	0	0	1601	56.4958	60		Southampton	C	Hong Kong New York, NY
+3	no	Birkeland, Mr. Hans Martin Monsen	male	20 - 29	21	0	0	312992	7.7750	10		Southampton		Brennes, Norway New York
+3	no	Bjorklund, Mr. Ernst Herbert	male	10 - 19	18	0	0	347090	7.7500	10		Southampton		Stockholm, Sweden New York
+3	no	Bostandyeff, Mr. Guentcho	male	20 - 29	26	0	0	349224	7.8958	10		Southampton		Bulgaria Chicago, IL
+3	no	Boulos, Master. Akar	male	0 - 9	6	1	1	2678	15.2458	20		Cherbourg		Syria Kent, ON
+3	no	Boulos, Miss. Nourelain	female	0 - 9	9	1	1	2678	15.2458	20		Cherbourg		Syria Kent, ON
+3	no	Boulos, Mr. Hanna	male	unknown		0	0	2664	7.2250	10		Cherbourg		Syria
+3	no	Boulos, Mrs. Joseph (Sultana)	female	unknown		0	2	2678	15.2458	20		Cherbourg		Syria Kent, ON
+3	no	Bourke, Miss. Mary	female	unknown		0	2	364848	7.7500	10		Queenstown		Ireland Chicago, IL
+3	no	Bourke, Mr. John	male	40 - 49	40	1	1	364849	15.5000	20		Queenstown		Ireland Chicago, IL
+3	no	Bourke, Mrs. John (Catherine)	female	30 - 39	32	1	1	364849	15.5000	20		Queenstown		Ireland Chicago, IL
+3	no	Bowen, Mr. David John "Dai"	male	20 - 29	21	0	0	54636	16.1000	20		Southampton		Treherbert, Cardiff, Wales
+3	yes	Bradley, Miss. Bridget Delia	female	20 - 29	22	0	0	334914	7.7250	10		Queenstown	13	Kingwilliamstown, Co Cork, Ireland Glens Falls, NY
+3	no	Braf, Miss. Elin Ester Maria	female	20 - 29	20	0	0	347471	7.8542	10		Southampton		Medeltorp, Sweden Chicago, IL
+3	no	Braund, Mr. Lewis Richard	male	20 - 29	29	1	0	3460	7.0458	10		Southampton		Bridgerule, Devon
+3	no	Braund, Mr. Owen Harris	male	20 - 29	22	1	0	A/5 21171	7.2500	10		Southampton		Bridgerule, Devon
+3	no	Brobeck, Mr. Karl Rudolf	male	20 - 29	22	0	0	350045	7.7958	10		Southampton		Sweden Worcester, MA
+3	no	Brocklebank, Mr. William Alfred	male	30 - 39	35	0	0	364512	8.0500	10		Southampton		Broomfield, Chelmsford, England
+3	no	Buckley, Miss. Katherine	female	10 - 19	18.5	0	0	329944	7.2833	10		Queenstown		Co Cork, Ireland Roxbury, MA
+3	yes	Buckley, Mr. Daniel	male	20 - 29	21	0	0	330920	7.8208	10		Queenstown	13	Kingwilliamstown, Co Cork, Ireland New York, NY
+3	no	Burke, Mr. Jeremiah	male	10 - 19	19	0	0	365222	6.7500	10		Queenstown		Co Cork, Ireland Charlestown, MA
+3	no	Burns, Miss. Mary Delia	female	10 - 19	18	0	0	330963	7.8792	10		Queenstown		Co Sligo, Ireland New York, NY
+3	no	Cacic, Miss. Manda	female	20 - 29	21	0	0	315087	8.6625	10		Southampton		
+3	no	Cacic, Miss. Marija	female	30 - 39	30	0	0	315084	8.6625	10		Southampton		
+3	no	Cacic, Mr. Jego Grga	male	10 - 19	18	0	0	315091	8.6625	10		Southampton		
+3	no	Cacic, Mr. Luka	male	30 - 39	38	0	0	315089	8.6625	10		Southampton		Croatia
+3	no	Calic, Mr. Jovo	male	10 - 19	17	0	0	315093	8.6625	10		Southampton		
+3	no	Calic, Mr. Petar	male	10 - 19	17	0	0	315086	8.6625	10		Southampton		
+3	no	Canavan, Miss. Mary	female	20 - 29	21	0	0	364846	7.7500	10		Queenstown		
+3	no	Canavan, Mr. Patrick	male	20 - 29	21	0	0	364858	7.7500	10		Queenstown		Ireland Philadelphia, PA
+3	no	Cann, Mr. Ernest Charles	male	20 - 29	21	0	0	A./5. 2152	8.0500	10		Southampton		
+3	no	Caram, Mr. Joseph	male	unknown		1	0	2689	14.4583	10		Cherbourg		Ottawa, ON
+3	no	Caram, Mrs. Joseph (Maria Elias)	female	unknown		1	0	2689	14.4583	10		Cherbourg		Ottawa, ON
+3	no	Carlsson, Mr. August Sigfrid	male	20 - 29	28	0	0	350042	7.7958	10		Southampton		Dagsas, Sweden Fower, MN
+3	no	Carlsson, Mr. Carl Robert	male	20 - 29	24	0	0	350409	7.8542	10		Southampton		Goteborg, Sweden Huntley, IL
+3	yes	Carr, Miss. Helen "Ellen"	female	10 - 19	16	0	0	367231	7.7500	10		Queenstown	16	Co Longford, Ireland New York, NY
+3	no	Carr, Miss. Jeannie	female	30 - 39	37	0	0	368364	7.7500	10		Queenstown		Co Sligo, Ireland Hartford, CT
+3	no	Carver, Mr. Alfred John	male	20 - 29	28	0	0	392095	7.2500	10		Southampton		St Denys, Southampton, Hants
+3	no	Celotti, Mr. Francesco	male	20 - 29	24	0	0	343275	8.0500	10		Southampton		London
+3	no	Charters, Mr. David	male	20 - 29	21	0	0	A/5. 13032	7.7333	10		Queenstown		Ireland New York, NY
+3	yes	Chip, Mr. Chang	male	30 - 39	32	0	0	1601	56.4958	60		Southampton	C	Hong Kong New York, NY
+3	no	Christmann, Mr. Emil	male	20 - 29	29	0	0	343276	8.0500	10		Southampton		
+3	no	Chronopoulos, Mr. Apostolos	male	20 - 29	26	1	0	2680	14.4542	10		Cherbourg		Greece
+3	no	Chronopoulos, Mr. Demetrios	male	10 - 19	18	1	0	2680	14.4542	10		Cherbourg		Greece
+3	no	Coelho, Mr. Domingos Fernandeo	male	20 - 29	20	0	0	SOTON/O.Q. 3101307	7.0500	10		Southampton		Portugal
+3	yes	Cohen, Mr. Gurshon "Gus"	male	10 - 19	18	0	0	A/5 3540	8.0500	10		Southampton	12	London Brooklyn, NY
+3	no	Colbert, Mr. Patrick	male	20 - 29	24	0	0	371109	7.2500	10		Queenstown		Co Limerick, Ireland Sherbrooke, PQ
+3	no	Coleff, Mr. Peju	male	30 - 39	36	0	0	349210	7.4958	10		Southampton		Bulgaria Chicago, IL
+3	no	Coleff, Mr. Satio	male	20 - 29	24	0	0	349209	7.4958	10		Southampton		
+3	no	Conlon, Mr. Thomas Henry	male	30 - 39	31	0	0	21332	7.7333	10		Queenstown		Philadelphia, PA
+3	no	Connaghton, Mr. Michael	male	30 - 39	31	0	0	335097	7.7500	10		Queenstown		Ireland Brooklyn, NY
+3	yes	Connolly, Miss. Kate	female	20 - 29	22	0	0	370373	7.7500	10		Queenstown	13	Ireland
+3	no	Connolly, Miss. Kate	female	30 - 39	30	0	0	330972	7.6292	10		Queenstown		Ireland
+3	no	Connors, Mr. Patrick	male	70 - 79	70.5	0	0	370369	7.7500	10		Queenstown		
+3	no	Cook, Mr. Jacob	male	40 - 49	43	0	0	A/5 3536	8.0500	10		Southampton		
+3	no	Cor, Mr. Bartol	male	30 - 39	35	0	0	349230	7.8958	10		Southampton		Austria
+3	no	Cor, Mr. Ivan	male	20 - 29	27	0	0	349229	7.8958	10		Southampton		Austria
+3	no	Cor, Mr. Liudevit	male	10 - 19	19	0	0	349231	7.8958	10		Southampton		Austria
+3	no	Corn, Mr. Harry	male	30 - 39	30	0	0	SOTON/OQ 392090	8.0500	10		Southampton		London
+3	yes	Coutts, Master. Eden Leslie "Neville"	male	0 - 9	9	1	1	C.A. 37671	15.9000	20		Southampton	2	England Brooklyn, NY
+3	yes	Coutts, Master. William Loch "William"	male	0 - 9	3	1	1	C.A. 37671	15.9000	20		Southampton	2	England Brooklyn, NY
+3	yes	Coutts, Mrs. William (Winnie "Minnie" Treanor)	female	30 - 39	36	0	2	C.A. 37671	15.9000	20		Southampton	2	England Brooklyn, NY
+3	no	Coxon, Mr. Daniel	male	50 - 59	59	0	0	364500	7.2500	10		Southampton		Merrill, WI
+3	no	Crease, Mr. Ernest James	male	10 - 19	19	0	0	S.P. 3464	8.1583	10		Southampton		Bristol, England Cleveland, OH
+3	yes	Cribb, Miss. Laura Alice	female	10 - 19	17	0	1	371362	16.1000	20		Southampton	12	Bournemouth, England Newark, NJ
+3	no	Cribb, Mr. John Hatfield	male	40 - 49	44	0	1	371362	16.1000	20		Southampton		Bournemouth, England Newark, NJ
+3	no	Culumovic, Mr. Jeso	male	10 - 19	17	0	0	315090	8.6625	10		Southampton		Austria-Hungary
+3	no	Daher, Mr. Shedid	male	20 - 29	22.5	0	0	2698	7.2250	10		Cherbourg		
+3	yes	Dahl, Mr. Karl Edwart	male	40 - 49	45	0	0	7598	8.0500	10		Southampton	15	Australia Fingal, ND
+3	no	Dahlberg, Miss. Gerda Ulrika	female	20 - 29	22	0	0	7552	10.5167	10		Southampton		Norrlot, Sweden Chicago, IL
+3	no	Dakic, Mr. Branko	male	10 - 19	19	0	0	349228	10.1708	10		Southampton		Austria
+3	yes	Daly, Miss. Margaret Marcella "Maggie"	female	30 - 39	30	0	0	382650	6.9500	10		Queenstown	15	Co Athlone, Ireland New York, NY
+3	yes	Daly, Mr. Eugene Patrick	male	20 - 29	29	0	0	382651	7.7500	10		Queenstown	13 15 B	Co Athlone, Ireland New York, NY
+3	no	Danbom, Master. Gilbert Sigvard Emanuel	male	0 - 9	0.3333	0	2	347080	14.4000	10		Southampton		Stanton, IA
+3	no	Danbom, Mr. Ernst Gilbert	male	30 - 39	34	1	1	347080	14.4000	10		Southampton		Stanton, IA
+3	no	Danbom, Mrs. Ernst Gilbert (Anna Sigrid Maria Brogren)	female	20 - 29	28	1	1	347080	14.4000	10		Southampton		Stanton, IA
+3	no	Danoff, Mr. Yoto	male	20 - 29	27	0	0	349219	7.8958	10		Southampton		Bulgaria Chicago, IL
+3	no	Dantcheff, Mr. Ristiu	male	20 - 29	25	0	0	349203	7.8958	10		Southampton		Bulgaria Chicago, IL
+3	no	Davies, Mr. Alfred J	male	20 - 29	24	2	0	A/4 48871	24.1500	20		Southampton		West Bromwich, England Pontiac, MI
+3	no	Davies, Mr. Evan	male	20 - 29	22	0	0	SC/A4 23568	8.0500	10		Southampton		
+3	no	Davies, Mr. John Samuel	male	20 - 29	21	2	0	A/4 48871	24.1500	20		Southampton		West Bromwich, England Pontiac, MI
+3	no	Davies, Mr. Joseph	male	10 - 19	17	2	0	A/4 48873	8.0500	10		Southampton		West Bromwich, England Pontiac, MI
+3	no	Davison, Mr. Thomas Henry	male	unknown		1	0	386525	16.1000	20		Southampton		Liverpool, England Bedford, OH
+3	yes	Davison, Mrs. Thomas Henry (Mary E Finck)	female	unknown		1	0	386525	16.1000	20		Southampton	16	Liverpool, England Bedford, OH
+3	yes	de Messemaeker, Mr. Guillaume Joseph	male	30 - 39	36.5	1	0	345572	17.4000	20		Southampton	15	Tampico, MT
+3	yes	de Messemaeker, Mrs. Guillaume Joseph (Emma)	female	30 - 39	36	1	0	345572	17.4000	20		Southampton	13	Tampico, MT
+3	yes	de Mulder, Mr. Theodore	male	30 - 39	30	0	0	345774	9.5000	10		Southampton	11	Belgium Detroit, MI
+3	no	de Pelsmaeker, Mr. Alfons	male	10 - 19	16	0	0	345778	9.5000	10		Southampton		
+3	yes	Dean, Master. Bertram Vere	male	0 - 9	1	1	2	C.A. 2315	20.5750	20		Southampton	10	Devon, England Wichita, KS
+3	yes	Dean, Miss. Elizabeth Gladys "Millvina"	female	0 - 9	0.1667	1	2	C.A. 2315	20.5750	20		Southampton	10	Devon, England Wichita, KS
+3	no	Dean, Mr. Bertram Frank	male	20 - 29	26	1	2	C.A. 2315	20.5750	20		Southampton		Devon, England Wichita, KS
+3	yes	Dean, Mrs. Bertram (Eva Georgetta Light)	female	30 - 39	33	1	2	C.A. 2315	20.5750	20		Southampton	10	Devon, England Wichita, KS
+3	no	Delalic, Mr. Redjo	male	20 - 29	25	0	0	349250	7.8958	10		Southampton		
+3	no	Demetri, Mr. Marinko	male	unknown		0	0	349238	7.8958	10		Southampton		
+3	no	Denkoff, Mr. Mitto	male	unknown		0	0	349225	7.8958	10		Southampton		Bulgaria Coon Rapids, IA
+3	no	Dennis, Mr. Samuel	male	20 - 29	22	0	0	A/5 21172	7.2500	10		Southampton		
+3	no	Dennis, Mr. William	male	30 - 39	36	0	0	A/5 21175	7.2500	10		Southampton		
+3	yes	Devaney, Miss. Margaret Delia	female	10 - 19	19	0	0	330958	7.8792	10		Queenstown	C	Kilmacowen, Co Sligo, Ireland New York, NY
+3	no	Dika, Mr. Mirko	male	10 - 19	17	0	0	349232	7.8958	10		Southampton		
+3	no	Dimic, Mr. Jovan	male	40 - 49	42	0	0	315088	8.6625	10		Southampton		
+3	no	Dintcheff, Mr. Valtcho	male	40 - 49	43	0	0	349226	7.8958	10		Southampton		
+3	no	Doharr, Mr. Tannous	male	unknown		0	0	2686	7.2292	10		Cherbourg		
+3	no	Dooley, Mr. Patrick	male	30 - 39	32	0	0	370376	7.7500	10		Queenstown		Ireland New York, NY
+3	yes	Dorking, Mr. Edward Arthur	male	10 - 19	19	0	0	A/5. 10482	8.0500	10		Southampton	B	England Oglesby, IL
+3	yes	Dowdell, Miss. Elizabeth	female	30 - 39	30	0	0	364516	12.4750	10		Southampton	13	Union Hill, NJ
+3	no	Doyle, Miss. Elizabeth	female	20 - 29	24	0	0	368702	7.7500	10		Queenstown		Ireland New York, NY
+3	yes	Drapkin, Miss. Jennie	female	20 - 29	23	0	0	SOTON/OQ 392083	8.0500	10		Southampton		London New York, NY
+3	no	Drazenoic, Mr. Jozef	male	30 - 39	33	0	0	349241	7.8958	10		Cherbourg		Austria Niagara Falls, NY
+3	no	Duane, Mr. Frank	male	60 - 69	65	0	0	336439	7.7500	10		Queenstown		
+3	yes	Duquemin, Mr. Joseph	male	20 - 29	24	0	0	S.O./P.P. 752	7.5500	10		Southampton	D	England Albion, NY
+3	no	Dyker, Mr. Adolf Fredrik	male	20 - 29	23	1	0	347072	13.9000	10		Southampton		West Haven, CT
+3	yes	Dyker, Mrs. Adolf Fredrik (Anna Elisabeth Judith Andersson)	female	20 - 29	22	1	0	347072	13.9000	10		Southampton	16	West Haven, CT
+3	no	Edvardsson, Mr. Gustaf Hjalmar	male	10 - 19	18	0	0	349912	7.7750	10		Southampton		Tofta, Sweden Joliet, IL
+3	no	Eklund, Mr. Hans Linus	male	10 - 19	16	0	0	347074	7.7750	10		Southampton		Karberg, Sweden Jerome Junction, AZ
+3	no	Ekstrom, Mr. Johan	male	40 - 49	45	0	0	347061	6.9750	10		Southampton		Effington Rut, SD
+3	no	Elias, Mr. Dibo	male	unknown		0	0	2674	7.2250	10		Cherbourg		
+3	no	Elias, Mr. Joseph	male	30 - 39	39	0	2	2675	7.2292	10		Cherbourg		Syria Ottawa, ON
+3	no	Elias, Mr. Joseph Jr	male	10 - 19	17	1	1	2690	7.2292	10		Cherbourg		
+3	no	Elias, Mr. Tannous	male	10 - 19	15	1	1	2695	7.2292	10		Cherbourg		Syria
+3	no	Elsbury, Mr. William James	male	40 - 49	47	0	0	A/5 3902	7.2500	10		Southampton		Illinois, USA
+3	yes	Emanuel, Miss. Virginia Ethel	female	0 - 9	5	0	0	364516	12.4750	10		Southampton	13	New York, NY
+3	no	Emir, Mr. Farred Chehab	male	unknown		0	0	2631	7.2250	10		Cherbourg		
+3	no	Everett, Mr. Thomas James	male	40 - 49	40.5	0	0	C.A. 6212	15.1000	20		Southampton		
+3	no	Farrell, Mr. James	male	40 - 49	40.5	0	0	367232	7.7500	10		Queenstown		Aughnacliff, Co Longford, Ireland New York, NY
+3	yes	Finoli, Mr. Luigi	male	unknown		0	0	SOTON/O.Q. 3101308	7.0500	10		Southampton	15	Italy Philadelphia, PA
+3	no	Fischer, Mr. Eberhard Thelander	male	10 - 19	18	0	0	350036	7.7958	10		Southampton		
+3	no	Fleming, Miss. Honora	female	unknown		0	0	364859	7.7500	10		Queenstown		
+3	no	Flynn, Mr. James	male	unknown		0	0	364851	7.7500	10		Queenstown		
+3	no	Flynn, Mr. John	male	unknown		0	0	368323	6.9500	10		Queenstown		
+3	no	Foley, Mr. Joseph	male	20 - 29	26	0	0	330910	7.8792	10		Queenstown		Ireland Chicago, IL
+3	no	Foley, Mr. William	male	unknown		0	0	365235	7.7500	10		Queenstown		Ireland
+3	yes	Foo, Mr. Choong	male	unknown		0	0	1601	56.4958	60		Southampton	13	Hong Kong New York, NY
+3	no	Ford, Miss. Doolina Margaret "Daisy"	female	20 - 29	21	2	2	W./C. 6608	34.3750	30		Southampton		Rotherfield, Sussex, England Essex Co, MA
+3	no	Ford, Miss. Robina Maggie "Ruby"	female	0 - 9	9	2	2	W./C. 6608	34.3750	30		Southampton		Rotherfield, Sussex, England Essex Co, MA
+3	no	Ford, Mr. Arthur	male	unknown		0	0	A/5 1478	8.0500	10		Southampton		Bridgwater, Somerset, England
+3	no	Ford, Mr. Edward Watson	male	10 - 19	18	2	2	W./C. 6608	34.3750	30		Southampton		Rotherfield, Sussex, England Essex Co, MA
+3	no	Ford, Mr. William Neal	male	10 - 19	16	1	3	W./C. 6608	34.3750	30		Southampton		Rotherfield, Sussex, England Essex Co, MA
+3	no	Ford, Mrs. Edward (Margaret Ann Watson)	female	40 - 49	48	1	3	W./C. 6608	34.3750	30		Southampton		Rotherfield, Sussex, England Essex Co, MA
+3	no	Fox, Mr. Patrick	male	unknown		0	0	368573	7.7500	10		Queenstown		Ireland New York, NY
+3	no	Franklin, Mr. Charles (Charles Fardon)	male	unknown		0	0	SOTON/O.Q. 3101314	7.2500	10		Southampton		
+3	no	Gallagher, Mr. Martin	male	20 - 29	25	0	0	36864	7.7417	10		Queenstown		New York, NY
+3	no	Garfirth, Mr. John	male	unknown		0	0	358585	14.5000	10		Southampton		
+3	no	Gheorgheff, Mr. Stanio	male	unknown		0	0	349254	7.8958	10		Cherbourg		
+3	no	Gilinski, Mr. Eliezer	male	20 - 29	22	0	0	14973	8.0500	10		Southampton		
+3	yes	Gilnagh, Miss. Katherine "Katie"	female	10 - 19	16	0	0	35851	7.7333	10		Queenstown	16	Co Longford, Ireland New York, NY
+3	yes	Glynn, Miss. Mary Agatha	female	unknown		0	0	335677	7.7500	10		Queenstown	13	Co Clare, Ireland Washington, DC
+3	yes	Goldsmith, Master. Frank John William "Frankie"	male	0 - 9	9	0	2	363291	20.5250	20		Southampton	C D	Strood, Kent, England Detroit, MI
+3	no	Goldsmith, Mr. Frank John	male	30 - 39	33	1	1	363291	20.5250	20		Southampton		Strood, Kent, England Detroit, MI
+3	no	Goldsmith, Mr. Nathan	male	40 - 49	41	0	0	SOTON/O.Q. 3101263	7.8500	10		Southampton		Philadelphia, PA
+3	yes	Goldsmith, Mrs. Frank John (Emily Alice Brown)	female	30 - 39	31	1	1	363291	20.5250	20		Southampton	C D	Strood, Kent, England Detroit, MI
+3	no	Goncalves, Mr. Manuel Estanslas	male	30 - 39	38	0	0	SOTON/O.Q. 3101306	7.0500	10		Southampton		Portugal
+3	no	Goodwin, Master. Harold Victor	male	0 - 9	9	5	2	CA 2144	46.9000	50		Southampton		Wiltshire, England Niagara Falls, NY
+3	no	Goodwin, Master. Sidney Leonard	male	0 - 9	1	5	2	CA 2144	46.9000	50		Southampton		Wiltshire, England Niagara Falls, NY
+3	no	Goodwin, Master. William Frederick	male	10 - 19	11	5	2	CA 2144	46.9000	50		Southampton		Wiltshire, England Niagara Falls, NY
+3	no	Goodwin, Miss. Jessie Allis	female	10 - 19	10	5	2	CA 2144	46.9000	50		Southampton		Wiltshire, England Niagara Falls, NY
+3	no	Goodwin, Miss. Lillian Amy	female	10 - 19	16	5	2	CA 2144	46.9000	50		Southampton		Wiltshire, England Niagara Falls, NY
+3	no	Goodwin, Mr. Charles Edward	male	10 - 19	14	5	2	CA 2144	46.9000	50		Southampton		Wiltshire, England Niagara Falls, NY
+3	no	Goodwin, Mr. Charles Frederick	male	40 - 49	40	1	6	CA 2144	46.9000	50		Southampton		Wiltshire, England Niagara Falls, NY
+3	no	Goodwin, Mrs. Frederick (Augusta Tyler)	female	40 - 49	43	1	6	CA 2144	46.9000	50		Southampton		Wiltshire, England Niagara Falls, NY
+3	no	Green, Mr. George Henry	male	50 - 59	51	0	0	21440	8.0500	10		Southampton		Dorking, Surrey, England
+3	no	Gronnestad, Mr. Daniel Danielsen	male	30 - 39	32	0	0	8471	8.3625	10		Southampton		Foresvik, Norway Portland, ND
+3	no	Guest, Mr. Robert	male	unknown		0	0	376563	8.0500	10		Southampton		
+3	no	Gustafsson, Mr. Alfred Ossian	male	20 - 29	20	0	0	7534	9.8458	10		Southampton		Waukegan, Chicago, IL
+3	no	Gustafsson, Mr. Anders Vilhelm	male	30 - 39	37	2	0	3101276	7.9250	10		Southampton		Ruotsinphytaa, Finland New York, NY
+3	no	Gustafsson, Mr. Johan Birger	male	20 - 29	28	2	0	3101277	7.9250	10		Southampton		Ruotsinphytaa, Finland New York, NY
+3	no	Gustafsson, Mr. Karl Gideon	male	10 - 19	19	0	0	347069	7.7750	10		Southampton		Myren, Sweden New York, NY
+3	no	Haas, Miss. Aloisia	female	20 - 29	24	0	0	349236	8.8500	10		Southampton		
+3	no	Hagardon, Miss. Kate	female	10 - 19	17	0	0	AQ/3. 30631	7.7333	10		Queenstown		
+3	no	Hagland, Mr. Ingvald Olai Olsen	male	unknown		1	0	65303	19.9667	20		Southampton		
+3	no	Hagland, Mr. Konrad Mathias Reiersen	male	unknown		1	0	65304	19.9667	20		Southampton		
+3	no	Hakkarainen, Mr. Pekka Pietari	male	20 - 29	28	1	0	STON/O2. 3101279	15.8500	20		Southampton		
+3	yes	Hakkarainen, Mrs. Pekka Pietari (Elin Matilda Dolck)	female	20 - 29	24	1	0	STON/O2. 3101279	15.8500	20		Southampton	15	
+3	no	Hampe, Mr. Leon	male	20 - 29	20	0	0	345769	9.5000	10		Southampton		
+3	no	Hanna, Mr. Mansour	male	20 - 29	23.5	0	0	2693	7.2292	10		Cherbourg		
+3	no	Hansen, Mr. Claus Peter	male	40 - 49	41	2	0	350026	14.1083	10		Southampton		
+3	no	Hansen, Mr. Henrik Juul	male	20 - 29	26	1	0	350025	7.8542	10		Southampton		
+3	no	Hansen, Mr. Henry Damsgaard	male	20 - 29	21	0	0	350029	7.8542	10		Southampton		
+3	yes	Hansen, Mrs. Claus Peter (Jennie L Howard)	female	40 - 49	45	1	0	350026	14.1083	10		Southampton	11	
+3	no	Harknett, Miss. Alice Phoebe	female	unknown		0	0	W./C. 6609	7.5500	10		Southampton		
+3	no	Harmer, Mr. Abraham (David Lishin)	male	20 - 29	25	0	0	374887	7.2500	10		Southampton	B	
+3	no	Hart, Mr. Henry	male	unknown		0	0	394140	6.8583	10		Queenstown		
+3	no	Hassan, Mr. Houssein G N	male	10 - 19	11	0	0	2699	18.7875	20		Cherbourg		
+3	yes	Healy, Miss. Hanora "Nora"	female	unknown		0	0	370375	7.7500	10		Queenstown	16	
+3	yes	Hedman, Mr. Oskar Arvid	male	20 - 29	27	0	0	347089	6.9750	10		Southampton	15	
+3	yes	Hee, Mr. Ling	male	unknown		0	0	1601	56.4958	60		Southampton	C	
+3	no	Hegarty, Miss. Hanora "Nora"	female	10 - 19	18	0	0	365226	6.7500	10		Queenstown		
+3	yes	Heikkinen, Miss. Laina	female	20 - 29	26	0	0	STON/O2. 3101282	7.9250	10		Southampton		
+3	no	Heininen, Miss. Wendla Maria	female	20 - 29	23	0	0	STON/O2. 3101290	7.9250	10		Southampton		
+3	yes	Hellstrom, Miss. Hilda Maria	female	20 - 29	22	0	0	7548	8.9625	10		Southampton	C	
+3	no	Hendekovic, Mr. Ignjac	male	20 - 29	28	0	0	349243	7.8958	10		Southampton		
+3	no	Henriksson, Miss. Jenny Lovisa	female	20 - 29	28	0	0	347086	7.7750	10		Southampton		
+3	no	Henry, Miss. Delia	female	unknown		0	0	382649	7.7500	10		Queenstown		
+3	yes	Hirvonen, Miss. Hildur E	female	0 - 9	2	0	1	3101298	12.2875	10		Southampton	15	
+3	yes	Hirvonen, Mrs. Alexander (Helga E Lindqvist)	female	20 - 29	22	1	1	3101298	12.2875	10		Southampton	15	
+3	no	Holm, Mr. John Fredrik Alexander	male	40 - 49	43	0	0	C 7075	6.4500	10		Southampton		
+3	no	Holthen, Mr. Johan Martin	male	20 - 29	28	0	0	C 4001	22.5250	20		Southampton		
+3	yes	Honkanen, Miss. Eliina	female	20 - 29	27	0	0	STON/O2. 3101283	7.9250	10		Southampton		
+3	no	Horgan, Mr. John	male	unknown		0	0	370377	7.7500	10		Queenstown		
+3	yes	Howard, Miss. May Elizabeth	female	unknown		0	0	A. 2. 39186	8.0500	10		Southampton	C	
+3	no	Humblen, Mr. Adolf Mathias Nicolai Olsen	male	40 - 49	42	0	0	348121	7.6500	10	F G63	Southampton		
+3	yes	Hyman, Mr. Abraham	male	unknown		0	0	3470	7.8875	10		Southampton	C	
+3	no	Ibrahim Shawah, Mr. Yousseff	male	30 - 39	30	0	0	2685	7.2292	10		Cherbourg		
+3	no	Ilieff, Mr. Ylio	male	unknown		0	0	349220	7.8958	10		Southampton		
+3	no	Ilmakangas, Miss. Ida Livija	female	20 - 29	27	1	0	STON/O2. 3101270	7.9250	10		Southampton		
+3	no	Ilmakangas, Miss. Pieta Sofia	female	20 - 29	25	1	0	STON/O2. 3101271	7.9250	10		Southampton		
+3	no	Ivanoff, Mr. Kanio	male	unknown		0	0	349201	7.8958	10		Southampton		
+3	yes	Jalsevac, Mr. Ivan	male	20 - 29	29	0	0	349240	7.8958	10		Cherbourg	15	
+3	yes	Jansson, Mr. Carl Olof	male	20 - 29	21	0	0	350034	7.7958	10		Southampton	A	
+3	no	Jardin, Mr. Jose Neto	male	unknown		0	0	SOTON/O.Q. 3101305	7.0500	10		Southampton		
+3	no	Jensen, Mr. Hans Peder	male	20 - 29	20	0	0	350050	7.8542	10		Southampton		
+3	no	Jensen, Mr. Niels Peder	male	40 - 49	48	0	0	350047	7.8542	10		Southampton		
+3	no	Jensen, Mr. Svend Lauritz	male	10 - 19	17	1	0	350048	7.0542	10		Southampton		
+3	yes	Jermyn, Miss. Annie	female	unknown		0	0	14313	7.7500	10		Queenstown	D	
+3	yes	Johannesen-Bratthammer, Mr. Bernt	male	unknown		0	0	65306	8.1125	10		Southampton	13	
+3	no	Johanson, Mr. Jakob Alfred	male	30 - 39	34	0	0	3101264	6.4958	10		Southampton		
+3	yes	Johansson Palmquist, Mr. Oskar Leander	male	20 - 29	26	0	0	347070	7.7750	10		Southampton	15	
+3	no	Johansson, Mr. Erik	male	20 - 29	22	0	0	350052	7.7958	10		Southampton		
+3	no	Johansson, Mr. Gustaf Joel	male	30 - 39	33	0	0	7540	8.6542	10		Southampton		
+3	no	Johansson, Mr. Karl Johan	male	30 - 39	31	0	0	347063	7.7750	10		Southampton		
+3	no	Johansson, Mr. Nils	male	20 - 29	29	0	0	347467	7.8542	10		Southampton		
+3	yes	Johnson, Master. Harold Theodor	male	0 - 9	4	1	1	347742	11.1333	10		Southampton	15	
+3	yes	Johnson, Miss. Eleanor Ileen	female	0 - 9	1	1	1	347742	11.1333	10		Southampton	15	
+3	no	Johnson, Mr. Alfred	male	40 - 49	49	0	0	LINE	0.0000	0		Southampton		
+3	no	Johnson, Mr. Malkolm Joackim	male	30 - 39	33	0	0	347062	7.7750	10		Southampton		
+3	no	Johnson, Mr. William Cahoone Jr	male	10 - 19	19	0	0	LINE	0.0000	0		Southampton		
+3	yes	Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)	female	20 - 29	27	0	2	347742	11.1333	10		Southampton	15	
+3	no	Johnston, Master. William Arthur "Willie"	male	unknown		1	2	W./C. 6607	23.4500	20		Southampton		
+3	no	Johnston, Miss. Catherine Helen "Carrie"	female	unknown		1	2	W./C. 6607	23.4500	20		Southampton		
+3	no	Johnston, Mr. Andrew G	male	unknown		1	2	W./C. 6607	23.4500	20		Southampton		
+3	no	Johnston, Mrs. Andrew G (Elizabeth "Lily" Watson)	female	unknown		1	2	W./C. 6607	23.4500	20		Southampton		
+3	no	Jonkoff, Mr. Lalio	male	20 - 29	23	0	0	349204	7.8958	10		Southampton		
+3	yes	Jonsson, Mr. Carl	male	30 - 39	32	0	0	350417	7.8542	10		Southampton	15	
+3	no	Jonsson, Mr. Nils Hilding	male	20 - 29	27	0	0	350408	7.8542	10		Southampton		
+3	no	Jussila, Miss. Katriina	female	20 - 29	20	1	0	4136	9.8250	10		Southampton		
+3	no	Jussila, Miss. Mari Aina	female	20 - 29	21	1	0	4137	9.8250	10		Southampton		
+3	yes	Jussila, Mr. Eiriik	male	30 - 39	32	0	0	STON/O 2. 3101286	7.9250	10		Southampton	15	
+3	no	Kallio, Mr. Nikolai Erland	male	10 - 19	17	0	0	STON/O 2. 3101274	7.1250	10		Southampton		
+3	no	Kalvik, Mr. Johannes Halvorsen	male	20 - 29	21	0	0	8475	8.4333	10		Southampton		
+3	no	Karaic, Mr. Milan	male	30 - 39	30	0	0	349246	7.8958	10		Southampton		
+3	yes	Karlsson, Mr. Einar Gervasius	male	20 - 29	21	0	0	350053	7.7958	10		Southampton	13	
+3	no	Karlsson, Mr. Julius Konrad Eugen	male	30 - 39	33	0	0	347465	7.8542	10		Southampton		
+3	no	Karlsson, Mr. Nils August	male	20 - 29	22	0	0	350060	7.5208	10		Southampton		
+3	yes	Karun, Miss. Manca	female	0 - 9	4	0	1	349256	13.4167	10		Cherbourg	15	
+3	yes	Karun, Mr. Franz	male	30 - 39	39	0	1	349256	13.4167	10		Cherbourg	15	
+3	no	Kassem, Mr. Fared	male	unknown		0	0	2700	7.2292	10		Cherbourg		
+3	no	Katavelas, Mr. Vassilios ("Catavelas Vassilios")	male	10 - 19	18.5	0	0	2682	7.2292	10		Cherbourg		
+3	no	Keane, Mr. Andrew "Andy"	male	unknown		0	0	12460	7.7500	10		Queenstown		
+3	no	Keefe, Mr. Arthur	male	unknown		0	0	323592	7.2500	10		Southampton	A	
+3	yes	Kelly, Miss. Anna Katherine "Annie Kate"	female	unknown		0	0	9234	7.7500	10		Queenstown	16	
+3	yes	Kelly, Miss. Mary	female	unknown		0	0	14312	7.7500	10		Queenstown	D	
+3	no	Kelly, Mr. James	male	30 - 39	34.5	0	0	330911	7.8292	10		Queenstown		
+3	no	Kelly, Mr. James	male	40 - 49	44	0	0	363592	8.0500	10		Southampton		
+3	yes	Kennedy, Mr. John	male	unknown		0	0	368783	7.7500	10		Queenstown		
+3	no	Khalil, Mr. Betros	male	unknown		1	0	2660	14.4542	10		Cherbourg		
+3	no	Khalil, Mrs. Betros (Zahie "Maria" Elias)	female	unknown		1	0	2660	14.4542	10		Cherbourg		
+3	no	Kiernan, Mr. John	male	unknown		1	0	367227	7.7500	10		Queenstown		
+3	no	Kiernan, Mr. Philip	male	unknown		1	0	367229	7.7500	10		Queenstown		
+3	no	Kilgannon, Mr. Thomas J	male	unknown		0	0	36865	7.7375	10		Queenstown		
+3	no	Kink, Miss. Maria	female	20 - 29	22	2	0	315152	8.6625	10		Southampton		
+3	no	Kink, Mr. Vincenz	male	20 - 29	26	2	0	315151	8.6625	10		Southampton		
+3	yes	Kink-Heilmann, Miss. Luise Gretchen	female	0 - 9	4	0	2	315153	22.0250	20		Southampton	2	
+3	yes	Kink-Heilmann, Mr. Anton	male	20 - 29	29	3	1	315153	22.0250	20		Southampton	2	
+3	yes	Kink-Heilmann, Mrs. Anton (Luise Heilmann)	female	20 - 29	26	1	1	315153	22.0250	20		Southampton	2	
+3	no	Klasen, Miss. Gertrud Emilia	female	0 - 9	1	1	1	350405	12.1833	10		Southampton		
+3	no	Klasen, Mr. Klas Albin	male	10 - 19	18	1	1	350404	7.8542	10		Southampton		
+3	no	Klasen, Mrs. (Hulda Kristina Eugenia Lofqvist)	female	30 - 39	36	0	2	350405	12.1833	10		Southampton		
+3	no	Kraeff, Mr. Theodor	male	unknown		0	0	349253	7.8958	10		Cherbourg		
+3	yes	Krekorian, Mr. Neshan	male	20 - 29	25	0	0	2654	7.2292	10	F E57	Cherbourg	10	
+3	no	Lahoud, Mr. Sarkis	male	unknown		0	0	2624	7.2250	10		Cherbourg		
+3	no	Laitinen, Miss. Kristina Sofia	female	30 - 39	37	0	0	4135	9.5875	10		Southampton		
+3	no	Laleff, Mr. Kristo	male	unknown		0	0	349217	7.8958	10		Southampton		
+3	yes	Lam, Mr. Ali	male	unknown		0	0	1601	56.4958	60		Southampton	C	
+3	no	Lam, Mr. Len	male	unknown		0	0	1601	56.4958	60		Southampton		
+3	yes	Landergren, Miss. Aurora Adelia	female	20 - 29	22	0	0	C 7077	7.2500	10		Southampton	13	
+3	no	Lane, Mr. Patrick	male	unknown		0	0	7935	7.7500	10		Queenstown		
+3	yes	Lang, Mr. Fang	male	20 - 29	26	0	0	1601	56.4958	60		Southampton	14	
+3	no	Larsson, Mr. August Viktor	male	20 - 29	29	0	0	7545	9.4833	10		Southampton		
+3	no	Larsson, Mr. Bengt Edvin	male	20 - 29	29	0	0	347067	7.7750	10		Southampton		
+3	no	Larsson-Rondberg, Mr. Edvard A	male	20 - 29	22	0	0	347065	7.7750	10		Southampton		
+3	yes	Leeni, Mr. Fahim ("Philip Zenni")	male	20 - 29	22	0	0	2620	7.2250	10		Cherbourg	6	
+3	no	Lefebre, Master. Henry Forbes	male	unknown		3	1	4133	25.4667	30		Southampton		
+3	no	Lefebre, Miss. Ida	female	unknown		3	1	4133	25.4667	30		Southampton		
+3	no	Lefebre, Miss. Jeannie	female	unknown		3	1	4133	25.4667	30		Southampton		
+3	no	Lefebre, Miss. Mathilde	female	unknown		3	1	4133	25.4667	30		Southampton		
+3	no	Lefebre, Mrs. Frank (Frances)	female	unknown		0	4	4133	25.4667	30		Southampton		
+3	no	Leinonen, Mr. Antti Gustaf	male	30 - 39	32	0	0	STON/O 2. 3101292	7.9250	10		Southampton		
+3	no	Lemberopolous, Mr. Peter L	male	30 - 39	34.5	0	0	2683	6.4375	10		Cherbourg		
+3	no	Lennon, Miss. Mary	female	unknown		1	0	370371	15.5000	20		Queenstown		
+3	no	Lennon, Mr. Denis	male	unknown		1	0	370371	15.5000	20		Queenstown		
+3	no	Leonard, Mr. Lionel	male	30 - 39	36	0	0	LINE	0.0000	0		Southampton		
+3	no	Lester, Mr. James	male	30 - 39	39	0	0	A/4 48871	24.1500	20		Southampton		
+3	no	Lievens, Mr. Rene Aime	male	20 - 29	24	0	0	345781	9.5000	10		Southampton		
+3	no	Lindahl, Miss. Agda Thorilda Viktoria	female	20 - 29	25	0	0	347071	7.7750	10		Southampton		
+3	no	Lindblom, Miss. Augusta Charlotta	female	40 - 49	45	0	0	347073	7.7500	10		Southampton		
+3	no	Lindell, Mr. Edvard Bengtsson	male	30 - 39	36	1	0	349910	15.5500	20		Southampton	A	
+3	no	Lindell, Mrs. Edvard Bengtsson (Elin Gerda Persson)	female	30 - 39	30	1	0	349910	15.5500	20		Southampton	A	
+3	yes	Lindqvist, Mr. Eino William	male	20 - 29	20	1	0	STON/O 2. 3101285	7.9250	10		Southampton	15	
+3	no	Linehan, Mr. Michael	male	unknown		0	0	330971	7.8792	10		Queenstown		
+3	no	Ling, Mr. Lee	male	20 - 29	28	0	0	1601	56.4958	60		Southampton		
+3	no	Lithman, Mr. Simon	male	unknown		0	0	S.O./P.P. 251	7.5500	10		Southampton		
+3	no	Lobb, Mr. William Arthur	male	30 - 39	30	1	0	A/5. 3336	16.1000	20		Southampton		
+3	no	Lobb, Mrs. William Arthur (Cordelia K Stanlick)	female	20 - 29	26	1	0	A/5. 3336	16.1000	20		Southampton		
+3	no	Lockyer, Mr. Edward	male	unknown		0	0	1222	7.8792	10		Southampton		
+3	no	Lovell, Mr. John Hall ("Henry")	male	20 - 29	20.5	0	0	A/5 21173	7.2500	10		Southampton		
+3	yes	Lulic, Mr. Nikola	male	20 - 29	27	0	0	315098	8.6625	10		Southampton	15	
+3	no	Lundahl, Mr. Johan Svensson	male	50 - 59	51	0	0	347743	7.0542	10		Southampton		
+3	yes	Lundin, Miss. Olga Elida	female	20 - 29	23	0	0	347469	7.8542	10		Southampton	10	
+3	yes	Lundstrom, Mr. Thure Edvin	male	30 - 39	32	0	0	350403	7.5792	10		Southampton	15	
+3	no	Lyntakoff, Mr. Stanko	male	unknown		0	0	349235	7.8958	10		Southampton		
+3	no	MacKay, Mr. George William	male	unknown		0	0	C.A. 42795	7.5500	10		Southampton		
+3	yes	Madigan, Miss. Margaret "Maggie"	female	unknown		0	0	370370	7.7500	10		Queenstown	15	
+3	yes	Madsen, Mr. Fridtjof Arne	male	20 - 29	24	0	0	C 17369	7.1417	10		Southampton	13	
+3	no	Maenpaa, Mr. Matti Alexanteri	male	20 - 29	22	0	0	STON/O 2. 3101275	7.1250	10		Southampton		
+3	no	Mahon, Miss. Bridget Delia	female	unknown		0	0	330924	7.8792	10		Queenstown		
+3	no	Mahon, Mr. John	male	unknown		0	0	AQ/4 3130	7.7500	10		Queenstown		
+3	no	Maisner, Mr. Simon	male	unknown		0	0	A/S 2816	8.0500	10		Southampton		
+3	no	Makinen, Mr. Kalle Edvard	male	20 - 29	29	0	0	STON/O 2. 3101268	7.9250	10		Southampton		
+3	yes	Mamee, Mr. Hanna	male	unknown		0	0	2677	7.2292	10		Cherbourg	15	
+3	no	Mangan, Miss. Mary	female	30 - 39	30.5	0	0	364850	7.7500	10		Queenstown		
+3	yes	Mannion, Miss. Margareth	female	unknown		0	0	36866	7.7375	10		Queenstown	16	
+3	no	Mardirosian, Mr. Sarkis	male	unknown		0	0	2655	7.2292	10	F E46	Cherbourg		
+3	no	Markoff, Mr. Marin	male	30 - 39	35	0	0	349213	7.8958	10		Cherbourg		
+3	no	Markun, Mr. Johann	male	30 - 39	33	0	0	349257	7.8958	10		Southampton		
+3	yes	Masselmani, Mrs. Fatima	female	unknown		0	0	2649	7.2250	10		Cherbourg	C	
+3	no	Matinoff, Mr. Nicola	male	unknown		0	0	349255	7.8958	10		Cherbourg		
+3	yes	McCarthy, Miss. Catherine "Katie"	female	unknown		0	0	383123	7.7500	10		Queenstown	15 16	
+3	yes	McCormack, Mr. Thomas Joseph	male	unknown		0	0	367228	7.7500	10		Queenstown		
+3	yes	McCoy, Miss. Agnes	female	unknown		2	0	367226	23.2500	20		Queenstown	16	
+3	yes	McCoy, Miss. Alicia	female	unknown		2	0	367226	23.2500	20		Queenstown	16	
+3	yes	McCoy, Mr. Bernard	male	unknown		2	0	367226	23.2500	20		Queenstown	16	
+3	yes	McDermott, Miss. Brigdet Delia	female	unknown		0	0	330932	7.7875	10		Queenstown	13	
+3	no	McEvoy, Mr. Michael	male	unknown		0	0	36568	15.5000	20		Queenstown		
+3	yes	McGovern, Miss. Mary	female	unknown		0	0	330931	7.8792	10		Queenstown	13	
+3	yes	McGowan, Miss. Anna "Annie"	female	10 - 19	15	0	0	330923	8.0292	10		Queenstown		
+3	no	McGowan, Miss. Katherine	female	30 - 39	35	0	0	9232	7.7500	10		Queenstown		
+3	no	McMahon, Mr. Martin	male	unknown		0	0	370372	7.7500	10		Queenstown		
+3	no	McNamee, Mr. Neal	male	20 - 29	24	1	0	376566	16.1000	20		Southampton		
+3	no	McNamee, Mrs. Neal (Eileen O'Leary)	female	10 - 19	19	1	0	376566	16.1000	20		Southampton		
+3	no	McNeill, Miss. Bridget	female	unknown		0	0	370368	7.7500	10		Queenstown		
+3	no	Meanwell, Miss. (Marion Ogden)	female	unknown		0	0	SOTON/O.Q. 392087	8.0500	10		Southampton		
+3	no	Meek, Mrs. Thomas (Annie Louise Rowley)	female	unknown		0	0	343095	8.0500	10		Southampton		
+3	no	Meo, Mr. Alfonzo	male	50 - 59	55.5	0	0	A.5. 11206	8.0500	10		Southampton		
+3	no	Mernagh, Mr. Robert	male	unknown		0	0	368703	7.7500	10		Queenstown		
+3	yes	Midtsjo, Mr. Karl Albert	male	20 - 29	21	0	0	345501	7.7750	10		Southampton	15	
+3	no	Miles, Mr. Frank	male	unknown		0	0	359306	8.0500	10		Southampton		
+3	no	Mineff, Mr. Ivan	male	20 - 29	24	0	0	349233	7.8958	10		Southampton		
+3	no	Minkoff, Mr. Lazar	male	20 - 29	21	0	0	349211	7.8958	10		Southampton		
+3	no	Mionoff, Mr. Stoytcho	male	20 - 29	28	0	0	349207	7.8958	10		Southampton		
+3	no	Mitkoff, Mr. Mito	male	unknown		0	0	349221	7.8958	10		Southampton		
+3	yes	Mockler, Miss. Helen Mary "Ellie"	female	unknown		0	0	330980	7.8792	10		Queenstown	16	
+3	no	Moen, Mr. Sigurd Hansen	male	20 - 29	25	0	0	348123	7.6500	10	F G73	Southampton		
+3	yes	Moor, Master. Meier	male	0 - 9	6	0	1	392096	12.4750	10	E121	Southampton	14	
+3	yes	Moor, Mrs. (Beila)	female	20 - 29	27	0	1	392096	12.4750	10	E121	Southampton	14	
+3	no	Moore, Mr. Leonard Charles	male	unknown		0	0	A4. 54510	8.0500	10		Southampton		
+3	yes	Moran, Miss. Bertha	female	unknown		1	0	371110	24.1500	20		Queenstown	16	
+3	no	Moran, Mr. Daniel J	male	unknown		1	0	371110	24.1500	20		Queenstown		
+3	no	Moran, Mr. James	male	unknown		0	0	330877	8.4583	10		Queenstown		
+3	no	Morley, Mr. William	male	30 - 39	34	0	0	364506	8.0500	10		Southampton		
+3	no	Morrow, Mr. Thomas Rowan	male	unknown		0	0	372622	7.7500	10		Queenstown		
+3	yes	Moss, Mr. Albert Johan	male	unknown		0	0	312991	7.7750	10		Southampton	B	
+3	yes	Moubarek, Master. Gerios	male	unknown		1	1	2661	15.2458	20		Cherbourg	C	
+3	yes	Moubarek, Master. Halim Gonios ("William George")	male	unknown		1	1	2661	15.2458	20		Cherbourg	C	
+3	yes	Moubarek, Mrs. George (Omine "Amenia" Alexander)	female	unknown		0	2	2661	15.2458	20		Cherbourg	C	
+3	yes	Moussa, Mrs. (Mantoura Boulos)	female	unknown		0	0	2626	7.2292	10		Cherbourg		
+3	no	Moutal, Mr. Rahamin Haim	male	unknown		0	0	374746	8.0500	10		Southampton		
+3	yes	Mullens, Miss. Katherine "Katie"	female	unknown		0	0	35852	7.7333	10		Queenstown	16	
+3	yes	Mulvihill, Miss. Bertha E	female	20 - 29	24	0	0	382653	7.7500	10		Queenstown	15	
+3	no	Murdlin, Mr. Joseph	male	unknown		0	0	A./5. 3235	8.0500	10		Southampton		
+3	yes	Murphy, Miss. Katherine "Kate"	female	unknown		1	0	367230	15.5000	20		Queenstown	16	
+3	yes	Murphy, Miss. Margaret Jane	female	unknown		1	0	367230	15.5000	20		Queenstown	16	
+3	yes	Murphy, Miss. Nora	female	unknown		0	0	36568	15.5000	20		Queenstown	16	
+3	no	Myhrman, Mr. Pehr Fabian Oliver Malkolm	male	10 - 19	18	0	0	347078	7.7500	10		Southampton		
+3	no	Naidenoff, Mr. Penko	male	20 - 29	22	0	0	349206	7.8958	10		Southampton		
+3	yes	Najib, Miss. Adele Kiamie "Jane"	female	10 - 19	15	0	0	2667	7.2250	10		Cherbourg	C	
+3	yes	Nakid, Miss. Maria ("Mary")	female	0 - 9	1	0	2	2653	15.7417	20		Cherbourg	C	
+3	yes	Nakid, Mr. Sahid	male	20 - 29	20	1	1	2653	15.7417	20		Cherbourg	C	
+3	yes	Nakid, Mrs. Said (Waika "Mary" Mowad)	female	10 - 19	19	1	1	2653	15.7417	20		Cherbourg	C	
+3	no	Nancarrow, Mr. William Henry	male	30 - 39	33	0	0	A./5. 3338	8.0500	10		Southampton		
+3	no	Nankoff, Mr. Minko	male	unknown		0	0	349218	7.8958	10		Southampton		
+3	no	Nasr, Mr. Mustafa	male	unknown		0	0	2652	7.2292	10		Cherbourg		
+3	no	Naughton, Miss. Hannah	female	unknown		0	0	365237	7.7500	10		Queenstown		
+3	no	Nenkoff, Mr. Christo	male	unknown		0	0	349234	7.8958	10		Southampton		
+3	yes	Nicola-Yarred, Master. Elias	male	10 - 19	12	1	0	2651	11.2417	10		Cherbourg	C	
+3	yes	Nicola-Yarred, Miss. Jamila	female	10 - 19	14	1	0	2651	11.2417	10		Cherbourg	C	
+3	no	Nieminen, Miss. Manta Josefina	female	20 - 29	29	0	0	3101297	7.9250	10		Southampton		
+3	no	Niklasson, Mr. Samuel	male	20 - 29	28	0	0	363611	8.0500	10		Southampton		
+3	yes	Nilsson, Miss. Berta Olivia	female	10 - 19	18	0	0	347066	7.7750	10		Southampton	D	
+3	yes	Nilsson, Miss. Helmina Josefina	female	20 - 29	26	0	0	347470	7.8542	10		Southampton	13	
+3	no	Nilsson, Mr. August Ferdinand	male	20 - 29	21	0	0	350410	7.8542	10		Southampton		
+3	no	Nirva, Mr. Iisakki Antino Aijo	male	40 - 49	41	0	0	SOTON/O2 3101272	7.1250	10		Southampton		Finland Sudbury, ON
+3	yes	Niskanen, Mr. Juha	male	30 - 39	39	0	0	STON/O 2. 3101289	7.9250	10		Southampton	9	
+3	no	Nosworthy, Mr. Richard Cater	male	20 - 29	21	0	0	A/4. 39886	7.8000	10		Southampton		
+3	no	Novel, Mr. Mansouer	male	20 - 29	28.5	0	0	2697	7.2292	10		Cherbourg		
+3	yes	Nysten, Miss. Anna Sofia	female	20 - 29	22	0	0	347081	7.7500	10		Southampton	13	
+3	no	Nysveen, Mr. Johan Hansen	male	60 - 69	61	0	0	345364	6.2375	10		Southampton		
+3	no	O'Brien, Mr. Thomas	male	unknown		1	0	370365	15.5000	20		Queenstown		
+3	no	O'Brien, Mr. Timothy	male	unknown		0	0	330979	7.8292	10		Queenstown		
+3	yes	O'Brien, Mrs. Thomas (Johanna "Hannah" Godfrey)	female	unknown		1	0	370365	15.5000	20		Queenstown		
+3	no	O'Connell, Mr. Patrick D	male	unknown		0	0	334912	7.7333	10		Queenstown		
+3	no	O'Connor, Mr. Maurice	male	unknown		0	0	371060	7.7500	10		Queenstown		
+3	no	O'Connor, Mr. Patrick	male	unknown		0	0	366713	7.7500	10		Queenstown		
+3	no	Odahl, Mr. Nils Martin	male	20 - 29	23	0	0	7267	9.2250	10		Southampton		
+3	no	O'Donoghue, Ms. Bridget	female	unknown		0	0	364856	7.7500	10		Queenstown		
+3	yes	O'Driscoll, Miss. Bridget	female	unknown		0	0	14311	7.7500	10		Queenstown	D	
+3	yes	O'Dwyer, Miss. Ellen "Nellie"	female	unknown		0	0	330959	7.8792	10		Queenstown		
+3	yes	Ohman, Miss. Velin	female	20 - 29	22	0	0	347085	7.7750	10		Southampton	C	
+3	yes	O'Keefe, Mr. Patrick	male	unknown		0	0	368402	7.7500	10		Queenstown	B	
+3	yes	O'Leary, Miss. Hanora "Norah"	female	unknown		0	0	330919	7.8292	10		Queenstown	13	
+3	yes	Olsen, Master. Artur Karl	male	0 - 9	9	0	1	C 17368	3.1708	0		Southampton	13	
+3	no	Olsen, Mr. Henry Margido	male	20 - 29	28	0	0	C 4001	22.5250	20		Southampton		
+3	no	Olsen, Mr. Karl Siegwart Andreas	male	40 - 49	42	0	1	4579	8.4042	10		Southampton		
+3	no	Olsen, Mr. Ole Martin	male	unknown		0	0	Fa 265302	7.3125	10		Southampton		
+3	no	Olsson, Miss. Elina	female	30 - 39	31	0	0	350407	7.8542	10		Southampton		
+3	no	Olsson, Mr. Nils Johan Goransson	male	20 - 29	28	0	0	347464	7.8542	10		Southampton		
+3	yes	Olsson, Mr. Oscar Wilhelm	male	30 - 39	32	0	0	347079	7.7750	10		Southampton	A	
+3	no	Olsvigen, Mr. Thor Anderson	male	20 - 29	20	0	0	6563	9.2250	10		Southampton		Oslo, Norway Cameron, WI
+3	no	Oreskovic, Miss. Jelka	female	20 - 29	23	0	0	315085	8.6625	10		Southampton		
+3	no	Oreskovic, Miss. Marija	female	20 - 29	20	0	0	315096	8.6625	10		Southampton		
+3	no	Oreskovic, Mr. Luka	male	20 - 29	20	0	0	315094	8.6625	10		Southampton		
+3	no	Osen, Mr. Olaf Elon	male	10 - 19	16	0	0	7534	9.2167	10		Southampton		
+3	yes	Osman, Mrs. Mara	female	30 - 39	31	0	0	349244	8.6833	10		Southampton		
+3	no	O'Sullivan, Miss. Bridget Mary	female	unknown		0	0	330909	7.6292	10		Queenstown		
+3	no	Palsson, Master. Gosta Leonard	male	0 - 9	2	3	1	349909	21.0750	20		Southampton		
+3	no	Palsson, Master. Paul Folke	male	0 - 9	6	3	1	349909	21.0750	20		Southampton		
+3	no	Palsson, Miss. Stina Viola	female	0 - 9	3	3	1	349909	21.0750	20		Southampton		
+3	no	Palsson, Miss. Torborg Danira	female	0 - 9	8	3	1	349909	21.0750	20		Southampton		
+3	no	Palsson, Mrs. Nils (Alma Cornelia Berglund)	female	20 - 29	29	0	4	349909	21.0750	20		Southampton		
+3	no	Panula, Master. Eino Viljami	male	0 - 9	1	4	1	3101295	39.6875	40		Southampton		
+3	no	Panula, Master. Juha Niilo	male	0 - 9	7	4	1	3101295	39.6875	40		Southampton		
+3	no	Panula, Master. Urho Abraham	male	0 - 9	2	4	1	3101295	39.6875	40		Southampton		
+3	no	Panula, Mr. Ernesti Arvid	male	10 - 19	16	4	1	3101295	39.6875	40		Southampton		
+3	no	Panula, Mr. Jaako Arnold	male	10 - 19	14	4	1	3101295	39.6875	40		Southampton		
+3	no	Panula, Mrs. Juha (Maria Emilia Ojala)	female	40 - 49	41	0	5	3101295	39.6875	40		Southampton		
+3	no	Pasic, Mr. Jakob	male	20 - 29	21	0	0	315097	8.6625	10		Southampton		
+3	no	Patchett, Mr. George	male	10 - 19	19	0	0	358585	14.5000	10		Southampton		
+3	no	Paulner, Mr. Uscher	male	unknown		0	0	3411	8.7125	10		Cherbourg		
+3	no	Pavlovic, Mr. Stefo	male	30 - 39	32	0	0	349242	7.8958	10		Southampton		
+3	no	Peacock, Master. Alfred Edward	male	0 - 9	0.75	1	1	SOTON/O.Q. 3101315	13.7750	10		Southampton		
+3	no	Peacock, Miss. Treasteall	female	0 - 9	3	1	1	SOTON/O.Q. 3101315	13.7750	10		Southampton		
+3	no	Peacock, Mrs. Benjamin (Edith Nile)	female	20 - 29	26	0	2	SOTON/O.Q. 3101315	13.7750	10		Southampton		
+3	no	Pearce, Mr. Ernest	male	unknown		0	0	343271	7.0000	10		Southampton		
+3	no	Pedersen, Mr. Olaf	male	unknown		0	0	345498	7.7750	10		Southampton		
+3	no	Peduzzi, Mr. Joseph	male	unknown		0	0	A/5 2817	8.0500	10		Southampton		
+3	no	Pekoniemi, Mr. Edvard	male	20 - 29	21	0	0	STON/O 2. 3101294	7.9250	10		Southampton		
+3	no	Peltomaki, Mr. Nikolai Johannes	male	20 - 29	25	0	0	STON/O 2. 3101291	7.9250	10		Southampton		
+3	no	Perkin, Mr. John Henry	male	20 - 29	22	0	0	A/5 21174	7.2500	10		Southampton		
+3	yes	Persson, Mr. Ernst Ulrik	male	20 - 29	25	1	0	347083	7.7750	10		Southampton	15	
+3	yes	Peter, Master. Michael J	male	unknown		1	1	2668	22.3583	20		Cherbourg	C	
+3	yes	Peter, Miss. Anna	female	unknown		1	1	2668	22.3583	20	F E69	Cherbourg	D	
+3	yes	Peter, Mrs. Catherine (Catherine Rizk)	female	unknown		0	2	2668	22.3583	20		Cherbourg	D	
+3	no	Peters, Miss. Katie	female	unknown		0	0	330935	8.1375	10		Queenstown		
+3	no	Petersen, Mr. Marius	male	20 - 29	24	0	0	342441	8.0500	10		Southampton		
+3	no	Petranec, Miss. Matilda	female	20 - 29	28	0	0	349245	7.8958	10		Southampton		
+3	no	Petroff, Mr. Nedelio	male	10 - 19	19	0	0	349212	7.8958	10		Southampton		
+3	no	Petroff, Mr. Pastcho ("Pentcho")	male	unknown		0	0	349215	7.8958	10		Southampton		
+3	no	Petterson, Mr. Johan Emil	male	20 - 29	25	1	0	347076	7.7750	10		Southampton		
+3	no	Pettersson, Miss. Ellen Natalia	female	10 - 19	18	0	0	347087	7.7750	10		Southampton		
+3	yes	Pickard, Mr. Berk (Berk Trembisky)	male	30 - 39	32	0	0	SOTON/O.Q. 392078	8.0500	10	E10	Southampton	9	
+3	no	Plotcharsky, Mr. Vasil	male	unknown		0	0	349227	7.8958	10		Southampton		
+3	no	Pokrnic, Mr. Mate	male	10 - 19	17	0	0	315095	8.6625	10		Southampton		
+3	no	Pokrnic, Mr. Tome	male	20 - 29	24	0	0	315092	8.6625	10		Southampton		
+3	no	Radeff, Mr. Alexander	male	unknown		0	0	349223	7.8958	10		Southampton		
+3	no	Rasmussen, Mrs. (Lena Jacobsen Solvang)	female	unknown		0	0	65305	8.1125	10		Southampton		
+3	no	Razi, Mr. Raihed	male	unknown		0	0	2629	7.2292	10		Cherbourg		
+3	no	Reed, Mr. James George	male	unknown		0	0	362316	7.2500	10		Southampton		
+3	no	Rekic, Mr. Tido	male	30 - 39	38	0	0	349249	7.8958	10		Southampton		
+3	no	Reynolds, Mr. Harold J	male	20 - 29	21	0	0	342684	8.0500	10		Southampton		
+3	no	Rice, Master. Albert	male	10 - 19	10	4	1	382652	29.1250	30		Queenstown		
+3	no	Rice, Master. Arthur	male	0 - 9	4	4	1	382652	29.1250	30		Queenstown		
+3	no	Rice, Master. Eric	male	0 - 9	7	4	1	382652	29.1250	30		Queenstown		
+3	no	Rice, Master. Eugene	male	0 - 9	2	4	1	382652	29.1250	30		Queenstown		
+3	no	Rice, Master. George Hugh	male	0 - 9	8	4	1	382652	29.1250	30		Queenstown		
+3	no	Rice, Mrs. William (Margaret Norton)	female	30 - 39	39	0	5	382652	29.1250	30		Queenstown		
+3	no	Riihivouri, Miss. Susanna Juhantytar "Sanni"	female	20 - 29	22	0	0	3101295	39.6875	40		Southampton		
+3	no	Rintamaki, Mr. Matti	male	30 - 39	35	0	0	STON/O 2. 3101273	7.1250	10		Southampton		
+3	yes	Riordan, Miss. Johanna "Hannah"	female	unknown		0	0	334915	7.7208	10		Queenstown	13	
+3	no	Risien, Mr. Samuel Beard	male	unknown		0	0	364498	14.5000	10		Southampton		
+3	no	Risien, Mrs. Samuel (Emma)	female	unknown		0	0	364498	14.5000	10		Southampton		
+3	no	Robins, Mr. Alexander A	male	50 - 59	50	1	0	A/5. 3337	14.5000	10		Southampton		
+3	no	Robins, Mrs. Alexander A (Grace Charity Laury)	female	40 - 49	47	1	0	A/5. 3337	14.5000	10		Southampton		
+3	no	Rogers, Mr. William John	male	unknown		0	0	S.C./A.4. 23567	8.0500	10		Southampton		
+3	no	Rommetvedt, Mr. Knud Paust	male	unknown		0	0	312993	7.7750	10		Southampton		
+3	no	Rosblom, Miss. Salli Helena	female	0 - 9	2	1	1	370129	20.2125	20		Southampton		
+3	no	Rosblom, Mr. Viktor Richard	male	10 - 19	18	1	1	370129	20.2125	20		Southampton		
+3	no	Rosblom, Mrs. Viktor (Helena Wilhelmina)	female	40 - 49	41	0	2	370129	20.2125	20		Southampton		
+3	yes	Roth, Miss. Sarah A	female	unknown		0	0	342712	8.0500	10		Southampton	C	
+3	no	Rouse, Mr. Richard Henry	male	50 - 59	50	0	0	A/5 3594	8.0500	10		Southampton		
+3	no	Rush, Mr. Alfred George John	male	10 - 19	16	0	0	A/4. 20589	8.0500	10		Southampton		
+3	yes	Ryan, Mr. Edward	male	unknown		0	0	383162	7.7500	10		Queenstown	14	
+3	no	Ryan, Mr. Patrick	male	unknown		0	0	371110	24.1500	20		Queenstown		
+3	no	Saad, Mr. Amin	male	unknown		0	0	2671	7.2292	10		Cherbourg		
+3	no	Saad, Mr. Khalil	male	20 - 29	25	0	0	2672	7.2250	10		Cherbourg		
+3	no	Saade, Mr. Jean Nassr	male	unknown		0	0	2676	7.2250	10		Cherbourg		
+3	no	Sadlier, Mr. Matthew	male	unknown		0	0	367655	7.7292	10		Queenstown		
+3	no	Sadowitz, Mr. Harry	male	unknown		0	0	LP 1588	7.5750	10		Southampton		
+3	no	Saether, Mr. Simon Sivertsen	male	30 - 39	38.5	0	0	SOTON/O.Q. 3101262	7.2500	10		Southampton		
+3	no	Sage, Master. Thomas Henry	male	unknown		8	2	CA. 2343	69.5500	70		Southampton		
+3	no	Sage, Master. William Henry	male	10 - 19	14.5	8	2	CA. 2343	69.5500	70		Southampton		
+3	no	Sage, Miss. Ada	female	unknown		8	2	CA. 2343	69.5500	70		Southampton		
+3	no	Sage, Miss. Constance Gladys	female	unknown		8	2	CA. 2343	69.5500	70		Southampton		
+3	no	Sage, Miss. Dorothy Edith "Dolly"	female	unknown		8	2	CA. 2343	69.5500	70		Southampton		
+3	no	Sage, Miss. Stella Anna	female	unknown		8	2	CA. 2343	69.5500	70		Southampton		
+3	no	Sage, Mr. Douglas Bullen	male	unknown		8	2	CA. 2343	69.5500	70		Southampton		
+3	no	Sage, Mr. Frederick	male	unknown		8	2	CA. 2343	69.5500	70		Southampton		
+3	no	Sage, Mr. George John Jr	male	unknown		8	2	CA. 2343	69.5500	70		Southampton		
+3	no	Sage, Mr. John George	male	unknown		1	9	CA. 2343	69.5500	70		Southampton		
+3	no	Sage, Mrs. John (Annie Bullen)	female	unknown		1	9	CA. 2343	69.5500	70		Southampton		
+3	no	Salander, Mr. Karl Johan	male	20 - 29	24	0	0	7266	9.3250	10		Southampton		
+3	yes	Salkjelsvik, Miss. Anna Kristine	female	20 - 29	21	0	0	343120	7.6500	10		Southampton	C	
+3	no	Salonen, Mr. Johan Werner	male	30 - 39	39	0	0	3101296	7.9250	10		Southampton		
+3	no	Samaan, Mr. Elias	male	unknown		2	0	2662	21.6792	20		Cherbourg		
+3	no	Samaan, Mr. Hanna	male	unknown		2	0	2662	21.6792	20		Cherbourg		
+3	no	Samaan, Mr. Youssef	male	unknown		2	0	2662	21.6792	20		Cherbourg		
+3	yes	Sandstrom, Miss. Beatrice Irene	female	0 - 9	1	1	1	PP 9549	16.7000	20	G6	Southampton	13	
+3	yes	Sandstrom, Mrs. Hjalmar (Agnes Charlotta Bengtsson)	female	20 - 29	24	0	2	PP 9549	16.7000	20	G6	Southampton	13	
+3	yes	Sandstrom, Miss. Marguerite Rut	female	0 - 9	4	1	1	PP 9549	16.7000	20	G6	Southampton	13	
+3	yes	Sap, Mr. Julius	male	20 - 29	25	0	0	345768	9.5000	10		Southampton	11	
+3	no	Saundercock, Mr. William Henry	male	20 - 29	20	0	0	A/5. 2151	8.0500	10		Southampton		
+3	no	Sawyer, Mr. Frederick Charles	male	20 - 29	24.5	0	0	342826	8.0500	10		Southampton		
+3	no	Scanlan, Mr. James	male	unknown		0	0	36209	7.7250	10		Queenstown		
+3	no	Sdycoff, Mr. Todor	male	unknown		0	0	349222	7.8958	10		Southampton		
+3	no	Shaughnessy, Mr. Patrick	male	unknown		0	0	370374	7.7500	10		Queenstown		
+3	yes	Sheerlinck, Mr. Jan Baptist	male	20 - 29	29	0	0	345779	9.5000	10		Southampton	11	
+3	no	Shellard, Mr. Frederick William	male	unknown		0	0	C.A. 6212	15.1000	20		Southampton		
+3	yes	Shine, Miss. Ellen Natalia	female	unknown		0	0	330968	7.7792	10		Queenstown		
+3	no	Shorney, Mr. Charles Joseph	male	unknown		0	0	374910	8.0500	10		Southampton		
+3	no	Simmons, Mr. John	male	unknown		0	0	SOTON/OQ 392082	8.0500	10		Southampton		
+3	no	Sirayanian, Mr. Orsen	male	20 - 29	22	0	0	2669	7.2292	10		Cherbourg		
+3	no	Sirota, Mr. Maurice	male	unknown		0	0	392092	8.0500	10		Southampton		
+3	no	Sivic, Mr. Husein	male	40 - 49	40	0	0	349251	7.8958	10		Southampton		
+3	no	Sivola, Mr. Antti Wilhelm	male	20 - 29	21	0	0	STON/O 2. 3101280	7.9250	10		Southampton		
+3	yes	Sjoblom, Miss. Anna Sofia	female	10 - 19	18	0	0	3101265	7.4958	10		Southampton	16	
+3	no	Skoog, Master. Harald	male	0 - 9	4	3	2	347088	27.9000	30		Southampton		
+3	no	Skoog, Master. Karl Thorsten	male	10 - 19	10	3	2	347088	27.9000	30		Southampton		
+3	no	Skoog, Miss. Mabel	female	0 - 9	9	3	2	347088	27.9000	30		Southampton		
+3	no	Skoog, Miss. Margit Elizabeth	female	0 - 9	2	3	2	347088	27.9000	30		Southampton		
+3	no	Skoog, Mr. Wilhelm	male	40 - 49	40	1	4	347088	27.9000	30		Southampton		
+3	no	Skoog, Mrs. William (Anna Bernhardina Karlsson)	female	40 - 49	45	1	4	347088	27.9000	30		Southampton		
+3	no	Slabenoff, Mr. Petco	male	unknown		0	0	349214	7.8958	10		Southampton		
+3	no	Slocovski, Mr. Selman Francis	male	unknown		0	0	SOTON/OQ 392086	8.0500	10		Southampton		
+3	no	Smiljanic, Mr. Mile	male	unknown		0	0	315037	8.6625	10		Southampton		
+3	no	Smith, Mr. Thomas	male	unknown		0	0	384461	7.7500	10		Queenstown		
+3	yes	Smyth, Miss. Julia	female	unknown		0	0	335432	7.7333	10		Queenstown	13	
+3	no	Soholt, Mr. Peter Andreas Lauritz Andersen	male	10 - 19	19	0	0	348124	7.6500	10	F G73	Southampton		
+3	no	Somerton, Mr. Francis William	male	30 - 39	30	0	0	A.5. 18509	8.0500	10		Southampton		
+3	no	Spector, Mr. Woolf	male	unknown		0	0	A.5. 3236	8.0500	10		Southampton		
+3	no	Spinner, Mr. Henry John	male	30 - 39	32	0	0	STON/OQ. 369943	8.0500	10		Southampton		
+3	no	Staneff, Mr. Ivan	male	unknown		0	0	349208	7.8958	10		Southampton		
+3	no	Stankovic, Mr. Ivan	male	30 - 39	33	0	0	349239	8.6625	10		Cherbourg		
+3	yes	Stanley, Miss. Amy Zillah Elsie	female	20 - 29	23	0	0	CA. 2314	7.5500	10		Southampton	C	
+3	no	Stanley, Mr. Edward Roland	male	20 - 29	21	0	0	A/4 45380	8.0500	10		Southampton		
+3	no	Storey, Mr. Thomas	male	60 - 69	60.5	0	0	3701				Southampton		
+3	no	Stoytcheff, Mr. Ilia	male	10 - 19	19	0	0	349205	7.8958			Southampton		
+3	no	Strandberg, Miss. Ida Sofia	female	20 - 29	22	0	0	7553	9.8375			Southampton		
+3	yes	Stranden, Mr. Juho	male	30 - 39	31	0	0	STON/O 2. 3101288	7.9250			Southampton	9	
+3	no	Strilic, Mr. Ivan	male	20 - 29	27	0	0	315083	8.6625			Southampton		
+3	no	Strom, Miss. Telma Matilda	female	0 - 9	2	0	1	347054	10.4625		G6	Southampton		
+3	no	Strom, Mrs. Wilhelm (Elna Matilda Persson)	female	20 - 29	29	1	1	347054	10.4625		G6	Southampton		
+3	yes	Sunderland, Mr. Victor Francis	male	10 - 19	16	0	0	SOTON/OQ 392089	8.0500			Southampton	B	
+3	yes	Sundman, Mr. Johan Julian	male	40 - 49	44	0	0	STON/O 2. 3101269	7.9250			Southampton	15	
+3	no	Sutehall, Mr. Henry Jr	male	20 - 29	25	0	0	SOTON/OQ 392076	7.0500			Southampton		
+3	no	Svensson, Mr. Johan	male	70 - 79	74	0	0	347060	7.7750			Southampton		
+3	yes	Svensson, Mr. Johan Cervin	male	10 - 19	14	0	0	7538	9.2250			Southampton	13	
+3	no	Svensson, Mr. Olof	male	20 - 29	24	0	0	350035	7.7958			Southampton		
+3	yes	Tenglin, Mr. Gunnar Isidor	male	20 - 29	25	0	0	350033	7.7958			Southampton	13 15	
+3	no	Theobald, Mr. Thomas Leonard	male	30 - 39	34	0	0	363294	8.0500			Southampton		
+3	yes	Thomas, Master. Assad Alexander	male	0 - 9	0.4167	0	1	2625	8.5167			Cherbourg	16	
+3	no	Thomas, Mr. Charles P	male	unknown		1	0	2621	6.4375			Cherbourg		
+3	no	Thomas, Mr. John	male	unknown		0	0	2681	6.4375			Cherbourg		
+3	no	Thomas, Mr. Tannous	male	unknown		0	0	2684	7.2250			Cherbourg		
+3	yes	Thomas, Mrs. Alexander (Thamine "Thelma")	female	10 - 19	16	1	1	2625	8.5167			Cherbourg	14	
+3	no	Thomson, Mr. Alexander Morrison	male	unknown		0	0	32302	8.0500			Southampton		
+3	no	Thorneycroft, Mr. Percival	male	unknown		1	0	376564	16.1000			Southampton		
+3	yes	Thorneycroft, Mrs. Percival (Florence Kate White)	female	unknown		1	0	376564	16.1000			Southampton	10	
+3	no	Tikkanen, Mr. Juho	male	30 - 39	32	0	0	STON/O 2. 3101293	7.9250			Southampton		
+3	no	Tobin, Mr. Roger	male	unknown		0	0	383121	7.7500		F38	Queenstown		
+3	no	Todoroff, Mr. Lalio	male	unknown		0	0	349216	7.8958			Southampton		
+3	no	Tomlin, Mr. Ernest Portage	male	30 - 39	30.5	0	0	364499	8.0500			Southampton		
+3	no	Torber, Mr. Ernst William	male	40 - 49	44	0	0	364511	8.0500			Southampton		
+3	no	Torfa, Mr. Assad	male	unknown		0	0	2673	7.2292			Cherbourg		
+3	yes	Tornquist, Mr. William Henry	male	20 - 29	25	0	0	LINE	0.0000			Southampton	15	
+3	no	Toufik, Mr. Nakli	male	unknown		0	0	2641	7.2292			Cherbourg		
+3	yes	Touma, Master. Georges Youssef	male	0 - 9	7	1	1	2650	15.2458			Cherbourg	C	
+3	yes	Touma, Miss. Maria Youssef	female	0 - 9	9	1	1	2650	15.2458			Cherbourg	C	
+3	yes	Touma, Mrs. Darwis (Hanne Youssef Razi)	female	20 - 29	29	0	2	2650	15.2458			Cherbourg	C	
+3	no	Turcin, Mr. Stjepan	male	30 - 39	36	0	0	349247	7.8958			Southampton		
+3	yes	Turja, Miss. Anna Sofia	female	10 - 19	18	0	0	4138	9.8417			Southampton	15	
+3	yes	Turkula, Mrs. (Hedwig)	female	60 - 69	63	0	0	4134	9.5875			Southampton	15	
+3	no	van Billiard, Master. James William	male	unknown		1	1	A/5. 851	14.5000			Southampton		
+3	no	van Billiard, Master. Walter John	male	10 - 19	11.5	1	1	A/5. 851	14.5000			Southampton		
+3	no	van Billiard, Mr. Austin Blyler	male	40 - 49	40.5	0	2	A/5. 851	14.5000			Southampton		
+3	no	Van Impe, Miss. Catharina	female	10 - 19	10	0	2	345773	24.1500			Southampton		
+3	no	Van Impe, Mr. Jean Baptiste	male	30 - 39	36	1	1	345773	24.1500			Southampton		
+3	no	Van Impe, Mrs. Jean Baptiste (Rosalie Paula Govaert)	female	30 - 39	30	1	1	345773	24.1500			Southampton		
+3	no	van Melkebeke, Mr. Philemon	male	unknown		0	0	345777	9.5000			Southampton		
+3	no	Vande Velde, Mr. Johannes Joseph	male	30 - 39	33	0	0	345780	9.5000			Southampton		
+3	no	Vande Walle, Mr. Nestor Cyriel	male	20 - 29	28	0	0	345770	9.5000			Southampton		
+3	no	Vanden Steen, Mr. Leo Peter	male	20 - 29	28	0	0	345783	9.5000			Southampton		
+3	no	Vander Cruyssen, Mr. Victor	male	40 - 49	47	0	0	345765	9.0000			Southampton		
+3	no	Vander Planke, Miss. Augusta Maria	female	10 - 19	18	2	0	345764	18.0000			Southampton		
+3	no	Vander Planke, Mr. Julius	male	30 - 39	31	3	0	345763	18.0000			Southampton		
+3	no	Vander Planke, Mr. Leo Edmondus	male	10 - 19	16	2	0	345764	18.0000			Southampton		
+3	no	Vander Planke, Mrs. Julius (Emelia Maria Vandemoortele)	female	30 - 39	31	1	0	345763	18.0000			Southampton		
+3	yes	Vartanian, Mr. David	male	20 - 29	22	0	0	2658	7.2250			Cherbourg	13 15	
+3	no	Vendel, Mr. Olof Edvin	male	20 - 29	20	0	0	350416	7.8542			Southampton		
+3	no	Vestrom, Miss. Hulda Amanda Adolfina	female	10 - 19	14	0	0	350406	7.8542			Southampton		
+3	no	Vovk, Mr. Janko	male	20 - 29	22	0	0	349252	7.8958			Southampton		
+3	no	Waelens, Mr. Achille	male	20 - 29	22	0	0	345767	9.0000			Southampton		Antwerp, Belgium / Stanton, OH
+3	no	Ware, Mr. Frederick	male	unknown		0	0	359309	8.0500			Southampton		
+3	no	Warren, Mr. Charles William	male	unknown		0	0	C.A. 49867	7.5500			Southampton		
+3	no	Webber, Mr. James	male	unknown		0	0	SOTON/OQ 3101316	8.0500			Southampton		
+3	no	Wenzel, Mr. Linhart	male	30 - 39	32.5	0	0	345775	9.5000			Southampton		
+3	yes	Whabee, Mrs. George Joseph (Shawneene Abi-Saab)	female	30 - 39	38	0	0	2688	7.2292			Cherbourg	C	
+3	no	Widegren, Mr. Carl/Charles Peter	male	50 - 59	51	0	0	347064	7.7500			Southampton		
+3	no	Wiklund, Mr. Jakob Alfred	male	10 - 19	18	1	0	3101267	6.4958			Southampton		
+3	no	Wiklund, Mr. Karl Johan	male	20 - 29	21	1	0	3101266	6.4958			Southampton		
+3	yes	Wilkes, Mrs. James (Ellen Needs)	female	40 - 49	47	1	0	363272	7.0000			Southampton		
+3	no	Willer, Mr. Aaron ("Abi Weller")	male	unknown		0	0	3410	8.7125			Southampton		
+3	no	Willey, Mr. Edward	male	unknown		0	0	S.O./P.P. 751	7.5500			Southampton		
+3	no	Williams, Mr. Howard Hugh "Harry"	male	unknown		0	0	A/5 2466	8.0500			Southampton		
+3	no	Williams, Mr. Leslie	male	20 - 29	28.5	0	0	54636	16.1000			Southampton		
+3	no	Windelov, Mr. Einar	male	20 - 29	21	0	0	SOTON/OQ 3101317	7.2500			Southampton		
+3	no	Wirz, Mr. Albert	male	20 - 29	27	0	0	315154	8.6625			Southampton		
+3	no	Wiseman, Mr. Phillippe	male	unknown		0	0	A/4. 34244	7.2500			Southampton		
+3	no	Wittevrongel, Mr. Camille	male	30 - 39	36	0	0	345771	9.5000			Southampton		
+3	no	Yasbeck, Mr. Antoni	male	20 - 29	27	1	0	2659	14.4542			Cherbourg	C	
+3	yes	Yasbeck, Mrs. Antoni (Selini Alexander)	female	10 - 19	15	1	0	2659	14.4542			Cherbourg		
+3	no	Youseff, Mr. Gerious	male	40 - 49	45.5	0	0	2628	7.2250			Cherbourg		
+3	no	Yousif, Mr. Wazli	male	unknown		0	0	2647	7.2250			Cherbourg		
+3	no	Yousseff, Mr. Gerious	male	unknown		0	0	2627	14.4583			Cherbourg		
+3	no	Zabour, Miss. Hileni	female	10 - 19	14.5	1	0	2665	14.4542			Cherbourg		
+3	no	Zabour, Miss. Thamine	female	unknown		1	0	2665	14.4542			Cherbourg		
+3	no	Zakarian, Mr. Mapriededer	male	20 - 29	26.5	0	0	2656	7.2250			Cherbourg		
+3	no	Zakarian, Mr. Ortin	male	20 - 29	27	0	0	2670	7.2250			Cherbourg		
+3	no	Zimmerman, Mr. Leo	male	20 - 29	29	0	0	315082	7.8750			Southampton		

@@ -1,0 +1,48 @@
+{
+  "name": "Raw",
+  "version": "1.2.0",
+  "authors": [
+    "DensityDesign Lab",
+    "Calibro"
+  ],
+  "description": "The missing link between spreadsheet and data visualization",
+  "main": "index.html",
+  "keywords": [
+    "Raw"
+  ],
+  "license": "Apache License 2.0",
+  "homepage": "rawgraphs.io",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.3.2",
+    "d3": "3.5.17",
+    "bootstrap": "~3.3.0",
+    "angular-route": "~1.3.2",
+    "angular-strap": "~2.1.3",
+    "angular-animate": "~1.3.2",
+    "jquery-ui": "1.10.4",
+    "angular-sanitize": "~1.3.2",
+    "angular-bootstrap-colorpicker": "latest",
+    "bootstrap-colorpicker": "latest",
+    "d3-plugins": "*",
+    "FileSaver": "*",
+    "angular-ui": "~0.4.0",
+    "zeroclipboard": "1.3.2",
+    "canvas-toBlob.js": "https://github.com/eligrey/canvas-toBlob.js.git",
+    "jqueryui-touch-punch": "*",
+    "codemirror": "latest",
+    "ng-file-upload": "~5.0.0",
+    "is_js": "~0.7.4",
+    "js-xlsx": "~0.8.0",
+    "d3-plugins-density": "latest"
+  },
+  "resolutions": {
+    "angular": "1.3.20"
+  }
+}

@@ -1,0 +1,497 @@
+Media	Year	Market Share
+8-track	1980-01	14.30
+8-track	1981-01	7.90
+8-track	1982-01	1.00
+8-track	1983-01	0.00
+8-track	1984-01	0.00
+8-track	1985-01	0.00
+8-track	1986-01	0.00
+8-track	1987-01	0.00
+8-track	1988-01	0.00
+8-track	1989-01	0.00
+8-track	1990-01	0.00
+8-track	1991-01	0.00
+8-track	1992-01	0.00
+8-track	1993-01	0.00
+8-track	1994-01	0.00
+8-track	1995-01	0.00
+8-track	1996-01	0.00
+8-track	1997-01	0.00
+8-track	1998-01	0.00
+8-track	1999-01	0.00
+8-track	2000-01	0.00
+8-track	2001-01	0.00
+8-track	2002-01	0.00
+8-track	2003-01	0.00
+8-track	2004-01	0.00
+8-track	2005-01	0.00
+8-track	2006-01	0.00
+8-track	2007-01	0.00
+8-track	2008-01	0.00
+8-track	2009-01	0.00
+8-track	2010-01	0.00
+Cassete	1980-01	19.10
+Cassete	1981-01	26.70
+Cassete	1982-01	38.20
+Cassete	1983-01	47.80
+Cassete	1984-01	55.00
+Cassete	1985-01	55.30
+Cassete	1986-01	53.90
+Cassete	1987-01	53.20
+Cassete	1988-01	54.10
+Cassete	1989-01	50.80
+Cassete	1990-01	46.00
+Cassete	1991-01	38.50
+Cassete	1992-01	34.50
+Cassete	1993-01	29.00
+Cassete	1994-01	24.70
+Cassete	1995-01	18.70
+Cassete	1996-01	15.20
+Cassete	1997-01	12.40
+Cassete	1998-01	7.30
+Cassete	1999-01	7.30
+Cassete	2000-01	4.40
+Cassete	2001-01	2.60
+Cassete	2002-01	1.70
+Cassete	2003-01	0.90
+Cassete	2004-01	0.20
+Cassete	2005-01	0.10
+Cassete	2006-01	0.00
+Cassete	2007-01	0.00
+Cassete	2008-01	0.00
+Cassete	2009-01	0.00
+Cassete	2010-01	0.00
+Cassete single	1980-01	0.00
+Cassete single	1981-01	0.00
+Cassete single	1982-01	0.00
+Cassete single	1983-01	0.00
+Cassete single	1984-01	0.00
+Cassete single	1985-01	0.00
+Cassete single	1986-01	0.00
+Cassete single	1987-01	0.30
+Cassete single	1988-01	0.90
+Cassete single	1989-01	3.00
+Cassete single	1990-01	3.40
+Cassete single	1991-01	2.90
+Cassete single	1992-01	3.30
+Cassete single	1993-01	3.00
+Cassete single	1994-01	2.30
+Cassete single	1995-01	1.90
+Cassete single	1996-01	1.50
+Cassete single	1997-01	1.10
+Cassete single	1998-01	0.30
+Cassete single	1999-01	0.30
+Cassete single	2000-01	0.00
+Cassete single	2001-01	0.00
+Cassete single	2002-01	0.00
+Cassete single	2003-01	0.00
+Cassete single	2004-01	0.00
+Cassete single	2005-01	0.00
+Cassete single	2006-01	0.00
+Cassete single	2007-01	0.00
+Cassete single	2008-01	0.00
+Cassete single	2009-01	0.00
+Cassete single	2010-01	0.00
+CD	1980-01	0.00
+CD	1981-01	0.00
+CD	1982-01	0.00
+CD	1983-01	0.50
+CD	1984-01	2.40
+CD	1985-01	8.90
+CD	1986-01	20.00
+CD	1987-01	28.50
+CD	1988-01	33.40
+CD	1989-01	39.30
+CD	1990-01	45.80
+CD	1991-01	55.50
+CD	1992-01	59.20
+CD	1993-01	64.80
+CD	1994-01	70.10
+CD	1995-01	76.10
+CD	1996-01	79.20
+CD	1997-01	81.10
+CD	1998-01	87.90
+CD	1999-01	87.90
+CD	2000-01	92.30
+CD	2001-01	94.00
+CD	2002-01	95.30
+CD	2003-01	94.70
+CD	2004-01	92.70
+CD	2005-01	85.60
+CD	2006-01	79.70
+CD	2007-01	70.00
+CD	2008-01	62.40
+CD	2009-01	55.60
+CD	2010-01	49.10
+CD single	1980-01	0.00
+CD single	1981-01	0.00
+CD single	1982-01	0.00
+CD single	1983-01	0.00
+CD single	1984-01	0.00
+CD single	1985-01	0.00
+CD single	1986-01	0.00
+CD single	1987-01	0.00
+CD single	1988-01	0.20
+CD single	1989-01	0.00
+CD single	1990-01	0.10
+CD single	1991-01	0.40
+CD single	1992-01	0.50
+CD single	1993-01	0.50
+CD single	1994-01	0.50
+CD single	1995-01	0.90
+CD single	1996-01	1.50
+CD single	1997-01	2.20
+CD single	1998-01	1.50
+CD single	1999-01	1.50
+CD single	2000-01	1.00
+CD single	2001-01	0.60
+CD single	2002-01	0.20
+CD single	2003-01	0.30
+CD single	2004-01	0.10
+CD single	2005-01	0.10
+CD single	2006-01	0.10
+CD single	2007-01	0.10
+CD single	2008-01	0.00
+CD single	2009-01	0.00
+CD single	2010-01	0.00
+Download Album	1980-01	0.00
+Download Album	1981-01	0.00
+Download Album	1982-01	0.00
+Download Album	1983-01	0.00
+Download Album	1984-01	0.00
+Download Album	1985-01	0.00
+Download Album	1986-01	0.00
+Download Album	1987-01	0.00
+Download Album	1988-01	0.00
+Download Album	1989-01	0.00
+Download Album	1990-01	0.00
+Download Album	1991-01	0.00
+Download Album	1992-01	0.00
+Download Album	1993-01	0.00
+Download Album	1994-01	0.00
+Download Album	1995-01	0.00
+Download Album	1996-01	0.00
+Download Album	1997-01	0.00
+Download Album	1998-01	0.00
+Download Album	1999-01	0.00
+Download Album	2000-01	0.00
+Download Album	2001-01	0.00
+Download Album	2002-01	0.00
+Download Album	2003-01	0.00
+Download Album	2004-01	0.40
+Download Album	2005-01	1.20
+Download Album	2006-01	2.50
+Download Album	2007-01	4.90
+Download Album	2008-01	7.90
+Download Album	2009-01	11.00
+Download Album	2010-01	14.80
+Download Music Video	1980-01	0.00
+Download Music Video	1981-01	0.00
+Download Music Video	1982-01	0.00
+Download Music Video	1983-01	0.00
+Download Music Video	1984-01	0.00
+Download Music Video	1985-01	0.00
+Download Music Video	1986-01	0.00
+Download Music Video	1987-01	0.00
+Download Music Video	1988-01	0.00
+Download Music Video	1989-01	0.00
+Download Music Video	1990-01	0.00
+Download Music Video	1991-01	0.00
+Download Music Video	1992-01	0.00
+Download Music Video	1993-01	0.00
+Download Music Video	1994-01	0.00
+Download Music Video	1995-01	0.00
+Download Music Video	1996-01	0.00
+Download Music Video	1997-01	0.00
+Download Music Video	1998-01	0.00
+Download Music Video	1999-01	0.00
+Download Music Video	2000-01	0.00
+Download Music Video	2001-01	0.00
+Download Music Video	2002-01	0.00
+Download Music Video	2003-01	0.00
+Download Music Video	2004-01	0.00
+Download Music Video	2005-01	0.00
+Download Music Video	2006-01	0.20
+Download Music Video	2007-01	0.30
+Download Music Video	2008-01	0.50
+Download Music Video	2009-01	0.50
+Download Music Video	2010-01	0.50
+Download Single	1980-01	0.00
+Download Single	1981-01	0.00
+Download Single	1982-01	0.00
+Download Single	1983-01	0.00
+Download Single	1984-01	0.00
+Download Single	1985-01	0.00
+Download Single	1986-01	0.00
+Download Single	1987-01	0.00
+Download Single	1988-01	0.00
+Download Single	1989-01	0.00
+Download Single	1990-01	0.00
+Download Single	1991-01	0.00
+Download Single	1992-01	0.00
+Download Single	1993-01	0.00
+Download Single	1994-01	0.00
+Download Single	1995-01	0.00
+Download Single	1996-01	0.00
+Download Single	1997-01	0.00
+Download Single	1998-01	0.00
+Download Single	1999-01	0.00
+Download Single	2000-01	0.00
+Download Single	2001-01	0.00
+Download Single	2002-01	0.00
+Download Single	2003-01	0.00
+Download Single	2004-01	1.10
+Download Single	2005-01	3.10
+Download Single	2006-01	5.10
+Download Single	2007-01	7.80
+Download Single	2008-01	12.50
+Download Single	2009-01	16.90
+Download Single	2010-01	21.00
+DVD Audio	1980-01	0.00
+DVD Audio	1981-01	0.00
+DVD Audio	1982-01	0.00
+DVD Audio	1983-01	0.00
+DVD Audio	1984-01	0.00
+DVD Audio	1985-01	0.00
+DVD Audio	1986-01	0.00
+DVD Audio	1987-01	0.00
+DVD Audio	1988-01	0.00
+DVD Audio	1989-01	0.00
+DVD Audio	1990-01	0.00
+DVD Audio	1991-01	0.00
+DVD Audio	1992-01	0.00
+DVD Audio	1993-01	0.00
+DVD Audio	1994-01	0.00
+DVD Audio	1995-01	0.00
+DVD Audio	1996-01	0.00
+DVD Audio	1997-01	0.00
+DVD Audio	1998-01	0.00
+DVD Audio	1999-01	0.00
+DVD Audio	2000-01	0.00
+DVD Audio	2001-01	0.00
+DVD Audio	2002-01	0.10
+DVD Audio	2003-01	0.10
+DVD Audio	2004-01	0.10
+DVD Audio	2005-01	0.10
+DVD Audio	2006-01	0.00
+DVD Audio	2007-01	0.00
+DVD Audio	2008-01	0.00
+DVD Audio	2009-01	0.00
+DVD Audio	2010-01	0.00
+Kiosk	1980-01	0.00
+Kiosk	1981-01	0.00
+Kiosk	1982-01	0.00
+Kiosk	1983-01	0.00
+Kiosk	1984-01	0.00
+Kiosk	1985-01	0.00
+Kiosk	1986-01	0.00
+Kiosk	1987-01	0.00
+Kiosk	1988-01	0.00
+Kiosk	1989-01	0.00
+Kiosk	1990-01	0.00
+Kiosk	1991-01	0.00
+Kiosk	1992-01	0.00
+Kiosk	1993-01	0.00
+Kiosk	1994-01	0.00
+Kiosk	1995-01	0.00
+Kiosk	1996-01	0.00
+Kiosk	1997-01	0.00
+Kiosk	1998-01	0.00
+Kiosk	1999-01	0.00
+Kiosk	2000-01	0.00
+Kiosk	2001-01	0.00
+Kiosk	2002-01	0.00
+Kiosk	2003-01	0.00
+Kiosk	2004-01	0.00
+Kiosk	2005-01	0.00
+Kiosk	2006-01	0.00
+Kiosk	2007-01	0.00
+Kiosk	2008-01	0.00
+Kiosk	2009-01	0.10
+Kiosk	2010-01	0.10
+LP/EP	1980-01	59.80
+LP/EP	1981-01	58.90
+LP/EP	1982-01	53.10
+LP/EP	1983-01	44.60
+LP/EP	1984-01	35.70
+LP/EP	1985-01	29.40
+LP/EP	1986-01	21.20
+LP/EP	1987-01	14.30
+LP/EP	1988-01	8.50
+LP/EP	1989-01	3.30
+LP/EP	1990-01	1.10
+LP/EP	1991-01	0.40
+LP/EP	1992-01	0.10
+LP/EP	1993-01	0.10
+LP/EP	1994-01	0.10
+LP/EP	1995-01	0.20
+LP/EP	1996-01	0.30
+LP/EP	1997-01	0.30
+LP/EP	1998-01	0.20
+LP/EP	1999-01	0.20
+LP/EP	2000-01	0.20
+LP/EP	2001-01	0.20
+LP/EP	2002-01	0.20
+LP/EP	2003-01	0.20
+LP/EP	2004-01	0.20
+LP/EP	2005-01	0.10
+LP/EP	2006-01	0.10
+LP/EP	2007-01	0.20
+LP/EP	2008-01	0.60
+LP/EP	2009-01	0.80
+LP/EP	2010-01	1.30
+Mobile	1980-01	0.00
+Mobile	1981-01	0.00
+Mobile	1982-01	0.00
+Mobile	1983-01	0.00
+Mobile	1984-01	0.00
+Mobile	1985-01	0.00
+Mobile	1986-01	0.00
+Mobile	1987-01	0.00
+Mobile	1988-01	0.00
+Mobile	1989-01	0.00
+Mobile	1990-01	0.00
+Mobile	1991-01	0.00
+Mobile	1992-01	0.00
+Mobile	1993-01	0.00
+Mobile	1994-01	0.00
+Mobile	1995-01	0.00
+Mobile	1996-01	0.00
+Mobile	1997-01	0.00
+Mobile	1998-01	0.00
+Mobile	1999-01	0.00
+Mobile	2000-01	0.00
+Mobile	2001-01	0.00
+Mobile	2002-01	0.00
+Mobile	2003-01	0.00
+Mobile	2004-01	0.00
+Mobile	2005-01	3.40
+Mobile	2006-01	6.60
+Mobile	2007-01	9.90
+Mobile	2008-01	11.10
+Mobile	2009-01	9.50
+Mobile	2010-01	7.70
+Music video	1980-01	0.00
+Music video	1981-01	0.00
+Music video	1982-01	0.00
+Music video	1983-01	0.00
+Music video	1984-01	0.00
+Music video	1985-01	0.00
+Music video	1986-01	0.00
+Music video	1987-01	0.00
+Music video	1988-01	0.00
+Music video	1989-01	1.80
+Music video	1990-01	2.30
+Music video	1991-01	1.50
+Music video	1992-01	1.70
+Music video	1993-01	2.10
+Music video	1994-01	1.90
+Music video	1995-01	1.80
+Music video	1996-01	1.90
+Music video	1997-01	2.60
+Music video	1998-01	2.60
+Music video	1999-01	2.60
+Music video	2000-01	2.00
+Music video	2001-01	2.40
+Music video	2002-01	2.30
+Music video	2003-01	3.40
+Music video	2004-01	4.90
+Music video	2005-01	4.90
+Music video	2006-01	3.80
+Music video	2007-01	4.60
+Music video	2008-01	2.50
+Music video	2009-01	2.80
+Music video	2010-01	2.60
+SACD	1980-01	0.00
+SACD	1981-01	0.00
+SACD	1982-01	0.00
+SACD	1983-01	0.00
+SACD	1984-01	0.00
+SACD	1985-01	0.00
+SACD	1986-01	0.00
+SACD	1987-01	0.00
+SACD	1988-01	0.00
+SACD	1989-01	0.00
+SACD	1990-01	0.00
+SACD	1991-01	0.00
+SACD	1992-01	0.00
+SACD	1993-01	0.00
+SACD	1994-01	0.00
+SACD	1995-01	0.00
+SACD	1996-01	0.00
+SACD	1997-01	0.00
+SACD	1998-01	0.00
+SACD	1999-01	0.00
+SACD	2000-01	0.00
+SACD	2001-01	0.00
+SACD	2002-01	0.00
+SACD	2003-01	0.20
+SACD	2004-01	0.10
+SACD	2005-01	0.10
+SACD	2006-01	0.00
+SACD	2007-01	0.00
+SACD	2008-01	0.00
+SACD	2009-01	0.00
+SACD	2010-01	0.00
+Subscription	1980-01	0.00
+Subscription	1981-01	0.00
+Subscription	1982-01	0.00
+Subscription	1983-01	0.00
+Subscription	1984-01	0.00
+Subscription	1985-01	0.00
+Subscription	1986-01	0.00
+Subscription	1987-01	0.00
+Subscription	1988-01	0.00
+Subscription	1989-01	0.00
+Subscription	1990-01	0.00
+Subscription	1991-01	0.00
+Subscription	1992-01	0.00
+Subscription	1993-01	0.00
+Subscription	1994-01	0.00
+Subscription	1995-01	0.00
+Subscription	1996-01	0.00
+Subscription	1997-01	0.00
+Subscription	1998-01	0.00
+Subscription	1999-01	0.00
+Subscription	2000-01	0.00
+Subscription	2001-01	0.00
+Subscription	2002-01	0.00
+Subscription	2003-01	0.00
+Subscription	2004-01	0.00
+Subscription	2005-01	1.20
+Subscription	2006-01	1.80
+Subscription	2007-01	2.20
+Subscription	2008-01	2.50
+Subscription	2009-01	2.80
+Subscription	2010-01	2.90
+vinyl single	1980-01	6.80
+vinyl single	1981-01	6.50
+vinyl single	1982-01	7.70
+vinyl single	1983-01	7.10
+vinyl single	1984-01	6.90
+vinyl single	1985-01	6.40
+vinyl single	1986-01	4.90
+vinyl single	1987-01	3.70
+vinyl single	1988-01	2.90
+vinyl single	1989-01	1.80
+vinyl single	1990-01	1.30
+vinyl single	1991-01	0.80
+vinyl single	1992-01	0.70
+vinyl single	1993-01	0.50
+vinyl single	1994-01	0.40
+vinyl single	1995-01	0.40
+vinyl single	1996-01	0.40
+vinyl single	1997-01	0.30
+vinyl single	1998-01	0.20
+vinyl single	1999-01	0.20
+vinyl single	2000-01	0.20
+vinyl single	2001-01	0.20
+vinyl single	2002-01	0.20
+vinyl single	2003-01	0.20
+vinyl single	2004-01	0.20
+vinyl single	2005-01	0.10
+vinyl single	2006-01	0.10
+vinyl single	2007-01	0.00
+vinyl single	2008-01	0.00
+vinyl single	2009-01	0.00
+vinyl single	2010-01	0.00

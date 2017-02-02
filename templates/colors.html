@@ -1,0 +1,33 @@
+<button type="button"
+	class="btn btn-default"
+	ng-model="colorScale"
+	ng-change="setScale()"
+	ng-options="scale.type for scale in scales" bs-select>
+  Action <span class="caret"></span>
+</button>
+
+<div class="colors-table">
+	<div ng-show="colors.length">
+		<input ng-model="searchColor" type="text" class="search-color form-control input-sm" placeholder="Search..."></input>
+		<i class="fa fa-times-circle search-clear" data-ng-show="searchColor" ng-click="searchColor=''"></i>
+	</div>
+	<table class="table table-striped">
+		<tbody>
+			<tr ng-repeat="color in colors | filter:{'key':searchColor} track by $index">
+				<td>
+					<p class="light small sample-name">{{color.key}}</p>
+				</td>
+				<td class="sample">
+					<input type="text"
+						colorpicker="hex"
+						data-color="#ff0"
+						data-ng-style="{'background-color' : color.value, 'color' : foreground(color.value)}"
+						class="sample-color form-control"
+						ng-model="color.value"
+						ng-change="setColor(color.key,color.value)"></input>
+					<div class="clearfix">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
