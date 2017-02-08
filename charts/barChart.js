@@ -9,23 +9,23 @@
 
 	var model = raw.model();
 
-	// Group dimension.
-	// It can accept both numbers and strings
-	var groups = model.dimension()
-		.title('Groups')
-		.types(Number, String)
-
 	// Categories dimension. each category will define a bar
 	// It can accept both numbers and strings
 	var categories = model.dimension()
 		.title('X Axis')
 		.types(Number, String)
 		.required(1)
-
 	// Values dimension. It will define the height of the bars
 	var sizes = model.dimension()
-		.title('Size')
+		.title('Height')
 		.types(Number)
+
+	// Group dimension.
+	// It can accept both numbers and strings
+	var groups = model.dimension()
+		.title('Groups')
+		.types(Number, String)
+
 
 	// Colors dimension. It will define the color of the bars
 	var colorsDimesion = model.dimension()
@@ -89,7 +89,7 @@
 	// Height
 	var height = chart.number()
 		.title('Height')
-		.defaultValue(1000)
+		.defaultValue(600)
 
 	// Space between barcharts
 	var padding = chart.number()
