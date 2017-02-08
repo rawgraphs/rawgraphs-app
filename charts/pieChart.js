@@ -3,15 +3,15 @@
   var model = raw.model();
 
   // Group dimension. It will mainly provide a label for each
-  // chart. If multiple lines share the same value in the 
-  // group dimension, they will be grouped. 
+  // chart. If multiple lines share the same value in the
+  // group dimension, they will be grouped.
   var group = model.dimension()
     .title('Label');
 
   // 'Dimensions' dimension. accept multiple values.
   // Each value represent a slice of the pie.
   var dimensions = model.dimension()
-    .title('Dimensions')
+    .title('Arcs')
     .required(true)
     .multiple(true);
 
@@ -24,7 +24,7 @@
     // Check if dimensions are set.
     // In theory should be not necessary, to be fixed.
     if(dimensions() != null){
-    
+
       var index = 0;
       var nest = d3.nest()
         // If groups are not defined, assign a number to each record.
@@ -68,23 +68,23 @@
     .title('Donut chart')
     .defaultValue(false)
 
-  var showValues = chart.checkbox()
-    .title('Show values')
-    .defaultValue(false)
-
   var thickness = chart.number()
     .title('Thickness')
     .defaultValue(10)
 
+  var showValues = chart.checkbox()
+    .title('Show values')
+    .defaultValue(false)
+
   var sortChartsBy = chart.list()
-    .title("Sort items by")
-    .values(['size', 'name', 'automatic'])
+    .title("Sort charts by")
+    .values(['size', 'name'])
     .defaultValue('size')
 
   var sortArcsBy = chart.list()
     .title("Sort arcs by")
-    .values(['size', 'name', 'automatic'])
-    .defaultValue('size')
+    .values(['automatic','size', 'name'])
+    .defaultValue('automatic')
 
   // Chart colors
   var colors = chart.color()
@@ -180,7 +180,6 @@
             return d.size; }));
       }
       if (sortChartsBy() == 'name') return d3.ascending(a.key, b.key);
-      if (sortChartsBy() == 'automatic') return 1;
 
     }
 
