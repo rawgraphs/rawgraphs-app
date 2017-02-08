@@ -83,8 +83,8 @@
 
   var sortArcsBy = chart.list()
     .title("Sort arcs by")
-    .values(['automatic','size', 'name'])
-    .defaultValue('automatic')
+    .values(['size', 'name'])
+    .defaultValue('size')
 
   // Chart colors
   var colors = chart.color()
@@ -184,9 +184,8 @@
     }
 
     function sortArcsByComparator(a, b) {
-      if (sortArcsBy() == 'size') return d3.ascending(a.size, b.size);
-      if (sortArcsBy() == 'name') return d3.descending(a.key, b.key);
-      if (sortArcsBy() == 'automatic') return 1;
+      if (sortArcsBy() == 'size') return d3.descending(a.size, b.size);
+      if (sortArcsBy() == 'name') return d3.ascending(a.key, b.key);
     }
 
 
