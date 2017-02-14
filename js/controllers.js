@@ -227,11 +227,11 @@ angular.module('raw.controllers', [])
       );
     }//);
 
-    $(document).on('dragenter', function(e){
+    $(document.getElementById("load-data")).on('dragenter', function(e){
       $scope.importMode = 'file';
       $scope.parsed = false;
       $scope.$digest();
-    })
+    });
 
     $scope.$watch('importMode', function (n,o){
 
