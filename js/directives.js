@@ -290,7 +290,7 @@ angular.module('raw.directives', [])
 
 	        function listColors(){
 	        	scope.colors = scope.colorScale.value.domain().map(function (d){
-	        		return { key: d, value: scope.colorScale.value(d)}
+	        		return { key: d, value: scope.colorScale.value(d).charAt(0) == '#' ? scope.colorScale.value(d) : '#' + scope.colorScale.value(d) }
 	        	}).sort(function (a,b){
 	        		if (raw.isNumber(a.key) && raw.isNumber(b.key)) return a.key - b.key;
 	        		return a.key < b.key ? -1 : a.key > b.key ? 1 : 0;
