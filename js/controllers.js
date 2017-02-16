@@ -233,19 +233,6 @@ angular.module('raw.controllers', [])
       $scope.$digest();
     });
 
-    $scope.$watch('importMode', function (n,o){
-
-      $scope.parsed = false;
-      $scope.loading = false;
-      $scope.clipboardText = "";
-      $scope.unstacked = false;
-      $scope.text = "";
-      $scope.data = [];
-      $scope.json = null;
-      $scope.worksheets = [];
-      $scope.fileName = null;
-    });
-
     $scope.$watch('dataView', function (n,o){
       if (!$('.parsed .CodeMirror')[0]) return;
       var cm = $('.parsed .CodeMirror')[0].CodeMirror;
@@ -283,7 +270,15 @@ angular.module('raw.controllers', [])
 
     $scope.$watch('importMode', function(){
       // reset
+      $scope.parsed = false;
+      $scope.loading = false;
       $scope.clipboardText = "";
+      $scope.unstacked = false;
+      $scope.text = "";
+      $scope.data = [];
+      $scope.json = null;
+      $scope.worksheets = [];
+      $scope.fileName = null;
       $scope.url = "";
       //$scope.$apply();
     })
