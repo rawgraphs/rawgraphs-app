@@ -1,17 +1,13 @@
 /*
-  Script for creating standalone dynamic visualisations using the RAW library.
+  Script for creating standalone html visualisations using the RAW library.
 
   \m/ (-_-) \m/
 
   The 8th of Feb, 2017 - Vathsav Harikrishnan
 
   // Todo
-  > Switching color scales :/
-  > Handle multiple dimensions :/
-  > Try to retain the JSON format and mifify everything else.
-
-  // General Fixes
-  > Prevent dragging the dimensions values beyond the width and the height of the page.
+  > Switching color scale
+  > Handle size and labels being null
 
   > Yet to Test
     * Hexagonal Binning
@@ -43,7 +39,7 @@
 
 */
 
-d3.json("http://localhost:5000/raw_config.json", function(json) {
+d3.json("raw_config.json", function(json) {
     init(json)
 });
 
@@ -72,16 +68,22 @@ var init = function(raw_config) {
     for (key in dimensions) {
     	var dimension = dimensions[key];
     	var title = dimension.title();
-    	var value = raw_config.dimensions[key];
+
     	dimensions[key].title(dimensionKeys[key]);
-    	dimensions[key].value.push(raw_config.dimensions[dimensionKeys[key]]);
+
+      // Equate for multiple dimensions
+      if (raw_config.dimensions[dimensionKeys[key]].length > 1) {
+        dimensions[key].value = raw_config.dimensions[dimensionKeys[key]];
+      } else {
+        dimensions[key].value.push(raw_config.dimensions[dimensionKeys[key]]);
+      }
     }
 
     // Include attributes to the chart
     for (key in options) {
     	var option = options[key];
 
-    	// Check for colors!
+    	// Check for colors
     	if (option.type() === "color") {
     		option.value = d3.scale.ordinal().range(raw.divergingRange(1));
     		option.value.domain(raw_config.chart_specifications[option.title()].domain);
