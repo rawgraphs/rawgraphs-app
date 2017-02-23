@@ -7,7 +7,7 @@
 
   // Todo
   > Switching color scale
-  > Handle size and labels being null
+  > Include libraries for necessary charts
 
   > Yet to Test
     * Hexagonal Binning
@@ -17,7 +17,6 @@
     * Circular Dendrogram
     * Cluster Dendrogram
     * Circle Packing
-    * Clustered Force Layout
     * Sunburst
     * Treemap
     * Alluvial Diagram
@@ -33,9 +32,7 @@
   > Working charts
     * Convex Hull
     * Delaunay Triangulation
-
-  > Buggy
-    * Clustered Force Layout - Doesn't render without Size dimension
+    * Clustered Force Layout
 
 */
 
@@ -54,7 +51,6 @@ var init = function(raw_config) {
     })[0];
     var model = chart ? chart.model() : null;
     var dimensions = model.dimensions().values();
-    var dimensionKeys = Object.keys(raw_config.dimensions);
     var options = chart.options();
 
     function update() {
@@ -66,16 +62,11 @@ var init = function(raw_config) {
 
     // Include dimensions to the model
     for (key in dimensions) {
-    	var dimension = dimensions[key];
-    	var title = dimension.title();
+      var dimension = raw_config.dimensions[Object.keys(raw_config.dimensions)[key]];
 
-    	dimensions[key].title(dimensionKeys[key]);
-
-      // Equate for multiple dimensions
-      if (raw_config.dimensions[dimensionKeys[key]].length > 1) {
-        dimensions[key].value = raw_config.dimensions[dimensionKeys[key]];
-      } else {
-        dimensions[key].value.push(raw_config.dimensions[dimensionKeys[key]]);
+      if (dimension != null) {
+        if (dimension.length > 1) dimensions[key].value = dimension;
+        else dimensions[key].value.push(dimension);
       }
     }
 

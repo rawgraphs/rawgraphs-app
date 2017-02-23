@@ -1118,16 +1118,16 @@ angular.module('raw.directives', [])
 
                     var fetchDimensions = function() {
                         var modelDimensions = scope.model.dimensions().values();
-                        console.log(modelDimensions);
-
                         var dimensions = '{ ';
+
                         for (var key in modelDimensions) {
                             var title = modelDimensions[key].title();
                             var value = JSON.stringify(modelDimensions[key].value);
 
-                            // Dimension has multiple values
+                            // Handle multiple values
                             if (modelDimensions[key].value.length == 1) value = value.substring(1, value.length - 1);
-                            dimensions += '"' + title + '": ' + (value ? value : '{}') + (key != modelDimensions.length - 1 ? ', ' : ' }');
+
+                            dimensions += '"' + title + '": ' + (is.not.empty(modelDimensions[key].value) ? value : null) + (key != modelDimensions.length - 1 ? ', ' : ' }');
                         }
 
                         return JSON.parse(dimensions);
