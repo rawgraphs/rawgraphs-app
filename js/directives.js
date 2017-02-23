@@ -789,11 +789,15 @@ angular.module('raw.directives', [])
 
                     var fetchDimensions = function() {
                         var modelDimensions = scope.model.dimensions().values();
+                        console.log(modelDimensions);
+
                         var dimensions = '{ ';
                         for (var key in modelDimensions) {
                             var title = modelDimensions[key].title();
                             var value = JSON.stringify(modelDimensions[key].value);
-                            value = value.substring(1, value.length - 1);
+
+                            // Dimension has multiple values
+                            if (modelDimensions[key].value.length == 1) value = value.substring(1, value.length - 1);
                             dimensions += '"' + title + '": ' + (value ? value : '{}') + (key != modelDimensions.length - 1 ? ', ' : ' }');
                         }
 
@@ -877,12 +881,16 @@ angular.module('raw.directives', [])
                     var zip = new JSZip();
 
                     zip.file("/raw_module/raw_config.json", JSON.stringify(configObject));
+                    // d3.text("http://app.rawgraphs.io/js/module.js", function(data) {
                     d3.text("http://localhost:4000/js/module.js", function(data) {
                         zip.file("/raw_module/js/module.js", data);
+                        // d3.text("http://app.rawgraphs.io/raw_model.html", function(data) {
                         d3.text("http://localhost:4000/raw_model.html", function(data) {
                             zip.file("/raw_module/index.html", data.replace('###RAW-CHART###', chartPath()));
+                            // d3.text("http://app.rawgraphs.io/" + chartPath(), function(data) {
                             d3.text("http://localhost:4000/" + chartPath(), function(data) {
                                 zip.file("/raw_module/" + chartPath(), data);
+                                // d3.text("http://app.rawgraphs.io/lib/raw.js", function(data) {
                                 d3.text("http://localhost:4000/lib/raw.js", function(data) {
                                     zip.file("/raw_module/lib/raw.js", data);
                                     zip.generateAsync({
