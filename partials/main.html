@@ -165,7 +165,7 @@
 										ng-model="stackDimension"
 										ng-change="unstack();unstacking=false"
 										placeholder="Select a dimension to stack on"
-										ng-options="dimension.key for dimension in metadata" bs-select>
+										bs-options="dimension.key for dimension in metadata" bs-select>
 									</select>
 								</div>
 
@@ -340,7 +340,7 @@
 									data-toggle="tooltip"
 									data-title="You can drag more than one dimension here"
 									data-ng-show="dimension.multiple()"></i>
-									
+
 									<i class="fa fa-asterisk dimension-required"
 										data-toggle="tooltip"
 										data-title="Required"
@@ -418,7 +418,7 @@
 							class="btn btn-default"
 							ng-model="option.value"
 							ng-change="$apply()"
-							ng-options="opt for opt in option.values()" bs-select ng-switch-when="list">
+							bs-options="opt for opt in option.values()" bs-select ng-switch-when="list">
 							Action <span class="caret"></span>
 							</button>
 
