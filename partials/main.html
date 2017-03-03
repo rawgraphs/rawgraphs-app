@@ -157,16 +157,14 @@
 								<p ng-show="pivot<=0 && !unstacked">Your data seems unstacked. <a ng-click="unstacking=true">Click here to stack it</a></p>
 								<p class="text-muted" ng-show="pivot>0 && !unstacked">Your data seems ready to go. But if you want to stack it anyway, <a ng-click="unstacking=true">click here</a></p>
 								<p ng-show="unstacked">Data is stacked now. <a ng-click="stack()">Click here to revert to your original data</a></p>
-
 								<div ng-show="unstacking" class="pull-right">
-									<select
-										type="button"
+									<button
 										class="btn btn-default"
 										ng-model="stackDimension"
 										ng-change="unstack();unstacking=false"
 										placeholder="Select a dimension to stack on"
 										bs-options="dimension.key for dimension in metadata" bs-select>
-									</select>
+									</button>
 								</div>
 
 							</div>
