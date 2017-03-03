@@ -351,7 +351,6 @@ angular.module('raw.directives', [])
 	      }
 
 		    function onStart(e,ui){
-
 			   	var dimension = ui.item.data().dimension,
 		    			html = isValidType(dimension) ? '<i class="fa fa-arrow-circle-down breath-right"></i>Drop here' : '<i class="fa fa-times-circle breath-right"></i>Don\'t drop here'
 		    	element.find('.drop').html(html);
@@ -458,7 +457,7 @@ angular.module('raw.directives', [])
 	    return {
 	      restrict: 'A',
 	      scope:false,
-	    //  templateUrl : 'templates/dimensions.html',
+	    	//  templateUrl : 'templates/dimensions.html',
 	      link: function postLink(scope, element, attrs) {
 
 		      scope.$watch('metadata', function(metadata){
@@ -471,8 +470,8 @@ angular.module('raw.directives', [])
 			      })
 		     	})
 
-			   	function onStart(e,ui){
-			      ui.helper.width($(e.currentTarget).width())
+			   	function onStart(e, ui) {
+			      ui.helper.addClass("dropped");
 			      ui.helper.css('z-index','100000');
 			    }
 
