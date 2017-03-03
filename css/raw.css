@@ -366,6 +366,10 @@ textarea:focus {
   background-color: #fff;
 }
 
+.dropped {
+  width: 100% !important;
+}
+
 .btn.choose {
   font-weight: 300;
   letter-spacing: -0.01em;
