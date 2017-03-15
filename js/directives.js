@@ -789,6 +789,7 @@ angular.module('raw.directives', [])
                     saveAs(blob, (scope.filename || element.find('input').attr("placeholder")) + ".json")
                 }
 
+								/* Experimental HTML Exporter */
                 var downloadHTMLBundle = function() {
 
                     var fetchDimensions = function() {
@@ -833,72 +834,121 @@ angular.module('raw.directives', [])
                     configObject.dimensions = fetchDimensions();
                     configObject.chart_specifications = fetchChartSpecifications();
 
-                    var chartPath = function() {
+										var chartMetaData = {
+											"path": null,
+											"dependency": null,
+											"script": null
+										}
+
+										var fetchChartMetaData = function() {
                         switch (scope.chart.title()) {
                             case 'Convex Hull':
-                                return "charts/convexHullMultiple.js";
+																chartMetaData.path = "charts/convexHullMultiple.js";
+																break;
                             case 'Delaunay Triangulation':
-                                return "charts/delaunay.js";
+																chartMetaData.path = "charts/delaunay.js";
+																break;
                             case 'Hexagonal Binning':
-                                return "charts/hexagonalBinning.js";
+																chartMetaData.path = "charts/hexagonalBinning.js";
+																chartMetaData.dependency = "d3-plugins/hexbin/hexbin.js";
+																break;
                             case 'Scatter Plot':
-                                return "charts/scatterPlot.js";
+																chartMetaData.path = "charts/scatterPlot.js";
+																break;
                             case 'Voronoi Tessellation':
-                                return "charts/voronoi.js";
+																chartMetaData.path = "charts/voronoi.js";
+																break;
                             case 'Box plot':
-                                return "charts/boxPlot.js";
+																chartMetaData.path = "charts/boxPlot.js";
+																chartMetaData.dependency = "d3-plugins/box/box.js";
+																break;
                             case 'Circular Dendrogram':
-                                return "charts/circularDendrogram.js";
+																chartMetaData.path = "charts/circularDendrogram.js";
+																break;
                             case 'Cluster Dendrogram':
-                                return "charts/clusterDendrogram.js";
+																chartMetaData.path = "charts/clusterDendrogram.js";
+																break;
                             case 'Circle Packing':
-                                return "charts/packing.js";
-                            case 'Clustered Force Layout':
-                                return "charts/clusterForce.js";
+																chartMetaData.path = "charts/packing.js";
+																break;
+														case 'Clustered Force Layout':
+																chartMetaData.path = "charts/clusterForce.js";
+																break;
                             case 'Sunburst':
-                                return "charts/sunburst.js";
+																chartMetaData.path = "charts/sunburst.js";
+																break;
                             case 'Treemap':
-                                return "charts/treemap.js";
+																chartMetaData.path = "charts/treemap.js";
+																break;
                             case 'Alluvial Diagram':
-                                return "charts/alluvial.js";
+																chartMetaData.path = "charts/alluvial.js";
+																chartMetaData.dependency = "d3-plugins/sankey/sankey.js";
+																break;
                             case 'Parallel Coordinates':
-                                return "charts/parallelCoordinates.js";
+																chartMetaData.path = "charts/parallelCoordinates.js";
+																break;
                             case 'Bar chart':
-                                return "charts/barChart.js";
+																chartMetaData.path = "charts/barChart.js";
+																break;
                             case 'Pie chart':
-                                return "charts/pieChart.js";
+																chartMetaData.path = "charts/pieChart.js";
+																break;
                             case 'Gantt chart':
-                                return "charts/gantt.js";
+																chartMetaData.path = "charts/gantt.js";
+																break;
                             case 'Area graph':
-                                return "charts/smallMultiplesArea.js";
+																chartMetaData.path = "charts/smallMultiplesArea.js";
+																break;
                             case 'Bump Chart':
-                                return "charts/bumpChart.js";
+																chartMetaData.path = "charts/bumpChart.js";
+																break;
                             case 'Horizon graph':
-                                return "charts/horizon.js";
-                            case 'Streamgraph':
-                                return "charts/streamgraph.js";
+																chartMetaData.path = "charts/horizon.js";
+																chartMetaData.dependency = "d3-plugins-density/horizon.js";
+																break;
+														case 'Streamgraph':
+																chartMetaData.path = "charts/streamgraph.js";
+																break;
                             default:
                                 break;
                         }
                     }
 
+										fetchChartMetaData();
+
+										chartMetaData.script = '<script src=' + chartMetaData.path + '></script>';
+										if (chartMetaData.dependency != null)  chartMetaData.script += '\n	<script src=charts/' + chartMetaData.dependency + '></script>'
+
                     var zip = new JSZip();
+
+										function generateZip() {
+											zip.generateAsync({
+												type: "blob"
+											})
+											.then(function(content) {
+												saveAs(content, (scope.filename || element.find('input').attr("placeholder")) + ".zip");
+											});
+										}
 
                     zip.file("/raw_module/raw_config.json", JSON.stringify(configObject));
                     d3.text("exports/module.js", function(data) {
                         zip.file("/raw_module/js/module.js", data);
                         d3.text("exports/raw_model.html", function(data) {
-                            zip.file("/raw_module/index.html", data.replace('###RAW-CHART###', chartPath()));
-                            d3.text(chartPath(), function(data) {
-                                zip.file("/raw_module/" + chartPath(), data);
+                            zip.file("/raw_module/index.html", data.replace('RAW-CHART-AND-DEPENDENCIES', chartMetaData.script));
+                            d3.text(chartMetaData.path, function(data) {
+                                zip.file("/raw_module/" + chartMetaData.path, data);
                                 d3.text("lib/raw.js", function(data) {
                                     zip.file("/raw_module/lib/raw.js", data);
-                                    zip.generateAsync({
-                                            type: "blob"
-                                        })
-                                        .then(function(content) {
-                                            saveAs(content, (scope.filename || element.find('input').attr("placeholder")) + ".zip");
-                                        });
+
+																		if (chartMetaData.dependency != null) {
+																			d3.text("bower_components/" + chartMetaData.dependency, function(data) {
+																				zip.file("/raw_module/charts/" + chartMetaData.dependency, data);
+																				// console.log("/raw_module/charts/" + chartMetaData.dependency);
+																				generateZip();
+																			})
+																		} else {
+																			generateZip();
+																		}
                                 });
                             });
                         });

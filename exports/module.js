@@ -1,7 +1,6 @@
 /*
   // TODO
   > Switching color scale
-  > Include libraries for necessary charts
 
   > Yet to Test
     * Hexagonal Binning
