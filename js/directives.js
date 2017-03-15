@@ -351,7 +351,6 @@ angular.module('raw.directives', [])
 	      }
 
 		    function onStart(e,ui){
-
 			   	var dimension = ui.item.data().dimension,
 		    			html = isValidType(dimension) ? '<i class="fa fa-arrow-circle-down breath-right"></i>Drop here' : '<i class="fa fa-times-circle breath-right"></i>Don\'t drop here'
 		    	element.find('.drop').html(html);
@@ -458,7 +457,7 @@ angular.module('raw.directives', [])
 	    return {
 	      restrict: 'A',
 	      scope:false,
-	    //  templateUrl : 'templates/dimensions.html',
+	    	//  templateUrl : 'templates/dimensions.html',
 	      link: function postLink(scope, element, attrs) {
 
 		      scope.$watch('metadata', function(metadata){
@@ -471,8 +470,8 @@ angular.module('raw.directives', [])
 			      })
 		     	})
 
-			   	function onStart(e,ui){
-			      ui.helper.width($(e.currentTarget).width())
+			   	function onStart(e, ui) {
+			      ui.helper.addClass("dropped");
 			      ui.helper.css('z-index','100000');
 			    }
 
@@ -573,28 +572,28 @@ angular.module('raw.directives', [])
     restrict: 'A',
     link: function postLink(scope, element, attrs) {
 
-    	ZeroClipboard.config({ moviePath: "bower_components/zeroclipboard/ZeroClipboard.swf" });
+			var client = new ZeroClipboard(element);
 
-	    var client = new ZeroClipboard( element );
-
-	    client.on( "load", function (client) {
-	      client.on( "complete", function (client, args) {
-	        element.tooltip('destroy');
-	        element.tooltip({ title:'Copied!'});
-	        element.tooltip('show')
-	      } );
-	    });
-
-	    client.on( 'mouseover', function ( client, args ) {
-	    	element.tooltip({title:'Copy to clipboard'});
-			  element.tooltip('show');
+			client.on("ready", function(readyEvent) {
+        client.on('aftercopy', function(event) {
+					element.trigger("mouseout");
+					setTimeout(function () {
+						element.tooltip({ title: 'Copied' });
+						element.tooltip('show');
+					}, 150);
+        });
 			});
 
-			client.on( 'mouseout', function ( client, args ) {
-			  element.tooltip('destroy');
+			element.on('mouseover', function(client, args) {
+				element.tooltip('destroy');
+				element.tooltip({ title: 'Copy to clipboard' });
+				element.tooltip('show');
 			});
 
-    }
+			element.on('mouseout', function(client, args) {
+				element.tooltip('destroy');
+			});
+		}
   };
 })
 
@@ -620,7 +619,6 @@ angular.module('raw.directives', [])
         	.attr("xmlns", "http://www.w3.org/2000/svg")
         	.node().parentNode.innerHTML;
       }
-
       scope.$watch(asHTML, function(){
         scope.html = asHTML();
       },true)
@@ -637,7 +635,7 @@ angular.module('raw.directives', [])
       replace:true,
       template :  '<div class="row">' +
                     '<form class="form-search col-lg-12">' +
-                      '<button bs-select class="btn btn-default" placeholder="Choose type" ng-model="mode" ng-options="m.label for m in modes">' +
+                      '<button bs-select class="btn btn-default" placeholder="Choose type" ng-model="mode" bs-options="m.label for m in modes">' +
                       'Select <span class="caret"></span>' +
                       '</button>' +
                       '<input class="form-control col-lg-12" placeholder="Filename" type="text" ng-model="filename">' +

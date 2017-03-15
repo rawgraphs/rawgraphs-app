@@ -53,13 +53,11 @@ angular.module('raw.controllers', [])
     }
 
     // load File
-    $scope.uploadFile = function (files) {
+    $scope.uploadFile = function (file) {
 
-      if (files && files.length) {
+      if (file.size) {
 
         $scope.loading = true;
-
-        var file = files[0];
 
         // excel
         if (file.name.search(/\.xls|\.xlsx/) != -1 || file.type.search('sheet') != -1) {
@@ -217,6 +215,7 @@ angular.module('raw.controllers', [])
       $scope.loading = true;
       dataService.loadSample(sample.url).then(
         function(data){
+          $scope.text = "";
           $scope.text = data;
           $scope.loading = false;
         },
