@@ -4,7 +4,7 @@
 
 angular.module('raw.controllers', [])
 
-  .controller('RawCtrl', function ($scope, dataService, $http, $timeout) {
+  .controller('RawCtrl', function ($scope, dataService, $http, $timeout, $sce) {
 
     $scope.loading = false;
 
@@ -126,71 +126,65 @@ angular.module('raw.controllers', [])
 
       $scope.loading = true;
       var error = null;
-
       // first trying jsonp
-      $http.jsonp(url+'?callback=JSON_CALLBACK')
-      .success(function(data, status, headers, config) {
-        $scope.fileName = url;
-        parseData(data);
-      })
-      .error(function(data, status, headers, config) {
-        console.log(data,status,headers)
-
-        $http.get(url, {responseType:'arraybuffer'})
-        .success(function(arraybuffer, status, headers, config) {
-          console.log(arraybuffer,status,headers)
-
-          var data = new Uint8Array(arraybuffer);
-          var arr = new Array();
-          for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
-          var bstr = arr.join("");
-
-          try {
-            var workbook = XLS.read(bstr, {type:"binary"});
-            var worksheets = [];
-						var sheet_name_list = workbook.SheetNames;
-
-						sheet_name_list.forEach(function(y) {
-						  var worksheet = workbook.Sheets[y];
-							worksheets.push({
-								name: y,
-								text : XLSX.utils.sheet_to_csv(worksheet),
-                rows: worksheet['!range'].e.r
-							})
-						});
-
+      $http.jsonp($sce.trustAsResourceUrl(url), {jsonpCallbackParam: 'callback'})
+          .then(function(response) {
             $scope.fileName = url;
-            $scope.loading = false;
+            parseData(response.data);
+      }, function(response) {
 
-            // multiple sheets
-            if (worksheets.length > 1) {
-              $scope.worksheets = worksheets;
-            // single > parse
-            } else {
-              parseText(worksheets[0].text);
-            }
-          }
-          catch(error) {
-            $scope.fileName = url;
+          $http.get($sce.trustAsResourceUrl(url), {responseType:'arraybuffer'})
+          .then(function(response) {
+
+            var data = new Uint8Array(response.data);
+            var arr = new Array();
+            for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+            var bstr = arr.join("");
+
             try {
-              var json = JSON.parse(bstr);
-              selectArray(json);
+              var workbook = XLS.read(bstr, {type:"binary"});
+              var worksheets = [];
+        			var sheet_name_list = workbook.SheetNames;
+
+        			sheet_name_list.forEach(function(y) {
+        			  var worksheet = workbook.Sheets[y];
+        				worksheets.push({
+        					name: y,
+        					text : XLSX.utils.sheet_to_csv(worksheet),
+                  rows: worksheet['!range'].e.r
+        				})
+        			});
+
+              $scope.fileName = url;
+              $scope.loading = false;
+
+              // multiple sheets
+              if (worksheets.length > 1) {
+                $scope.worksheets = worksheets;
+              // single > parse
+              } else {
+                parseText(worksheets[0].text);
+              }
             }
             catch(error) {
-              parseText(bstr);
+              $scope.fileName = url;
+              try {
+                var json = JSON.parse(bstr);
+                selectArray(json);
+              }
+              catch(error) {
+                parseText(bstr);
+              }
             }
-          }
 
-        })
-        .error(function(data, status, headers, config) {
-          $scope.loading = false;
-          $scope.error = "Something wrong with the URL you provided. Please be sure it is the correct address.";
-        });
+          },
+          function(response){
+            $scope.loading = false;
+            $scope.error = "Something wrong with the URL you provided. Please be sure it is the correct address.";
+          }
+        )
 
       });
-
-
-
 
     });
 
