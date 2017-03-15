@@ -1,11 +1,5 @@
 /*
-  Script for creating standalone html visualisations using the RAW library.
-
-  \m/ (-_-) \m/
-
-  The 8th of Feb, 2017 - Vathsav Harikrishnan
-
-  // Todo
+  // TODO
   > Switching color scale
   > Include libraries for necessary charts
 
