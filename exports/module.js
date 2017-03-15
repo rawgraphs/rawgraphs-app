@@ -1,8 +1,6 @@
 /*
-  // TODO
-  > Switching color scale
-
-  > Yet to Test
+  // TODO Test charts
+  
     * Hexagonal Binning
     * Scatter Plot
     * Voronoi Tessellation
@@ -21,12 +19,9 @@
     * Bump Chart
     * Horizon graph
     * Streamgraph
-
-  > Working charts
     * Convex Hull
     * Delaunay Triangulation
     * Clustered Force Layout
-
 */
 
 d3.json("raw_config.json", function(json) {
