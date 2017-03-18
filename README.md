@@ -1,5 +1,7 @@
 ![raw header](imgs/raw_header.jpg)
 
+Spreadsheet -> d3.js powered charts
+
 ##About
 
 **RAW** is an open web tool to create custom vector-based visualizations on top of the amazing [d3.js](https://github.com/mbostock/d3) library by [Mike Bostock](http://bost.ocks.org/mike/).
