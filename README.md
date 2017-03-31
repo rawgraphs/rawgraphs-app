@@ -89,21 +89,36 @@ If you have any suggestion or request about new layouts to include, please let u
 
 **RAW** has been developed using a lot of cool stuff found out there:
 
-[angular.js](https://github.com/angular/angular.js)  
-[angular-bootstrap-colorpicker](https://github.com/buberdds/angular-bootstrap-colorpicker)  
-[angular-ui](https://github.com/angular-ui)  
-[bootstrap](https://github.com/twbs/bootstrap)  
-[bootstrap-colorpicker](http://www.eyecon.ro/bootstrap-colorpicker/)  
-[Bower](https://github.com/bower/bower)  
-[canvas-toBlob.js](https://github.com/eligrey/canvas-toBlob.js)  
-[CodeMirror](https://github.com/marijnh/codemirror)  
-[d3.js](https://github.com/mbostock/d3)  
-[FileSaver.js](https://github.com/eligrey/FileSaver.js)  
+[angular.js](https://github.com/angular/angular.js)
+
+[angular-bootstrap-colorpicker](https://github.com/buberdds/angular-bootstrap-colorpicker)
+
+[angular-ui](https://github.com/angular-ui)
+
+[bootstrap](https://github.com/twbs/bootstrap)
+
+[bootstrap-colorpicker](http://www.eyecon.ro/bootstrap-colorpicker/)
+
+[Bower](https://github.com/bower/bower)
+
+[canvas-toBlob.js](https://github.com/eligrey/canvas-toBlob.js)
+
+[CodeMirror](https://github.com/marijnh/codemirror)
+
+[d3.js](https://github.com/mbostock/d3)
+
+[FileSaver.js](https://github.com/eligrey/FileSaver.js)
+
 [is.js](http://is.js.org/)
-[jQuery](https://github.com/jquery/jquery)  
+
+[jQuery](https://github.com/jquery/jquery)
+
 [jQuery UI Touch Punch](https://github.com/furf/jquery-ui-touch-punch/)
+
 [NG file upload](https://github.com/danialfarid/ng-file-upload)
+
 [Sheet JS](https://github.com/SheetJS)
+
 [ZeroClipboard](https://github.com/zeroclipboard/zeroclipboard)
 
 ## Core Team
