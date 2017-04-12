@@ -38,7 +38,7 @@
 
 	var margin = chart.number()
 		.title('Margin')
-		.defaultValue(20)
+		.defaultValue(30)
 
   var iqrValue = chart.number()
     .title('Iqr')
