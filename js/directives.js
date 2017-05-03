@@ -821,6 +821,8 @@ angular.module('raw.directives', [])
                                 var domain = options[key].value.domain();
                                 var range = options[key].value.range();
                                 value = '{ "domain": ' + JSON.stringify(domain) + ', "range": ' + JSON.stringify(range) + ' }';
+                            } else {
+                              value = typeof value === 'number' || typeof value === 'boolean' ? value : '"' + value + '"';
                             }
 
                             specifications += '"' + title + '": ' + value + (key != options.length - 1 ? ', ' : '');
@@ -893,7 +895,7 @@ angular.module('raw.directives', [])
                             case 'Pie chart':
 																chartMetaData.path = "charts/pieChart.js";
 																break;
-                            case 'Gantt chart':
+                            case 'Gantt Chart':
 																chartMetaData.path = "charts/gantt.js";
 																break;
                             case 'Area graph':
