@@ -203,14 +203,13 @@ angular.module('raw.controllers', [])
     ]
 
     $scope.selectSample = function(sample) {
-
 //    $scope.$watch('sample', function (sample){
       if (!sample) return;
+      $scope.text = "";
       $scope.loading = true;
       dataService.loadSample(sample.url).then(
         function(data){
-          $scope.text = "";
-          $scope.text = data;
+          $scope.text = data.replace(/\r/g, '');
           $scope.loading = false;
         },
         function(error){
@@ -229,7 +228,7 @@ angular.module('raw.controllers', [])
     $scope.$watch('dataView', function (n,o){
       if (!$('.parsed .CodeMirror')[0]) return;
       var cm = $('.parsed .CodeMirror')[0].CodeMirror;
-      $timeout(function() { cm.refresh()});
+      $timeout(function() { cm.refresh() });
     });
 
     // init
@@ -390,7 +389,11 @@ angular.module('raw.controllers', [])
         pivotable($scope.data);
         $scope.parsed = true;
 
-
+        $timeout(function() {
+          $scope.charts = raw.charts.values().sort(function (a,b){ return d3.ascending(a.category(),b.category()) || d3.ascending(a.title(),b.title()) })
+          $scope.chart = $scope.charts.filter(function(d){return d.title() == 'Scatter Plot'})[0];
+          $scope.model = $scope.chart ? $scope.chart.model() : null;
+        }, 10);
       } catch(e){
         $scope.data = [];
         $scope.metadata = [];
@@ -399,7 +402,7 @@ angular.module('raw.controllers', [])
       if (!$scope.data.length && $scope.model) $scope.model.clear();
       $scope.loading = false;
       var cm = $('.parsed .CodeMirror')[0].CodeMirror;
-      $timeout(function() { cm.refresh()} );
+      $timeout(function() { cm.refresh(); cm.refresh(); } );
     }
 
     $scope.delayParse = dataService.debounce($scope.parse, 500, false);
@@ -409,10 +412,6 @@ angular.module('raw.controllers', [])
       $scope.loading = true;
       $scope.delayParse(text);
     });
-
-    $scope.charts = raw.charts.values().sort(function (a,b){ return d3.ascending(a.category(),b.category()) || d3.ascending(a.title(),b.title()) })
-    $scope.chart = $scope.charts.filter(function(d){return d.title() == 'Scatter Plot'})[0];
-    $scope.model = $scope.chart ? $scope.chart.model() : null;
 
     $scope.$watch('error', function (error){
       if (!$('.parsed .CodeMirror')[0]) return;
@@ -445,6 +444,8 @@ angular.module('raw.controllers', [])
       $scope.model.clear();
       $scope.chart = chart;
       $scope.model = $scope.chart.model();
+      chart.option.value = $('.col-lg-9').width();
+
     }
 
     function refreshScroll(){
