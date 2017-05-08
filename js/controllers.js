@@ -444,8 +444,6 @@ angular.module('raw.controllers', [])
       $scope.model.clear();
       $scope.chart = chart;
       $scope.model = $scope.chart.model();
-      chart.option.value = $('.col-lg-9').width();
-
     }
 
     function refreshScroll(){
