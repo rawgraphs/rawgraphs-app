@@ -4,6 +4,130 @@
 
 angular.module('raw.directives', [])
 
+	.directive('jsonViewer', function (dataService) {
+		return {
+			scope : {
+				json : "=",
+				onSelect : "="
+			},
+
+			link: function postLink(scope, element, attrs) {
+
+				scope.$watch('json', function(json){
+					update();
+				})
+
+				function update(){
+
+					d3.select(element[0]).selectAll("*").remove();
+
+					var tree = d3.select(element[0])
+						.append("div")
+						.classed("json-node","true")
+
+					var j = scope.json;
+
+					explore(j, tree);
+
+					function explore(m, el){
+
+
+						if ( el === tree && is.object(m) && is.not.array(m) && is.not.empty(m) ) {
+
+							el.append("div")
+							//	.classed("json-node","true")
+								.text(function(d){
+									return "{";
+							})
+
+						}
+
+
+						var n = el === tree && is.array(m) && is.not.empty(m) ? [m] : m;
+
+						for (var c in n) {
+
+							var cel = el.append("div")
+								.datum(n[c])//function(d){console.log(el === tree, n); return el === tree ? {tree:n} : n[c]})
+								.classed("json-node","true")
+
+							if ( is.array(n[c]) && is.not.empty(n[c])) {
+
+								cel.classed("json-closed", function(d){ return el === tree ? "false" : "true"})
+
+								cel.classed("json-array", function(d){ return el === tree ? "false" : "true"})
+
+								//data-toggle="tooltip"
+								//data-title="Clear all"
+
+								cel.append("i")
+								.classed("json-icon fa fa-plus-square-o pull-left","true")
+								.on("click", function(d){
+									d3.event.stopPropagation();
+									d3.select(this.parentNode).classed("json-closed", function(){
+										return !d3.select(this).classed("json-closed");
+									})
+									d3.select(this).classed("fa-plus-square-o", d3.select(this.parentNode).classed("json-closed"))
+									d3.select(this).classed("fa-minus-square-o", !d3.select(this.parentNode).classed("json-closed"))
+								})
+							}
+
+							cel.append("div")
+							.html(function(d){
+									var pre = is.array(n) ? "" : "<b>"+c + "</b> : ";
+									var text = is.array(n[c]) ? "[" : is.object(n[c]) ? "{" : n[c];
+									text += is.array(n[c]) && !n[c].length ? "]" : is.object(n[c]) && is.empty(n[c]) ? "}" : "";
+									return pre + text;
+								})
+
+							if (is.object(n[c])) explore(n[c], cel);
+						}
+
+						if (is.array(n) && el !== tree) {
+
+							el.select('div')
+							.attr("data-toggle","tooltip")
+							.attr("data-title", function(d){
+								return "Load " + d.length + " records";
+							})
+							.on("mouseover", function(d){
+								d3.event.stopPropagation();
+								d3.select(this.parentNode).classed("json-hover", true)
+							})
+							.on("mouseout", function(d){
+								d3.event.stopPropagation();
+								d3.select(this.parentNode).classed("json-hover", false)
+							})
+							.on("click", function(d){
+								d3.event.stopPropagation();
+								scope.onSelect(d);
+							})
+						}
+
+						if ( is.object(n) && is.not.empty(n) ) {
+
+							if (is.array(n) && el === tree) return;
+
+							el.append("div")
+							//	.classed("json-node","true")
+								.text(function(d){
+									var text = is.array(n) ? "]" : "}";
+									return text;
+							})
+						}
+
+						$('[data-toggle="tooltip"]').tooltip({animation:false});
+
+					}
+
+
+				}
+
+
+			}
+		};
+	})
+
 	.directive('chart', function ($rootScope, dataService) {
 	    return {
 	      restrict: 'A',
@@ -20,13 +144,28 @@ angular.module('raw.directives', [])
 	        	d3.select(element[0])
 	        		.append("svg")
 	        		.datum(scope.data)
-	        		.call(scope.chart)
+	        		.call(
+								scope.chart
+									.on('startDrawing', function(){
+										if(!scope.$$phase) {
+													scope.chart.isDrawing(true)
+                   				scope.$apply()
+                  	}
+									})
+									.on('endDrawing', function(){
+										$rootScope.$broadcast("completeGraph");
+										if(!scope.$$phase) {
+													scope.chart.isDrawing(false)
+													scope.$apply()
+										}
+									})
+							)
 
 	    			scope.svgCode = d3.select(element[0])
 	        			.select('svg')
 	    				.attr("xmlns", "http://www.w3.org/2000/svg")
 	    				.node().parentNode.innerHTML;
-	    			
+
 	    			$rootScope.$broadcast("completeGraph");
 
 	        }
@@ -36,8 +175,8 @@ angular.module('raw.directives', [])
 	        scope.$watch('chart', function(){ console.log("> chart"); update(); });
 	        scope.$on('update', function(){ console.log("> update"); update(); });
 	        //scope.$watch('data', update)
-	        scope.$watch(function(){ console.log("> model"); if (scope.model) return scope.model(scope.data); }, update, true);
-	        scope.$watch(function(){ console.log("> chart option"); if (scope.chart) return scope.chart.options().map(function (d){ return d.value }); }, scope.delayUpdate, true);
+	        scope.$watch(function(){ if (scope.model) return scope.model(scope.data); }, update, true);
+	        scope.$watch(function(){ if (scope.chart) return scope.chart.options().map(function (d){ return d.value }); }, scope.delayUpdate, true);
 
 	      }
 	    };
@@ -74,8 +213,8 @@ angular.module('raw.directives', [])
 	      templateUrl : 'templates/colors.html',
 	      link: function postLink(scope, element, attrs) {
 
-	        scope.scales = [ 
-	        	
+	        scope.scales = [
+
 	        	{
 	        		type : 'Ordinal (categories)',
 	        		value : d3.scale.ordinal().range(raw.divergingRange(1)),
@@ -151,7 +290,7 @@ angular.module('raw.directives', [])
 
 	        function listColors(){
 	        	scope.colors = scope.colorScale.value.domain().map(function (d){
-	        		return { key: d, value: scope.colorScale.value(d)}
+	        		return { key: d, value: scope.colorScale.value(d).charAt(0) == '#' ? scope.colorScale.value(d) : '#' + scope.colorScale.value(d) }
 	        	}).sort(function (a,b){
 	        		if (raw.isNumber(a.key) && raw.isNumber(b.key)) return a.key - b.key;
 	        		return a.key < b.key ? -1 : a.key > b.key ? 1 : 0;
@@ -162,7 +301,7 @@ angular.module('raw.directives', [])
 	          var domain = scope.colorScale.value.domain(),
 	          		index = domain.indexOf(key),
 	          		range = scope.colorScale.value.range();
-	          range[index] = color;	         	
+	          range[index] = color;
 						scope.option.value.range(range);
 	          $rootScope.$broadcast("update");
 	        }
@@ -173,7 +312,7 @@ angular.module('raw.directives', [])
 
 	        scope.$watch('option.value', function (value){
 	        	if(!value) scope.setScale();
-	        })	        
+	        })
 
 	      }
 	    };
@@ -212,7 +351,6 @@ angular.module('raw.directives', [])
 	      }
 
 		    function onStart(e,ui){
-		 	    
 			   	var dimension = ui.item.data().dimension,
 		    			html = isValidType(dimension) ? '<i class="fa fa-arrow-circle-down breath-right"></i>Drop here' : '<i class="fa fa-times-circle breath-right"></i>Don\'t drop here'
 		    	element.find('.drop').html(html);
@@ -231,7 +369,7 @@ angular.module('raw.directives', [])
 		     	if (removeLast) {
 		     		ui.item.remove();
 		     		removeLast = false;
-		     	}    	
+		     	}
 
 		     	scope.value = values();
 		     	scope.$apply();
@@ -300,7 +438,7 @@ angular.module('raw.directives', [])
 				function isValidType(dimension) {
 					if (!dimension) return;
 					return scope.types.map(function (d){ return d.name; }).indexOf(dimension.type) != -1;
-					
+
 				}
 
 				function message(){
@@ -319,7 +457,7 @@ angular.module('raw.directives', [])
 	    return {
 	      restrict: 'A',
 	      scope:false,
-	    //  templateUrl : 'templates/dimensions.html',
+	    	//  templateUrl : 'templates/dimensions.html',
 	      link: function postLink(scope, element, attrs) {
 
 		      scope.$watch('metadata', function(metadata){
@@ -332,8 +470,8 @@ angular.module('raw.directives', [])
 			      })
 		     	})
 
-			   	function onStart(e,ui){
-			      ui.helper.width($(e.currentTarget).width())
+			   	function onStart(e, ui) {
+			      ui.helper.addClass("dropped");
 			      ui.helper.css('z-index','100000');
 			    }
 
@@ -392,12 +530,12 @@ angular.module('raw.directives', [])
 					.data(scope.metadata)
 					.enter().append("th")
 						.text( function(d){ return d.key; } )
-						.on('click', function (d){ 
+						.on('click', function (d){
 							descending = sortBy == d.key ? !descending : descending;
 							sortBy = d.key;
 							update();
 						})
-				
+
 				headers.append("i")
 					.attr("class", function (d){ return descending ? "fa fa-sort-desc pull-right" : "fa fa-sort-asc pull-right"})
 					.style("opacity", function (d){ return d.key == sortBy ? 1 : 0; })
@@ -434,28 +572,28 @@ angular.module('raw.directives', [])
     restrict: 'A',
     link: function postLink(scope, element, attrs) {
 
-    	ZeroClipboard.config({ moviePath: "bower_components/zeroclipboard/ZeroClipboard.swf" });
+			var client = new ZeroClipboard(element);
 
-	    var client = new ZeroClipboard( element );
-
-	    client.on( "load", function (client) {
-	      client.on( "complete", function (client, args) {
-	        element.tooltip('destroy');
-	        element.tooltip({ title:'Copied!'});
-	        element.tooltip('show')
-	      } );
-	    });
-
-	    client.on( 'mouseover', function ( client, args ) {
-	    	element.tooltip({title:'Copy to clipboard'});
-			  element.tooltip('show');
+			client.on("ready", function(readyEvent) {
+        client.on('aftercopy', function(event) {
+					element.trigger("mouseout");
+					setTimeout(function () {
+						element.tooltip({ title: 'Copied' });
+						element.tooltip('show');
+					}, 150);
+        });
 			});
 
-			client.on( 'mouseout', function ( client, args ) {
-			  element.tooltip('destroy');
+			element.on('mouseover', function(client, args) {
+				element.tooltip('destroy');
+				element.tooltip({ title: 'Copy to clipboard' });
+				element.tooltip('show');
 			});
 
-    }
+			element.on('mouseout', function(client, args) {
+				element.tooltip('destroy');
+			});
+		}
   };
 })
 
@@ -466,7 +604,13 @@ angular.module('raw.directives', [])
     link: function postLink(scope, element, attrs) {
 
     	scope.$on('completeGraph',function(){
-    		element.find('textarea').val(scope.svgCode)
+
+				var svgCode = d3.select('#chart > svg')
+					.attr("version", 1.1)
+        	.attr("xmlns", "http://www.w3.org/2000/svg")
+        	.node().parentNode.innerHTML;
+
+    		element.find('textarea').val(svgCode)
     	})
 
       /*function asHTML(){
@@ -475,7 +619,6 @@ angular.module('raw.directives', [])
         	.attr("xmlns", "http://www.w3.org/2000/svg")
         	.node().parentNode.innerHTML;
       }
-
       scope.$watch(asHTML, function(){
         scope.html = asHTML();
       },true)
@@ -492,7 +635,7 @@ angular.module('raw.directives', [])
       replace:true,
       template :  '<div class="row">' +
                     '<form class="form-search col-lg-12">' +
-                      '<button bs-select class="btn btn-default" placeholder="Choose type" ng-model="mode" ng-options="m.label for m in modes">' +
+                      '<button bs-select class="btn btn-default" placeholder="Choose type" ng-model="mode" bs-options="m.label for m in modes">' +
                       'Select <span class="caret"></span>' +
                       '</button>' +
                       '<input class="form-control col-lg-12" placeholder="Filename" type="text" ng-model="filename">' +
@@ -520,7 +663,7 @@ angular.module('raw.directives', [])
 
         function downloadSvg(){
           var BB = getBlob();
-         
+
           var html = d3.select(source)
             .attr("version", 1.1)
             .attr("xmlns", "http://www.w3.org/2000/svg")
@@ -540,49 +683,48 @@ angular.module('raw.directives', [])
 
         }
 
-        function downloadPng(){
-          
-          var content = d3.select("body").append("canvas")
-              .attr("id", "canvas")
-              .style("display","none")
+        function downloadPng() {
 
-          var html = d3.select(source)
-              .node().parentNode.innerHTML;
+			var content = d3.select("body").append("canvas")
+				.attr("id", "canvas")
+				.style("display", "none")
 
-          var image = new Image;
-					image.src = 'data:image/svg+xml;base64,' + window.btoa(html);
+			var html = d3.select(source)
+				.node().parentNode.innerHTML;
 
-          var canvas = document.getElementById("canvas");
-          canvas.width = image.width;
-  				canvas.height = image.height;
-          var context = canvas.getContext("2d");
-					
-					image.onload = function() {
-					  context.drawImage(image, 0, 0);
+			var image = new Image;
+			image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(html)));
 
-					  var isSafari = (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1);
-          
-	          if (isSafari) {
-	            var img = canvas.toDataURL("image/png;base64");
-            	var newWindow = window.open(img, 'download');
-            	window.location = img;
-	          } else {
-	          	var a = document.createElement("a");
-					  	a.download = (scope.filename || element.find('input').attr("placeholder")) + ".png";
-					  	a.href = canvas.toDataURL("image/png;base64");
-					    var event = document.createEvent("MouseEvents");
-				        event.initMouseEvent(
-				                "click", true, false, window, 0, 0, 0, 0, 0
-				                , false, false, false, false, 0, null
-				        );
-					    a.dispatchEvent(event);
-					  }
-					};
+			var canvas = document.getElementById("canvas");
 
-          
+			var context = canvas.getContext("2d");
 
-          d3.select("#canvas").remove();
-      } 
+			image.onload = function() {
+
+				canvas.width = image.width;
+				canvas.height = image.height;
+				context.drawImage(image, 0, 0);
+
+				var isSafari = (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1);
+
+				if (isSafari) {
+					var img = canvas.toDataURL("image/png;base64");
+					var newWindow = window.open(img, 'download');
+					window.location = img;
+				} else {
+					var a = document.createElement("a");
+					a.download = (scope.filename || element.find('input').attr("placeholder")) + ".png";
+					a.href = canvas.toDataURL("image/png;base64");
+					var event = document.createEvent("MouseEvents");
+					event.initMouseEvent(
+						"click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null
+					);
+					a.dispatchEvent(event);
+				}
+			};
+			d3.select("#canvas").remove();
+
+}
 
       var downloadData = function() {
         var json = JSON.stringify(scope.model(scope.data));

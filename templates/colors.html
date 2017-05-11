@@ -2,7 +2,7 @@
 	class="btn btn-default"
 	ng-model="colorScale"
 	ng-change="setScale()"
-	ng-options="scale.type for scale in scales" bs-select>
+	bs-options="scale.type for scale in scales" bs-select>
   Action <span class="caret"></span>
 </button>
 
@@ -15,7 +15,7 @@
 		<tbody>
 			<tr ng-repeat="color in colors | filter:{'key':searchColor} track by $index">
 				<td>
-					<p class="light small sample-name">{{color.key || 'All'}}</p>
+					<p class="light small sample-name">{{color.key}}</p>
 				</td>
 				<td class="sample">
 					<input type="text"

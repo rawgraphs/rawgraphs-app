@@ -11,10 +11,10 @@
         .description(
             "Dendrograms are tree-like diagrams used to represent the distribution of a hierarchical clustering. The different depth levels represented by each node are visualized on the horizontal axes and it is useful to visualize a non-weighted hierarchy.<br />Based on <br /><a href='http://bl.ocks.org/mbostock/4063570'>http://bl.ocks.org/mbostock/4063570</a>")
         .thumbnail("imgs/circularDendrogram.png")
-        .category('Hierarchies')
+        .category('Hierarchy')
         .model(tree)
-    
-    var diameter = chart.number ()  
+
+    var diameter = chart.number ()
         .title("Radius")
         .defaultValue(1000)
         .fitToWidth(true)
@@ -26,13 +26,13 @@ chart.draw(function (selection, data){
         .attr("height", +diameter() )
         .append("g")
         .attr("transform", "translate(" + diameter()/2 + "," + diameter()/2 + ")");
-    
+
     var cluster = d3.layout.cluster()
         .size([360, diameter()/2-120]);
 
     var diagonal = d3.svg.diagonal.radial()
         .projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
-    
+
     var nodes = cluster.nodes(data);
 
     var link = g.selectAll("path.link")
@@ -43,7 +43,7 @@ chart.draw(function (selection, data){
         .style("stroke","#cccccc")
         .style("stroke-width","1px")
         .attr("d", diagonal);
-    
+
     var node = g.selectAll("g.node")
         .data(nodes)
         .enter().append("g")

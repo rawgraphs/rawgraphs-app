@@ -2,20 +2,21 @@
 
     var sequence = raw.model();
 
+    var group = sequence.dimension()
+        .title('Group')
+        .required(1)
+
     var startDate = sequence.dimension()
         .title('Start Date')
         .types(Number, Date)
-        .accessor(function (d){ return this.type() == "Date" ? new Date(d) : +d; })
+        .accessor(function (d){ return this.type() == "Date" ?  Date.parse(d) : +d; })
         .required(1)
 
     var endDate = sequence.dimension()
         .title('End Date')
         .types(Number, Date)
-        .accessor(function (d){ return this.type() == "Date" ? new Date(d) : +d; })
+        .accessor(function (d){ return this.type() == "Date" ?  Date.parse(d) : +d; })
         .required(1)
-
-    var group = sequence.dimension()
-        .title('Group')
 
     var color = sequence.dimension()
         .title('Color')
@@ -23,7 +24,7 @@
 
     sequence.map(function (data){
 			var level = id = 0;
-			
+
 			return d3.nest()
 				.key(group() ? group : function(){ return ""; })
 				.rollup(function (g) {
@@ -31,7 +32,7 @@
 					level=0;
 					g.forEach(function (item,i){
 						l=0;
-						//while(overlap(item, levels[l])) l++;
+						while(overlap(item, levels[l])) l++;
 						if (!levels[l]) levels[l] = [];
 						levels[l].push({
 							level: l+level,
@@ -43,10 +44,10 @@
 							data: item
 						});
 					})
-					
+
 					level++;
 					return levels;
-				
+
 				})
 				.map(data)
 
@@ -64,7 +65,9 @@
 
     var chart = raw.chart()
         .title('Gantt Chart')
-        .category('Time Series')
+				.thumbnail("imgs/gantt.png")
+				.description("A Gantt chart is a type of bar chart, developed by Henry Gantt in the 1910s, that illustrates a project schedule. Gantt charts illustrate the start and finish dates of the terminal elements and summary elements of a project.")
+        .category('Time chunks')
         .model(sequence)
 
     var width = chart.number()
@@ -75,6 +78,11 @@
     var height = chart.number()
         .title("Height")
         .defaultValue(500)
+
+    var sort = chart.list()
+        .title("Sort by")
+        .values(['Start date (ascending)', 'Start date (descending)', 'Name'])
+        .defaultValue('Start date (ascending)')
 
     var colors = chart.color()
         .title("Color scale")
@@ -89,11 +97,11 @@
         var groups = data,
 						levels = d3.sum(d3.values(groups).map(function(d){ return d.length; })),
 						marginLeft = raw.getMaxWidth(d3.entries(data),function(d){ return d.key; }),
-						margin = { top: 0, right: 0, bottom: 20, left: marginLeft + 10 },
+						margin = { top: 10, right: 0, bottom: 20, left: marginLeft + 10 },
 						values = []
 
 				d3.values(groups).forEach(function(d){
-					d.forEach(function(dd){ values = values.concat(dd);}); 
+					d.forEach(function(dd){ values = values.concat(dd);});
 				});
 
 				var x = d3.time.scale()
@@ -111,7 +119,7 @@
 						current = 0;
 
 				var items = g.selectAll('g.itemGroup')
-					.data(d3.entries(groups))
+					.data(d3.entries(groups).sort(sortBy))
 					.enter().append('g')
 						.attr("class","itemGroup")
 						.attr("transform", function (d,i){
@@ -127,6 +135,7 @@
 					.attr('y1', 0)
 					.attr('x2', width())
 					.attr('y2', 0)
+					.style("shape-rendering","crispEdges")
 					.attr('stroke', 'lightgrey');
 
 				items.append('text')
@@ -143,23 +152,30 @@
 					.data(function(d){ var p = []; d.value.forEach(function(dd){ p = p.concat(dd); }); return p; }) // soooo bad
 					.enter().append('rect')
 					.attr('x', function(d) { return x(d.start); })
-			    .attr('y', function(d,i) { return itemHeight * d.level + margin.top; })
-				  .attr('width', function(d) { return d3.max([1,x(d.end) - x(d.start)]); })				
+			    .attr('y', function(d,i) { return itemHeight * d.level; })
+				  .attr('width', function(d) { return d3.max([1,x(d.end) - x(d.start)]); })
 			    .attr('height', itemHeight)
+			    .style("shape-rendering","crispEdges")
 			    .style('fill',function(d){ return colors()(d.color); })
 
 				g.append('g')
-				  	.attr('transform', 'translate(0,' + (itemHeight * levels) + ')')
+				  	.attr('transform', 'translate(0,' + (margin.top + itemHeight * levels) + ')')
 				  	.attr("class","axis")
 						.style("stroke-width", "1px")
         		.style("font-size","10px")
         		.style("font-family","Arial, Helvetica")
 			  		.call(xAxis);
-        
+
         d3.selectAll(".axis line, .axis path")
          	.style("shape-rendering","crispEdges")
          	.style("fill","none")
-         	.style("stroke","#ccc")						
+         	.style("stroke","#ccc")
+
+        function sortBy(a,b){
+            if (sort() == 'Start date (descending)') return a.value[0][0].start - b.value[0][0].start;
+            if (sort() == 'Start date (ascending)') return b.value[0][0].start - a.value[0][0].start;
+            if (sort() == 'Name') return a.key < b.key ? -1 : a.key > b.key ? 1 : 0;
+        }
 
     })
 

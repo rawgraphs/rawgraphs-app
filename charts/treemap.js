@@ -7,14 +7,14 @@
 		.description(
             "A space filling visualization of data hierarchies and proportion between elements. The different hierarchical levels create visual clusters through the subdivision into rectangles proportionally to each element's value. Treemaps are useful to represent the different proportion of nested hierarchical data structures.<br/>Based on <a href='http://bl.ocks.org/mbostock/4063582'>http://bl.ocks.org/mbostock/4063582</a>")
 		.thumbnail("imgs/treemap.png")
-	    .category('Hierarchies')
+	    .category('Hierarchy (weighted)')
 		.model(tree)
 
 	var width = chart.number()
 		.title('Width')
 		.defaultValue(100)
 		.fitToWidth(true)
-	
+
 	var height = chart.number()
 		.title("Height")
 		.defaultValue(500)
@@ -27,7 +27,7 @@
 		.title("Color scale")
 
 	chart.draw(function (selection, data){
-		
+
 		var format = d3.format(",d");
 
 		var layout = d3.layout.treemap()
@@ -52,14 +52,14 @@
     	    .enter().append("g")
     	    .attr("class", "cell")
     	    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-    		
+
 		cell.append("svg:rect")
     	    .attr("width", function (d) { return d.dx; })
     	    .attr("height", function (d) { return d.dy; })
     	    .style("fill", function (d) { return colors()(d.color); })
     	    .style("fill-opacity", function (d) {  return d.children ? 0 : 1; })
 			.style("stroke","#fff")
-		
+
 		cell.append("svg:title")
 			.text(function(d) { return d.name + ": " + format(d.size); });
 

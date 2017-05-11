@@ -5,18 +5,32 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="Keywords" content="RAW,visualization,data,design,spreadsheet,interface,vector graphics,SVG,PNG,JSON">
-  <meta name="Description" content="RAW, missing link between spreadsheets and vector graphics, by DensityDesign, Giorgio Caviglia, Matteo Azzi, Michele Mauri, Giorgio Uboldi">
+  <meta name="Description" content="RAW, missing link between spreadsheets and data visualization, by DensityDesign and Calibro, Giorgio Caviglia, Matteo Azzi, Michele Mauri, Giorgio Uboldi, Tommaso Elli">
+  <meta name="author" content="DensityDesign Research Lab and Studio Calibro">
+
+  <!-- Social Networks meta tags -->
+  <meta property="og:title" content="RAWGraphs">
+  <meta property="og:description" content="The missing link between spreadsheets and data visualization.">
+  <meta property="og:image" content="http://app.rawgraphs.io/imgs/cover-for-socials.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="http://app.rawgraphs.io/">
+  <meta property="og:type" content="article">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@rawgraphs">
 
   <script>
     document.write('<base href="' + document.location + '" />');
   </script>
 
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic|Cousine:400,700|Lato:100,200,400,700,900&subset=latin,latin-ext"/>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic|Roboto:400,700italic,900italic,500italic,400italic,100italic,300italic,900,700,500,300,100|Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,800,700|Chivo:400,900,400italic,900italic|Pacifico|Dancing+Script:400,700|Cousine:400,700|Arimo:300,400,300italic,400italic,700|Nunito:400,300,700|Oxygen:400,700,300|Lato:100,200,400,700,900&subset=latin,latin-ext"/>
 
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
   <link rel="stylesheet" type="text/css" href="bower_components/angular-bootstrap-colorpicker/css/colorpicker.css">
-  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="bower_components/codemirror/lib/codemirror.css">  
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="bower_components/codemirror/lib/codemirror.css">
+
   <link rel="stylesheet" href="css/raw.css"/>
   <link rel="icon" href="favicon.ico?v=2" type="image/x-icon">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -34,13 +48,16 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/#">RAW</a>
+        <a class="navbar-brand" href="/#">
+          <img alt="RawGraphs" src="imgs/rawgraphslogo.png">
+        </a>
       </div>
 
       <nav class="collapse navbar-collapse" role="navigation" id="raw-navbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="http://raw.densitydesign.org">About</a></li>
+          <li><a href="http://rawgraphs.io/">About</a></li>
           <li><a href="https://github.com/densitydesign/raw/wiki/FAQs">FAQs</a></li>
+          <li><a href="http://rawgraphs.io/learning/" target="_blank">Learning</a></li>
           <li><a href="https://github.com/densitydesign/raw/wiki/Developer-Guide">Developer Guide</a></li>
           <li><a href="https://github.com/densitydesign/raw" style="font-size:23px"><i class="fa fa-github"></i></a></li>
         </ul>
@@ -57,13 +74,13 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6">
-          <p><strong>RAW</strong> is an open source project by <a href="http://www.densitydesign.org">DensityDesign Lab</a></p>
-          <p><a href="https://www.giorgiocaviglia.com">Giorgio Caviglia,</a> Michele Mauri, Giorgio Uboldi, Matteo Azzi</p>
-          <p>&copy; 2013-2014 (<a href="https://raw.github.com/densitydesign/raw/master/LICENSE">LGPL License</a>)</p>
+          <p><strong>RAW</strong> is an open source project by <a href="http://www.densitydesign.org">DensityDesign Lab</a> and <a href="http://calib.ro">Calibro</a></p>
+          <p><a href="https://www.giorgiocaviglia.com" target="_blank">Giorgio Caviglia,</a> <a href="http://www.densitydesign.org/person/michele-mauri/" target="_blank">Michele Mauri</a>, <a href="http://calib.ro" target="_blank">Giorgio Uboldi</a>, <a href="http://calib.ro" target="_blank">Matteo Azzi</a></p>
+          <p>&copy; 2013-2017 (<a href="https://raw.github.com/densitydesign/raw/master/LICENSE">Apache License 2.0</a>)</p>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
-          <p><a href="mailto:raw@densitydesign.org"><i class="fa fa-envelope breath-right"></i>raw@densitydesign.org</a></p>
-          <p><a href="http://twitter.com/densitydesign"><i class="fa fa-twitter breath-right"></i>densitydesign</a></p>
+          <p><a href="mailto:hello@rawgraphs.io"><i class="fa fa-envelope breath-right"></i>hello@rawgraphs.io</a></p>
+          <p><a href="http://twitter.com/rawgraphs"><i class="fa fa-twitter breath-right"></i>rawgraphs</a></p>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
           <p><a href="http://github.com/densitydesign/raw"><i class="fa fa-github breath-right"></i>GitHub</a></p>
@@ -75,15 +92,17 @@
 
   <!-- jquery -->
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="bower_components/jquery-ui/jquery-ui.min.js"></script>
   <script type="text/javascript" src="bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
   <!-- bootstrap -->
   <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="bower_components/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+  <script type="text/javascript" src="bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js"></script>
   <!-- d3 -->
   <script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
   <script type="text/javascript" src="bower_components/d3-plugins/sankey/sankey.js"></script>
   <script type="text/javascript" src="bower_components/d3-plugins/hexbin/hexbin.js"></script>
+  <script type="text/javascript" src="bower_components/d3-plugins-density/horizon.js"></script>
+  <script type="text/javascript" src="bower_components/d3-plugins/box/box.js"></script>
   <!-- codemirror -->
   <script type="text/javascript" src="bower_components/codemirror/lib/codemirror.js"></script>
   <script type="text/javascript" src="bower_components/codemirror/addon/display/placeholder.js"></script>
@@ -92,7 +111,7 @@
   <!-- filesaver -->
   <script type="text/javascript" src="bower_components/FileSaver/FileSaver.js"></script>
   <!-- zeroclipboard -->
-  <script type="text/javascript" src="bower_components/zeroclipboard/ZeroClipboard.min.js"></script>
+  <script type="text/javascript" src="bower_components/zeroclipboard/dist/ZeroClipboard.min.js"></script>
   <!-- raw -->
   <script type="text/javascript" src="lib/raw.js"></script>
 
@@ -106,14 +125,18 @@
   <script src="charts/delaunay.js"></script>
   <script src="charts/alluvial.js"></script>
   <script src="charts/clusterForce.js"></script>
-  <script src="charts/convexHull.js"></script>
+  <script src="charts/convexHullMultiple.js"></script>
   <script src="charts/hexagonalBinning.js"></script>
-  <script src="charts/reingoldTilford.js"></script>
   <script src="charts/parallelCoordinates.js"></script>
   <script src="charts/circularDendrogram.js"></script>
   <script src="charts/smallMultiplesArea.js"></script>
   <script src="charts/bumpChart.js"></script>
+  <script src="charts/sunburst.js"></script>
   <script src="charts/gantt.js"></script>
+  <script src="charts/horizon.js"></script>
+  <script src="charts/boxPlot.js"></script>
+  <script src="charts/barChart.js"></script>
+  <script src="charts/pieChart.js"></script>
 
   <!-- angular -->
   <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
@@ -121,8 +144,13 @@
   <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
   <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
   <script type="text/javascript" src="bower_components/angular-strap/dist/angular-strap.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-ui/build/angular-ui.min.js"></script>
+  <script type="text/javascript" src="bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
+  <script type="text/javascript" src="bower_components/angular-ui/build/angular-ui.js"></script>
   <script type="text/javascript" src="bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js"></script>
+  <script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+  <script type="text/javascript" src="bower_components/is_js/is.min.js"></script>
+  <script type="text/javascript" src="bower_components/js-xlsx/dist/xlsx.full.min.js"></script>
+
 
   <script src="js/app.js"></script>
   <script src="js/services.js"></script>

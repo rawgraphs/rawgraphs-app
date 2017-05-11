@@ -27,7 +27,7 @@
         .description(
             "Parallel coordinates is a common way of visualizing high-dimensional geometry and analyzing multivariate data.To show a set of points in an n-dimensional space, a backdrop is drawn consisting of n parallel lines, typically vertical and equally spaced. A point in n-dimensional space is represented as a polyline with vertices on the parallel axes; the position of the vertex on the ith axis corresponds to the ith coordinate of the point. <br/>Based on <a href='http://bl.ocks.org/jasondavies/1341281'>http://bl.ocks.org/jasondavies/1341281</a>")
         .thumbnail("imgs/parallelCoordinates.png")
-        .category('Distributions')
+        .category('Multivariate')
         .model(model)
 
     var width = chart.number()
@@ -65,7 +65,7 @@
                 .attr("height", h + m[0] + m[2])
                 .style("font-size","10px")
                 .style("font-family","Arial, Helvetica")
-                    .append("svg:g")    
+                    .append("svg:g")
                         .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
 
         x.domain(dimensions = d3.keys(data[0].dimensions).filter(function (d) {

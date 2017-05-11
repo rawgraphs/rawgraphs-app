@@ -7,7 +7,7 @@
 		.description(
             "A scatter plot, scatterplot, or scattergraph is a type of mathematical diagram using Cartesian coordinates to display values for two variables for a set of data. The data is displayed as a collection of points, each having the value of one variable determining the position on the horizontal axis and the value of the other variable determining the position on the vertical axis. This kind of plot is also called a scatter chart, scattergram, scatter diagram, or scatter graph.")
 		.thumbnail("imgs/scatterPlot.png")
-	    .category('Distributions')
+	    .category('Dispersion')
 		.model(points)
 
 	var width = chart.number()
@@ -39,7 +39,7 @@
 		// Retrieving dimensions from model
 		var x = points.dimensions().get('x'),
 			y = points.dimensions().get('y');
-			
+
 		var g = selection
 			.attr("width", +width() )
 			.attr("height", +height() )

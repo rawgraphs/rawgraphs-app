@@ -9,7 +9,7 @@
     var date = stream.dimension()
         .title('Date')
         .types(Number, Date, String)
-        .accessor(function (d){ return this.type() == "Date" ? new Date(d) : this.type() == "String" ? d : +d; })
+        .accessor(function (d){ return this.type() == "Date" ? Date.parse(d) : this.type() == "String" ? d : +d; })
         .required(1)
 
     var size = stream.dimension()
@@ -32,7 +32,7 @@
                         return {
                             group : group(d[0]),
                             x : date(d[0]),
-                            y : size() ? d3.sum(d,size) : d.length 
+                            y : size() ? d3.sum(d,size) : d.length
                         }
                     })
                     .map(g);
@@ -57,7 +57,7 @@
         .thumbnail("imgs/bumpChart.png")
         .description(
             "For continuous data such as time series, a bump chart can be used in place of stacked bars. Based on New York Times's <a href='http://www.nytimes.com/interactive/2014/08/13/upshot/where-people-in-each-state-were-born.html'>interactive visualization.</a>")
-        .category('Time Series')
+        .category('Time series')
         .model(stream)
 
     var width = chart.number()
@@ -74,7 +74,7 @@
         .defaultValue(1)
 
     var normalize = chart.checkbox()
-        .title("normalize")
+        .title("Normalize")
         .defaultValue(false)
 
     var curve = chart.list()
@@ -83,12 +83,16 @@
         .defaultValue('Sankey')
 
     var sort = chart.list()
-        .title("sort by")
+        .title("Sort by")
         .values(['value (descending)', 'value (ascending)', 'group'])
         .defaultValue('value (descending)')
 
     var showLabels = chart.checkbox()
-        .title("show labels")
+        .title("Show labels")
+        .defaultValue(true)
+
+    var showGrid = chart.checkbox()
+        .title("Show grid")
         .defaultValue(true)
 
     var colors = chart.color()
@@ -98,10 +102,10 @@
 
         var g = selection
             .attr("width", +width() )
-            .attr("xmlns:xmlns:xlink", "http://www.w3.org/1999/xlink")
+            //.attr("xmlns:xmlns:xlink", "http://www.w3.org/1999/xlink")
             .attr("height", +height() )
             .append("g")
-        
+
         var layers = data;
 
         var curves = {
@@ -122,12 +126,13 @@
             values.forEach(function(layer){
               layer.y *= normalize() ? 100 / sum : 1;
               layer.y0 = y0;
-              y0 += layer.y + padding(); 
+              y0 += layer.y + padding();
             })
 
         })
-        
-        var x = date && date.type() == "Date"
+
+
+        var x = date() && date.type() == "Date"
             // Date
             ? d3.time.scale()
                 .domain( [ d3.min(layers, function(layer) { return d3.min(layer, function(d) { return d.x; }); }), d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.x; }); }) ])
@@ -160,7 +165,7 @@
             values.forEach(function(layer){
                 layer.y *= normalize() ? 100 / sum : 1;
                 layer.y0 = y0;
-                y0 += layer.y + padding(); 
+                y0 += layer.y + padding();
             })
 
         })
@@ -173,6 +178,7 @@
             .style("font-size","10px")
             .style("font-family","Arial, Helvetica")
             .attr("transform", "translate(" + 0 + "," + (height()-20) + ")")
+            .style("display",function(){ return showGrid() ? 'block' : 'none'; })
             .call(xAxis);
 
         d3.selectAll(".x.axis line, .x.axis path")
@@ -184,14 +190,14 @@
 
         var area = d3.svg.area()
             .interpolate(curves[curve()])
-            .x(function(d) {  return x(d.x); })
+            .x(function(d) { return x(d.x); })
             .y0(function(d) { return y(d.y0); })
             .y1(function(d) { return Math.min(y(d.y0)-1, y(d.y0 + d.y)); });
 
         var line = d3.svg.line()
             .interpolate(curves[curve()])
             .x(function(d) { return x(d.x); })
-            .y(function(d) { 
+            .y(function(d) {
                 var y0 = y(d.y0), y1 = y(d.y0 + d.y);
                 return y0 + (y1 - y0) * 0.5;
             });
@@ -215,7 +221,7 @@
             .enter().append('path')
             .attr('id', function(d,i) { return 'path-' + i; })
             .attr('d', line);
-        
+
         g.selectAll("text.label")
             .data(layers)
             .enter().append('text')

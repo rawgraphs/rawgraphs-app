@@ -1,16 +1,17 @@
 {
   "name": "Raw",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "authors": [
-    "DensityDesign Lab"
+    "DensityDesign Lab",
+    "Calibro"
   ],
-  "description": "The missing link between spreadsheet and vector graphics",
+  "description": "The missing link between spreadsheet and data visualization",
   "main": "index.html",
   "keywords": [
     "Raw"
   ],
-  "license": "LGPL v.3",
-  "homepage": "raw.densitydesign.org",
+  "license": "Apache License 2.0",
+  "homepage": "rawgraphs.io",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -19,22 +20,29 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.2.14",
-    "d3": "~3.4.3",
-    "bootstrap": "3.1.1",
-    "angular-route": "1.2.14",
-    "angular-strap": "2.0.0-rc.4",
-    "angular-animate": "1.2.14",
-    "jquery-ui": "1.10.4",
-    "angular-sanitize": "1.2.14",
-    "angular-bootstrap-colorpicker": "1.0",
-    "bootstrap-colorpicker": "*",
+    "angular": "1.6.2",
+    "d3": "3.5.17",
+    "bootstrap": "3.3.6",
+    "angular-route": "1.6.2",
+    "angular-strap": "2.3.12",
+    "angular-animate": "1.6.2",
+    "jquery-ui": "1.12.1",
+    "angular-sanitize": "1.6.2",
+    "angular-bootstrap-colorpicker": "latest",
+    "bootstrap-colorpicker": "latest",
     "d3-plugins": "*",
     "FileSaver": "*",
     "angular-ui": "0.4.0",
-    "zeroclipboard": "1.3.2",
+    "zeroclipboard": "2.3.0",
     "canvas-toBlob.js": "https://github.com/eligrey/canvas-toBlob.js.git",
     "jqueryui-touch-punch": "*",
-    "codemirror": "~4.5.0"
+    "codemirror": "latest",
+    "ng-file-upload": "12.2.13",
+    "is_js": "0.9.0",
+    "js-xlsx": "0.8.5",
+    "d3-plugins-density": "latest"
+  },
+  "resolutions": {
+    "angular": "1.6.2"
   }
 }

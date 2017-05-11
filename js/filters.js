@@ -10,4 +10,11 @@ angular.module('raw.filters', [])
             	return !chart.category() && category == 'Others' || chart.category() == category;
             });
 	    };
-	}]);
+	}])
+
+	.filter('decodeUrl', [function () {
+	    return function (url) {
+				if (!url) return url;
+        return decodeURIComponent(url);
+	    };
+	}])

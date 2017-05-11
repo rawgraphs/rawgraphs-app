@@ -10,7 +10,7 @@
 		.description(
             "It creates the minimum area around each point defined by two variables. When applied to a scatterplot, it is useful to show the distance between points. <br/>Based on <a href='http://bl.ocks.org/mbostock/4060366'>http://bl.ocks.org/mbostock/4060366</a>")
 		.thumbnail("imgs/voronoi.png")
-		.category('Distributions')
+		.category('Dispersion')
 		.model(points)
 
 	var width = chart.number()
@@ -33,7 +33,7 @@
 
 		var x = d3.scale.linear().range([0,+width()]).domain(d3.extent(data, function (d){ return d.x; })),
 			y = d3.scale.linear().range([+height(), 0]).domain(d3.extent(data, function (d){ return d.y; }));
-		
+
 		var voronoi = d3.geom.voronoi()
 			.x(function (d){ return x(d.x); })
 			.y(function (d){ return y(d.y); })

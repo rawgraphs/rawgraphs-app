@@ -11,7 +11,7 @@
 		.description(
 			"Visually clusters the most populated areas on a scatterplot. Useful to make more readable a scatterplot when plotting hundreds of points.<br/>Based on <a href='http://bl.ocks.org/mbostock/4248145'>http://bl.ocks.org/mbostock/4248145</a>")
 		.thumbnail("imgs/binning.png")
-	    .category('Distributions')
+	    .category('Dispersion')
 		.model(points)
 
 	var width = chart.number()
@@ -28,14 +28,14 @@
 		.defaultValue(20)
 
 	var useZero = chart.checkbox()
-		.title("set origin at (0,0)")
+		.title("Set origin at (0,0)")
 		.defaultValue(false)
 
 	var colors = chart.color()
 		 .title("Color scale")
 
 	var showPoints = chart.checkbox()
-		.title("show points")
+		.title("Show points")
 		.defaultValue(true)
 
 	chart.draw(function (selection, data){
@@ -43,7 +43,7 @@
 		// Retrieving dimensions from model
 		var x = points.dimensions().get('x'),
 			y = points.dimensions().get('y');
-			
+
 		var g = selection
 			.attr("width", +width() )
 			.attr("height", +height() )
