@@ -467,7 +467,7 @@ angular.module('raw.directives', [])
 					    helper : 'clone',
 			        revert: 'invalid',
 			        start : onStart,
-							containment: "document"
+				containment: "document"
 			      })
 		     	})
 
