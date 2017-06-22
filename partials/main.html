@@ -21,7 +21,7 @@
 					</div>
 
 					<div class="col-lg-10">
-						<h3><span ng-show="parsed && text.length" class="small text-mono">{{fileName | decodeUrl}}</span>
+						<h3 class="urlDecoded"><span ng-show="parsed && text.length" class="small text-mono">{{fileName | decodeUrl}}</span>
 							<span class="list-type pull-right" ng-show="data.length">
 								<i class="type fa fa-align-left breath-left"
 								data-toggle="tooltip"
@@ -44,10 +44,13 @@
 					<div class="col-lg-2">
 
 						<ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-							<li role="presentation" ng-class="{active:!parsed && importMode=='clipboard'}"><a href="#" ng-click="parsed=false;importMode='clipboard'"><i class="fa fa-clipboard breath-right"></i>Paste</a></li>
-				      <li role="presentation" ng-class="{active:!parsed && importMode=='file'}"><a href="#" ng-click="parsed=false;importMode='file'"><i class="fa fa-file-text breath-right"></i>Upload a file</a></li>
-				      <li role="presentation" ng-class="{active:!parsed && importMode=='url'}"><a href="#" ng-click="parsed=false;importMode='url'"><i class="fa fa-cloud breath-right"></i>From URL</a></li>
-							<li role="presentation" ng-class="{active:!parsed && importMode=='sample'}"><a href="#" ng-click="parsed=false;importMode='sample'"><i class="fa fa-gift breath-right"></i>Try our samples</a></li>
+							<!-- <li role="presentation" ng-class="{active:!parsed && importMode=='clipboard'}"><a href="#" ng-click="parsed=false;importMode='clipboard'"><i class="fa fa-clipboard breath-right"></i>Paste</a></li>
+				      <li role="presentation" ng-class="{active:!parsed && importMode=='file'}"><a href="#" ng-click="parsed=false;importMode='file'"><i class="fa fa-file-text breath-right"></i>Upload a file</a></li> -->
+				      <li role="presentation" ng-class="{active:!parsed && importMode=='url'}">
+								<a href="#" ng-click="parsed=false;importMode='url'">
+									<img ng-src="{{!parsed && 'imgs/wikidata-logo.png' || 'imgs/wikidata-logo-grey.png'}}" height="15px" class="breath-right"/>From Wikidata</a>
+								</li>
+							<!-- <li role="presentation" ng-class="{active:!parsed && importMode=='sample'}"><a href="#" ng-click="parsed=false;importMode='sample'"><i class="fa fa-gift breath-right"></i>Try our samples</a></li> -->
 				    </ul>
 
 					</div>
@@ -87,8 +90,8 @@
 
 						<!-- URl -->
 						<div ng-show="importMode=='url' && !json && !parsed">
-							<input type="text" class="form-control margin-bottom" ng-model="url" placeholder="http://" ng-show="!worksheets.length"></input>
-							<p class="help-block">Enter a web address (URL) pointing to the data (e.g. a public Dropbox file, a public API, ...). Please, be sure the server is CORS-enabled.<p>
+							<input type="text" class="form-control margin-bottom" ng-model="url" placeholder="https://query.wikidata.org/bigdata/namespace/wdq/sparql?query=..." ng-show="!worksheets.length"></input>
+							<p class="help-block">Enter Wikidata SPARQL endpoint link. See also <a target="_blank" href="https://query.wikidata.org/">Wikidata query service</a><p>
 
 							<div data-ng-show="loading" class="alert alert-loading"><i class="fa breath-right fa-refresh fa-spin"></i>Loading your data. Please wait.</div>
 

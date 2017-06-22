@@ -77,6 +77,11 @@ h4 {
   font-family: Cousine, Menlo, Monaco, Courier, monospace;
 }
 
+.urlDecoded{
+  line-height: normal;
+  margin-top: 15px;
+}
+
 .help-block {
   color: #222;
 }

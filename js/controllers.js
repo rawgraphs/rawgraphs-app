@@ -4,7 +4,7 @@
 
 angular.module('raw.controllers', [])
 
-  .controller('RawCtrl', function ($scope, dataService, $http, $timeout, $sce) {
+  .controller('RawCtrl', function ($scope, dataService, $http, $timeout, $sce, $location) {
 
     $scope.loading = false;
 
@@ -120,70 +120,43 @@ angular.module('raw.controllers', [])
       }
 
       if (is.not.url(url)) {
-        $scope.error = "Please insert a valid URL";
-        return;
+          $scope.error = "Please insert a valid URL";
+          return;
       }
 
       $scope.loading = true;
       var error = null;
-      // first trying jsonp
-      $http.jsonp($sce.trustAsResourceUrl(url), {jsonpCallbackParam: 'callback'})
+      $scope.error = false;
+
+      $http.get($sce.trustAsResourceUrl(url), {responseType:'json'})
           .then(function(response) {
-            $scope.fileName = url;
-            parseData(response.data);
-      }, function(response) {
-
-          $http.get($sce.trustAsResourceUrl(url), {responseType:'arraybuffer'})
-          .then(function(response) {
-
-            var data = new Uint8Array(response.data);
-            var arr = new Array();
-            for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
-            var bstr = arr.join("");
-
-            try {
-              var workbook = XLS.read(bstr, {type:"binary"});
-              var worksheets = [];
-        			var sheet_name_list = workbook.SheetNames;
-
-        			sheet_name_list.forEach(function(y) {
-        			  var worksheet = workbook.Sheets[y];
-        				worksheets.push({
-        					name: y,
-        					text : XLSX.utils.sheet_to_csv(worksheet),
-                  rows: worksheet['!range'].e.r
-        				})
-        			});
-
+            var match = url.match(/https:\/\/query\.wikidata\.org\/bigdata\/namespace\/wdq\/sparql/);
+            if(match){
               $scope.fileName = url;
+              var vars = response.data.head.vars;
+              var bindings = response.data.results.bindings;
+              var data = [];
+              bindings.forEach(function(d){
+                var elm = {};
+                vars.forEach(function(v){
+                  if(d[v]){
+                    elm[v] = d[v].value;
+                  }else {
+                    elm[v] = null;
+                  }
+
+                })
+                data.push(elm)
+              })
+              parseText(d3.tsv.format(data));
+            }else{
               $scope.loading = false;
-
-              // multiple sheets
-              if (worksheets.length > 1) {
-                $scope.worksheets = worksheets;
-              // single > parse
-              } else {
-                parseText(worksheets[0].text);
-              }
-            }
-            catch(error) {
-              $scope.fileName = url;
-              try {
-                var json = JSON.parse(bstr);
-                selectArray(json);
-              }
-              catch(error) {
-                parseText(bstr);
-              }
+              $scope.error = "Something wrong with the URL you provided. Please be sure it is the correct address.";
             }
 
-          },
-          function(response){
-            $scope.loading = false;
-            $scope.error = "Something wrong with the URL you provided. Please be sure it is the correct address.";
-          }
-        )
-
+      }, function(response) {
+        $scope.loading = false;
+        $scope.error = "Something wrong with the URL you provided. Please be sure it is the correct address.";
       });
 
     });
@@ -238,7 +211,8 @@ angular.module('raw.controllers', [])
     $scope.error = false;
   //  $scope.loading = true;
 
-    $scope.importMode = 'clipboard';
+    //$scope.importMode = 'clipboard';
+    $scope.importMode = 'url';
 
     $scope.categories = ['Hierarchies', 'Time Series', 'Distributions', 'Correlations', 'Others'];
 
@@ -496,6 +470,12 @@ angular.module('raw.controllers', [])
       };
 
     $(document).ready(refreshScroll);
+
+    //check url
+    var urlFromLocation = $location.search().url;
+    if(urlFromLocation){
+      $scope.url = urlFromLocation;
+    }
 
 
   })
