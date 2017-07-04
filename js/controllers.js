@@ -76,7 +76,7 @@ angular.module('raw.controllers', [])
         }
 
         // json
-        if (file.type.search('json') != -1) {
+        if (file.name.search(/\.json/) != -1) {
           dataService.loadJson(file)
           .then(function(json){
             $scope.fileName = file.name;
@@ -85,7 +85,7 @@ angular.module('raw.controllers', [])
         }
 
         // txt
-        if (file.type.search('text') != -1) {
+        if (file.name.search(/\.csv|\.tsv|\.dsv|\.txt/) != -1) {
           dataService.loadText(file)
           .then(function(text){
             $scope.fileName = file.name;
