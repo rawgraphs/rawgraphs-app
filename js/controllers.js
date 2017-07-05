@@ -60,7 +60,7 @@ angular.module('raw.controllers', [])
         $scope.loading = true;
 
         // excel
-        if (file.name.search(/\.xls|\.xlsx/) != -1 || file.type.search('sheet') != -1) {
+        if (file.name.search(/\.xls$|\.xlsx$/) != -1 || file.type.search('sheet') != -1) {
           dataService.loadExcel(file)
           .then(function(worksheets){
             $scope.fileName = file.name;
@@ -76,7 +76,7 @@ angular.module('raw.controllers', [])
         }
 
         // json
-        if (file.name.search(/\.json/) != -1) {
+        if (file.name.search(/\.json$/) != -1) {
           dataService.loadJson(file)
           .then(function(json){
             $scope.fileName = file.name;
@@ -85,7 +85,7 @@ angular.module('raw.controllers', [])
         }
 
         // txt
-        if (file.name.search(/\.csv|\.tsv|\.dsv|\.txt/) != -1) {
+        if (file.name.search(/\.csv$|\.tsv$|\.dsv$|\.txt$/) != -1) {
           dataService.loadText(file)
           .then(function(text){
             $scope.fileName = file.name;
