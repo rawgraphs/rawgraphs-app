@@ -132,6 +132,32 @@ If you want to know more about RAW, how it works and future developments, please
 Want to contribute to RAW's development? You are more than welcome! Start by forking the repository (the "Fork" button at the top-right corner of this page) and follow the instructions above to clone it and install dependencies. Then you can use Github's issues and pull requests to discuss and share your work.
 You will need to sign a [Contributor License Agreement (CLA)](https://en.wikipedia.org/wiki/Contributor_License_Agreement) before making a submission. We adopted CLA to be sure that the project will remain open source. For more information, write us: <hello@rawgraphs.io>.
 
+## Publications
+If you have found RAWGraphs useful in your research, or if you want to reference it in your work, please consider to cite the paper we presented at [CHItaly 2017](http://sites.unica.it/chitaly2017/):
+
+> Mauri, M., Elli, T., Caviglia, G., Uboldi, G., & Azzi, M. (2017). RAWGraphs: A Visualisation Platform to Create Open Outputs. In *Proceedings of the 12th Biannual Conference on Italian SIGCHI Chapter* (p. 28:1–28:5). New York, NY, USA: ACM. https://doi.org/10.1145/3125571.3125585
+
+Bibtex:
+```
+@inproceedings{Mauri:2017:RVP:3125571.3125585,
+ author = {Mauri, Michele and Elli, Tommaso and Caviglia, Giorgio and Uboldi, Giorgio and Azzi, Matteo},
+ title = {RAWGraphs: A Visualisation Platform to Create Open Outputs},
+ booktitle = {Proceedings of the 12th Biannual Conference on Italian SIGCHI Chapter},
+ series = {CHItaly '17},
+ year = {2017},
+ isbn = {978-1-4503-5237-6},
+ location = {Cagliari, Italy},
+ pages = {28:1--28:5},
+ articleno = {28},
+ numpages = {5},
+ url = {http://doi.acm.org/10.1145/3125571.3125585},
+ doi = {10.1145/3125571.3125585},
+ acmid = {3125585},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {Visualization tools, data visualization, open output, visual interface},
+}
+```
 
 ## Authors
 **RAW** has been originally developed by:
