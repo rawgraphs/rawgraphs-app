@@ -133,7 +133,13 @@ Want to contribute to RAW's development? You are more than welcome! Start by for
 You will need to sign a [Contributor License Agreement (CLA)](https://en.wikipedia.org/wiki/Contributor_License_Agreement) before making a submission. We adopted CLA to be sure that the project will remain open source. For more information, write us: <hello@rawgraphs.io>.
 
 ## Publications
-If you have found RAWGraphs useful in your research, or if you want to reference it in your work, please consider to cite the paper we presented at [CHItaly 2017](http://sites.unica.it/chitaly2017/):
+If you have found RAWGraphs useful in your research, or if you want to reference it in your work, please consider to cite the paper we presented at [CHItaly 2017](http://sites.unica.it/chitaly2017/).
+
+you can read the article in Green Open Access at the following link:
+
+![oa icon](http://dl.acm.org/images/oa.gif) [RAWGraphs: A Visualisation Platform to Create Open Outputs](https://dl.acm.org/authorize?N46728)
+
+Cite RAWGraphs:
 
 > Mauri, M., Elli, T., Caviglia, G., Uboldi, G., & Azzi, M. (2017). RAWGraphs: A Visualisation Platform to Create Open Outputs. In *Proceedings of the 12th Biannual Conference on Italian SIGCHI Chapter* (p. 28:1–28:5). New York, NY, USA: ACM. https://doi.org/10.1145/3125571.3125585
 
