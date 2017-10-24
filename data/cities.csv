@@ -1,0 +1,51 @@
+Continent,Country,City,Population
+Asia,China,Shanghai,24256800
+Asia,Pakistan,Karachi,23500000
+Asia,China,Beijing,21516000
+Asia,India,Delhi,16787941
+Asia,China,Tianjin,15200000
+Asia,Japan,Tokyo,13513734
+Asia,China,Guangzhou,13080500
+Asia,India,Mumbai,12442373
+Asia,China,Shenzhen,10467400
+Asia,Indonesia,Jakarta,10075310
+Africa,Nigeria,Lagos,17578000
+Africa,Egypt,Cairo,11001000
+Africa,Democratic Republic of the Congo,Kinshasa-Brazzaville,8754000
+Africa,Somalia,Mogadishu,6346000
+Africa,Sudan,Khartoum-Omdurman,5172000
+Africa,Angola,Luanda,4772000
+Africa,Egypt,Alexandria,4387000
+Africa,Tanzania,Dar es Salaam,4364541
+Africa,Ivory Coast,Abidjan,4125000
+Africa,South Africa,Greater Johannesburg,3670000
+Europe,Turkey,Istanbul,14025646
+Europe,Russia,Moscow,12330126
+Europe,United Kingdom,London,8673713
+Europe,Russia,Saint Petersburg,5225690
+Europe,Germany,Berlin,3562166
+Europe,Spain,Madrid,3165235
+Europe,Ukraine,Kiev,2909491
+Europe,Italy,Rome,2874038
+Europe,France,Paris,2241346
+Europe,Belarus,Minsk,1949400
+North America,Mexico,Mexico City,8918653
+North America,United States,New York City,8550405
+North America,United States,Los Angeles,3971883
+North America,Canada,Toronto,2826498
+North America,United States,Chicago,2720546
+North America,United States,Houston,2296224
+North America,Cuba,Havana,2117625
+North America,Canada,Montreal,1753034
+North America,Mexico,Ecatepec de Morelos,1677678
+North America,United States,Philadelphia,1567442
+South America,Brazil,São Paulo,11967825
+South America,Peru,Lima,8894412
+South America,Colombia,Bogotá,7862277
+South America,Brazil,Rio de Janeiro,6476631
+South America,Chile,Santiago,5507282
+South America,Venezuela,Caracas,3289886
+South America,Argentina,Buenos Aires,3054267
+South America,Brazil,Salvador,2921087
+South America,Brazil,Brasília,2914830
+South America,Brazil,Fortaleza,2591188
