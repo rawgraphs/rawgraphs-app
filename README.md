@@ -135,9 +135,9 @@ You will need to sign a [Contributor License Agreement (CLA)](https://en.wikiped
 ## Publications
 If you have found RAWGraphs useful in your research, or if you want to reference it in your work, please consider to cite the paper we presented at [CHItaly 2017](http://sites.unica.it/chitaly2017/).
 
-you can read the article in Green Open Access at the following link:
+you can read the full article in Green Open Access at the following link:
 
-![oa icon](http://dl.acm.org/images/oa.gif) [RAWGraphs: A Visualisation Platform to Create Open Outputs](https://dl.acm.org/authorize?N46728)
+![oa icon](http://dl.acm.org/images/oa.gif) [RAWGraphs: A Visualisation Platform to Create Open Outputs](http://rawgraphs.io/about/#cite)
 
 Cite RAWGraphs:
 
