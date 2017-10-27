@@ -466,7 +466,8 @@ angular.module('raw.directives', [])
 			        connectToSortable:'.dimensions-container',
 					    helper : 'clone',
 			        revert: 'invalid',
-			        start : onStart
+			        start : onStart,
+				containment: "document"
 			      })
 		     	})
 
