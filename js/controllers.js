@@ -130,7 +130,7 @@ angular.module('raw.controllers', [])
 
       $http.get($sce.trustAsResourceUrl(url), {responseType:'json'})
           .then(function(response) {
-            var match = url.match(/https:\/\/query\.wikidata\.org\/bigdata\/namespace\/wdq\/sparql/);
+            var match = url.match(/https:\/\/query\.wikidata\.org\/sparql/);
             if(match){
               $scope.fileName = url;
               var vars = response.data.head.vars;
