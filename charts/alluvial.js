@@ -138,7 +138,7 @@
 		node.append("rect")
 		    .attr("height", function(d) { return d.dy; })
 		    .attr("width", sankey.nodeWidth())
-		    .style("fill", function (d) { return d.sourceLinks.length ? colors(d.name) : "#666"; })
+		    .style("fill", function (d) { return d.sourceLinks.length ? colors()(d.name) : "#666"; })
 		    .append("title")
 		    	.text(function(d) { return d.name + "\n" + format(d.value); });
 
