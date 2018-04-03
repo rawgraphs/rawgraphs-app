@@ -21,7 +21,8 @@
   ],
   "dependencies": {
     "angular": "1.6.2",
-    "d3": "4.9.1",
+    "d3": "5.0.0",
+    "d3-voronoi": "https://d3js.org/d3-voronoi.v1.min.js",
     "bootstrap": "3.3.6",
     "angular-route": "1.6.2",
     "angular-strap": "2.3.12",
