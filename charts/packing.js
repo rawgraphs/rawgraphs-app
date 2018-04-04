@@ -38,28 +38,37 @@
 	    	outerDiameter = +diameter(),
 	    	innerDiameter = outerDiameter - margin - margin;
 
-		var x = d3.scale.linear()
+		var x = d3.scaleLinear()
 		    .range([0, innerDiameter]);
 
-		var y = d3.scale.linear()
+		var y = d3.scaleLinear()
 		    .range([0, innerDiameter]);
 
-		var pack = d3.layout.pack()
+		var pack = d3.pack()
 		    .padding(+padding())
-		    .sort(function (a,b){ return sort() ? b.value - a.value : null; })
+		    //.sort(function (a,b){ return sort() ? b.value - a.value : null; })
 		    .size([innerDiameter, innerDiameter])
-		    .value(function(d) { return +d.size; })
+		    //.value(function(d) { return +d.size; })
 
-		var g = selection
+		//compute the hierarchy
+		var hierarchy = d3.hierarchy(data).sum(function (d) {return +d.size; });
+		var nodes = hierarchy.descendants();
+		pack(hierarchy);
+
+		// console.log(data);
+		// console.log(hierarchy);
+
+        // var focus = data,
+        //     nodes = pack.nodes(data);
+
+        var g = selection
 		    .attr("width", outerDiameter)
 		    .attr("height", outerDiameter)
             .append("g")
 		    .attr("transform", "translate(" + margin + "," + margin + ")");
 
-        var focus = data,
-            nodes = pack.nodes(data);
-
-        colors.domain(nodes.filter(function (d){ return !d.children; }), function (d){ return d.color; });
+        colors.domain(nodes.filter(function (d){ return !d.children }), 
+        	function (d){ return d.data.color; });
 
         g.append("g").selectAll("circle")
             .data(nodes)
@@ -67,7 +76,7 @@
             .attr("class", function (d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
             .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; })
             .attr("r", function (d) { return d.r; })
-            .style("fill", function (d) { return !d.children ? colors()(d.color) : ''; })
+            .style("fill", function (d) { return !d.children ? colors()(d.data.color) : ''; })
             .style("fill-opacity", function (d){ return !d.children ? 1 : 0; })
             .style("stroke", '#ddd')
             .style("stroke-opacity", function (d) { return !d.children ? 0 : 1 })
@@ -79,7 +88,7 @@
 	   		.style("font-size","11px")
 			.style("font-family","Arial, Helvetica")
             .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-            .text(function (d) { return d.label ? d.label.join(", ") : d.name; });
+            .text(function (d) { return d.data.label ? d.data.label.join(", ") : d.data.name; });
 
 	})
 })();
