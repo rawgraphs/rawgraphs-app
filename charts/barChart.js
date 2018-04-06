@@ -41,12 +41,12 @@
 			.key(function(d) { return d[groups()] })
 			.key(function(d) { return d[categories()] })
 			.rollup(function(v) {
-				var item = {};
-				item.size = !sizes() ? v.length : d3.sum(v, function(e) { return e[sizes()] });
-				item.category = v[0][categories()]
-				item.group = v[0][groups()]
-				item.color = v[0][colorsDimesion()]
-				return item;
+				return {
+					size: !sizes() ? v.length : d3.sum(v, function(e) { return e[sizes()] }),
+					category: categories(v[0]),
+					group: groups(v[0]),
+					color: colorsDimesion(v[0])
+				}
 			})
 			.entries(data)
 
