@@ -1,44 +1,6 @@
 (function() {
 
-	var stream = raw.model();
-
-	var group = stream.dimension()
-		.title('Group')
-		.required(1)
-
-	var date = stream.dimension()
-		.title('Date')
-		.types(Date)
-		.accessor(function(d) { return this.type() == "Date" ? Date.parse(d) : +d; })
-		.required(1)
-
-	var size = stream.dimension()
-		.title('Size')
-		.types(Number)
-		.required(1)
-
-	stream.map(function(data) {
-		if (!group()) return [];
-
-		var dates = d3.set(data.map(function(d) { return +date(d); })).values();
-
-		var results = d3.nest()
-			.key(function(d) { return d[group()] })
-			.key(function(d) { return d[date()] }).sortKeys(d3.ascending)
-			.rollup(function(v) {
-				return {
-					size: !size() ? v.length : d3.sum(v, function(e) { return size(e) }),
-					date: date(v[0]),
-					group: group(v[0])
-				}
-			})
-			.entries(data);
-
-		// remap the array
-		results.forEach(function(d) { d.values = d.values.map(function(item) { return item.value }) });
-
-		return results;
-	})
+	var stream = raw.models.timeSeries();
 
 	var chart = raw.chart()
 		.title('Area graph')
@@ -74,7 +36,7 @@
 	var curve = chart.list()
 		.title("Interpolation")
 		.values(['Cardinal', 'Basis spline', 'Sankey', 'Linear'])
-		.defaultValue('Cardinal')
+		.defaultValue('Sankey')
 
 	var sorting = chart.list()
 		.title("Sort by")
