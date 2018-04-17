@@ -145,9 +145,11 @@
 
 		var y = d3.scaleLinear()
 			.domain([d3.min(layers, stackMin), d3.max(layers, stackMax)])
-			.range([+height() - padding() * layers.length - 20, 0]);
+			//.range([+height() - padding() * (layers.length-1) - 20, 0]);
+			.range([0, +height() - 20 - padding() * (layers.length-1)])
 
 		//sort layers by size
+		console.log(y.domain())
 
 		for(var i = 0; i < layers[0].length; i++){
 
@@ -158,19 +160,26 @@
 
 			var sum = d3.sum(values, function(layer){ return layer[1] - layer[0]; });
 
-			console.log(sum);
-			
-			var y0 = normalize() ? 0 : -sum/2 + y.invert( (+height()-20)/2 ) - padding() * (values.length-1) / 2;
+			// console.log('total: ',sum);
+			// console.log('height: ', y.invert( +height()-20 ));
+			// console.log('total padding', padding() * (values.length-1));
+			// console.log('invert padding',y.invert(padding() * (values.length-1)));
+
+			var y0 = normalize() ? 0 : -sum/2 + y.invert( (+height()-20)/2 ) - y.invert(padding() * (values.length-1)) / 2;
+			//var y0 = normalize() ? 0 : -sum/2 + y.invert( (+height()-20)/2 ) - padding() * (values.length-1) / 2;
 			
 			
 			values.forEach(function(layer, li){
 				var yd = layer[1] - layer[0];
+
+				if(normalize()){
+					yd = y.domain()[1]/sum*yd;
+				}
 				layer[0] = y0;
 				layer[1] = y0 + yd;
-				//save order
-				layer.order = li;
+
 				//increase y0
-				y0 += yd + padding();
+				y0 += yd + y.invert(padding());
 			});
 		}
 
