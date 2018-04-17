@@ -76,6 +76,7 @@
 		.thumbnail("imgs/bumpChart.png")
 		.description(
 			"For continuous data such as time series, a bump chart can be used in place of stacked bars. Based on New York Times's <a href='http://www.nytimes.com/interactive/2014/08/13/upshot/where-people-in-each-state-were-born.html'>interactive visualization.</a>")
+		.category('Time series')
 		.model(stream)
 
 	var width = chart.number()
@@ -102,8 +103,8 @@
 
 	var curve = chart.list()
 		.title("Interpolation")
-		.values(['Cardinal', 'Basis spline', 'Density', 'Linear'])
-		.defaultValue('Basis spline')
+		.values(['Cardinal', 'Basis spline', 'DensityDesign', 'Linear'])
+		.defaultValue('DensityDesign')
 
 	var showLabels = chart.checkbox()
 		.title("Show labels")
@@ -123,7 +124,7 @@
 			'Basis spline': d3.curveBasis,
 			'Cardinal': d3.curveCardinal,
 			'Linear': d3.curveLinear,
-			'Density': curveSankey
+			'DensityDesign': curveSankey
 		}
 
 		var offsets = {
@@ -135,46 +136,33 @@
 		}
 
 		var stack = d3.stack()
-			.keys(data.keys);
+			.keys(data.keys)
+			.offset(normalize() ? d3.stackOffsetExpand : d3.stackOffsetNone);
 
 		var layers = stack(data.values);
-		
+
 		var x = d3.scaleTime()
 			.domain(d3.extent(data.values, function(d) { return d.date; }))
 			.range([0, +width()]);
 
 		var y = d3.scaleLinear()
 			.domain([d3.min(layers, stackMin), d3.max(layers, stackMax)])
-			//.range([+height() - padding() * (layers.length-1) - 20, 0]);
-			.range([0, +height() - 20 - padding() * (layers.length-1)])
+			.range([0, +height() - 20 - padding() * (layers.length - 1)]);
 
 		//sort layers by size
-		console.log(y.domain())
+		for (var i = 0; i < layers[0].length; i++) {
 
-		for(var i = 0; i < layers[0].length; i++){
+			var values = layers.map(function(layer) {
+					return layer[i];
+				})
+				.sort(sortBy);
 
-			var values = layers.map(function(layer){
-				return layer[i];
-			})
-			.sort(sortBy);
+			var sum = d3.sum(values, function(layer) { return layer[1] - layer[0]; });
 
-			var sum = d3.sum(values, function(layer){ return layer[1] - layer[0]; });
+			var y0 = (y.domain()[1] - sum) / 2;
 
-			// console.log('total: ',sum);
-			// console.log('height: ', y.invert( +height()-20 ));
-			// console.log('total padding', padding() * (values.length-1));
-			// console.log('invert padding',y.invert(padding() * (values.length-1)));
-
-			var y0 = normalize() ? 0 : -sum/2 + y.invert( (+height()-20)/2 ) - y.invert(padding() * (values.length-1)) / 2;
-			//var y0 = normalize() ? 0 : -sum/2 + y.invert( (+height()-20)/2 ) - padding() * (values.length-1) / 2;
-			
-			
-			values.forEach(function(layer, li){
+			values.forEach(function(layer, li) {
 				var yd = layer[1] - layer[0];
-
-				if(normalize()){
-					yd = y.domain()[1]/sum*yd;
-				}
 				layer[0] = y0;
 				layer[1] = y0 + yd;
 
@@ -182,8 +170,6 @@
 				y0 += yd + y.invert(padding());
 			});
 		}
-
-		console.log(layers);
 
 		//below, the old code to swap among three types of data. for now, it is forced to dates only.
 
@@ -271,7 +257,6 @@
 			.append('textPath')
 			.attr('xlink:xlink:href', function(d, i) { return '#path-' + i; })
 			.attr('startOffset', function(d) {
-				console.log(d);
 				var maxYloc = 0,
 					maxV = 0;
 				d.forEach(function(e, i) {
@@ -322,9 +307,9 @@
 
 	})
 	//sorting functions
-	function sortBy(a,b){
-		if (sort() == 'value (descending)') return (a[1] - a[0]) - (b[1] - b[0]);
-		if (sort() == 'value (ascending)') return (b[1] - b[0]) - (a[1] - a[0]);
+	function sortBy(a, b) {
+		if (sort() == 'value (ascending)') return (a[1] - a[0]) - (b[1] - b[0]);
+		if (sort() == 'value (descending)') return (b[1] - b[0]) - (a[1] - a[0]);
 	}
 
 	//Sankey interpolator. Could be moved in a better place.
