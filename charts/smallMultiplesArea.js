@@ -43,57 +43,60 @@
 		.values(['Original', 'Total (descending)', 'Total (ascending)', 'Name'])
 		.defaultValue('Original')
 
-	// interpoaltion function
+	// interpolation function
 
 	function CurveSankey(context) {
-			this._context = context;
-		}
+		this._context = context;
+	}
 
-		CurveSankey.prototype = {
-			areaStart: function() {
-				this._line = 0;
-			},
-			areaEnd: function() {
-				this._line = NaN;
-			},
-			lineStart: function() {
-				this._x = this._y = NaN;
-				this._point = 0;
-			},
-			lineEnd: function() {
-				if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
-				this._line = 1 - this._line;
-			},
-			point: function(x, y) {
-				x = +x, y = +y;
-				switch (this._point) {
-					case 0:
-						this._point = 1;
-						this._line ? this._context.lineTo(x,y) : this._context.moveTo(x, y);
-						break;
-					case 1:
-						this._point = 2; // proceed
-					default:
-						var mx = (x - this._x) / 2 + this._x;
-						this._context.bezierCurveTo(mx, this._y, mx, y, x, y);
-						break;
-				}
-				this._x = x, this._y = y;
+	CurveSankey.prototype = {
+		areaStart: function() {
+			this._line = 0;
+		},
+		areaEnd: function() {
+			this._line = NaN;
+		},
+		lineStart: function() {
+			this._x = this._y = NaN;
+			this._point = 0;
+		},
+		lineEnd: function() {
+			if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
+			this._line = 1 - this._line;
+		},
+		point: function(x, y) {
+			x = +x, y = +y;
+			switch (this._point) {
+				case 0:
+					this._point = 1;
+					this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y);
+					break;
+				case 1:
+					this._point = 2; // proceed
+				default:
+					var mx = (x - this._x) / 2 + this._x;
+					this._context.bezierCurveTo(mx, this._y, mx, y, x, y);
+					break;
 			}
-		};
-
-		var curveSankey = function(context) {
-			return new CurveSankey(context);
+			this._x = x, this._y = y;
 		}
+	};
+
+	var curveSankey = function(context) {
+		return new CurveSankey(context);
+	}
 
 	chart.draw(function(selection, data) {
 
 		//sort data
 		function sortBy(a, b) {
+			console.log(a);
 			if (sorting() == 'Total (descending)') {
-				return a.reduce(function(c, d) { return c + d.size }, 0) - b.reduce(function(c, d) { return c + d.size }, 0)
+				return a.values.reduce(function(c, d) { return c + d.size }, 0) - b.values.reduce(function(c, d) { return c + d.size }, 0)
 			}
-			if (sorting() == 'Total (ascending)') return b.reduce(function(c, d) { return c + d.size }, 0) - a.reduce(function(c, d) { return c + d.size }, 0);
+			if (sorting() == 'Total (ascending)') {
+				return b.values.reduce(function(c, d) { return c + d.size }, 0) - a.values.reduce(function(c, d) { return c + d.size }, 0);
+			}
 			if (sorting() == 'Name') {
 				if (a[0].group < b[0].group) return -1;
 				if (a[0].group > b[0].group) return 1;
@@ -124,13 +127,8 @@
 
 		var area = d3.area()
 			.x(function(d) { return x(d.date); })
-			//.y0(h)
-			//.y1(function(d) { return y(+d.size) })
 			.curve(curves[curve()]);
 
-		//@TODO: expose this in options
-		//var specular = false;
-		// if specular
 		if (specular()) {
 			area.y0(function(d) { return h - y(d.size) / 2; })
 				.y1(function(d) { return y(d.size) / 2; })
@@ -144,7 +142,7 @@
 			d3.max(data, function(layer) { return d3.max(layer.values, function(d) { return d.date; }); })
 		])
 
-		colors.domain(data, function(d) { return d.key; })
+		colors.domain(data, function(d) { return d.values[0].color; }) //get color of first item
 
 		var xAxis = d3.axisBottom(x).tickSize(-height() + 15);
 
@@ -175,7 +173,7 @@
 			.attr("x", w - 6)
 			.attr("y", h - 6)
 			.style("font-size", "10px")
-			.style("fill", function(d) { return colors()(d.key) })
+			.style("fill", "black")
 			.style("font-family", "Arial, Helvetica")
 			.style("text-anchor", "end")
 			.text(function(d) { return d.key; });
@@ -192,7 +190,7 @@
 
 			g.append("path")
 				.attr("class", "area")
-				.style("fill", function(d) { return colors()(d.key); })
+				.style("fill", function(d) { return colors()(d.values[0].color); })
 				.attr("d", area(single.values));
 		}
 
