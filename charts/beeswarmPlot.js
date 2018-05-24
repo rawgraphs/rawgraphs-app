@@ -114,8 +114,6 @@
     // but the result of the model map function
     chart.draw(function(selection, data) {
 
-        console.log(data)
-
         //sort data
         function sortBy(a, b) {
             if (sorting() == 'Name (descending)') {
@@ -191,7 +189,7 @@
 
         //handle data type (Number or Date)
         var xScale = values.type() == 'Date' ? d3.scaleTime() : d3.scaleLinear();
-        
+
         let xMax = d3.max(data, function(d) {
             return d3.max(d.values, function(e) {
                 return e.value;
@@ -210,14 +208,13 @@
         xScale.range([radius(radius.domain()[0]), w - radius(radius.domain()[1])])
             .domain([xMin, xMax]);
 
-        console.log(xScale.domain())
-
         // Draw each bar chart
         data.forEach(function(item, index) {
 
             // Append a grupo containing axis and circles,
             // move it according the index
             let beeswarm = selection.append("g")
+                .attr('id', item.key === "undefined" ? "swarm" : "swarm-" + item.key)
                 .attr("transform", "translate(" + margin.left + "," + index * (h + padding() + titleSpace) + ")");
 
             // Draw title
@@ -242,10 +239,12 @@
             for (var i = 0; i < 240; ++i) simulation.tick();
 
             let bees = beeswarm.append('g')
+                .attr('id', 'circles')
                 .attr('class', 'bees')
                 .selectAll("circle")
                 .data(data).enter()
                 .append('circle')
+                .attr('id', function(d){ return d.label ? d.label : 'circle'})
                 .attr('r', function(d) { return radius(d.radius) })
                 .attr('cx', function(d) { return d.x })
                 .attr('cy', function(d) { return d.y })
@@ -258,6 +257,7 @@
                 });
 
             let labels = beeswarm.append('g')
+                .attr('id', 'labels')
                 .attr('class', 'label')
                 .selectAll("text")
                 .data(data).enter()
@@ -268,11 +268,11 @@
                 .attr('fill', '#000')
                 .text(function(d){ if (d.label) return d.label; })
 
-
         })
 
         // After all the charts, draw x axis
         selection.append("g")
+            .attr('id', '"x-axis')
             .attr("class", "x axis")
             .style("font-size", "10px")
             .style("font-family", "Arial, Helvetica")
