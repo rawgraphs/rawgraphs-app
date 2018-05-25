@@ -4,7 +4,7 @@
 
 angular.module('raw.directives', [])
 
-	.directive('jsonViewer', function (dataService) {
+	.directive('jsonViewer', dataService => {
 		return {
 			scope : {
 				json : "=",
@@ -13,7 +13,7 @@ angular.module('raw.directives', [])
 
 			link: function postLink(scope, element, attrs) {
 
-				scope.$watch('json', function(json){
+				scope.$watch('json', json => {
 					update();
 				})
 
@@ -36,7 +36,7 @@ angular.module('raw.directives', [])
 
 							el.append("div")
 							//	.classed("json-node","true")
-								.text(function(d){
+								.text(d => {
 									return "{";
 							})
 
@@ -48,21 +48,21 @@ angular.module('raw.directives', [])
 						for (var c in n) {
 
 							var cel = el.append("div")
-								.datum(n[c])//function(d){console.log(el === tree, n); return el === tree ? {tree:n} : n[c]})
+								.datum(n[c])//d => {console.log(el === tree, n); return el === tree ? {tree:n} : n[c]})
 								.classed("json-node","true")
 
 							if ( is.array(n[c]) && is.not.empty(n[c])) {
 
-								cel.classed("json-closed", function(d){ return el === tree ? "false" : "true"})
+								cel.classed("json-closed", d => { return el === tree ? "false" : "true"})
 
-								cel.classed("json-array", function(d){ return el === tree ? "false" : "true"})
+								cel.classed("json-array", d => { return el === tree ? "false" : "true"})
 
 								//data-toggle="tooltip"
 								//data-title="Clear all"
 
 								cel.append("i")
 								.classed("json-icon fa fa-plus-square-o pull-left","true")
-								.on("click", function(d){
+								.on("click", d => {
 									d3.event.stopPropagation();
 									d3.select(this.parentNode).classed("json-closed", function(){
 										return !d3.select(this).classed("json-closed");
@@ -73,7 +73,7 @@ angular.module('raw.directives', [])
 							}
 
 							cel.append("div")
-							.html(function(d){
+							.html(d => {
 									var pre = is.array(n) ? "" : "<b>"+c + "</b> : ";
 									var text = is.array(n[c]) ? "[" : is.object(n[c]) ? "{" : n[c];
 									text += is.array(n[c]) && !n[c].length ? "]" : is.object(n[c]) && is.empty(n[c]) ? "}" : "";
@@ -87,18 +87,18 @@ angular.module('raw.directives', [])
 
 							el.select('div')
 							.attr("data-toggle","tooltip")
-							.attr("data-title", function(d){
+							.attr("data-title", d => {
 								return "Load " + d.length + " records";
 							})
-							.on("mouseover", function(d){
+							.on("mouseover", d => {
 								d3.event.stopPropagation();
 								d3.select(this.parentNode).classed("json-hover", true)
 							})
-							.on("mouseout", function(d){
+							.on("mouseout", d => {
 								d3.event.stopPropagation();
 								d3.select(this.parentNode).classed("json-hover", false)
 							})
-							.on("click", function(d){
+							.on("click", d => {
 								d3.event.stopPropagation();
 								scope.onSelect(d);
 							})
@@ -110,7 +110,7 @@ angular.module('raw.directives', [])
 
 							el.append("div")
 							//	.classed("json-node","true")
-								.text(function(d){
+								.text(d => {
 									var text = is.array(n) ? "]" : "}";
 									return text;
 							})
@@ -176,7 +176,7 @@ angular.module('raw.directives', [])
 	        scope.$on('update', function(){ console.log("> update"); update(); });
 	        //scope.$watch('data', update)
 	        scope.$watch(function(){ if (scope.model) return scope.model(scope.data); }, update, true);
-	        scope.$watch(function(){ if (scope.chart) return scope.chart.options().map(function (d){ return d.value }); }, scope.delayUpdate, true);
+	        scope.$watch(function(){ if (scope.chart) return scope.chart.options().map(d => { return d.value }); }, scope.delayUpdate, true);
 
 	      }
 	    };
@@ -217,37 +217,37 @@ angular.module('raw.directives', [])
 
 	        	{
 	        		type : 'Ordinal (categories)',
-	        		value : d3.scale.ordinal().range(raw.divergingRange(1)),
-	        		reset : function(domain){ this.value.range(raw.divergingRange(domain.length || 1)); },
+	        		value : d3.scaleOrdinal().range(raw.divergingRange(1)),
+	        		reset : function(domain) { this.value.range(raw.divergingRange(domain.length || 1)); },
 	        		update : ordinalUpdate
 	        	},
 	        	/*{
 	        		type : 'Ordinal (max 20 categories)',
 	        		value : d3.scale.category20(),
-	        		reset : function(){ this.value.range(d3.scale.category20().range().map(function (d){ return d; })); },
+	        		reset : function(){ this.value.range(d3.scale.category20().range().map(d => { return d; })); },
 	        		update : ordinalUpdate
 	        	},
 	        	{
 	        		type : 'Ordinal B (max 20 categories)',
 	        		value : d3.scale.category20b(),
-	        		reset : function(){ this.value.range(d3.scale.category20b().range().map(function (d){ return d; })); },
+	        		reset : function(){ this.value.range(d3.scale.category20b().range().map(d => { return d; })); },
 	        		update : ordinalUpdate
 	        	},
 	        	{
 	        		type : 'Ordinal C (max 20 categories)',
 	        		value : d3.scale.category20c(),
-	        		reset : function(){ this.value.range(d3.scale.category20c().range().map(function (d){ return d; })); },
+	        		reset : function(){ this.value.range(d3.scale.category20c().range().map(d => { return d; })); },
 	        		update : ordinalUpdate
 	        	},
 	        	{
 	        		type : 'Ordinal (max 10 categories)',
 	        		value : d3.scale.category10(),
-	        		reset : function(){ this.value.range(d3.scale.category10().range().map(function (d){ return d; })); },
+	        		reset : function(){ this.value.range(d3.scale.category10().range().map(d => { return d; })); },
 	        		update : ordinalUpdate
 	        	},*/
 	        	{
 	        		type : 'Linear (numeric)',
-	        		value : d3.scale.linear().range(["#f7fbff", "#08306b"]),
+	        		value : d3.scaleLinear().range(["#f7fbff", "#08306b"]),
 	        		reset : function(){ this.value.range(["#f7fbff", "#08306b"]); },
 	        		update : linearUpdate
 	        	}
@@ -260,7 +260,7 @@ angular.module('raw.directives', [])
 	        }
 
 	        function linearUpdate(domain) {
-	        	domain = d3.extent(domain, function (d){return +d; });
+	        	domain = d3.extent(domain, d => {return +d; });
 	        	if (domain[0]==domain[1]) domain = [null];
 	        	this.value.domain(domain).interpolate(d3.interpolateLab);
 	        	listColors();
@@ -274,7 +274,7 @@ angular.module('raw.directives', [])
 
 	        function addListener(){
 	        	scope.colorScale.reset(scope.colorScale.value.domain());
-	        	scope.option.on('change', function (domain){
+	        	scope.option.on('change', domain => {
 		      		scope.option.value = scope.colorScale.value;
 		      		scope.colorScale.update(domain);
 		      	})
@@ -283,13 +283,13 @@ angular.module('raw.directives', [])
 	        scope.colorScale = scope.scales[0];
 
 	        scope.$watch('chart', addListener)
-					scope.$watch('colorScale.value.domain()',function (domain){
+					scope.$watch('colorScale.value.domain()', domain => {
 						scope.colorScale.reset(domain);
 						listColors();
 					}, true);
 
 	        function listColors(){
-	        	scope.colors = scope.colorScale.value.domain().map(function (d){
+	        	scope.colors = scope.colorScale.value.domain().map(d => {
 	        		return { key: d, value: scope.colorScale.value(d).charAt(0) == '#' ? scope.colorScale.value(d) : '#' + scope.colorScale.value(d) }
 	        	}).sort(function (a,b){
 	        		if (raw.isNumber(a.key) && raw.isNumber(b.key)) return a.key - b.key;
@@ -306,11 +306,11 @@ angular.module('raw.directives', [])
 	          $rootScope.$broadcast("update");
 	        }
 
-	        scope.foreground = function(color){
+	        scope.foreground = color => {
 	        	return d3.hsl(color).l > .5 ? "#000000" : "#ffffff";
 	        }
 
-	        scope.$watch('option.value', function (value){
+	        scope.$watch('option.value', value => {
 	        	if(!value) scope.setScale();
 	        })
 
@@ -318,7 +318,7 @@ angular.module('raw.directives', [])
 	    };
 	  })
 
-	.directive('sortable', function ($rootScope) {
+	.directive('sortable', $rootScope => {
     return {
       restrict: 'A',
       scope : {
@@ -372,7 +372,7 @@ angular.module('raw.directives', [])
 		     	}
 
 		     	scope.value = values();
-		     	scope.$apply();
+			  	scope.$apply();
 
 		     	element.parent().css("overflow","hidden");
 
@@ -383,7 +383,7 @@ angular.module('raw.directives', [])
 		     	$rootScope.$broadcast("update");
 		    }
 
-		    scope.$watch('value', function (value){
+		    scope.$watch('value', value => {
 		    	if (!value.length) {
 		    		element.find('li').remove();
 		    	}
@@ -437,15 +437,15 @@ angular.module('raw.directives', [])
 
 				function isValidType(dimension) {
 					if (!dimension) return;
-					return scope.types.map(function (d){ return d.name; }).indexOf(dimension.type) != -1;
+					return scope.types.map(d => { return d.name; }).indexOf(dimension.type) != -1;
 
 				}
 
 				function message(){
-					var hasInvalidType = values().filter(function (d){ return !isValidType(d); }).length > 0;
+					var hasInvalidType = values().filter(d => { return !isValidType(d); }).length > 0;
 					scope.messageText = hasInvalidType
-						? "You should only use " + scope.types.map(function (d){ return d.name.toLowerCase() + "s"; }).join(" or ") + " here"
-						: "Drag " + scope.types.map(function (d){ return d.name.toLowerCase() + "s"; }).join(", ") + " here";
+						? "You should only use " + scope.types.map(d => { return d.name.toLowerCase() + "s"; }).join(" or ") + " here"
+						: "Drag " + scope.types.map(d => { return d.name.toLowerCase() + "s"; }).join(", ") + " here";
 					//element.parent().find('.msg').html(messageText);
 				}
 
@@ -460,14 +460,14 @@ angular.module('raw.directives', [])
 	    	//  templateUrl : 'templates/dimensions.html',
 	      link: function postLink(scope, element, attrs) {
 
-		      scope.$watch('metadata', function(metadata){
+		      scope.$watch('metadata', metadata => {
 		      	if(!metadata.length) element.find('li').remove();
 			      element.find('li').draggable({
 			        connectToSortable:'.dimensions-container',
-					    helper : 'clone',
+					helper : 'clone',
 			        revert: 'invalid',
 			        start : onStart,
-				containment: "document"
+					containment: "document"
 			      })
 		     	})
 
@@ -484,7 +484,7 @@ angular.module('raw.directives', [])
     return {
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
-        scope.$watch(attrs.watch, function (watch){
+        scope.$watch(attrs.watch, watch => {
           var last = element;
           element.children().each(function(i, o){
             if( (i) && (i) % attrs.every == 0) {
@@ -530,16 +530,16 @@ angular.module('raw.directives', [])
 					.selectAll("th")
 					.data(scope.metadata)
 					.enter().append("th")
-						.text( function(d){ return d.key; } )
-						.on('click', function (d){
+						.text( d => { return d.key; } )
+						.on('click', d => {
 							descending = sortBy == d.key ? !descending : descending;
 							sortBy = d.key;
 							update();
 						})
 
 				headers.append("i")
-					.attr("class", function (d){ return descending ? "fa fa-sort-desc pull-right" : "fa fa-sort-asc pull-right"})
-					.style("opacity", function (d){ return d.key == sortBy ? 1 : 0; })
+					.attr("class", d => { return descending ? "fa fa-sort-desc pull-right" : "fa fa-sort-asc pull-right"})
+					.style("opacity", d => { return d.key == sortBy ? 1 : 0; })
 
 				var rows = table.append("tbody")
 					.selectAll("tr")
@@ -575,7 +575,7 @@ angular.module('raw.directives', [])
 
 			var client = new ZeroClipboard(element);
 
-			client.on("ready", function(readyEvent) {
+			client.on("ready", readyEvent => {
         client.on('aftercopy', function(event) {
 					element.trigger("mouseout");
 					setTimeout(function () {
