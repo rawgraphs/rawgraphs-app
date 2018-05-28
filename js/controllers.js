@@ -34,7 +34,7 @@ angular.module('raw.controllers', [])
     $scope.antani = d => {
       $scope.loading = true;
       var json = dataService.flatJSON(d);
-      parseText(d3.tsv.format(json))
+      parseText(d3.tsvFormat(json))
     }
 
     // select Array in JSON
@@ -297,7 +297,7 @@ angular.module('raw.controllers', [])
           }
       })
       $scope.oldData = data;
-      parseText(d3.tsv.format(unstacked));
+      parseText(d3.tsvFormat(unstacked));
 
       $scope.unstacked = true;
 
