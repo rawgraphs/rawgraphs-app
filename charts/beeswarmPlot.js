@@ -166,7 +166,7 @@
                 return e.radius;
             })
         })
-        var radius = d3.scaleLinear()
+        var radius = d3.scaleSqrt()
             .range([minRadius(), maxRadius()])
             .domain([rMin, rMax])
 
