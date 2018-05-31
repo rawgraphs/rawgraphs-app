@@ -49,16 +49,16 @@
         .title('Height')
         .defaultValue(600)
 
+    var marginLeft = chart.number()
+        .title('Left margin')
+        .defaultValue(20)
+
     var barWidth = chart.number()
         .title('Bars width')
         .defaultValue(20)
 
-    var margin = chart.number()
-        .title('Margin')
-        .defaultValue(20)
-
     var iqrValue = chart.number()
-        .title('Iqr')
+        .title('Interquartile range (IQR)')
         .defaultValue(1.5)
 
     var colors = chart.color()
@@ -69,10 +69,10 @@
 
 
         var chartMargin = {
-                top: margin(),
-                right: margin(),
-                bottom: margin(),
-                left: margin()
+                top: 20,
+                right: 20,
+                bottom: 20,
+                left: marginLeft()
             },
             chartWidth = width() - chartMargin.left - chartMargin.right,
             chartHeight = height() - chartMargin.top - chartMargin.bottom;
@@ -160,7 +160,7 @@
             })
             .style("font-size", "10px")
             .style("font-family", "Arial, Helvetica")
-            .style("fill", function(d){console.log(d); return colors() ? colors()(d.color) : "#eee";})
+            .style("fill", function(d){ return colors() ? colors()(d.color) : "#eee";})
             .call(function(d) {
                 var data = d.data();
                 data = data.map(function(e) {

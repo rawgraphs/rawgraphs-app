@@ -26,10 +26,14 @@
 		.title('Color')
 		.types(String, Date, Number)
 
-	sequence.map(data => {
+	sequence.map(function(data){
+
 		var level = id = 0;
 
-		return d3.nest()
+		//sort data by start dates
+		data.sort(function(a,b) {return d3.ascending(startDate(a), startDate(b))})
+
+		var nest = d3.nest()
 			.key(group() ? group : () => {
 				return "";
 			})
@@ -67,6 +71,8 @@
 			return false;
 		};
 
+		return nest;
+
 	})
 
 	var chart = raw.chart()
@@ -84,6 +90,14 @@
 	var height = chart.number()
 		.title("Height")
 		.defaultValue(500)
+
+	var marginLeft = chart.number()
+		.title("Left margin")
+		.defaultValue(40)
+
+	var alignment = chart.checkbox()
+		.title("Align labels to bar")
+		.defaultValue(false);
 
 	var sort = chart.list()
 		.title("Sort by")
@@ -104,14 +118,12 @@
 			levels = d3.sum(Object.values(groups).map(d => {
 				return d.length;
 			})),
-			marginLeft = raw.getMaxWidth(d3.entries(data), d => {
-				return d[0];
-			}),
+
 			margin = {
 				top: 10,
 				right: 0,
 				bottom: 20,
-				left: marginLeft + 10
+				left: marginLeft()
 			},
 			values = []
 
@@ -163,14 +175,15 @@
 
 		items.append('text')
 			.text(d => {
-				return d[0];
+				return d[1][0][0].group;
 			})
 			.style("font-size", "11px")
 			.style("font-family", "Arial, Helvetica")
-			.attr('x', margin.left - 10)
+			.attr('x', d => { return alignment() ? x(d[1][0][0].start) - 10 : margin.left - 10 })
 			.attr('y', 0)
 			.attr('dy', d => {
-				return(d[1].length * itemHeight) / 2;
+				//return(d[1].length * itemHeight) / 2;
+				return itemHeight / 2 + 4;
 			})
 			.attr('text-anchor', 'end')
 			.attr('class', 'groupText');
