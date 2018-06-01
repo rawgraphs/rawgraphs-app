@@ -51,7 +51,7 @@
 			w = +width() - m[1] - m[3],
 			h = +height() - m[0] - m[2];
 
-		var x = d3.scaleOrdinal().range([0, w], 0),
+		var x = d3.scalePoint().range([0, w]),
 			y = {},
 			dragging = {};
 
@@ -67,7 +67,7 @@
 			.attr("height", h + m[0] + m[2])
 			.style("font-size", "10px")
 			.style("font-family", "Arial, Helvetica")
-			.append("svg:g")
+			.append("g")
 			.attr("transform", `translate(${m[3]}, ${m[0]})`);
 
 		x.domain(dimensions = d3.keys(data[0].dimensions).filter(d => {
@@ -78,15 +78,17 @@
 				.range([h, 0]));
 		}));
 
+		console.log(x.domain(), x.range());
+
 		colors.domain(data, d => {
 			return d.color;
 		});
 
-		background = svg.append("svg:g")
+		background = svg.append("g")
 			.attr("class", "background")
 			.selectAll("path")
 			.data(data)
-			.enter().append("svg:path")
+			.enter().append("path")
 			.style('fill', 'none')
 			.style('stroke', d => {
 				return colors()(d.color);
@@ -96,18 +98,19 @@
 
 		var g = svg.selectAll(".dim")
 			.data(dimensions)
-			.enter().append("svg:g")
+			.enter().append("g")
 			.attr("class", "dim")
 			.attr("transform", d => {
+				//console.log(`translate(${x(d)})`)
 				return `translate(${x(d)})`;
 			});
 
-		g.append("svg:g")
+		g.append("g")
 			.attr("class", "axis")
 			.each(function(d) {
 				d3.select(this).call(d3.axisLeft(y[d]));
 			})
-			.append("svg:text")
+			.append("text")
 			.attr("text-anchor", "middle")
 			.style("font-size", "10px")
 			.style("font-family", "Arial, Helvetica")
