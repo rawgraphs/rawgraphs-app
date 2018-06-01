@@ -35,8 +35,8 @@
 
 	var curve = chart.list()
 		.title("Interpolation")
-		.values(['Cardinal', 'Basis spline', 'Sankey', 'Linear'])
-		.defaultValue('Sankey')
+		.values(['Cardinal', 'Basis spline', 'DensityDesign', 'Linear'])
+		.defaultValue('DensityDesign')
 
 	var sorting = chart.list()
 		.title("Sort by")
@@ -90,7 +90,6 @@
 
 		//sort data
 		function sortBy(a, b) {
-			console.log(a);
 			if (sorting() == 'Total (descending)') {
 				return a.values.reduce(function(c, d) { return c + d.size }, 0) - b.values.reduce(function(c, d) { return c + d.size }, 0)
 			}
@@ -98,8 +97,7 @@
 				return b.values.reduce(function(c, d) { return c + d.size }, 0) - a.values.reduce(function(c, d) { return c + d.size }, 0);
 			}
 			if (sorting() == 'Name') {
-				if (a[0].group < b[0].group) return -1;
-				if (a[0].group > b[0].group) return 1;
+				return d3.ascending(a.key, b.key);
 			}
 		}
 
@@ -108,7 +106,7 @@
 		var curves = {
 			'Basis spline': d3.curveBasis,
 			'Cardinal': d3.curveCardinal,
-			'Sankey': curveSankey,
+			'DensityDesign': curveSankey,
 			'Linear': d3.curveLinear
 		}
 

@@ -12,6 +12,7 @@
     // Each value represent a slice of the pie.
     var dimensions = model.dimension()
         .title('Arcs')
+        .types(Number)
         .required(true)
         .multiple(true);
 

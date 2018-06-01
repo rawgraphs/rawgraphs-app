@@ -93,12 +93,11 @@
 		//sort data
 		function sortBy(a, b) {
 			if (sorting() == 'Total (descending)') {
-				return a.reduce(function(c, d) { return c + d.size }, 0) - b.reduce(function(c, d) { return c + d.size }, 0)
+				return a.values.reduce(function(c, d) { return c + d.size }, 0) - b.values.reduce(function(c, d) { return c + d.size }, 0)
 			}
-			if (sorting() == 'Total (ascending)') return b.reduce(function(c, d) { return c + d.size }, 0) - a.reduce(function(c, d) { return c + d.size }, 0);
+			if (sorting() == 'Total (ascending)') return b.values.reduce(function(c, d) { return c + d.size }, 0) - a.values.reduce(function(c, d) { return c + d.size }, 0);
 			if (sorting() == 'Name') {
-				if (a[0].group < b[0].group) return -1;
-				if (a[0].group > b[0].group) return 1;
+				return d3.ascending(a.key, b.key);
 			}
 		}
 

@@ -99,7 +99,7 @@
 
 	var curve = chart.list()
 		.title("Interpolation")
-		.values(['Cardinal', 'Basis spline', 'Density', 'Linear'])
+		.values(['Cardinal', 'Basis spline', 'DensityDesign', 'Linear'])
 		.defaultValue('Basis spline')
 
 	var showLabels = chart.checkbox()
@@ -120,7 +120,7 @@
 			'Basis spline': d3.curveBasis,
 			'Cardinal': d3.curveCardinal,
 			'Linear': d3.curveLinear,
-			'Density': curveSankey
+			'DensityDesign': curveSankey
 		}
 
 		var offsets = {
