@@ -16,7 +16,6 @@
 	var size = stream.dimension()
 		.title('Size')
 		.types(Number)
-		.required(1)
 
 	stream.map(function(data) {
 		if (!group()) return [];
@@ -30,7 +29,7 @@
 					.key(function(e) { return group(e) })
 					.rollup(function(w) {
 						return {
-							size: +d3.sum(w, function(f) { return size(f) }),
+							size: +d3.sum(w, function(f) { return size() ? size(f) : 1 }),
 							date: +date(w[0]),
 							group: group(w[0])
 						}
