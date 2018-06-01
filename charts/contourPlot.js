@@ -1,149 +1,182 @@
 (function() {
 
-	var points = raw.models.points();
+    var points = raw.models.points();
 
-	points.dimensions().remove('size');
-	points.dimensions().remove('label');
-	points.dimensions().remove('color');
+    points.dimensions().remove('size');
+    points.dimensions().remove('label');
+    points.dimensions().remove('color');
 
-	var chart = raw.chart()
-		.title('Contour Plot')
-		.description(
-			"It shows the estimated density of point clouds, which is especially useful to avoid overplotting in large datasets.<br/>Based on <a href='https://bl.ocks.org/mbostock/7f5f22524bd1d824dd53c535eda0187f'>Density Contours II</a>")
-		.thumbnail("imgs/contourplot.png")
-		.category('Dispersion')
-		.model(points)
+    var chart = raw.chart()
+        .title('Contour Plot')
+        .description(
+            "It shows the estimated density of point clouds, which is especially useful to avoid overplotting in large datasets.<br/>Based on <a href='https://bl.ocks.org/mbostock/7f5f22524bd1d824dd53c535eda0187f'>Density Contours II</a>")
+        .thumbnail("imgs/contourplot.png")
+        .category('Dispersion')
+        .model(points)
 
-	var width = chart.number()
-		.title("Width")
-		.defaultValue(1000)
-		.fitToWidth(true)
+    var width = chart.number()
+        .title("Width")
+        .defaultValue(1000)
+        .fitToWidth(true)
 
-	var height = chart.number()
-		.title("Height")
-		.defaultValue(500)
+    var height = chart.number()
+        .title("Height")
+        .defaultValue(500)
 
-	var bandwidth = chart.number()
-		.title("Standard deviation")
-		.defaultValue(40)
+    //left margin
+    var marginLeft = chart.number()
+        .title('Left Margin')
+        .defaultValue(40)
 
-	var colorMode = chart.list()
-		.title("Colors applied to")
-		.values(["Stroke", "Fill"])
-		.defaultValue("Stroke")
+    var bandwidth = chart.number()
+        .title("Standard deviation")
+        .defaultValue(40)
 
-	var useZero = chart.checkbox()
-		.title("Set origin at (0,0)")
-		.defaultValue(false)
+    var colorMode = chart.list()
+        .title("Colors applied to")
+        .values(["Stroke", "Fill"])
+        .defaultValue("Stroke")
 
-	var colors = chart.color()
-		.title("Color scale")
+    var useZero = chart.checkbox()
+        .title("Set origin at (0,0)")
+        .defaultValue(false)
 
-	var showPoints = chart.checkbox()
-		.title("Show points")
-		.defaultValue(true)
+    var colors = chart.color()
+        .title("Color scale")
 
-	chart.draw(function(selection, data) {
+    var showPoints = chart.checkbox()
+        .title("Show points")
+        .defaultValue(true)
 
-		// Retrieving dimensions from model
-		var x = points.dimensions().get('x'),
-			y = points.dimensions().get('y');
+    chart.draw(function(selection, data) {
 
-		var g = selection
-			.attr("width", +width())
-			.attr("height", +height())
-			.append("g")
+        // Retrieving dimensions from model
+        var x = points.dimensions().get('x'),
+            y = points.dimensions().get('y');
 
-		var marginLeft = d3.max(data, function(d) { return (Math.log(d.y) / 2.302585092994046) + 1; }) * 9,
-			marginBottom = 20,
-			w = width() - marginLeft,
-			h = height() - marginBottom;
+        var g = selection
+            .attr("width", +width())
+            .attr("height", +height())
+            .append("g")
 
-		var xExtent = !useZero() ? d3.extent(data, function(d) { return d.x; }) : [0, d3.max(data, function(d) { return d.x; })],
-			yExtent = !useZero() ? d3.extent(data, function(d) { return d.y; }) : [0, d3.max(data, function(d) { return d.y; })];
+        //define margins
+        var margin = {
+            top: 0,
+            right: 0,
+            bottom: 20,
+            left: marginLeft()
+        };
 
-		var xScale = x.type() == "Date" ?
-			d3.scaleTime().range([marginLeft, width()]).domain(xExtent) :
-			d3.scaleLinear().range([marginLeft, width()]).domain(xExtent);
+        var w = width() - margin.left,
+            h = height() - margin.bottom;
 
-		var yScale = y.type() == "Date" ?
-			d3.scaleTime().range([h, 0]).domain(yExtent) :
-			d3.scaleLinear().range([h, 0]).domain(yExtent);
+        var xExtent = !useZero() ? d3.extent(data, function(d) {
+                return d.x;
+            }) : [0, d3.max(data, function(d) {
+                return d.x;
+            })],
+            yExtent = !useZero() ? d3.extent(data, function(d) {
+                return d.y;
+            }) : [0, d3.max(data, function(d) {
+                return d.y;
+            })];
 
-		var xAxis = d3.axisBottom(xScale).tickSize(6, -h);
-		var yAxis = d3.axisLeft(yScale).ticks(10).tickSize(6, -w);
+        var xScale = x.type() == "Date" ?
+            d3.scaleTime().range([margin.left, width()]).domain(xExtent) :
+            d3.scaleLinear().range([margin.left, width()]).domain(xExtent);
 
-		g.append("clipPath")
-			.attr("id", "clip")
-			.append("rect")
-			.attr("class", "mesh")
-			.attr("width", w)
-			.attr("height", h)
-			.attr("transform", "translate(" + marginLeft + ",1)");
+        var yScale = y.type() == "Date" ?
+            d3.scaleTime().range([h, 0]).domain(yExtent) :
+            d3.scaleLinear().range([h, 0]).domain(yExtent);
 
-		var contours = d3.contourDensity()
-			.x(function(d) { return xScale(d.x); })
-			.y(function(d) { return yScale(d.y); })
-			.size([w, h])
-			.bandwidth(bandwidth())
-			(data);
+        var xAxis = d3.axisBottom(xScale).tickSize(6, -h);
+        var yAxis = d3.axisLeft(yScale).ticks(10).tickSize(6, -w);
 
-		colors.domain(contours, function(d) { return d.value; });
+        g.append("clipPath")
+            .attr("id", "clip")
+            .append("rect")
+            .attr("class", "mesh")
+            .attr("width", w)
+            .attr("height", h)
+            .attr("transform", "translate(" + margin.left + ",1)");
 
-		var contourPaths = g.insert("g", "g")
-			.attr("clip-path", "url(#clip)")
-			.attr("stroke-linejoin", "round")
-			.selectAll("path")
-			.data(contours)
-			.enter().append("path")
-			.attr("d", d3.geoPath());
+        var contours = d3.contourDensity()
+            .x(function(d) {
+                return xScale(d.x);
+            })
+            .y(function(d) {
+                return yScale(d.y);
+            })
+            .size([w, h])
+            .bandwidth(bandwidth())
+            (data);
 
-		if (colorMode() == "Fill") {
+        colors.domain(contours, function(d) {
+            return d.value;
+        });
 
-			contourPaths.attr("fill", function(d) { console.log(d); return colors()(d.value) })
-				.attr("stroke", "none")
+        var contourPaths = g.insert("g", "g")
+            .attr("clip-path", "url(#clip)")
+            .attr("stroke-linejoin", "round")
+            .selectAll("path")
+            .data(contours)
+            .enter().append("path")
+            .attr("d", d3.geoPath());
 
-		} else if (colorMode() == "Stroke") {
+        if (colorMode() == "Fill") {
 
-			contourPaths.attr("stroke", function(d) { console.log(d); return colors()(d.value) })
-				.attr("fill", "none")
-		}
+            contourPaths.attr("fill", function(d) {
+                    return colors()(d.value)
+                })
+                .attr("stroke", "none")
 
-		var point = g.selectAll("g.point")
-			.data(data)
-			.enter().append("g")
-			.attr("class", "point")
+        } else if (colorMode() == "Stroke") {
 
-		point.append("circle")
-			.filter(function() { return showPoints(); })
-			.style("fill", "#000")
-			.attr("transform", function(d) { return "translate(" + xScale(d.x) + "," + yScale(d.y) + ")"; })
-			.attr("r", 1);
+            contourPaths.attr("stroke", function(d) {
+                    return colors()(d.value)
+                })
+                .attr("fill", "none")
+        }
 
-		g.append("g")
-			.attr("class", "y axis")
-			.attr("transform", "translate(" + marginLeft + ",0)")
-			.call(yAxis);
+        var point = g.selectAll("g.point")
+            .data(data)
+            .enter().append("g")
+            .attr("class", "point")
 
-		g.append("g")
-			.attr("class", "x axis")
-			.attr("transform", "translate(0," + h + ")")
-			.call(xAxis);
+        point.append("circle")
+            .filter(function() {
+                return showPoints();
+            })
+            .style("fill", "#000")
+            .attr("transform", function(d) {
+                return "translate(" + xScale(d.x) + "," + yScale(d.y) + ")";
+            })
+            .attr("r", 1);
 
-		g.selectAll(".axis")
-			.selectAll("text")
-			.style("font", "10px Arial, Helvetica")
+        g.append("g")
+            .attr("class", "y axis")
+            .attr("transform", "translate(" + margin.left + ",0)")
+            .call(yAxis);
 
-		g.selectAll(".axis")
-			.selectAll("path")
-			.style("fill", "none")
-			.style("stroke", "#000000")
-			.style("shape-rendering", "crispEdges")
+        g.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + h + ")")
+            .call(xAxis);
 
-		g.selectAll(".axis")
-			.selectAll("line")
-			.style("fill", "none")
-			.style("stroke", "#000000")
-			.style("shape-rendering", "crispEdges")
-	})
+        g.selectAll(".axis")
+            .selectAll("text")
+            .style("font", "10px Arial, Helvetica")
+
+        g.selectAll(".axis")
+            .selectAll("path")
+            .style("fill", "none")
+            .style("stroke", "#000000")
+            .style("shape-rendering", "crispEdges")
+
+        g.selectAll(".axis")
+            .selectAll("line")
+            .style("fill", "none")
+            .style("stroke", "#000000")
+            .style("shape-rendering", "crispEdges")
+    })
 })();

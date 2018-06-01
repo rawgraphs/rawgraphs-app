@@ -78,8 +78,6 @@
 				.range([h, 0]));
 		}));
 
-		console.log(x.domain(), x.range());
-
 		colors.domain(data, d => {
 			return d.color;
 		});
@@ -101,7 +99,6 @@
 			.enter().append("g")
 			.attr("class", "dim")
 			.attr("transform", d => {
-				//console.log(`translate(${x(d)})`)
 				return `translate(${x(d)})`;
 			});
 

@@ -38,7 +38,9 @@
     model.map(function(data) {
 
         var results = d3.nest()
-            .key(function(d) { return d[groups()] })
+            .key(function(d) {
+                return d[groups()]
+            })
             .entries(data)
 
         // remap the array
@@ -137,7 +139,12 @@
         data.sort(sortBy);
 
         // Define margins
-        var margin = { top: 50, right: 25, bottom: 0, left: 25 };
+        var margin = {
+            top: 50,
+            right: 25,
+            bottom: 0,
+            left: 25
+        };
 
         //define title space
         var titleSpace = groups() == null ? 0 : 30;
@@ -178,7 +185,9 @@
             })
         })
         allColors = d3.nest()
-            .key(function(d) { return d.color; })
+            .key(function(d) {
+                return d.color;
+            })
             .entries(allColors)
             .map(function(d) {
                 return d.key
@@ -229,11 +238,13 @@
 
             var simulation = d3.forceSimulation(data)
                 .force("x", d3.forceX(function(d) {
-                		return xScale(d.value) }
-                		)
-                		.strength(1))
+                        return xScale(d.value)
+                    })
+                    .strength(1))
                 .force("y", d3.forceY(h / 2))
-                .force("collide", d3.forceCollide(function(d) { return radius(d.radius) + marginCircles() }).iterations(anticollisionIterations()))
+                .force("collide", d3.forceCollide(function(d) {
+                    return radius(d.radius) + marginCircles()
+                }).iterations(anticollisionIterations()))
                 .stop();
 
             for (var i = 0; i < 240; ++i) simulation.tick();
@@ -244,10 +255,18 @@
                 .selectAll("circle")
                 .data(data).enter()
                 .append('circle')
-                .attr('id', function(d){ return d.label ? d.label : 'circle'})
-                .attr('r', function(d) { return radius(d.radius) })
-                .attr('cx', function(d) { return d.x })
-                .attr('cy', function(d) { return d.y })
+                .attr('id', function(d) {
+                    return d.label ? d.label : 'circle'
+                })
+                .attr('r', function(d) {
+                    return radius(d.radius)
+                })
+                .attr('cx', function(d) {
+                    return d.x
+                })
+                .attr('cy', function(d) {
+                    return d.y
+                })
                 .attr("fill", function(d) {
                     if (d.color) {
                         return colors()(d.color);
@@ -262,11 +281,17 @@
                 .selectAll("text")
                 .data(data).enter()
                 .append('text')
-                .attr('x', function(d) { return d.x })
-                .attr('y', function(d) { return d.y })
-                .attr('text-anchor','middle')
+                .attr('x', function(d) {
+                    return d.x
+                })
+                .attr('y', function(d) {
+                    return d.y
+                })
+                .attr('text-anchor', 'middle')
                 .attr('fill', '#000')
-                .text(function(d){ if (d.label) return d.label; })
+                .text(function(d) {
+                    if (d.label) return d.label;
+                })
 
         })
 

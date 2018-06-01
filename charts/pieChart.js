@@ -105,7 +105,6 @@
         // Define color scale domain
         // Get the list of all possible values from first element
         // Use it to define the colors domain
-        console.log(data);
         var allColors = data[0].value.map(function(item) {
             return item.key
         });
@@ -119,7 +118,6 @@
 
         var area = d3.scaleLinear()
             .domain([0, d3.max(data, function(layer) {
-                console.log(layer)
                 return d3.sum(layer.value, function(d) {
                     return d.size;
                 });

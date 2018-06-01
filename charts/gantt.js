@@ -105,7 +105,7 @@
     //left margin
     var marginLeft = chart.number()
         .title('Left Margin')
-        .defaultValue(40)
+        .defaultValue(80)
 
     //labels horizontal alignment
     var alignment = chart.checkbox()

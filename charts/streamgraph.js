@@ -240,7 +240,6 @@
 			.append('textPath')
 			.attr('xlink:xlink:href', function(d, i) { return '#path-' + i; })
 			.attr('startOffset', function(d) {
-				console.log(d);
 				var maxYloc = 0,
 					maxV = 0;
 				d.forEach(function(e, i) {

@@ -51,7 +51,7 @@
 
     var marginLeft = chart.number()
         .title('Left margin')
-        .defaultValue(20)
+        .defaultValue(60)
 
     var barWidth = chart.number()
         .title('Bars width')
