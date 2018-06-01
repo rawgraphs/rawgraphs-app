@@ -1,31 +1,39 @@
 (function() {
 
-    var sequence = raw.model();
+    // The Model
+    var timechuncks = raw.model();
 
-    var group = sequence.dimension()
-        .title('Group')
+    // Groups. It defines how to aggregate thte data
+    var group = timechuncks.dimension('groups')
+        .title('Groups')
 
-    var startDate = sequence.dimension()
-        .title('Start Date')
-        .types(Number, Date)
+    // Start Date. It will define the starting point of each bar
+    var startDate = timechuncks.dimension('startDate')
+        .title('Start date')
+        .types(Date)
         .accessor(function(d) {
             return this.type() == "Date" ? Date.parse(d) : +d;
         })
-        .required(1)
+        .required(true)
 
-    var endDate = sequence.dimension()
-        .title('End Date')
-        .types(Number, Date)
+    // End Date. It will define the ending point of each bar
+    var endDate = timechuncks.dimension('endDate')
+        .title('End date')
+        .types(Date)
         .accessor(function(d) {
             return this.type() == "Date" ? Date.parse(d) : +d;
         })
-        .required(1)
+        .required(true)
 
-    var colorsDimension = sequence.dimension()
+    // Colors. it defines the color of each bar.
+    var colorDimension = timechuncks.dimension('color')
         .title('Colors')
         .types(String)
 
-    sequence.map(function(data) {
+    // Mapping function
+    // For each record in the data returns the values
+    // for the X and Y dimensions and casts them as numbers
+    timechuncks.map(function(data) {
 
         var level = id = 0;
 
@@ -33,21 +41,21 @@
             .key(function(d) {
                 return group() ? group(d) : ''
             })
-            .rollup(g => {
-                //reorder items by start date
-                g.sort(function(a, b) {
+            .rollup(function(v) {
+
+                v.sort(function(a, b) {
                     return d3.ascending(startDate(a), startDate(b))
                 })
                 var l, levels = [];
                 level = 0;
-                g.forEach((item, i) => {
+                v.forEach(function(item, i) {
                     l = 0;
                     while (overlap(item, levels[l])) l++;
                     if (!levels[l]) levels[l] = [];
                     levels[l].push({
                         level: l + level,
                         id: id++,
-                        color: colorsDimension(item),
+                        color: colorDimension(item),
                         group: group() ? group(item) : "",
                         start: startDate(item),
                         end: endDate(item),
@@ -57,9 +65,8 @@
 
                 level++;
                 return levels;
-
             })
-            .map(data)
+            .entries(data);
 
         function overlap(item, g) {
             if (!g) return false;
@@ -72,154 +79,172 @@
         };
 
         return nest;
-
     })
 
+
+    // The Chart
     var chart = raw.chart()
         .title('Gantt Chart')
         .thumbnail("imgs/gantt.png")
         .description("A Gantt chart is a type of bar chart, developed by Henry Gantt in the 1910s, that illustrates a project schedule. Gantt charts illustrate the start and finish dates of the terminal elements and summary elements of a project.")
         .category('Time chunks')
-        .model(sequence)
+        .model(timechuncks)
 
+    // OPTIONS
+
+    // Width
     var width = chart.number()
-        .title("Width")
-        .defaultValue(1000)
-        .fitToWidth(true)
+        .title('Width')
+        .defaultValue(900)
 
+    // Height
     var height = chart.number()
-        .title("Height")
-        .defaultValue(500)
+        .title('Height')
+        .defaultValue(600)
 
+    //left margin
     var marginLeft = chart.number()
-        .title("Left margin")
+        .title('Left Margin')
         .defaultValue(40)
 
+    //labels horizontal alignment
     var alignment = chart.checkbox()
         .title("Align labels to bar")
         .defaultValue(false);
 
+    // sorting options
     var sort = chart.list()
         .title("Sort by")
         .values(['Start date (ascending)', 'Start date (descending)', 'Name'])
         .defaultValue('Start date (ascending)')
 
-    // Chart colors
+    // Colors for the chart
     var colors = chart.color()
         .title("Color scale")
 
-    chart.draw(function(selection, groups) {
+    // Drawing function
+    chart.draw(function(selection, data) {
 
-		// create main svg object
+        // svg size, create container group
         var g = selection
-            .attr("width", +width())
-            .attr("height", +height())
-            .append("g")
+            .attr("width", width())
+            .attr("height", height())
+            .append('g')
 
-        var levels = d3.sum(Object.values(groups).map(d => {
-            return d.length;
+        //define margins
+        var margin = {
+            top: 10,
+            right: 0,
+            bottom: 20,
+            left: marginLeft()
+        };
+
+        //compute the total amount of levels
+        var levels = d3.sum(data.map(function(d) {
+            return d.value.length;
         }));
 
-        var margin = {
-                top: 10,
-                right: 0,
-                bottom: 20,
-                left: marginLeft()
-            };
+        //re-flatten hierarchy
+        var entries = []
 
-        var values = []
+        data.forEach(function(d) {
+            d.value.forEach(function(e) {
+                entries = entries.concat(e)
+            })
+        })
 
-        Object.values(groups).forEach(d => {
-            d.forEach(dd => {
-                values = values.concat(dd);
-            });
-        });
-
-		//define x scale
-        var x = d3.scaleTime()
-            .range([margin.left, width()])
-            .domain([
-                d3.min(values, d => {
-                    return d.start;
-                }),
-                d3.max(values, d => {
-                    return d.end;
-                })
-            ]);
-		//create x axis
-        var xAxis = d3.axisBottom(x);
-
-        var allColors = d3.set(values.map(function(d) {
+        //get the list of single colors
+        var allColors = d3.set(entries.map(function(d) {
             return d.color;
         })).values();
 
-        // define colors domain
+        //define the colors domain
         colors.domain(allColors);
 
-        var itemHeight = (height() - margin.top + -margin.bottom) / levels;
+        //define x scale
+        var x = d3.scaleTime()
+            .range([margin.left, width()])
+            .domain([
+                d3.min(entries, function(d) {
+                    return d.start;
+                }),
+                d3.max(entries, function(d) {
+                    return d.end;
+                })
+            ]);
 
-        var last = 0,
-            current = 0;
+        //create x axis
+        var xAxis = d3.axisBottom(x);
+
+        //compute items height
+        var itemHeight = (height() - margin.top - margin.bottom) / levels;
+
+        //create items
+        var newPosition = margin.top;
 
         var items = g.selectAll('g.itemGroup')
-            .data(Object.entries(groups).sort(sortBy))
+            .data(data.sort(sortBy))
             .enter().append('g')
             .attr("class", "itemGroup")
-            .attr("transform", (d, i) => {
-                current = last;
-                last += d[1].length * itemHeight;
-                return `translate(0, ${margin.top + current})`;
+            .attr("transform", function(d, i) {
+                var currentPosition = newPosition;
+                newPosition += d.value.length * itemHeight;
+                return 'translate(0, ' + currentPosition + ')';
             });
 
+        //add horizontal lines
         items.append('line')
             .attr('x1', margin.left)
             .attr('y1', 0)
             .attr('x2', width())
             .attr('y2', 0)
-            .style("shape-rendering", "crispEdges")
+            .style('shape-rendering', 'crispEdges')
             .attr('stroke', 'lightgrey');
 
+        //add groups labels
         items.append('text')
-            .text(d => {
-                return d[1][0][0].group;
+            .text(function(d) {
+                return d.key
             })
             .style("font-size", "11px")
             .style("font-family", "Arial, Helvetica")
-            .attr('x', d => {
-                return alignment() ? x(d[1][0][0].start) - 10 : margin.left - 10
+            .attr('x', function(d) {
+                return alignment() ? x(d.value[0][0].start) - 10 : margin.left - 10
             })
             .attr('y', 0)
-            .attr('dy', d => {
-                //return(d[1].length * itemHeight) / 2;
+            .attr('dy', function(d) {
+                //half of the size plus 4px (custom value workin with the chosen font size)
                 return itemHeight / 2 + 4;
             })
             .attr('text-anchor', 'end')
             .attr('class', 'groupText');
 
+        // draw rectangles
         items.selectAll('rect')
-            .data(d => {
+            .data(function(d) { // take the data and return the list. it should be changed in the model.
                 var p = [];
-                d[1].forEach(dd => {
+                d.value.forEach(function(dd) {
                     p = p.concat(dd);
                 });
                 return p;
-            }) // soooo bad
+            })
             .enter().append('rect')
-            .attr('x', d => {
+            .attr('x', function(d) {
                 return x(d.start);
             })
-            .attr('y', (d, i) => {
+            .attr('y', function(d) {
                 return itemHeight * d.level;
             })
-            .attr('width', d => {
+            .attr('width', function(d) {
                 return d3.max([1, x(d.end) - x(d.start)]);
             })
             .attr('height', itemHeight)
             .style("shape-rendering", "crispEdges")
-            .style('fill', d => {
+            .style('fill', function(d) {
                 return colors()(d.color);
             })
 
+        //add axes
         g.append('g')
             .attr('transform', `translate(0, ${margin.top + itemHeight * levels})`)
             .attr("class", "axis")
@@ -233,12 +258,15 @@
             .style("fill", "none")
             .style("stroke", "#ccc")
 
-    });
+    })
 
-	function sortBy(a, b) {
-		if (sort() == 'Start date (descending)') return a[1][0][0].start - b[1][0][0].start;
-		if (sort() == 'Start date (ascending)') return b[1][0][0].start - a[1][0][0].start;
-		if (sort() == 'Name') return a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0;
-	}
+    //sorting functions
+    function sortBy(a, b) {
+        if (sort() == 'Start date (descending)') return d3.descending(a.value[0][0].start, b.value[0][0].start)
+        if (sort() == 'Start date (ascending)') return d3.ascending(a.value[0][0].start, b.value[0][0].start)
+        // if (sort() == 'End date (descending)') return d3.descending(a.value[0][0].end, b.value[0][0].end)
+        // if (sort() == 'End date (ascending)') return d3.ascending(a.value[0][0].end, b.value[0][0].end)
+        if (sort() == 'Name') return d3.ascending(a.key, b.key)
+    }
 
 })();
