@@ -65,7 +65,7 @@
         .title('Beeswarm Plot')
         .description("It distributes elements horizontally avoiding overlap between them and according to a selected dimension.<br/><br/>Based on <a href='https://bl.ocks.org/mbostock/6526445e2b44303eebf21da3b6627320'>https://bl.ocks.org/mbostock/6526445e2b44303eebf21da3b6627320</a>")
         .thumbnail("imgs/beeswarm.png")
-        .category('Dispersion')
+        .category('Distribution')
         .model(model)
 
     // visualiziation options

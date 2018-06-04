@@ -20,7 +20,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.6.2",
+    "angular": "1.6.10",
     "d3": "5.0.0",
     "d3-voronoi": "https://github.com/d3/d3-voronoi/releases/download/v1.1.2/d3-voronoi.zip",
     "d3-delaunay": "https://github.com/d3/d3-delaunay/releases/download/v2.0.1/d3-delaunay.zip",
@@ -29,11 +29,11 @@
     "d3-contour": "https://github.com/d3/d3-contour/releases/download/v1.2.0/d3-contour.zip",
     "d3-box": "https://gist.githubusercontent.com/mikima/28d130bd380fd9be113c7040315ec036/raw/ffc793f4843311dc6a898715eec2c4492c86aeb3/box.js",
     "bootstrap": "3.3.6",
-    "angular-route": "1.6.2",
+    "angular-route": "1.6.10",
     "angular-strap": "2.3.12",
-    "angular-animate": "1.6.2",
+    "angular-animate": "1.6.10",
     "jquery-ui": "1.12.1",
-    "angular-sanitize": "1.6.2",
+    "angular-sanitize": "1.6.10",
     "angular-bootstrap-colorpicker": "latest",
     "bootstrap-colorpicker": "latest",
     "FileSaver": "https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js",
@@ -47,6 +47,6 @@
     "js-xlsx": "0.8.5"
   },
   "resolutions": {
-    "angular": "1.6.2"
+    "angular": "1.6.10"
   }
 }

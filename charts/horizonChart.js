@@ -31,10 +31,6 @@
 		.title('Bands')
 		.defaultValue(4)
 
-	var specular = chart.checkbox()
-		.title("Center values vertically")
-		.defaultValue(false)
-
 	var curve = chart.list()
 		.title("Interpolation")
 		.values(['Cardinal', 'Basis spline', 'Sankey', 'Linear'])
@@ -44,6 +40,9 @@
 		.title("Sort by")
 		.values(['Original', 'Total (descending)', 'Total (ascending)', 'Name'])
 		.defaultValue('Original')
+
+	var colors = chart.color()
+		.title("Color scale")
 
 	// interpolation function
 
@@ -89,6 +88,9 @@
 	}
 
 	chart.draw(function(selection, data) {
+
+		//define colors
+		colors.domain(['Negative', 'Positive']);
 
 		//sort data
 		function sortBy(a, b) {
@@ -207,7 +209,7 @@
 
 				g.append("path")
 					.attr("class", "area")
-					.style("fill", '#699fbf')
+					.style("fill", colors()('Positive'))
 					.attr("d", area(single.values))
 					.attr("opacity", (i + 1) / bands())
 					.attr("clip-path", function(d) { return "url(#clip_" + d.id + ")" });
@@ -223,7 +225,7 @@
 
 				g.append("path")
 					.attr("class", "area")
-					.style("fill", '#bf6969')
+					.style("fill", colors()('Negative'))
 					.attr("d", area(single.values))
 					.attr("opacity", (i + 1) / bands())
 					.attr("clip-path", function(d) { return "url(#clip_" + d.id + ")" });
