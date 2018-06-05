@@ -45,21 +45,22 @@
         var x = points.dimensions().get('x'),
             y = points.dimensions().get('y');
 
-        var g = selection
-            .attr("width", +width())
-            .attr("height", +height())
-            .append("g");
-
         //define margins
         var margin = {
-            top: 0,
-            right: 0,
-            bottom: 20,
+            top: +maxRadius(),
+            right: +maxRadius(),
+            bottom: 20 + maxRadius(),
             left: marginLeft()
         };
 
-        var w = width() - margin.left,
-            h = height() - margin.bottom;
+        var w = width() - margin.left - margin.right,
+            h = height() - margin.bottom - margin.top;
+
+        var g = selection
+            .attr("width", +width())
+            .attr("height", +height())
+            .append("g")
+            .attr('transform','translate(' + margin.left + ',' + margin.top + ')')
 
         var xExtent = !useZero() ? d3.extent(data, d => {
                 return d.x;
@@ -73,23 +74,25 @@
             })];
 
         var xScale = x.type() == "Date" ?
-            d3.scaleTime().range([margin.left, width() - maxRadius()]).domain(xExtent) :
-            d3.scaleLinear().range([margin.left, width() - maxRadius()]).domain(xExtent),
+            d3.scaleTime().range([0, w]).domain(xExtent) :
+            d3.scaleLinear().range([0, w]).domain(xExtent),
             yScale = y.type() == "Date" ?
-            d3.scaleTime().range([h - maxRadius(), maxRadius()]).domain(yExtent) :
-            d3.scaleLinear().range([h - maxRadius(), maxRadius()]).domain(yExtent),
-            sizeScale = d3.scaleLinear().range([1, Math.pow(+maxRadius(), 2) * Math.PI]).domain([0, d3.max(data, d => {
-                return d.size;
-            })]),
-            xAxis = d3.axisBottom(xScale).tickSize(-h + maxRadius() * 2) //.tickSubdivide(true),
-        yAxis = d3.axisLeft(yScale).ticks(10).tickSize(-w + maxRadius());
+            d3.scaleTime().range([h, 0]).domain(yExtent) :
+            d3.scaleLinear().range([h, 0]).domain(yExtent),
+            sizeScale = d3.scaleSqrt().range([1, +maxRadius()])
+                .domain([0, d3.max(data, d => {
+                    return d.size;
+                })]),
+            xAxis = d3.axisBottom(xScale).tickSize(-h) //.tickSubdivide(true),
+        yAxis = d3.axisLeft(yScale).ticks(10).tickSize(-w);
 
         g.append("g")
             .attr("class", "x axis")
             .style("stroke-width", "1px")
             .style("font-size", "10px")
             .style("font-family", "Arial, Helvetica")
-            .attr("transform", `translate(0, ${h - maxRadius()})`)
+            //.attr("transform", `translate(0, ${h - maxRadius()})`)
+            .attr('transform', 'translate(0,' + h + ')')
             .call(xAxis);
 
         g.append("g")
@@ -97,7 +100,7 @@
             .style("stroke-width", "1px")
             .style("font-size", "10px")
             .style("font-family", "Arial, Helvetica")
-            .attr("transform", `translate(${margin.left}, 0)`)
+            //.attr("transform", `translate(${margin.left}, 0)`)
             .call(yAxis);
 
         d3.selectAll(".y.axis line, .x.axis line, .y.axis path, .x.axis path")
@@ -128,7 +131,7 @@
                 return `translate(${xScale(d.x)}, ${yScale(d.y)})`;
             })
             .attr("r", d => {
-                return Math.sqrt(sizeScale(d.size) / Math.PI);
+                return sizeScale(d.size);
             });
 
         point.append("circle")
