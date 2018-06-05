@@ -22,12 +22,13 @@
 		.title("Height")
 		.defaultValue(500)
 
+	var showPoints = chart.checkbox()
+		.title("Show dots")
+		.defaultValue(true)
+		
 	var colors = chart.color()
 		.title("Color scale")
 
-	var showPoints = chart.checkbox()
-		.title("Show points")
-		.defaultValue(true)
 
 	chart.draw(function(selection, data) {
 

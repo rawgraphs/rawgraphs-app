@@ -87,15 +87,15 @@
 		.title("Height")
 		.defaultValue(500)
 
-	var order = chart.list()
-		.title("Series order")
-		.values(["Original order", "Bigger to smaller", "Smaller to bigger", "Inside out", "Reverse original"])
-		.defaultValue("Original order")
-
 	var offset = chart.list()
 		.title("Offset")
 		.values(['Expand', 'Diverging', 'Silhouette', 'Wiggle', 'None'])
 		.defaultValue('Wiggle')
+
+	var order = chart.list()
+		.title("Series order")
+		.values(["Original order", "Bigger to smaller", "Smaller to bigger", "Inside out", "Reverse original"])
+		.defaultValue("Original order")
 
 	var curve = chart.list()
 		.title("Interpolation")

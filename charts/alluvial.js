@@ -23,14 +23,14 @@
         .title("Node Width")
         .defaultValue(5);
 
-    var opacity = chart.number()
-        .title("Links opacity")
-        .defaultValue(.4);
-
     var sortBy = chart.list()
         .title("Sort by")
         .values(['size', 'name', 'automatic'])
         .defaultValue('size');
+
+    var opacity = chart.number()
+        .title("Links opacity")
+        .defaultValue(.4);
 
     var colors = chart.color()
         .title("Color scale");

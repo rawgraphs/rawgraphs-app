@@ -22,16 +22,9 @@
 		.title("Padding")
 		.defaultValue(5)
 
-	var scale = chart.checkbox()
-		.title("Use same scale")
-		.defaultValue(false)
-
 	var specular = chart.checkbox()
 		.title("Center values vertically")
 		.defaultValue(false)
-
-	var colors = chart.color()
-		.title("Color scale")
 
 	var curve = chart.list()
 		.title("Interpolation")
@@ -42,6 +35,13 @@
 		.title("Sort by")
 		.values(['Original', 'Total (descending)', 'Total (ascending)', 'Name'])
 		.defaultValue('Original')
+
+	var scale = chart.checkbox()
+		.title("Use same scale")
+		.defaultValue(false)
+
+	var colors = chart.color()
+		.title("Color scale")
 
 	// interpolation function
 

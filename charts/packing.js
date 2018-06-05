@@ -23,12 +23,13 @@
 		.title("Sort by size")
 		.defaultValue(false)
 
-	var colors = chart.color()
-		.title("Color scale")
-
 	var showLabels = chart.checkbox()
 		.title("Show labels")
 		.defaultValue(true)
+
+	var colors = chart.color()
+		.title("Color scale")
+
 
 	chart.draw(function(selection, data) {
 

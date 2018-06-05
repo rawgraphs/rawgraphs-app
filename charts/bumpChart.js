@@ -91,10 +91,6 @@
 		.title("Padding")
 		.defaultValue(0)
 
-	var normalize = chart.checkbox()
-		.title("Normalize")
-		.defaultValue(false)
-
 	var sort = chart.list()
 		.title("Sort by")
 		.values(['value (descending)', 'value (ascending)'])
@@ -104,6 +100,10 @@
 		.title("Interpolation")
 		.values(['Cardinal', 'Basis spline', 'DensityDesign', 'Linear'])
 		.defaultValue('DensityDesign')
+
+	var normalize = chart.checkbox()
+		.title("Normalize")
+		.defaultValue(false)
 
 	var showLabels = chart.checkbox()
 		.title("Show labels")

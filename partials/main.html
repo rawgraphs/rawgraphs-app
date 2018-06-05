@@ -394,7 +394,7 @@
 							data-toggle="tooltip"
 							data-title="Fit to width"
 							class="option-fit pull-right"><i class="fa fa-expand"></i></a>
-						</p>
+						
 
 						<div ng-switch="" on="option.type()">
 							<input type="number" min="0" class="form-control" ng-model="option.value" ng-switch-when="number"></input>
@@ -414,6 +414,7 @@
 							bs-options="opt for opt in option.values()" bs-select ng-switch-when="list">
 							Action <span class="caret"></span>
 							</button>
+						</p>
 
 						<input type="text" min="0" class="form-control" ng-model="option.value" ng-switch-default="ng-switch-default"></input>
 

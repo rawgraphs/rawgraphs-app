@@ -70,6 +70,16 @@
         .title('Padding')
         .defaultValue(10)
 
+    var sortChartsBy = chart.list()
+        .title("Sort charts by")
+        .values(['size', 'name'])
+        .defaultValue('size')
+
+    var sortArcsBy = chart.list()
+        .title("Sort arcs by")
+        .values(['size', 'name'])
+        .defaultValue('size')
+
     var donut = chart.checkbox()
         .title('Donut chart')
         .defaultValue(false)
@@ -82,15 +92,7 @@
         .title('Show values')
         .defaultValue(false)
 
-    var sortChartsBy = chart.list()
-        .title("Sort charts by")
-        .values(['size', 'name'])
-        .defaultValue('size')
 
-    var sortArcsBy = chart.list()
-        .title("Sort arcs by")
-        .values(['size', 'name'])
-        .defaultValue('size')
 
     // Chart colors
     var colors = chart.color()

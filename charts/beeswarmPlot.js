@@ -24,7 +24,7 @@
 
     // Values dimension. It will define the height of the bars
     var radiuses = model.dimension()
-        .title('Radius')
+        .title('Size')
 
     // Colors dimension. It will define the color of the bubbles
     var colorsDimesion = model.dimension()
@@ -79,11 +79,6 @@
         .title('Height')
         .defaultValue(600)
 
-    // Spatialization iterations
-    var anticollisionIterations = chart.number()
-        .title('Anticollision iterations')
-        .defaultValue(1);
-
     var marginCircles = chart.number()
         .title("Circles padding")
         .defaultValue(.5);
@@ -105,6 +100,11 @@
         .title("Sort by")
         .values(['Original', 'Name (ascending)', 'Name (descending)', 'Total (descending)', 'Total (ascending)'])
         .defaultValue('Original')
+
+    // Spatialization iterations
+    var anticollisionIterations = chart.number()
+        .title('Anticollision iterations')
+        .defaultValue(1);
 
     // Chart colors
     var colors = chart.color()

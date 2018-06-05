@@ -32,21 +32,22 @@
         .title("Standard deviation")
         .defaultValue(40)
 
-    var colorMode = chart.list()
-        .title("Colors applied to")
-        .values(["Stroke", "Fill"])
-        .defaultValue("Stroke")
-
     var useZero = chart.checkbox()
         .title("Set origin at (0,0)")
         .defaultValue(false)
 
-    var colors = chart.color()
-        .title("Color scale")
-
     var showPoints = chart.checkbox()
         .title("Show points")
         .defaultValue(true)
+
+     var colorMode = chart.list()
+        .title("Colors applied to")
+        .values(["Stroke", "Fill"])
+        .defaultValue("Stroke")
+
+    var colors = chart.color()
+        .title("Color scale")
+
 
     chart.draw(function(selection, data) {
 
