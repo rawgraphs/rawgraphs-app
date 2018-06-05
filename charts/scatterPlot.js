@@ -39,6 +39,10 @@
         .title("show points")
         .defaultValue(true);
 
+    var showLegend = chart.checkbox()
+        .title("show legend")
+        .defaultValue(false);
+
     chart.draw((selection, data) => {
 
         // Retrieving dimensions from model
@@ -48,7 +52,7 @@
         //define margins
         var margin = {
             top: +maxRadius(),
-            right: +maxRadius(),
+            right: showLegend()?200+maxRadius():+maxRadius(),
             bottom: 20 + maxRadius(),
             left: marginLeft()
         };
@@ -155,6 +159,54 @@
             .text(d => {
                 return d.label ? d.label.join(", ") : "";
             });
+
+        if(showLegend()){
+
+          if(sizeScale){
+            selection.append("g")
+              .attr("class", "legendSize")
+              .attr("transform", "translate(" + (w+margin.left+maxRadius()*2) + ",20)");
+
+            var legendSize = d3.legendSize()
+              .scale(sizeScale)
+              //.cellFilter(function(d){ return d.data > 0 })
+              .cells(d3.extent(data,(d)=>d.size))
+              .shape('circle')
+              .title(points.dimensions().get('size').value[0].key)
+              .shapePadding(+maxRadius());
+
+            selection.select(".legendSize")
+              .call(legendSize);
+
+            selection.select(".legendSize")
+              .selectAll('circle')
+              .attr('fill', 'none')
+              .attr('stroke', '#ccc')
+
+
+          }
+
+          if(colors()){
+
+            var legendColorHeight = selection.select('.legendSize').node().getBBox().height
+
+            selection.append("g")
+                .attr("class", "legendOrdinal")
+                .attr("transform", "translate(" + (w+margin.left+maxRadius()*2) + "," + (legendColorHeight+maxRadius()+20) +")");
+
+            var legendOrdinal = d3.legendColor()
+              .shapePadding(10)
+              .title(points.dimensions().get('color').value[0].key)
+              .scale(colors());
+
+            selection.select(".legendOrdinal")
+              .call(legendOrdinal);
+          }
+
+
+
+
+        }
 
     })
 
