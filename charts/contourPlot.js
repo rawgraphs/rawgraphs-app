@@ -37,7 +37,7 @@
         .defaultValue(false)
 
     var showPoints = chart.checkbox()
-        .title("Show points")
+        .title("Show dots")
         .defaultValue(true)
 
      var colorMode = chart.list()

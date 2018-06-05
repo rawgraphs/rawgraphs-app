@@ -36,12 +36,13 @@
         .title("Set origin at (0,0)")
         .defaultValue(false)
 
+    var showPoints = chart.checkbox()
+        .title("Show dots")
+        .defaultValue(true)
+
     var colors = chart.color()
         .title("Color scale")
 
-    var showPoints = chart.checkbox()
-        .title("Show points")
-        .defaultValue(true)
 
     chart.draw(function(selection, data) {
 
