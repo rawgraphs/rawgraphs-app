@@ -21,7 +21,7 @@
   ],
   "dependencies": {
     "angular": "1.6.10",
-    "d3": "5.0.0",
+    "d3": "5.4.0",
     "d3-voronoi": "https://github.com/d3/d3-voronoi/releases/download/v1.1.2/d3-voronoi.zip",
     "d3-delaunay": "https://github.com/d3/d3-delaunay/releases/download/v2.0.1/d3-delaunay.zip",
     "d3-hexbin": "https://github.com/d3/d3-hexbin/releases/download/v0.2.2/d3-hexbin.zip",
