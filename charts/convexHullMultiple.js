@@ -1,11 +1,11 @@
-(function () {
+(function() {
 
     var model = raw.model();
 
     var mx = model.dimension()
         .title("X Axis")
         .types(Number, Date)
-        .accessor(function (d) {
+        .accessor(function(d) {
             return this.type() == "Date" ? new Date(d) : +d;
         })
         .required(1);
@@ -13,7 +13,7 @@
     var my = model.dimension()
         .title("Y Axis")
         .types(Number, Date)
-        .accessor(function (d) {
+        .accessor(function(d) {
             return this.type() == "Date" ? new Date(d) : +d;
         })
         .required(1);
@@ -23,12 +23,12 @@
 
     var mgroup = model.dimension().title('Group')
 
-    model.map(function (data) {
+    model.map(data => {
 
         var nest = d3.nest()
             .key(mgroup)
-            .rollup(function (g) {
-                return g.map(function (d) {
+            .rollup(g => {
+                return g.map(d => {
                     return {
                         group: mgroup(d),
                         y: my(d),
@@ -42,7 +42,6 @@
         return nest;
 
     })
-
 
     var chart = raw.chart()
         .title('Convex Hull')
@@ -62,6 +61,11 @@
         .title("Height")
         .defaultValue(600);
 
+    //left margin
+    var marginLeft = chart.number()
+        .title('Left Margin')
+        .defaultValue(40)
+
     var dotRadius = chart.number()
         .title("Dots Diameter")
         .defaultValue(6);
@@ -77,39 +81,42 @@
     var colors = chart.color()
         .title("Color scale");
 
-    chart.draw(function (selection, data) {
+    chart.draw((selection, data) => {
 
-        var xmin = d3.min(data, function (layer) {
-            return d3.min(layer.values, function (d) {
+        var xmin = d3.min(data, layer => {
+            return d3.min(layer.value, d => {
                 return d.x;
             });
         });
-        var xmax = d3.max(data, function (layer) {
-            return d3.max(layer.values, function (d) {
+        var xmax = d3.max(data, layer => {
+            return d3.max(layer.value, d => {
                 return d.x;
             });
         });
-        var ymin = d3.min(data, function (layer) {
-            return d3.min(layer.values, function (d) {
+        var ymin = d3.min(data, layer => {
+            return d3.min(layer.value, d => {
                 return d.y;
             });
         });
-        var ymax = d3.max(data, function (layer) {
-            return d3.max(layer.values, function (d) {
+        var ymax = d3.max(data, layer => {
+            return d3.max(layer.value, d => {
                 return d.y;
             });
         })
 
-        //define the drawing space
-        var bottomPadding = 15;
-        //magic formula, no idea why it works. Anyway it defines the max length of the labels string.
-        var leftPadding = ((Math.log(ymax) / 2.302585092994046) + 1) * 9;
+        //define margins
+        var margin = {
+            top: 0,
+            right: 0,
+            bottom: 15,
+            left: marginLeft()
+        };
 
-        var w = +width() - stroke() - leftPadding;
-        var h = +height() - stroke() - bottomPadding;
+        var w = +width() - stroke() - margin.left;
+        var h = +height() - stroke() - margin.bottom;
 
-        var x = d3.scale.linear().range([0, w]),
-            y = d3.scale.linear().range([h, 0]);
+        var x = d3.scaleLinear().range([0, w]),
+            y = d3.scaleLinear().range([h, 0]);
 
 
         //set domain according to "origin" variable
@@ -123,26 +130,25 @@
         }
 
         //define colors
-        colors.domain(data, function (layer) {
+        colors.domain(data, layer => {
             return layer.key;
         });
 
         //@TODO: add x and y axes (copy from scatterPlot.js)
 
-        var xAxis = d3.svg.axis().scale(x).tickSize(-h).orient("bottom");
-        var yAxis = d3.svg.axis().scale(y).tickSize(-w).orient("left");
+        var xAxis = d3.axisBottom(x).tickSize(-h);
+        var yAxis = d3.axisLeft(y).tickSize(-w);
 
         var svg = selection
             .attr("width", +width())
             .attr("height", +height())
-
 
         svg.append("g")
             .attr("class", "x axis")
             .style("stroke-width", "1px")
             .style("font-size", "10px")
             .style("font-family", "Arial, Helvetica")
-            .attr("transform", "translate(" + (stroke() / 2 + leftPadding) + "," + (height() - stroke() / 2 - bottomPadding) + ")")
+            .attr("transform", `translate(${stroke() / 2 + margin.left}, ${height() - stroke() / 2 - margin.bottom})`)
             .call(xAxis);
 
         svg.append("g")
@@ -150,7 +156,7 @@
             .style("stroke-width", "1px")
             .style("font-size", "10px")
             .style("font-family", "Arial, Helvetica")
-            .attr("transform", "translate(" + (stroke() / 2 + leftPadding) + "," + stroke() / 2 + ")")
+            .attr("transform", `translate(${stroke() / 2 + margin.left}, ${stroke() / 2})`)
             .call(yAxis);
 
         d3.selectAll(".y.axis line, .x.axis line, .y.axis path, .x.axis path")
@@ -160,10 +166,9 @@
 
 
         //for each group...
-        data.forEach(function (layer) {
+        data.forEach(layer => {
 
-            var vertices = layer.values.map(function (d) {
-                
+            var vertices = layer.value.map(d => {
                 return [x(d.x), y(d.y)]
             })
 
@@ -176,18 +181,18 @@
 
             var g = svg.append("g")
                 .attr("id", layer.key)
-                .attr("transform", "translate(" + (stroke() / 2 + leftPadding) + "," + stroke() / 2 + ")")
+                .attr("transform", `translate(${stroke() / 2 + margin.left}, ${stroke() / 2})`)
 
             var gcolor = colors()(layer.key);
 
             g.append("path")
-                .datum(d3.geom.hull(vertices))
+                .datum(d3.polygonHull(vertices))
                 .style("fill", gcolor)
                 .style("opacity", 0.3)
                 .style("stroke", gcolor)
                 .style("stroke-width", +stroke())
                 .style("stroke-linejoin", "round")
-                .attr("d", function (d) {
+                .attr("d", d => {
                     return "M" + d.join("L") + "Z";
                 });
 
@@ -196,27 +201,25 @@
                 .enter().append("circle")
                 .style("fill", gcolor)
                 .attr("r", dotRadius() / 2)
-                .attr("transform", function (d) {
-                    return "translate(" + d + ")";
+                .attr("transform", d => {
+                    return `translate(${d})`;
                 })
         })
-        
+
         // now, add label above all
-        if(mlabel() != null) {
+        if (mlabel() != null) {
             var txt_group = svg.append('g')
-                                .attr("transform", "translate(" + (stroke() / 2 + leftPadding) + "," + stroke() / 2 + ")");
-            
-            data.forEach(function (layer) {
+                .attr("transform", `translate(${stroke() / 2 + margin.left}, ${stroke() / 2})`)
 
-                layer.values.forEach(function(item){
+            data.forEach(layer => {
+
+                layer.value.forEach(item => {
                     txt_group.append("text")
-                        .attr("transform", "translate(" + x(item.x) +"," + y(item.y) + ")")
+                        .attr("transform", `translate(${x(item.x)}, ${y(item.y)})`)
                         .attr("text-anchor", "middle")
-                        .style("font-size","10px")
-                        .style("font-family","Arial, Helvetica")
+                        .style("font-size", "10px")
+                        .style("font-family", "Arial, Helvetica")
                         .text(item.label)
-
-                    console.log(item);
                 })
             });
         }

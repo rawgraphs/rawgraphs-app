@@ -7,10 +7,10 @@
     points.dimensions().remove('color');
 
     var chart = raw.chart()
-        .title('Hexagonal Binning')
+        .title('Contour Plot')
         .description(
-            "Visually clusters the most populated areas on a scatterplot. Useful to make more readable a scatterplot when plotting hundreds of points.<br/>Based on <a href='http://bl.ocks.org/mbostock/4248145'>http://bl.ocks.org/mbostock/4248145</a>")
-        .thumbnail("imgs/binning.png")
+            "It shows the estimated density of point clouds, which is especially useful to avoid overplotting in large datasets.<br/>Based on <a href='https://bl.ocks.org/mbostock/7f5f22524bd1d824dd53c535eda0187f'>Density Contours II</a>")
+        .thumbnail("imgs/contourplot.png")
         .category('Dispersion')
         .model(points)
 
@@ -28,9 +28,14 @@
         .title('Left Margin')
         .defaultValue(40)
 
-    var radius = chart.number()
-        .title("Radius")
-        .defaultValue(20)
+    var bandwidth = chart.number()
+        .title("Standard deviation")
+        .defaultValue(40)
+
+    var colorMode = chart.list()
+        .title("Colors applied to")
+        .values(["Stroke", "Fill"])
+        .defaultValue("Stroke")
 
     var useZero = chart.checkbox()
         .title("Set origin at (0,0)")
@@ -87,16 +92,6 @@
         var xAxis = d3.axisBottom(xScale).tickSize(6, -h);
         var yAxis = d3.axisLeft(yScale).ticks(10).tickSize(6, -w);
 
-        var hexbin = d3.hexbin()
-            .size([w, h])
-            .x(function(d) {
-                return xScale(d.x);
-            })
-            .y(function(d) {
-                return yScale(d.y);
-            })
-            .radius(+radius());
-
         g.append("clipPath")
             .attr("id", "clip")
             .append("rect")
@@ -105,25 +100,43 @@
             .attr("height", h)
             .attr("transform", "translate(" + margin.left + ",1)");
 
-        colors.domain(hexbin(data), function(d) {
-            return d.length;
+        var contours = d3.contourDensity()
+            .x(function(d) {
+                return xScale(d.x);
+            })
+            .y(function(d) {
+                return yScale(d.y);
+            })
+            .size([w, h])
+            .bandwidth(bandwidth())
+            (data);
+
+        colors.domain(contours, function(d) {
+            return d.value;
         });
 
-        g.append("g")
+        var contourPaths = g.insert("g", "g")
             .attr("clip-path", "url(#clip)")
-            .selectAll(".hexagon")
-            .data(hexbin(data))
+            .attr("stroke-linejoin", "round")
+            .selectAll("path")
+            .data(contours)
             .enter().append("path")
-            .attr("class", "hexagon")
-            .attr("d", hexbin.hexagon())
-            .attr("transform", function(d) {
-                return "translate(" + d.x + "," + d.y + ")";
-            })
-            .style("fill", function(d) {
-                return colors()(d.length);
-            })
-            .attr("stroke", "#000")
-            .attr("stroke-width", ".5px")
+            .attr("d", d3.geoPath());
+
+        if (colorMode() == "Fill") {
+
+            contourPaths.attr("fill", function(d) {
+                    return colors()(d.value)
+                })
+                .attr("stroke", "none")
+
+        } else if (colorMode() == "Stroke") {
+
+            contourPaths.attr("stroke", function(d) {
+                    return colors()(d.value)
+                })
+                .attr("fill", "none")
+        }
 
         var point = g.selectAll("g.point")
             .data(data)

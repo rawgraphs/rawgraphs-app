@@ -48,18 +48,20 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/#">
+        <a class="navbar-brand" href="http://rawgraphs.io/" target="_blank">
           <img alt="RawGraphs" src="imgs/rawgraphslogo.png">
         </a>
       </div>
 
       <nav class="collapse navbar-collapse" role="navigation" id="raw-navbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="http://rawgraphs.io/">About</a></li>
-          <li><a href="https://github.com/densitydesign/raw/wiki/FAQs">FAQs</a></li>
+          <li><a href="http://rawgraphs.io/about/" target="_blank">About</a></li>
+          <li><a href="http://rawgraphs.io/gallery/" target="_blank">Gallery</a></li>
           <li><a href="http://rawgraphs.io/learning/" target="_blank">Learning</a></li>
-          <li><a href="https://github.com/densitydesign/raw/wiki/Developer-Guide">Developer Guide</a></li>
-          <li><a href="https://github.com/densitydesign/raw" style="font-size:23px"><i class="fa fa-github"></i></a></li>
+          <li><a href="https://github.com/densitydesign/raw/wiki/FAQs" target="_blank">FAQs</a></li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdfbS0TsyQEXdNfYp9XkiDx5pzwEYfKCmplDJTz1VPAm1R6VA/viewform" target="_blank">User survey</a></li>
+          <li><a href="https://github.com/densitydesign/raw/wiki/Developer-Guide" target="_blank">Developer Guide</a></li>
+          <li><a href="https://github.com/densitydesign/raw" target="_blank" style="font-size:23px"><i class="fa fa-github"></i></a></li>
         </ul>
       </nav>
 
@@ -99,17 +101,19 @@
   <script type="text/javascript" src="bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js"></script>
   <!-- d3 -->
   <script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
-  <script type="text/javascript" src="bower_components/d3-plugins/sankey/sankey.js"></script>
-  <script type="text/javascript" src="bower_components/d3-plugins/hexbin/hexbin.js"></script>
-  <script type="text/javascript" src="bower_components/d3-plugins-density/horizon.js"></script>
-  <script type="text/javascript" src="bower_components/d3-plugins/box/box.js"></script>
+  <!-- d3 plugins -->
+  <script type="text/javascript" src="bower_components/d3-voronoi/d3-voronoi.min.js"></script>
+  <script type="text/javascript" src="bower_components/d3-hexbin/d3-hexbin.min.js"></script>
+  <script type="text/javascript" src="bower_components/d3-sankey/d3-sankey.min.js"></script>
+  <script type="text/javascript" src="bower_components/d3-contour/d3-contour.min.js"></script>
+  <script type="text/javascript" src="bower_components/d3-box/index.js"></script>
   <!-- codemirror -->
   <script type="text/javascript" src="bower_components/codemirror/lib/codemirror.js"></script>
   <script type="text/javascript" src="bower_components/codemirror/addon/display/placeholder.js"></script>
   <!-- canvastoblob -->
   <script type="text/javascript" src="bower_components/canvas-toBlob.js/canvas-toBlob.js"></script>
   <!-- filesaver -->
-  <script type="text/javascript" src="bower_components/FileSaver/FileSaver.js"></script>
+  <script type="text/javascript" src="bower_components/FileSaver/index.js"></script>
   <!-- zeroclipboard -->
   <script type="text/javascript" src="bower_components/zeroclipboard/dist/ZeroClipboard.min.js"></script>
   <!-- raw -->
@@ -122,9 +126,7 @@
   <script src="charts/packing.js"></script>
   <script src="charts/clusterDendrogram.js"></script>
   <script src="charts/voronoi.js"></script>
-  <script src="charts/delaunay.js"></script>
   <script src="charts/alluvial.js"></script>
-  <script src="charts/clusterForce.js"></script>
   <script src="charts/convexHullMultiple.js"></script>
   <script src="charts/hexagonalBinning.js"></script>
   <script src="charts/parallelCoordinates.js"></script>
@@ -133,10 +135,12 @@
   <script src="charts/bumpChart.js"></script>
   <script src="charts/sunburst.js"></script>
   <script src="charts/gantt.js"></script>
-  <script src="charts/horizon.js"></script>
-  <script src="charts/boxPlot.js"></script>
+  <script src="charts/horizonChart.js"></script>
   <script src="charts/barChart.js"></script>
   <script src="charts/pieChart.js"></script>
+  <script src="charts/contourPlot.js"></script>
+  <script src="charts/beeswarmPlot.js"></script>
+  <script src="charts/boxPlot.js"></script>
 
   <!-- angular -->
   <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>

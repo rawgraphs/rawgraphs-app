@@ -1,6 +1,6 @@
 ## Contributing
 
-Want to contribute to RAW's development? You are more than welcome! Start by forking the repository (the "Fork" button at the top-right corner of this page) and follow the instructions above to clone it and install dependencies.
+Want to contribute to RAWGraphs's development? You are more than welcome! Start by forking the repository (the "Fork" button at the top-right corner of this page) and follow the instructions above to clone it and install dependencies.
 Then you can use Github's issues and pull requests to discuss and share your work.
 
 You will need to sign a [Contributor License Agreement (CLA)](https://www.clahub.com/agreements/densitydesign/raw) before making a submission. We adopted CLA to be sure that the project will remain open source.
@@ -9,8 +9,8 @@ For more information, write us: <hello@rawgraphs.io>.
 ## The "obvius fix" RULE
 
 Inspired by [CARTO](https://carto.com/contributions/#obvious-fix) "obvious fix" rule we decided to integrate that rule also into our contribution policy.
-RAW's contribution policy is aimed at encouraging broad participation from our community and minimizing risks to the project owners and our community due to inappropriate contributions of the intellectual property of others.
-As a general standard, RAW requires every contributor to fill out a Contributor License Agreement (“CLA”), either individually or on behalf of a corporate entity.
+RAWGraphs's contribution policy is aimed at encouraging broad participation from our community and minimizing risks to the project owners and our community due to inappropriate contributions of the intellectual property of others.
+As a general standard, RAWGraphs requires every contributor to fill out a Contributor License Agreement (“CLA”), either individually or on behalf of a corporate entity.
 HOWEVER, very small contributions (such as fixing spelling errors), where the content change is small enough to not be considered intellectual property, can be submitted by a contributor as a patch, without a CLA.
 
 ## How does the obvious fix rule work?

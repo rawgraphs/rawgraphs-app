@@ -31,10 +31,6 @@
 								data-toggle="tooltip"
 								data-title="View as Table"
 								ng-click="dataView='table'" ng-class="{selected:dataView=='table'}"></i>
-								<i class="type fa fa-download breath-left"
-								data-toggle="tooltip"
-								data-title="Download"
-								></i>
 							</span>
 							<span class="clearfix"></span>
 						</h3>
@@ -415,7 +411,6 @@
 							type="button"
 							class="btn btn-default"
 							ng-model="option.value"
-							ng-change="$apply()"
 							bs-options="opt for opt in option.values()" bs-select ng-switch-when="list">
 							Action <span class="caret"></span>
 							</button>

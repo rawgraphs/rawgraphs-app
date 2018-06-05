@@ -1,161 +1,222 @@
-(function(){
+(function() {
 
-	var graph = raw.models.graph();
+    var graph = raw.models.graph();
 
-	var chart = raw.chart()
-		.title('Alluvial Diagram')
-		.description(
-            "Alluvial diagrams allow to represent flows and to see correlations between categorical dimensions, visually linking to the number of elements sharing the same categories. It is useful to see the evolution of cluster (such as the number of people belonging to a specific group). It can also be used to represent bipartite graphs, using each node group as dimensions.<br/>Mainly based on DensityDesign's work with Fineo, it is inspired by <a href='http://bost.ocks.org/mike/sankey/'>http://bost.ocks.org/mike/sankey/</a>")
-		.thumbnail("imgs/alluvial.png")
-		.category("Multi categorical")
-		.model(graph)
+    var chart = raw.chart()
+        .title('Alluvial Diagram')
+        .description(
+            "Alluvial diagrams allow to represent flows and to see correlations between categorical dimensions, visually linking to the number of elements sharing the same categories. It is useful to see the evolution of cluster (such as the number of people belonging to a specific group). It can also be used to represent bipartite graphs, using each node group as dimensions.<br/>Mainly based on DensityDesign's work with Fineo, it is inspired by <a href='https://bl.ocks.org/mbostock/ca9a0bb7ba204d12974bca90acc507c0'>https://bl.ocks.org/mbostock/ca9a0bb7ba204d12974bca90acc507c0</a>")
+        .thumbnail("imgs/alluvial.png")
+        .category("Multi categorical")
+        .model(graph);
 
-	var width = chart.number()
-		.title("Width")
-		.defaultValue(1000)
-		.fitToWidth(true)
+    var width = chart.number()
+        .title("Width")
+        .defaultValue(1000)
+        .fitToWidth(true);
 
-	var height = chart.number()
-		.title("Height")
-		.defaultValue(500)
+    var height = chart.number()
+        .title("Height")
+        .defaultValue(500);
 
-	var nodeWidth = chart.number()
-		.title("Node Width")
-		.defaultValue(5)
+    var nodeWidth = chart.number()
+        .title("Node Width")
+        .defaultValue(5);
 
-	var sortBy = chart.list()
+    var opacity = chart.number()
+        .title("Links opacity")
+        .defaultValue(.4);
+
+    var sortBy = chart.list()
         .title("Sort by")
-        .values(['size','name','automatic'])
-        .defaultValue('size')
+        .values(['size', 'name', 'automatic'])
+        .defaultValue('size');
 
-	var colors = chart.color()
-		.title("Color scale")
+    var colors = chart.color()
+        .title("Color scale");
 
-	chart.draw(function (selection, data){
+    chart.draw((selection, data) => {
 
-		var formatNumber = d3.format(",.0f"),
-		    format = function(d) { return formatNumber(d); };
+        // get the drawing area
+        var g = selection
+            .attr("width", +width())
+            .attr("height", +height() + 20)
+            .append("g")
+            .attr("transform", "translate(0, 10)");
 
-		var g = selection
-		    .attr("width", +width() )
-		    .attr("height", +height() + 20 )
-		  	.append("g")
-		    .attr("transform", "translate(" + 0 + "," + 10 + ")");
+        // define numbers formatting
+        var formatNumber = d3.format(",.0f"),
+            format = function(d) {
+                return formatNumber(d);
+            };
 
-		// Calculating the best nodePadding
+        // Calculating the best nodePadding (TODO: improve)
+        var nested = d3.nest()
+            .key(function(d) {
+                return d.group;
+            })
+            .rollup(function(d) {
+                return d.length;
+            })
+            .entries(data.nodes);
 
-		var nested = d3.nest()
-	    	.key(function (d){ return d.group; })
-	    	.rollup(function (d){ return d.length; })
-	    	.entries(data.nodes)
+        var maxNodes = d3.max(nested, function(d) {
+            return d.values;
+        });
+        var bestPadding = d3.min([10, (height() - maxNodes) / maxNodes])
 
-	    var maxNodes = d3.max(nested, function (d){ return d.values; });
+        // create sankey object
+        var sankey = d3.sankey()
+            .nodeWidth(+nodeWidth())
+            .nodePadding(bestPadding)
+            .size([+width(), +height()]);
 
-		var sankey = d3.sankey()
-		    .nodeWidth(+nodeWidth())
-		    .nodePadding(d3.min([10,(height()-maxNodes)/maxNodes]))
-		    .size([+width(), +height()]);
+        // use the loaded data
+        sankey(data);
 
-		var path = sankey.link(),
-			nodes = data.nodes,
-			links = data.links;
+        // define colors
+        colors.domain(data.links, function(d) {
+            return d.source.group + " - " + d.source.name;
+        });
 
-		sankey
-	   		.nodes(nodes)
-	    	.links(links)
-	    	.layout(32);
+        // add values to nodes
+        data.nodes.forEach(function(d) {
+            // get height for each node
+            d.dx = d.x1 - d.x0;
+            d.dy = d.y1 - d.y0;
+            // check if the name is a number
 
-	    // Re-sorting nodes
+            if (!isNaN(+d.name)) {
+                d.name = +d.name;
+            }
+        })
 
-	    nested = d3.nest()
-	    	.key(function(d){ return d.group; })
-	    	.map(nodes)
+        // Re-sorting nodes
+        var nested = d3.nest()
+            .key(function(d) {
+                return d.group;
+            })
+            .entries(data.nodes)
 
-	    d3.values(nested)
-	    	.forEach(function (d){
-		    	var y = ( height() - d3.sum(d,function(n){ return n.dy+sankey.nodePadding();}) ) / 2 + sankey.nodePadding()/2;
-		    	d.sort(function (a,b){
-		    		if (sortBy() == "automatic") return b.y - a.y;
-		    		if (sortBy() == "size") return b.dy - a.dy;
-		    		if (sortBy() == "name") return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-		    	})
-		    	d.forEach(function (node){
-		    		node.y = y;
-		    		y += node.dy +sankey.nodePadding();
-		    	})
-		    })
+        nested
+            .forEach(function(d) {
 
-	    // Resorting links
+                var y = (height() - d3.sum(d.values, function(n) {
+                    return n.dy + sankey.nodePadding();
+                })) / 2 + sankey.nodePadding() / 2;
 
-		d3.values(nested).forEach(function (d){
+                d.values.sort(function(a, b) {
+                    if (sortBy() == "automatic") return b.y0 - a.y0;
+                    if (sortBy() == "size") return b.dy - a.dy;
+                    //if (sortBy() == "name") return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+                    if (sortBy() == "name") {
+                        var a1 = typeof a.name,
+                            b1 = typeof b.name;
+                        return a1 < b1 ? -1 : a1 > b1 ? 1 : a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+                    }
+                })
 
-			d.forEach(function (node){
+                d.values.forEach(function(node) {
+                    node.y0 = y;
+                    y += node.dy + sankey.nodePadding();
+                })
+            })
 
-	    		var ly = 0;
-	    		node.sourceLinks
-		    		.sort(function (a,b){
-		    			return a.target.y - b.target.y;
-		    		})
-		    		.forEach(function (link){
-		    			link.sy = ly;
-		    			ly += link.dy;
-		    		})
+        // Resorting links
 
-		    	ly = 0;
+        nested.forEach(function(d) {
 
-		    	node.targetLinks
-		    		.sort(function(a,b){
-		    			return a.source.y - b.source.y;
-		    		})
-		    		.forEach(function (link){
-		    			link.ty = ly;
-		    			ly += link.dy;
-		    		})
-			})
-		})
+            d.values.forEach(function(node) {
 
-	 	colors.domain(links, function (d){ return d.source.name; });
+                var ly = node.y0;
 
-		var link = g.append("g").selectAll(".link")
-	    	.data(links)
-	   		.enter().append("path")
-			    .attr("class", "link")
-			    .attr("d", path )
-			    .style("stroke-width", function(d) { return Math.max(1, d.dy); })
-			    .style("fill","none")
-			    .style("stroke", function (d){ return colors()(d.source.name); })
-			    .style("stroke-opacity",".4")
-			    .sort(function(a, b) { return b.dy - a.dy; })
-			    .append("title")
-			    .text(function(d) { console.log(d); return d.value});
+                node.sourceLinks
+                    .sort(function(a, b) {
+                        return a.target.y0 - b.target.y0;
+                    })
+                    .forEach(function(link) {
+                        link.y0 = ly + link.width / 2;
+                        ly += link.width;
+                    })
 
-		var node = g.append("g").selectAll(".node")
-	    	.data(nodes)
-	    	.enter().append("g")
-		      	.attr("class", "node")
-		      	.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+                ly = node.y0;
 
-		node.append("rect")
-		    .attr("height", function(d) { return d.dy; })
-		    .attr("width", sankey.nodeWidth())
-		    .style("fill", function (d) { return d.sourceLinks.length ? colors(d.name) : "#666"; })
-		    .append("title")
-		    	.text(function(d) { return d.name + "\n" + format(d.value); });
+                node.targetLinks
+                    .sort(function(a, b) {
+                        return a.source.y0 - b.source.y0;
+                    })
+                    .forEach(function(link) {
+                        link.y1 = ly + link.width / 2;
+                        ly += link.width;
+                    })
+            })
+        })
 
-		node.append("text")
-		    .attr("x", -6)
-	      	.attr("y", function (d) { return d.dy / 2; })
-	      	.attr("dy", ".35em")
-	      	.attr("text-anchor", "end")
-	      	.attr("transform", null)
-			    .text(function(d) { return d.name; })
-			    .style("font-size","11px")
-				.style("font-family","Arial, Helvetica")
-			    .style("pointer-events","none")
-			    .filter(function(d) { return d.x < +width() / 2; })
-			    .attr("x", 6 + sankey.nodeWidth())
-		     	.attr("text-anchor", "start");
+        //prepare link
+        var link = g.append("g")
+            .attr("class", "links")
+            .attr("fill", "none")
+            .attr("stroke-opacity", +opacity())
+            .selectAll("path")
+            .data(data.links)
+            .enter().append("path")
+            .attr("d", d3.sankeyLinkHorizontal())
+            .style("stroke", function(d) {
+                return colors()(d.source.group + " - " + d.source.name);
+            })
+            .attr("stroke-width", function(d) {
+                return d.width;
+            });
 
-	})
+
+        //prepare node
+        var node = g.append("g")
+            .attr("class", "nodes")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", 10)
+            .selectAll("g")
+            .data(data.nodes)
+            .enter().append("g");
+
+        //add rectangle
+        node.append("rect")
+            .attr("x", function(d) {
+                return d.x0;
+            })
+            .attr("y", function(d) {
+                return d.y0;
+            })
+            .attr("height", function(d) {
+                return d.dy;
+            })
+            .attr("width", function(d) {
+                return d.dx;
+            })
+            .attr("fill", function(d) {
+                return '#000'
+            });
+
+
+        //add labels
+        node.append("text")
+            .attr("x", function(d) {
+                return d.x0 - 6;
+            })
+            .attr("y", function(d) {
+                return d.y0 + d.dy / 2;
+            })
+            .attr("dy", "0.35em")
+            .attr("text-anchor", "end")
+            .text(function(d) {
+                return d.name;
+            })
+            .filter(function(d) {
+                return d.x0 < nodeWidth()
+            })
+            .attr("x", function(d) {
+                return d.x1 + 6;
+            })
+            .attr("text-anchor", "start");
+    })
 
 })();

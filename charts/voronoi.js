@@ -1,4 +1,4 @@
-(function(){
+(function() {
 
 	var points = raw.models.points();
 
@@ -8,7 +8,7 @@
 	var chart = raw.chart()
 		.title('Voronoi Tessellation')
 		.description(
-            "It creates the minimum area around each point defined by two variables. When applied to a scatterplot, it is useful to show the distance between points. <br/>Based on <a href='http://bl.ocks.org/mbostock/4060366'>http://bl.ocks.org/mbostock/4060366</a>")
+			"It creates the minimum area around each point defined by two variables. When applied to a scatterplot, it is useful to show the distance between points. <br/>Based on <a href='http://bl.ocks.org/mbostock/4060366'>http://bl.ocks.org/mbostock/4060366</a>")
 		.thumbnail("imgs/voronoi.png")
 		.category('Dispersion')
 		.model(points)
@@ -29,43 +29,46 @@
 		.title("Show points")
 		.defaultValue(true)
 
-	chart.draw(function (selection, data){
+	chart.draw(function(selection, data) {
 
-		var x = d3.scale.linear().range([0,+width()]).domain(d3.extent(data, function (d){ return d.x; })),
-			y = d3.scale.linear().range([+height(), 0]).domain(d3.extent(data, function (d){ return d.y; }));
+		var x = d3.scaleLinear().range([0, +width()]).domain(d3.extent(data, function(d) { return d.x; })),
+			y = d3.scaleLinear().range([+height(), 0]).domain(d3.extent(data, function(d) { return d.y; }));
 
-		var voronoi = d3.geom.voronoi()
-			.x(function (d){ return x(d.x); })
-			.y(function (d){ return y(d.y); })
-    		.clipExtent([ [ 0, 0 ], [+width(), +height()] ]);
+		var voronoi = d3.voronoi()
+			.x(function(d) { return x(d.x); })
+			.y(function(d) { return y(d.y); })
+			.extent([
+				[0, 0],
+				[+width(), +height()]
+			]);
 
 		var g = selection
-		    .attr("width", +width())
-		    .attr("height", +height())
-		    .append("g");
+			.attr("width", +width())
+			.attr("height", +height())
+			.append("g");
 
-		colors.domain(data, function (d){ return d.color; });
+		colors.domain(data, function(d) { return d.color; });
 
 		var path = g.selectAll("path")
-			.data(voronoi(data), polygon)
+			.data(voronoi.polygons(data))
 			.enter().append("path")
-	      	.style("fill",function (d){ return d && colors()? colors()(d.point.color) :  "#dddddd"; })
-	      	.style("stroke","#fff")
-	      	.attr("d", polygon);
+			.style("fill", function(d) { return d && colors() ? colors()(d.data.color) : "#dddddd"; })
+			.style("stroke", "#fff")
+			.attr("d", polygon);
 
-	  	path.order();
+		path.order();
 
-	  	g.selectAll("circle")
-		    .data(data.filter(function(){ return showPoints() }))
-		  	.enter().append("circle")
-			  	.style("fill","#000000")
-			  	.style("pointer-events","none")
-			    .attr("transform", function (d) { return "translate(" + x(d.x) + ", " + y(d.y) + ")"; })
-			    .attr("r", 1.5);
+		g.selectAll("circle")
+			.data(data.filter(function() { return showPoints() }))
+			.enter().append("circle")
+			.style("fill", "#000000")
+			.style("pointer-events", "none")
+			.attr("transform", function(d) { return "translate(" + x(d.x) + ", " + y(d.y) + ")"; })
+			.attr("r", 1.5);
 
 		function polygon(d) {
-			if(!d) return;
-		  return "M" + d.join("L") + "Z";
+			if (!d) return;
+			return "M" + d.join("L") + "Z";
 		}
 
 	})
