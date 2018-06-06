@@ -19,6 +19,10 @@
 		.defaultValue(1000)
 		.fitToWidth(true);
 
+	var marginSize = chart.number()
+		.title('Margin')
+		.defaultValue(10);
+
 	function linkDiagonal(d) {
 		return "M" + project(d.x, d.y) +
 			"C" + project(d.x, (d.y + d.parent.y) / 2) +
@@ -33,14 +37,24 @@
 	}
 
 	chart.draw((selection, data) => {
+
+		var margin = {
+			top: +marginSize(),
+			right: 200,
+			bottom: +marginSize(),
+			left: +marginSize()
+		};
+
+		var radius = (+diameter() - d3.max([margin.top + margin.bottom, margin.left + margin.right])) / 2;
+
 		var g = selection
 			.attr("width", +diameter())
 			.attr("height", +diameter())
 			.append("g")
-			.attr("transform", `translate(${diameter()/2}, ${diameter()/2})`);
+			.attr("transform", 'translate(' + (margin.left + radius) + ',' + (margin.top + radius) + ')');
 
 		var cluster = d3.cluster()
-			.size([360, diameter() / 2 - 120]);
+			.size([360, radius]);
 
 		root = d3.hierarchy(data);
 

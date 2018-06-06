@@ -54,11 +54,6 @@
         var x = points.dimensions().get('x'),
             y = points.dimensions().get('y');
 
-        var g = selection
-            .attr("width", +width())
-            .attr("height", +height())
-            .append("g")
-
         //define margins
         var margin = {
             top: 0,
@@ -67,8 +62,16 @@
             left: marginLeft()
         };
 
-        var w = width() - margin.left,
-            h = height() - margin.bottom;
+        // calculate size
+        var w = width() - margin.left - margin.right,
+            h = height() - margin.bottom - margin.top;
+
+        // create the selection
+        var g = selection
+            .attr("width", +width())
+            .attr("height", +height())
+            .append("g")
+            .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
         var xExtent = !useZero() ? d3.extent(data, function(d) {
                 return d.x;
@@ -82,8 +85,8 @@
             })];
 
         var xScale = x.type() == "Date" ?
-            d3.scaleTime().range([margin.left, width()]).domain(xExtent) :
-            d3.scaleLinear().range([margin.left, width()]).domain(xExtent);
+            d3.scaleTime().range([0, w]).domain(xExtent) :
+            d3.scaleLinear().range([0, w]).domain(xExtent);
 
         var yScale = y.type() == "Date" ?
             d3.scaleTime().range([h, 0]).domain(yExtent) :
@@ -97,8 +100,7 @@
             .append("rect")
             .attr("class", "mesh")
             .attr("width", w)
-            .attr("height", h)
-            .attr("transform", "translate(" + margin.left + ",1)");
+            .attr("height", h);
 
         var contours = d3.contourDensity()
             .x(function(d) {
@@ -155,7 +157,6 @@
 
         g.append("g")
             .attr("class", "y axis")
-            .attr("transform", "translate(" + margin.left + ",0)")
             .call(yAxis);
 
         g.append("g")

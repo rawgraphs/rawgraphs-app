@@ -31,39 +31,67 @@
 
 	chart.draw(function(selection, data) {
 
-		var x = d3.scaleLinear().range([0, +width()]).domain(d3.extent(data, function(d) { return d.x; })),
-			y = d3.scaleLinear().range([+height(), 0]).domain(d3.extent(data, function(d) { return d.y; }));
+		//define margins
+		var margin = {
+			top: 0,
+			right: 0,
+			bottom: 0,
+			left: 0
+		};
 
-		var voronoi = d3.voronoi()
-			.x(function(d) { return x(d.x); })
-			.y(function(d) { return y(d.y); })
-			.extent([
-				[0, 0],
-				[+width(), +height()]
-			]);
+		var w = width() - margin.left - margin.right,
+			h = height() - margin.bottom - margin.top;
 
 		var g = selection
 			.attr("width", +width())
 			.attr("height", +height())
-			.append("g");
+			.append("g")
+			.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
-		colors.domain(data, function(d) { return d.color; });
+		var x = d3.scaleLinear().range([0, w]).domain(d3.extent(data, function(d) {
+				return d.x;
+			})),
+			y = d3.scaleLinear().range([h, 0]).domain(d3.extent(data, function(d) {
+				return d.y;
+			}));
+
+		var voronoi = d3.voronoi()
+			.x(function(d) {
+				return x(d.x);
+			})
+			.y(function(d) {
+				return y(d.y);
+			})
+			.extent([
+				[0, 0],
+				[w, h]
+			]);
+
+		colors.domain(data, function(d) {
+			return d.color;
+		});
 
 		var path = g.selectAll("path")
 			.data(voronoi.polygons(data))
 			.enter().append("path")
-			.style("fill", function(d) { return d && colors() ? colors()(d.data.color) : "#dddddd"; })
+			.style("fill", function(d) {
+				return d && colors() ? colors()(d.data.color) : "#dddddd";
+			})
 			.style("stroke", "#fff")
 			.attr("d", polygon);
 
 		path.order();
 
 		g.selectAll("circle")
-			.data(data.filter(function() { return showPoints() }))
+			.data(data.filter(function() {
+				return showPoints()
+			}))
 			.enter().append("circle")
 			.style("fill", "#000000")
 			.style("pointer-events", "none")
-			.attr("transform", function(d) { return "translate(" + x(d.x) + ", " + y(d.y) + ")"; })
+			.attr("transform", function(d) {
+				return "translate(" + x(d.x) + ", " + y(d.y) + ")";
+			})
 			.attr("r", 1.5);
 
 		function polygon(d) {

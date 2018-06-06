@@ -31,19 +31,29 @@
 		//unknown function
 		var format = d3.format(",d");
 
+		var margin = {
+			top: 0,
+			right: 0,
+			bottom: 0,
+			left: 0
+		};
+
+		var w = +width() - margin.left - margin.right,
+			h = +height() - margin.top - margin.bottom;
+
 		// get the drawing area
 		var g = selection
 			.attr("width", +width())
 			.attr("height", +height())
 			.append("g")
-			.attr("transform", "translate(.5,.5)");
+			.attr("transform", "translate(" + margin.left +"," + margin.top +")");
 
 
 		// create the layout
 		var layout = d3.treemap()
 			.tile(d3.treemapResquarify)
 			.padding(+padding())
-			.size([+width(), +height()])
+			.size([w,h])
 			//.sticky(true)
 			//.value(function(d) { return d.size; })
 
@@ -65,7 +75,7 @@
 			.enter().append("g")
 			.attr("class", "cell")
 			.attr("transform", function(d) { return "translate(" + d.x0 + "," + d.y0 + ")"; });
-		
+
 		cell.append("rect")
 			.attr("width", function(d) { return d.x1 - d.x0; })
 			.attr("height", function(d) { return d.y1 - d.y0; })

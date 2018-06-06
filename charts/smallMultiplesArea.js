@@ -88,6 +88,24 @@
 
 	chart.draw(function(selection, data) {
 
+		// margins
+		var margin = {
+			top: 0,
+			right: 200,
+			bottom: 20,
+			left: 0
+		};
+
+		// width and height for each area
+		var w = +width() - margin.left - margin.right,
+			h = (+height() - margin.bottom - margin.top - (+padding() * (data.length - 1))) / data.length;
+
+		var svg = selection
+			.attr("width", +width())
+			.attr("height", +height())
+			.append('g')
+			.attr("transform", "translate(" + margin.left +"," + margin.top +")");
+
 		//sort data
 		function sortBy(a, b) {
 			if (sorting() == 'Total (descending)') {
@@ -109,13 +127,6 @@
 			'DensityDesign': curveSankey,
 			'Linear': d3.curveLinear
 		}
-
-		var w = +width(),
-			h = (+height() - 20 - (+padding() * (data.length - 1))) / data.length;
-
-		var svg = selection
-			.attr("width", +width())
-			.attr("height", +height())
 
 		var x = d3.scaleTime()
 			.range([0, w]);
@@ -149,7 +160,7 @@
 			.style("stroke-width", "1px")
 			.style("font-size", "10px")
 			.style("font-family", "Arial, Helvetica")
-			.attr("transform", "translate(" + 0 + "," + (height() - 15) + ")")
+			.attr("transform", "translate(0," + (+height() - margin.top - margin.bottom) + ")")
 			.call(xAxis);
 
 		d3.selectAll(".x.axis line, .x.axis path")

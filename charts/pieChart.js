@@ -100,7 +100,23 @@
 
     chart.draw(function(selection, data) {
 
-        var radius = +width() / +columns() / 2 - +padding() / 2;
+        var margin = {
+            top: 0,
+            right: 200,
+            bottom: 20,
+            left: 0
+        };
+
+        var w = +width() - margin.left - margin.right,
+            radius = (w - padding() * (columns() - 1)) / +columns() / 2,
+            rows = Math.ceil(data.length / +columns()),
+            h = rows * radius * 2 + (rows - 1) * padding() + margin.top + margin.bottom;
+
+            var svg = selection
+                .attr("width", +width())
+                .attr("height", h)
+                .append("g")
+                .attr("transform", "translate(" + margin.left +"," + margin.top +")");
 
         // Define color scale domain
         // Get the list of all possible values from first element
@@ -109,12 +125,6 @@
             return item.key
         });
         colors.domain(allColors);
-
-        var h = Math.ceil(data.length / +columns()) * (radius * 2 + padding());
-
-        selection
-            .attr("width", +width())
-            .attr("height", h)
 
         var area = d3.scaleLinear()
             .domain([0, d3.max(data, function(layer) {
@@ -144,7 +154,7 @@
                 .outerRadius(outerRadius)
                 .innerRadius(donut() && thickness() < outerRadius ? outerRadius - +thickness() : 0)
 
-            var g = selection
+            var g = svg
                 .append("g")
                 .attr("transform", function() {
                     return "translate(" + (li % +columns() * (+radius * 2 + +padding()) + +radius + padding() / 2) + "," + (Math.floor(li / +columns()) * (radius * 2 + +padding()) + radius + padding() / 2) + ")";

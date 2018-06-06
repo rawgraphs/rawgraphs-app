@@ -24,7 +24,7 @@
 
     // Values dimension. It will define the height of the bars
     var radiuses = model.dimension()
-        .title('Radius')
+        .title('Size')
 
     // Colors dimension. It will define the color of the bubbles
     var colorsDimesion = model.dimension()
@@ -140,10 +140,10 @@
 
         // Define margins
         var margin = {
-            top: 50,
-            right: 25,
-            bottom: 0,
-            left: 25
+            top: maxRadius(),
+            right: maxRadius(),
+            bottom: maxRadius() > 20 ? maxRadius() : 20,
+            left: maxRadius()
         };
 
         //define title space
@@ -173,7 +173,7 @@
                 return e.radius;
             })
         })
-        var radius = d3.scaleLinear()
+        var radius = d3.scaleSqrt()
             .range([minRadius(), maxRadius()])
             .domain([rMin, rMax])
 

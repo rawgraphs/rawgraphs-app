@@ -47,9 +47,15 @@
 
 	chart.draw((selection, data) => {
 
-		var m = [30, 40, 10, 40],
-			w = +width() - m[1] - m[3],
-			h = +height() - m[0] - m[2];
+		var margin = {
+			top: 6,
+			right: 1,
+			bottom: 6,
+			left: 0
+		};
+
+		var w = +width() - margin.left - margin.right,
+			h = +height() - margin.top - margin.bottom;
 
 		var x = d3.scalePoint().range([0, w]),
 			y = {},
@@ -63,12 +69,7 @@
 			.attr("width", +width())
 			.attr("height", +height())
 			.append("g")
-			.attr("width", w + m[1] + m[3])
-			.attr("height", h + m[0] + m[2])
-			.style("font-size", "10px")
-			.style("font-family", "Arial, Helvetica")
-			.append("g")
-			.attr("transform", `translate(${m[3]}, ${m[0]})`);
+			.attr("transform", "translate(" + margin.left +"," + margin.top +")");
 
 		x.domain(dimensions = d3.keys(data[0].dimensions).filter(d => {
 			return d != "name" && (y[d] = d3.scaleLinear()
@@ -104,8 +105,8 @@
 
 		g.append("g")
 			.attr("class", "axis")
-			.each(function(d) {
-				d3.select(this).call(d3.axisLeft(y[d]));
+			.each(function(d,i) {
+				i == 0 ? d3.select(this).call(d3.axisRight(y[d])) : d3.select(this).call(d3.axisLeft(y[d]));
 			})
 			.append("text")
 			.attr("text-anchor", "middle")

@@ -114,10 +114,23 @@
 
 	chart.draw(function(selection, data) {
 
+		// margins
+		var margin = {
+			top: 0,
+			right: 15,
+			bottom: 20,
+			left: 15
+		};
+
+		// width and height
+		var w = +width() - margin.left - margin.right,
+			h = +height() - margin.bottom - margin.top;
+
 		var g = selection
 			.attr("width", +width())
 			.attr("height", +height())
 			.append("g")
+			.attr("transform", "translate(" + margin.left +"," + margin.top +")");
 
 		var curves = {
 			'Basis spline': d3.curveBasis,
@@ -142,11 +155,11 @@
 
 		var x = d3.scaleTime()
 			.domain(d3.extent(data.values, function(d) { return d.date; }))
-			.range([0, +width()]);
+			.range([0, w]);
 
 		var y = d3.scaleLinear()
 			.domain([d3.min(layers, stackMin), d3.max(layers, stackMax)])
-			.range([0, +height() - 20 - padding() * (layers.length - 1)]);
+			.range([0, h - padding() * (layers.length - 1)]);
 
 		//sort layers by size
 		for (var i = 0; i < layers[0].length; i++) {
@@ -229,7 +242,7 @@
 			.style("stroke-width", "1px")
 			.style("font-size", "10px")
 			.style("font-family", "Arial, Helvetica")
-			.attr("transform", "translate(" + 0 + "," + (height() - 20) + ")")
+			.attr("transform", "translate(0," + h + ")")
 			.call(xAxis);
 
 		d3.selectAll(".x.axis line, .x.axis path")

@@ -106,18 +106,24 @@
 
         //define margins
         var margin = {
-            top: 0,
-            right: 0,
-            bottom: 15,
-            left: marginLeft()
+            top: +stroke() / 2,
+            right: +stroke() / 2,
+            bottom: stroke() / 2 > 20 ? stroke() / 2 : 20,
+            left: marginLeft() > stroke() / 2 ? marginLeft() : stroke() / 2
         };
 
-        var w = +width() - stroke() - margin.left;
-        var h = +height() - stroke() - margin.bottom;
+        // compute size
+        var w = +width() - margin.left - margin.right;
+        var h = +height() - margin.bottom - margin.top;
 
         var x = d3.scaleLinear().range([0, w]),
             y = d3.scaleLinear().range([h, 0]);
 
+        var svg = selection
+            .attr("width", +width())
+            .attr("height", +height())
+            .append("g")
+            .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
         //set domain according to "origin" variable
 
@@ -134,21 +140,15 @@
             return layer.key;
         });
 
-        //@TODO: add x and y axes (copy from scatterPlot.js)
-
         var xAxis = d3.axisBottom(x).tickSize(-h);
         var yAxis = d3.axisLeft(y).tickSize(-w);
-
-        var svg = selection
-            .attr("width", +width())
-            .attr("height", +height())
 
         svg.append("g")
             .attr("class", "x axis")
             .style("stroke-width", "1px")
             .style("font-size", "10px")
             .style("font-family", "Arial, Helvetica")
-            .attr("transform", `translate(${stroke() / 2 + margin.left}, ${height() - stroke() / 2 - margin.bottom})`)
+            .attr('transform', 'translate(0,' + h + ')')
             .call(xAxis);
 
         svg.append("g")
@@ -156,7 +156,6 @@
             .style("stroke-width", "1px")
             .style("font-size", "10px")
             .style("font-family", "Arial, Helvetica")
-            .attr("transform", `translate(${stroke() / 2 + margin.left}, ${stroke() / 2})`)
             .call(yAxis);
 
         d3.selectAll(".y.axis line, .x.axis line, .y.axis path, .x.axis path")
@@ -181,7 +180,6 @@
 
             var g = svg.append("g")
                 .attr("id", layer.key)
-                .attr("transform", `translate(${stroke() / 2 + margin.left}, ${stroke() / 2})`)
 
             var gcolor = colors()(layer.key);
 
@@ -209,7 +207,7 @@
         // now, add label above all
         if (mlabel() != null) {
             var txt_group = svg.append('g')
-                .attr("transform", `translate(${stroke() / 2 + margin.left}, ${stroke() / 2})`)
+                .attr("transform", `translate(${stroke() / 2}, ${stroke() / 2})`)
 
             data.forEach(layer => {
 

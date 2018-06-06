@@ -17,7 +17,7 @@
 
     model.map(function(data) {
 
-        var remap = data.map(function(d){
+        var remap = data.map(function(d) {
             return {
                 group: group(d),
                 value: +values(d),
@@ -62,15 +62,15 @@
         .defaultValue(1.5)
 
     var colors = chart.color()
-    	.title("Color scale")
+        .title("Color scale")
 
 
     chart.draw(function(selection, data) {
 
 
         var chartMargin = {
-                top: 20,
-                right: 20,
+                top: 6,
+                right: 0,
                 bottom: 20,
                 left: marginLeft()
             },
@@ -143,14 +143,14 @@
         })
 
         //define colors
-        colors.domain(boxdata, function(d){
-    		return d.color;
-    	});
+        colors.domain(boxdata, function(d) {
+            return d.color;
+        });
 
         var gplot = container.selectAll(".box")
             .data(boxdata)
 
-        var xoffset = x.bandwidth()/2 - barWidth()/2;
+        var xoffset = x.bandwidth() / 2 - barWidth() / 2;
 
         gplot
             .enter().append("g")
@@ -160,7 +160,9 @@
             })
             .style("font-size", "10px")
             .style("font-family", "Arial, Helvetica")
-            .style("fill", function(d){ return colors() ? colors()(d.color) : "#eee";})
+            .style("fill", function(d) {
+                return colors() ? colors()(d.color) : "#eee";
+            })
             .call(function(d) {
                 var data = d.data();
                 data = data.map(function(e) {

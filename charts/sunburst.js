@@ -14,12 +14,23 @@
         .defaultValue(600)
         .fitToWidth(true);
 
+    var marginSize = chart.number()
+        .title('Margin')
+        .defaultValue(10);
+
     var colors = chart.color()
         .title("Color scale");
 
     chart.draw((selection, data) => {
 
-        var radius = +diameter() / 2;
+        var margin = {
+            top: +marginSize(),
+            right: +marginSize(),
+            bottom: +marginSize(),
+            left: +marginSize()
+        };
+
+        var radius = (+diameter() - d3.max([margin.top + margin.bottom, margin.left + margin.right])) / 2;
 
         var root = d3.hierarchy(data);
         root.sum(d => {
@@ -54,7 +65,7 @@
             .attr("width", +diameter())
             .attr("height", +diameter())
             .append("g")
-            .attr("transform", `translate(${(+diameter() / 2)}, ${(+diameter() / 2)})`);
+            .attr("transform", 'translate(' + (margin.left + radius) + ',' + (margin.top + radius) + ')');
 
         var nodes = layout(root).descendants();
 

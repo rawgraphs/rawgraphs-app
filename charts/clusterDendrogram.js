@@ -32,14 +32,24 @@
 
 	chart.draw((selection, data) => {
 
+		var margin = {
+			top: 0,
+			right: 6,
+			bottom: 0,
+			left: 6
+		};
+
+		var w = +width() - margin.left - margin.right,
+			h = +height() - margin.top - margin.bottom;
+
 		var g = selection
 			.attr("width", +width())
 			.attr("height", +height())
 			.append("g")
-			.attr("transform", "translate(40,0)");
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 		var cluster = d3.cluster()
-			.size([+height(), +width() - 160]);
+			.size([h, w]);
 
 		root = d3.hierarchy(data);
 
@@ -63,7 +73,7 @@
 			});
 
 		node.append("circle")
-			.attr("r", 4.5)
+			.attr("r", 5)
 			.style("fill", "#eeeeee")
 			.style("stroke", "#999999")
 			.style("stroke-width", "1px");
@@ -71,13 +81,9 @@
 		node.append("text")
 			.style("font-size", "11px")
 			.style("font-family", "Arial, Helvetica")
-			.attr("dx", d => {
-				return d.children ? -8 : 8;
-			})
+			.attr("dx", -8)
 			.attr("dy", 3)
-			.style("text-anchor", d => {
-				return d.children ? "end" : "start";
-			})
+			.style("text-anchor", "end")
 			.text(d => {
 				return d.data.name;
 			});

@@ -125,24 +125,32 @@
     // Drawing function
     chart.draw(function(selection, data) {
 
-        // svg size, create container group
-        var g = selection
-            .attr("width", width())
-            .attr("height", height())
-            .append('g')
-
         //define margins
         var margin = {
-            top: 10,
+            top: 0,
             right: 0,
             bottom: 20,
             left: marginLeft()
         };
 
+        // width and height
+        var w = +width() - margin.left - margin.right,
+            h = +height() - margin.bottom - margin.top;
+
+        // svg size, create container group
+        var g = selection
+            .attr("width", width())
+            .attr("height", height())
+            .append('g')
+            .attr("transform", "translate(" + margin.left +"," + margin.top +")");
+
         //compute the total amount of levels
         var levels = d3.sum(data.map(function(d) {
             return d.value.length;
         }));
+
+        //compute items height
+        var itemHeight = h / levels;
 
         //re-flatten hierarchy
         var entries = []
@@ -163,7 +171,7 @@
 
         //define x scale
         var x = d3.scaleTime()
-            .range([margin.left, width()])
+            .range([0,w])
             .domain([
                 d3.min(entries, function(d) {
                     return d.start;
@@ -176,11 +184,8 @@
         //create x axis
         var xAxis = d3.axisBottom(x);
 
-        //compute items height
-        var itemHeight = (height() - margin.top - margin.bottom) / levels;
-
         //create items
-        var newPosition = margin.top;
+        var newPosition = 0;
 
         var items = g.selectAll('g.itemGroup')
             .data(data.sort(sortBy))
@@ -194,9 +199,9 @@
 
         //add horizontal lines
         items.append('line')
-            .attr('x1', margin.left)
+            .attr('x1', 0)
             .attr('y1', 0)
-            .attr('x2', width())
+            .attr('x2', w)
             .attr('y2', 0)
             .style('shape-rendering', 'crispEdges')
             .attr('stroke', 'lightgrey');
@@ -209,7 +214,7 @@
             .style("font-size", "11px")
             .style("font-family", "Arial, Helvetica")
             .attr('x', function(d) {
-                return alignment() ? x(d.value[0][0].start) - 10 : margin.left - 10
+                return alignment() ? x(d.value[0][0].start) - 10 : -10
             })
             .attr('y', 0)
             .attr('dy', function(d) {
@@ -246,7 +251,7 @@
 
         //add axes
         g.append('g')
-            .attr('transform', `translate(0, ${margin.top + itemHeight * levels})`)
+            .attr('transform', 'translate(0,' + h + ')')
             .attr("class", "axis")
             .style("stroke-width", "1px")
             .style("font-size", "10px")

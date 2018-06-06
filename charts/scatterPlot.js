@@ -52,7 +52,7 @@
         //define margins
         var margin = {
             top: +maxRadius(),
-            right: showLegend()?200+maxRadius():+maxRadius(),
+            right: showLegend() ? 200 + maxRadius() : +maxRadius(),
             bottom: 20 + maxRadius(),
             left: marginLeft()
         };
@@ -64,7 +64,7 @@
             .attr("width", +width())
             .attr("height", +height())
             .append("g")
-            .attr('transform','translate(' + margin.left + ',' + margin.top + ')')
+            .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
         var xExtent = !useZero() ? d3.extent(data, d => {
                 return d.x;
@@ -84,9 +84,9 @@
             d3.scaleTime().range([h, 0]).domain(yExtent) :
             d3.scaleLinear().range([h, 0]).domain(yExtent),
             sizeScale = d3.scaleSqrt().range([1, +maxRadius()])
-                .domain([0, d3.max(data, d => {
-                    return d.size;
-                })]),
+            .domain([0, d3.max(data, d => {
+                return d.size;
+            })]),
             xAxis = d3.axisBottom(xScale).tickSize(-h) //.tickSubdivide(true),
         yAxis = d3.axisLeft(yScale).ticks(10).tickSize(-w);
 
@@ -160,48 +160,48 @@
                 return d.label ? d.label.join(", ") : "";
             });
 
-        if(showLegend()){
+        if (showLegend()) {
 
-          if(sizeScale){
-            selection.append("g")
-              .attr("class", "legendSize")
-              .attr("transform", "translate(" + (w+margin.left+maxRadius()*2) + ",20)");
+            if (sizeScale) {
+                selection.append("g")
+                    .attr("class", "legendSize")
+                    .attr("transform", "translate(" + (w + margin.left + maxRadius() * 2) + ",20)");
 
-            var legendSize = d3.legendSize()
-              .scale(sizeScale)
-              //.cellFilter(function(d){ return d.data > 0 })
-              .cells(d3.extent(data,(d)=>d.size))
-              .shape('circle')
-              .title(points.dimensions().get('size').value[0].key)
-              .shapePadding(+maxRadius());
+                var legendSize = d3.legendSize()
+                    .scale(sizeScale)
+                    //.cellFilter(function(d){ return d.data > 0 })
+                    .cells(d3.extent(data, (d) => d.size))
+                    .shape('circle')
+                    .title(points.dimensions().get('size').value[0].key)
+                    .shapePadding(+maxRadius());
 
-            selection.select(".legendSize")
-              .call(legendSize);
+                selection.select(".legendSize")
+                    .call(legendSize);
 
-            selection.select(".legendSize")
-              .selectAll('circle')
-              .attr('fill', 'none')
-              .attr('stroke', '#ccc')
+                selection.select(".legendSize")
+                    .selectAll('circle')
+                    .attr('fill', 'none')
+                    .attr('stroke', '#ccc')
 
 
-          }
+            }
 
-          if(colors()){
+            if (colors()) {
 
-            var legendColorHeight = selection.select('.legendSize').node().getBBox().height
+                var legendColorHeight = selection.select('.legendSize').node().getBBox().height
 
-            selection.append("g")
-                .attr("class", "legendOrdinal")
-                .attr("transform", "translate(" + (w+margin.left+maxRadius()*2) + "," + (legendColorHeight+maxRadius()+20) +")");
+                selection.append("g")
+                    .attr("class", "legendOrdinal")
+                    .attr("transform", "translate(" + (w + margin.left + maxRadius() * 2) + "," + (legendColorHeight + maxRadius() + 20) + ")");
 
-            var legendOrdinal = d3.legendColor()
-              .shapePadding(10)
-              .title(points.dimensions().get('color').value[0].key)
-              .scale(colors());
+                var legendOrdinal = d3.legendColor()
+                    .shapePadding(10)
+                    .title(points.dimensions().get('color').value[0].key)
+                    .scale(colors());
 
-            selection.select(".legendOrdinal")
-              .call(legendOrdinal);
-          }
+                selection.select(".legendOrdinal")
+                    .call(legendOrdinal);
+            }
 
 
 

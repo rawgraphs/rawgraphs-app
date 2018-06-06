@@ -120,12 +120,27 @@
         // Define margins
         var margin = {
             top: 0,
-            right: 0,
-            bottom: 50,
+            right: 200,
+            bottom: 20,
             left: marginLeft()
         };
-        //define title space
+        // space for titles
         var titleSpace = groups() == null ? 0 : 30;
+
+        // define single barchart height,
+        // depending on the number of bar charts
+        // height is defined as: total heigh minus margins
+        // minus title times the item minus padding times items-1
+        // (since padding is noly between them)
+        var w = +width() - margin.left - margin.right,
+            h = (+height() - margin.top - margin.bottom - (titleSpace * data.length) - (+padding() * (data.length - 1))) / data.length;
+            // console.log(margin.top, margin.bottom, titleSpace, padding(),data.length)
+        // svg size
+        var g = selection
+            .attr("width", width())
+            .attr("height", height())
+            .append('g')
+            .attr("transform", "translate(" + margin.left +"," + margin.top +")");
 
         // Define common variables.
         // Find the overall maximum value
@@ -159,17 +174,6 @@
         allCategories = d3.set(allCategories).values();
         allColors = d3.set(allColors).values();
 
-        // svg size
-        selection
-            .attr("width", width())
-            .attr("height", height())
-
-        // define single barchart height,
-        // depending on the number of bar charts
-        var w = +width() - margin.left,
-            h = (+height() - margin.bottom - ((titleSpace + padding()) * (data.length - 1))) / data.length;
-
-
         // Define scales
         var xScale = d3.scaleBand()
             .rangeRound([0, w])
@@ -197,12 +201,11 @@
 
             // Append a grupo containing axis and bars,
             // move it according the index
-            barchart = selection.append("g")
-                .attr("transform", "translate(" + margin.left + "," + index * (h + padding() + titleSpace) + ")");
+            barchart = g.append("g")
+                .attr("transform", "translate(0," + index * (h + padding() + titleSpace) + ")");
 
             // Draw title
             barchart.append("text")
-                .attr("x", -margin.left)
                 .attr("y", titleSpace - 7)
                 .style("font-size", "10px")
                 .style("font-family", "Arial, Helvetica")
@@ -239,16 +242,14 @@
         })
 
         // After all the charts, draw x axis
-        selection.append("g")
+        g.append("g")
             .attr("class", "x axis")
             .style("font-size", "10px")
             .style("font-family", "Arial, Helvetica")
-            .attr("transform", "translate(" + margin.left + "," + ((h + padding() + titleSpace) * data.length - padding()) + ")")
+            .attr("transform", "translate(0," + (+height() - margin.top - margin.bottom) + ")")
             .call(d3.axisBottom(xScale));
 
-
         // Set styles
-
         d3.selectAll(".axis line, .axis path")
             .style("shape-rendering", "crispEdges")
             .style("fill", "none")

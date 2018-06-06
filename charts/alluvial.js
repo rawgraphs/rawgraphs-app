@@ -37,12 +37,23 @@
 
     chart.draw((selection, data) => {
 
+        // Define margins
+        var margin = {
+            top: 0,
+            right: 0,
+            bottom: 6,
+            left: 0
+        };
+
+        var w = +width() - margin.left - margin.right,
+            h = +height() - margin.top - margin.bottom;
+
         // get the drawing area
         var g = selection
             .attr("width", +width())
-            .attr("height", +height() + 20)
+            .attr("height", +height())
             .append("g")
-            .attr("transform", "translate(0, 10)");
+            .attr("transform", "translate("+ margin.left + "," + margin.top + ")");
 
         // define numbers formatting
         var formatNumber = d3.format(",.0f"),
@@ -63,13 +74,14 @@
         var maxNodes = d3.max(nested, function(d) {
             return d.values;
         });
-        var bestPadding = d3.min([10, (height() - maxNodes) / maxNodes])
+
+        var bestPadding = d3.min([10, (h - maxNodes) / maxNodes])
 
         // create sankey object
         var sankey = d3.sankey()
             .nodeWidth(+nodeWidth())
             .nodePadding(bestPadding)
-            .size([+width(), +height()]);
+            .size([w,h]);
 
         // use the loaded data
         sankey(data);
@@ -101,7 +113,7 @@
         nested
             .forEach(function(d) {
 
-                var y = (height() - d3.sum(d.values, function(n) {
+                var y = (h - d3.sum(d.values, function(n) {
                     return n.dy + sankey.nodePadding();
                 })) / 2 + sankey.nodePadding() / 2;
 

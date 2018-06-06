@@ -89,6 +89,24 @@
 
 	chart.draw(function(selection, data) {
 
+		// margins
+		var margin = {
+			top: 0,
+			right: 0,
+			bottom: 20,
+			left: 0
+		};
+
+		var w = +width() - margin.left - margin.right,
+			vizh = +height() - margin.top - margin.bottom,
+			h = (vizh - (+padding() * (data.length - 1))) / data.length;
+
+		var svg = selection
+			.attr("width", +width())
+			.attr("height", +height())
+			.append('g')
+			.attr("transform", "translate(" + margin.left +"," + margin.top +")");
+
 		//define colors
 		colors.domain(['Negative', 'Positive']);
 
@@ -117,13 +135,6 @@
 			'Linear': d3.curveLinear
 		}
 
-		var w = +width(),
-			h = (+height() - 20 - (+padding() * (data.length - 1))) / data.length;
-
-		var svg = selection
-			.attr("width", +width())
-			.attr("height", +height())
-
 		var x = d3.scaleTime()
 			.range([0, w]);
 
@@ -141,14 +152,14 @@
 			d3.max(data, function(layer) { return d3.max(layer.values, function(d) { return d.date; }); })
 		])
 
-		var xAxis = d3.axisBottom(x).tickSize(-height() + 20);
+		var xAxis = d3.axisBottom(x).tickSize(-vizh);
 
 		svg.append("g")
 			.attr("class", "x axis")
 			.style("stroke-width", "1px")
 			.style("font-size", "10px")
 			.style("font-family", "Arial, Helvetica")
-			.attr("transform", "translate(" + 0 + "," + (height() - 20) + ")")
+			.attr("transform", "translate(" + 0 + "," + vizh + ")")
 			.call(xAxis);
 
 		d3.selectAll(".x.axis line, .x.axis path")

@@ -34,9 +34,14 @@
 
 		if (!data.children.length) return;
 
-		var margin = 10,
-			outerDiameter = +diameter(),
-			innerDiameter = outerDiameter - margin - margin;
+		var margin = {
+				top: 1,
+				right: 1,
+				bottom: 1,
+				left: 1
+			};
+		var outerDiameter = +diameter(),
+			innerDiameter = outerDiameter - d3.max([margin.top + margin.bottom, margin.left + margin.right]);
 
 		var x = d3.scaleLinear()
 			.range([0, innerDiameter]);
@@ -59,7 +64,7 @@
 			.attr("width", outerDiameter)
 			.attr("height", outerDiameter)
 			.append("g")
-			.attr("transform", "translate(" + margin + "," + margin + ")");
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 		colors.domain(nodes.filter(function(d) { return !d.children }),
 			function(d) { return d.data.color; });
