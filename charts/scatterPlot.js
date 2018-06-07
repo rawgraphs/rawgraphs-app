@@ -47,7 +47,9 @@
 
         // Retrieving dimensions from model
         var x = points.dimensions().get('x'),
-            y = points.dimensions().get('y');
+            y = points.dimensions().get('y'),
+            size = points.dimensions().get('size'),
+            color = points.dimensions().get('color');
 
         //define margins
         var margin = {
@@ -88,14 +90,13 @@
                 return d.size;
             })]),
             xAxis = d3.axisBottom(xScale).tickSize(-h) //.tickSubdivide(true),
-        yAxis = d3.axisLeft(yScale).ticks(10).tickSize(-w);
+            yAxis = d3.axisLeft(yScale).ticks(10).tickSize(-w);
 
         g.append("g")
             .attr("class", "x axis")
             .style("stroke-width", "1px")
             .style("font-size", "10px")
             .style("font-family", "Arial, Helvetica")
-            //.attr("transform", `translate(0, ${h - maxRadius()})`)
             .attr('transform', 'translate(0,' + h + ')')
             .call(xAxis);
 
@@ -162,23 +163,34 @@
 
         if (showLegend()) {
 
-            if (sizeScale) {
-                selection.append("g")
+          var legendContainer = selection.append('g')
+            .attr("transform", "translate(" + (w + margin.left + 20) + ","+ (margin.top) +")");
+
+          legendContainer.append('rect')
+            .attr('class', 'legendBackground')
+            .attr('width',200)
+            .attr('height',height()-margin.top)
+            .attr('fill', 'white')
+            .attr('x',0)
+            .attr('y',0)
+
+
+            if (size.value.length) {
+                legendContainer.append("g")
                     .attr("class", "legendSize")
-                    .attr("transform", "translate(" + (w + margin.left + maxRadius() * 2) + ",20)");
+                    .attr("transform", "translate(0,10)");
 
                 var legendSize = d3.legendSize()
                     .scale(sizeScale)
-                    //.cellFilter(function(d){ return d.data > 0 })
                     .cells(d3.extent(data, (d) => d.size))
                     .shape('circle')
-                    .title(points.dimensions().get('size').value[0].key)
+                    .title(size.value[0].key)
                     .shapePadding(+maxRadius());
 
-                selection.select(".legendSize")
+                legendContainer.select(".legendSize")
                     .call(legendSize);
 
-                selection.select(".legendSize")
+                legendContainer.select(".legendSize")
                     .selectAll('circle')
                     .attr('fill', 'none')
                     .attr('stroke', '#ccc')
@@ -186,24 +198,22 @@
 
             }
 
-            if (colors()) {
+            if (color.value.length) {
 
                 var legendColorHeight = selection.select('.legendSize').node().getBBox().height
 
-                selection.append("g")
-                    .attr("class", "legendOrdinal")
-                    .attr("transform", "translate(" + (w + margin.left + maxRadius() * 2) + "," + (legendColorHeight + maxRadius() + 20) + ")");
+                legendContainer.append("g")
+                    .attr("class", "legendColor")
+                    .attr("transform", "translate(0," + (legendColorHeight + 20) + ")");
 
-                var legendOrdinal = d3.legendColor()
+                var legendColor = d3.legendColor()
                     .shapePadding(10)
-                    .title(points.dimensions().get('color').value[0].key)
+                    .title(color.value[0].key)
                     .scale(colors());
 
-                selection.select(".legendOrdinal")
-                    .call(legendOrdinal);
+                legendContainer.select(".legendColor")
+                    .call(legendColor);
             }
-
-
 
 
         }
