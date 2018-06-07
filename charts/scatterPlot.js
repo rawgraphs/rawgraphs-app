@@ -51,10 +51,12 @@
             size = points.dimensions().get('size'),
             color = points.dimensions().get('color');
 
+        var legendWidth = 300;
+
         //define margins
         var margin = {
             top: +maxRadius(),
-            right: showLegend() ? 200 + maxRadius() : +maxRadius(),
+            right: showLegend() ? legendWidth + maxRadius() : +maxRadius(),
             bottom: 20 + maxRadius(),
             left: marginLeft()
         };
@@ -85,7 +87,7 @@
             yScale = y.type() == "Date" ?
             d3.scaleTime().range([h, 0]).domain(yExtent) :
             d3.scaleLinear().range([h, 0]).domain(yExtent),
-            sizeScale = d3.scaleSqrt().range([1, +maxRadius()])
+            sizeScale = d3.scaleSqrt().range([0, +maxRadius()])
             .domain([0, d3.max(data, d => {
                 return d.size;
             })]),
@@ -163,58 +165,12 @@
 
         if (showLegend()) {
 
-          var legendContainer = selection.append('g')
-            .attr("transform", "translate(" + (w + margin.left + 20) + ","+ (margin.top) +")");
+        var newLegend = raw.legend()
+            .legendWidth(legendWidth)
+            .addColor(color, colors())
+            .addSize(size, sizeScale, d3.extent(data, (d) => d.size))
 
-          legendContainer.append('rect')
-            .attr('class', 'legendBackground')
-            .attr('width',200)
-            .attr('height',height()-margin.top)
-            .attr('fill', 'white')
-            .attr('x',0)
-            .attr('y',0)
-
-
-            if (size.value.length) {
-                legendContainer.append("g")
-                    .attr("class", "legendSize")
-                    .attr("transform", "translate(0,10)");
-
-                var legendSize = d3.legendSize()
-                    .scale(sizeScale)
-                    .cells(d3.extent(data, (d) => d.size))
-                    .shape('circle')
-                    .title(size.value[0].key)
-                    .shapePadding(+maxRadius());
-
-                legendContainer.select(".legendSize")
-                    .call(legendSize);
-
-                legendContainer.select(".legendSize")
-                    .selectAll('circle')
-                    .attr('fill', 'none')
-                    .attr('stroke', '#ccc')
-
-
-            }
-
-            if (color.value.length) {
-
-                var legendColorHeight = selection.select('.legendSize').node().getBBox().height
-
-                legendContainer.append("g")
-                    .attr("class", "legendColor")
-                    .attr("transform", "translate(0," + (legendColorHeight + 20) + ")");
-
-                var legendColor = d3.legendColor()
-                    .shapePadding(10)
-                    .title(color.value[0].key)
-                    .scale(colors());
-
-                legendContainer.select(".legendColor")
-                    .call(legendColor);
-            }
-
+        selection.call(newLegend);
 
         }
 
