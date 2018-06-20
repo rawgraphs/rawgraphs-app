@@ -107,6 +107,8 @@ If you have any suggestion or request about new layouts to include, please let u
 
 [d3.js](https://github.com/mbostock/d3)
 
+[d3-legend](https://github.com/susielu/d3-legend)
+
 [FileSaver.js](https://github.com/eligrey/FileSaver.js)
 
 [is.js](http://is.js.org/)
@@ -132,7 +134,7 @@ If you want to know more about RAWGraphs, how it works and future developments, 
 Want to contribute to RAWGraphs's development? You are more than welcome! Start by forking the repository (the "Fork" button at the top-right corner of this page) and follow the instructions above to clone it and install dependencies. Then you can use Github's issues and pull requests to discuss and share your work.
 You will need to sign a [Contributor License Agreement (CLA)](https://en.wikipedia.org/wiki/Contributor_License_Agreement) before making a submission. We adopted CLA to be sure that the project will remain open source. For more information, write us: <hello@rawgraphs.io>.
 
-## Publications
+## Publications / Citing RAWGraphs
 If you have found RAWGraphs useful in your research, or if you want to reference it in your work, please consider to cite the paper we presented at [CHItaly 2017](http://sites.unica.it/chitaly2017/).
 
 you can read the full article in Green Open Access at the following link:
