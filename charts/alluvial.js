@@ -172,7 +172,7 @@
         //prepare node
         var node = g.append("g")
             .attr("class", "nodes")
-            .attr("font-family", "sans-serif")
+            .attr("font-family", "Arial, Helvetica")
             .attr("font-size", 10)
             .selectAll("g")
             .data(data.nodes)
