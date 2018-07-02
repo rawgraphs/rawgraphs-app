@@ -304,7 +304,7 @@ angular.module('raw.controllers', [])
     }
 
     $scope.stack = function(){
-      parseText(d3.tsv.format($scope.oldData));
+      parseText(d3.tsvFormat($scope.oldData));
       $scope.unstacked = false;
     }
 
