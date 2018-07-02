@@ -3,7 +3,7 @@
     var points = raw.models.points();
 
     points.dimensions().remove('size');
-    points.dimensions().remove('label');
+    //points.dimensions().remove('label');
     points.dimensions().remove('color');
 
     var chart = raw.chart()
@@ -152,6 +152,23 @@
                 return "translate(" + xScale(d.x) + "," + yScale(d.y) + ")";
             })
             .attr("r", 1);
+
+        var labels = g.selectAll("g.labels")
+            .data(data)
+            .enter().append("g")
+            .attr("class", "labels")
+
+      labels.append("text")
+          .attr("transform", d => {
+              return `translate(${xScale(d.x)}, ${yScale(d.y)})`;
+          })
+          .attr("text-anchor", "middle")
+          .style("font-size", "10px")
+          .attr("dy", 15)
+          .style("font-family", "Arial, Helvetica")
+          .text(d => {
+              return d.label ? d.label.join(", ") : "";
+          });
 
         g.append("g")
             .attr("class", "y axis")
