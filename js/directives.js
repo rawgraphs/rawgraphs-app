@@ -668,6 +668,7 @@ angular.module('raw.directives', [])
           var html = d3.select(source)
             .attr("version", 1.1)
             .attr("xmlns", "http://www.w3.org/2000/svg")
+			.attr("xmlns:xlink","http://www.w3.org/1999/xlink")
 						.node().parentNode.innerHTML;
 
           //html = he.encode(html);
