@@ -10,7 +10,9 @@
 		.title('Date')
 		.types(Number, Date, String)
 		//.accessor(function (d){ return this.type() == "Date" ? new Date(+Date.parse(d)) : this.type() == "String" ? d : +d; })
-		.accessor(function(d) { return +Date.parse(d) })
+		.accessor(function(d) {
+			return +Date.parse(d)
+		})
 		.required(1)
 
 	var size = stream.dimension()
@@ -20,35 +22,53 @@
 	stream.map(function(data) {
 		if (!group()) return [];
 
-		var keys = d3.set(data.map(function(d) { return group(d); })).values();
+		var keys = d3.set(data.map(function(d) {
+			return group(d);
+		})).values();
 
 		var groups = d3.nest()
-			.key(function(d) { return date(d) }).sortKeys(function(a, b) { return a - b })
+			.key(function(d) {
+				return date(d)
+			}).sortKeys(function(a, b) {
+				return a - b
+			})
 			.rollup(function(v) {
 				var singles = d3.nest()
-					.key(function(e) { return group(e) })
+					.key(function(e) {
+						return group(e)
+					})
 					.rollup(function(w) {
 						return {
-							size: +d3.sum(w, function(f) { return size() ? size(f) : 1 }),
+							size: +d3.sum(w, function(f) {
+								return size() ? size(f) : 1
+							}),
 							date: +date(w[0]),
 							group: group(w[0])
 						}
 					})
 					.entries(v);
 
-				var map = d3.map(singles, function(d) { return d.key });
+				var map = d3.map(singles, function(d) {
+					return d.key
+				});
 
 				keys.forEach(function(d) {
 					if (!map.has(d)) {
 
 						singles.push({
 							'key': d,
-							'value': { size: 0, date: d, group: group(v[0]) }
+							'value': {
+								size: 0,
+								date: d,
+								group: group(v[0])
+							}
 						})
 					}
 				});
 
-				return singles.sort(function(a, b) { return d3.ascending(a.key, b.key) });
+				return singles.sort(function(a, b) {
+					return d3.ascending(a.key, b.key)
+				});
 			})
 			.entries(data)
 
@@ -141,7 +161,9 @@
 		var layers = stack(data.values);
 
 		var x = d3.scaleTime()
-			.domain(d3.extent(data.values, function(d) { return d.date; }))
+			.domain(d3.extent(data.values, function(d) {
+				return d.date;
+			}))
 			.range([0, +width()]);
 
 		var y = d3.scaleLinear()
@@ -156,7 +178,9 @@
 				})
 				.sort(sortBy);
 
-			var sum = d3.sum(values, function(layer) { return layer[1] - layer[0]; });
+			var sum = d3.sum(values, function(layer) {
+				return layer[1] - layer[0];
+			});
 
 			var y0 = (y.domain()[1] - sum) / 2;
 
@@ -192,11 +216,15 @@
 		//     .range([+height()-20, 0]);
 
 		function stackMax(layer) {
-			return d3.max(layer, function(d) { return d[1]; });
+			return d3.max(layer, function(d) {
+				return d[1];
+			});
 		}
 
 		function stackMin(layer) {
-			return d3.min(layer, function(d) { return d[0]; });
+			return d3.min(layer, function(d) {
+				return d[0];
+			});
 		}
 
 		colors.domain(data.keys);
@@ -205,13 +233,21 @@
 
 		var area = d3.area()
 			.curve(curves[curve()])
-			.x(function(d) { return x(d.data.date); })
-			.y0(function(d) { return y(d[0]); })
-			.y1(function(d) { return y(d[1]); });
+			.x(function(d) {
+				return x(d.data.date);
+			})
+			.y0(function(d) {
+				return y(d[0]);
+			})
+			.y1(function(d) {
+				return y(d[1]);
+			});
 
 		var line = d3.line()
 			.curve(curves[curve()])
-			.x(function(d) { return x(d.data.date); })
+			.x(function(d) {
+				return x(d.data.date);
+			})
 			.y(function(d) {
 				return y(d[0] + (d[1] - d[0]) / 2);
 			});
@@ -221,8 +257,12 @@
 			.enter().append("path")
 			.attr("class", "layer")
 			.attr("d", area)
-			.attr("fill", function(d) { return colors()(d.key) })
-			.attr("title", function(d) { return d.key; });
+			.attr("fill", function(d) {
+				return colors()(d.key)
+			})
+			.attr("title", function(d) {
+				return d.key;
+			});
 
 		g.append("g")
 			.attr("class", "x axis")
@@ -245,7 +285,9 @@
 			.selectAll('path')
 			.data(layers)
 			.enter().append('path')
-			.attr('id', function(d, i) { return 'path-' + i; })
+			.attr('id', function(d, i) {
+				return 'path-' + i;
+			})
 			.attr('d', line);
 
 		g.selectAll("text.label")
@@ -254,7 +296,9 @@
 			.attr('dy', '0.5ex')
 			.attr("class", "label")
 			.append('textPath')
-			.attr('xlink:xlink:href', function(d, i) { return '#path-' + i; })
+			.attr('xlink:xlink:href', function(d, i) {
+				return '#path-' + i;
+			})
 			.attr('startOffset', function(d) {
 				var maxYloc = 0,
 					maxV = 0;
@@ -274,7 +318,9 @@
 			.attr('text-anchor', function(d) {
 				return d.offset > 90 ? 'end' : d.offset < 10 ? 'start' : 'middle';
 			})
-			.text(function(d) { return d.key; })
+			.text(function(d) {
+				return d.key;
+			})
 			.style("font-size", "11px")
 			.style("font-family", "Arial, Helvetica")
 			.style("font-weight", "normal")

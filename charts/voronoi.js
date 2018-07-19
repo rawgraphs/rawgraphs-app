@@ -25,7 +25,7 @@
 	var showPoints = chart.checkbox()
 		.title("Show dots")
 		.defaultValue(true)
-		
+
 	var colors = chart.color()
 		.title("Color scale")
 

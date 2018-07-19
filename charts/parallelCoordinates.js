@@ -12,7 +12,7 @@
 		.title("Color");
 
 	model.map(data => {
-		if(!list()) return;
+		if (!list()) return;
 		return data.map(d => {
 			var obj = {
 				dimensions: {},

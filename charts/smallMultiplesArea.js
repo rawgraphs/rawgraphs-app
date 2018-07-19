@@ -91,10 +91,18 @@
 		//sort data
 		function sortBy(a, b) {
 			if (sorting() == 'Total (descending)') {
-				return a.values.reduce(function(c, d) { return c + d.size }, 0) - b.values.reduce(function(c, d) { return c + d.size }, 0)
+				return a.values.reduce(function(c, d) {
+					return c + d.size
+				}, 0) - b.values.reduce(function(c, d) {
+					return c + d.size
+				}, 0)
 			}
 			if (sorting() == 'Total (ascending)') {
-				return b.values.reduce(function(c, d) { return c + d.size }, 0) - a.values.reduce(function(c, d) { return c + d.size }, 0);
+				return b.values.reduce(function(c, d) {
+					return c + d.size
+				}, 0) - a.values.reduce(function(c, d) {
+					return c + d.size
+				}, 0);
 			}
 			if (sorting() == 'Name') {
 				return d3.ascending(a.key, b.key);
@@ -124,23 +132,41 @@
 			.range([h, 0]);
 
 		var area = d3.area()
-			.x(function(d) { return x(d.date); })
+			.x(function(d) {
+				return x(d.date);
+			})
 			.curve(curves[curve()]);
 
 		if (specular()) {
-			area.y0(function(d) { return h - y(d.size) / 2; })
-				.y1(function(d) { return y(d.size) / 2; })
+			area.y0(function(d) {
+					return h - y(d.size) / 2;
+				})
+				.y1(function(d) {
+					return y(d.size) / 2;
+				})
 		} else {
 			area.y0(h) //align to baseline
-				.y1(function(d) { return y(d.size); })
+				.y1(function(d) {
+					return y(d.size);
+				})
 		}
 
 		x.domain([
-			d3.min(data, function(layer) { return d3.min(layer.values, function(d) { return d.date; }); }),
-			d3.max(data, function(layer) { return d3.max(layer.values, function(d) { return d.date; }); })
+			d3.min(data, function(layer) {
+				return d3.min(layer.values, function(d) {
+					return d.date;
+				});
+			}),
+			d3.max(data, function(layer) {
+				return d3.max(layer.values, function(d) {
+					return d.date;
+				});
+			})
 		])
 
-		colors.domain(data, function(d) { return d.values[0].color; }) //get color of first item
+		colors.domain(data, function(d) {
+			return d.values[0].color;
+		}) //get color of first item
 
 		var xAxis = d3.axisBottom(x).tickSize(-height() + 15);
 
@@ -162,8 +188,12 @@
 			.data(data)
 			.enter().append("g")
 			.attr("class", "flow")
-			.attr("title", function(d) { return d.key; })
-			.attr("transform", function(d, i) { return "translate(0," + ((h + padding()) * i) + ")" })
+			.attr("title", function(d) {
+				return d.key;
+			})
+			.attr("transform", function(d, i) {
+				return "translate(0," + ((h + padding()) * i) + ")"
+			})
 			.each(multiple);
 
 		svg.selectAll("g.flow")
@@ -174,21 +204,31 @@
 			.style("fill", "black")
 			.style("font-family", "Arial, Helvetica")
 			.style("text-anchor", "end")
-			.text(function(d) { return d.key; });
+			.text(function(d) {
+				return d.key;
+			});
 
 		function multiple(single) {
 
 			var g = d3.select(this);
 
 			if (scale()) {
-				y.domain([0, d3.max(data, function(layer) { return d3.max(layer.values, function(d) { return d.size; }); })])
+				y.domain([0, d3.max(data, function(layer) {
+					return d3.max(layer.values, function(d) {
+						return d.size;
+					});
+				})])
 			} else {
-				y.domain([0, d3.max(single.values, function(d) { return d.size; })]);
+				y.domain([0, d3.max(single.values, function(d) {
+					return d.size;
+				})]);
 			}
 
 			g.append("path")
 				.attr("class", "area")
-				.style("fill", function(d) { return colors()(d.values[0].color); })
+				.style("fill", function(d) {
+					return colors()(d.values[0].color);
+				})
 				.attr("d", area(single.values));
 		}
 
