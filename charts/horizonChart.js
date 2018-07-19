@@ -105,7 +105,7 @@
 			.attr("width", +width())
 			.attr("height", +height())
 			.append('g')
-			.attr("transform", "translate(" + margin.left +"," + margin.top +")");
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 		//define colors
 		colors.domain(['Negative', 'Positive']);
@@ -113,9 +113,17 @@
 		//sort data
 		function sortBy(a, b) {
 			if (sorting() == 'Total (descending)') {
-				return a.values.reduce(function(c, d) { return c + d.size }, 0) - b.values.reduce(function(c, d) { return c + d.size }, 0)
+				return a.values.reduce(function(c, d) {
+					return c + d.size
+				}, 0) - b.values.reduce(function(c, d) {
+					return c + d.size
+				}, 0)
 			}
-			if (sorting() == 'Total (ascending)') return b.values.reduce(function(c, d) { return c + d.size }, 0) - a.values.reduce(function(c, d) { return c + d.size }, 0);
+			if (sorting() == 'Total (ascending)') return b.values.reduce(function(c, d) {
+				return c + d.size
+			}, 0) - a.values.reduce(function(c, d) {
+				return c + d.size
+			}, 0);
 			if (sorting() == 'Name') {
 				return d3.ascending(a.key, b.key);
 			}
@@ -142,14 +150,26 @@
 			.range([h * bands(), 0]);
 
 		var area = d3.area()
-			.x(function(d) { return x(d.date); })
+			.x(function(d) {
+				return x(d.date);
+			})
 			.y0(h) //align to baseline
-			.y1(function(d) { return y(d.size); })
+			.y1(function(d) {
+				return y(d.size);
+			})
 			.curve(curves[curve()])
 
 		x.domain([
-			d3.min(data, function(layer) { return d3.min(layer.values, function(d) { return d.date; }); }),
-			d3.max(data, function(layer) { return d3.max(layer.values, function(d) { return d.date; }); })
+			d3.min(data, function(layer) {
+				return d3.min(layer.values, function(d) {
+					return d.date;
+				});
+			}),
+			d3.max(data, function(layer) {
+				return d3.max(layer.values, function(d) {
+					return d.date;
+				});
+			})
 		])
 
 		var xAxis = d3.axisBottom(x).tickSize(-vizh);
@@ -172,8 +192,12 @@
 			.data(data)
 			.enter().append("g")
 			.attr("class", "flow")
-			.attr("title", function(d) { return d.key; })
-			.attr("transform", function(d, i) { return "translate(0," + ((h + padding()) * i) + ")" })
+			.attr("title", function(d) {
+				return d.key;
+			})
+			.attr("transform", function(d, i) {
+				return "translate(0," + ((h + padding()) * i) + ")"
+			})
 			.each(multiple);
 
 		svg.selectAll("g.flow")
@@ -184,7 +208,9 @@
 			.style("fill", "black")
 			.style("font-family", "Arial, Helvetica")
 			.style("text-anchor", "end")
-			.text(function(d) { return d.key; });
+			.text(function(d) {
+				return d.key;
+			});
 
 		function multiple(single) {
 
@@ -193,12 +219,20 @@
 			var maxValue;
 
 			if (scale()) {
-				maxValue = d3.max(data, function(layer) { return d3.max(layer.values, function(d) { return Math.abs(d.size); }); });
+				maxValue = d3.max(data, function(layer) {
+					return d3.max(layer.values, function(d) {
+						return Math.abs(d.size);
+					});
+				});
 			} else {
-				maxValue = d3.max(single.values, function(d) { return Math.abs(d.size); });
+				maxValue = d3.max(single.values, function(d) {
+					return Math.abs(d.size);
+				});
 			}
 
-			var maxPos = d3.max(single.values, function(d) { return d.size; })
+			var maxPos = d3.max(single.values, function(d) {
+				return d.size;
+			})
 
 			// define new range and domain according to the masimum value
 			// and the amount of bands
@@ -207,7 +241,9 @@
 
 			//create the clip path
 			g.append("clipPath")
-				.attr("id", function(d) { return "clip_" + d.id })
+				.attr("id", function(d) {
+					return "clip_" + d.id
+				})
 				.append("rect")
 				.attr("width", w)
 				.attr("height", h)
@@ -216,30 +252,40 @@
 			for (var i = 0; i < bands() * maxPos / maxValue; i++) {
 				//change y range according to offset
 				area.y0(h + h * i)
-					.y1(function(d) { return y(d.size) + h * i; })
+					.y1(function(d) {
+						return y(d.size) + h * i;
+					})
 
 				g.append("path")
 					.attr("class", "area")
 					.style("fill", colors()('Positive'))
 					.attr("d", area(single.values))
 					.attr("opacity", (i + 1) / bands())
-					.attr("clip-path", function(d) { return "url(#clip_" + d.id + ")" });
+					.attr("clip-path", function(d) {
+						return "url(#clip_" + d.id + ")"
+					});
 			}
 
 			//do the same for negative values
-			var maxNeg = d3.min(single.values, function(d) { return d.size; })
+			var maxNeg = d3.min(single.values, function(d) {
+				return d.size;
+			})
 
 			for (var i = 0; i < bands() * -maxNeg / maxValue; i++) {
 
 				area.y0(-h * i)
-					.y1(function(d) { return y(d.size) + -h * (i + 1); })
+					.y1(function(d) {
+						return y(d.size) + -h * (i + 1);
+					})
 
 				g.append("path")
 					.attr("class", "area")
 					.style("fill", colors()('Negative'))
 					.attr("d", area(single.values))
 					.attr("opacity", (i + 1) / bands())
-					.attr("clip-path", function(d) { return "url(#clip_" + d.id + ")" });
+					.attr("clip-path", function(d) {
+						return "url(#clip_" + d.id + ")"
+					});
 			}
 
 		}

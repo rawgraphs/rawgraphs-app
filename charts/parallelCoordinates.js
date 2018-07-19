@@ -12,7 +12,7 @@
 		.title("Color");
 
 	model.map(data => {
-		if(!list()) return;
+		if (!list()) return;
 		return data.map(d => {
 			var obj = {
 				dimensions: {},
@@ -69,7 +69,7 @@
 			.attr("width", +width())
 			.attr("height", +height())
 			.append("g")
-			.attr("transform", "translate(" + margin.left +"," + margin.top +")");
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 		x.domain(dimensions = d3.keys(data[0].dimensions).filter(d => {
 			return d != "name" && (y[d] = d3.scaleLinear()
@@ -105,7 +105,7 @@
 
 		g.append("g")
 			.attr("class", "axis")
-			.each(function(d,i) {
+			.each(function(d, i) {
 				i == 0 ? d3.select(this).call(d3.axisRight(y[d])) : d3.select(this).call(d3.axisLeft(y[d]));
 			})
 			.append("text")

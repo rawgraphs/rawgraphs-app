@@ -1,259 +1,259 @@
 (function() {
 
-    // A multiple bar chart
+	// A multiple bar chart
 
-    // The Model
-    // The model abstraction is a matrix of categories: the main dimansion will define the groups,
-    // and the secondary will define the single bars.
-    // Optional dimension is on the bar chart color (to be defined).
+	// The Model
+	// The model abstraction is a matrix of categories: the main dimansion will define the groups,
+	// and the secondary will define the single bars.
+	// Optional dimension is on the bar chart color (to be defined).
 
-    var model = raw.model();
+	var model = raw.model();
 
-    // Categories dimension. each category will define a bar
-    // It can accept both numbers and strings
-    var categories = model.dimension()
-        .title('X Axis')
-        .types(Number, String)
-        .required(true)
-    // Values dimension. It will define the height of the bars
-    var sizes = model.dimension()
-        .title('Height')
-        .types(Number)
+	// Categories dimension. each category will define a bar
+	// It can accept both numbers and strings
+	var categories = model.dimension()
+		.title('X Axis')
+		.types(Number, String)
+		.required(true)
+	// Values dimension. It will define the height of the bars
+	var sizes = model.dimension()
+		.title('Height')
+		.types(Number)
 
-    // Group dimension.
-    // It can accept both numbers and strings
-    var groups = model.dimension()
-        .title('Groups')
-        .types(Number, String)
-
-
-    // Colors dimension. It will define the color of the bars
-    var colorsDimesion = model.dimension()
-        .title('Colors')
-        .types(String)
-
-    // Mapping function
-    // For each record in the data returns the values
-    // for the X and Y dimensions and casts them as numbers
-    model.map(function(data) {
-
-        var results = d3.nest()
-            .key(function(d) {
-                return d[groups()]
-            })
-            .key(function(d) {
-                return d[categories()]
-            })
-            .rollup(function(v) {
-                return {
-                    size: !sizes() ? v.length : d3.sum(v, function(e) {
-                        return e[sizes()]
-                    }),
-                    category: categories(v[0]),
-                    group: groups(v[0]),
-                    color: colorsDimesion(v[0])
-                }
-            })
-            .entries(data)
-
-        // remap the array
-        results.forEach(function(d) {
-            d.values = d.values.map(function(item) {
-                return item.value
-            })
-        })
-
-        return results;
-    })
+	// Group dimension.
+	// It can accept both numbers and strings
+	var groups = model.dimension()
+		.title('Groups')
+		.types(Number, String)
 
 
-    // The Chart
+	// Colors dimension. It will define the color of the bars
+	var colorsDimesion = model.dimension()
+		.title('Colors')
+		.types(String)
 
-    var chart = raw.chart()
-        .title("Bar chart")
-        .description("A bar chart or bar graph is a chart or graph that presents grouped data with rectangular bars with heights proportional to the values that they represent.</br> Chart based on <a href='https://bl.ocks.org/mbostock/3310560'>https://bl.ocks.org/mbostock/3310560</a>")
-        .thumbnail("imgs/barChart.png")
-        .category('Other')
-        .model(model)
+	// Mapping function
+	// For each record in the data returns the values
+	// for the X and Y dimensions and casts them as numbers
+	model.map(function(data) {
 
-    // visualiziation options
-    // Width
-    var width = chart.number()
-        .title('Width')
-        .defaultValue(800)
+		var results = d3.nest()
+			.key(function(d) {
+				return d[groups()]
+			})
+			.key(function(d) {
+				return d[categories()]
+			})
+			.rollup(function(v) {
+				return {
+					size: !sizes() ? v.length : d3.sum(v, function(e) {
+						return e[sizes()]
+					}),
+					category: categories(v[0]),
+					group: groups(v[0]),
+					color: colorsDimesion(v[0])
+				}
+			})
+			.entries(data)
 
-    // Height
-    var height = chart.number()
-        .title('Height')
-        .defaultValue(600)
+		// remap the array
+		results.forEach(function(d) {
+			d.values = d.values.map(function(item) {
+				return item.value
+			})
+		})
 
-    //left margin
-    var marginLeft = chart.number()
-        .title('Left Margin')
-        .defaultValue(40)
+		return results;
+	})
 
-    // Space between barcharts
-    var padding = chart.number()
-        .title('Vertical padding')
-        .defaultValue(0);
 
-    // Padding between bars
-    var xPadding = chart.number()
-        .title('Horizontal padding')
-        .defaultValue(0.1);
+	// The Chart
 
-    // Use or not the same scale across all the bar charts
-    var sameScale = chart.checkbox()
-        .title("Use same scale")
-        .defaultValue(false)
+	var chart = raw.chart()
+		.title("Bar chart")
+		.description("A bar chart or bar graph is a chart or graph that presents grouped data with rectangular bars with heights proportional to the values that they represent.</br> Chart based on <a href='https://bl.ocks.org/mbostock/3310560'>https://bl.ocks.org/mbostock/3310560</a>")
+		.thumbnail("imgs/barChart.png")
+		.category('Other')
+		.model(model)
 
-    // Chart colors
-    var colors = chart.color()
-        .title("Color scale")
+	// visualiziation options
+	// Width
+	var width = chart.number()
+		.title('Width')
+		.defaultValue(800)
 
-    // Drawing function
-    // selection represents the d3 selection (svg)
-    // data is not the original set of records
-    // but the result of the model map function
-    chart.draw(function(selection, data) {
+	// Height
+	var height = chart.number()
+		.title('Height')
+		.defaultValue(600)
 
-        // Define margins
-        var margin = {
-            top: 0,
-            right: 200,
-            bottom: 20,
-            left: marginLeft()
-        };
-        // space for titles
-        var titleSpace = groups() == null ? 0 : 30;
+	//left margin
+	var marginLeft = chart.number()
+		.title('Left Margin')
+		.defaultValue(40)
 
-        // define single barchart height,
-        // depending on the number of bar charts
-        // height is defined as: total heigh minus margins
-        // minus title times the item minus padding times items-1
-        // (since padding is noly between them)
-        var w = +width() - margin.left - margin.right,
-            h = (+height() - margin.top - margin.bottom - (titleSpace * data.length) - (+padding() * (data.length - 1))) / data.length;
-            // console.log(margin.top, margin.bottom, titleSpace, padding(),data.length)
-        // svg size
-        var g = selection
-            .attr("width", width())
-            .attr("height", height())
-            .append('g')
-            .attr("transform", "translate(" + margin.left +"," + margin.top +")");
+	// Space between barcharts
+	var padding = chart.number()
+		.title('Vertical padding')
+		.defaultValue(0);
 
-        // Define common variables.
-        // Find the overall maximum value
-        var maxValue;
+	// Padding between bars
+	var xPadding = chart.number()
+		.title('Horizontal padding')
+		.defaultValue(0.1);
 
-        if (sameScale()) {
-            maxValue = d3.max(data, function(item) {
-                return d3.max(item.values, function(d) {
-                    return d.size;
-                });
-            })
-        }
+	// Use or not the same scale across all the bar charts
+	var sameScale = chart.checkbox()
+		.title("Use same scale")
+		.defaultValue(false)
 
-        // Check consistency among categories and colors, save them all
-        var allCategories = [];
-        var allColors = [];
-        data.forEach(function(item) {
+	// Chart colors
+	var colors = chart.color()
+		.title("Color scale")
 
-            var temp_categories = item.values.map(function(val) {
-                return val.category;
-            })
-            allCategories = allCategories.concat(temp_categories);
+	// Drawing function
+	// selection represents the d3 selection (svg)
+	// data is not the original set of records
+	// but the result of the model map function
+	chart.draw(function(selection, data) {
 
-            // Same for color
-            var temp_colors = item.values.map(function(val) {
-                return val.color;
-            })
-            allColors = allColors.concat(temp_colors);
-        })
-        //keep uniques
-        allCategories = d3.set(allCategories).values();
-        allColors = d3.set(allColors).values();
+		// Define margins
+		var margin = {
+			top: 0,
+			right: 200,
+			bottom: 20,
+			left: marginLeft()
+		};
+		// space for titles
+		var titleSpace = groups() == null ? 0 : 30;
 
-        // Define scales
-        var xScale = d3.scaleBand()
-            .rangeRound([0, w])
-            .padding(+xPadding());
+		// define single barchart height,
+		// depending on the number of bar charts
+		// height is defined as: total heigh minus margins
+		// minus title times the item minus padding times items-1
+		// (since padding is noly between them)
+		var w = +width() - margin.left - margin.right,
+			h = (+height() - margin.top - margin.bottom - (titleSpace * data.length) - (+padding() * (data.length - 1))) / data.length;
+		// console.log(margin.top, margin.bottom, titleSpace, padding(),data.length)
+		// svg size
+		var g = selection
+			.attr("width", width())
+			.attr("height", height())
+			.append('g')
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        var yScale = d3.scaleLinear()
-            .range([h, 0]);
+		// Define common variables.
+		// Find the overall maximum value
+		var maxValue;
 
-        // Define color scale domain
-        colors.domain(allColors);
+		if (sameScale()) {
+			maxValue = d3.max(data, function(item) {
+				return d3.max(item.values, function(d) {
+					return d.size;
+				});
+			})
+		}
 
-        // Draw each bar chart
-        data.forEach(function(item, index) {
+		// Check consistency among categories and colors, save them all
+		var allCategories = [];
+		var allColors = [];
+		data.forEach(function(item) {
 
-            // Define x domain
-            xScale.domain(allCategories);
-            // Define y domain
-            if (sameScale()) {
-                yScale.domain([0, maxValue]);
-            } else {
-                yScale.domain([0, d3.max(item.values, function(d) {
-                    return d.size;
-                })]);
-            }
+			var temp_categories = item.values.map(function(val) {
+				return val.category;
+			})
+			allCategories = allCategories.concat(temp_categories);
 
-            // Append a grupo containing axis and bars,
-            // move it according the index
-            barchart = g.append("g")
-                .attr("transform", "translate(0," + index * (h + padding() + titleSpace) + ")");
+			// Same for color
+			var temp_colors = item.values.map(function(val) {
+				return val.color;
+			})
+			allColors = allColors.concat(temp_colors);
+		})
+		//keep uniques
+		allCategories = d3.set(allCategories).values();
+		allColors = d3.set(allColors).values();
 
-            // Draw title
-            barchart.append("text")
-                .attr("y", titleSpace - 7)
-                .style("font-size", "10px")
-                .style("font-family", "Arial, Helvetica")
-                .text(item.key);
+		// Define scales
+		var xScale = d3.scaleBand()
+			.rangeRound([0, w])
+			.padding(+xPadding());
 
-            // Draw y axis
-            barchart.append("g")
-                .attr("class", "y axis")
-                .style("font-size", "10px")
-                .style("font-family", "Arial, Helvetica")
-                .attr("transform", "translate(0," + titleSpace + ")")
-                .call(d3.axisLeft(yScale).ticks(h / 15));
+		var yScale = d3.scaleLinear()
+			.range([h, 0]);
 
-            // Draw the bars
-            barchart.selectAll(".bar")
-                .data(item.values)
-                .enter().append("rect")
-                .attr("transform", "translate(0," + titleSpace + ")")
-                .attr("class", "bar")
-                .attr("x", function(d) {
-                    return xScale(d.category);
-                })
-                .attr("width", xScale.bandwidth())
-                .attr("y", function(d) {
-                    return yScale(d.size);
-                })
-                .attr("height", function(d) {
-                    return h - yScale(d.size);
-                })
-                .style("fill", function(d) {
-                    return colors()(d.color);
-                });
+		// Define color scale domain
+		colors.domain(allColors);
 
-        })
+		// Draw each bar chart
+		data.forEach(function(item, index) {
 
-        // After all the charts, draw x axis
-        g.append("g")
-            .attr("class", "x axis")
-            .style("font-size", "10px")
-            .style("font-family", "Arial, Helvetica")
-            .attr("transform", "translate(0," + (+height() - margin.top - margin.bottom) + ")")
-            .call(d3.axisBottom(xScale));
+			// Define x domain
+			xScale.domain(allCategories);
+			// Define y domain
+			if (sameScale()) {
+				yScale.domain([0, maxValue]);
+			} else {
+				yScale.domain([0, d3.max(item.values, function(d) {
+					return d.size;
+				})]);
+			}
 
-        // Set styles
-        d3.selectAll(".axis line, .axis path")
-            .style("shape-rendering", "crispEdges")
-            .style("fill", "none")
-            .style("stroke", "#ccc");
+			// Append a grupo containing axis and bars,
+			// move it according the index
+			barchart = g.append("g")
+				.attr("transform", "translate(0," + index * (h + padding() + titleSpace) + ")");
 
-    })
+			// Draw title
+			barchart.append("text")
+				.attr("y", titleSpace - 7)
+				.style("font-size", "10px")
+				.style("font-family", "Arial, Helvetica")
+				.text(item.key);
+
+			// Draw y axis
+			barchart.append("g")
+				.attr("class", "y axis")
+				.style("font-size", "10px")
+				.style("font-family", "Arial, Helvetica")
+				.attr("transform", "translate(0," + titleSpace + ")")
+				.call(d3.axisLeft(yScale).ticks(h / 15));
+
+			// Draw the bars
+			barchart.selectAll(".bar")
+				.data(item.values)
+				.enter().append("rect")
+				.attr("transform", "translate(0," + titleSpace + ")")
+				.attr("class", "bar")
+				.attr("x", function(d) {
+					return xScale(d.category);
+				})
+				.attr("width", xScale.bandwidth())
+				.attr("y", function(d) {
+					return yScale(d.size);
+				})
+				.attr("height", function(d) {
+					return h - yScale(d.size);
+				})
+				.style("fill", function(d) {
+					return colors()(d.color);
+				});
+
+		})
+
+		// After all the charts, draw x axis
+		g.append("g")
+			.attr("class", "x axis")
+			.style("font-size", "10px")
+			.style("font-family", "Arial, Helvetica")
+			.attr("transform", "translate(0," + (+height() - margin.top - margin.bottom) + ")")
+			.call(d3.axisBottom(xScale));
+
+		// Set styles
+		d3.selectAll(".axis line, .axis path")
+			.style("shape-rendering", "crispEdges")
+			.style("fill", "none")
+			.style("stroke", "#ccc");
+
+	})
 })();

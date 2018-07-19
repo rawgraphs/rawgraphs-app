@@ -35,11 +35,11 @@
 		if (!data.children.length) return;
 
 		var margin = {
-				top: 1,
-				right: 1,
-				bottom: 1,
-				left: 1
-			};
+			top: 1,
+			right: 1,
+			bottom: 1,
+			left: 1
+		};
 		var outerDiameter = +diameter(),
 			innerDiameter = outerDiameter - d3.max([margin.top + margin.bottom, margin.left + margin.right]);
 
@@ -54,9 +54,13 @@
 			.size([innerDiameter, innerDiameter]);
 
 		//compute the hierarchy
-		var hierarchy = d3.hierarchy(data).sum(function(d) { return +d.size; });
+		var hierarchy = d3.hierarchy(data).sum(function(d) {
+			return +d.size;
+		});
 		var nodes = hierarchy
-			.sort(function(a, b) { return sort() ? b.value - a.value : null; })
+			.sort(function(a, b) {
+				return sort() ? b.value - a.value : null;
+			})
 			.descendants();
 		pack(hierarchy);
 
@@ -66,28 +70,50 @@
 			.append("g")
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-		colors.domain(nodes.filter(function(d) { return !d.children }),
-			function(d) { return d.data.color; });
+		colors.domain(nodes.filter(function(d) {
+				return !d.children
+			}),
+			function(d) {
+				return d.data.color;
+			});
 
 		g.append("g").selectAll("circle")
 			.data(nodes)
 			.enter().append("circle")
-			.attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
-			.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-			.attr("r", function(d) { return d.r; })
-			.style("fill", function(d) { return !d.children ? colors()(d.data.color) : ''; })
-			.style("fill-opacity", function(d) { return !d.children ? 1 : 0; })
+			.attr("class", function(d) {
+				return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root";
+			})
+			.attr("transform", function(d) {
+				return "translate(" + d.x + "," + d.y + ")";
+			})
+			.attr("r", function(d) {
+				return d.r;
+			})
+			.style("fill", function(d) {
+				return !d.children ? colors()(d.data.color) : '';
+			})
+			.style("fill-opacity", function(d) {
+				return !d.children ? 1 : 0;
+			})
 			.style("stroke", '#ddd')
-			.style("stroke-opacity", function(d) { return !d.children ? 0 : 1 })
+			.style("stroke-opacity", function(d) {
+				return !d.children ? 0 : 1
+			})
 
 		g.append("g").selectAll("text")
-			.data(nodes.filter(function(d) { return showLabels(); }))
+			.data(nodes.filter(function(d) {
+				return showLabels();
+			}))
 			.enter().append("text")
 			.attr("text-anchor", "middle")
 			.style("font-size", "11px")
 			.style("font-family", "Arial, Helvetica")
-			.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-			.text(function(d) { return d.data.label ? d.data.label.join(", ") : d.data.name; });
+			.attr("transform", function(d) {
+				return "translate(" + d.x + "," + d.y + ")";
+			})
+			.text(function(d) {
+				return d.data.label ? d.data.label.join(", ") : d.data.name;
+			});
 
 	})
 })();
