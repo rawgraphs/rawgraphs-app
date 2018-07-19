@@ -51,7 +51,7 @@
 			size = points.dimensions().get('size'),
 			color = points.dimensions().get('color');
 
-		var legendWidth = 300;
+		var legendWidth = 100;
 
 		//define margins
 		var margin = {
@@ -164,14 +164,11 @@
 			});
 
 		if (showLegend()) {
-
 			var newLegend = raw.legend()
 				.legendWidth(legendWidth)
-				.addColor(color, colors())
-				.addSize(size, sizeScale, d3.extent(data, (d) => d.size))
-
+				.addColor(color.key(), colors())
+				.addSize(size.key(), sizeScale, d3.extent(data, (d) => d.size))
 			selection.call(newLegend);
-
 		}
 
 	})
