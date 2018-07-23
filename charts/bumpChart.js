@@ -132,14 +132,19 @@
 	var colors = chart.color()
 		.title("Color scale")
 
+	var showLegend = chart.checkbox()
+		.title("show legend")
+		.defaultValue(false);
+
 	chart.draw(function(selection, data) {
 
+		var legendWidth = 200;
 		// margins
 		var margin = {
 			top: 0,
-			right: 15,
+			right: showLegend() ? legendWidth : 0,
 			bottom: 20,
-			left: 15
+			left: 0
 		};
 
 		// width and height
@@ -290,54 +295,62 @@
 			.style("fill", "none")
 			.style("stroke", "#ccc")
 
-		if (!showLabels()) return;
+		if (showLabels()) {
 
-		g.append('defs');
+			g.append('defs');
 
-		g.select('defs')
-			.selectAll('path')
-			.data(layers)
-			.enter().append('path')
-			.attr('id', function(d, i) {
-				return 'path-' + i;
-			})
-			.attr('d', line);
-
-		g.selectAll("text.label")
-			.data(layers)
-			.enter().append('text')
-			.attr('dy', '0.5ex')
-			.attr("class", "label")
-			.append('textPath')
-			.attr('xlink:xlink:href', function(d, i) {
-				return '#path-' + i;
-			})
-			.attr('startOffset', function(d) {
-				var maxYloc = 0,
-					maxV = 0;
-				d.forEach(function(e, i) {
-					// get point with max value
-					var val = e[1] - e[0];
-					if (val > maxV) {
-						maxV = val;
-						maxYloc = i
-					}
+			g.select('defs')
+				.selectAll('path')
+				.data(layers)
+				.enter().append('path')
+				.attr('id', function(d, i) {
+					return 'path-' + i;
 				})
-				//get y position
-				d.offset = Math.round(maxYloc / d.length * 100);
-				//return offset
-				return Math.min(95, Math.max(5, d.offset)) + '%';
-			})
-			.attr('text-anchor', function(d) {
-				return d.offset > 90 ? 'end' : d.offset < 10 ? 'start' : 'middle';
-			})
-			.text(function(d) {
-				return d.key;
-			})
-			.style("font-size", "11px")
-			.style("font-family", "Arial, Helvetica")
-			.style("font-weight", "normal")
+				.attr('d', line);
 
+			g.selectAll("text.label")
+				.data(layers)
+				.enter().append('text')
+				.attr('dy', '0.5ex')
+				.attr("class", "label")
+				.append('textPath')
+				.attr('xlink:xlink:href', function(d, i) {
+					return '#path-' + i;
+				})
+				.attr('startOffset', function(d) {
+					var maxYloc = 0,
+						maxV = 0;
+					d.forEach(function(e, i) {
+						// get point with max value
+						var val = e[1] - e[0];
+						if (val > maxV) {
+							maxV = val;
+							maxYloc = i
+						}
+					})
+					//get y position
+					d.offset = Math.round(maxYloc / d.length * 100);
+					//return offset
+					return Math.min(95, Math.max(5, d.offset)) + '%';
+				})
+				.attr('text-anchor', function(d) {
+					return d.offset > 90 ? 'end' : d.offset < 10 ? 'start' : 'middle';
+				})
+				.text(function(d) {
+					return d.key;
+				})
+				.style("font-size", "11px")
+				.style("font-family", "Arial, Helvetica")
+				.style("font-weight", "normal")
+		}
+
+		if (showLegend()) {
+			var newLegend = raw.legend()
+				.legendWidth(legendWidth)
+				.addColor('Streams', colors())
+			//console.log(newLegend)
+			selection.call(newLegend);
+		}
 		/*g.selectAll("text.label")
 			.data(labels(layers))
 			.enter().append("text")

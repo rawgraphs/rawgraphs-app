@@ -110,6 +110,10 @@
 	var colors = chart.color()
 		.title("Color scale")
 
+	var showLegend = chart.checkbox()
+		.title("show legend")
+		.defaultValue(false);
+
 	// Drawing function
 	// selection represents the d3 selection (svg)
 	// data is not the original set of records
@@ -138,10 +142,11 @@
 		}
 		data.sort(sortBy);
 
+		var legendWidth = 100;
 		// Define margins
 		var margin = {
 			top: maxRadius(),
-			right: maxRadius(),
+			right: showLegend() ? legendWidth + maxRadius() : +maxRadius(),
 			bottom: maxRadius() > 20 ? maxRadius() : 20,
 			left: maxRadius()
 		};
@@ -173,7 +178,7 @@
 				return e.radius;
 			})
 		})
-		var radius = d3.scaleSqrt()
+		var radiusScale = d3.scaleSqrt()
 			.range([minRadius(), maxRadius()])
 			.domain([rMin, rMax])
 
@@ -214,7 +219,7 @@
 		//     xMax = new Date(xMax)
 		// }
 
-		xScale.range([radius(radius.domain()[0]), w - radius(radius.domain()[1])])
+		xScale.range([radiusScale(radiusScale.domain()[0]), w - radiusScale(radiusScale.domain()[1])])
 			.domain([xMin, xMax]);
 
 		// Draw each bar chart
@@ -243,7 +248,7 @@
 					.strength(1))
 				.force("y", d3.forceY(h / 2))
 				.force("collide", d3.forceCollide(function(d) {
-					return radius(d.radius) + marginCircles()
+					return radiusScale(d.radius) + marginCircles()
 				}).iterations(anticollisionIterations()))
 				.stop();
 
@@ -259,7 +264,7 @@
 					return d.label ? d.label : 'circle'
 				})
 				.attr('r', function(d) {
-					return radius(d.radius)
+					return radiusScale(d.radius)
 				})
 				.attr('cx', function(d) {
 					return d.x
@@ -310,5 +315,12 @@
 			.style("fill", "none")
 			.style("stroke", "#ccc");
 
+		if (showLegend()) {
+			var newLegend = raw.legend()
+				.legendWidth(legendWidth)
+				.addColor(colorsDimesion.key(), colors())
+				.addSize(radiuses.key(), radiusScale, [rMin, rMax])
+			selection.call(newLegend);
+		}
 	})
 })();

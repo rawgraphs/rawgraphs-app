@@ -64,28 +64,32 @@
 	var colors = chart.color()
 		.title("Color scale")
 
+	var showLegend = chart.checkbox()
+		.title("show legend")
+		.defaultValue(false);
 
 	chart.draw(function(selection, data) {
 
+		var legendWidth = 200;
 
-		var chartMargin = {
-				top: 6,
-				right: 0,
+		var margin = {
+				top: 0,
+				right: showLegend() ? legendWidth : 0,
 				bottom: 20,
 				left: marginLeft()
 			},
-			chartWidth = width() - chartMargin.left - chartMargin.right,
-			chartHeight = height() - chartMargin.top - chartMargin.bottom;
+			chartWidth = width() - margin.left - margin.right,
+			chartHeight = height() - margin.top - margin.bottom;
 
 		var boxplot = d3.box()
 			.whiskers(iqr(iqrValue()))
 			.height(chartHeight);
 
 		var container = selection
-			.attr("width", chartWidth + chartMargin.left + chartMargin.right)
-			.attr("height", chartHeight + chartMargin.top + chartMargin.bottom)
+			.attr("width", chartWidth + margin.left + margin.right)
+			.attr("height", chartHeight + margin.top + margin.bottom)
 			.append("g")
-			.attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")")
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
 		var max = d3.max(data, function(d) {
 			return d3.max(d.values, function(e) {
@@ -207,6 +211,14 @@
 				return [i, j];
 			};
 		}
+		// legend
 
+		if (showLegend()) {
+			var newLegend = raw.legend()
+				.legendWidth(legendWidth)
+				.addColor('Groups', colors())
+			//console.log(newLegend)
+			selection.call(newLegend);
+		}
 	})
 })();
