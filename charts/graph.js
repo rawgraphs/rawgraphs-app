@@ -33,7 +33,7 @@
 
   var isLinkTransparent = chart.checkbox()
     .title('transparent links')
-    .defaultValue(false);
+    .defaultValue(true);
 
   var simulation = d3.forceSimulation();
 
