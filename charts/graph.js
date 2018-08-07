@@ -1,87 +1,13 @@
 (function() {
-/*
-
-a	b	w
-carlos	silvi	3
-silvi	dani	30
-dani	carlos	2
-silvi	miri	15
-miri	dani	20
-
-*/
-
-  var model = raw.model();
-
-  var source = model.dimension()
-    .title('sources')
-    .types(String);
-
-  var target = model.dimension()
-    .title('connected nodes / known as targets')
-    .types(String);
-
-  var weight = model.dimension()
-    .title('edge weight')
-    .types(Number);
-
-  var simulation = d3.forceSimulation();
-
-  model.map(function(data) {
-    var graph = {
-      nodeIds: {},
-      nodes: [],
-      links: []
-    }
-
-    data.forEach(function(d) {
-      var sou = source(d);
-      var tar = target(d);
-      var lin = sou + '-' + tar;
-      var val = weight(d) || 1;
-      if (sou && tar) {
-        if (!graph.nodeIds[sou]) {
-          graph.nodeIds[sou] = {
-            id: sou,
-            r: 1,
-            color: 'cyan'
-          };
-        }
-        if (!graph.nodeIds[tar]) {
-          graph.nodeIds[tar] = {
-            id: tar,
-            r: 1,
-            color: 'magenta'
-          };
-        }
-        graph.links.push({
-          source: sou,
-          target: tar,
-          value: val,
-        });
-
-        console.log('> graph (source:', sou, ')-[', val, ']->(target:', tar, ')');
-      }
-    });
-
-    // cycle throug ids
-    graph.nodes = Object.values(graph.nodeIds);
-
-    if(graph.nodes.length) {
-      console.log('success! nodes:', graph.nodes.length, ', edges:', graph.links.length)
-    }
-    return graph;
-  });
-
-
+  var g = raw.models.graph();
 
   // The Chart
-
   var chart = raw.chart()
     .title('Basic k-partite graph')
     .description(
       "Display the relationship between two or more (k) entity types to see correlations between dimensions")
-      .category("Multi categorical")
-    .model(model)
+    .category("Multi categorical")
+    .model(g)
 
   // Width
   var width = chart.number()
@@ -98,60 +24,114 @@ miri	dani	20
     .title('margin')
     .defaultValue(10);
 
+  var colors = chart.color()
+    .title("Color scale")
+
   var minDistance = chart.number()
     .title('min distance between nodes')
     .defaultValue(80);
 
+  var isLinkTransparent = chart.checkbox()
+    .title('transparent links')
+    .defaultValue(false);
+
+  var simulation = d3.forceSimulation();
+
   chart.draw(function(selection, data) {
+
     // svg size
     selection
       .attr("width", width())
       .attr("height", height())
       .style('background', '#e0e0e0');
 
-    if(!data.nodes.length){
+
+
+    if (!data.nodes.length) {
       console.warn('no graph data.');
       return;
     }
 
+    // set up color groups
+    var groups = [];
+
+    // remap nodes
+    data.nodes = data.nodes.map(function(d) {
+      d.r = 1;
+      if (groups.indexOf(d.group) === -1) {
+        groups.push(d.group);
+      }
+      return d;
+    });
+
+    colors.domain(groups);
+
+
+    // add links layer
     var links = selection
       .append("g").classed("links", true)
       .selectAll("g.node")
-      .data(data.links, function(d,i) {
+      .data(data.links, function(d, i) {
         return i;
       });
 
+    // add nodes layer
     var nodes = selection
       .append("g").classed("nodes", true)
       .selectAll("g.node")
       .data(data.nodes, function(d) {
-        return d.id;
+        return d.name;
       });
 
+    var isSimulationRunning = true;
+    // add toggle play/pause, top left
+    var toggle = selection
+      .append("g")
+      .style('transform', 'translate(20px,25px)')
+      .style('background', '#f0f0f0')
+      .on('click', function(d) {
+        if (simulation) {
+          if (isSimulationRunning) {
+            stopSimulation();
+          } else {
+            playSimulation();
+          }
+        }
+      });
+
+    var toggleText = toggle
+      .append("text")
+      .text('pause force layout');
 
 
     var linkElement = links.enter()
       .append("line")
-      .style('stroke', 'black')
-      .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+      .style('stroke', isLinkTransparent() ? '#00000022' : '#000000')
+      .attr("stroke-width", function(d) {
+        return Math.sqrt(d.value);
+      });
 
     var nodeElement = nodes.enter()
       .append("g")
       .classed('node', true)
       .call(d3.drag()
-          .on("start", dragstarted)
-          .on("drag", dragged)
-          .on("end", dragended));
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended));
 
     nodeElement.append("text")
       .attr("dx", 25)
       .attr("dy", ".35em")
       .style('pointer-events', 'none')
-      .text(function(d) { return d.id });
+      .text(function(d) {
+        return d.name
+      });
 
     nodeElement.append("circle")
-      // .attr("fill", function(d,i){ return i==0?'magenta':'cyan'})
-      .attr("r", function(d){
+      .attr("fill", function(d) {
+        return colors()(d.group)
+      })
+      .attr("r", function(d) {
         return 5 + d.r;
       });
 
@@ -170,17 +150,40 @@ miri	dani	20
         return "translate(" + d.x + "," + d.y + ")";
       });
       linkElement
-        .attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
+        .attr("x1", function(d) {
+          return d.source.x;
+        })
+        .attr("y1", function(d) {
+          return d.source.y;
+        })
+        .attr("x2", function(d) {
+          return d.target.x;
+        })
+        .attr("y2", function(d) {
+          return d.target.y;
+        });
 
     };
-    if(simulation)
+
+    var stopSimulation = function() {
+      simulation.stop();
+      toggleText.text('play force layout');
+      isSimulationRunning = false;
+    }
+
+    var playSimulation = function() {
+      simulation.alphaTarget(0).restart();
+      toggleText.text('pause force layout');
+      isSimulationRunning = true;
+    }
+
+    if (simulation)
       simulation.stop();
 
     simulation = d3.forceSimulation()
-      .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(minDistance()))
+      .force("link", d3.forceLink().id(function(d) {
+        return d.index;
+      }).distance(minDistance()))
       .force("charge", d3.forceManyBody().distanceMax(300))
       .force("center", d3.forceCenter(width() / 2, height() / 2))
       .alphaTarget(.5);
@@ -192,7 +195,11 @@ miri	dani	20
       .links(data.links);
 
     function dragstarted(d) {
-      if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+      if (!d3.event.active) {
+        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+        toggleText.text('pause force layout');
+        isSimulationRunning = true;
+      }
       d.fx = d.x;
       d.fy = d.y;
     }
@@ -203,7 +210,11 @@ miri	dani	20
     }
 
     function dragended(d) {
-      if (!d3.event.active) simulation.alphaTarget(0);
+      if (!d3.event.active) {
+        simulation.alphaTarget(0);
+        toggleText.text('pause force layout');
+        isSimulationRunning = true;
+      }
       d.fx = null;
       d.fy = null;
     }
