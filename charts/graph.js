@@ -6,6 +6,7 @@
     .title('Basic k-partite graph')
     .description(
       "Display the relationship between two or more (k) entity types to see correlations between dimensions")
+    .thumbnail("imgs/kPartiteGraph.png")
     .category("Multi categorical")
     .model(g)
 
@@ -31,21 +32,28 @@
     .title('min distance between nodes')
     .defaultValue(80);
 
+  var minDegree = chart.number()
+    .title('min number of connection')
+    .defaultValue(1);
+
+  var maxRadius = chart.number()
+    .title('max node radius')
+    .defaultValue(20);
+
   var isLinkTransparent = chart.checkbox()
     .title('transparent links')
     .defaultValue(true);
 
   var simulation = d3.forceSimulation();
 
-  chart.draw(function(selection, data) {
+  var minRadius = 4;
 
+  chart.draw(function(selection, data) {
     // svg size
     selection
       .attr("width", width())
       .attr("height", height())
       .style('background', '#e0e0e0');
-
-
 
     if (!data.nodes.length) {
       console.warn('no graph data.');
@@ -55,17 +63,44 @@
     // set up color groups
     var groups = [];
 
-    // remap nodes
+    // remap nodes, add initial degree and fill groups categories
     data.nodes = data.nodes.map(function(d) {
-      d.r = 1;
+      d.degree = 0;
       if (groups.indexOf(d.group) === -1) {
         groups.push(d.group);
       }
       return d;
     });
 
+    // calculate basic degree
+    data.links = data.links.map(function(d) {
+      data.nodes[d.source].degree += 1;
+      data.nodes[d.target].degree += 1;
+      // add min degree to link as well, so we can easily filter
+      d.degree = Math.min(data.nodes[d.source].degree, data.nodes[d.target].degree);
+      return d;
+    });
+
     colors.domain(groups);
 
+    // filter nodes according to min degree
+    if(minDegree() > 1) {
+      console.log('> draw - filtering on min degree:', minDegree());
+      // filter nodes
+      // data.nodes = data.nodes.filter(function(d) {
+      //   return d.degree >= minDegree();
+      // });
+
+      // filter links
+      data.links = data.links.filter(function(d) {
+        return d.degree >= minDegree();
+      });
+    }
+
+    // simple sqrt scale here, @todo according to circle areas
+    var radius = d3.scaleLinear().domain(d3.extent(data.nodes, function(d) {
+      return d.degree;
+    })).range([minRadius, maxRadius()]);
 
     // add links layer
     var links = selection
@@ -78,10 +113,13 @@
     // add nodes layer
     var nodes = selection
       .append("g").classed("nodes", true)
+
       .selectAll("g.node")
       .data(data.nodes, function(d) {
         return d.name;
       });
+
+
 
     var isSimulationRunning = true;
     // add toggle play/pause, top left
@@ -119,6 +157,12 @@
         .on("drag", dragged)
         .on("end", dragended));
 
+    if(minDegree() > 1){
+      nodeElement.style('display', function(d) {
+        return d.degree >= minDegree()? 'block': 'none';
+      });
+    }
+
     nodeElement.append("text")
       .attr("dx", 25)
       .attr("dy", ".35em")
@@ -132,7 +176,7 @@
         return colors()(d.group)
       })
       .attr("r", function(d) {
-        return 5 + d.r;
+        return radius(d.degree);
       });
 
     nodeElement.append("circle")
@@ -145,8 +189,8 @@
     // set tick function to update positions
     var ticked = function() {
       nodeElement.attr("transform", function(d) {
-        d.y = Math.max(d.r, Math.min(h - d.r, d.y));
-        d.x = Math.max(d.r, Math.min(w - d.r, d.x));
+        d.y = Math.max(40, Math.min(h - 10, d.y));
+        d.x = Math.max(40, Math.min(w - 40, d.x));
         return "translate(" + d.x + "," + d.y + ")";
       });
       linkElement
