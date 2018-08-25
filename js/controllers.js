@@ -4,7 +4,7 @@
 
 angular.module('raw.controllers', [])
 
-  .controller('RawCtrl', function ($scope, dataService, $http, $timeout, $sce) {
+  .controller('RawCtrl', function ($scope, dataService, $http, $timeout, $sce, $location) {
 
     $scope.loading = false;
 
@@ -497,5 +497,9 @@ angular.module('raw.controllers', [])
 
     $(document).ready(refreshScroll);
 
+    let urlFromLocation = $location.search().url;
+    if(urlFromLocation && is.url(urlFromLocation)){
+      $scope.url = urlFromLocation;
+    }
 
   })
