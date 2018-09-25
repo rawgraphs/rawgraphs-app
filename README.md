@@ -9,7 +9,7 @@ Primarily conceived as a tool for designers and vis geeks, RAWGraphs aims at pro
 
 RAWGraphs works with [tabular data](https://en.wikipedia.org/wiki/Table_(information)) (e.g. spreadhseets and comma-separated values) as well as with copied-and-pasted texts from other applications (e.g. Microsoft Excel, TextWrangler, TextEdit, …). Based on the [SVG](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily edited with vector graphics applications for further refinements, or directly embedded into web pages.
 
-Knowing the need of working with sensitive information, the data uploaded to RAWGraphs is processed only by the web browser: **no server-side operations or storages are performed** and no one will see, touch or copy your data!
+Knowing the need of working with sensitive information, the data injected into RAWGraphs is processed only by the web browser: **no server-side operations or storages are performed** and no one will see, touch or copy your data!
 
 RAWGraphs is also highly customizable and extensible, accepting new custom layouts defined by users. For more information about how to add or edit layouts, see the [Developer Guide](https://github.com/densitydesign/raw/wiki/Developer-Guide).
 
