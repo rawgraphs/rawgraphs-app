@@ -10,7 +10,7 @@
     // Start Date. It will define the starting point of each bar
     var startDate = timechuncks.dimension('startDate')
         .title('Start date')
-        .types(Date)
+        .types(Number, Date)
         .accessor(function(d) {
             return this.type() == "Date" ? Date.parse(d) : +d;
         })
@@ -19,7 +19,7 @@
     // End Date. It will define the ending point of each bar
     var endDate = timechuncks.dimension('endDate')
         .title('End date')
-        .types(Date)
+        .types(Number, Date)
         .accessor(function(d) {
             return this.type() == "Date" ? Date.parse(d) : +d;
         })
@@ -161,17 +161,19 @@
         //define the colors domain
         colors.domain(allColors);
 
+				//handle data type (Number or Date)
+        var x = startDate.type() == 'Date' ? d3.scaleTime() : d3.scaleLinear();
+
         //define x scale
-        var x = d3.scaleTime()
-            .range([margin.left, width()])
-            .domain([
-                d3.min(entries, function(d) {
-                    return d.start;
-                }),
-                d3.max(entries, function(d) {
-                    return d.end;
-                })
-            ]);
+        x.range([margin.left, width()])
+          .domain([
+              d3.min(entries, function(d) {
+                  return d.start;
+              }),
+              d3.max(entries, function(d) {
+                  return d.end;
+              })
+          ]);
 
         //create x axis
         var xAxis = d3.axisBottom(x);
