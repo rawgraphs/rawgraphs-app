@@ -33,7 +33,7 @@
 
   let chart = raw.chart()
     .title("Line chart")
-    .description("Desc")
+    .description("Line charts display information as a series of data points called 'markers' connected by straight line segments")
     .thumbnail("imgs/lineChart.png")
     .category('Other')
     .model(model)
