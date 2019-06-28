@@ -70,6 +70,12 @@ or for Python 3+
 $ python -m http.server 4000
 ```
 
+or with Docker
+
+``` sh
+$ docker-compose up
+```
+
 Once this is running, go to [http://localhost:4000/](http://localhost:4000/).
 
 Troubles with the installation? Maybe a look at the [issues](https://github.com/densitydesign/raw/issues) page can solve your problem, otherwise join the [Google group](https://groups.google.com/forum/#!forum/densitydesign-raw).
