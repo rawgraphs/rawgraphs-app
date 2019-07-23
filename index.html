@@ -206,16 +206,24 @@
 
     <!-- modal prelaunch indiegogo campaign -->
 
-    <div id="pre-launch-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div id="pre-launch-modal" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-show="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Hello! Do you like RAWGraphs?</h4>
+        <div class="modal-content" style="
+            padding: 5rem;
+            background-image: url(https://c1.iggcdn.com/indiegogo-media-prod-cld/image/upload/c_fit,w_auto,g_center,q_auto:best,dpr_2.0,f_auto/k3mwx97nucffyfgztfec);
+            background-position: 50% 45%;
+            background-size: 220%;
+        ">
+          <div class="modal-header" style="border: none;">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="
+                margin-top: -5rem;
+                margin-right: -5rem;
+            "><span aria-hidden="true">&times;</span></button>
+            <h1 class="modal-title" style="font-weight: bold;">Hello! 👋 👋 👋<br/>Do you like RAWGraphs?</h1>
           </div>
-          <div class="modal-body">
-            <p>We are launching soon a crowdfunding campaign on Indiegogo, help us in improving RawGraphs and in keeping it open to anyone.</p>
-            <p><a href="#">Visit the pre-launch page on Indiegogo</a></p>
+          <div class="modal-body" style="font-size: 1.25rem;">
+            <p style="padding-bottom: 0.75rem;">We are launching soon a crowdfunding campaign on Indiegogo, help us improving RawGraphs and keeping it open to anyone.</p>
+            <p>👉 <a href="https://www.indiegogo.com/project/coming_soon/preview/acd21b31" target="_blank" style="text-decoration: underline;">Visit the pre-launch page on Indiegogo!</a></p>
           </div>
           <!-- <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -377,7 +385,9 @@
 
     <!-- open pre-launch-modal -->
     <script type="text/javascript">
-        $('#pre-launch-modal').modal('toggle')
+        $('#pre-launch-modal')
+            // .modal({'backdrop', 'static'})
+            .modal('toggle')
     </script>
   </body>
 </html>
