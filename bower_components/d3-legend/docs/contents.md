@@ -1,0 +1,21 @@
+- [Color Legend](#color)
+  - [Documentation](#color-doc)
+  - [Examples](#color-examples)
+    - [Quantile Scale Legend](#color-quant)
+    - [Threshold Scale Legend](#color-threshold)
+    - [Linear Scale Legend - Horizontal](#color-linear)
+    - [Linear Scale Legend - 10 cells](#color-linear-10)
+    - [Linear Scale Legend - Custom cells](#color-linear-custom)
+    - [Ordinal Scale Legend - Custom shape](#color-ordinal)
+- [Size Legend](#size)
+  - [Documentation](#size-doc)
+  - [Examples](#size-examples)
+    - [Linear Scale Legend - Circles](#size-linear)
+    - [Linear Scale Legend - Lines](#size-line)
+
+- [Symbol Legend](#symbol)
+  - [Documentation](#symbol-doc)
+  - [Examples](#symbol-examples)
+    - [Ordinal Scale Legend - Custom Symbols](#symbol-ordinal)
+
+- [Summary of Functions](#summary) - table of which functions are shared across legend types

@@ -1,0 +1,11 @@
+{
+  "type": "library",
+  "username": "mgcrea",
+  "branch": "~1.4.0",
+  "module": "mgcrea.ngStrap",
+  "transpilers": {
+    "views": "none",
+    "scripts": "none",
+    "styles": "less"
+  }
+}

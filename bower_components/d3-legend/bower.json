@@ -1,0 +1,26 @@
+{
+  "name": "d3-legend",
+  "main": "d3-legend.min.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/susielu/d3-legend",
+  "keywords": [
+    "d3",
+    "legend",
+    "data",
+    "visualization"
+  ],
+  "authors": [
+    "Susie Lu"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "^4.3.0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "d3-sankey",
+  "_cacheHeaders": {
+    "ETag": "\"7757fc7fdffb99596a6e02769308b4fe\"",
+    "Last-Modified": "Wed, 14 Jun 2017 13:47:54 GMT",
+    "Content-Length": "8768",
+    "Content-Type": "application/octet-stream",
+    "Content-Disposition": "attachment; filename=d3-sankey.zip"
+  },
+  "_release": "e-tag:7757fc7fd",
+  "_source": "https://github.com/d3/d3-sankey/releases/download/v0.7.1/d3-sankey.zip",
+  "_target": "*",
+  "_originalSource": "https://github.com/d3/d3-sankey/releases/download/v0.7.1/d3-sankey.zip"
+}

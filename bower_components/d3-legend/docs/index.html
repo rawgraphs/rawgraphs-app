@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+
+
+  <meta name="author" content="Susie Lu">
+  <meta name="description" content="Tired of making legends for your data visualizations? This is a component for d3 that allows you to reuse the scales you’ve made for your visualization to quickly add a legend.">
+  <link rel="canonical" href="http://d3-legend.susielu.com">
+
+
+  <link href='http://fonts.googleapis.com/css?family=Cardo:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="minimal-ui.min.css">
+  <link rel="stylesheet" href="prism.css">
+
+  <style>
+    svg {
+      padding: 10px 15px;
+      margin-bottom: 5px;
+      display: block;
+      background: white;
+      border: 1px solid $grey;
+    }
+
+    pre[class*="language-"] {
+      margin-top: 0px;
+      margin-bottom: 30px;
+      border: 1px solid #E4E4E4;
+    }
+
+    :not(pre)>code[class*="language-"],
+    pre[class*="language-"] {
+      background: #FFFFFF;
+    }
+
+    .token.selector,
+    .token.attr-name,
+    .token.string,
+    .token.char,
+    .token.builtin,
+    .token.inserted {
+      color: #323232;
+    }
+
+    .token.function {
+      color: #989898;
+    }
+
+    .token.property,
+    .token.tag,
+    .token.boolean,
+    .token.number,
+    .token.constant,
+    .token.symbol,
+    .token.deleted {
+      color: #00993C;
+    }
+
+    h4 {
+      display: inline-block;
+    }
+
+    strong {
+      color: #272727;
+    }
+
+    text {
+      font: 12px sans-serif;
+    }
+
+    hr {
+      border-top: 1px solid #999;
+    }
+
+    table tbody tr:not(:last-child) td {
+      border-bottom: 2px solid #E7E7E7;
+    }
+
+    table tbody td:not(:last-child),
+    table thead th:not(:last-child) {
+      border-right: 2px solid #e7e7e7
+    }
+
+    table td:not(:first-child) {
+      width: 60px;
+    }
+
+    table td.included {
+      background-color: rgb(102, 178, 155);
+    }
+
+    @media only screen and (max-width: 480px) {
+      table {
+        font-size: 11px;
+      }
+    }
+
+    #contents ul li {
+      font-size: 16px;
+    }
+
+    .legendSize rect,
+    .legendSize circle {
+      fill: rgb(46, 73, 123);
+    }
+
+
+    .legendSizeHorz circle {
+      stroke: rgb(71, 187, 94);
+      fill: none;
+    }
+
+    .legendSizeLine line {
+      stroke: rgb(46, 73, 123);
+    }
+
+    .legendSymbol path {
+      fill: rgb(64, 108, 189);
+    }
+
+
+    .q0-9 {
+      fill: rgb(247, 251, 255);
+    }
+
+    .q1-9 {
+      fill: rgb(222, 235, 247);
+    }
+
+    .q2-9 {
+      fill: rgb(198, 219, 239);
+    }
+
+    .q3-9 {
+      fill: rgb(158, 202, 225);
+    }
+
+    .q4-9 {
+      fill: rgb(107, 174, 214);
+    }
+
+    .q5-9 {
+      fill: rgb(66, 146, 198);
+    }
+
+    .q6-9 {
+      fill: rgb(33, 113, 181);
+    }
+
+    .q7-9 {
+      fill: rgb(8, 81, 156);
+    }
+
+    .q8-9 {
+      fill: rgb(8, 48, 107);
+    }
+  </style>
+
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="txt-center">
+        <h1 class="column12">d3 SVG Legend (v4)</h1>
+        <div class="column6 prefix3">
+          <p>Tired of making legends for your data visualizations? Me too, enjoy.</p>
+          <p>A library to make legends in svg-land easy as pie.</p>
+          <img src="d3-legend.jpg">
+          <p>By
+            <a href="http://www.susielu.com">Susie Lu</a>
+          </p>
+        </div>
+        <nav class="column6 prefix3 nav nav-small">
+          <a href="#usage">Usage</a>
+          <a href="#contents">Contents</a>
+          <a href="#color">Color</a>
+          <a href="#size">Size</a>
+          <a href="#symbol">Symbol</a>
+          <a href="#helpers">Helpers</a>
+          <a href="#summary">Summary of Functions</a>
+        </nav>
+      </div>
+    </div>
+
+  </header>
+
+
+  <section id="usage">
+    <div class="container">
+      <div class="column6 prefix3">
+        <h2>Usage</h2>
+
+        <h3>Client-side</h3>
+
+        <h4>Version</h4>
+        <p>This is the version compatible with
+          <b>d3v4</b>,
+          <a href="http://d3-legend-v3.susielu.com/">please go here for the version compatible with d3v3</a>
+        </p>
+
+        <p>Changes when moving to d3v4 of this component</p>
+        <ul>
+          <li>Flattened naming for accessing functions</li>
+          <ul>
+            <li>d3.legend.color => d3.legendColor</li>
+            <li>d3.legend.size => d3.legendSize</li>
+            <li>d3.legend.symbol => d3.legendSymbol</li>
+          </ul>
+          <li>NPM package no longer binds to global d3, is now just an object with the three legend functions</li>
+        </ul>
+
+        <h4>CDN</h4>
+        <p>You can add the latest version of d3-legend hosted on cdnjs.
+          <p>
+            <a href="https://cdnjs.com/libraries/d3-legend">https://cdnjs.com/libraries/d3-legend</a>
+
+            <h4>Include the file directly</h4>
+            <p>You must include the
+              <a href="http://d3js.org/">d3 library</a> before including the legend file. Then you can simply add the compiled js file to your website:</p>
+            <ul>
+              <li>
+                <a href="https://raw.githubusercontent.com/susielu/d3-legend/master/d3-legend.min.js">All legends (d3v4)</a>
+              </li>
+              <li>
+                <a href="https://github.com/susielu/d3-legend/blob/master/d3-legend.js">All legends - human readable (d3v4)</a>
+              </li>
+            </ul>
+
+            <h3>npm</h3>
+            <p>Already using d3? Great! You can add the d3 legend as a node module by running:
+              <p>
+                <code>npm i d3-svg-legend -S</code>
+
+
+                <h3>Github + feedback</h3>
+                <p>The full source code is available on
+                  <a href="https://github.com/susielu/d3-legend">github</a>. I would love to hear from you about any additional features that would be useful, please say
+                  hi on twitter
+                  <a href="https://www.twitter.com/DataToViz">@DataToViz</a>.</p>
+      </div>
+    </div>
+  </section>
+  <section class="bg-light" id="contents">
+    <div class="container">
+      <div class="column6 prefix3">
+        <h2>Contents</h2>
+        <div id="contents-md"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="" id="color">
+    <div class="container">
+      <div class="column6 prefix3">
+        <h2>Color</h2>
+
+        <h3 id="color-doc">Documentation</h3>
+        <div id="color-md"> </div>
+      </div>
+    </div>
+  </section>
+  <section class="bg-light" id="color-examples">
+    <div class="container">
+      <div class="column6 prefix3">
+        <h3>Examples</h3>
+
+        <h4 id="color-quant">Quantile Scale Legend</h4>
+        <svg height=240 width=160 id="svg-color-quant"></svg>
+        <pre class="column6 left-margin right-margin">
+          <code class="language-javascript">
+
+var quantize = d3.scaleQuantize()
+  .domain([ 0, 0.15 ])
+  .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
+
+var svg = d3.select("svg");
+
+svg.append("g")
+  .attr("class", "legendQuant")
+  .attr("transform", "translate(20,20)");
+
+var legend = d3.legendColor()
+  .labelFormat(d3.format(".2f"))
+  .useClass(true)
+  .title("A really really really really 
+    really long title")
+  .titleWidth(100)
+  .scale(quantize);
+
+svg.select(".legendQuant")
+  .call(legend);
+          </code>
+        </pre>
+
+        <h4 id="color-threshold">Treshold Scale Legend</h4>
+        <svg height=150 width=210 id="svg-color-threshold"></svg>
+        <pre class="column6 left-margin right-margin">
+          <code class="language-javascript">
+
+var thresholdScale = d3.scaleThreshold()
+  .domain([ 0, 1000, 2500, 5000, 10000 ])
+  .range(d3.range(6)
+  .map(function(i) { return "q" + i + "-9"}));
+
+var svg = d3.select("svg");
+
+svg.append("g")
+  .attr("class", "legendQuant")
+  .attr("transform", "translate(20,20)");
+
+var legend = d3.legendColor()
+    .labelFormat(d3.format(".2f"))
+    .labels(d3.legendHelpers.thresholdLabels)
+    .useClass(true)
+    .scale(thresholdScale)
+
+/*
+----legendHelpers.thresholdLabels----
+function({ i, genLength, generatedLabels }){
+  if (i === 0 ){
+    return generatedLabels[i]
+      .replace('NaN to', 'Less than')
+  } else if (i === genLength - 1) {
+    return `More than
+      ${generatedLabels[genLength - 1]
+      .replace(' to NaN', '')}`
+  }
+  return generatedLabels[i]
+}
+*/
+
+svg.select(".legendQuant")
+  .call(legend);
+          </code>
+        </pre>
+
+        <h4 id="color-log">Log Scale Legend</h4>
+        <svg height=160 width=100 id="svg-color-log"></svg>
+        <pre class="column6 left-margin right-margin">
+          <code class="language-javascript">
+
+var log = d3.scaleLog()
+    .domain([ 0.1, 100, 1000 ])
+    .range(["rgb(46, 73, 123)", "rgb(71, 187, 94)"]);
+
+var svg = d3.select("svg");
+
+svg.append("g")
+  .attr("class", "legendLog")
+  .attr("transform", "translate(20,20)");
+
+var logLegend = d3.legendColor()
+    .cells([0.1, 5, 10, 50, 100, 500, 1000])
+    .scale(log);
+
+svg.select(".legendLog")
+  .call(logLegend);
+
+          </code>
+        </pre>
+
+        <h4 id="color-linear">Linear Scale Legend - Horizontal</h4>
+        <svg height=60 width=200 id="svg-color-linear"></svg>
+        <pre class="column6 left-margin right-margin">
+          <code class="language-javascript">
+
+var linear = d3.scaleLinear()
+  .domain([0,10])
+  .range(["rgb(46, 73, 123)", "rgb(71, 187, 94)"]);
+
+var svg = d3.select("svg");
+
+svg.append("g")
+  .attr("class", "legendLinear")
+  .attr("transform", "translate(20,20)");
+
+var legendLinear = d3.legendColor()
+  .shapeWidth(30)
+  .orient('horizontal')
+  .scale(linear);
+
+svg.select(".legendLinear")
+  .call(legendLinear);
+          </code>
+        </pre>
+
+        <h4 id="color-linear-10">Linear Scale Legend - 10 cells</h4>
+        <svg height=60 width=360 id="svg-color-linear-10"></svg>
+        <pre class="column6 left-margin right-margin">
+          <code class="language-javascript">
+
+var linear = d3.scaleLinear()
+  .domain([0,10])
+  .range(["rgb(46, 73, 123)", "rgb(71, 187, 94)"]);
+
+var svg = d3.select("svg");
+
+svg.append("g")
+  .attr("class", "legendLinear")
+  .attr("transform", "translate(20,20)");
+
+var legendLinear = d3.legendColor()
+  .shapeWidth(30)
+  .cells(10)
+  .orient('horizontal')
+  .scale(linear);
+
+svg.select(".legendLinear")
+  .call(legendLinear);
+          </code>
+        </pre>
+
+        <h4 id="color-linear-custom">Linear Scale Legend - Custom cells</h4>
+        <svg height=60 width=200 id="svg-color-linear-custom"></svg>
+        <pre class="column6 left-margin right-margin">
+          <code class="language-javascript">
+
+var linear = d3.scaleLinear()
+  .domain([0,10])
+  .range(["rgb(46, 73, 123)", "rgb(71, 187, 94)"]);
+
+var svg = d3.select("svg");
+
+svg.append("g")
+  .attr("class", "legendLinear")
+  .attr("transform", "translate(20,20)");
+
+var legendLinear = d3.legendColor()
+  .shapeWidth(30)
+  .cells([1, 2, 3, 6, 8])
+  .orient('horizontal')
+  .scale(linear);
+
+svg.select(".legendLinear")
+  .call(legendLinear);
+          </code>
+        </pre>
+
+        <h4 id="color-sequential">Sequential Scale Legend</h4>
+        <svg height=60 width=350 id="svg-color-sequential"></svg>
+        <pre class="column6 left-margin right-margin">
+          <code class="language-javascript">
+
+var sequentialScale = d3.scaleSequential(d3.interpolateRainbow)
+  .domain([0,10]);
+
+var svg = d3.select("svg");
+
+svg.append("g")
+  .attr("class", "legendSequential")
+  .attr("transform", "translate(20,20)");
+
+var legendSequential = d3.legendColor()
+    .shapeWidth(30)
+    .cells(10)
+    .orient("horizontal")
+    .scale(sequentialScale) 
+
+svg.select(".legendSequential")
+  .call(legendSequential);
+          </code>
+        </pre>
+
+        <h4 id="color-ordinal">Ordinal Scale Legend - Custom shape</h4>
+        <svg height=120 width=70 id="svg-color-ordinal"></svg>
+        <pre class="column6 left-margin right-margin">
+          <code class="language-javascript">
+
+var ordinal = d3.scaleOrdinal()
+  .domain(["a", "b", "c", "d", "e"])
+  .range([ "rgb(153, 107, 195)", "rgb(56, 106, 197)", "rgb(93, 199, 76)", "rgb(223, 199, 31)", "rgb(234, 118, 47)"]);
+
+var svg = d3.select("svg");
+
+svg.append("g")
+  .attr("class", "legendOrdinal")
+  .attr("transform", "translate(20,20)");
+
+var legendOrdinal = d3.legendColor()
+  //d3 symbol creates a path-string, for example
+  //"M0,-8.059274488676564L9.306048591020996,
+  //8.059274488676564 -9.306048591020996,8.059274488676564Z"
+  .shape("path", d3.symbol().type(d3.symbolTriangle).size(150)())
+  .shapePadding(10)
+  //use cellFilter to hide the "e" cell
+  .cellFilter(function(d){ return d.label !== "e" })
+  .scale(ordinal);
+
+svg.select(".legendOrdinal")
+  .call(legendOrdinal);
+          </code>
+        </pre>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="" id="size">
+    <div class="container">
+      <div class="column6 prefix3">
+        <h2>Size</h2>
+
+        <h3 id="size-doc">Documentation</h3>
+        <div id="size-md"></div>
+
+      </div>
+    </div>
+  </section>
+  <section class="bg-light" id="size-examples">
+    <div class="container">
+      <div class="column6 prefix3">
+
+        <h3>Examples</h3>
+        <h4 id="size-linear">Linear Scale Legend - Circles</h4>
+        <svg height=130 width=350 id="svg-size-linear"></svg>
+        <pre class="column6 left-margin right-margin">
+         <code class="language-javascript">
+
+var linearSize = d3.scaleLinear().domain([0,10]).range([10, 30]);
+
+var svg = d3.select("svg");
+
+svg.append("g")
+  .attr("class", "legendSize")
+  .attr("transform", "translate(20, 40)");
+
+var legendSize = d3.legendSize()
+  .scale(linearSize)
+  .shape('circle')
+  .shapePadding(15)
+  .labelOffset(20)
+  .orient('horizontal');
+
+svg.select(".legendSize")
+  .call(legendSize);
+         </code>
+       </pre>
+
+        <h4 id="size-line">Linear Scale Legend - Lines</h4>
+        <svg height=140 width=380 id="svg-size-line"></svg>
+        <pre class="column6 left-margin right-margin">
+         <code class="language-javascript">
+
+var lineSize = d3.scaleLinear().domain([0,10]).range([2, 10]);
+
+var svg = d3.select("svg");
+
+svg.append("g")
+  .attr("class", "legendSizeLine")
+  .attr("transform", "translate(0, 20)");
+
+var legendSizeLine = d3.legendSize()
+      .scale(lineSize)
+      .shape("line")
+      .orient("horizontal")
+      //otherwise labels would have displayed:
+      // 0, 2.5, 5, 10
+      .labels(["tiny testing at the beginning",
+        "small", "medium", "large", "grand, 
+        all the way long label"])
+      .labelWrap(30)
+      .shapeWidth(40)
+      .labelAlign("start")
+      .shapePadding(10);
+
+svg.select(".legendSizeLine")
+  .call(legendSizeLine);
+         </code>
+       </pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="" id="symbol">
+    <div class="container">
+      <div class="column6 prefix3">
+        <h2>Symbol</h2>
+
+        <h3 id="symbol-doc">Documentation</h3>
+        <div id="symbol-md"></div>
+
+      </div>
+    </div>
+  </section>
+  <section class="bg-light" id="symbol-examples">
+    <div class="container">
+      <div class="column6 prefix3">
+        <h3>Examples</h3>
+        <h4 id="symbol-ordinal">Ordinal Scale Legend - Custom symbols</h4>
+        <svg height=170 width=170 id="svg-symbol-ordinal"></svg>
+        <pre class="column6 left-margin right-margin">
+         <code class="language-javascript">
+
+var triangleU = d3.symbol().type(d3.symbolTriangle)(),
+  circle = d3.symbol().type(d3.symbolCircle)(),
+  cross = d3.symbol().type(d3.symbolCross)(),
+  diamond = d3.symbol().type(d3.symbolDiamond)(),
+  star = d3.symbol().type(d3.symbolStar)();
+
+//example output of d3.svg.symbol().type('circle')();
+//"M0,4.51351666838205A4.51351666838205,4.51351666838205 0 1,1 0,
+//-4.51351666838205A4.51351666838205,4.51351666838205 0 1,1 0,4.51351666838205Z"
+
+var symbolScale =  d3.scaleOrdinal()
+  .domain(['a longer label','b','c', 'd', 'e'])
+  .range([ triangleU, circle, cross, diamond, start] );
+
+var svg = d3.select("svg");
+
+svg.append("g")
+  .attr("class", "legendSymbol")
+  .attr("transform", "translate(20, 20)");
+
+var legendPath = d3.legendSymbol()
+  .scale(symbolScale)
+  .orient("horizontal")
+  .labelWrap(30)
+  .title("Symbol Legend Title")
+  .on("cellclick", function(d){alert("clicked " + d);});
+
+svg.select(".legendSymbol")
+  .call(legendPath);
+         </code>
+       </pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="helpers">
+    <div class="container">
+      <div class="column6 prefix3">
+        <h2>Helpers</h2>
+
+        <h3 id="helpers-doc">Documentation</h3>
+        <div id="helpers-md"></div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="summary">
+    <div class="container">
+      <div class="column6 prefix3">
+        <h2>Summary of Functions</h2>
+        <table>
+          <tr>
+            <th>Function</th>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Symbol</th>
+          </tr>
+
+          <tr>
+            <td>scale</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td class="included"></td>
+          </tr>
+          <tr>
+            <td>cells</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td class="included"></td>
+          </tr>
+          <tr>
+            <td>cellFilter</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td class="included"></td>
+          </tr>
+          <tr>
+            <td>orient</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td class="included"></td>
+          </tr>
+          <tr>
+            <td>ascending</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td class="included"></td>
+          </tr>
+          <tr>
+            <td>shape</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>shapeWidth</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>shapeHeight</td>
+            <td class="included"></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>shapeRadius</td>
+            <td class="included"></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>shapePadding</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td class="included"></td>
+          </tr>
+          <tr>
+            <td>useClass</td>
+            <td class="included"></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>classPrefix</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td class="included"></td>
+          </tr>
+          <tr>
+            <td>title</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td class="included"></td>
+          </tr>
+          <tr>
+            <td>titleWidth</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td class="included"></td>
+          </tr>
+          <tr>
+            <td>labels</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td class="included"></td>
+          </tr>
+          <tr>
+            <td>labelAlign</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td class="included"></td>
+          </tr>
+          <tr>
+            <td>labelFormat</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td class="included"></td>
+          </tr>
+          <tr>
+            <td>locale</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td class="included"></td>
+          </tr>
+          <tr>
+            <td>labelOffset</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td class="included"></td>
+          </tr>
+          <tr>
+            <td>labelDelimiter</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td class="included"></td>
+          </tr>
+          <tr>
+            <td>labelWrap</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td class="included"></td>
+          </tr>
+          <tr>
+            <td>on</td>
+            <td class="included"></td>
+            <td class="included"></td>
+            <td class="included"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light">
+    <div class="container">
+      <div class="column6 prefix3">
+
+        <br />
+        <p>NOTES</p>
+
+        <p>Huge thanks to
+          <a href="http://elijahmeeks.com/">Elijah Meeks</a> for discussing ideas and encouraging me to complete this project.</p>
+        <p>The styling and layout of this page is made with another project of mine,
+          <a href="http://minimal-ui.susielu.com">minimal-ui.</a>
+        </p>
+        <p>The fonts on this page are provided by Google Fonts, and created by
+          <a href="https://www.google.com/fonts/specimen/Montserrat">Julieta Ulanovsky</a> and
+          <a href="https://www.google.com/fonts/specimen/Cardo">David Perry</a>.</p>
+        <p>Using
+          <a href="http://prismjs.com/">Prism</a> for syntax highlighting.</p>
+        <p>And of course, thanks
+          <a href="http://d3js.org/">d3.js</a> for creating such a lovely project and
+          <a href="http://bost.ocks.org/mike/">Mike Bostock</a> for providing
+          <a href="http://bost.ocks.org/mike/chart/">examples</a> on how to make your own components.</p>
+
+      </div>
+    </div>
+  </section>
+  <script src="prism.js"></script>
+
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="d3-legend.min.js"></script>
+
+  <script src="docs.min.js"></script>
+  <script src="ga.js"></script>
+</body>

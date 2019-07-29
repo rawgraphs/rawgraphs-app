@@ -1,0 +1,8 @@
+{
+    "core": [ "jquery" ],
+    "internal": [],
+    "external": [
+		"http://arshaw.com/js/fullcalendar-1.5.4/fullcalendar/fullcalendar.css",
+		"http://arshaw.com/js/fullcalendar-1.5.4/fullcalendar/fullcalendar.js"
+	]
+}

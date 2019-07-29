@@ -1,0 +1,14 @@
+{
+  "name": "d3-delaunay",
+  "_cacheHeaders": {
+    "ETag": "\"5e757b150d6dd4712d5f932891ae1d26\"",
+    "Last-Modified": "Thu, 22 Mar 2018 17:03:47 GMT",
+    "Content-Length": "15891",
+    "Content-Type": "application/octet-stream",
+    "Content-Disposition": "attachment; filename=d3-delaunay.zip"
+  },
+  "_release": "e-tag:5e757b150",
+  "_source": "https://github.com/d3/d3-delaunay/releases/download/v2.0.1/d3-delaunay.zip",
+  "_target": "*",
+  "_originalSource": "https://github.com/d3/d3-delaunay/releases/download/v2.0.1/d3-delaunay.zip"
+}

@@ -1,0 +1,7 @@
+{
+    "compilerOptions": {
+        "typeRoots": ["./types"],
+        "allowJs": true
+    },
+    "include": ["types/*"]
+}

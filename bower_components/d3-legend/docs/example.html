@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+svg {
+  font: 10px sans-serif;
+}
+
+.caption {
+  font-weight: bold;
+}
+
+.key path {
+  display: none;
+}
+
+.key line {
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+</style>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="../d3-legend.min.js"></script>
+<script>
+
+var width = 960,
+    height = 500,
+    formatPercent = d3.format(".0%"),
+    formatNumber = d3.format(".0f");
+
+var threshold = d3.scale.threshold()
+    .domain([.11, .22, .33, .50])
+    .range(["#6e7c5a", "#a0b28f", "#d8b8b3", "#b45554", "#760000"]);
+
+// A position encoding for the key only.
+var x = d3.scale.linear()
+    .domain([0, 1])
+    .range([0, 240]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+    .tickSize(13)
+    .tickValues(threshold.domain())
+    .tickFormat(function(d) { return d === .5 ? formatPercent(d) : formatNumber(100 * d); });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var g = svg.append("g")
+    .attr("class", "key")
+    .attr("transform", "translate(" + (width - 240) / 2 + "," + height / 2 + ")");
+
+var legend = d3.legend.color()
+      .scale(threshold)
+      .orient("horizontal")
+      .shapeWidth(60);
+
+svg.append("g")
+  .attr("class", "legend")
+  .attr("transform", "translate(20,20)");
+
+svg.select(".legend")
+  .call(legend);
+
+g.selectAll("rect")
+    .data(threshold.range().map(function(color) {
+      var d = threshold.invertExtent(color);
+      if (d[0] == null) d[0] = x.domain()[0];
+      if (d[1] == null) d[1] = x.domain()[1];
+      return d;
+    }))
+  .enter().append("rect")
+    .attr("height", 8)
+    .attr("x", function(d) { return x(d[0]); })
+    .attr("width", function(d) { return x(d[1]) - x(d[0]); })
+    .style("fill", function(d) { return threshold(d[0]); });
+
+g.call(xAxis).append("text")
+    .attr("class", "caption")
+    .attr("y", -6)
+    .text("Percentage of stops that involved force");
+
+</script>

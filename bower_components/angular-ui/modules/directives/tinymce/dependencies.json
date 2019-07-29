@@ -1,0 +1,8 @@
+{
+    "core": [ "jquery" ],
+    "internal": [],
+    "external": [
+        "http://fiddle.tinymce.com/tinymce/3.5.8/tiny_mce_jquery_src.js",
+        "http://fiddle.tinymce.com/tinymce/3.5.8/jquery.tinymce.js",
+    ]
+}

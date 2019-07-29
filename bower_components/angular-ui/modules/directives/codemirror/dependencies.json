@@ -1,0 +1,8 @@
+{
+    "core": [ "jquery" ],
+    "internal": [],
+    "external": [
+        "http://codemirror.net/lib/codemirror.js",
+        "http://codemirror.net/lib/codemirror.css",
+    ]
+}

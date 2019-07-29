@@ -1,0 +1,12 @@
+{
+  "name": "is_js",
+  "main": "is.js",
+  "ignore": [
+    "bower_components",
+    "node_modules",
+    "test",
+    "**/.*",
+    "**/*.md",
+    "package.json"
+  ]
+}

@@ -1,0 +1,35 @@
+language: node_js
+sudo: false
+node_js:
+  - "4"
+
+env:
+  global:
+    - SAUCE_USERNAME=mgcrea
+    - SAUCE_ACCESS_KEY=ad4bb656-dfad-4a10-8c10-0a0d8b5a1ead
+    - CODE_CLIMATE_TOKEN=b5ed978a0e88f95b003a668583ae70815e18cd71019d526023b5e9c7703ec076
+
+before_script:
+  - export DISPLAY=:99.0
+  - export CHROME_BIN=chromium-browser
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3 # give xvfb some time to start
+  - npm install -gq bower codeclimate-test-reporter # coveralls
+  - bower install --dev --config.interactive=0
+  - gulp --version
+  - bower --version
+  - date --rfc-2822
+
+script:
+  - npm run lint
+  - $(npm bin)/gulp karma:travis
+  - $(npm bin)/gulp karma:travis~1.4.0
+  - $(npm bin)/gulp karma:travis~1.3.0
+  - $(npm bin)/gulp karma:travis~1.2.0
+
+after_script:
+  - cat test/coverage/*/lcov.info | codeclimate-test-reporter
+
+addons:
+  code_climate:
+    repo_token: b5ed978a0e88f95b003a668583ae70815e18cd71019d526023b5e9c7703ec076

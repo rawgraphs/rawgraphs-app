@@ -1,0 +1,23 @@
+{
+  "name": "is_js",
+  "main": "is.js",
+  "ignore": [
+    "bower_components",
+    "node_modules",
+    "test",
+    "**/.*",
+    "**/*.md",
+    "package.json"
+  ],
+  "homepage": "https://github.com/arasatasaygin/is.js",
+  "version": "0.9.0",
+  "_release": "0.9.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.9.0",
+    "commit": "342a9a9a8c959d0978a0d43260ec7cf26cdee087"
+  },
+  "_source": "https://github.com/arasatasaygin/is.js.git",
+  "_target": "0.9.0",
+  "_originalSource": "is_js"
+}

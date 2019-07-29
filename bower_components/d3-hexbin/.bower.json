@@ -1,0 +1,14 @@
+{
+  "name": "d3-hexbin",
+  "_cacheHeaders": {
+    "ETag": "\"f33e0320292b228b385fe4420a432b91\"",
+    "Last-Modified": "Thu, 25 May 2017 18:53:45 GMT",
+    "Content-Length": "5786",
+    "Content-Type": "application/octet-stream",
+    "Content-Disposition": "attachment; filename=d3-hexbin.zip"
+  },
+  "_release": "e-tag:f33e03202",
+  "_source": "https://github.com/d3/d3-hexbin/releases/download/v0.2.2/d3-hexbin.zip",
+  "_target": "*",
+  "_originalSource": "https://github.com/d3/d3-hexbin/releases/download/v0.2.2/d3-hexbin.zip"
+}

@@ -1,0 +1,65 @@
+{
+  "name": "angular-strap",
+  "description": "AngularStrap - AngularJS directives for Bootstrap",
+  "version": "2.3.12",
+  "keywords": [
+    "angular",
+    "bootstrap"
+  ],
+  "main": "index.js",
+  "homepage": "http://mgcrea.github.io/angular-strap",
+  "bugs": "https://github.com/mgcrea/angular-strap/issues",
+  "author": {
+    "name": "Olivier Louvignes",
+    "email": "olivier@mg-crea.com",
+    "url": "https://github.com/mgcrea"
+  },
+  "contributors": [
+    {
+      "name": "Vitor Fernandes",
+      "url": "https://github.com/vmlf01"
+    },
+    {
+      "name": "Dale Alexander Webb",
+      "email": "dale.a.webb@gmail.com",
+      "url": "https://github.com/DaleWebb"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mgcrea/angular-strap.git"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "codeclimate-test-reporter": "^0.3.2",
+    "del": "^2.2.0",
+    "eslint": "^2.12.0",
+    "eslint-config-mgcrea": "^8.0.0",
+    "eslint-plugin-import": "^1.8.1",
+    "factory-angular-channels": "^0.10.0",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-pre": "^4.0.0-alpha.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3",
+    "gulp-util": "^3.0.7",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-coverage": "^1.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-sauce-launcher": "^1.0.0",
+    "ng-factory": "^1.1.0",
+    "phantomjs-prebuilt": "^2.1.7",
+    "through2": "^2.0.1",
+    "undertaker-lib-tasks": "^0.5.3"
+  },
+  "scripts": {
+    "start": "gulp serve",
+    "compile": "gulp build",
+    "test": "gulp karma:unit",
+    "test:watch": "npm run test -- -w",
+    "lint": "eslint src/*/*.js"
+  }
+}

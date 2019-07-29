@@ -1,0 +1,14 @@
+{
+  "name": "d3-voronoi",
+  "_cacheHeaders": {
+    "ETag": "\"1c7277cb67049ec28d4ecb8c9f255cbc\"",
+    "Last-Modified": "Thu, 25 May 2017 14:18:54 GMT",
+    "Content-Length": "14768",
+    "Content-Type": "application/octet-stream",
+    "Content-Disposition": "attachment; filename=d3-voronoi.zip"
+  },
+  "_release": "e-tag:1c7277cb6",
+  "_source": "https://github.com/d3/d3-voronoi/releases/download/v1.1.2/d3-voronoi.zip",
+  "_target": "*",
+  "_originalSource": "https://github.com/d3/d3-voronoi/releases/download/v1.1.2/d3-voronoi.zip"
+}

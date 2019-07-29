@@ -1,0 +1,12 @@
+{
+  "name": "FileSaver",
+  "_cacheHeaders": {
+    "ETag": "W/\"4239ecaadc4e090bb1fcb50b28a50eaa387fc2b1\"",
+    "Content-Type": "application/javascript;charset=utf-8"
+  },
+  "_release": "e-tag:W/\"4239eca",
+  "main": "index.js",
+  "_source": "https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js",
+  "_target": "*",
+  "_originalSource": "https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"
+}

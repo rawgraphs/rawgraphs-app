@@ -1,0 +1,14 @@
+{
+  "name": "d3-contour",
+  "_cacheHeaders": {
+    "ETag": "\"441c1c4198274fb7debdb19fa619cbd9\"",
+    "Last-Modified": "Wed, 28 Feb 2018 02:10:59 GMT",
+    "Content-Length": "10797",
+    "Content-Type": "application/octet-stream",
+    "Content-Disposition": "attachment; filename=d3-contour.zip"
+  },
+  "_release": "e-tag:441c1c419",
+  "_source": "https://github.com/d3/d3-contour/releases/download/v1.2.0/d3-contour.zip",
+  "_target": "*",
+  "_originalSource": "https://github.com/d3/d3-contour/releases/download/v1.2.0/d3-contour.zip"
+}
