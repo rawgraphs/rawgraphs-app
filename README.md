@@ -11,11 +11,11 @@ RAWGraphs works with [tabular data](https://en.wikipedia.org/wiki/Table_(informa
 
 Knowing the need of working with sensitive information, the data injected into RAWGraphs is processed only by the web browser: **no server-side operations or storages are performed** and no one will see, touch or copy your data!
 
-RAWGraphs is also highly customizable and extensible, accepting new custom layouts defined by users. For more information about how to add or edit layouts, see the [Developer Guide](https://github.com/densitydesign/raw/wiki/Developer-Guide).
+RAWGraphs is also highly customizable and extensible, accepting new custom layouts defined by users. For more information about how to add or edit layouts, see the [Developer Guide](https://github.com/rawgraphs/raw/wiki/Developer-Guide).
 
 - App page: [app.rawgraphs.io](http://app.rawgraphs.io)
 - Project official page: [rawgraphs.io](http://rawgraphs.io)
-- Documentation: [github.com/densitydesign/raw/wiki](https://github.com/densitydesign/raw/wiki)
+- Documentation: [github.com/rawgraphs/raw/wiki](https://github.com/rawgraphs/raw/wiki)
 - Google group: [groups.google.com/forum/#!forum/densitydesign-raw](https://groups.google.com/forum/#!forum/densitydesign-raw)
 
 
@@ -35,7 +35,7 @@ If you want to run your instance of RAWGraphs locally on your machine, be sure y
 Clone RAWGraphs from the command line:
 
 ``` sh
-$ git clone https://github.com/densitydesign/raw.git
+$ git clone https://github.com/rawgraphs/raw.git
 ```
 
 browse to RAWGraphs root folder:
@@ -72,18 +72,18 @@ $ python -m http.server 4000
 
 Once this is running, go to [http://localhost:4000/](http://localhost:4000/).
 
-Troubles with the installation? Maybe a look at the [issues](https://github.com/densitydesign/raw/issues) page can solve your problem, otherwise join the [Google group](https://groups.google.com/forum/#!forum/densitydesign-raw).
+Troubles with the installation? Maybe a look at the [issues](https://github.com/rawgraphs/raw/issues) page can solve your problem, otherwise join the [Google group](https://groups.google.com/forum/#!forum/densitydesign-raw).
 
 
 ## Documentation and Support
 
-Documentation and FAQs about how to use RAWGraphs can be found on the [wiki](https://github.com/densitydesign/raw/wiki/).
+Documentation and FAQs about how to use RAWGraphs can be found on the [wiki](https://github.com/rawgraphs/raw/wiki/).
 
 ## Charts
 
-Information about the available charts can be found [here](https://github.com/densitydesign/raw/wiki/Available-Charts). Adding new charts is very easy in RAWGraphs, see how [here](https://github.com/densitydesign/raw/wiki/Adding-New-Charts)!
+Information about the available charts can be found [here](https://github.com/rawgraphs/raw/wiki/Available-Charts). Adding new charts is very easy in RAWGraphs, see how [here](https://github.com/rawgraphs/raw/wiki/Adding-New-Charts)!
 
-If you have any suggestion or request about new layouts to include, please let us know! If you have already created new charts and you would like to see them included into Raw, please send us a [pull request](https://github.com/densitydesign/raw/pulls).
+If you have any suggestion or request about new layouts to include, please let us know! If you have already created new charts and you would like to see them included into Raw, please send us a [pull request](https://github.com/rawgraphs/raw/pulls).
 
 ## Libraries
 
@@ -177,20 +177,20 @@ Bibtex:
 
 ## License
 
-RAWGraphs is provided under the [Apache License 2.0](https://github.com/densitydesign/raw/blob/master/LICENSE):
+RAWGraphs is provided under the [Apache License 2.0](https://github.com/rawgraphs/raw/blob/master/LICENSE):
 
-	Copyright (c), 2013-2017 DensityDesign Lab, Giorgio Caviglia, Michele Mauri, Giorgio Uboldi, Matteo Azzi
-	
+	Copyright (c), 2013-2019 DensityDesign Lab, Giorgio Caviglia, Michele Mauri, Giorgio Uboldi, Matteo Azzi
+
 	<info@densitydesign.org>
 	<giorgio.caviglia@gmail.com>
 	<mikimauri@gmail.com>
 	<giorgio@calib.ro>
 	<matteo@calib.ro>
-	
+
 	Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-	
+
 		http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and limitations under the License.
