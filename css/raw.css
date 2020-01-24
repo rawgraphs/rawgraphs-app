@@ -157,7 +157,7 @@ section.dark {
   color: #888;
   text-align: center;
   opacity: .97;
-  z-index: 10000;
+  /* z-index: 10000; */
   border-radius: 0px;
   padding: 5px 0px;
   margin-bottom: 20px;
