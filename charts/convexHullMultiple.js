@@ -81,7 +81,13 @@
 	var colors = chart.color()
 		.title("Color scale");
 
+	var showLegend = chart.checkbox()
+		.title("show legend")
+		.defaultValue(false);
+
 	chart.draw((selection, data) => {
+
+		var legendWidth = 100;
 
 		var xmin = d3.min(data, layer => {
 			return d3.min(layer.value, d => {
@@ -107,7 +113,7 @@
 		//define margins
 		var margin = {
 			top: +stroke() / 2,
-			right: +stroke() / 2,
+			right: showLegend() ? legendWidth + stroke() / 2 : stroke() / 2,
 			bottom: stroke() / 2 > 20 ? stroke() / 2 : 20,
 			left: marginLeft() > stroke() / 2 ? marginLeft() : stroke() / 2
 		};
@@ -220,6 +226,14 @@
 						.text(item.label)
 				})
 			});
+		}
+
+		if (showLegend()) {
+			var newLegend = raw.legend()
+				.legendWidth(legendWidth)
+				.addColor("Groups", colors())
+				// .addSize(size.key(), sizeScale, d3.extent(data, (d) => d.size))
+			selection.call(newLegend);
 		}
 	})
 })();

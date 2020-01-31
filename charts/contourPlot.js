@@ -46,18 +46,23 @@
 
 	var showPoints = chart.checkbox()
 		.title("Show points")
-		.defaultValue(true)
+		.defaultValue(true);
+
+	var showLegend = chart.checkbox()
+		.title("show legend")
+		.defaultValue(false);
 
 	chart.draw(function(selection, data) {
 
 		// Retrieving dimensions from model
 		var x = points.dimensions().get('x'),
-			y = points.dimensions().get('y');
+			y = points.dimensions().get('y'),
+			legendWidth = 100;
 
 		//define margins
 		var margin = {
 			top: 0,
-			right: 0,
+			right: showLegend() ? legendWidth : 0,
 			bottom: 20,
 			left: marginLeft()
 		};
@@ -179,5 +184,12 @@
 			.style("fill", "none")
 			.style("stroke", "#000000")
 			.style("shape-rendering", "crispEdges")
+
+		if (showLegend()) {
+			var newLegend = raw.legend()
+				.legendWidth(legendWidth)
+				.addColor('Density', colors())
+			selection.call(newLegend);
+		}
 	})
 })();

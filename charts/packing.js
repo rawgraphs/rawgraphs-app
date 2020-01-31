@@ -30,15 +30,25 @@
 		.title("Show labels")
 		.defaultValue(true)
 
+	var showLegend = chart.checkbox()
+		.title("show legend")
+		.defaultValue(false);
+
 	chart.draw(function(selection, data) {
 
 		if (!data.children.length) return;
 
+		// Retrieving dimensions from model
+		var colorDimension = tree.dimensions().get('color');
+		var sizeDimension = tree.dimensions().get('size');
+
+		var legendWidth = 200;
+
 		var margin = {
-			top: 1,
-			right: 1,
-			bottom: 1,
-			left: 1
+			top: 0,
+			right: showLegend() ? legendWidth : 0,
+			bottom: 0,
+			left: 0
 		};
 		var outerDiameter = +diameter(),
 			innerDiameter = outerDiameter - d3.max([margin.top + margin.bottom, margin.left + margin.right]);
@@ -62,6 +72,7 @@
 				return sort() ? b.value - a.value : null;
 			})
 			.descendants();
+
 		pack(hierarchy);
 
 		var g = selection
@@ -115,5 +126,23 @@
 				return d.data.label ? d.data.label.join(", ") : d.data.name;
 			});
 
+		// rebulid the scale used in the packing
+		let sizeExtent = d3.extent(hierarchy.leaves(), d => d.r);
+		let valueExtent = d3.extent(hierarchy.leaves(), d => d.value);
+
+		console.log('size:',sizeExtent, 'values:',valueExtent)
+
+		var radiusScale = d3.scaleLinear()
+			.range(sizeExtent)
+			.domain(valueExtent)
+		//get list of all nodes: hierarchy.descendants()
+
+		if (showLegend()) {
+			var newLegend = raw.legend()
+				.legendWidth(legendWidth)
+				.addColor(colorDimension.key(), colors())
+				.addSize(sizeDimension.key(), radiusScale, valueExtent)
+			selection.call(newLegend);
+		}
 	})
 })();
