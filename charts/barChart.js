@@ -111,16 +111,22 @@
 	var colors = chart.color()
 		.title("Color scale")
 
+	// Legends
+	var showLegend = chart.checkbox()
+		.title("show legend")
+		.defaultValue(false);
+
 	// Drawing function
 	// selection represents the d3 selection (svg)
 	// data is not the original set of records
 	// but the result of the model map function
 	chart.draw(function(selection, data) {
 
+		var legendWidth = 200;
 		// Define margins
 		var margin = {
 			top: 0,
-			right: 200,
+			right: showLegend() ? legendWidth : 0,
 			bottom: 20,
 			left: marginLeft()
 		};
@@ -254,6 +260,13 @@
 			.style("shape-rendering", "crispEdges")
 			.style("fill", "none")
 			.style("stroke", "#ccc");
+
+		if (showLegend()) {
+			var newLegend = raw.legend()
+				.legendWidth(legendWidth)
+				.addColor(colorsDimesion.key(), colors())
+			selection.call(newLegend);
+		}
 
 	})
 })();

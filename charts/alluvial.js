@@ -35,12 +35,18 @@
 	var colors = chart.color()
 		.title("Color scale");
 
+	var showLegend = chart.checkbox()
+		.title("show legend")
+		.defaultValue(false);
+
 	chart.draw((selection, data) => {
+
+		var legendWidth = 200;
 
 		// Define margins
 		var margin = {
 			top: 0,
-			right: 0,
+			right: showLegend() ? legendWidth : 0,
 			bottom: 6,
 			left: 0
 		};
@@ -229,6 +235,23 @@
 				return d.x1 + 6;
 			})
 			.attr("text-anchor", "start");
+
+		// rebuild the scale used in the packing
+		let sizeExtent = d3.extent(data.links, d => d.width);
+		let valueExtent = d3.extent(data.links, d => d.value);
+
+		var sizeScale = d3.scaleLinear()
+			.range(sizeExtent)
+			.domain(valueExtent)
+
+		// TODO: add export for lines in legend
+
+		if (showLegend()) {
+			var newLegend = raw.legend()
+				.legendWidth(legendWidth)
+				.addColor("Colors", colors())
+			selection.call(newLegend);
+		}
 	})
 
 })();

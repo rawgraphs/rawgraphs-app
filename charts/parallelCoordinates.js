@@ -45,11 +45,17 @@
 	var colors = chart.color()
 		.title("Color scale");
 
+	var showLegend = chart.checkbox()
+		.title("show legend")
+		.defaultValue(false);
+
 	chart.draw((selection, data) => {
+
+		var legendWidth = 200;
 
 		var margin = {
 			top: 6,
-			right: 1,
+			right: showLegend() ? legendWidth : 0,
 			bottom: 6,
 			left: 0
 		};
@@ -134,6 +140,13 @@
 			return line(dimensions.map(p => {
 				return [position(p), y[p](d.dimensions[p])];
 			}));
+		}
+
+		if (showLegend()) {
+			var newLegend = raw.legend()
+				.legendWidth(legendWidth)
+				.addColor(color.key(), colors())
+			selection.call(newLegend);
 		}
 
 	});

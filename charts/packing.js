@@ -130,8 +130,6 @@
 		let sizeExtent = d3.extent(hierarchy.leaves(), d => d.r);
 		let valueExtent = d3.extent(hierarchy.leaves(), d => d.value);
 
-		console.log('size:',sizeExtent, 'values:',valueExtent)
-
 		var radiusScale = d3.scaleLinear()
 			.range(sizeExtent)
 			.domain(valueExtent)

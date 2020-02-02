@@ -122,13 +122,19 @@
 	var colors = chart.color()
 		.title("Color scale")
 
+	// Legends
+	var showLegend = chart.checkbox()
+		.title("show legend")
+		.defaultValue(false);
+
 	// Drawing function
 	chart.draw(function(selection, data) {
 
+		var legendWidth = 200;
 		//define margins
 		var margin = {
 			top: 0,
-			right: 0,
+			right: showLegend() ? legendWidth : 0,
 			bottom: 20,
 			left: marginLeft()
 		};
@@ -263,8 +269,15 @@
 			.style("fill", "none")
 			.style("stroke", "#ccc")
 
-	})
+		if (showLegend()) {
+			var newLegend = raw.legend()
+				.legendWidth(legendWidth)
+				.addColor(colorDimension.key(), colors())
+			selection.call(newLegend);
+		}
 
+
+	})
 	//sorting functions
 	function sortBy(a, b) {
 		if (sort() == 'Start date (descending)') return d3.descending(a.value[0][0].start, b.value[0][0].start)

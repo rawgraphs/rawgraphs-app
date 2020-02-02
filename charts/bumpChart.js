@@ -347,7 +347,7 @@
 		if (showLegend()) {
 			var newLegend = raw.legend()
 				.legendWidth(legendWidth)
-				.addColor('Streams', colors())
+				.addColor(group.key(), colors())
 			//console.log(newLegend)
 			selection.call(newLegend);
 		}

@@ -43,6 +43,10 @@
 		.values(['Original', 'Total (descending)', 'Total (ascending)', 'Name'])
 		.defaultValue('Original')
 
+	var showLegend = chart.checkbox()
+		.title("show legend")
+		.defaultValue(false);
+
 	// interpolation function
 
 	function CurveSankey(context) {
@@ -88,10 +92,11 @@
 
 	chart.draw(function(selection, data) {
 
+		var legendWidth = 200;
 		// margins
 		var margin = {
 			top: 0,
-			right: 200,
+			right: showLegend() ? legendWidth : 0,
 			bottom: 20,
 			left: 0
 		};
@@ -241,6 +246,15 @@
 					return colors()(d.values[0].color);
 				})
 				.attr("d", area(single.values));
+		}
+		// Retrieving dimensions from model
+		var colorDimension = stream.dimensions().get('color');
+
+		if (showLegend()) {
+			var newLegend = raw.legend()
+				.legendWidth(legendWidth)
+				.addColor(colorDimension.key(), colors())
+			selection.call(newLegend);
 		}
 
 	})

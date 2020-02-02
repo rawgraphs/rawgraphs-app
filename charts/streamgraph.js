@@ -109,11 +109,17 @@
 	var colors = chart.color()
 		.title("Color scale")
 
+	var showLegend = chart.checkbox()
+		.title("show legend")
+		.defaultValue(false);
+
 	chart.draw(function(selection, data) {
+
+		var legendWidth = 200;
 
 		var margin = {
 			top: 0,
-			right: 15,
+			right: showLegend() ? legendWidth : 0,
 			bottom: 20,
 			left: 15
 		};
@@ -195,6 +201,15 @@
 		}
 
 		colors.domain(data.keys);
+
+
+		if (showLegend()) {
+			var newLegend = raw.legend()
+				.legendWidth(legendWidth)
+				.addColor(group.key(), colors());
+
+			selection.call(newLegend);
+		}
 
 		var xAxis = d3.axisBottom(x); //.tickSize(-height()+20);
 
