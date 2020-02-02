@@ -26,14 +26,23 @@
 	var colors = chart.color()
 		.title("Color scale")
 
+	var showLegend = chart.checkbox()
+		.title("show legend")
+		.defaultValue(false);
+
 	chart.draw(function(selection, data) {
+
+		// Retrieving dimensions from model
+		var colorDimension = tree.dimensions().get('color');
+
+		var legendWidth = 200;
 
 		//unknown function
 		var format = d3.format(",d");
 
 		var margin = {
 			top: 0,
-			right: 0,
+			right: showLegend() ? legendWidth : 0,
 			bottom: 0,
 			left: 0
 		};
@@ -94,6 +103,13 @@
 			.style("font-size", "11px")
 			.style("font-family", "Arial, Helvetica")
 			.text(function(d) { return d.data.label ? d.data.label.join(", ") : d.data.name; });
+
+		if (showLegend()) {
+			var newLegend = raw.legend()
+				.legendWidth(legendWidth)
+				.addColor(colorDimension.key(), colors())
+			selection.call(newLegend);
+		}
 
 	})
 })();

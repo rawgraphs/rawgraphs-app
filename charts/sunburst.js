@@ -21,11 +21,20 @@
 	var colors = chart.color()
 		.title("Color scale");
 
+	var showLegend = chart.checkbox()
+		.title("show legend")
+		.defaultValue(false);
+
 	chart.draw((selection, data) => {
+		
+		// Retrieving dimensions from model
+		var colorDimension = tree.dimensions().get('color');
+
+		var legendWidth = 200;
 
 		var margin = {
 			top: +marginSize(),
-			right: +marginSize(),
+			right: showLegend() ? legendWidth + marginSize() : +marginSize(),
 			bottom: +marginSize(),
 			left: +marginSize()
 		};
@@ -33,6 +42,8 @@
 		var radius = (+diameter() - d3.max([margin.top + margin.bottom, margin.left + margin.right])) / 2;
 
 		var root = d3.hierarchy(data);
+
+
 		root.sum(d => {
 			return d.size;
 		});
@@ -112,6 +123,13 @@
 		function seek(d) {
 			if (d.children) return seek(d.children[0]);
 			else return d.data.color;
+		}
+
+		if (showLegend()) {
+			var newLegend = raw.legend()
+				.legendWidth(legendWidth)
+				.addColor(colorDimension.key(), colors())
+			selection.call(newLegend);
 		}
 
 	})
