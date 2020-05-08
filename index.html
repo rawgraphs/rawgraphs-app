@@ -63,6 +63,12 @@
       href="bower_components/codemirror/lib/codemirror.css"
     />
 
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"
+    />
+
     <link rel="stylesheet" href="css/raw.css" />
     <link rel="icon" href="favicon.ico?v=2" type="image/x-icon" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -452,6 +458,29 @@
       //$("#pre-launch-modal")
       // .modal({'backdrop', 'static'})
       //.modal("toggle");
+    </script>
+
+    <!-- cookie consent -->
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+    <script>
+      console.log('cookies')
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#f5f5f5",
+          "text": "#646467"
+        },
+        "button": {
+          "background": "#646467",
+          "text": "#f5f5f5"
+        }
+      },
+      "theme": "classic",
+      "content": {
+        "message": "This website uses Google Analytics to anonymously collect browsing data.",
+        "href": "https://rawgraphs.io/privacy/"
+      }
+    });
     </script>
   </body>
 </html>
