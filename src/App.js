@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Container, Row} from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
-import HeaderItems from './HeaderItems';
+import headerItems from './headerItems';
 import Header from "./components/Header";
 import Section from "./components/Section";
 
@@ -13,11 +13,11 @@ import Footer from "./components/Footer";
 // #TODO: i18n
 
 function App() {
-  const [currentChart, setCurrentChart] = useState(null);
+  const [currentChart, setCurrentChart] = useState(charts.find(d=>d.name==="Scatter Plot"));
   
   return (
     <div className="App">
-      <Header menuItems={HeaderItems}/>
+      <Header menuItems={headerItems}/>
       <Container fluid>
         <Section title="0. Typography">
           {typography}

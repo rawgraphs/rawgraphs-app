@@ -1,4 +1,4 @@
-const HeaderItems = [
+const headerItems = [
     {
         'label': 'About',
         'slug': 'about',
@@ -26,4 +26,4 @@ const HeaderItems = [
     }
 ];
 
-export default HeaderItems;
+export default headerItems;

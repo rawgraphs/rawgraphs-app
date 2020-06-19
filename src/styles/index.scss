@@ -13,7 +13,34 @@ $theme-colors: (
 @import "~/typeface-inter/Inter (web)/inter.css";
 html, body { font-family: 'Inter', sans-serif; }
 
-// General styles
+// Typography
+html {
+  font-size: 13px;
+}
+h1 {
+  font-size: 1.8461538462rem;
+  font-weight: normal;
+  color: $gray-900;
+  letter-spacing: -0.5px;
+  line-height: 32px;
+}
+h2 {
+  font-size: 1.3846153846rem;
+  font-weight: normal;
+  color: $gray-900;
+  letter-spacing: 0;
+  line-height: 24px;
+}
+
+h4 {
+  font-size: 0.9230769231rem;
+  font-weight: normal;
+  color: $gray-700;
+  letter-spacing: 0;
+  line-height: 16px;
+}
+
+// UI
 .navbar {
   border-top: 4px solid theme-color("primary");
 }
@@ -29,4 +56,14 @@ html, body { font-family: 'Inter', sans-serif; }
   color: theme-color("light");
   padding-top: 32px;
   padding-bottom: 40px;
+}
+
+.chart-small {
+  cursor: pointer;
+  .card {
+    .thumbnail {
+      background-size: cover;
+      background-position: center;
+    }
+  }
 }
