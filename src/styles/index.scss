@@ -1,9 +1,32 @@
 // Variables override
-
+$body-bg: #F5F8FA;
 $theme-colors: (
-  "primary": #4bc06a
+  "primary": #4bc06a,
+  "light": #d8d8d8
 );
 
 
 // Boostrap scss
 @import "~bootstrap/scss/bootstrap";
+
+// Import Inter typeface
+@import "~/typeface-inter/Inter (web)/inter.css";
+html, body { font-family: 'Inter', sans-serif; }
+
+// General styles
+.navbar {
+  border-top: 4px solid theme-color("primary");
+}
+
+.section {
+  border-bottom: 1px solid theme-color("light");
+  padding-top: 32px;
+  padding-bottom: 40px;
+}
+
+.footer {
+  background-color: theme-color("dark");
+  color: theme-color("light");
+  padding-top: 32px;
+  padding-bottom: 40px;
+}
