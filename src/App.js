@@ -3,24 +3,29 @@ import React, { useState } from "react";
 import headerItems from './headerItems';
 import Header from "./components/Header";
 import Section from "./components/Section";
+
+import DataLoader from "./components/DataLoader";
+
 import charts from "./charts";
 import ChartSelector from "./components/ChartSelector";
 
 import Footer from "./components/Footer";
 
+
 // #TODO: i18n
 
 function App() {
   const [currentChart, setCurrentChart] = useState(charts.find(d=>d.name==="Scatter Plot"));
+  const [data, setData] = useState(undefined);
   
   return (
     <div className="App">
       <Header menuItems={headerItems}/>
-        {/* <Section title="0. Typography">
-          {typography}
-        </Section> */}
         <Section title="1. Load your data">
-          Data grid
+          <DataLoader
+            data={data}
+            setData={setData}
+          />
         </Section>
         <Section title="2. Choose a chart">
           <ChartSelector
@@ -37,6 +42,9 @@ function App() {
         </Section>
         <Section title="5. Export">
           Export here
+        </Section>
+        <Section title="0. Typography">
+          {typography}
         </Section>
         <Footer>
           Footer items go here!

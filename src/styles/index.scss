@@ -51,6 +51,29 @@ h4 {
   padding-top: 32px;
   padding-bottom: 40px;
 }
+.loading-option{
+  height:64px;
+  div {
+    height: 48px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    cursor: pointer; 
+  }
+  &:hover {
+    div {
+      background-color: $primary-lighter;
+    }
+  }
+  &.active {
+    div {
+      background-color: $primary-lighter;
+      border-color: theme-color("primary");
+    }
+  }
+}
+.parsing-options{
+  height:64px;
+}
 .footer {
   background-color: theme-color("dark");
   color: theme-color("light");
@@ -61,18 +84,19 @@ h4 {
   color: theme-color("dark");
   background-color: white;
   border: none;
-  border-bottom: 1px solid $gray-200;
+  border-bottom: 1px solid var(--light);
 }
 .chart-small {
   cursor: pointer;
   .card {
+    border-radius: 4px;
     &.active {
       border-color: theme-color("primary");
       background-color: $primary-lighter;
     }
     .thumbnail {
-      background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
     }
   }
 }

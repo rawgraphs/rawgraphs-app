@@ -19,7 +19,7 @@ export default function ChartSelector({
   return (
     <>
       <Row>
-        <Col className="flex-row text-right">
+        <Col className="text-right">
           Show
           <Dropdown className="d-inline-block ml-2">
             <Dropdown.Toggle variant="white">{filter}</Dropdown.Toggle>
