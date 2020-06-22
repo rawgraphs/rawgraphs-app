@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Row, Col, Card, Dropdown } from 'react-bootstrap';
+import { BsLink } from "react-icons/bs";
+import bubbles from './bubbles.svg';
 
 export default function ChartSelector({
     availableCharts,
@@ -9,7 +11,7 @@ export default function ChartSelector({
   { 
   
   // make the array longer for testing purposes. To be removed.
-  availableCharts = availableCharts.concat(availableCharts, availableCharts, availableCharts, availableCharts, availableCharts, availableCharts, availableCharts, availableCharts);
+  // availableCharts = availableCharts.concat(availableCharts, availableCharts, availableCharts, availableCharts, availableCharts, availableCharts, availableCharts, availableCharts);
 
   const [filter, setFilter] = useState('All charts');
   const charts = filter==='All charts'?availableCharts:availableCharts.filter(d=>d.category===filter);
@@ -20,7 +22,7 @@ export default function ChartSelector({
         <Col className="flex-row text-right">
           Show
           <Dropdown className="d-inline-block ml-2">
-            <Dropdown.Toggle variant="secondary">{filter}</Dropdown.Toggle>
+            <Dropdown.Toggle variant="white">{filter}</Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item key={'All charts'} onClick={()=>setFilter('All charts')}>All charts</Dropdown.Item>
               {
@@ -42,8 +44,8 @@ export default function ChartSelector({
               <Card.Text>
                 {currentChart.description}
               </Card.Text>
-              <Card.Link href={currentChart.code} target="_blank">[icn] Code</Card.Link>
-              <Card.Link href={currentChart.tutorial} target="_blank">[icn] Tutorial</Card.Link>
+              <Card.Link className="underlined" href={currentChart.code} target="_blank"><BsLink color="black" /> Code</Card.Link>
+              <Card.Link className="underlined" href={currentChart.tutorial} target="_blank"><BsLink color="black" /> Tutorial</Card.Link>
             </Card.Body>
           </Card>
         </Col>
@@ -52,8 +54,8 @@ export default function ChartSelector({
             {charts.map((d,i)=>{
               return ( 
                 <Col xs={4} key={'chart-'+i} className="p-3 chart-small">
-                    <Card onClick={()=>{ setCurrentChart(d) }} className="flex-row overflow-hidden h-100">
-                      <div className="thumbnail h-100 w-25" style={{backgroundImage:`url("${d.thumbnail}")`}}></div>
+                    <Card onClick={()=>{ setCurrentChart(d) }} className={`flex-row h-100 ${d===currentChart?'active':''}`}>
+                      <div className="thumbnail h-100 w-25" style={{backgroundImage:`url("${bubbles}")`}}></div>
                       <Card.Body className="w-75 px-2 py-3">
                         <Card.Title className="m-0"><h2 className="m-0">{d.name}</h2></Card.Title>
                         <Card.Subtitle className="m-0"><h4 className="m-0">{d.category}</h4></Card.Subtitle>

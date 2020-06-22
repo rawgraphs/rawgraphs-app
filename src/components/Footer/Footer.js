@@ -1,10 +1,14 @@
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 
 export default function Footer(props){
-    return <Row>
-            <Col className="footer">
-                {props.children}
-            </Col>
-        </Row>
+    return  <Container className="footer" fluid>
+                <Container>
+                    <Row>
+                        <Col >
+                            {props.children}
+                        </Col>
+                    </Row>
+                </Container>
+            </Container>
 }

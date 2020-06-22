@@ -5,6 +5,7 @@ $theme-colors: (
   "light": #d8d8d8
 );
 
+$primary-lighter: #DEFFF0;
 
 // Boostrap scss
 @import "~bootstrap/scss/bootstrap";
@@ -13,7 +14,7 @@ $theme-colors: (
 @import "~/typeface-inter/Inter (web)/inter.css";
 html, body { font-family: 'Inter', sans-serif; }
 
-// Typography
+// HTML tags
 html {
   font-size: 13px;
 }
@@ -31,7 +32,6 @@ h2 {
   letter-spacing: 0;
   line-height: 24px;
 }
-
 h4 {
   font-size: 0.9230769231rem;
   font-weight: normal;
@@ -39,28 +39,37 @@ h4 {
   letter-spacing: 0;
   line-height: 16px;
 }
-
 // UI
+.underlined {
+  border-bottom: 1px solid theme-color("primary");
+}
 .navbar {
   border-top: 4px solid theme-color("primary");
 }
-
 .section {
   border-bottom: 1px solid theme-color("light");
   padding-top: 32px;
   padding-bottom: 40px;
 }
-
 .footer {
   background-color: theme-color("dark");
   color: theme-color("light");
   padding-top: 32px;
   padding-bottom: 40px;
 }
-
+.btn-white {
+  color: theme-color("dark");
+  background-color: white;
+  border: none;
+  border-bottom: 1px solid $gray-200;
+}
 .chart-small {
   cursor: pointer;
   .card {
+    &.active {
+      border-color: theme-color("primary");
+      background-color: $primary-lighter;
+    }
     .thumbnail {
       background-size: cover;
       background-position: center;

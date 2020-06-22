@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="56px" height="56px" viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="charts" transform="translate(-16.000000, -8.000000)">
+            <g id="Group" transform="translate(16.000000, 8.000000)">
+                <circle id="Oval" style="mix-blend-mode: multiply;" cx="28" cy="28" r="28"></circle>
+                <g id="IconChart" transform="translate(10.000000, 11.000000)" fill="#06C26C">
+                    <circle id="Oval-Copy-2" cx="7.12139932" cy="14" r="7"></circle>
+                    <circle id="Oval-Copy-5" transform="translate(18.000000, 25.824739) rotate(-180.000000) translate(-18.000000, -25.824739) " cx="18" cy="25.8247392" r="7"></circle>
+                    <circle id="Oval-Copy-3" cx="23.1213993" cy="12" r="6"></circle>
+                    <circle id="Oval-Copy-6" transform="translate(4.000000, 25.824739) rotate(-180.000000) translate(-4.000000, -25.824739) " cx="4" cy="25.8247392" r="4"></circle>
+                    <circle id="Oval-Copy-4" cx="15.1213993" cy="4" r="4"></circle>
+                    <circle id="Oval-Copy-7" transform="translate(9.121399, 32.000000) rotate(-180.000000) translate(-9.121399, -32.000000) " cx="9.12139932" cy="32" r="3"></circle>
+                    <circle id="Oval-Copy-8" transform="translate(33.121399, 15.000000) rotate(-180.000000) translate(-33.121399, -15.000000) " cx="33.1213993" cy="15" r="2"></circle>
+                    <circle id="Oval-Copy-9" transform="translate(29.121399, 21.000000) rotate(-180.000000) translate(-29.121399, -21.000000) " cx="29.1213993" cy="21" r="3"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

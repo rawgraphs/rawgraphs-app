@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { Container } from 'react-bootstrap';
 
 import headerItems from './headerItems';
 import Header from "./components/Header";
 import Section from "./components/Section";
-
-import ChartSelector from "./components/ChartSelector";
 import charts from "./charts";
+import ChartSelector from "./components/ChartSelector";
 
 import Footer from "./components/Footer";
 
@@ -18,10 +16,9 @@ function App() {
   return (
     <div className="App">
       <Header menuItems={headerItems}/>
-      <Container fluid>
-        <Section title="0. Typography">
+        {/* <Section title="0. Typography">
           {typography}
-        </Section>
+        </Section> */}
         <Section title="1. Load your data">
           Data grid
         </Section>
@@ -44,7 +41,6 @@ function App() {
         <Footer>
           Footer items go here!
         </Footer>
-      </Container>
     </div>
   );
 }
