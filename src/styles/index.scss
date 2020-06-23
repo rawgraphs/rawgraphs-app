@@ -43,6 +43,31 @@ h4 {
 .underlined {
   border-bottom: 1px solid theme-color("primary");
 }
+.btn {
+  height: 40px;
+}
+.btn-white {
+  color: theme-color("dark");
+  background-color: white;
+  border: none;
+  border-bottom: 1px solid var(--light);
+}
+.dropdown-toggle {
+  text-align: left;
+  &::after {
+    right: 8px;
+    bottom: calc(50% - 1px);
+    position: absolute;
+  }
+}
+.text-field {
+  height: 40px;
+  border: none;
+  border-bottom: 1px solid var(--light);
+  border-radius: 4px;
+}
+
+// Sections and elements
 .navbar {
   border-top: 4px solid theme-color("primary");
 }
@@ -79,12 +104,6 @@ h4 {
   color: theme-color("light");
   padding-top: 32px;
   padding-bottom: 40px;
-}
-.btn-white {
-  color: theme-color("dark");
-  background-color: white;
-  border: none;
-  border-bottom: 1px solid var(--light);
 }
 .chart-small {
   cursor: pointer;
