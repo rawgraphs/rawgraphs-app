@@ -28,7 +28,7 @@ export default function DataLoader({data,setData}){
           message:'Wanna know more about what you can do with RAWGraphs?',
           loader: <DataSamples />,
           icon: BsGift,
-          separator: true
+          separator: false
       },
       {
           id: 'project',
@@ -36,7 +36,7 @@ export default function DataLoader({data,setData}){
           message:'Load a .rawgraphs project. Questions about how to save your work?',
           loader: 'insert here a drop zone / file loader that accepts .rawgraphs files',
           icon: BsFolder,
-          separator: true
+          separator: false
       },
       {
           id: 'clear',
@@ -44,25 +44,24 @@ export default function DataLoader({data,setData}){
           message:'No message.',
           loader: 'just reset all import operations',
           icon: BsTrashFill,
-          separator: false
+          separator: true
       }
   ]
   const [option, setOption] = useState(options[0]);
   // Parsing Options
   const [locale, setLocale] = useState('en-CA');
   const [separator, setSeparator] = useState(',');
-  const dimensions = ['Dimension 1', 'Dimension 2', 'Dimension 3', 'Dimension 4'];
+  const dimensions = ['Dateset header 1', 'Dateset header 2', 'Dateset header 3', 'Dateset header 4'];
 
   return (
     <>
       <Row>
-        <Col xs={2}></Col>
-        <Col>
+        <Col xs={{span: 9, order: null, offset: 3}} lg={{span: 10, order: null, offset: 2}}>
           <ParsingOptions locale={locale} setLocale={setLocale} localeList={localeList} separator={separator} setSeparator={setSeparator} dimensions={dimensions} />
         </Col>
       </Row>
       <Row>
-        <Col xs={2} className="d-flex flex-column justify-content-start pl-3 pr-0 options" style={{marginTop:'-8px'}}>
+        <Col xs={3} lg={2} className="d-flex flex-column justify-content-start pl-3 pr-0 options" style={{marginTop:'-8px'}}>
           {
             options.map(d=>{
               return (

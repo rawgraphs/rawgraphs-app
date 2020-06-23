@@ -25,7 +25,7 @@ export default function ParsingOptions(props){
       <Col xs={5} lg={7} className="text-right pl-0">
           Stack data on
           <Dropdown className="d-inline-block ml-4">
-              <Dropdown.Toggle variant="white" className="pr-5">Dimension 1</Dropdown.Toggle>
+              <Dropdown.Toggle variant="white" className="pr-5">Select a dimension</Dropdown.Toggle>
               <Dropdown.Menu>
               {
                   props.dimensions.map(d=>{

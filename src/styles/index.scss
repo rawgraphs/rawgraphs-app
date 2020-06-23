@@ -88,7 +88,8 @@ h4 {
     height: 48px;
     border-radius: 4px;
     border: 1px solid transparent;
-    cursor: pointer; 
+    cursor: pointer;
+    white-space: nowrap;
   }
   &:hover {
     div {
