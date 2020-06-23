@@ -6,6 +6,7 @@ $theme-colors: (
 );
 
 $primary-lighter: #DEFFF0;
+$warning-lighter: #fff8c6;
 
 // Boostrap scss
 @import "~bootstrap/scss/bootstrap";
@@ -54,11 +55,16 @@ h4 {
 }
 .dropdown-toggle {
   text-align: left;
+  // min-width: 120px;
   &::after {
     right: 8px;
     bottom: calc(50% - 1px);
     position: absolute;
   }
+}
+.dropdown-menu {
+  max-height: 40vh;
+  overflow-y: auto;
 }
 .text-field {
   height: 40px;
@@ -94,6 +100,21 @@ h4 {
       background-color: $primary-lighter;
       border-color: theme-color("primary");
     }
+  }
+  &:last-child {
+    align-self: flex-end;
+    &:hover {
+      div {
+        background-color: $warning-lighter;
+      }
+    }
+    &:active, &.active {
+      div {
+        border-color: theme-color("warning");
+        background-color: $warning-lighter;
+      }
+    }
+    
   }
 }
 .parsing-options{

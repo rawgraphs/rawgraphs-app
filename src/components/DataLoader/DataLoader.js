@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { BsClipboard, BsUpload, BsGift, BsFolder } from "react-icons/bs";
+import { BsClipboard, BsUpload, BsGift, BsFolder, BsTrashFill } from "react-icons/bs";
 import DataSamples from '../DataSamples/DataSamples';
 
+import localeList from './localeList';
 import ParsingOptions from '../ParsingOptions';
 
 export default function DataLoader({data,setData}){
@@ -36,19 +37,32 @@ export default function DataLoader({data,setData}){
           loader: 'insert here a drop zone / file loader that accepts .rawgraphs files',
           icon: BsFolder,
           separator: true
+      },
+      {
+          id: 'clear',
+          name: 'Clear',
+          message:'No message.',
+          loader: 'just reset all import operations',
+          icon: BsTrashFill,
+          separator: false
       }
   ]
   const [option, setOption] = useState(options[0]);
+  // Parsing Options
+  const [locale, setLocale] = useState('en-CA');
+  const [separator, setSeparator] = useState(',');
+  const dimensions = ['Dimension 1', 'Dimension 2', 'Dimension 3', 'Dimension 4'];
+
   return (
     <>
       <Row>
         <Col xs={2}></Col>
         <Col>
-          <ParsingOptions />
+          <ParsingOptions locale={locale} setLocale={setLocale} localeList={localeList} separator={separator} setSeparator={setSeparator} dimensions={dimensions} />
         </Col>
       </Row>
       <Row>
-        <Col xs={2} className="pl-3 pr-0" style={{marginTop:'-8px'}}>
+        <Col xs={2} className="d-flex flex-column justify-content-start pl-3 pr-0 options" style={{marginTop:'-8px'}}>
           {
             options.map(d=>{
               return (

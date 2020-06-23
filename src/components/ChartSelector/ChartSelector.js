@@ -22,7 +22,7 @@ export default function ChartSelector({
         <Col className="text-right">
           Show
           <Dropdown className="d-inline-block ml-2">
-            <Dropdown.Toggle variant="white">{filter}</Dropdown.Toggle>
+            <Dropdown.Toggle variant="white" className="pr-5">{filter}</Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item key={'All charts'} onClick={()=>setFilter('All charts')}>All charts</Dropdown.Item>
               {
