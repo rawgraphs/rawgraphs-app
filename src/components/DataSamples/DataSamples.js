@@ -23,10 +23,20 @@ const samplesList = [
     'delimiter': '\t'
   }
 ]
+
 export default function DataSamples({setData}){
   const select = async (sample)=>{
     const { delimiter, url } = sample;
     const data = await dsv(delimiter, url, autoType);
+    const dimensions=data.columns.map(c=>{
+      const type = typeof(data[0][c]);
+      return {
+        name:c,
+        type: (type==='object') ? ( (data[0][c] instanceof Date) ? 'date' : undefined) : type
+      }
+    }
+    );
+    data.columns=dimensions;
     setData(data);
   }
   return (
