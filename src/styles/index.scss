@@ -2,7 +2,10 @@
 $body-bg: #F5F8FA;
 $theme-colors: (
   "primary": #4bc06a,
-  "light": #d8d8d8
+  "success": #4bc06a,
+  "warning": #E7B332,
+  "danger": #D04949,
+  "light": #d8d8d8,
 );
 
 $primary-lighter: #DEFFF0;
@@ -41,8 +44,21 @@ h4 {
   line-height: 16px;
 }
 // UI
-.underlined {
-  border-bottom: 1px solid theme-color("primary");
+.alert {
+  color: $gray-100;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  border: none;
+  &.alert-success {
+    background-color: theme-color("success");
+  }
+  &.alert-warning {
+    background-color: theme-color("warning");
+  }
+  &.alert-danger {
+    background-color: theme-color("danger");
+  }
 }
 .btn {
   height: 40px;
@@ -66,13 +82,37 @@ h4 {
   max-height: 40vh;
   overflow-y: auto;
 }
+.card {
+  border-radius: 4px;
+  &:hover {
+    background-color: $primary-lighter;
+  }
+  &.active {
+    border-color: theme-color("primary");
+    background-color: $primary-lighter;
+  }
+}
+.cursorpointer, .cursor-pointer {
+  cursor: pointer;
+}
+.noselect, .no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+}
 .text-field {
   height: 40px;
   border: none;
   border-bottom: 1px solid var(--light);
   border-radius: 4px;
 }
-
+.underlined {
+  border-bottom: 1px solid theme-color("primary");
+}
 // Sections and elements
 .navbar {
   border-top: 4px solid theme-color("primary");
@@ -83,43 +123,47 @@ h4 {
   padding-bottom: 40px;
 }
 .loading-option{
-  height:64px;
-  div {
-    height: 48px;
-    border-radius: 4px;
-    border: 1px solid transparent;
-    cursor: pointer;
-    white-space: nowrap;
-  }
+  height:48px;
+  margin: 8px 0;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+
   &:hover {
-    div {
-      background-color: $primary-lighter;
-    }
+    background-color: $primary-lighter;
+  }
+  &.disabled {
+    pointer-events: none;
+    opacity: .5;
   }
   &.active {
-    div {
-      background-color: $primary-lighter;
-      border-color: theme-color("primary");
-    }
+    background-color: $primary-lighter;
+    border-color: theme-color("primary");
+    opacity: 1;
   }
   &:last-child {
     align-self: flex-end;
     &:hover {
-      div {
-        background-color: $warning-lighter;
-      }
+      background-color: $warning-lighter;
     }
     &:active, &.active {
-      div {
-        border-color: theme-color("warning");
-        background-color: $warning-lighter;
-      }
+      border-color: theme-color("warning");
+      background-color: $warning-lighter;
     }
-    
+  }
+  &:last-child, &.separated {
+    position: relative;
+    &::before {
+      content:' ';
+      border-top: 1px solid $gray-400;
+      width: 100%;
+      position: absolute;
+      top: -8px;
+    }
   }
 }
 .parsing-options{
-  height:64px;
+  height:100%;
 }
 .footer {
   background-color: theme-color("dark");
@@ -130,11 +174,6 @@ h4 {
 .chart-small {
   cursor: pointer;
   .card {
-    border-radius: 4px;
-    &.active {
-      border-color: theme-color("primary");
-      background-color: $primary-lighter;
-    }
     .thumbnail {
       background-position: center;
       background-repeat: no-repeat;
