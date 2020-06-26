@@ -9,10 +9,62 @@ import {
   BsTrashFill,
 } from 'react-icons/bs'
 import DataSamples from '../DataSamples/DataSamples'
+import { parseDataset } from '@raw-temp/rawgraphs-core'
 
 import localeList from './localeList'
 import ParsingOptions from '../ParsingOptions'
 import Paste from './loaders/Paste'
+import { parseAndCheckData } from './parser'
+
+const initialState = {
+  userInput: "",
+  userData: null,
+
+  separator: ",",
+  locale: "en-CA",
+
+  error: null,
+}
+
+
+
+function reducer(state = initialState, action) {
+  if (action.type === "set-user-input") {
+    let [userData, dataType, error] = parseAndCheckData(action.payload, {
+      separator: state.separator,
+      locale: state.locale
+    })
+    return {
+      ...state,
+      userInput: action.payload,
+      dataType,
+      userData,
+      error
+    }
+  }
+  else if (action.type === 'change-separator') {
+    if (state.userInput) {
+      let [userData, dataType, error] = parseAndCheckData(state.userInput, {
+        separator: action.payload,
+        locale: state.locale
+      })
+      return {
+        ...state,
+        dataType,
+        userData,
+        error,
+        separator: action.payload
+      }
+    } else {
+      return {
+        ...state,
+        separator: action.payload
+      }
+    }
+  }
+  return state
+}
+
 
 export default function DataLoader({ data, setData }) {
   const [parseError, setParserError] = useState(null)
@@ -42,7 +94,9 @@ export default function DataLoader({ data, setData }) {
       setParserError(null)
       setUserDataType(dataType)
       if (dataType === 'csv') {
+        const dataSet = parseDataset(data)
         setUserData(data)
+        setData(dataSet)
       }
     }
     setUserInput(str)
@@ -130,6 +184,30 @@ export default function DataLoader({ data, setData }) {
   const [optionIndex, setOptionIndex] = useState(0)
   const selectedOption = options[optionIndex]
 
+  let mainContent
+  if (data) {
+    mainContent = <div>T A B L E</div>
+  } else if (userDataType === 'json' && userData === null) {
+    mainContent = <div>PICK JSON</div>
+  } else {
+    mainContent = (
+      <>
+        {selectedOption.loader}
+        <p className="mt-3">
+          {selectedOption.message}{' '}
+          <a
+            href="https://rawgraphs.io/learning"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Check out our guides
+          </a>
+          .
+        </p>
+      </>
+    )
+  }
+
   return (
     <>
       <Row>
@@ -144,7 +222,8 @@ export default function DataLoader({ data, setData }) {
             localeList={localeList}
             separator={separator}
             setSeparator={setSeparator}
-            dimensions={data ? data.columns : []}
+            // dimensions={data ? data.columns : []}
+            dimensions={[]}
           />
         </Col>
       </Row>
@@ -160,8 +239,8 @@ export default function DataLoader({ data, setData }) {
               <div
                 key={d.id}
                 className={`w-100 d-flex align-items-center loading-option no-select cursor-pointer${
-                  d.id === selectedOption.id ? ' active' : ''
-                }${data && i < options.length - 1 ? ' disabled' : ''}`}
+                  d.id === selectedOption.id && !userDataType ? ' active' : ''
+                }${userDataType ? ' disabled' : ''}`}
                 onClick={() => setOptionIndex(i)}
               >
                 <d.icon className="w-25" />
@@ -174,6 +253,7 @@ export default function DataLoader({ data, setData }) {
             onClick={() => {
               setData(null)
               setUserData(null)
+              setUserDataType(null)
               setUserInput('')
               setParserError(null)
               setOptionIndex(0)
@@ -186,22 +266,7 @@ export default function DataLoader({ data, setData }) {
         <Col>
           <Row>
             <Col>
-              {!data && (
-                <>
-                  {selectedOption.loader}
-                  <p className="mt-3">
-                    {selectedOption.message}{' '}
-                    <a
-                      href="https://rawgraphs.io/learning"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Check out our guides
-                    </a>
-                    .
-                  </p>
-                </>
-              )}
+              {mainContent}
               {parseError && (
                 <Alert variant="danger">
                   <p className="m-0">
@@ -210,7 +275,7 @@ export default function DataLoader({ data, setData }) {
                   </p>
                 </Alert>
               )}
-              {data && (
+              {/* {data && (
                 <>
                   <div
                     style={{
@@ -258,7 +323,7 @@ export default function DataLoader({ data, setData }) {
                     </p>
                   </Alert>
                 </>
-              )}
+              )} */}
             </Col>
           </Row>
         </Col>
