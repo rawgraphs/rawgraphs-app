@@ -19,6 +19,19 @@ $warning-lighter: #fff8c6;
 html, body { font-family: 'Inter', sans-serif; }
 
 // HTML tags
+:root {
+  --primary-lighter: $primary-lighter;
+  --warning-lighter: $warning-lighter;
+  --gray-100: $gray-100;
+  --gray-200: $gray-200;
+  --gray-300: $gray-300;
+  --gray-400: $gray-400;
+  --gray-500: $gray-500;
+  --gray-600: $gray-600;
+  --gray-700: $gray-700;
+  --gray-800: $gray-800;
+  --gray-900: $gray-900;
+}
 html {
   font-size: 13px;
 }
@@ -113,7 +126,7 @@ h4 {
 .underlined {
   border-bottom: 1px solid theme-color("primary");
 }
-// Sections and elements
+Sections and elements
 .navbar {
   border-top: 4px solid theme-color("primary");
 }

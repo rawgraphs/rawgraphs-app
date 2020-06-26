@@ -27,7 +27,7 @@ export default function ParsingOptions(props){
               <Dropdown.Menu>
               {
                   props.dimensions.map(d=>{
-                  return <Dropdown.Item key={d}>{d}</Dropdown.Item>
+                  return <Dropdown.Item key={d.name}>{d.name}</Dropdown.Item>
                   })
               }
               </Dropdown.Menu>

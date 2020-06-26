@@ -3,14 +3,12 @@ import React, { useState } from "react";
 import headerItems from './headerItems';
 import Header from "./components/Header";
 import Section from "./components/Section";
-
-import DataLoader from "./components/DataLoader";
-
-import charts from "./charts";
-import ChartSelector from "./components/ChartSelector";
-
 import Footer from "./components/Footer";
 
+import DataLoader from "./components/DataLoader";
+import charts from "./charts";
+import ChartSelector from "./components/ChartSelector";
+import DataMapping from './components/DataMapping';
 
 // #TODO: i18n
 
@@ -20,34 +18,41 @@ function App() {
   return (
     <div className="App">
       <Header menuItems={headerItems}/>
-        <Section title="1. Load your data">
-          <DataLoader
-            data={data}
-            setData={setData}
-          />
-        </Section>
-        <Section title="2. Choose a chart">
-          <ChartSelector
-            availableCharts={charts}
-            currentChart={currentChart}
-            setCurrentChart={setCurrentChart}
-          />
-        </Section>
-        <Section title="3. Mapping">
-          Data mapping here
-        </Section>
-        <Section title="4. Customize">
-          Customize chart here
-        </Section>
-        <Section title="5. Export">
-          Export here
-        </Section>
-        <Section title="0. Typography">
-          {typography}
-        </Section>
-        <Footer>
-          Footer items go here!
-        </Footer>
+      <Section title="1. Load your data">
+        <DataLoader
+          data={data}
+          setData={setData}
+        />
+      </Section>
+      { data &&
+        <>
+          <Section title="2. Choose a chart">
+            <ChartSelector
+              availableCharts={charts}
+              currentChart={currentChart}
+              setCurrentChart={setCurrentChart}
+            />
+          </Section>
+          <Section title="3. Mapping">
+            <DataMapping
+              currentChart={currentChart}
+              dimensions={data.columns}
+            />
+          </Section>
+          <Section title="4. Customize">
+            Customize chart here
+          </Section>
+          <Section title="5. Export">
+            Export here
+          </Section>
+          <Section title="0. Typography">
+            {typography}
+          </Section>
+        </>
+      }
+      <Footer>
+        Footer items go here!
+      </Footer>
     </div>
   );
 }
