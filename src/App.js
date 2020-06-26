@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import headerItems from './headerItems';
+import HeaderItems from './HeaderItems';
 import Header from "./components/Header";
 import Section from "./components/Section";
 
@@ -15,11 +15,11 @@ import Footer from "./components/Footer";
 // #TODO: i18n
 
 function App() {
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
   const [currentChart, setCurrentChart] = useState(charts.find(d=>d.name==="Scatter Plot"));
   return (
     <div className="App">
-      <Header menuItems={headerItems}/>
+      <Header menuItems={HeaderItems}/>
         <Section title="1. Load your data">
           <DataLoader
             data={data}
@@ -66,6 +66,6 @@ const typography = (
     <p>An ordinary paragraph.</p>
     <p className="lighter">Paragraph classed "lighter"</p>
     <p className="small">A paragraph classed "small"</p>
-    
+
   </>
 )
