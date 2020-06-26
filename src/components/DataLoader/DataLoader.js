@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styles from './DataLoader.module.scss';
 import { Row, Col, Alert } from 'react-bootstrap';
 import { BsClipboard, BsUpload, BsGift, BsFolder, BsTrashFill } from "react-icons/bs";
 import DataSamples from '../DataSamples/DataSamples';
@@ -8,41 +9,41 @@ import ParsingOptions from '../ParsingOptions';
 
 export default function DataLoader({data,setData}){
   const options = [
-      {
-          id: 'paste',
-          name: 'Paste your data',
-          loader: <div style={{backgroundColor:'white', border:'1px solid lightgrey', borderRadius:4, padding:'1rem', minHeight:'250px', height:'40vh'}}><span role="img" aria-label="work in progress">⏳</span> this will be a text area input</div>,
-          message:'Copy and paste your data from other applications or websites. You can use tabular (TSV, CSV, DSV) or JSON data. Questions about how to format your data?',
-          icon: BsClipboard
-      },
-      {
-          id: 'upload',
-          name: 'Upload your data',
-          loader: <div style={{backgroundColor:'white', border:'1px solid lightgrey', borderRadius:4, padding:'1rem', minHeight:'250px', height:'40vh'}}><span role="img" aria-label="work in progress">⏳</span> this will be a drop zone / file loader that accepts datasets</div>,
-          message:'You can load tabular (TSV, CSV, DSV) or JSON data. Questions about how to format your data?',
-          icon: BsUpload
-      },
-      {
-          id: 'samples',
-          name: 'Try our data samples',
-          message:'Wanna know more about what you can do with RAWGraphs?',
-          loader: <DataSamples setData={setData} />,
-          icon: BsGift
-      },
-      {
-          id: 'project',
-          name: 'Open your project',
-          message:'Load a .rawgraphs project. Questions about how to save your work?',
-          loader: <div style={{backgroundColor:'white', border:'1px solid lightgrey', borderRadius:4, padding:'1rem', minHeight:'250px', height:'40vh'}}><span role="img" aria-label="work in progress">⏳</span> this will be a drop zone / file loader that accepts .rawgraphs files</div>,
-          icon: BsFolder
-      },
-      {
-          id: 'clear',
-          name: 'Clear',
-          message:null,
-          loader:null,
-          icon: BsTrashFill
-      }
+    {
+      id: 'paste',
+      name: 'Paste your data',
+      loader: <div style={{backgroundColor:'white', border:'1px solid lightgrey', borderRadius:4, padding:'1rem', minHeight:'250px', height:'40vh'}}><span role="img" aria-label="work in progress">⏳</span> this will be a text area input</div>,
+      message:'Copy and paste your data from other applications or websites. You can use tabular (TSV, CSV, DSV) or JSON data. Questions about how to format your data?',
+      icon: BsClipboard
+    },
+    {
+      id: 'upload',
+      name: 'Upload your data',
+      loader: <div style={{backgroundColor:'white', border:'1px solid lightgrey', borderRadius:4, padding:'1rem', minHeight:'250px', height:'40vh'}}><span role="img" aria-label="work in progress">⏳</span> this will be a drop zone / file loader that accepts datasets</div>,
+      message:'You can load tabular (TSV, CSV, DSV) or JSON data. Questions about how to format your data?',
+      icon: BsUpload
+    },
+    {
+      id: 'samples',
+      name: 'Try our data samples',
+      message:'Wanna know more about what you can do with RAWGraphs?',
+      loader: <DataSamples setData={setData} />,
+      icon: BsGift
+    },
+    {
+      id: 'project',
+      name: 'Open your project',
+      message:'Load a .rawgraphs project. Questions about how to save your work?',
+      loader: <div style={{backgroundColor:'white', border:'1px solid lightgrey', borderRadius:4, padding:'1rem', minHeight:'250px', height:'40vh'}}><span role="img" aria-label="work in progress">⏳</span> this will be a drop zone / file loader that accepts .rawgraphs files</div>,
+      icon: BsFolder
+    },
+    {
+      id: 'clear',
+      name: 'Clear',
+      message:null,
+      loader:null,
+      icon: BsTrashFill
+    }
   ]
   const [option, setOption] = useState(options[0]);
 
@@ -72,7 +73,7 @@ export default function DataLoader({data,setData}){
                 <div
                   key={d.id}
                   className={
-                    `w-100 d-flex align-items-center loading-option no-select cursor-pointer${d.id===option.id?' active':''}${(data&&i<options.length-1)?' disabled':''}`
+                    `w-100 d-flex align-items-center no-select cursor-pointer ${styles['loading-option']}${d.id===option.id?` ${styles.active}`:''}${(data&&i<options.length-1)?` ${styles.disabled}`:''}`
                   }
                   onClick={()=>setOption(d)}
                 >

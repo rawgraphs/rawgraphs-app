@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from './ChartSelector.module.scss';
 import { Row, Col, Card, Dropdown } from 'react-bootstrap';
 import { BsLink } from "react-icons/bs";
 import bubbles from './bubbles.svg';
@@ -53,9 +54,9 @@ export default function ChartSelector({
           <Row>
             {charts.map((d,i)=>{
               return ( 
-                <Col xs={4} key={'chart-'+i} className="p-3 chart-small">
+                <Col xs={4} key={'chart-'+i} className={`p-3 cursor-pointer`}>
                     <Card onClick={()=>{ setCurrentChart(d) }} className={`flex-row h-100 ${d===currentChart?'active':''}`}>
-                      <div className="thumbnail h-100 w-25" style={{backgroundImage:`url("${bubbles}")`}}></div>
+                      <div className={`h-100 w-25 ${styles.thumbnail}`} style={{backgroundImage:`url("${bubbles}")`}}></div>
                       <Card.Body className="w-75 px-2 py-3">
                         <Card.Title className="m-0"><h2 className="m-0">{d.name}</h2></Card.Title>
                         <Card.Subtitle className="m-0"><h4 className="m-0">{d.category}</h4></Card.Subtitle>

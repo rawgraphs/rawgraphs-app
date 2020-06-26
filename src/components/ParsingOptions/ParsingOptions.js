@@ -3,7 +3,7 @@ import { Row, Col, Dropdown } from 'react-bootstrap';
 
 export default function ParsingOptions(props){
   return (
-    <Row className="parsing-options align-items-center">
+    <Row className="parsing-options align-items-center" style={{height:'100%'}}>
       <Col xs={7} lg={5} className="pr-0">
           Locale
           <Dropdown className="d-inline-block ml-4 mr-4">
