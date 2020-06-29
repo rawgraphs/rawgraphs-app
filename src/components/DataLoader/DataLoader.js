@@ -16,61 +16,12 @@ import ParsingOptions from '../ParsingOptions'
 import Paste from './loaders/Paste'
 import { parseAndCheckData } from './parser'
 
-const initialState = {
-  userInput: "",
-  userData: null,
-
-  separator: ",",
-  locale: "en-CA",
-
-  error: null,
-}
-
-
-
-function reducer(state = initialState, action) {
-  if (action.type === "set-user-input") {
-    let [userData, dataType, error] = parseAndCheckData(action.payload, {
-      separator: state.separator,
-      locale: state.locale
-    })
-    return {
-      ...state,
-      userInput: action.payload,
-      dataType,
-      userData,
-      error
-    }
-  }
-  else if (action.type === 'change-separator') {
-    if (state.userInput) {
-      let [userData, dataType, error] = parseAndCheckData(state.userInput, {
-        separator: action.payload,
-        locale: state.locale
-      })
-      return {
-        ...state,
-        dataType,
-        userData,
-        error,
-        separator: action.payload
-      }
-    } else {
-      return {
-        ...state,
-        separator: action.payload
-      }
-    }
-  }
-  return state
-}
-
-
 export default function DataLoader({ data, setData }) {
-  const [parseError, setParserError] = useState(null)
+  const [userInput, setUserInput] = useState('')
   const [userDataType, setUserDataType] = useState(null)
 
-  const [userInput, setUserInput] = useState('')
+  const [parseError, setParserError] = useState(null)
+
   const [userData, setUserData] = useState(null)
 
   // Parsing Options
@@ -78,28 +29,32 @@ export default function DataLoader({ data, setData }) {
   const [separator, setSeparator] = useState(',')
 
   function setUserDataAndDetect(str) {
-    let data
-    let dataType
-    try {
-      data = JSON.parse(str)
-      dataType = 'json'
-    } catch (e) {
-      const parser = dsvFormat(separator)
-      data = parser.parse(str)
-      dataType = 'csv'
-    }
-    if (data.length === 0) {
-      setParserError('Bad Data')
-    } else {
-      setParserError(null)
-      setUserDataType(dataType)
-      if (dataType === 'csv') {
-        const dataSet = parseDataset(data)
-        setUserData(data)
-        setData(dataSet)
-      }
-    }
+    const [dataType, parsedUserData,  error] = parseAndCheckData(str, {
+      separator,
+      locale,
+    })
     setUserInput(str)
+    setUserDataType(dataType)
+    setParserError(error)
+    // Data parsed ok set parent data
+    if (dataType !== 'json' && !error) {
+      setUserData(parsedUserData)
+      setData(parseDataset(parsedUserData))
+    }
+  }
+
+  function handleChangeSeparator(newSeparator) {
+    const [dataType, parsedUserData, error] = parseAndCheckData(userInput, {
+      separator: newSeparator,
+      locale,
+    })
+    setSeparator(newSeparator)
+    setUserDataType(dataType)
+    setParserError(error)
+    if (dataType !== 'json' && !error) {
+      setUserData(parsedUserData)
+      setData(parseDataset(parsedUserData))
+    }
   }
 
   const options = [
@@ -221,7 +176,7 @@ export default function DataLoader({ data, setData }) {
             setLocale={setLocale}
             localeList={localeList}
             separator={separator}
-            setSeparator={setSeparator}
+            setSeparator={handleChangeSeparator}
             // dimensions={data ? data.columns : []}
             dimensions={[]}
           />
@@ -270,8 +225,7 @@ export default function DataLoader({ data, setData }) {
               {parseError && (
                 <Alert variant="danger">
                   <p className="m-0">
-                    Whoops! Something wrong with the data you provided. Refresh
-                    the page!
+                    {parseError}
                   </p>
                 </Alert>
               )}
