@@ -15,6 +15,7 @@ import localeList from './localeList'
 import ParsingOptions from '../ParsingOptions'
 import Paste from './loaders/Paste'
 import { parseAndCheckData } from './parser'
+import JsonViewer from '../JsonViewer'
 
 export default function DataLoader({ data, setData }) {
   const [userInput, setUserInput] = useState('')
@@ -143,7 +144,16 @@ export default function DataLoader({ data, setData }) {
   if (data) {
     mainContent = <div>T A B L E</div>
   } else if (userDataType === 'json' && userData === null) {
-    mainContent = <div>PICK JSON</div>
+    mainContent = (
+      <JsonViewer
+        context={JSON.parse(userInput)}
+        selectFilter={ctx => Array.isArray(ctx)}
+        onSelect={ctx => {
+          setUserData(ctx)
+          setData(parseDataset(ctx))
+        }}
+      />
+    )
   } else {
     mainContent = (
       <>
