@@ -23,19 +23,19 @@ const samplesList = [
     'delimiter': '\t'
   }
 ]
-export default function DataSamples({setData}){
-  const select = async (sample)=>{
+export default function DataSamples({ onSampleReady }) {
+  const select = async (sample) => {
     const { delimiter, url } = sample;
     const data = await dsv(delimiter, url, autoType);
-    setData(data);
+    onSampleReady(data, delimiter);
   }
   return (
     <Row>
       {
-        samplesList.map((d,i)=>{
+        samplesList.map((d, i) => {
           return (
             <Col xs={3} key={i}>
-              <Card onClick={()=>{ select(d) }} className="cursor-pointer">
+              <Card onClick={() => { select(d) }} className="cursor-pointer">
                 <Card.Body className="">
                   <Card.Title className="">
                     <h2 className="">{d.name}</h2>

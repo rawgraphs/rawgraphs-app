@@ -89,6 +89,19 @@ export default function DataLoader({ data, setData }) {
     setData(parseDataset(userData, nextTypes))
   }
 
+  /*
+   * Callback to handle user selecting a data sample from RawGraphs.io
+   * When this happens, we have data parsed with dsv with a proper separator out of the box
+   *   since in this case data are rigorously checked
+   * So we just take them as good and use the raw-core library to infer types
+   */
+  function loadSample(sampleData, sampleSeparator) {
+    setSeparator(sampleSeparator)
+    setUserDataType("csv")
+    setUserData(sampleData)
+    setData(parseDataset(sampleData))
+  }
+
   const options = [
     {
       id: 'paste',
@@ -133,7 +146,7 @@ export default function DataLoader({ data, setData }) {
       id: 'samples',
       name: 'Try our data samples',
       message: 'Wanna know more about what you can do with RAWGraphs?',
-      loader: <DataSamples setData={setData} />,
+      loader: <DataSamples onSampleReady={loadSample} />,
       icon: BsGift,
     },
     {
