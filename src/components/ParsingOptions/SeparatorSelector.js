@@ -22,6 +22,8 @@ export default function SeparatorSelector({ value, onChange, ...props }) {
       className="form-control text-field ml-4 px-2 d-inline-block"
       style={{ maxWidth: '48px' }}
       value={inputValue}
-      onChange={handleChange} />
+      onChange={handleChange} 
+      {...props}
+    />
   )
 }
