@@ -17,6 +17,7 @@ import Paste from './loaders/Paste'
 import { parseAndCheckData } from './parser'
 import JsonViewer from '../JsonViewer'
 import DataGrid from '../DataGrid/DataGrid'
+import { get } from 'lodash'
 
 export default function DataLoader({ data, setData }) {
   /* Data to be plot in the chart */
@@ -276,9 +277,16 @@ export default function DataLoader({ data, setData }) {
             <Col>
               {mainContent}
               {parseError && (
-                <Alert variant="danger">
+                <Alert variant="danger" className="mt-3">
                   <p className="m-0">
                     {parseError}
+                  </p>
+                </Alert>
+              )}
+              {get(data, "errors", []).length > 0 && (
+                <Alert variant="warning" className="mt-3">
+                  <p className="m-0">
+                    Ops here something seems weird. Check row {data.errors[0].row + 1}!
                   </p>
                 </Alert>
               )}

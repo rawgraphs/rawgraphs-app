@@ -10,6 +10,8 @@ function DataTypeSelector({ currentType, onTypeChange }) {
   const [showPicker, setShowPicker] = useState(false)
 
   const handleTypeChange = useCallback(e => {
+    e.stopPropagation()
+    e.preventDefault()
     const newType = e.target.dataset.datatype
     if (typeof onTypeChange === "function" && newType !== currentType) {
       onTypeChange(newType)
@@ -17,9 +19,15 @@ function DataTypeSelector({ currentType, onTypeChange }) {
     setShowPicker(false)
   }, [currentType, onTypeChange])
 
+  const handleTargetClick = useCallback(e => {
+    e.stopPropagation()
+    e.preventDefault()
+    setShowPicker(!showPicker)
+  }, [showPicker])
+
   return (
     <>
-      <span role="button" className="data-type-selector-trigger" ref={target} onClick={() => setShowPicker(!showPicker)}>
+      <span role="button" className="data-type-selector-trigger" ref={target} onClick={handleTargetClick}>
         {/* TODO: use icon based on currentType */}
         #
       </span>
@@ -106,7 +114,8 @@ export default function DataGrid({ data, coerceTypes }) {
         headerRenderer: HeaderRenderer,
         _raw_datatype: data.dataTypes[k],
         _raw_coerceType: nextType => coerceTypes({ ...data.dataTypes, [k]: nextType }),
-        sortable: true
+        sortable: true,
+        width: 180,
       }))
     ]
   }, [coerceTypes, data, idColumnWidth])
