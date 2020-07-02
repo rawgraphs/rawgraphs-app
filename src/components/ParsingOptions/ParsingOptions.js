@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Col, Dropdown } from 'react-bootstrap';
+import SeparatorSelector from './SeparatorSelector';
 
 export default function ParsingOptions(props){
   return (
@@ -18,7 +19,7 @@ export default function ParsingOptions(props){
               </Dropdown.Menu>
           </Dropdown>
           Separator
-          <input type="text" className="form-control text-field ml-4 px-2 d-inline-block" style={{maxWidth:'48px'}} value={props.separator} onChange={(event)=>props.setSeparator(event.target.value)}/>
+          <SeparatorSelector value={props.separator} onChange={nextSeparator => props.setSeparator(nextSeparator)} />
       </Col>
       <Col xs={5} lg={7} className="text-right pl-0">
           Stack data on
