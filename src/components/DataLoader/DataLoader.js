@@ -19,17 +19,32 @@ import JsonViewer from '../JsonViewer'
 import DataGrid from '../DataGrid/DataGrid'
 
 export default function DataLoader({ data, setData }) {
+  /* Data to be plot in the chart */
+  /* First stage: raw user input */
   const [userInput, setUserInput] = useState('')
-  const [userDataType, setUserDataType] = useState(null)
 
+  /* Second stage: parsed data and user data type (i.e. csv, json, ...) */
+  /*
+   * In case user data type is json, userData is not filled immediately.
+   * Instead, a JSON view is first shown asking the user to select an
+   * array inside the JSON tree. The (parsed) content of the array will
+   * be used to fill `userData`. In case of some error during parsing,
+   * the `parseError` state holds the error description
+   */
+  const [userData, setUserData] = useState(null)
+  const [userDataType, setUserDataType] = useState(null)
   const [parseError, setParserError] = useState(null)
 
-  const [userData, setUserData] = useState(null)
-
-  // Parsing Options
+  /* Parsing Options */
   const [locale, setLocale] = useState('en-CA')
   const [separator, setSeparator] = useState(',')
 
+  /*
+   * Callback to handle user injecting data
+   * When user uploads some data (in any possible way), we store the raw user input at first
+   * Then we try to read it using different parsers (notably json and csv)
+   * Finally, if read is successful, we go inferring types using the raw-core library
+   */
   function setUserDataAndDetect(str) {
     const [dataType, parsedUserData,  error] = parseAndCheckData(str, {
       separator,
@@ -45,6 +60,12 @@ export default function DataLoader({ data, setData }) {
     }
   }
 
+  /*
+   * Callback to handle user changing separator
+   * When the separator is changed, a fresh parsing of raw user input is required for proper handling
+   * Steps are very similar with respect to the `setUserInputAndDetect` callback, except for the
+   * fact that we take user input from state instead of from parameters
+   */
   function handleChangeSeparator(newSeparator) {
     const [dataType, parsedUserData, error] = parseAndCheckData(userInput, {
       separator: newSeparator,
@@ -59,6 +80,11 @@ export default function DataLoader({ data, setData }) {
     }
   }
 
+  /*
+   * Callback to handle user coercing a type of a column
+   * When this happens, we don't need to go through data parsing again, we just invoke
+   * the raw-core library starting from the parsed data (stage-2 data)
+   */
   function coerceTypes(nextTypes) {
     setData(parseDataset(userData, nextTypes))
   }
@@ -134,13 +160,6 @@ export default function DataLoader({ data, setData }) {
       ),
       icon: BsFolder,
     },
-    // {
-    //   id: 'clear',
-    //   name: 'Clear',
-    //   message: null,
-    //   loader: null,
-    //   icon: BsTrashFill,
-    // },
   ]
   const [optionIndex, setOptionIndex] = useState(0)
   const selectedOption = options[optionIndex]
