@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { dsvFormat } from 'd3'
 import { Row, Col, Alert } from 'react-bootstrap'
 import {
   BsClipboard,
@@ -11,11 +10,13 @@ import {
 import DataSamples from '../DataSamples/DataSamples'
 import { parseDataset } from '@raw-temp/rawgraphs-core'
 
+
 import localeList from './localeList'
 import ParsingOptions from '../ParsingOptions'
 import Paste from './loaders/Paste'
 import { parseAndCheckData } from './parser'
 import JsonViewer from '../JsonViewer'
+import DataGrid from '../DataGrid/DataGrid'
 
 export default function DataLoader({ data, setData }) {
   const [userInput, setUserInput] = useState('')
@@ -56,6 +57,10 @@ export default function DataLoader({ data, setData }) {
       setUserData(parsedUserData)
       setData(parseDataset(parsedUserData))
     }
+  }
+
+  function coerceTypes(nextTypes) {
+    setData(parseDataset(userData, nextTypes))
   }
 
   const options = [
@@ -142,7 +147,13 @@ export default function DataLoader({ data, setData }) {
 
   let mainContent
   if (data) {
-    mainContent = <div>T A B L E</div>
+    console.log(data)
+    mainContent = (
+      <DataGrid
+        data={data}
+        coerceTypes={coerceTypes}
+      />
+    )
   } else if (userDataType === 'json' && userData === null) {
     mainContent = (
       <JsonViewer
