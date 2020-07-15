@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import headerItems from './headerItems';
+import HeaderItems from './HeaderItems';
 import Header from "./components/Header";
 import Section from "./components/Section";
 import Footer from "./components/Footer";
@@ -13,46 +13,39 @@ import DataMapping from './components/DataMapping';
 // #TODO: i18n
 
 function App() {
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
   const [currentChart, setCurrentChart] = useState(charts.find(d=>d.name==="Scatter Plot"));
   return (
     <div className="App">
-      <Header menuItems={headerItems}/>
-      <Section title="1. Load your data">
-        <DataLoader
-          data={data}
-          setData={setData}
-        />
-      </Section>
-      { data &&
-        <>
-          <Section title="2. Choose a chart">
-            <ChartSelector
-              availableCharts={charts}
-              currentChart={currentChart}
-              setCurrentChart={setCurrentChart}
-            />
-          </Section>
-          <Section title="3. Mapping">
-            <DataMapping
-              currentChart={currentChart}
-              dimensions={data.columns}
-            />
-          </Section>
-          <Section title="4. Customize">
-            Customize chart here
-          </Section>
-          <Section title="5. Export">
-            Export here
-          </Section>
-          <Section title="0. Typography">
-            {typography}
-          </Section>
-        </>
-      }
-      <Footer>
-        Footer items go here!
-      </Footer>
+      <Header menuItems={HeaderItems}/>
+        <Section title="1. Load your data">
+          <DataLoader
+            data={data}
+            setData={setData}
+          />
+        </Section>
+        <Section title="2. Choose a chart">
+          <ChartSelector
+            availableCharts={charts}
+            currentChart={currentChart}
+            setCurrentChart={setCurrentChart}
+          />
+        </Section>
+        <Section title="3. Mapping">
+          Data mapping here
+        </Section>
+        <Section title="4. Customize">
+          Customize chart here
+        </Section>
+        <Section title="5. Export">
+          Export here
+        </Section>
+        <Section title="0. Typography">
+          {typography}
+        </Section>
+        <Footer>
+          Footer items go here!
+        </Footer>
     </div>
   );
 }
@@ -71,6 +64,6 @@ const typography = (
     <p>An ordinary paragraph.</p>
     <p className="lighter">Paragraph classed "lighter"</p>
     <p className="small">A paragraph classed "small"</p>
-    
+
   </>
 )

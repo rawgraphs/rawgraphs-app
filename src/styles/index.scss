@@ -20,6 +20,9 @@ $theme-colors: (
 // Boostrap scss
 @import "~bootstrap/scss/bootstrap";
 
+// React Data Table css
+@import "~react-data-grid/dist/react-data-grid.css";
+
 // Import Inter typeface
 @import "~/typeface-inter/Inter (web)/inter.css";
 html, body { font-family: 'Inter', sans-serif; }
