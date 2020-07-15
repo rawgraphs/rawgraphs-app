@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 import HeaderItems from './HeaderItems';
 import Header from "./components/Header";
@@ -9,6 +9,7 @@ import DataLoader from "./components/DataLoader";
 import charts from "./charts";
 import ChartSelector from "./components/ChartSelector";
 import DataMapping from './components/DataMapping';
+import ChartPreviewWithOptions from "./components/ChartPreviewWIthOptions";
 
 // #TODO: i18n
 
@@ -16,6 +17,15 @@ function App() {
   const [data, setData] = useState(null)
   const [currentChart, setCurrentChart] = useState(charts[0])
   const [mapping, setMapping] = useState({})
+  const [visualOptions, setVisualOptions] = useState({
+    width: 500,
+    height: 400,
+  })
+
+  const handleChartChange = useCallback(nextChart => {
+    setCurrentChart(nextChart)
+    setMapping({})
+  }, [])
 
   return (
     <div className="App">
@@ -31,7 +41,7 @@ function App() {
           <ChartSelector
             availableCharts={charts}
             currentChart={currentChart}
-            setCurrentChart={setCurrentChart}
+            setCurrentChart={handleChartChange}
           />
         </Section>
       )}
@@ -45,9 +55,18 @@ function App() {
           />
         </Section>
       )}
-      <Section title="4. Customize">
-        Customize chart here
+      {data && currentChart && (
+        <Section title="4. Customize">
+          <ChartPreviewWithOptions
+            chart={currentChart}
+            dataset={data.dataset}
+            dataTypes={data.dataTypes}
+            mapping={mapping}
+            visualOptions={visualOptions}
+            setVisualOptions={setVisualOptions}
+          />
         </Section>
+      )}
       <Section title="5. Export">
         Export here
         </Section>
