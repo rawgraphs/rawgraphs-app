@@ -17,7 +17,6 @@ const JsonViewerRecursive = ({ contextName, nestingLevel, context, selectFilter,
     if (isSelectable) {
       e.stopPropagation()
       e.preventDefault()
-      console.log(context)
       if (onSelect) onSelect(context)
     }
   }, [context, isSelectable, onSelect])

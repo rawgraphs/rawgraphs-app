@@ -6,9 +6,7 @@ import { DndProvider } from 'react-dnd'
 import ColumnCard from "./ColumnCard"
 import ChartDimensionCard from "./ChartDimensionCard"
 
-export default function DataMapping({ dataTypes, dimensions, mapping, setMapping }) {
-
-  console.log("MAPPING", mapping)
+function DataMapping({ dataTypes, dimensions, mapping, setMapping }) {
 
   const updateMapping = useCallback((dimension, mappingConf) => {
     setMapping(prev => ({
@@ -56,3 +54,5 @@ export default function DataMapping({ dataTypes, dimensions, mapping, setMapping
     </DndProvider>
   )
 }
+
+export default React.memo(DataMapping)

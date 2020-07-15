@@ -21,7 +21,7 @@ import { get } from 'lodash'
 
 import styles from "./DataLoader.module.scss"
 
-export default function DataLoader({ data, setData }) {
+function DataLoader({ data, setData }) {
   /* Data to be plot in the chart */
   /* First stage: raw user input */
   const [userInput, setUserInput] = useState('')
@@ -182,7 +182,6 @@ export default function DataLoader({ data, setData }) {
 
   let mainContent
   if (data) {
-    console.log(data)
     mainContent = (
       <DataGrid
         data={data}
@@ -359,3 +358,5 @@ export default function DataLoader({ data, setData }) {
     </>
   )
 }
+
+export default React.memo(DataLoader)

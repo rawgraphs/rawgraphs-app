@@ -17,10 +17,7 @@ function App() {
   const [data, setData] = useState(null)
   const [currentChart, setCurrentChart] = useState(charts[0])
   const [mapping, setMapping] = useState({})
-  const [visualOptions, setVisualOptions] = useState({
-    width: 500,
-    height: 400,
-  })
+  const [visualOptions, setVisualOptions] = useState({})
 
   const handleChartChange = useCallback(nextChart => {
     setCurrentChart(nextChart)

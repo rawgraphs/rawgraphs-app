@@ -5,7 +5,7 @@ import { BsLink } from "react-icons/bs";
 import bubbles from './bubbles.svg';
 import uniq from "lodash/uniq"
 
-export default function ChartSelector({
+function ChartSelector({
   availableCharts,
   currentChart,
   setCurrentChart,
@@ -69,3 +69,5 @@ export default function ChartSelector({
     </>
   );
 }
+
+export default React.memo(ChartSelector)
