@@ -15,16 +15,18 @@ import DataMapping from './components/DataMapping';
 function App() {
   const [data, setData] = useState(null)
   const [currentChart, setCurrentChart] = useState(charts[0])
+  const [mapping, setMapping] = useState({})
 
   return (
     <div className="App">
-      <Header menuItems={HeaderItems}/>
-        <Section title="1. Load your data">
-          <DataLoader
-            data={data}
-            setData={setData}
-          />
-        </Section>
+      <Header menuItems={HeaderItems} />
+      <Section title="1. Load your data">
+        <DataLoader
+          data={data}
+          setData={setData}
+        />
+      </Section>
+      {data && (
         <Section title="2. Choose a chart">
           <ChartSelector
             availableCharts={charts}
@@ -32,20 +34,28 @@ function App() {
             setCurrentChart={setCurrentChart}
           />
         </Section>
+      )}
+      {data && currentChart && (
         <Section title="3. Mapping">
-          Data mapping here
+          <DataMapping 
+            dimensions={currentChart.dimensions}
+            dataTypes={data.dataTypes}
+            mapping={mapping} 
+            setMapping={setMapping}
+          />
         </Section>
-        <Section title="4. Customize">
-          Customize chart here
+      )}
+      <Section title="4. Customize">
+        Customize chart here
         </Section>
-        <Section title="5. Export">
-          Export here
+      <Section title="5. Export">
+        Export here
         </Section>
-        <Section title="0. Typography">
-          {typography}
-        </Section>
-        <Footer>
-          Footer items go here!
+      <Section title="0. Typography">
+        {typography}
+      </Section>
+      <Footer>
+        Footer items go here!
         </Footer>
     </div>
   );

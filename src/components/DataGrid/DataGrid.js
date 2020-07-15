@@ -74,7 +74,6 @@ function DataTypeSelector({ currentType, onTypeChange }) {
 }
 
 function HeaderRenderer({ column, ...props }) {
-  console.log(column, props)
   return (
     <div>
       <DataTypeSelector
