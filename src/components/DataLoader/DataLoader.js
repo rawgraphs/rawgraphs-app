@@ -19,6 +19,8 @@ import JsonViewer from '../JsonViewer'
 import DataGrid from '../DataGrid/DataGrid'
 import { get } from 'lodash'
 
+import styles from "./DataLoader.module.scss"
+
 export default function DataLoader({ data, setData }) {
   /* Data to be plot in the chart */
   /* First stage: raw user input */
@@ -244,12 +246,23 @@ export default function DataLoader({ data, setData }) {
           style={{ marginTop: '-8px' }}
         >
           {options.map((d, i) => {
+            const classnames = [
+              "w-100",
+              "d-flex",
+              "align-items-center",
+              "no-select",
+              "cursor-pointer",
+              styles['loading-option'],
+              d.id === selectedOption.id && !userDataType ? styles.active : null,
+              userDataType ? styles.disabled : null
+            ].filter(c => c !== null).join(" ")
             return (
               <div
                 key={d.id}
-                className={`w-100 d-flex align-items-center loading-option no-select cursor-pointer${
-                  d.id === selectedOption.id && !userDataType ? ' active' : ''
-                }${userDataType ? ' disabled' : ''}`}
+                className={classnames}
+                // className={`w-100 d-flex align-items-center loading-option no-select cursor-pointer${
+                //   d.id === selectedOption.id && !userDataType ? ' active' : ''
+                // }${userDataType ? ' disabled' : ''}`}
                 onClick={() => setOptionIndex(i)}
               >
                 <d.icon className="w-25" />
@@ -258,7 +271,7 @@ export default function DataLoader({ data, setData }) {
             )
           })}
           <div
-            className={`w-100 d-flex align-items-center loading-option no-select cursor-pointer`}
+            className={`w-100 d-flex align-items-center ${styles["loading-option"]} no-select cursor-pointer`}
             onClick={() => {
               setData(null)
               setUserData(null)
