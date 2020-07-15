@@ -37,7 +37,9 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
         <span className="ml-3">
           {dimension.name}
         </span>
-        <span />
+        <span>
+          {dimension.required && <i>required</i>}
+        </span>
       </div>
       {/* These are the columns that have been dropped on the current dimension */}
       {columnsMappedHere.map((columnId, i) => {
@@ -63,7 +65,7 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
       })}
       {/* This is the dropzone */}
       {(dimension.multiple || columnsMappedHere.length === 0) && (
-        <div className={classnames('dropzone', { 'isOver': isOver })} ref={drop}>
+        <div className={classnames('p-3 border border-light dropzone', { 'bg-light': isOver, })} ref={drop}>
           {!dimension.multiple && (<i>Drop dimension here</i>)}
           {dimension.multiple && columnsMappedHere.length === 0 && (<i>Drop dimensions here</i>)}
           {dimension.multiple && columnsMappedHere.length > 0 && (<i>Drop another dimension here</i>)}
