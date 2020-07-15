@@ -13,8 +13,9 @@ import DataMapping from './components/DataMapping';
 // #TODO: i18n
 
 function App() {
-  const [data, setData] = useState(null);
-  const [currentChart, setCurrentChart] = useState(charts.find(d=>d.name==="Scatter Plot"));
+  const [data, setData] = useState(null)
+  const [currentChart, setCurrentChart] = useState(charts[0])
+
   return (
     <div className="App">
       <Header menuItems={HeaderItems}/>
