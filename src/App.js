@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import { getOptionsConfig, getDefaultOptionsValues } from "@raw-temp/rawgraphs-core";
 
 import HeaderItems from './HeaderItems';
 import Header from "./components/Header";
@@ -23,6 +24,15 @@ function App() {
     setCurrentChart(nextChart)
     setMapping({})
   }, [])
+
+  useEffect(() => {
+    if(!currentChart){
+      setVisualOptions({})
+    } else {
+      const options = getOptionsConfig(currentChart?.visualOptions)
+      setVisualOptions(getDefaultOptionsValues(options))
+    }
+  }, [currentChart])
 
   return (
     <div className="App">

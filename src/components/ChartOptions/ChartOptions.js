@@ -1,12 +1,11 @@
 import React, { useMemo } from "react";
-import { baseOptions } from "@raw-temp/rawgraphs-core";
+import { getOptionsConfig } from "@raw-temp/rawgraphs-core";
 import ChartOptionNumber from "./ChartOptionTypes/ChartOptionNumber";
 import ChartOptionText from "./ChartOptionTypes/ChartOptionText";
 import ChartOptionColor from "./ChartOptionTypes/ChartOptionColor";
 import ChartOptionColorScale from "./ChartOptionTypes/ChartOptionColorScale";
 import ChartOptionBoolean from "./ChartOptionTypes/ChartOptionBoolean";
 import { map } from "lodash";
-import groupBy from "lodash/groupBy";
 
 const CHART_OPTION_COMPONENTS = {
   number: ChartOptionNumber,
@@ -18,10 +17,7 @@ const CHART_OPTION_COMPONENTS = {
 
 const ChartOptions = ({ chart, visualOptions, setVisualOptions, error }) => {
   const optionsDefinitionsByGroup = useMemo(() => {
-    const options = {
-      ...baseOptions,
-      ...chart?.visualOptions,
-    };
+    const options = getOptionsConfig(chart?.visualOptions)
 
     return Object.keys(options).reduce((acc, optionId) => {
       const option = options[optionId];
