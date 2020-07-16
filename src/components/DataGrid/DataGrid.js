@@ -128,10 +128,10 @@ export default function DataGrid({ data, coerceTypes }) {
     if (sortDirection === "NONE") return datasetWithIds
     const sortColumnType = data.dataTypes[sortColumn]
     if (sortColumnType === "number") {
-      datasetWithIds = datasetWithIds.sort((a, b) => a[sortColumn] - b[sortColumn])
+      datasetWithIds = datasetWithIds.sort((a, b) => a[sortColumn] || 0 - b[sortColumn] || 0)
     }
     else if (sortColumnType === "date") {
-      datasetWithIds = datasetWithIds.sort((a, b) => a[sortColumn].valueOf() - b[sortColumn].valueOf())
+      datasetWithIds = datasetWithIds.sort((a, b) => a[sortColumn]?.valueOf() ?? 0 - b[sortColumn]?.valueOf()) ?? 0
     } else {
       datasetWithIds = datasetWithIds.sort((a, b) => a[sortColumn].toString().localeCompare(b[sortColumn].toString()))
     }
