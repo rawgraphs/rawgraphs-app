@@ -1,17 +1,11 @@
 import React, { useCallback } from "react"
 
-export default function SeparatorSelector({title, value, onChange, ...props }) {
+export default function DecimalsSeparatorSelector({ title, value, onChange, ...props }) {
   const inputValue = value
-    .replace(/\r/g, "\\r")
-    .replace(/\n/g, "\\n")
-    .replace(/\t/g, "\\t")
 
   const handleChange = useCallback(e => {
     if (onChange) {
       const nextValue = e.target.value
-        .replace(/\\r/g, "\r")
-        .replace(/\\n/g, "\n")
-        .replace(/\\t/g, "\t")
       onChange(nextValue)
     }
   }, [onChange])

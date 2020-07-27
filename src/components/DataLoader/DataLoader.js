@@ -6,6 +6,8 @@ import {
   BsGift,
   BsFolder,
   BsTrashFill,
+  BsCloud,
+  BsSearch
 } from 'react-icons/bs'
 import DataSamples from '../DataSamples/DataSamples'
 import { parseDataset } from '@raw-temp/rawgraphs-core'
@@ -39,8 +41,11 @@ function DataLoader({ data, setData }) {
   const [parseError, setParserError] = useState(null)
 
   /* Parsing Options */
-  const [locale, setLocale] = useState('en-CA')
   const [separator, setSeparator] = useState(',')
+  const [thousandsSeparator, setThousandsSeparator] = useState(',')
+  const [decimalsSeparator, setDecimalsSeparator] = useState('.')
+  const [locale, setLocale] = useState('en-CA')
+  const [stackDimension, setStackDimension] = useState()
 
   /*
    * Callback to handle user injecting data
@@ -144,6 +149,7 @@ function DataLoader({ data, setData }) {
       message:
         'You can load tabular (TSV, CSV, DSV) or JSON data. Questions about how to format your data?',
       icon: BsUpload,
+      disabled:true
     },
     {
       id: 'samples',
@@ -151,6 +157,22 @@ function DataLoader({ data, setData }) {
       message: 'Wanna know more about what you can do with RAWGraphs?',
       loader: <DataSamples onSampleReady={loadSample} />,
       icon: BsGift,
+    },
+    {
+      id: 'cloud',
+      name: 'SPARQL query',
+      message: 'Load data from a query address.',
+      loader: <DataSamples onSampleReady={loadSample} />,
+      icon: BsCloud,
+      disabled:true
+    },
+    {
+      id: 'sparql',
+      name: 'From URL',
+      message: 'Make sure your endpoint is CORS enabled.',
+      loader: <DataSamples onSampleReady={loadSample} />,
+      icon: BsSearch,
+      disabled:true
     },
     {
       id: 'project',
@@ -175,6 +197,7 @@ function DataLoader({ data, setData }) {
         </div>
       ),
       icon: BsFolder,
+      disabled:true
     },
   ]
   const [optionIndex, setOptionIndex] = useState(0)
@@ -224,7 +247,6 @@ function DataLoader({ data, setData }) {
         <Col
           xs={{ span: 9, order: null, offset: 3 }}
           lg={{ span: 10, order: null, offset: 2 }}
-          style={{ height: '64px' }}
         >
           <ParsingOptions
             locale={locale}
@@ -232,8 +254,13 @@ function DataLoader({ data, setData }) {
             localeList={localeList}
             separator={separator}
             setSeparator={handleChangeSeparator}
-            // dimensions={data ? data.columns : []}
-            dimensions={[]}
+            thousandsSeparator={thousandsSeparator}
+            setThousandsSeparator={setThousandsSeparator}
+            decimalsSeparator={decimalsSeparator}
+            setDecimalsSeparator={setDecimalsSeparator}
+            dimensions={data?data.dataTypes:[]}
+            stackDimension={stackDimension}
+            setStackDimension={setStackDimension}
           />
         </Col>
       </Row>
@@ -252,6 +279,7 @@ function DataLoader({ data, setData }) {
               "no-select",
               "cursor-pointer",
               styles['loading-option'],
+              d.disabled ? styles['disabled'] : null,
               d.id === selectedOption.id && !userDataType ? styles.active : null,
               userDataType ? styles.disabled : null
             ].filter(c => c !== null).join(" ")
