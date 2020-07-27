@@ -306,6 +306,7 @@ function DataLoader({ data, setData }) {
               setUserInput('')
               setParserError(null)
               setOptionIndex(0)
+              setStackDimension(null)
             }}
           >
             <BsTrashFill className="w-25" />
