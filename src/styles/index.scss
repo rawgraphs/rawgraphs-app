@@ -86,6 +86,11 @@ h4 {
     position: absolute;
   }
 }
+.truncate-160px {
+  max-width: 160px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
 .dropdown-menu {
   max-height: 40vh;
   overflow-y: auto;
