@@ -5,11 +5,10 @@ const ChartOptionBoolean = ({label, value, error, onChange}) => {
   <b>{label}</b><br />
   <input
     type="checkbox"
-    checked={value}
+    checked={!!value}
     onChange={e => {
       onChange(e.target.checked)
     }}
-    
   />
   {error && <small><i>{error}</i></small>}
 </label>

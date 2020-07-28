@@ -9,7 +9,7 @@ const ChartPreview = ({ chart, dataset: data, dataTypes, mapping, visualOptions,
   const vizOptionsDebounced = useDebounce(visualOptions, 200)
 
   useEffect(() => {
-    console.log("VIZ VIZ VIZ")
+    console.info("Updating viz")
     try {
       setError(null)
       const viz = rawChart(chart, {

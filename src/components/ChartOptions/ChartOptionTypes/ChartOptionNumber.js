@@ -1,6 +1,10 @@
 import React from "react"
+import ChartOptionSelect from './ChartOptionSelect'
 
 const ChartOptionNumber = ({ value, error, onChange, default: defaultValue, label, ...props }) => {
+  if(props.options){
+    return <ChartOptionSelect value={value} error={error} onChange={onChange} default={defaultValue} label={label} {...props} />
+  }
   return (
     <label className="d-block">
       <b>{label}</b><br />
