@@ -17,7 +17,7 @@ const ChartOptionSelect = ({
       <br />
       <select
         className="custom-select"
-        value={value}
+        value={value ?? defaultValue}
         onChange={(e) => {
           const stringValue = e.target.value 
           const value = props.type === 'number' ? Number(stringValue) : stringValue
