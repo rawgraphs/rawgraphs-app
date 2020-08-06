@@ -5,7 +5,7 @@ import { useDrop } from "react-dnd"
 import { get } from "lodash"
 import classnames from "classnames"
 
-import { DATATYPE_ICONS } from "../../constants"
+// import { DATATYPE_ICONS } from "../../constants"
 import { dataTypeIcons } from "../../constants"
 import  { BsX } from "react-icons/bs"
 

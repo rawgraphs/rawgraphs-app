@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Dropdown } from 'react-bootstrap';
+import { Row, Col} from 'react-bootstrap';
 import SeparatorSelector from './SeparatorSelector';
 import ThousandsSeparatorSelector from './ThousandsSeparatorSelector';
 import DecimalsSeparatorSelector from './DecimalsSeparatorSelector';

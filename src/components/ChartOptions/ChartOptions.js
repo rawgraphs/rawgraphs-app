@@ -34,8 +34,8 @@ const ChartOptions = ({ chart, visualOptions, setVisualOptions, error }) => {
     <div>
       {map(optionsDefinitionsByGroup, (options, groupName) => {
         return (
-          <div key={groupName} style={{textTransform:'capitalize', borderTop:'1px solid var(--gray-400)'}}>
-            <h2>{groupName}</h2>
+          <div key={groupName} style={{borderTop:'1px solid var(--gray-400)'}}>
+            <h2 className="text-capitalize">{groupName}</h2>
             {map(options, (def, optionId) => {
               const Component = CHART_OPTION_COMPONENTS[def.type];
 
@@ -43,6 +43,7 @@ const ChartOptions = ({ chart, visualOptions, setVisualOptions, error }) => {
                 <Component
                   key={optionId}
                   {...def}
+                  optionId={optionId}
                   error={error?.errors?.[optionId]}
                   value={visualOptions?.[optionId]}
                   onChange={(nextValue) => {
@@ -54,6 +55,7 @@ const ChartOptions = ({ chart, visualOptions, setVisualOptions, error }) => {
                 />
               );
             })}
+            { groupName === "artboard" && <p className="small" >The final output will be 99999 px * 99999 px<br/>including the legend.</p>}
           </div>
         );
       })}
