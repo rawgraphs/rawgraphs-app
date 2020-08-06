@@ -35,7 +35,7 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
 
       <Col xs={6} lg={4} xl={4}>
 
-        <div className={styles['chart-dimension'] + ' noselect'}>
+        <div className={styles['chart-dimension'] + ' user-select-none'}>
           {/* This is the card header */}
           <div className={`d-flex flex-row justify-content-between align-items-center ${styles['chart-dimension-header']}`}>
             <span className="text-left">

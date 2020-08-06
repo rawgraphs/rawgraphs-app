@@ -276,7 +276,7 @@ function DataLoader({ data, setData }) {
               "w-100",
               "d-flex",
               "align-items-center",
-              "no-select",
+              "user-select-none",
               "cursor-pointer",
               styles['loading-option'],
               d.disabled ? styles['disabled'] : null,
@@ -287,7 +287,7 @@ function DataLoader({ data, setData }) {
               <div
                 key={d.id}
                 className={classnames}
-                // className={`w-100 d-flex align-items-center loading-option no-select cursor-pointer${
+                // className={`w-100 d-flex align-items-center loading-option user-select-none cursor-pointer${
                 //   d.id === selectedOption.id && !userDataType ? ' active' : ''
                 // }${userDataType ? ' disabled' : ''}`}
                 onClick={() => setOptionIndex(i)}
@@ -298,7 +298,7 @@ function DataLoader({ data, setData }) {
             )
           })}
           <div
-            className={`w-100 d-flex align-items-center ${styles["loading-option"]} no-select cursor-pointer`}
+            className={`w-100 d-flex align-items-center ${styles["loading-option"]} user-select-none cursor-pointer`}
             onClick={() => {
               setData(null)
               setUserData(null)
