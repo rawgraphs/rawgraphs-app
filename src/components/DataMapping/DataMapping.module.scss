@@ -36,8 +36,7 @@
 .chart-dimension {
     background-color: white;
     border: 1px solid var(--gray-400);
-    margin: 0 15px 15px;
-    max-width: calc(33.33333% - 30px);
+    margin-bottom: 15px;
     padding: 8px;
     border-radius: 4px;
     height: fit-content;
@@ -104,4 +103,10 @@
     align-items: center;
     justify-content: center;
     border-radius: 4px;
+
+    &.active {
+        background-color: var(--primary-lighter);
+        border-color: var(--primary);
+        color: var(--primary);
+    }
 }

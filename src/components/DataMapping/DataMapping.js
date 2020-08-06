@@ -35,7 +35,7 @@ function DataMapping({ dataTypes, dimensions, mapping, setMapping }) {
         <Col>
           <h5 className="text-uppercase">Chart Variables</h5>
           {/* <div className="d-flex flex-row flex-wrap"> */}
-            <Row>
+            <Row className="sticky-top" style={{top: 'calc(var(--header-height) + 16px)'}}>
               {
                 dimensions.map(d => {
                   return (
