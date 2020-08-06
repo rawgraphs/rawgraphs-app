@@ -34,7 +34,7 @@ const ChartOptions = ({ chart, visualOptions, setVisualOptions, error }) => {
     <div>
       {map(optionsDefinitionsByGroup, (options, groupName) => {
         return (
-          <div key={groupName}>
+          <div key={groupName} style={{textTransform:'capitalize', borderTop:'1px solid var(--gray-400)'}}>
             <h2>{groupName}</h2>
             {map(options, (def, optionId) => {
               const Component = CHART_OPTION_COMPONENTS[def.type];

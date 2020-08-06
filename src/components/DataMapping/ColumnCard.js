@@ -1,6 +1,9 @@
 import React from "react"
-import { DATATYPE_ICONS } from "../../constants"
+import { dataTypeIcons } from "../../constants"
+
 import { useDrag } from "react-dnd"
+
+import styles from './DataMapping.module.scss'
 
 const ColumnCard = ({ dimensionName, dimensionType }) => {
   const [{ isDragging }, drag] = useDrag({
@@ -10,12 +13,16 @@ const ColumnCard = ({ dimensionName, dimensionType }) => {
     })
   })
 
+  const DataTypeIcon = dataTypeIcons[dimensionType];
+
   return (
     <div
       ref={drag}
-      className={`card p-3 column-card ${isDragging ? 'is-dragging' : ''}`}
+      className={`column-card ${styles['column-card']} ${isDragging ? 'is-dragging' : ''}`}
     >
-      {DATATYPE_ICONS[dimensionType]} {dimensionName}
+    
+    < DataTypeIcon className={styles['data-type-icon']} /> 
+    <span className={styles['column-title']}>{dimensionName}</span>
     </div>
   )
 }

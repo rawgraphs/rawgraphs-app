@@ -12,6 +12,7 @@ $theme-colors: (
   --primary-lighter: #DEFFF0;
   --warning-lighter: #fff8c6;
   --gray-100: #f8f8f8;
+  --gray-300: #C2C1C1;
   --gray-400: #E2E2E2;
   --gray-700: ##495057;
   --gray-900: #181818;
@@ -37,6 +38,7 @@ h1 {
   color: var(--gray-900);
   letter-spacing: -0.5px;
   line-height: 32px;
+  margin-bottom: 24px;
 }
 h2 {
   font-size: 1.3846153846rem;
@@ -51,6 +53,14 @@ h4 {
   color: var(--gray-700);
   letter-spacing: 0;
   line-height: 16px;
+}
+h5 {
+  font-size: 1.2307692308rem;
+  font-weight: 500;
+  color: var(--gray-700);
+  letter-spacing: 0;
+  line-height: 1.2307692308rem;
+  margin-bottom: 16px;
 }
 // UI
 .alert {

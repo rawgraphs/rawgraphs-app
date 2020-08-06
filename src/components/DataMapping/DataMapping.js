@@ -19,7 +19,7 @@ function DataMapping({ dataTypes, dimensions, mapping, setMapping }) {
     <DndProvider backend={HTML5Backend}>
       <Row>
         <Col xs={3}>
-          DIMENSIONS
+          <h5 className="text-uppercase">Dimensions</h5>
           {
             map(dataTypes, (dataType, columnName) => {
               return (
@@ -33,22 +33,24 @@ function DataMapping({ dataTypes, dimensions, mapping, setMapping }) {
           }
         </Col>
         <Col>
-          CHART VARIABLES
-          <div className="d-flex flex-row flex-wrap">
-            {
-              dimensions.map(d => {
-                return (
-                  <ChartDimensionCard 
-                    key={d.id} 
-                    dimension={d} 
-                    dataTypes={dataTypes}
-                    mapping={mapping[d.id] || {}}
-                    setMapping={mappingConf => updateMapping(d.id, mappingConf)}
-                  />
-                )
-              })
-            }
-          </div>
+          <h5 className="text-uppercase">Chart Variables</h5>
+          {/* <div className="d-flex flex-row flex-wrap"> */}
+            <Row>
+              {
+                dimensions.map(d => {
+                  return (
+                    <ChartDimensionCard 
+                      key={d.id} 
+                      dimension={d} 
+                      dataTypes={dataTypes}
+                      mapping={mapping[d.id] || {}}
+                      setMapping={mappingConf => updateMapping(d.id, mappingConf)}
+                    />
+                  )
+                })
+              }
+            </Row>
+          {/* </div> */}
         </Col>
       </Row>
     </DndProvider>
