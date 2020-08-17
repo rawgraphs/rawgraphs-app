@@ -3,8 +3,6 @@ import { Row, Col, Form } from "react-bootstrap";
 
 const ChartOptionBoolean = ({optionId, label, value, error, onChange}) => {
 
-  console.log(value)
-
   return <Row>
     <Col xs={6}>{label}</Col>
     <Form className="col-6">

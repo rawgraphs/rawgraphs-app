@@ -1,7 +1,6 @@
 import React from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
 import { dsv } from 'd3-fetch';
-import { autoType } from 'd3-dsv';
 
 const samplesList = [
   {
@@ -26,7 +25,7 @@ const samplesList = [
 export default function DataSamples({ onSampleReady }) {
   const select = async (sample) => {
     const { delimiter, url } = sample;
-    const data = await dsv(delimiter, url, autoType);
+    const data = await dsv(delimiter, url);
     onSampleReady(data, delimiter);
   }
   return (
