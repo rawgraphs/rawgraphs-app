@@ -12,12 +12,12 @@ import {
 
 const scaleTypes = Object.keys(colorPresets);
 
-const CurrentPreset = ({ label, scale,}) => {
-  let samples
-  if(scale.ticks){
-    samples =  scale.ticks()
+const CurrentPreset = ({ label, scale }) => {
+  let samples;
+  if (scale.ticks) {
+    samples = scale.ticks();
   } else {
-    samples = scale.domain()
+    samples = scale.domain();
   }
   return (
     <div>
@@ -166,7 +166,6 @@ const ChartOptionColorScale = ({
       userValuesForFinaScale
     );
 
-
     return previewScale;
   }, [
     colorDataType,
@@ -176,7 +175,6 @@ const ChartOptionColorScale = ({
     userValuesForFinaScale,
   ]);
 
-
   useEffect(() => {
     const outScaleParams = {
       scaleType,
@@ -184,8 +182,7 @@ const ChartOptionColorScale = ({
       userScaleValues: userValuesForFinaScale,
     };
     onChange(outScaleParams);
-  }, [interpolator, scaleType, userValuesForFinaScale])
-  
+  }, [interpolator, scaleType, userValuesForFinaScale]);
 
   return (
     <div>
@@ -231,7 +228,7 @@ const ChartOptionColorScale = ({
           </select>
         </Col>
       </Row>
-      
+
       {currentFinalScale && (
         <Row>
           <Col xs={12}>
@@ -243,7 +240,6 @@ const ChartOptionColorScale = ({
         </Row>
       )}
 
-       
       {colorDataType && userValues && (
         <div>
           {userValues.map((userValue, i) => (
@@ -274,8 +270,6 @@ const ChartOptionColorScale = ({
           ))}
         </div>
       )}
-
-      
     </div>
   );
 };
