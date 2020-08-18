@@ -166,13 +166,6 @@ const ChartOptionColorScale = ({
       userValuesForFinaScale
     );
 
-    const outScaleParams = {
-      scaleType,
-      interpolator,
-      userScaleValues: userValuesForFinaScale,
-    };
-    onChange(outScaleParams);
-
 
     return previewScale;
   }, [
@@ -183,6 +176,15 @@ const ChartOptionColorScale = ({
     userValuesForFinaScale,
   ]);
 
+
+  useEffect(() => {
+    const outScaleParams = {
+      scaleType,
+      interpolator,
+      userScaleValues: userValuesForFinaScale,
+    };
+    onChange(outScaleParams);
+  }, [interpolator, scaleType, userValuesForFinaScale])
   
 
   return (
