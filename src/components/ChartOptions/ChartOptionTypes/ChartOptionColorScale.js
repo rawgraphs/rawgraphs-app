@@ -140,7 +140,7 @@ const ChartOptionColorScale = ({
     colorDataType,
   ]);
 
-  const userValuesForFinaScale = useMemo(() => {
+  const userValuesForFinalScale = useMemo(() => {
     return userValues.map((value) => ({
       range: value.userRange,
       domain: value.userDomain,
@@ -152,7 +152,7 @@ const ChartOptionColorScale = ({
       !colorDataType ||
       !scaleType ||
       !interpolator ||
-      !userValuesForFinaScale ||
+      !userValuesForFinalScale ||
       !colorPresets[scaleType][interpolator]
     ) {
       return null;
@@ -163,7 +163,7 @@ const ChartOptionColorScale = ({
       colorDataType,
       scaleType, //
       interpolator,
-      userValuesForFinaScale
+      userValuesForFinalScale
     );
 
     return previewScale;
@@ -172,17 +172,17 @@ const ChartOptionColorScale = ({
     colorDataset,
     interpolator,
     scaleType,
-    userValuesForFinaScale,
+    userValuesForFinalScale,
   ]);
 
   useEffect(() => {
     const outScaleParams = {
       scaleType,
       interpolator,
-      userScaleValues: userValuesForFinaScale,
+      userScaleValues: userValuesForFinalScale,
     };
     onChange(outScaleParams);
-  }, [interpolator, scaleType, userValuesForFinaScale]);
+  }, [interpolator, scaleType, userValuesForFinalScale]);
 
   return (
     <div>
