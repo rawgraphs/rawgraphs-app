@@ -50,7 +50,6 @@ const ChartOptionColorScale = ({
 }) => {
 
   const mappedDataset = useMemo(() => {
-    console.info("Updating viz data...", chart, mapping, dataTypes, dataset)
     try {
       
       const viz = rawChart(chart, {
@@ -65,8 +64,6 @@ const ChartOptionColorScale = ({
       
     }
   }, [chart, mapping, dataTypes, dataset])
-
-
 
   const [scaleType, setScaleType] = useState("ordinal");
 
