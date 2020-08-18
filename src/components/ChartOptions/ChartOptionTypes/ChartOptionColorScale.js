@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect, useCallback } from "react";
+import { chart as rawChart } from "@raw-temp/rawgraphs-core"
 import { Row, Col } from "react-bootstrap";
 import get from "lodash/get";
 import {
@@ -44,8 +45,29 @@ const ChartOptionColorScale = ({
   dataset,
   mapping,
   dataTypes,
+  chart,
   ...props
 }) => {
+
+  const mappedDataset = useMemo(() => {
+    console.info("Updating viz data...", chart, mapping, dataTypes, dataset)
+    try {
+      
+      const viz = rawChart(chart, {
+        data: dataset,
+        mapping,
+        dataTypes,
+        visualOptions: {},
+      })
+      return viz.mapData()
+    } catch (e) {
+      return undefined
+      
+    }
+  }, [chart, mapping, dataTypes, dataset])
+
+
+
   const [scaleType, setScaleType] = useState("ordinal");
 
   const mappingValue = useMemo(() => {
@@ -66,12 +88,12 @@ const ChartOptionColorScale = ({
   }, [colorDataType]);
 
   const colorDataset = useMemo(() => {
-    if (mappingValue) {
-      return dataset.map((d) => get(d, mappingValue));
+    if (mappedDataset) {
+      return mappedDataset.map((d) => get(d, dimension));
     } else {
       return [];
     }
-  }, [dataset, mappingValue]);
+  }, [dimension, mappedDataset]);
 
   const interpolators = useMemo(() => {
     return Object.keys(colorPresets[scaleType]);
@@ -108,7 +130,7 @@ const ChartOptionColorScale = ({
   );
 
   useEffect(() => {
-    if (!interpolator || !colorPresets[scaleType][interpolator]) {
+    if (!colorDataset || !interpolator || !colorPresets[scaleType][interpolator]) {
       return;
     }
     if (!mappingValue) {
@@ -149,6 +171,7 @@ const ChartOptionColorScale = ({
 
   const currentFinalScale = useMemo(() => {
     if (
+      !colorDataset.length ||
       !colorDataType ||
       !scaleType ||
       !interpolator ||
@@ -249,7 +272,7 @@ const ChartOptionColorScale = ({
                 {scaleType !== "ordinal" && (
                   <input
                     type="number"
-                    value={userValue.userDomain}
+                    value={userValue.userDomain || ''}
                     onChange={(e) => {
                       setUserValueDomain(i, e.target.value);
                     }}

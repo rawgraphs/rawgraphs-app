@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import { getOptionsConfig } from "@raw-temp/rawgraphs-core";
 import ChartOptionNumber from "./ChartOptionTypes/ChartOptionNumber";
 import ChartOptionText from "./ChartOptionTypes/ChartOptionText";
@@ -30,6 +30,7 @@ const ChartOptions = ({ chart, dataset, mapping, dataTypes, visualOptions, setVi
     }, {});
   }, [chart]);
 
+
   return (
     <div>
       {map(optionsDefinitionsByGroup, (options, groupName) => {
@@ -47,6 +48,7 @@ const ChartOptions = ({ chart, dataset, mapping, dataTypes, visualOptions, setVi
                   error={error?.errors?.[optionId]}
                   value={visualOptions?.[optionId]}
                   mapping={def.type === 'colorScale' ? mapping : undefined}
+                  chart={def.type === 'colorScale' ? chart : undefined}
                   dataset={def.type === 'colorScale' ? dataset : undefined}
                   dataTypes={def.type === 'colorScale' ? dataTypes : undefined}
                   onChange={(nextValue) => {

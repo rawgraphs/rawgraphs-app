@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react"
 import { chart as rawChart } from "@raw-temp/rawgraphs-core"
 import useDebounce from "../../hooks/useDebounce"
 
-const ChartPreview = ({ chart, dataset: data, dataTypes, mapping, visualOptions, error, setError }) => {
+const ChartPreview = ({ chart, dataset: data, dataTypes, mapping, visualOptions, error, setError, setMappedDataset }) => {
 
   const domRef = useRef(null)
 
@@ -19,12 +19,14 @@ const ChartPreview = ({ chart, dataset: data, dataTypes, mapping, visualOptions,
         visualOptions: vizOptionsDebounced
       })
       viz.renderToDOM(domRef.current)
+      
     } catch (e) {
       while (domRef.current.firstChild) {
         domRef.current.removeChild(domRef.current.firstChild)
       }
       console.log({ e })
       setError(e)
+      
     }
   }, [chart, data, mapping, dataTypes, setError, vizOptionsDebounced])
 
