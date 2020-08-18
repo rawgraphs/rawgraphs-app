@@ -2,11 +2,12 @@
 
 // export default [LineGraph, ScatterPlot];
 
-import { scatterplot, linechart } from "@raw-temp/rawgraphs-charts"
+import { scatterplot, linechart, colortest } from "@raw-temp/rawgraphs-charts"
 
 const chartArray = [
   scatterplot,
   linechart,
+  colortest,
 ]
 
 // const exampleChartArray = [

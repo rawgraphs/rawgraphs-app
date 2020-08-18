@@ -17,6 +17,9 @@ const ChartPreviewWithOptions = ({
       <Col xs={3}>
         <ChartOptions
           chart={chart}
+          dataset={dataset}
+          mapping={mapping}
+          dataTypes={dataTypes}
           visualOptions={visualOptions}
           setVisualOptions={setVisualOptions}
           error={error}

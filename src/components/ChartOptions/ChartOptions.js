@@ -15,7 +15,7 @@ const CHART_OPTION_COMPONENTS = {
   boolean: ChartOptionBoolean,
 };
 
-const ChartOptions = ({ chart, visualOptions, setVisualOptions, error }) => {
+const ChartOptions = ({ chart, dataset, mapping, dataTypes, visualOptions, setVisualOptions, error }) => {
   const optionsDefinitionsByGroup = useMemo(() => {
     const options = getOptionsConfig(chart?.visualOptions)
 
@@ -46,6 +46,9 @@ const ChartOptions = ({ chart, visualOptions, setVisualOptions, error }) => {
                   optionId={optionId}
                   error={error?.errors?.[optionId]}
                   value={visualOptions?.[optionId]}
+                  mapping={def.type === 'colorScale' ? mapping : undefined}
+                  dataset={def.type === 'colorScale' ? dataset : undefined}
+                  dataTypes={def.type === 'colorScale' ? dataTypes : undefined}
                   onChange={(nextValue) => {
                     setVisualOptions({
                       ...visualOptions,
