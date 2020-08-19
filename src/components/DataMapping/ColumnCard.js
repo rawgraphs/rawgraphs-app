@@ -1,5 +1,6 @@
 import React from "react"
 import { dataTypeIcons } from "../../constants"
+import { getTypeName } from "@raw-temp/rawgraphs-core"
 
 import { useDrag } from "react-dnd"
 
@@ -13,7 +14,8 @@ const ColumnCard = ({ dimensionName, dimensionType }) => {
     })
   })
 
-  const DataTypeIcon = dataTypeIcons[dimensionType];
+  const dimType = getTypeName(dimensionType)
+  const DataTypeIcon = dataTypeIcons[dimType];
 
   return (
     <div

@@ -2,8 +2,19 @@ import React, { useMemo, useRef, useState, useCallback } from "react";
 import ReactDataGrid from 'react-data-grid';
 import { Overlay } from "react-bootstrap";
 import classNames from "classnames";
+import { getTypeName } from "@raw-temp/rawgraphs-core"
+import dayjs from "dayjs";
 
 import "./DataGrid.scss"
+
+function Formatter({row, column, ...props}){
+  let value = row[column.key]
+  if(value && getTypeName(column._raw_datatype) === 'date'){
+    value = dayjs(value).format(column._raw_datatype.dateFormat)
+  }
+  return <div>{value}</div>
+}
+
 
 function DataTypeSelector({ currentType, onTypeChange }) {
   const target = useRef(null)
@@ -54,17 +65,17 @@ function DataTypeSelector({ currentType, onTypeChange }) {
               <div
                 data-datatype="date"
                 onClick={handleTypeChange}
-                className={classNames('data-type-selector-item', { selected: currentType === "date" })}
+                className={classNames('data-type-selector-item', { selected: getTypeName(currentType) === "date" })}
               >Date</div>
               <div
                 data-datatype="string"
                 onClick={handleTypeChange}
-                className={classNames('data-type-selector-item', { selected: currentType === "string" })}
+                className={classNames('data-type-selector-item', { selected: getTypeName(currentType) === "string" })}
               >String</div>
               <div
                 data-datatype="number"
                 onClick={handleTypeChange}
-                className={classNames('data-type-selector-item', { selected: currentType === "number" })}
+                className={classNames('data-type-selector-item', { selected: getTypeName(currentType) === "number" })}
               >Number</div>
             </div>
           )}
@@ -111,11 +122,12 @@ export default function DataGrid({ data, coerceTypes }) {
         key: k,
         name: k,
         headerRenderer: HeaderRenderer,
+        formatter: Formatter,
         _raw_datatype: data.dataTypes[k],
         _raw_coerceType: nextType => coerceTypes({ ...data.dataTypes, [k]: nextType }),
         sortable: true,
         width: 180,
-      }))
+      })) 
     ]
   }, [coerceTypes, data, idColumnWidth])
 
@@ -126,7 +138,9 @@ export default function DataGrid({ data, coerceTypes }) {
         _id: i + 1 
       }))
     if (sortDirection === "NONE") return datasetWithIds
-    const sortColumnType = data.dataTypes[sortColumn]
+    
+    const sortColumnType = getTypeName(data.dataTypes[sortColumn])
+
     if (sortColumnType === "number") {
       datasetWithIds = datasetWithIds.sort((a, b) => a[sortColumn] || 0 - b[sortColumn] || 0)
     }

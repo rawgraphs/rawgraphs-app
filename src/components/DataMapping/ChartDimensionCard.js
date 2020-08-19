@@ -1,6 +1,6 @@
 import React from "react"
 import { Col } from 'react-bootstrap'
-
+import { getTypeName } from "@raw-temp/rawgraphs-core"
 import { useDrop } from "react-dnd"
 import { get } from "lodash"
 import classnames from "classnames"
@@ -57,12 +57,12 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
     
           {/* These are the columns that have been dropped on the current dimension */}
           {columnsMappedHere.map((columnId, i) => {
-            const columnDataType = dataTypes[columnId]
+            const columnDataType = getTypeName(dataTypes[columnId])
             const isValid = 
               dimension.validTypes?.length === 0 || dimension.validTypes?.includes(columnDataType)
               ? styles['column-valid']
               : styles['column-invalid']
-              const DataTypeIcon = dataTypeIcons[dataTypes[columnId]];
+              const DataTypeIcon = dataTypeIcons[getTypeName(dataTypes[columnId])];
             return (
               <div key={i} className={classnames('assigned-column', styles['column-card'], styles['assigned-column'], isValid)}>
                 <span><DataTypeIcon className={styles['data-type-icon']} /></span>
