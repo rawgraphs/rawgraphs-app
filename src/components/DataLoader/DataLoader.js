@@ -63,7 +63,7 @@ function DataLoader({ data, setData }) {
     // Data parsed ok set parent data
     if (dataType !== "json" && !error) {
       setUserData(parsedUserData);
-      setData(parseDataset(parsedUserData));
+      setData(parseDataset(parsedUserData, undefined, {locale: 'it-IT'}));
     }
   }
 
@@ -83,7 +83,7 @@ function DataLoader({ data, setData }) {
     setParserError(error);
     if (dataType !== "json" && !error) {
       setUserData(parsedUserData);
-      setData(parseDataset(parsedUserData));
+      setData(parseDataset(parsedUserData, undefined, {locale: 'it-IT'}));
     }
   }
 
@@ -106,7 +106,7 @@ function DataLoader({ data, setData }) {
     setSeparator(sampleSeparator);
     setUserDataType("csv");
     setUserData(sampleData);
-    setData(parseDataset(sampleData));
+    setData(parseDataset(sampleData, undefined, {locale: 'it-IT'}));
   }
 
   const options = [
@@ -212,7 +212,7 @@ function DataLoader({ data, setData }) {
         selectFilter={(ctx) => Array.isArray(ctx)}
         onSelect={(ctx) => {
           setUserData(ctx);
-          setData(parseDataset(ctx));
+          setData(parseDataset(ctx, undefined, {locale: 'it-IT'}));
         }}
       />
     );
