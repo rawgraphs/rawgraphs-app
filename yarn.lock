@@ -1914,23 +1914,40 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.2.tgz#7c6dc4ecef16149fd7a736710baa1b811017fdca"
   integrity sha512-JlGTGRYHC2QK+DDbePyXdBdooxFq2+noLfWpRqJtkxcb/oYWzOF0kcbfvvbWrwevCC1l6hLUg1wHYT+ona5BWQ==
 
+<<<<<<< HEAD
 "@raw-temp/rawgraphs-charts@0.0.12":
   version "0.0.12"
   resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-0.0.12.tgz#a9967d44f147bd8011a3bf85d1c6b09d8ecc455e"
   integrity sha512-szv4Y6iZ2ZAJEXXB6e8WxI8/9jAj27c1HVObHv65s3IzJnN9pVW978Dwb/iHmHLD19OPXUq09f+0YR00tBeRAQ==
+=======
+"@raw-temp/rawgraphs-charts@0.0.14":
+  version "0.0.14"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-0.0.14.tgz#eae131096c9ea48b0892504e91a4a76d18ee913c"
+  integrity sha512-HoR24b0aConjw0kRaRBysFjBkbb9sneynpj1G8UMzYHCVX943JDTjb9PrB2HUUueQuh5izgtaoeFk/bcy3ugbg==
+>>>>>>> colors
   dependencies:
     d3 "^5.16.0"
     d3-array "^2.5.0"
 
+<<<<<<< HEAD
 "@raw-temp/rawgraphs-core@^0.1.16":
   version "0.1.16"
   resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-0.1.16.tgz#f47e345dcf9ea4090acab9d15b69a7df7e7c83da"
   integrity sha512-HwV04domEy9yjGK2AXNM/kpEECYt1do9xCvlSsnav/VzxP1lAjAqUDfTfvpetwWxREI2W3oPPSH/tpZRK8ql5Q==
+=======
+"@raw-temp/rawgraphs-core@^0.1.17":
+  version "0.1.17"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-0.1.17.tgz#561821d18182fbf8ea4fb1d7b65935612c8ddc08"
+  integrity sha512-LNkamKbttqlOEJo1Vn5zbcMJY1X1BpUKULN/lljoYam7mfYg6trm6UoNyVfZv7ZrYwez43ZCg1qX0uuGdSiKTA==
+>>>>>>> colors
   dependencies:
     d3-array "^2.4.0"
     d3-axis "^1.0.12"
+    d3-color "^1.4.1"
     d3-dsv "^1.2.0"
+    d3-interpolate "^1.4.0"
     d3-scale "^3.2.1"
+    d3-scale-chromatic "^1.5.0"
     dayjs "^1.8.22"
     lodash "^4.17.15"
 
@@ -4337,7 +4354,7 @@ d3-collection@1:
   resolved "https://registry.yarnpkg.com/d3-collection/-/d3-collection-1.0.7.tgz#349bd2aa9977db071091c13144d5e4f16b5b310e"
   integrity sha512-ii0/r5f4sjKNTfh84Di+DpztYwqKhEyUlKoPrzUFfeSkWxjW49xU2QzO9qrPrNkpdI0XJkfzvmTu8V2Zylln6A==
 
-d3-color@1:
+d3-color@1, d3-color@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/d3-color/-/d3-color-1.4.1.tgz#c52002bf8846ada4424d55d97982fef26eb3bc8a"
   integrity sha512-p2sTHSLCJI2QKunbGb7ocOh7DgTAn8IrLx21QRc/BSnodXM4sv6aLQlnfpvehFMLZEfBc6g9pH9SWQccFYfJ9Q==
@@ -4410,7 +4427,7 @@ d3-hierarchy@1:
   resolved "https://registry.yarnpkg.com/d3-hierarchy/-/d3-hierarchy-1.1.9.tgz#2f6bee24caaea43f8dc37545fa01628559647a83"
   integrity sha512-j8tPxlqh1srJHAtxfvOUwKNYJkQuBFdM1+JAUfq6xqH5eAqf93L7oG1NVqDa4CpFZNvnNKtCYEUC8KY9yEn9lQ==
 
-d3-interpolate@1, d3-interpolate@^1.2.0:
+d3-interpolate@1, d3-interpolate@^1.2.0, d3-interpolate@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/d3-interpolate/-/d3-interpolate-1.4.0.tgz#526e79e2d80daa383f9e0c1c1c7dcc0f0583e987"
   integrity sha512-V9znK0zc3jOPV4VD2zZn0sDhZU3WAE2bmlxdIwwQPPzPjvyLkd8B3JUVdS1IDUFDkWZ72c9qnv1GK2ZagTZ8EA==
@@ -4437,7 +4454,7 @@ d3-random@1:
   resolved "https://registry.yarnpkg.com/d3-random/-/d3-random-1.1.2.tgz#2833be7c124360bf9e2d3fd4f33847cfe6cab291"
   integrity sha512-6AK5BNpIFqP+cx/sreKzNjWbwZQCSUatxq+pPRmFIQaWuoD+NrbVWw7YWpHiXpCQ/NanKdtGDuB+VQcZDaEmYQ==
 
-d3-scale-chromatic@1:
+d3-scale-chromatic@1, d3-scale-chromatic@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/d3-scale-chromatic/-/d3-scale-chromatic-1.5.0.tgz#54e333fc78212f439b14641fb55801dd81135a98"
   integrity sha512-ACcL46DYImpRFMBcpk9HhtIyC7bTBR4fNOPxwVSl0LfulDAwyiHyPOTqcDG1+t5d4P9W7t/2NAuWu59aKko/cg==

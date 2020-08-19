@@ -68,7 +68,7 @@ function App() {
         </Section>
       )}
       <Section title="5. Export">Export here</Section>
-      <Section title="0. Typography">{typography}</Section>
+      {/* <Section title="0. Typography">{typography}</Section> */}
       <Footer>Footer items go here!</Footer>
     </div>
   );
