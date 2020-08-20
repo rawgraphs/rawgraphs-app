@@ -2,15 +2,25 @@ import React, { useMemo, useRef, useState, useCallback } from "react";
 import ReactDataGrid from 'react-data-grid';
 import { Overlay } from "react-bootstrap";
 import classNames from "classnames";
-import { getTypeName } from "@raw-temp/rawgraphs-core"
+import { getTypeName, NumberParser } from "@raw-temp/rawgraphs-core"
 import dayjs from "dayjs";
+import isPlainObject from 'lodash/isPlainObject'
+
 
 import "./DataGrid.scss"
+
 
 function Formatter({row, column, ...props}){
   let value = row[column.key]
   if(value && getTypeName(column._raw_datatype) === 'date'){
     value = dayjs(value).format(column._raw_datatype.dateFormat)
+  }
+  if(value && isPlainObject(column._raw_datatype) && getTypeName(column._raw_datatype) === 'number'){
+    //format according to locale
+    const { locale, group, decimal, numerals } = column._raw_datatype
+    // const formatter = new Intl.NumberFormat( locale, {style: 'decimal'})
+    const numberParser = new NumberParser({ locale, group, decimal, numerals })
+    value = numberParser.format(value)
   }
   return <div>{value}</div>
 }

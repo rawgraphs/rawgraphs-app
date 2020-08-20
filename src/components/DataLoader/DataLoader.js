@@ -43,7 +43,7 @@ function DataLoader({ data, setData }) {
   const [separator, setSeparator] = useState(",");
   const [thousandsSeparator, setThousandsSeparator] = useState(",");
   const [decimalsSeparator, setDecimalsSeparator] = useState(".");
-  const [locale, setLocale] = useState("en-CA");
+  const [locale, setLocale] = useState(navigator.language || 'en-US');
   const [stackDimension, setStackDimension] = useState();
 
   /*
@@ -63,7 +63,7 @@ function DataLoader({ data, setData }) {
     // Data parsed ok set parent data
     if (dataType !== "json" && !error) {
       setUserData(parsedUserData);
-      setData(parseDataset(parsedUserData, undefined, {locale: 'it-IT'}));
+      setData(parseDataset(parsedUserData, undefined, {locale}));
     }
   }
 
@@ -83,7 +83,29 @@ function DataLoader({ data, setData }) {
     setParserError(error);
     if (dataType !== "json" && !error) {
       setUserData(parsedUserData);
-      setData(parseDataset(parsedUserData, undefined, {locale: 'it-IT'}));
+      setData(parseDataset(parsedUserData, undefined, {locale}));
+    }
+  }
+
+  /*
+   * Callback to handle user changing locale
+   * When the locale is changed, a fresh parsing of raw user input is required for proper handling
+   * Steps are very similar with respect to the `setUserInputAndDetect` callback, except for the
+   * fact that we take user input from state instead of from parameters
+   */
+  function handleChangeLocale(newLocale) {
+    console.log("change locale", newLocale, userInput )
+    const [dataType, parsedUserData, error] = parseAndCheckData(userInput, {
+      separator,
+      locale: newLocale,
+    });
+    setLocale(newLocale);
+    setUserDataType(dataType);
+    setParserError(error);
+    console.log("d", dataType, error, parsedUserData)
+    if (dataType !== "json" && !error) {
+      setUserData(parsedUserData);
+      setData(parseDataset(parsedUserData, undefined, {locale}));
     }
   }
 
@@ -106,7 +128,7 @@ function DataLoader({ data, setData }) {
     setSeparator(sampleSeparator);
     setUserDataType("csv");
     setUserData(sampleData);
-    setData(parseDataset(sampleData, undefined, {locale: 'it-IT'}));
+    setData(parseDataset(sampleData, undefined, {locale}));
   }
 
   const options = [
@@ -212,7 +234,7 @@ function DataLoader({ data, setData }) {
         selectFilter={(ctx) => Array.isArray(ctx)}
         onSelect={(ctx) => {
           setUserData(ctx);
-          setData(parseDataset(ctx, undefined, {locale: 'it-IT'}));
+          setData(parseDataset(ctx, undefined, {locale}));
         }}
       />
     );
@@ -244,7 +266,7 @@ function DataLoader({ data, setData }) {
         >
           <ParsingOptions
             locale={locale}
-            setLocale={setLocale}
+            setLocale={handleChangeLocale}
             localeList={localeList}
             separator={separator}
             setSeparator={handleChangeSeparator}
