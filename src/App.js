@@ -14,6 +14,7 @@ import charts from "./charts";
 import ChartSelector from "./components/ChartSelector";
 import DataMapping from "./components/DataMapping";
 import ChartPreviewWithOptions from "./components/ChartPreviewWIthOptions";
+import Exporter from './components/Exporter'
 
 // #TODO: i18n
 
@@ -22,12 +23,16 @@ function App() {
   const [currentChart, setCurrentChart] = useState(charts[0]);
   const [mapping, setMapping] = useState({});
   const [visualOptions, setVisualOptions] = useState({});
+  const [rawViz, setRawViz] = useState(null)
+
+  
 
   const handleChartChange = useCallback((nextChart) => {
     setCurrentChart(nextChart);
     setMapping({});
     const options = getOptionsConfig(nextChart?.visualOptions);
     setVisualOptions(getDefaultOptionsValues(options));
+    setRawViz(null)
   }, []);
 
   return (
@@ -64,10 +69,11 @@ function App() {
             mapping={mapping}
             visualOptions={visualOptions}
             setVisualOptions={setVisualOptions}
+            setRawViz={setRawViz}
           />
         </Section>
       )}
-      <Section title="5. Export">Export here</Section>
+      {rawViz && <Section title="5. Export"><Exporter rawViz={rawViz}/></Section>}
       {/* <Section title="0. Typography">{typography}</Section> */}
       <Footer>Footer items go here!</Footer>
     </div>
