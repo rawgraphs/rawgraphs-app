@@ -1914,10 +1914,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.2.tgz#7c6dc4ecef16149fd7a736710baa1b811017fdca"
   integrity sha512-JlGTGRYHC2QK+DDbePyXdBdooxFq2+noLfWpRqJtkxcb/oYWzOF0kcbfvvbWrwevCC1l6hLUg1wHYT+ona5BWQ==
 
-"@raw-temp/rawgraphs-charts@0.0.14":
-  version "0.0.14"
-  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-0.0.14.tgz#eae131096c9ea48b0892504e91a4a76d18ee913c"
-  integrity sha512-HoR24b0aConjw0kRaRBysFjBkbb9sneynpj1G8UMzYHCVX943JDTjb9PrB2HUUueQuh5izgtaoeFk/bcy3ugbg==
+"@raw-temp/rawgraphs-charts@^0.0.15":
+  version "0.0.15"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-0.0.15.tgz#88d4aefeac4536d9163d900b097ecfcac2302133"
+  integrity sha512-IXV9Kc2R3bxvi5ixxbFpY/t5QsIU+AuN5iqjk/WcUbYY693H4a4ozhapGEmbbvee3VQy8+oBYgX6n/loXMaeNA==
   dependencies:
     d3 "^5.16.0"
     d3-array "^2.5.0"
