@@ -16,7 +16,7 @@ export default function UploadFile({ userInput, setUserInput }) {
     <div className={S.dropzone} {...getRootProps()}>
       <input {...getInputProps()} />
       <span>Drag a file here or </span>
-      <Button className="mx-1" color="primary">Browse</Button>
+      <Button className={S["browse-button"]} color="primary">Browse</Button>
       <span>a file from your computer</span>
     </div>
   )
