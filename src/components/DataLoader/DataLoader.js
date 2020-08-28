@@ -15,7 +15,7 @@ import { parseDataset } from "@raw-temp/rawgraphs-core";
 import localeList from "./localeList";
 import ParsingOptions from "../ParsingOptions";
 import Paste from "./loaders/Paste";
-import { parseAndCheckData } from "./parser";
+import { parseAndCheckData, normalizeJsonArray } from "./parser";
 import JsonViewer from "../JsonViewer";
 import DataGrid from "../DataGrid/DataGrid";
 import { get } from "lodash";
@@ -211,8 +211,9 @@ function DataLoader({ data, setData }) {
         context={JSON.parse(userInput)}
         selectFilter={(ctx) => Array.isArray(ctx)}
         onSelect={(ctx) => {
-          setUserData(ctx);
-          setData(parseDataset(ctx));
+          const normalized = normalizeJsonArray(ctx)
+          setUserData(normalized);
+          setData(parseDataset(normalized));
         }}
       />
     );
