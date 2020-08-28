@@ -21,6 +21,7 @@ import DataGrid from "../DataGrid/DataGrid";
 import { get } from "lodash";
 
 import styles from "./DataLoader.module.scss";
+import { stackData } from "./stack";
 
 function DataLoader({ data, setData }) {
   /* Data to be plot in the chart */
@@ -35,9 +36,10 @@ function DataLoader({ data, setData }) {
    * be used to fill `userData`. In case of some error during parsing,
    * the `parseError` state holds the error description
    */
-  const [userData, setUserData] = useState(null);
-  const [userDataType, setUserDataType] = useState(null);
-  const [parseError, setParserError] = useState(null);
+  const [userData, setUserData] = useState(null)
+  const [userDataType, setUserDataType] = useState(null)
+  const [parseError, setParserError] = useState(null)
+  const [[unstackedData, unstackedColumns], setUnstackedInfo] = useState([null, null])
 
   /* Parsing Options */
   const [separator, setSeparator] = useState(",");
@@ -105,6 +107,22 @@ function DataLoader({ data, setData }) {
   function loadSample(rawData, sampleSeparator) {
     setSeparator(sampleSeparator)
     setUserDataAndDetect(rawData, { separator: sampleSeparator })
+  }
+
+  function handleStackOperation(column) {
+    setStackDimension(column)
+    if (column !== null) {
+      if (unstackedData === null) {
+        setUnstackedInfo([userData, data.dataTypes])
+      }
+      const stackedData = stackData(unstackedData || userData, column)
+      setUserData(stackedData);
+      setData(parseDataset(stackedData))
+    } else {
+      setUserData(unstackedData)
+      setData(parseDataset(unstackedData))
+      setUnstackedInfo([null, null])
+    }
   }
 
   const options = [
@@ -200,8 +218,6 @@ function DataLoader({ data, setData }) {
   const [optionIndex, setOptionIndex] = useState(0);
   const selectedOption = options[optionIndex];
 
-  console.log(data)
-
   let mainContent;
   if (data) {
     mainContent = (
@@ -261,9 +277,9 @@ function DataLoader({ data, setData }) {
             setThousandsSeparator={setThousandsSeparator}
             decimalsSeparator={decimalsSeparator}
             setDecimalsSeparator={setDecimalsSeparator}
-            dimensions={data ? data.dataTypes : []}
+            dimensions={data ? unstackedColumns || data.dataTypes : []}
             stackDimension={stackDimension}
-            setStackDimension={setStackDimension}
+            setStackDimension={handleStackOperation}
           />
         </Col>
       </Row>
