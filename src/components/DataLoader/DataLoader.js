@@ -109,6 +109,11 @@ function DataLoader({ data, setData }) {
     setUserDataAndDetect(rawData, { separator: sampleSeparator })
   }
 
+  function handleInlineEdit(newDataset) {
+    setUserData(newDataset)
+    setData(parseDataset(newDataset, data.dataTypes))
+  }
+
   function handleStackOperation(column) {
     setStackDimension(column)
     if (column !== null) {
@@ -227,6 +232,7 @@ function DataLoader({ data, setData }) {
         errors={data.errors}
         dataTypes={data.dataTypes}
         coerceTypes={coerceTypes}
+        onDataUpdate={handleInlineEdit}
       />
     )
   } else if (userDataType === "json" && userData === null) {

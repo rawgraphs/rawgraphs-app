@@ -102,7 +102,7 @@ function DataTypeSelector({ currentType: typeDescriptor, onTypeChange }) {
               <OverlayTrigger
                 placement="right-start"
                 overlay={(
-                  <DateFormatSelector 
+                  <DateFormatSelector
                     currentType={typeDescriptor}
                     onChange={handleTypeChangeDate}
                   />
@@ -145,7 +145,7 @@ function HeaderRenderer({ column, ...props }) {
   )
 }
 
-export default function DataGrid({ userDataset, dataset, errors, dataTypes, coerceTypes }) {
+export default function DataGrid({ userDataset, dataset, errors, dataTypes, coerceTypes, onDataUpdate }) {
   const [[sortColumn, sortDirection], setSort] = useState(['id', 'NONE']);
 
   const keyedErrors = useMemo(() => keyBy(errors, "row"), [errors])
@@ -173,6 +173,7 @@ export default function DataGrid({ userDataset, dataset, errors, dataTypes, coer
         key: k,
         name: k,
         headerRenderer: HeaderRenderer,
+        editable: true,
         formatter: ({ row }) => {
           return (
             <div className={classNames({ [S["has-error"]]: row?._errors?.[k] })}>
@@ -223,6 +224,16 @@ export default function DataGrid({ userDataset, dataset, errors, dataTypes, coer
       sortDirection={sortDirection}
       onSort={handleSort}
       height={432}
+      onRowsUpdate={update => {
+        if (update.action === "CELL_UPDATE") {
+          const newDataset = [...userDataset]
+          newDataset[update.fromRow] = {
+            ...newDataset[update.fromRow],
+            [update.cellKey]: update.updated[update.cellKey]
+          }
+          onDataUpdate && onDataUpdate(newDataset)
+        }
+      }}
     />
   )
 
