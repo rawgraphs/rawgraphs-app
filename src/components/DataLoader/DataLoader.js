@@ -204,7 +204,7 @@ function DataLoader({ data, setData }) {
 
   let mainContent;
   if (data) {
-    mainContent = <DataGrid data={data} coerceTypes={coerceTypes} />;
+    mainContent = <DataGrid dataset={userData} dataTypes={data.dataTypes} coerceTypes={coerceTypes} />;
   } else if (userDataType === "json" && userData === null) {
     mainContent = (
       <JsonViewer
@@ -285,9 +285,6 @@ function DataLoader({ data, setData }) {
               <div
                 key={d.id}
                 className={classnames}
-                // className={`w-100 d-flex align-items-center loading-option user-select-none cursor-pointer${
-                //   d.id === selectedOption.id && !userDataType ? ' active' : ''
-                // }${userDataType ? ' disabled' : ''}`}
                 onClick={() => setOptionIndex(i)}
               >
                 <d.icon className="w-25" />
@@ -328,55 +325,6 @@ function DataLoader({ data, setData }) {
                   </p>
                 </Alert>
               )}
-              {/* {data && (
-                <>
-                  <div
-                    style={{
-                      backgroundColor: 'white',
-                      border: '1px solid lightgrey',
-                      borderRadius: 4,
-                      padding: '1rem',
-                      minHeight: '250px',
-                      height: '40vh',
-                      overflowY: 'auto',
-                      marginBottom: '1rem',
-                    }}
-                  >
-                    Data is loaded, but not displayed.
-                    <br />
-                    <span
-                      className="cursor-pointer underlined"
-                      onClick={() => {
-                        console.log(data.columns)
-                        console.log(data)
-                      }}
-                    >
-                      Click here to console-log it
-                    </span>
-                    !
-                    <br />
-                    (Currently RAW uses d3.autoType to guess data types.)
-                  </div>
-
-                  <Alert variant="success">
-                    <p className="m-0">
-                      {data.length} records in your data have been successfully
-                      parsed!
-                    </p>
-                  </Alert>
-                  <Alert variant="warning">
-                    <p className="m-0">
-                      Ops here something seems weird. Check row {'1234321'}!
-                    </p>
-                  </Alert>
-                  <Alert variant="danger">
-                    <p className="m-0">
-                      Whoops! Something wrong with the data you provided.
-                      Refresh the page!
-                    </p>
-                  </Alert>
-                </>
-              )} */}
             </Col>
           </Row>
         </Col>

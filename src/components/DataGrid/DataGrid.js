@@ -85,17 +85,17 @@ function HeaderRenderer({ column, ...props }) {
   )
 }
 
-export default function DataGrid({ data, coerceTypes }) {
+export default function DataGrid({ dataset, dataTypes, coerceTypes }) {
   const [[sortColumn, sortDirection], setSort] = useState(['id', 'NONE']);
 
   // Make id column just as large as needed
   // Adjust constants to fit cell padding and font size
   // (Math.floor(Math.log10(data.dataset.length)) + 1) is the number 
   //   of digits of the highest id 
-  const idColumnWidth = 24 + 8 * (Math.floor(Math.log10(data.dataset.length)) + 1)
+  const idColumnWidth = 24 + 8 * (Math.floor(Math.log10(dataset.length)) + 1)
 
   const columns = useMemo(() => {
-    if (!data) {
+    if (!dataset || !dataTypes) {
       return []
     }
     return [
@@ -107,26 +107,26 @@ export default function DataGrid({ data, coerceTypes }) {
         width: idColumnWidth,
         sortable: true,
       },
-      ...Object.keys(data.dataTypes).map(k => ({
+      ...Object.keys(dataTypes).map(k => ({
         key: k,
         name: k,
         headerRenderer: HeaderRenderer,
-        _raw_datatype: data.dataTypes[k],
-        _raw_coerceType: nextType => coerceTypes({ ...data.dataTypes, [k]: nextType }),
+        _raw_datatype: dataTypes[k],
+        _raw_coerceType: nextType => coerceTypes({ ...dataTypes, [k]: nextType }),
         sortable: true,
         width: 180,
       }))
     ]
-  }, [coerceTypes, data, idColumnWidth])
+  }, [coerceTypes, dataTypes, dataset, idColumnWidth])
 
   const sortedDataset = useMemo(() => {
-    let datasetWithIds = data.dataset
+    let datasetWithIds = dataset
       .map((item, i) => ({ 
         ...item, 
         _id: i + 1 
       }))
     if (sortDirection === "NONE") return datasetWithIds
-    const sortColumnType = data.dataTypes[sortColumn]
+    const sortColumnType = dataTypes[sortColumn]
     if (sortColumnType === "number") {
       datasetWithIds = datasetWithIds.sort((a, b) => a[sortColumn] || 0 - b[sortColumn] || 0)
     }
@@ -137,7 +137,7 @@ export default function DataGrid({ data, coerceTypes }) {
     }
 
     return sortDirection === 'DESC' ? datasetWithIds.reverse() : datasetWithIds;
-  }, [data.dataTypes, data.dataset, sortColumn, sortDirection])
+  }, [dataTypes, dataset, sortColumn, sortDirection])
 
   const handleSort = useCallback((columnKey, direction) => {
     setSort([columnKey, direction]);
