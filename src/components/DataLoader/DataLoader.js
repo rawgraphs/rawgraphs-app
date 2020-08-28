@@ -52,10 +52,10 @@ function DataLoader({ data, setData }) {
    * Then we try to read it using different parsers (notably json and csv)
    * Finally, if read is successful, we go inferring types using the raw-core library
    */
-  function setUserDataAndDetect(str) {
+  function setUserDataAndDetect(str, options) {
     const [dataType, parsedUserData, error] = parseAndCheckData(str, {
-      separator,
-      locale,
+      separator: get(options, "separator", separator),
+      locale: get(options, "locale", locale),
     });
     setUserInput(str);
     setUserDataType(dataType);
@@ -102,11 +102,9 @@ function DataLoader({ data, setData }) {
    *   since in this case data are rigorously checked
    * So we just take them as good and use the raw-core library to infer types
    */
-  function loadSample(sampleData, sampleSeparator) {
-    setSeparator(sampleSeparator);
-    setUserDataType("csv");
-    setUserData(sampleData);
-    setData(parseDataset(sampleData));
+  function loadSample(rawData, sampleSeparator) {
+    setSeparator(sampleSeparator)
+    setUserDataAndDetect(rawData, { separator: sampleSeparator })
   }
 
   const options = [
