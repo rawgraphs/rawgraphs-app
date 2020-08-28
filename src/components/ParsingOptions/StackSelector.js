@@ -17,7 +17,7 @@ export default function StackSelector({ title, value, list, onChange, ...props }
           variant="white"
           className="truncate-160px"
           disabled={list.length === 0}>
-          {value ? value : 'Select a dimension'}
+          {value ? value : 'Column'}
         </Dropdown.Toggle>
         <Dropdown.Menu>
           {value && (

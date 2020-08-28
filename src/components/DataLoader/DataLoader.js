@@ -5,9 +5,9 @@ import {
   BsUpload,
   BsGift,
   BsFolder,
-  BsTrashFill,
   BsCloud,
   BsSearch,
+  BsArrowCounterclockwise,
 } from "react-icons/bs";
 import DataSamples from "../DataSamples/DataSamples";
 import { parseDataset } from "@raw-temp/rawgraphs-core";
@@ -152,7 +152,7 @@ function DataLoader({ data, setData }) {
             borderRadius: 4,
             padding: "1rem",
             minHeight: "250px",
-            height: "40vh",
+            height: "432px",
           }}
         >
           <span role="img" aria-label="work in progress">
@@ -175,7 +175,7 @@ function DataLoader({ data, setData }) {
     },
     {
       id: "cloud",
-      name: "SPARQL query",
+      name: "SPARQL query SOON!",
       message: "Load data from a query address.",
       loader: <DataSamples onSampleReady={loadSample} />,
       icon: BsCloud,
@@ -183,7 +183,7 @@ function DataLoader({ data, setData }) {
     },
     {
       id: "sparql",
-      name: "From URL",
+      name: "From URL SOON!",
       message: "Make sure your endpoint is CORS enabled.",
       loader: <DataSamples onSampleReady={loadSample} />,
       icon: BsSearch,
@@ -191,7 +191,7 @@ function DataLoader({ data, setData }) {
     },
     {
       id: "project",
-      name: "Open your project",
+      name: "Open your project SOON!",
       message:
         "Load a .rawgraphs project. Questions about how to save your work?",
       loader: (
@@ -226,7 +226,7 @@ function DataLoader({ data, setData }) {
         dataset={data.dataset}
         errors={data.errors}
         dataTypes={data.dataTypes}
-        coerceTypes={coerceTypes} 
+        coerceTypes={coerceTypes}
       />
     )
   } else if (userDataType === "json" && userData === null) {
@@ -263,76 +263,79 @@ function DataLoader({ data, setData }) {
   return (
     <>
       <Row>
-        <Col
-          xs={{ span: 9, order: null, offset: 3 }}
-          lg={{ span: 10, order: null, offset: 2 }}
-        >
-          <ParsingOptions
-            locale={locale}
-            setLocale={setLocale}
-            localeList={localeList}
-            separator={separator}
-            setSeparator={handleChangeSeparator}
-            thousandsSeparator={thousandsSeparator}
-            setThousandsSeparator={setThousandsSeparator}
-            decimalsSeparator={decimalsSeparator}
-            setDecimalsSeparator={setDecimalsSeparator}
-            dimensions={data ? unstackedColumns || data.dataTypes : []}
-            stackDimension={stackDimension}
-            setStackDimension={handleStackOperation}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col
-          xs={3}
-          lg={2}
-          className="d-flex flex-column justify-content-start pl-3 pr-0 options"
-          style={{ marginTop: "-8px" }}
-        >
-          {options.map((d, i) => {
-            const classnames = [
-              "w-100",
-              "d-flex",
-              "align-items-center",
-              "user-select-none",
-              "cursor-pointer",
-              styles["loading-option"],
-              d.disabled ? styles["disabled"] : null,
-              d.id === selectedOption.id && !userDataType
-                ? styles.active
-                : null,
-              userDataType ? styles.disabled : null,
-            ]
-              .filter((c) => c !== null)
-              .join(" ");
-            return (
-              <div
-                key={d.id}
-                className={classnames}
-                onClick={() => setOptionIndex(i)}
-              >
-                <d.icon className="w-25" />
-                <h4 className="m-0 d-inline-block">{d.name}</h4>
-              </div>
-            );
-          })}
-          <div
-            className={`w-100 d-flex align-items-center ${styles["loading-option"]} user-select-none cursor-pointer`}
-            onClick={() => {
-              setData(null);
-              setUserData(null);
-              setUserDataType(null);
-              setUserInput("");
-              setParserError(null);
-              setOptionIndex(0);
-              setStackDimension(null);
-            }}
+        {!userData && (
+          <Col
+            xs={3}
+            lg={2}
+            className="d-flex flex-column justify-content-start pl-3 pr-0 options"
           >
-            <BsTrashFill className="w-25" />
-            <h4 className="m-0 d-inline-block">{"Clear"}</h4>
-          </div>
-        </Col>
+            {options.map((d, i) => {
+              const classnames = [
+                "w-100",
+                "d-flex",
+                "align-items-center",
+                "user-select-none",
+                "cursor-pointer",
+                styles["loading-option"],
+                d.disabled ? styles["disabled"] : null,
+                d.id === selectedOption.id && !userDataType
+                  ? styles.active
+                  : null,
+                userDataType ? styles.disabled : null,
+              ]
+                .filter((c) => c !== null)
+                .join(" ");
+              return (
+                <div
+                  key={d.id}
+                  className={classnames}
+                  onClick={() => setOptionIndex(i)}
+                >
+                  <d.icon className="w-25" />
+                  <h4 className="m-0 d-inline-block">{d.name}</h4>
+                </div>
+              );
+            })}
+          </Col>
+        )}
+        {userData && (
+          <Col
+            xs={3}
+            lg={2}
+            className="d-flex flex-column justify-content-start pl-3 pr-0 options"
+          >
+            <div
+              className={`w-100 d-flex justify-content-center align-items-center ${styles["start-over"]} user-select-none cursor-pointer`}
+              onClick={() => {
+                setData(null);
+                setUserData(null);
+                setUserDataType(null);
+                setUserInput("");
+                setParserError(null);
+                setOptionIndex(0);
+                setStackDimension(null);
+              }}
+            >
+              <BsArrowCounterclockwise className="mr-2" />
+              <h4 className="m-0 d-inline-block">{"Start over"}</h4>
+            </div>
+            <div className="my-3 divider" />
+            <ParsingOptions
+              locale={locale}
+              setLocale={setLocale}
+              localeList={localeList}
+              separator={separator}
+              setSeparator={handleChangeSeparator}
+              thousandsSeparator={thousandsSeparator}
+              setThousandsSeparator={setThousandsSeparator}
+              decimalsSeparator={decimalsSeparator}
+              setDecimalsSeparator={setDecimalsSeparator}
+              dimensions={data ? unstackedColumns || data.dataTypes : []}
+              stackDimension={stackDimension}
+              setStackDimension={handleStackOperation}
+            />
+          </Col>
+        )}
         <Col>
           <Row>
             <Col>

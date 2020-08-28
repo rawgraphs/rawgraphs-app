@@ -1,20 +1,30 @@
 .parsingOptions {
-    display: flex;
-    justify-content: space-between;
+    // display: flex;
+    // justify-content: space-between;
     margin-bottom: 8px;
+
+    b {
+        font-weight: 500;
+    }
 
     input {
         width: 40px;
+        height: 40px;
         margin-left: 8px;
     }
     :global .dropdown {
         margin-left: 8px;
         button {
             padding-right: 24px;
+            height: 40px;
+            width: 108px;
         } 
     }
     :global .option {
-        
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 16px 0;
     }
     
 }

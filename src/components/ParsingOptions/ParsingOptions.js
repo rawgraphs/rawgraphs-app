@@ -13,6 +13,8 @@ export default function ParsingOptions(props) {
     <Row>
       <Col className={styles.parsingOptions}>
 
+        <b>DATA PARSING OPTIONS</b>
+
         <SeparatorSelector
           title="Column separator"
           value={props.separator}
@@ -35,8 +37,13 @@ export default function ParsingOptions(props) {
           localeList={props.localeList}
           onChange={nextLocale => props.setLocale(nextLocale)}
         />
+
+        <div className="divider mb-3 mt-0" />
+
+        <b>DATA TRANSFORMATION</b>
+
         <StackSelector
-          title="Stack data on"
+          title="Stack on"
           value={props.stackDimension}
           list={props.dimensions}
           onChange={nextStackDimension => props.setStackDimension(nextStackDimension)}

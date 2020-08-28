@@ -222,6 +222,7 @@ export default function DataGrid({ userDataset, dataset, errors, dataTypes, coer
       sortColumn={sortColumn}
       sortDirection={sortDirection}
       onSort={handleSort}
+      height={432}
     />
   )
 
