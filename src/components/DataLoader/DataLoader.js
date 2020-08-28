@@ -23,8 +23,9 @@ import { get } from "lodash";
 
 import styles from "./DataLoader.module.scss";
 import { stackData } from "./stack";
+import UrlFetch from "./loaders/UrlFetch";
 
-function DataLoader({ data, setData }) {
+function DataLoader({ data, setData, dataSource, setDataSource }) {
   /* Data to be plot in the chart */
   /* First stage: raw user input */
   const [userInput, setUserInput] = useState("");
@@ -55,12 +56,13 @@ function DataLoader({ data, setData }) {
    * Then we try to read it using different parsers (notably json and csv)
    * Finally, if read is successful, we go inferring types using the raw-core library
    */
-  function setUserDataAndDetect(str, options) {
+  function setUserDataAndDetect(str, source, options) {
     const [dataType, parsedUserData, error] = parseAndCheckData(str, {
       separator: get(options, "separator", separator),
       locale: get(options, "locale", locale),
     });
     setUserInput(str);
+    setDataSource(source)
     setUserDataType(dataType);
     setParserError(error);
     // Data parsed ok set parent data
@@ -107,7 +109,7 @@ function DataLoader({ data, setData }) {
    */
   function loadSample(rawData, sampleSeparator) {
     setSeparator(sampleSeparator)
-    setUserDataAndDetect(rawData, { separator: sampleSeparator })
+    setUserDataAndDetect(rawData, { type: "sample" }, { separator: sampleSeparator })
   }
 
   function handleInlineEdit(newDataset) {
@@ -140,7 +142,7 @@ function DataLoader({ data, setData }) {
           separator={separator}
           setData={setData}
           userInput={userInput}
-          setUserInput={setUserDataAndDetect}
+          setUserInput={rawInput => setUserDataAndDetect(rawInput, { type: "paste" })}
         />
       ),
       message:
@@ -153,7 +155,7 @@ function DataLoader({ data, setData }) {
       loader: (
         <UploadFile
           userInput={userInput}
-          setUserInput={setUserDataAndDetect}
+          setUserInput={rawInput => setUserDataAndDetect(rawInput, { type: "file" })}
         />
       ),
       message:
@@ -168,7 +170,7 @@ function DataLoader({ data, setData }) {
       icon: BsGift,
     },
     {
-      id: "cloud",
+      id: "sparql",
       name: "SPARQL query SOON!",
       message: "Load data from a query address.",
       loader: <DataSamples onSampleReady={loadSample} />,
@@ -176,12 +178,17 @@ function DataLoader({ data, setData }) {
       disabled: true,
     },
     {
-      id: "sparql",
-      name: "From URL SOON!",
-      message: "Make sure your endpoint is CORS enabled.",
-      loader: <DataSamples onSampleReady={loadSample} />,
+      id: "url",
+      name: "From URL",
+      message: "Enter a web address (URL) pointing to the data (e.g. a public Dropbox file, a public API, ...). Please, be sure the server is CORS-enabled.",
+      loader: (
+        <UrlFetch
+          userInput={userInput}
+          setUserInput={(rawInput, source) => setUserDataAndDetect(rawInput, source)}
+        />
+      ),
       icon: BsSearch,
-      disabled: true,
+      disabled: false,
     },
     {
       id: "project",
@@ -306,6 +313,7 @@ function DataLoader({ data, setData }) {
                 setUserData(null);
                 setUserDataType(null);
                 setUserInput("");
+                setDataSource(null)
                 setParserError(null);
                 setOptionIndex(0);
                 setStackDimension(null);
@@ -328,6 +336,9 @@ function DataLoader({ data, setData }) {
               dimensions={data ? unstackedColumns || data.dataTypes : []}
               stackDimension={stackDimension}
               setStackDimension={handleStackOperation}
+              userDataType={userDataType}
+              dataSource={dataSource}
+              onDataRefreshed={rawInput => setUserDataAndDetect(rawInput, dataSource)}
             />
           </Col>
         )}
