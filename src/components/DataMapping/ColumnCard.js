@@ -4,6 +4,7 @@ import { dataTypeIcons } from "../../constants"
 import { useDrag } from "react-dnd"
 
 import styles from './DataMapping.module.scss'
+import { get } from "lodash"
 
 const ColumnCard = ({ dimensionName, dimensionType }) => {
   const [{ isDragging }, drag] = useDrag({
@@ -13,7 +14,7 @@ const ColumnCard = ({ dimensionName, dimensionType }) => {
     })
   })
 
-  const DataTypeIcon = dataTypeIcons[dimensionType];
+  const DataTypeIcon = dataTypeIcons[get(dimensionType, "type", dimensionType)];
 
   return (
     <div
@@ -21,7 +22,7 @@ const ColumnCard = ({ dimensionName, dimensionType }) => {
       className={`column-card ${styles['column-card']} ${isDragging ? 'is-dragging' : ''}`}
     >
     
-    < DataTypeIcon className={styles['data-type-icon']} /> 
+    <DataTypeIcon className={styles['data-type-icon']} /> 
     <span className={styles['column-title']}>{dimensionName}</span>
     </div>
   )

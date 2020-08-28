@@ -14,6 +14,17 @@
   padding: 0 5px;
 }
 
+.date-format-selector {
+  background-color: white;
+
+  .selected {
+    background-color: #cccccc;
+  }
+  .date-format-selector-entry {
+    padding: 10px 20px;
+  }
+}
+
 .has-error {
   background-color: var(--warning);
   margin: 0 -8px; // Override default padding from .rdg-cell

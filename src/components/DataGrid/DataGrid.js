@@ -1,26 +1,65 @@
 import React, { useMemo, useRef, useState, useCallback } from "react";
 import ReactDataGrid from 'react-data-grid';
-import { Overlay } from "react-bootstrap";
+import { Overlay, OverlayTrigger } from "react-bootstrap";
 import classNames from "classnames";
 
 import S from "./DataGrid.module.scss"
-import { keyBy } from "lodash";
+import { keyBy, get, isEqual } from "lodash";
+import { dataTypeIcons, DateIcon, StringIcon, NumberIcon } from "../../constants";
 
-console.log(S)
+const DATE_FORMATS = [
+  "YYYY-MM-DD",
+  "YY-MM",
+  "DD Month YYYY",
+]
 
-function DataTypeSelector({ currentType, onTypeChange }) {
-  const target = useRef(null)
+const DateFormatSelector = React.forwardRef(({ currentFormat, onChange, className, ...props }, ref) => {
+  return (
+    <div className={classNames(className, S["date-format-selector"])} ref={ref} {...props}>
+      {DATE_FORMATS.map(dateFmt => (
+        <div
+          key={dateFmt}
+          className={classNames(
+            S["date-format-selector-entry"],
+            { [S.selected]: get(currentFormat, "dateFormat", "") === dateFmt }
+          )}
+          onClick={e => {
+            e.stopPropagation()
+            e.preventDefault()
+            onChange && onChange({
+              type: "date",
+              dateFormat: dateFmt
+            })
+          }}
+        >
+          {dateFmt}
+        </div>
+      ))}
+    </div>
+  )
+})
+
+function DataTypeSelector({ currentType: typeDescriptor, onTypeChange }) {
+  const dataTypeIconDomRef = useRef(null)
   const [showPicker, setShowPicker] = useState(false)
+  const currentType = get(typeDescriptor, "type", typeDescriptor)
 
   const handleTypeChange = useCallback(e => {
     e.stopPropagation()
     e.preventDefault()
     const newType = e.target.dataset.datatype
-    if (typeof onTypeChange === "function" && newType !== currentType) {
+    if (typeof onTypeChange === "function" && !isEqual(newType, typeDescriptor)) {
       onTypeChange(newType)
     }
     setShowPicker(false)
-  }, [currentType, onTypeChange])
+  }, [typeDescriptor, onTypeChange])
+
+  const handleTypeChangeDate = useCallback(newType => {
+    if (typeof onTypeChange === "function" && !isEqual(newType, typeDescriptor)) {
+      onTypeChange(newType)
+    }
+    setShowPicker(false)
+  }, [typeDescriptor, onTypeChange])
 
   const handleTargetClick = useCallback(e => {
     e.stopPropagation()
@@ -28,14 +67,15 @@ function DataTypeSelector({ currentType, onTypeChange }) {
     setShowPicker(!showPicker)
   }, [showPicker])
 
+  const Icon = dataTypeIcons[currentType]
+
   return (
     <>
-      <span role="button" className={S["data-type-selector-trigger"]} ref={target} onClick={handleTargetClick}>
-        {/* TODO: use icon based on currentType */}
-        #
+      <span role="button" className={S["data-type-selector-trigger"]} ref={dataTypeIconDomRef} onClick={handleTargetClick}>
+        <Icon />
       </span>
       <Overlay
-        target={target.current}
+        target={dataTypeIconDomRef.current}
         show={showPicker}
         placement="bottom"
         rootClose={true}
@@ -53,22 +93,39 @@ function DataTypeSelector({ currentType, onTypeChange }) {
           show: _show,
           ...props
         }) => (
-            <div id="data-type-selector" className={S["data-type-selector"]} {...props}>
-              <div
-                data-datatype="date"
-                onClick={handleTypeChange}
-                className={classNames(S["data-type-selector-item"], { [S.selected]: currentType === "date" })}
-              >Date</div>
-              <div
-                data-datatype="string"
-                onClick={handleTypeChange}
-                className={classNames(S["data-type-selector-item"], { [S.selected]: currentType === "string" })}
-              >String</div>
+            <div id="data-type-selector" className={S["data-type-selector"]} onClick={e => e.stopPropagation()} {...props}>
               <div
                 data-datatype="number"
                 onClick={handleTypeChange}
                 className={classNames(S["data-type-selector-item"], { [S.selected]: currentType === "number" })}
-              >Number</div>
+              ><NumberIcon /> Number</div>
+              <OverlayTrigger
+                placement="right-start"
+                overlay={(
+                  <DateFormatSelector 
+                    currentType={typeDescriptor}
+                    onChange={handleTypeChangeDate}
+                  />
+                )}
+                trigger="click"
+              >
+                {({ ref, ...triggerHandler }) => (
+                  <div
+                    ref={ref}
+                    data-datatype="date"
+                    {...triggerHandler}
+                    className={classNames(S["data-type-selector-item"], { [S.selected]: currentType === "date" })}
+                  >
+                    <DateIcon />
+                    {" Date"}
+                  </div>
+                )}
+              </OverlayTrigger>
+              <div
+                data-datatype="string"
+                onClick={handleTypeChange}
+                className={classNames(S["data-type-selector-item"], { [S.selected]: currentType === "string" })}
+              ><StringIcon /> String</div>
             </div>
           )}
       </Overlay>
@@ -117,7 +174,6 @@ export default function DataGrid({ userDataset, dataset, errors, dataTypes, coer
         name: k,
         headerRenderer: HeaderRenderer,
         formatter: ({ row }) => {
-          console.log(row)
           return (
             <div className={classNames({ [S["has-error"]]: row?._errors?.[k] })}>
               {row[k]}
