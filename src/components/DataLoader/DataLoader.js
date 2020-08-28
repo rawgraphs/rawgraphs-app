@@ -15,6 +15,7 @@ import { parseDataset } from "@raw-temp/rawgraphs-core";
 import localeList from "./localeList";
 import ParsingOptions from "../ParsingOptions";
 import Paste from "./loaders/Paste";
+import UploadFile from "./loaders/UploadFile";
 import { parseAndCheckData, normalizeJsonArray } from "./parser";
 import JsonViewer from "../JsonViewer";
 import DataGrid from "../DataGrid/DataGrid";
@@ -150,26 +151,14 @@ function DataLoader({ data, setData }) {
       id: "upload",
       name: "Upload your data",
       loader: (
-        <div
-          style={{
-            backgroundColor: "white",
-            border: "1px solid lightgrey",
-            borderRadius: 4,
-            padding: "1rem",
-            minHeight: "250px",
-            height: "432px",
-          }}
-        >
-          <span role="img" aria-label="work in progress">
-            ⏳
-          </span>{" "}
-          this will be a drop zone / file loader that accepts datasets
-        </div>
+        <UploadFile
+          userInput={userInput}
+          setUserInput={setUserDataAndDetect}
+        />
       ),
       message:
         "You can load tabular (TSV, CSV, DSV) or JSON data. Questions about how to format your data?",
       icon: BsUpload,
-      disabled: true,
     },
     {
       id: "samples",
