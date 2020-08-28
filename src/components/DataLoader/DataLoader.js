@@ -202,9 +202,19 @@ function DataLoader({ data, setData }) {
   const [optionIndex, setOptionIndex] = useState(0);
   const selectedOption = options[optionIndex];
 
+  console.log(data)
+
   let mainContent;
   if (data) {
-    mainContent = <DataGrid userDataset={userData} dataset={data.dataset} dataTypes={data.dataTypes} coerceTypes={coerceTypes} />;
+    mainContent = (
+      <DataGrid
+        userDataset={userData}
+        dataset={data.dataset}
+        errors={data.errors}
+        dataTypes={data.dataTypes}
+        coerceTypes={coerceTypes} 
+      />
+    )
   } else if (userDataType === "json" && userData === null) {
     mainContent = (
       <JsonViewer

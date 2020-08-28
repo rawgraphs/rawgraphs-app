@@ -3,7 +3,10 @@ import ReactDataGrid from 'react-data-grid';
 import { Overlay } from "react-bootstrap";
 import classNames from "classnames";
 
-import "./DataGrid.scss"
+import S from "./DataGrid.module.scss"
+import { keyBy } from "lodash";
+
+console.log(S)
 
 function DataTypeSelector({ currentType, onTypeChange }) {
   const target = useRef(null)
@@ -27,7 +30,7 @@ function DataTypeSelector({ currentType, onTypeChange }) {
 
   return (
     <>
-      <span role="button" className="data-type-selector-trigger" ref={target} onClick={handleTargetClick}>
+      <span role="button" className={S["data-type-selector-trigger"]} ref={target} onClick={handleTargetClick}>
         {/* TODO: use icon based on currentType */}
         #
       </span>
@@ -50,21 +53,21 @@ function DataTypeSelector({ currentType, onTypeChange }) {
           show: _show,
           ...props
         }) => (
-            <div id="data-type-selector" className="data-type-selector" {...props}>
+            <div id="data-type-selector" className={S["data-type-selector"]} {...props}>
               <div
                 data-datatype="date"
                 onClick={handleTypeChange}
-                className={classNames('data-type-selector-item', { selected: currentType === "date" })}
+                className={classNames(S["data-type-selector-item"], { [S.selected]: currentType === "date" })}
               >Date</div>
               <div
                 data-datatype="string"
                 onClick={handleTypeChange}
-                className={classNames('data-type-selector-item', { selected: currentType === "string" })}
+                className={classNames(S["data-type-selector-item"], { [S.selected]: currentType === "string" })}
               >String</div>
               <div
                 data-datatype="number"
                 onClick={handleTypeChange}
-                className={classNames('data-type-selector-item', { selected: currentType === "number" })}
+                className={classNames(S["data-type-selector-item"], { [S.selected]: currentType === "number" })}
               >Number</div>
             </div>
           )}
@@ -85,8 +88,10 @@ function HeaderRenderer({ column, ...props }) {
   )
 }
 
-export default function DataGrid({ userDataset, dataset, dataTypes, coerceTypes }) {
+export default function DataGrid({ userDataset, dataset, errors, dataTypes, coerceTypes }) {
   const [[sortColumn, sortDirection], setSort] = useState(['id', 'NONE']);
+
+  const keyedErrors = useMemo(() => keyBy(errors, "row"), [errors])
 
   // Make id column just as large as needed
   // Adjust constants to fit cell padding and font size
@@ -111,6 +116,14 @@ export default function DataGrid({ userDataset, dataset, dataTypes, coerceTypes 
         key: k,
         name: k,
         headerRenderer: HeaderRenderer,
+        formatter: ({ row }) => {
+          console.log(row)
+          return (
+            <div className={classNames({ [S["has-error"]]: row?._errors?.[k] })}>
+              {row[k]}
+            </div>
+          )
+        },
         _raw_datatype: dataTypes[k],
         _raw_coerceType: nextType => coerceTypes({ ...dataTypes, [k]: nextType }),
         sortable: true,
@@ -121,10 +134,11 @@ export default function DataGrid({ userDataset, dataset, dataTypes, coerceTypes 
 
   const sortedDataset = useMemo(() => {
     let datasetWithIds = userDataset
-      .map((item, i) => ({  // Using .map ensures that we are not mutating a property
-        ...item, 
-        _id: i + 1,         // Give items some id to populate left-most column
-        _stage3: dataset[i] // The dataset parsed by raw lib basing on data types is needed for sorting!
+      .map((item, i) => ({               // Using .map ensures that we are not mutating a property
+        ...item,
+        _id: i + 1,                      // Give items some id to populate left-most column
+        _stage3: dataset[i],             // The dataset parsed by raw lib basing on data types is needed for sorting!
+        _errors: keyedErrors[i]?.error,  // Inject errors to format cells with parsing errors
       }))
     if (sortDirection === "NONE") return datasetWithIds
     const sortColumnType = dataTypes[sortColumn]
@@ -138,7 +152,7 @@ export default function DataGrid({ userDataset, dataset, dataTypes, coerceTypes 
     }
 
     return sortDirection === 'DESC' ? datasetWithIds.reverse() : datasetWithIds;
-  }, [userDataset, sortDirection, dataTypes, sortColumn, dataset])
+  }, [userDataset, sortDirection, dataTypes, sortColumn, dataset, keyedErrors])
 
   const handleSort = useCallback((columnKey, direction) => {
     setSort([columnKey, direction]);
