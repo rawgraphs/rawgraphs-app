@@ -204,7 +204,7 @@ function DataLoader({ data, setData }) {
 
   let mainContent;
   if (data) {
-    mainContent = <DataGrid dataset={userData} dataTypes={data.dataTypes} coerceTypes={coerceTypes} />;
+    mainContent = <DataGrid userDataset={userData} dataset={data.dataset} dataTypes={data.dataTypes} coerceTypes={coerceTypes} />;
   } else if (userDataType === "json" && userData === null) {
     mainContent = (
       <JsonViewer

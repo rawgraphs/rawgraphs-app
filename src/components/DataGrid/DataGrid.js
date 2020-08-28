@@ -85,17 +85,17 @@ function HeaderRenderer({ column, ...props }) {
   )
 }
 
-export default function DataGrid({ dataset, dataTypes, coerceTypes }) {
+export default function DataGrid({ userDataset, dataset, dataTypes, coerceTypes }) {
   const [[sortColumn, sortDirection], setSort] = useState(['id', 'NONE']);
 
   // Make id column just as large as needed
   // Adjust constants to fit cell padding and font size
   // (Math.floor(Math.log10(data.dataset.length)) + 1) is the number 
   //   of digits of the highest id 
-  const idColumnWidth = 24 + 8 * (Math.floor(Math.log10(dataset.length)) + 1)
+  const idColumnWidth = 24 + 8 * (Math.floor(Math.log10(userDataset.length)) + 1)
 
   const columns = useMemo(() => {
-    if (!dataset || !dataTypes) {
+    if (!userDataset || !dataTypes) {
       return []
     }
     return [
@@ -117,27 +117,28 @@ export default function DataGrid({ dataset, dataTypes, coerceTypes }) {
         width: 180,
       }))
     ]
-  }, [coerceTypes, dataTypes, dataset, idColumnWidth])
+  }, [coerceTypes, dataTypes, userDataset, idColumnWidth])
 
   const sortedDataset = useMemo(() => {
-    let datasetWithIds = dataset
-      .map((item, i) => ({ 
+    let datasetWithIds = userDataset
+      .map((item, i) => ({  // Using .map ensures that we are not mutating a property
         ...item, 
-        _id: i + 1 
+        _id: i + 1,         // Give items some id to populate left-most column
+        _stage3: dataset[i] // The dataset parsed by raw lib basing on data types is needed for sorting!
       }))
     if (sortDirection === "NONE") return datasetWithIds
     const sortColumnType = dataTypes[sortColumn]
     if (sortColumnType === "number") {
-      datasetWithIds = datasetWithIds.sort((a, b) => a[sortColumn] || 0 - b[sortColumn] || 0)
+      datasetWithIds = datasetWithIds.sort((a, b) => a._stage3[sortColumn] - b._stage3[sortColumn])
     }
     else if (sortColumnType === "date") {
-      datasetWithIds = datasetWithIds.sort((a, b) => a[sortColumn]?.valueOf() ?? 0 - b[sortColumn]?.valueOf()) ?? 0
+      datasetWithIds = datasetWithIds.sort((a, b) => a._stage3[sortColumn]?.valueOf() ?? 0 - b._stage3[sortColumn]?.valueOf()) ?? 0
     } else {
-      datasetWithIds = datasetWithIds.sort((a, b) => a[sortColumn].toString().localeCompare(b[sortColumn].toString()))
+      datasetWithIds = datasetWithIds.sort((a, b) => a._stage3[sortColumn].toString().localeCompare(b._stage3[sortColumn].toString()))
     }
 
     return sortDirection === 'DESC' ? datasetWithIds.reverse() : datasetWithIds;
-  }, [dataTypes, dataset, sortColumn, sortDirection])
+  }, [userDataset, sortDirection, dataTypes, sortColumn, dataset])
 
   const handleSort = useCallback((columnKey, direction) => {
     setSort([columnKey, direction]);
