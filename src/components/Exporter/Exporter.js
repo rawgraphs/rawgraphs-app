@@ -3,28 +3,14 @@ import {
   InputGroup,
   DropdownButton,
   Dropdown,
-  FormControl,
 } from "react-bootstrap";
 
 function downloadBlob(url, filename) {
   // Create a new anchor element
   const a = document.createElement("a");
-
-  // Set the href and download attributes for the anchor element
-  // You can optionally set other attributes like `title`, etc
-  // Especially, if the anchor element will be attached to the DOM
   a.href = url;
   a.download = filename || "download";
-
-  // Programmatically trigger a click on the anchor element
-  // Useful if you want the download to happen automatically
-  // Without attaching the anchor element to the DOM
-  // Comment out this line if you don't want an automatic download of the blob content
   a.click();
-
-  // Return the anchor element
-  // Useful if you want a reference to the element
-  // in order to attach it to the DOM or use it in some other way
   return a;
 }
 
@@ -38,7 +24,7 @@ export default function Exporter({ rawViz }) {
       var svg = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
       var url = DOMURL.createObjectURL(svg);
       downloadBlob(url, filename);
-      DOMURL.revokeObjectURL(svg)
+      DOMURL.revokeObjectURL(svg);
     },
     [rawViz]
   );
@@ -60,7 +46,7 @@ export default function Exporter({ rawViz }) {
         ctx.drawImage(img, 0, 0);
         var dataUrl = canvas.toDataURL(format);
         downloadBlob(dataUrl, filename);
-        DOMURL.revokeObjectURL(svg)
+        DOMURL.revokeObjectURL(svg);
       };
       img.src = url;
     },
@@ -117,31 +103,10 @@ export default function Exporter({ rawViz }) {
       </div>
 
       <div className="col col-sm-4">
-        <button className="btn btn-primary" onClick={downloadViz}>Download</button>
+        <button className="btn btn-primary" onClick={downloadViz}>
+          Download
+        </button>
       </div>
     </div>
-
-    //   <button
-    //     onClick={() => {
-    //       downloadSvg();
-    //     }}
-    //   >
-    //     svg
-    //   </button>
-    //   <button
-    //     onClick={() => {
-    //       downloadImage("image/png");
-    //     }}
-    //   >
-    //     png
-    //   </button>
-    //   <button
-    //     onClick={() => {
-    //       downloadImage("image/jpeg");
-    //     }}
-    //   >
-    //     jpeg
-    //   </button>
-    // </div>
   );
 }

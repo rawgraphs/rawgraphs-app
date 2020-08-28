@@ -1,6 +1,8 @@
 import React from "react"
 import { dataTypeIcons } from "../../constants"
-
+import {
+  getTypeName,
+} from "@raw-temp/rawgraphs-core";
 import { useDrag } from "react-dnd"
 
 import styles from './DataMapping.module.scss'
@@ -13,7 +15,7 @@ const ColumnCard = ({ dimensionName, dimensionType }) => {
     })
   })
 
-  const DataTypeIcon = dataTypeIcons[dimensionType];
+  const DataTypeIcon = dataTypeIcons[getTypeName(dimensionType)];
 
   return (
     <div
