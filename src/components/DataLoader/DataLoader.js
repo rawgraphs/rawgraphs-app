@@ -59,9 +59,6 @@ function DataLoader({ data, setData, dataSource, setDataSource }) {
   function setUserDataAndDetect(str, source, options) {
     const [dataType, parsedUserData, error] = parseAndCheckData(str, {
       separator: get(options, "separator", separator),
-      locale: get(options, "locale", locale),
-      decimal: get(options, 'decimal', decimalsSeparator),
-      group: get(options, 'group', thousandsSeparator),
     });
     setUserInput(str);
     setDataSource(source)
@@ -83,9 +80,6 @@ function DataLoader({ data, setData, dataSource, setDataSource }) {
   function handleChangeSeparator(newSeparator) {
     const [dataType, parsedUserData, error] = parseAndCheckData(userInput, {
       separator: newSeparator,
-      locale,
-      decimal: decimalsSeparator,
-      group: thousandsSeparator,
     });
     setSeparator(newSeparator);
     setUserDataType(dataType);
@@ -99,10 +93,7 @@ function DataLoader({ data, setData, dataSource, setDataSource }) {
   
   function handleChangeLocale(newLocale) {
     const [dataType, parsedUserData, error] = parseAndCheckData(userInput, {
-      separator,
-      locale: newLocale,
-      decimal: decimalsSeparator,
-      group: thousandsSeparator,
+      separator
     });
     setLocale(newLocale);
     setUserDataType(dataType);
@@ -117,10 +108,7 @@ function DataLoader({ data, setData, dataSource, setDataSource }) {
  
   function handleChangeDecimalSeparator(newDecimalSeparator) {
     const [dataType, parsedUserData, error] = parseAndCheckData(userInput, {
-      separator,
-      locale,
-      decimal: newDecimalSeparator,
-      group: thousandsSeparator,
+      separator
     });
     setDecimalsSeparator(newDecimalSeparator);
     setUserDataType(dataType);
@@ -134,10 +122,7 @@ function DataLoader({ data, setData, dataSource, setDataSource }) {
  
   function handleChangeThousandsSeparator(newThousandsSeparator) {
     const [dataType, parsedUserData, error] = parseAndCheckData(userInput, {
-      separator,
-      locale,
-      decimal: decimalsSeparator,
-      group: newThousandsSeparator,
+      separator
     });
     setThousandsSeparator(newThousandsSeparator);
     setUserDataType(dataType);
