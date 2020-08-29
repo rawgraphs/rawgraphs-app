@@ -65,7 +65,7 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
               const DataTypeIcon = dataTypeIcons[getTypeName(dataTypes[columnId])];
             return (
               <div key={i} className={classnames('assigned-column', styles['column-card'], styles['assigned-column'], isValid)}>
-                <span><DataTypeIcon className={styles['data-type-icon']} /></span>
+                <span>{!!DataTypeIcon && <DataTypeIcon className={styles['data-type-icon']} />}</span>
                 <span className={styles['column-title']}>{columnId}</span>
                 <button className={styles['remove-assigned']} type="button" onClick={() => {
                   setMapping({

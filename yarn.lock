@@ -1922,18 +1922,20 @@
     d3 "^5.16.0"
     d3-array "^2.5.0"
 
-"@raw-temp/rawgraphs-core@^0.1.17":
-  version "0.1.17"
-  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-0.1.17.tgz#561821d18182fbf8ea4fb1d7b65935612c8ddc08"
-  integrity sha512-LNkamKbttqlOEJo1Vn5zbcMJY1X1BpUKULN/lljoYam7mfYg6trm6UoNyVfZv7ZrYwez43ZCg1qX0uuGdSiKTA==
+"@raw-temp/rawgraphs-core@^0.1.19":
+  version "0.1.19"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-0.1.19.tgz#409c7217c305636a0d32b8cd8e66155ebcc2714d"
+  integrity sha512-9/dIygLi8CXJxVC9vJYbLWAZlKOvNjLQwU9nS/qBukS/HvkX/cWCLdpiiB7Hj2cBIL/XxqADAc2WhNKMwS4rnA==
   dependencies:
     d3-array "^2.4.0"
     d3-axis "^1.0.12"
     d3-color "^1.4.1"
     d3-dsv "^1.2.0"
+    d3-format "^1.4.4"
     d3-interpolate "^1.4.0"
     d3-scale "^3.2.1"
     d3-scale-chromatic "^1.5.0"
+    d3-time-format "^2.2.3"
     dayjs "^1.8.22"
     lodash "^4.17.15"
 
@@ -4436,6 +4438,11 @@ d3-format@1:
   resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-1.4.4.tgz#356925f28d0fd7c7983bfad593726fce46844030"
   integrity sha512-TWks25e7t8/cqctxCmxpUuzZN11QxIA7YrMbram94zMQ0PXjE4LVIMe/f6a4+xxL8HQ3OsAFULOINQi1pE62Aw==
 
+d3-format@^1.4.4:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-1.4.5.tgz#374f2ba1320e3717eb74a9356c67daee17a7edb4"
+  integrity sha512-J0piedu6Z8iB6TbIGfZgDzfXxUFN3qQRMofy2oPdXzQibYGqPB/9iMcxr/TGalU+2RsyDO+U4f33id8tbnSRMQ==
+
 d3-geo@1:
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/d3-geo/-/d3-geo-1.12.1.tgz#7fc2ab7414b72e59fbcbd603e80d9adc029b035f"
@@ -4522,6 +4529,13 @@ d3-time-format@2:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/d3-time-format/-/d3-time-format-2.2.3.tgz#0c9a12ee28342b2037e5ea1cf0b9eb4dd75f29cb"
   integrity sha512-RAHNnD8+XvC4Zc4d2A56Uw0yJoM7bsvOlJR33bclxq399Rak/b9bhvu/InjxdWhPtkgU53JJcleJTGkNRnN6IA==
+  dependencies:
+    d3-time "1"
+
+d3-time-format@^2.2.3:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/d3-time-format/-/d3-time-format-2.3.0.tgz#107bdc028667788a8924ba040faf1fbccd5a7850"
+  integrity sha512-guv6b2H37s2Uq/GefleCDtbe0XZAuy7Wa49VGkPVPMfLL9qObgBST3lEHJBMUp8S7NdLQAGIvr2KXk8Hc98iKQ==
   dependencies:
     d3-time "1"
 
