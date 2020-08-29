@@ -155,9 +155,6 @@ export default function DataGrid({ userDataset, dataset, errors, dataTypes, coer
 
   const keyedErrors = useMemo(() => keyBy(errors, "row"), [errors])
 
-  console.log("dataset", dataset)
-  console.log("dataTypes", dataTypes)
-
   // Make id column just as large as needed
   // Adjust constants to fit cell padding and font size
   // (Math.floor(Math.log10(data.dataset.length)) + 1) is the number 
