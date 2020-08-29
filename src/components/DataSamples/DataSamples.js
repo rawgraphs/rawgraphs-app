@@ -1,32 +1,32 @@
 import React from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
-import { dsv } from 'd3-fetch';
 
 const samplesList = [
   {
     'name': 'Movie Data',
     'category': 'Dispersions',
     'url': './sample-datasets/Scatterplot - Highest Grossing Blockbusters of All Time Adjusted for Inflation - data.tsv',
-    'delimiter': '\t'
+    'delimiter': "\t"
   },
   {
     'name': 'Music Industry',
     'category': 'Lines',
     'url': './sample-datasets/Line graph - RIAA Music format revenues - data.tsv',
-    'delimiter': '\t'
+    'delimiter': "\t"
   },
   {
     'name': 'Wine Tasting',
     'category': 'Weighted Hierarchies',
     'url': './sample-datasets/Sunburst - Wine Tasting - data.tsv',
-    'delimiter': '\t'
+    'delimiter': "\t"
   }
 ]
 export default function DataSamples({ onSampleReady }) {
   const select = async (sample) => {
-    const { delimiter, url } = sample;
-    const data = await dsv(delimiter, url);
-    onSampleReady(data, delimiter);
+    const { delimiter, url } = sample
+    const response = await fetch(url)
+    const text = await response.text()
+    onSampleReady(text, delimiter)
   }
   return (
     <Row>

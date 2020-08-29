@@ -1,0 +1,32 @@
+.data-type-selector {
+  background-color: #ddd;
+
+  .selected {
+    background-color: #999;
+  }
+  .data-type-selector-item {
+    padding: 10px 20px;
+  }
+}
+
+.data-type-selector-trigger {
+  display: inline-block;
+  padding: 0 5px;
+}
+
+.date-format-selector {
+  background-color: white;
+
+  .selected {
+    background-color: #cccccc;
+  }
+  .date-format-selector-entry {
+    padding: 10px 20px;
+  }
+}
+
+.has-error {
+  background-color: var(--warning);
+  margin: 0 -8px; // Override default padding from .rdg-cell
+  padding: 0 8px; // Override default padding from .rdg-cell
+}

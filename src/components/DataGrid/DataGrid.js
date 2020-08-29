@@ -1,23 +1,70 @@
 import React, { useMemo, useRef, useState, useCallback } from "react";
 import ReactDataGrid from 'react-data-grid';
-import { Overlay } from "react-bootstrap";
+import { Overlay, OverlayTrigger } from "react-bootstrap";
 import classNames from "classnames";
+import { getTypeName, NumberParser } from "@raw-temp/rawgraphs-core"
+import dayjs from "dayjs";
+import isPlainObject from 'lodash/isPlainObject'
 
-import "./DataGrid.scss"
 
-function DataTypeSelector({ currentType, onTypeChange }) {
-  const target = useRef(null)
+import S from "./DataGrid.module.scss"
+import { keyBy, get, isEqual } from "lodash";
+import { dataTypeIcons, DateIcon, StringIcon, NumberIcon } from "../../constants";
+
+const DATE_FORMATS = [
+  "YYYY-MM-DD",
+  "YY-MM",
+  "DD Month YYYY",
+  "YYYY",
+]
+
+const DateFormatSelector = React.forwardRef(({ currentFormat, onChange, className, ...props }, ref) => {
+  return (
+    <div className={classNames(className, S["date-format-selector"])} ref={ref} {...props}>
+      {DATE_FORMATS.map(dateFmt => (
+        <div
+          key={dateFmt}
+          className={classNames(
+            S["date-format-selector-entry"],
+            { [S.selected]: get(currentFormat, "dateFormat", "") === dateFmt }
+          )}
+          onClick={e => {
+            e.stopPropagation()
+            e.preventDefault()
+            onChange && onChange({
+              type: "date",
+              dateFormat: dateFmt
+            })
+          }}
+        >
+          {dateFmt}
+        </div>
+      ))}
+    </div>
+  )
+})
+
+function DataTypeSelector({ currentType: typeDescriptor, onTypeChange }) {
+  const dataTypeIconDomRef = useRef(null)
   const [showPicker, setShowPicker] = useState(false)
+  const currentType = get(typeDescriptor, "type", typeDescriptor)
 
   const handleTypeChange = useCallback(e => {
     e.stopPropagation()
     e.preventDefault()
     const newType = e.target.dataset.datatype
-    if (typeof onTypeChange === "function" && newType !== currentType) {
+    if (typeof onTypeChange === "function" && !isEqual(newType, typeDescriptor)) {
       onTypeChange(newType)
     }
     setShowPicker(false)
-  }, [currentType, onTypeChange])
+  }, [typeDescriptor, onTypeChange])
+
+  const handleTypeChangeDate = useCallback(newType => {
+    if (typeof onTypeChange === "function" && !isEqual(newType, typeDescriptor)) {
+      onTypeChange(newType)
+    }
+    setShowPicker(false)
+  }, [typeDescriptor, onTypeChange])
 
   const handleTargetClick = useCallback(e => {
     e.stopPropagation()
@@ -25,14 +72,15 @@ function DataTypeSelector({ currentType, onTypeChange }) {
     setShowPicker(!showPicker)
   }, [showPicker])
 
+  const Icon = dataTypeIcons[currentType]
+
   return (
     <>
-      <span role="button" className="data-type-selector-trigger" ref={target} onClick={handleTargetClick}>
-        {/* TODO: use icon based on currentType */}
-        #
+      <span role="button" className={S["data-type-selector-trigger"]} ref={dataTypeIconDomRef} onClick={handleTargetClick}>
+        <Icon />
       </span>
       <Overlay
-        target={target.current}
+        target={dataTypeIconDomRef.current}
         show={showPicker}
         placement="bottom"
         rootClose={true}
@@ -50,22 +98,39 @@ function DataTypeSelector({ currentType, onTypeChange }) {
           show: _show,
           ...props
         }) => (
-            <div id="data-type-selector" className="data-type-selector" {...props}>
-              <div
-                data-datatype="date"
-                onClick={handleTypeChange}
-                className={classNames('data-type-selector-item', { selected: currentType === "date" })}
-              >Date</div>
-              <div
-                data-datatype="string"
-                onClick={handleTypeChange}
-                className={classNames('data-type-selector-item', { selected: currentType === "string" })}
-              >String</div>
+            <div id="data-type-selector" className={S["data-type-selector"]} onClick={e => e.stopPropagation()} {...props}>
               <div
                 data-datatype="number"
                 onClick={handleTypeChange}
-                className={classNames('data-type-selector-item', { selected: currentType === "number" })}
-              >Number</div>
+                className={classNames(S["data-type-selector-item"], { [S.selected]: currentType === "number" })}
+              ><NumberIcon /> Number</div>
+              <OverlayTrigger
+                placement="right-start"
+                overlay={(
+                  <DateFormatSelector
+                    currentType={typeDescriptor}
+                    onChange={handleTypeChangeDate}
+                  />
+                )}
+                trigger="click"
+              >
+                {({ ref, ...triggerHandler }) => (
+                  <div
+                    ref={ref}
+                    data-datatype="date"
+                    {...triggerHandler}
+                    className={classNames(S["data-type-selector-item"], { [S.selected]: currentType === "date" })}
+                  >
+                    <DateIcon />
+                    {" Date"}
+                  </div>
+                )}
+              </OverlayTrigger>
+              <div
+                data-datatype="string"
+                onClick={handleTypeChange}
+                className={classNames(S["data-type-selector-item"], { [S.selected]: currentType === "string" })}
+              ><StringIcon /> String</div>
             </div>
           )}
       </Overlay>
@@ -85,17 +150,19 @@ function HeaderRenderer({ column, ...props }) {
   )
 }
 
-export default function DataGrid({ data, coerceTypes }) {
+export default function DataGrid({ userDataset, dataset, errors, dataTypes, coerceTypes, onDataUpdate }) {
   const [[sortColumn, sortDirection], setSort] = useState(['id', 'NONE']);
+
+  const keyedErrors = useMemo(() => keyBy(errors, "row"), [errors])
 
   // Make id column just as large as needed
   // Adjust constants to fit cell padding and font size
   // (Math.floor(Math.log10(data.dataset.length)) + 1) is the number 
   //   of digits of the highest id 
-  const idColumnWidth = 24 + 8 * (Math.floor(Math.log10(data.dataset.length)) + 1)
+  const idColumnWidth = 24 + 8 * (Math.floor(Math.log10(userDataset.length)) + 1)
 
   const columns = useMemo(() => {
-    if (!data) {
+    if (!userDataset || !dataTypes) {
       return []
     }
     return [
@@ -107,37 +174,49 @@ export default function DataGrid({ data, coerceTypes }) {
         width: idColumnWidth,
         sortable: true,
       },
-      ...Object.keys(data.dataTypes).map(k => ({
+      ...Object.keys(dataTypes).map(k => ({
         key: k,
         name: k,
         headerRenderer: HeaderRenderer,
-        _raw_datatype: data.dataTypes[k],
-        _raw_coerceType: nextType => coerceTypes({ ...data.dataTypes, [k]: nextType }),
+        editable: true,
+        formatter: ({ row }) => {
+          return (
+            <div className={classNames({ [S["has-error"]]: row?._errors?.[k] })}>
+              {row[k]}
+            </div>
+          )
+        },
+        _raw_datatype: dataTypes[k],
+        _raw_coerceType: nextType => coerceTypes({ ...dataTypes, [k]: nextType }),
         sortable: true,
         width: 180,
-      }))
+      })) 
     ]
-  }, [coerceTypes, data, idColumnWidth])
+  }, [coerceTypes, dataTypes, userDataset, idColumnWidth])
 
   const sortedDataset = useMemo(() => {
-    let datasetWithIds = data.dataset
-      .map((item, i) => ({ 
-        ...item, 
-        _id: i + 1 
+    let datasetWithIds = userDataset
+      .map((item, i) => ({               // Using .map ensures that we are not mutating a property
+        ...item,
+        _id: i + 1,                      // Give items some id to populate left-most column
+        _stage3: dataset[i],             // The dataset parsed by raw lib basing on data types is needed for sorting!
+        _errors: keyedErrors[i]?.error,  // Inject errors to format cells with parsing errors
       }))
     if (sortDirection === "NONE") return datasetWithIds
-    const sortColumnType = data.dataTypes[sortColumn]
+    
+    const sortColumnType = getTypeName(dataTypes[sortColumn])
+
     if (sortColumnType === "number") {
-      datasetWithIds = datasetWithIds.sort((a, b) => a[sortColumn] || 0 - b[sortColumn] || 0)
+      datasetWithIds = datasetWithIds.sort((a, b) => a._stage3[sortColumn] - b._stage3[sortColumn])
     }
     else if (sortColumnType === "date") {
-      datasetWithIds = datasetWithIds.sort((a, b) => a[sortColumn]?.valueOf() ?? 0 - b[sortColumn]?.valueOf()) ?? 0
+      datasetWithIds = datasetWithIds.sort((a, b) => a._stage3[sortColumn]?.valueOf() ?? 0 - b._stage3[sortColumn]?.valueOf()) ?? 0
     } else {
-      datasetWithIds = datasetWithIds.sort((a, b) => a[sortColumn].toString().localeCompare(b[sortColumn].toString()))
+      datasetWithIds = datasetWithIds.sort((a, b) => a._stage3[sortColumn].toString().localeCompare(b._stage3[sortColumn].toString()))
     }
 
     return sortDirection === 'DESC' ? datasetWithIds.reverse() : datasetWithIds;
-  }, [data.dataTypes, data.dataset, sortColumn, sortDirection])
+  }, [userDataset, sortDirection, dataTypes, sortColumn, dataset, keyedErrors])
 
   const handleSort = useCallback((columnKey, direction) => {
     setSort([columnKey, direction]);
@@ -151,6 +230,17 @@ export default function DataGrid({ data, coerceTypes }) {
       sortColumn={sortColumn}
       sortDirection={sortDirection}
       onSort={handleSort}
+      height={432}
+      onRowsUpdate={update => {
+        if (update.action === "CELL_UPDATE") {
+          const newDataset = [...userDataset]
+          newDataset[update.fromRow] = {
+            ...newDataset[update.fromRow],
+            [update.cellKey]: update.updated[update.cellKey]
+          }
+          onDataUpdate && onDataUpdate(newDataset)
+        }
+      }}
     />
   )
 

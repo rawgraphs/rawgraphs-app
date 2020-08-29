@@ -2,11 +2,10 @@ import React, { useCallback } from "react"
 import { Dropdown } from 'react-bootstrap';
 
 export default function StackSelector({ title, value, list, onChange, ...props }) {
-  
-  const handleChange = useCallback(locale => {
+
+  const handleChange = useCallback(nextDimension => {
     if (onChange) {
-      const nextDinemsion = locale
-      onChange(nextDinemsion)
+      onChange(nextDimension)
     }
   }, [onChange])
 
@@ -14,13 +13,21 @@ export default function StackSelector({ title, value, list, onChange, ...props }
     <div className="option">
       {title}
       <Dropdown className="d-inline-block">
-        <Dropdown.Toggle variant="white" className="truncate-160px" disabled={list.length===0}>{value?value:'Select a dimension'}</Dropdown.Toggle>
+        <Dropdown.Toggle
+          variant="white"
+          className="truncate-160px"
+          disabled={list.length === 0}>
+          {value ? value : 'Column'}
+        </Dropdown.Toggle>
         <Dropdown.Menu>
-        {
-          Object.keys(list).map(d=>{
-          return <Dropdown.Item key={d} onSelect={ ()=>handleChange(d) }>{d}</Dropdown.Item>
-          })
-        }
+          {value && (
+            <Dropdown.Item onSelect={() => handleChange(null)}>{"Do not stack"}</Dropdown.Item>
+          )}
+          {
+            Object.keys(list).map(d => {
+              return <Dropdown.Item key={d} onSelect={() => handleChange(d)}>{d}</Dropdown.Item>
+            })
+          }
         </Dropdown.Menu>
       </Dropdown>
     </div>
