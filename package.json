@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@raw-temp/rawgraphs-charts": "0.0.14",
+    "@raw-temp/rawgraphs-charts": "^0.0.15",
     "@raw-temp/rawgraphs-core": "^0.1.17",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -14,11 +14,12 @@
     "dayjs": "^1.8.33",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
-    "react-bootstrap": "^1.0.1",
+    "react-bootstrap": "^1.3.0",
     "react-data-grid": "^7.0.0-canary.16",
     "react-dnd": "^11.1.3",
     "react-dnd-html5-backend": "^11.1.3",
     "react-dom": "^16.13.1",
+    "react-dropzone": "^11.0.3",
     "react-icons": "^3.10.0",
     "react-scripts": "3.4.1",
     "typeface-inter": "^3.12.0"

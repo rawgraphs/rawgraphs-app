@@ -5,9 +5,9 @@ import {
   BsUpload,
   BsGift,
   BsFolder,
-  BsTrashFill,
   BsCloud,
   BsSearch,
+  BsArrowCounterclockwise,
 } from "react-icons/bs";
 import DataSamples from "../DataSamples/DataSamples";
 import { parseDataset } from "@raw-temp/rawgraphs-core";
@@ -15,14 +15,17 @@ import { parseDataset } from "@raw-temp/rawgraphs-core";
 import localeList from "./localeList";
 import ParsingOptions from "../ParsingOptions";
 import Paste from "./loaders/Paste";
-import { parseAndCheckData } from "./parser";
+import UploadFile from "./loaders/UploadFile";
+import { parseAndCheckData, normalizeJsonArray } from "./parser";
 import JsonViewer from "../JsonViewer";
 import DataGrid from "../DataGrid/DataGrid";
 import { get } from "lodash";
 
 import styles from "./DataLoader.module.scss";
+import { stackData } from "./stack";
+import UrlFetch from "./loaders/UrlFetch";
 
-function DataLoader({ data, setData }) {
+function DataLoader({ data, setData, dataSource, setDataSource }) {
   /* Data to be plot in the chart */
   /* First stage: raw user input */
   const [userInput, setUserInput] = useState("");
@@ -35,9 +38,10 @@ function DataLoader({ data, setData }) {
    * be used to fill `userData`. In case of some error during parsing,
    * the `parseError` state holds the error description
    */
-  const [userData, setUserData] = useState(null);
-  const [userDataType, setUserDataType] = useState(null);
-  const [parseError, setParserError] = useState(null);
+  const [userData, setUserData] = useState(null)
+  const [userDataType, setUserDataType] = useState(null)
+  const [parseError, setParserError] = useState(null)
+  const [[unstackedData, unstackedColumns], setUnstackedInfo] = useState([null, null])
 
   /* Parsing Options */
   const [separator, setSeparator] = useState(",");
@@ -52,18 +56,21 @@ function DataLoader({ data, setData }) {
    * Then we try to read it using different parsers (notably json and csv)
    * Finally, if read is successful, we go inferring types using the raw-core library
    */
-  function setUserDataAndDetect(str) {
+  function setUserDataAndDetect(str, source, options) {
     const [dataType, parsedUserData, error] = parseAndCheckData(str, {
-      separator,
-      locale,
+      separator: get(options, "separator", separator),
+      locale: get(options, "locale", locale),
+      decimal: get(options, 'decimal', decimalsSeparator),
+      group: get(options, 'group', thousandsSeparator),
     });
     setUserInput(str);
+    setDataSource(source)
     setUserDataType(dataType);
     setParserError(error);
     // Data parsed ok set parent data
     if (dataType !== "json" && !error) {
       setUserData(parsedUserData);
-      setData(parseDataset(parsedUserData, undefined, {locale}));
+      setData(parseDataset(parsedUserData, undefined, {locale, decimal: decimalsSeparator, group:thousandsSeparator}));
     }
   }
 
@@ -77,37 +84,71 @@ function DataLoader({ data, setData }) {
     const [dataType, parsedUserData, error] = parseAndCheckData(userInput, {
       separator: newSeparator,
       locale,
+      decimal: decimalsSeparator,
+      group: thousandsSeparator,
     });
     setSeparator(newSeparator);
     setUserDataType(dataType);
     setParserError(error);
     if (dataType !== "json" && !error) {
       setUserData(parsedUserData);
-      setData(parseDataset(parsedUserData, undefined, {locale}));
+      setData(parseDataset(parsedUserData, undefined, {locale, decimal: decimalsSeparator, group:thousandsSeparator}));
     }
   }
 
-  /*
-   * Callback to handle user changing locale
-   * When the locale is changed, a fresh parsing of raw user input is required for proper handling
-   * Steps are very similar with respect to the `setUserInputAndDetect` callback, except for the
-   * fact that we take user input from state instead of from parameters
-   */
+  
   function handleChangeLocale(newLocale) {
-    console.log("change locale", newLocale, userInput )
     const [dataType, parsedUserData, error] = parseAndCheckData(userInput, {
       separator,
       locale: newLocale,
+      decimal: decimalsSeparator,
+      group: thousandsSeparator,
     });
     setLocale(newLocale);
     setUserDataType(dataType);
     setParserError(error);
-    console.log("d", dataType, error, parsedUserData)
     if (dataType !== "json" && !error) {
       setUserData(parsedUserData);
-      setData(parseDataset(parsedUserData, undefined, {locale}));
+      setData(parseDataset(parsedUserData, undefined, {locale: newLocale, decimal: decimalsSeparator, group:thousandsSeparator}));
     }
   }
+
+
+ 
+  function handleChangeDecimalSeparator(newDecimalSeparator) {
+    const [dataType, parsedUserData, error] = parseAndCheckData(userInput, {
+      separator,
+      locale,
+      decimal: newDecimalSeparator,
+      group: thousandsSeparator,
+    });
+    setDecimalsSeparator(newDecimalSeparator);
+    setUserDataType(dataType);
+    setParserError(error);
+    if (dataType !== "json" && !error) {
+      setUserData(parsedUserData);
+      setData(parseDataset(parsedUserData, undefined, {locale, decimal: newDecimalSeparator, group:thousandsSeparator}));
+    }
+  }
+
+ 
+  function handleChangeThousandsSeparator(newThousandsSeparator) {
+    const [dataType, parsedUserData, error] = parseAndCheckData(userInput, {
+      separator,
+      locale,
+      decimal: decimalsSeparator,
+      group: newThousandsSeparator,
+    });
+    setThousandsSeparator(newThousandsSeparator);
+    setUserDataType(dataType);
+    setParserError(error);
+    if (dataType !== "json" && !error) {
+      setUserData(parsedUserData);
+      setData(parseDataset(parsedUserData, undefined, {locale, decimal: decimalsSeparator, group:newThousandsSeparator}));
+    }
+  }
+
+
 
   /*
    * Callback to handle user coercing a type of a column
@@ -124,11 +165,30 @@ function DataLoader({ data, setData }) {
    *   since in this case data are rigorously checked
    * So we just take them as good and use the raw-core library to infer types
    */
-  function loadSample(sampleData, sampleSeparator) {
-    setSeparator(sampleSeparator);
-    setUserDataType("csv");
-    setUserData(sampleData);
-    setData(parseDataset(sampleData, undefined, {locale}));
+  function loadSample(rawData, sampleSeparator) {
+    setSeparator(sampleSeparator)
+    setUserDataAndDetect(rawData, { type: "sample" }, { separator: sampleSeparator })
+  }
+
+  function handleInlineEdit(newDataset) {
+    setUserData(newDataset)
+    setData(parseDataset(newDataset, data.dataTypes, {locale}))
+  }
+
+  function handleStackOperation(column) {
+    setStackDimension(column)
+    if (column !== null) {
+      if (unstackedData === null) {
+        setUnstackedInfo([userData, data.dataTypes])
+      }
+      const stackedData = stackData(unstackedData || userData, column)
+      setUserData(stackedData);
+      setData(parseDataset(stackedData, undefined, { locale }))
+    } else {
+      setUserData(unstackedData)
+      setData(parseDataset(unstackedData, undefined, {locale}))
+      setUnstackedInfo([null, null])
+    }
   }
 
   const options = [
@@ -140,7 +200,7 @@ function DataLoader({ data, setData }) {
           separator={separator}
           setData={setData}
           userInput={userInput}
-          setUserInput={setUserDataAndDetect}
+          setUserInput={rawInput => setUserDataAndDetect(rawInput, { type: "paste" })}
         />
       ),
       message:
@@ -151,26 +211,14 @@ function DataLoader({ data, setData }) {
       id: "upload",
       name: "Upload your data",
       loader: (
-        <div
-          style={{
-            backgroundColor: "white",
-            border: "1px solid lightgrey",
-            borderRadius: 4,
-            padding: "1rem",
-            minHeight: "250px",
-            height: "40vh",
-          }}
-        >
-          <span role="img" aria-label="work in progress">
-            ⏳
-          </span>{" "}
-          this will be a drop zone / file loader that accepts datasets
-        </div>
+        <UploadFile
+          userInput={userInput}
+          setUserInput={rawInput => setUserDataAndDetect(rawInput, { type: "file" })}
+        />
       ),
       message:
         "You can load tabular (TSV, CSV, DSV) or JSON data. Questions about how to format your data?",
       icon: BsUpload,
-      disabled: true,
     },
     {
       id: "samples",
@@ -180,24 +228,29 @@ function DataLoader({ data, setData }) {
       icon: BsGift,
     },
     {
-      id: "cloud",
-      name: "SPARQL query",
+      id: "sparql",
+      name: "SPARQL query SOON!",
       message: "Load data from a query address.",
       loader: <DataSamples onSampleReady={loadSample} />,
       icon: BsCloud,
       disabled: true,
     },
     {
-      id: "sparql",
+      id: "url",
       name: "From URL",
-      message: "Make sure your endpoint is CORS enabled.",
-      loader: <DataSamples onSampleReady={loadSample} />,
+      message: "Enter a web address (URL) pointing to the data (e.g. a public Dropbox file, a public API, ...). Please, be sure the server is CORS-enabled.",
+      loader: (
+        <UrlFetch
+          userInput={userInput}
+          setUserInput={(rawInput, source) => setUserDataAndDetect(rawInput, source)}
+        />
+      ),
       icon: BsSearch,
-      disabled: true,
+      disabled: false,
     },
     {
       id: "project",
-      name: "Open your project",
+      name: "Open your project SOON!",
       message:
         "Load a .rawgraphs project. Questions about how to save your work?",
       loader: (
@@ -226,15 +279,25 @@ function DataLoader({ data, setData }) {
 
   let mainContent;
   if (data) {
-    mainContent = <DataGrid data={data} coerceTypes={coerceTypes} />;
+    mainContent = (
+      <DataGrid
+        userDataset={userData}
+        dataset={data.dataset}
+        errors={data.errors}
+        dataTypes={data.dataTypes}
+        coerceTypes={coerceTypes}
+        onDataUpdate={handleInlineEdit}
+      />
+    )
   } else if (userDataType === "json" && userData === null) {
     mainContent = (
       <JsonViewer
         context={JSON.parse(userInput)}
         selectFilter={(ctx) => Array.isArray(ctx)}
         onSelect={(ctx) => {
-          setUserData(ctx);
-          setData(parseDataset(ctx, undefined, {locale}));
+          const normalized = normalizeJsonArray(ctx)
+          setUserData(normalized);
+          setData(parseDataset(normalized, undefined, {locale}));
         }}
       />
     );
@@ -260,79 +323,83 @@ function DataLoader({ data, setData }) {
   return (
     <>
       <Row>
-        <Col
-          xs={{ span: 9, order: null, offset: 3 }}
-          lg={{ span: 10, order: null, offset: 2 }}
-        >
-          <ParsingOptions
-            locale={locale}
-            setLocale={handleChangeLocale}
-            localeList={localeList}
-            separator={separator}
-            setSeparator={handleChangeSeparator}
-            thousandsSeparator={thousandsSeparator}
-            setThousandsSeparator={setThousandsSeparator}
-            decimalsSeparator={decimalsSeparator}
-            setDecimalsSeparator={setDecimalsSeparator}
-            dimensions={data ? data.dataTypes : []}
-            stackDimension={stackDimension}
-            setStackDimension={setStackDimension}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col
-          xs={3}
-          lg={2}
-          className="d-flex flex-column justify-content-start pl-3 pr-0 options"
-          style={{ marginTop: "-8px" }}
-        >
-          {options.map((d, i) => {
-            const classnames = [
-              "w-100",
-              "d-flex",
-              "align-items-center",
-              "user-select-none",
-              "cursor-pointer",
-              styles["loading-option"],
-              d.disabled ? styles["disabled"] : null,
-              d.id === selectedOption.id && !userDataType
-                ? styles.active
-                : null,
-              userDataType ? styles.disabled : null,
-            ]
-              .filter((c) => c !== null)
-              .join(" ");
-            return (
-              <div
-                key={d.id}
-                className={classnames}
-                // className={`w-100 d-flex align-items-center loading-option user-select-none cursor-pointer${
-                //   d.id === selectedOption.id && !userDataType ? ' active' : ''
-                // }${userDataType ? ' disabled' : ''}`}
-                onClick={() => setOptionIndex(i)}
-              >
-                <d.icon className="w-25" />
-                <h4 className="m-0 d-inline-block">{d.name}</h4>
-              </div>
-            );
-          })}
-          <div
-            className={`w-100 d-flex align-items-center ${styles["loading-option"]} user-select-none cursor-pointer`}
-            onClick={() => {
-              setData(null);
-              setUserData(null);
-              setUserDataType(null);
-              setUserInput("");
-              setParserError(null);
-              setOptionIndex(0);
-              setStackDimension(null);
-            }}
+        {!userData && (
+          <Col
+            xs={3}
+            lg={2}
+            className="d-flex flex-column justify-content-start pl-3 pr-0 options"
           >
-            <BsTrashFill className="w-25" />
-            <h4 className="m-0 d-inline-block">{"Clear"}</h4>
-          </div>
-        </Col>
+            {options.map((d, i) => {
+              const classnames = [
+                "w-100",
+                "d-flex",
+                "align-items-center",
+                "user-select-none",
+                "cursor-pointer",
+                styles["loading-option"],
+                d.disabled ? styles["disabled"] : null,
+                d.id === selectedOption.id && !userDataType
+                  ? styles.active
+                  : null,
+                userDataType ? styles.disabled : null,
+              ]
+                .filter((c) => c !== null)
+                .join(" ");
+              return (
+                <div
+                  key={d.id}
+                  className={classnames}
+                  onClick={() => setOptionIndex(i)}
+                >
+                  <d.icon className="w-25" />
+                  <h4 className="m-0 d-inline-block">{d.name}</h4>
+                </div>
+              );
+            })}
+          </Col>
+        )}
+        {userData && (
+          <Col
+            xs={3}
+            lg={2}
+            className="d-flex flex-column justify-content-start pl-3 pr-0 options"
+          >
+            <div
+              className={`w-100 d-flex justify-content-center align-items-center ${styles["start-over"]} user-select-none cursor-pointer`}
+              onClick={() => {
+                setData(null);
+                setUserData(null);
+                setUserDataType(null);
+                setUserInput("");
+                setDataSource(null)
+                setParserError(null);
+                setOptionIndex(0);
+                setStackDimension(null);
+              }}
+            >
+              <BsArrowCounterclockwise className="mr-2" />
+              <h4 className="m-0 d-inline-block">{"Start over"}</h4>
+            </div>
+            <div className="my-3 divider" />
+            <ParsingOptions
+              locale={locale}
+              setLocale={handleChangeLocale}
+              localeList={localeList}
+              separator={separator}
+              setSeparator={handleChangeSeparator}
+              thousandsSeparator={thousandsSeparator}
+              setThousandsSeparator={handleChangeThousandsSeparator}
+              decimalsSeparator={decimalsSeparator}
+              setDecimalsSeparator={handleChangeDecimalSeparator}
+              dimensions={data ? unstackedColumns || data.dataTypes : []}
+              stackDimension={stackDimension}
+              setStackDimension={handleStackOperation}
+              userDataType={userDataType}
+              dataSource={dataSource}
+              onDataRefreshed={rawInput => setUserDataAndDetect(rawInput, dataSource)}
+            />
+          </Col>
+        )}
         <Col>
           <Row>
             <Col>
@@ -350,55 +417,6 @@ function DataLoader({ data, setData }) {
                   </p>
                 </Alert>
               )}
-              {/* {data && (
-                <>
-                  <div
-                    style={{
-                      backgroundColor: 'white',
-                      border: '1px solid lightgrey',
-                      borderRadius: 4,
-                      padding: '1rem',
-                      minHeight: '250px',
-                      height: '40vh',
-                      overflowY: 'auto',
-                      marginBottom: '1rem',
-                    }}
-                  >
-                    Data is loaded, but not displayed.
-                    <br />
-                    <span
-                      className="cursor-pointer underlined"
-                      onClick={() => {
-                        console.log(data.columns)
-                        console.log(data)
-                      }}
-                    >
-                      Click here to console-log it
-                    </span>
-                    !
-                    <br />
-                    (Currently RAW uses d3.autoType to guess data types.)
-                  </div>
-
-                  <Alert variant="success">
-                    <p className="m-0">
-                      {data.length} records in your data have been successfully
-                      parsed!
-                    </p>
-                  </Alert>
-                  <Alert variant="warning">
-                    <p className="m-0">
-                      Ops here something seems weird. Check row {'1234321'}!
-                    </p>
-                  </Alert>
-                  <Alert variant="danger">
-                    <p className="m-0">
-                      Whoops! Something wrong with the data you provided.
-                      Refresh the page!
-                    </p>
-                  </Alert>
-                </>
-              )} */}
             </Col>
           </Row>
         </Col>

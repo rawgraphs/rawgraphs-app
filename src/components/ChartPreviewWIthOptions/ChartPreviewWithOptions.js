@@ -10,6 +10,7 @@ const ChartPreviewWithOptions = ({
   mapping,
   visualOptions,
   setVisualOptions,
+  setRawViz,
 }) => {
   const [error, setError] = useState(null);
   return (
@@ -34,6 +35,7 @@ const ChartPreviewWithOptions = ({
           visualOptions={visualOptions}
           error={error}
           setError={setError}
+          setRawViz={setRawViz}
         />
       </Col>
     </Row>

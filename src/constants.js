@@ -8,8 +8,12 @@ import { BsClock, BsHash, BsType } from "react-icons/bs"
 //   'string': <BsType />
 // }
 
+export const DateIcon = BsClock
+export const NumberIcon = BsHash
+export const StringIcon = BsType
+
 export const dataTypeIcons = {
-  'date': BsClock,
-  'number': BsHash,
-  'string': BsType
+  'date': DateIcon,
+  'number': NumberIcon,
+  'string': StringIcon
 }

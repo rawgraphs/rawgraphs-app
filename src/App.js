@@ -14,27 +14,33 @@ import charts from "./charts";
 import ChartSelector from "./components/ChartSelector";
 import DataMapping from "./components/DataMapping";
 import ChartPreviewWithOptions from "./components/ChartPreviewWIthOptions";
+import Exporter from './components/Exporter'
 
 // #TODO: i18n
 
 function App() {
+  const [dataSource, setDataSource] = useState(null)
   const [data, setData] = useState(null);
   const [currentChart, setCurrentChart] = useState(charts[0]);
   const [mapping, setMapping] = useState({});
   const [visualOptions, setVisualOptions] = useState({});
+  const [rawViz, setRawViz] = useState(null)
+
+  
 
   const handleChartChange = useCallback((nextChart) => {
     setCurrentChart(nextChart);
     setMapping({});
     const options = getOptionsConfig(nextChart?.visualOptions);
     setVisualOptions(getDefaultOptionsValues(options));
+    setRawViz(null)
   }, []);
 
   return (
     <div className="App">
       <Header menuItems={HeaderItems} />
       <Section title="1. Load your data">
-        <DataLoader data={data} setData={setData} />
+        <DataLoader data={data} setData={setData} dataSource={dataSource} setDataSource={setDataSource} />
       </Section>
       {data && (
         <Section title="2. Choose a chart">
@@ -64,10 +70,11 @@ function App() {
             mapping={mapping}
             visualOptions={visualOptions}
             setVisualOptions={setVisualOptions}
+            setRawViz={setRawViz}
           />
         </Section>
       )}
-      <Section title="5. Export">Export here</Section>
+      {rawViz && <Section title="5. Export"><Exporter rawViz={rawViz}/></Section>}
       {/* <Section title="0. Typography">{typography}</Section> */}
       <Footer>Footer items go here!</Footer>
     </div>
@@ -76,32 +83,32 @@ function App() {
 
 export default App;
 
-const typography = (
-  <>
-    <h1>
-      h1. Bootstrap heading <small>Secondary text in heading</small>
-    </h1>
-    <h2>
-      h2. Bootstrap heading <small>Secondary text in heading</small>
-    </h2>
-    <h3>
-      h3. Bootstrap heading <small>Secondary text in heading</small>
-    </h3>
-    <h4>
-      h4. Bootstrap heading <small>Secondary text in heading</small>
-    </h4>
-    <h5>
-      h5. Bootstrap heading <small>Secondary text in heading</small>
-    </h5>
-    <h6>
-      h6. Bootstrap heading <small>Secondary text in heading</small>
-    </h6>
-    <p className="lead">
-      Lead Paragraph. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
-      dolor auctor.
-    </p>
-    <p>An ordinary paragraph.</p>
-    <p className="lighter">Paragraph classed "lighter"</p>
-    <p className="small">A paragraph classed "small"</p>
-  </>
-);
+// const typography = (
+//   <>
+//     <h1>
+//       h1. Bootstrap heading <small>Secondary text in heading</small>
+//     </h1>
+//     <h2>
+//       h2. Bootstrap heading <small>Secondary text in heading</small>
+//     </h2>
+//     <h3>
+//       h3. Bootstrap heading <small>Secondary text in heading</small>
+//     </h3>
+//     <h4>
+//       h4. Bootstrap heading <small>Secondary text in heading</small>
+//     </h4>
+//     <h5>
+//       h5. Bootstrap heading <small>Secondary text in heading</small>
+//     </h5>
+//     <h6>
+//       h6. Bootstrap heading <small>Secondary text in heading</small>
+//     </h6>
+//     <p className="lead">
+//       Lead Paragraph. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+//       dolor auctor.
+//     </p>
+//     <p>An ordinary paragraph.</p>
+//     <p className="lighter">Paragraph classed "lighter"</p>
+//     <p className="small">A paragraph classed "small"</p>
+//   </>
+// );
