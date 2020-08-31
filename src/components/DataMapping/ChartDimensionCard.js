@@ -19,8 +19,7 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
       isOver: monitor.isOver(),
     }),
     drop: (item, monitor) => {
-      const defaulAggregation = getDefaultDimensionAggregation(dimension, dataTypes[item.id])
-      console.log(123, defaulAggregation)
+      const defaulAggregation = dimension.aggregation ? getDefaultDimensionAggregation(dimension, dataTypes[item.id]) : null
       
       setMapping({
         ...mapping,

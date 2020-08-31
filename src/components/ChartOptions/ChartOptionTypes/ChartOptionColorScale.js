@@ -7,7 +7,6 @@ import {
   getColorScale,
   getColorDomain,
   colorPresets,
-  getPresetScale,
   getTypeName,
 } from "@raw-temp/rawgraphs-core";
 

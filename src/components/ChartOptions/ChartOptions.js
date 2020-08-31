@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from "react";
+import React, { useMemo } from "react";
 import { getOptionsConfig } from "@raw-temp/rawgraphs-core";
 import ChartOptionNumber from "./ChartOptionTypes/ChartOptionNumber";
 import ChartOptionText from "./ChartOptionTypes/ChartOptionText";
