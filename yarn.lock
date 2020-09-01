@@ -1914,18 +1914,18 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.2.tgz#7c6dc4ecef16149fd7a736710baa1b811017fdca"
   integrity sha512-JlGTGRYHC2QK+DDbePyXdBdooxFq2+noLfWpRqJtkxcb/oYWzOF0kcbfvvbWrwevCC1l6hLUg1wHYT+ona5BWQ==
 
-"@raw-temp/rawgraphs-charts@^0.0.16":
-  version "0.0.16"
-  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-0.0.16.tgz#4452d52b88e107fc8b2c2a6570e6ab1c96f4a816"
-  integrity sha512-FKX2KwOFhHEH1ULNyqFGXNvXBAffP8Kwxx/oZmuy0Ni+3w5C3zAC7nNc9rISOHTY6YDIheQqHsSiiFpo4A2jLg==
+"@raw-temp/rawgraphs-charts@^0.0.17":
+  version "0.0.17"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-0.0.17.tgz#632a95051069cf7bed522ac36c6a24e3c4e497e9"
+  integrity sha512-T5yOjRhZeKozc1i4sKkEtfcRSXuf/tIlL4sDQbACiniJ+2O7GG1t7d/Yh59paWOXYv3dyiBC0YOAOXWBLm6uhw==
   dependencies:
     d3 "^5.16.0"
     d3-array "^2.5.0"
 
-"@raw-temp/rawgraphs-core@^0.1.20":
-  version "0.1.20"
-  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-0.1.20.tgz#d3a2243bc6ee7275223681c5c0c5b50ba178c9fa"
-  integrity sha512-mNZp6pbJ6UhwYIHALow/f6M5vlmlJHSZhDuaWgZvAET+E30CnjQ/nk9Sa+zjvwWZdEeOLSoAQtENnnOqR9FR3Q==
+"@raw-temp/rawgraphs-core@^0.1.21":
+  version "0.1.21"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-0.1.21.tgz#9287d5f60f107787af0992c88ebb9f9f6d05225d"
+  integrity sha512-0+2hbVHVTZT+GSZbOKyAsRex2vUtLoNEMz5ME+fBk8Emsj3XxMRBv4t6TW5n69E1H1WP626e+zD53jPH0cNliA==
   dependencies:
     d3-array "^2.4.0"
     d3-axis "^1.0.12"
