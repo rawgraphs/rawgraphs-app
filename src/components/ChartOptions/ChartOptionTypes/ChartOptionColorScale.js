@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useCallback } from "react";
+import React, { useState, useMemo, useEffect, useCallback, useContext } from "react";
 import { chart as rawChart } from "@raw-temp/rawgraphs-core"
 import { Row, Col } from "react-bootstrap";
 import get from "lodash/get";
@@ -193,6 +193,7 @@ const ChartOptionColorScale = ({
     scaleType,
     userValuesForFinalScale,
   ]);
+
 
   useEffect(() => {
     const outScaleParams = {

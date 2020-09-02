@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Row, Col, Alert } from "react-bootstrap";
 import {
   BsClipboard,
@@ -11,6 +11,7 @@ import {
 } from "react-icons/bs";
 import DataSamples from "../DataSamples/DataSamples";
 import { parseDataset } from "@raw-temp/rawgraphs-core";
+import parseDatasetInWorker from "../../worker";
 
 import localeList from "./localeList";
 import ParsingOptions from "../ParsingOptions";
@@ -25,7 +26,7 @@ import styles from "./DataLoader.module.scss";
 import { stackData } from "./stack";
 import UrlFetch from "./loaders/UrlFetch";
 
-function DataLoader({ data, setData, dataSource, setDataSource }) {
+function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
   /* Data to be plot in the chart */
   /* First stage: raw user input */
   const [userInput, setUserInput] = useState("");
@@ -38,17 +39,43 @@ function DataLoader({ data, setData, dataSource, setDataSource }) {
    * be used to fill `userData`. In case of some error during parsing,
    * the `parseError` state holds the error description
    */
-  const [userData, setUserData] = useState(null)
-  const [userDataType, setUserDataType] = useState(null)
-  const [parseError, setParserError] = useState(null)
-  const [[unstackedData, unstackedColumns], setUnstackedInfo] = useState([null, null])
+  const [userData, setUserData] = useState(null);
+  const [userDataType, setUserDataType] = useState(null);
+  const [parseError, setParserError] = useState(null);
+  const [[unstackedData, unstackedColumns], setUnstackedInfo] = useState([
+    null,
+    null,
+  ]);
 
   /* Parsing Options */
   const [separator, setSeparator] = useState(",");
   const [thousandsSeparator, setThousandsSeparator] = useState(",");
   const [decimalsSeparator, setDecimalsSeparator] = useState(".");
-  const [locale, setLocale] = useState(navigator.language || 'en-US');
+  const [locale, setLocale] = useState(navigator.language || "en-US");
   const [stackDimension, setStackDimension] = useState();
+
+  //wrapper for async parse via web worker 
+  
+  const parseDatasetAsyncAndSetData = useCallback((data, dataTypes, parsingOptions) => {
+    setLoading(true)
+    parseDatasetInWorker(data, dataTypes, parsingOptions)
+    .then(setData)
+    .catch(err => {
+      console.log("eee", err)
+    })
+    .finally(() => {
+      setLoading(false)
+    })
+  }, [setData, setLoading])
+
+  // const parseDatasetAsyncAndSetData = useCallback(
+  //   (data, dataTypes, parsingOptions) => {
+  //     setLoading(true);
+  //     setData(parseDataset(data, dataTypes, parsingOptions));
+  //     setLoading(false);
+  //   },
+  //   [setData, setLoading]
+  // );
 
   /*
    * Callback to handle user injecting data
@@ -61,13 +88,18 @@ function DataLoader({ data, setData, dataSource, setDataSource }) {
       separator: get(options, "separator", separator),
     });
     setUserInput(str);
-    setDataSource(source)
+    setDataSource(source);
     setUserDataType(dataType);
     setParserError(error);
     // Data parsed ok set parent data
     if (dataType !== "json" && !error) {
       setUserData(parsedUserData);
-      setData(parseDataset(parsedUserData, undefined, {locale, decimal: decimalsSeparator, group:thousandsSeparator}));
+      parseDatasetAsyncAndSetData(parsedUserData, undefined, {
+        locale,
+        decimal: decimalsSeparator,
+        group: thousandsSeparator,
+      });
+      // setData(parseDataset(parsedUserData, undefined, {locale, decimal: decimalsSeparator, group:thousandsSeparator}));
     }
   }
 
@@ -84,56 +116,72 @@ function DataLoader({ data, setData, dataSource, setDataSource }) {
     setSeparator(newSeparator);
     setUserDataType(dataType);
     setParserError(error);
-    if (dataType !== "json" && !error) {
+    if (dataType !== "json" && !error && newSeparator) {
       setUserData(parsedUserData);
-      setData(parseDataset(parsedUserData, undefined, {locale, decimal: decimalsSeparator, group:thousandsSeparator}));
+      parseDatasetAsyncAndSetData(parsedUserData, undefined, {
+        locale,
+        decimal: decimalsSeparator,
+        group: thousandsSeparator,
+      });
+      // setData(parseDataset(parsedUserData, undefined, {locale, decimal: decimalsSeparator, group:thousandsSeparator}));
     }
   }
 
-  
   function handleChangeLocale(newLocale) {
     const [dataType, parsedUserData, error] = parseAndCheckData(userInput, {
-      separator
+      separator,
     });
     setLocale(newLocale);
     setUserDataType(dataType);
     setParserError(error);
     if (dataType !== "json" && !error) {
       setUserData(parsedUserData);
-      setData(parseDataset(parsedUserData, undefined, {locale: newLocale, decimal: decimalsSeparator, group:thousandsSeparator}));
+      parseDatasetAsyncAndSetData(parsedUserData, undefined, {
+        locale: newLocale,
+        decimal: decimalsSeparator,
+        group: thousandsSeparator,
+      });
+      // setData(parseDataset(parsedUserData, undefined, {locale: newLocale, decimal: decimalsSeparator, group:thousandsSeparator}));
     }
   }
 
-
- 
   function handleChangeDecimalSeparator(newDecimalSeparator) {
     const [dataType, parsedUserData, error] = parseAndCheckData(userInput, {
-      separator
+      separator,
     });
     setDecimalsSeparator(newDecimalSeparator);
     setUserDataType(dataType);
     setParserError(error);
     if (dataType !== "json" && !error) {
       setUserData(parsedUserData);
-      setData(parseDataset(parsedUserData, undefined, {locale, decimal: newDecimalSeparator, group:thousandsSeparator}));
+      setLoading(true);
+      parseDatasetAsyncAndSetData(parsedUserData, undefined, {
+        locale,
+        decimal: newDecimalSeparator,
+        group: thousandsSeparator,
+      });
+      //setData(parseDataset(parsedUserData, undefined, {locale, decimal: newDecimalSeparator, group:thousandsSeparator}));
     }
   }
 
- 
   function handleChangeThousandsSeparator(newThousandsSeparator) {
+    console.log("ssss thousands");
     const [dataType, parsedUserData, error] = parseAndCheckData(userInput, {
-      separator
+      separator,
     });
     setThousandsSeparator(newThousandsSeparator);
     setUserDataType(dataType);
     setParserError(error);
     if (dataType !== "json" && !error) {
       setUserData(parsedUserData);
-      setData(parseDataset(parsedUserData, undefined, {locale, decimal: decimalsSeparator, group:newThousandsSeparator}));
+      parseDatasetAsyncAndSetData(parsedUserData, undefined, {
+        locale,
+        decimal: decimalsSeparator,
+        group: newThousandsSeparator,
+      });
+      // setData(parseDataset(parsedUserData, undefined, {locale, decimal: decimalsSeparator, group:newThousandsSeparator}));
     }
   }
-
-
 
   /*
    * Callback to handle user coercing a type of a column
@@ -141,7 +189,12 @@ function DataLoader({ data, setData, dataSource, setDataSource }) {
    * the raw-core library starting from the parsed data (stage-2 data)
    */
   function coerceTypes(nextTypes) {
-    setData(parseDataset(userData, nextTypes));
+    parseDatasetAsyncAndSetData(userData, nextTypes, {
+      locale,
+      decimal: decimalsSeparator,
+      group: thousandsSeparator,
+    });
+    //setData(parseDataset(userData, nextTypes, {locale, decimal: decimalsSeparator, group:thousandsSeparator}));
   }
 
   /*
@@ -151,28 +204,47 @@ function DataLoader({ data, setData, dataSource, setDataSource }) {
    * So we just take them as good and use the raw-core library to infer types
    */
   function loadSample(rawData, sampleSeparator) {
-    setSeparator(sampleSeparator)
-    setUserDataAndDetect(rawData, { type: "sample" }, { separator: sampleSeparator })
+    setSeparator(sampleSeparator);
+    setUserDataAndDetect(
+      rawData,
+      { type: "sample" },
+      { separator: sampleSeparator }
+    );
   }
 
   function handleInlineEdit(newDataset) {
-    setUserData(newDataset)
-    setData(parseDataset(newDataset, data.dataTypes, {locale}))
+    setUserData(newDataset);
+    parseDatasetAsyncAndSetData(newDataset, data.dataTypes, {
+      locale,
+      decimal: decimalsSeparator,
+      group: thousandsSeparator,
+    });
+    // setData(parseDataset(newDataset, data.dataTypes, {locale}))
   }
 
   function handleStackOperation(column) {
-    setStackDimension(column)
+    setStackDimension(column);
     if (column !== null) {
       if (unstackedData === null) {
-        setUnstackedInfo([userData, data.dataTypes])
+        setUnstackedInfo([userData, data.dataTypes]);
       }
-      const stackedData = stackData(unstackedData || userData, column)
+      const stackedData = stackData(unstackedData || userData, column);
       setUserData(stackedData);
-      setData(parseDataset(stackedData, undefined, { locale }))
+      parseDatasetAsyncAndSetData(stackedData, undefined, {
+        locale,
+        decimal: decimalsSeparator,
+        group: thousandsSeparator,
+      });
+      // setData(parseDataset(stackedData, undefined, { locale }))
     } else {
-      setUserData(unstackedData)
-      setData(parseDataset(unstackedData, undefined, {locale}))
-      setUnstackedInfo([null, null])
+      setUserData(unstackedData);
+      parseDatasetAsyncAndSetData(unstackedData, undefined, {
+        locale,
+        decimal: decimalsSeparator,
+        group: thousandsSeparator,
+      });
+      // setData(parseDataset(unstackedData, undefined, {locale}))
+      setUnstackedInfo([null, null]);
     }
   }
 
@@ -185,7 +257,9 @@ function DataLoader({ data, setData, dataSource, setDataSource }) {
           separator={separator}
           setData={setData}
           userInput={userInput}
-          setUserInput={rawInput => setUserDataAndDetect(rawInput, { type: "paste" })}
+          setUserInput={(rawInput) =>
+            setUserDataAndDetect(rawInput, { type: "paste" })
+          }
         />
       ),
       message:
@@ -198,7 +272,9 @@ function DataLoader({ data, setData, dataSource, setDataSource }) {
       loader: (
         <UploadFile
           userInput={userInput}
-          setUserInput={rawInput => setUserDataAndDetect(rawInput, { type: "file" })}
+          setUserInput={(rawInput) =>
+            setUserDataAndDetect(rawInput, { type: "file" })
+          }
         />
       ),
       message:
@@ -223,11 +299,14 @@ function DataLoader({ data, setData, dataSource, setDataSource }) {
     {
       id: "url",
       name: "From URL",
-      message: "Enter a web address (URL) pointing to the data (e.g. a public Dropbox file, a public API, ...). Please, be sure the server is CORS-enabled.",
+      message:
+        "Enter a web address (URL) pointing to the data (e.g. a public Dropbox file, a public API, ...). Please, be sure the server is CORS-enabled.",
       loader: (
         <UrlFetch
           userInput={userInput}
-          setUserInput={(rawInput, source) => setUserDataAndDetect(rawInput, source)}
+          setUserInput={(rawInput, source) =>
+            setUserDataAndDetect(rawInput, source)
+          }
         />
       ),
       icon: BsSearch,
@@ -273,16 +352,16 @@ function DataLoader({ data, setData, dataSource, setDataSource }) {
         coerceTypes={coerceTypes}
         onDataUpdate={handleInlineEdit}
       />
-    )
+    );
   } else if (userDataType === "json" && userData === null) {
     mainContent = (
       <JsonViewer
         context={JSON.parse(userInput)}
         selectFilter={(ctx) => Array.isArray(ctx)}
         onSelect={(ctx) => {
-          const normalized = normalizeJsonArray(ctx)
+          const normalized = normalizeJsonArray(ctx);
           setUserData(normalized);
-          setData(parseDataset(normalized, undefined, {locale}));
+          setData(parseDataset(normalized, undefined, { locale }));
         }}
       />
     );
@@ -356,7 +435,7 @@ function DataLoader({ data, setData, dataSource, setDataSource }) {
                 setUserData(null);
                 setUserDataType(null);
                 setUserInput("");
-                setDataSource(null)
+                setDataSource(null);
                 setParserError(null);
                 setOptionIndex(0);
                 setStackDimension(null);
@@ -381,7 +460,9 @@ function DataLoader({ data, setData, dataSource, setDataSource }) {
               setStackDimension={handleStackOperation}
               userDataType={userDataType}
               dataSource={dataSource}
-              onDataRefreshed={rawInput => setUserDataAndDetect(rawInput, dataSource)}
+              onDataRefreshed={(rawInput) =>
+                setUserDataAndDetect(rawInput, dataSource)
+              }
             />
           </Col>
         )}
