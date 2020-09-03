@@ -11,7 +11,7 @@ import {
 } from "react-icons/bs";
 import DataSamples from "../DataSamples/DataSamples";
 import { parseDataset } from "@raw-temp/rawgraphs-core";
-import parseDatasetInWorker from "../../worker";
+import {parseDatasetInWorker} from "../../worker";
 
 import localeList from "./localeList";
 import ParsingOptions from "../ParsingOptions";

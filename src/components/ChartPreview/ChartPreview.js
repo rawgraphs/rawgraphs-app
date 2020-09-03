@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from "react"
 import { chart as rawChart } from "@raw-temp/rawgraphs-core"
+import {mapDataInWorker} from "../../worker";
 import useDebounce from "../../hooks/useDebounce"
+import charts from "../../charts";
 
 const ChartPreview = ({ chart, dataset: data, dataTypes, mapping, visualOptions, error, setError, setRawViz }) => {
 
@@ -18,8 +20,29 @@ const ChartPreview = ({ chart, dataset: data, dataTypes, mapping, visualOptions,
         dataTypes,
         visualOptions: vizOptionsDebounced
       })
-      const rawViz = viz.renderToDOM(domRef.current)
-      setRawViz(rawViz)
+      // const rawViz = viz.renderToDOM(domRef.current)
+      // setRawViz(rawViz)
+      
+      mapDataInWorker(chart.metadata.name, {
+        data,
+        mapping: mapping,
+        dataTypes,
+        visualOptions: vizOptionsDebounced
+      }).then(mappedData => {
+        setError(null)
+        if(mappedData !== undefined){
+          try{
+            const rawViz = viz.renderToDOM(domRef.current, mappedData)
+            setRawViz(rawViz)
+          } catch(e){
+            setError(e)
+            setRawViz(null)
+
+          }
+          
+          
+        }
+      })
       
     } catch (e) {
       while (domRef.current.firstChild) {
