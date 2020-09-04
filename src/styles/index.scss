@@ -9,6 +9,7 @@ $theme-colors: (
 );
 
 :root {
+  --gray-bg: #F5F8FA;
   --primary-lighter: #DEFFF0;
   --warning-lighter: #fff8c6;
   --gray-100: #f8f8f8;
@@ -27,11 +28,17 @@ $theme-colors: (
 
 // Import Inter typeface
 @import "~/typeface-inter/Inter (web)/inter.css";
+@import "~/typeface-ibm-plex-mono/index.css";
+
+
 html, body { font-family: 'Inter', sans-serif; }
 
 // HTML tags
 html {
   font-size: 13px;
+}
+body {
+  background-color: var(--gray-bg);
 }
 h1 {
   font-size: 1.8461538462rem;
