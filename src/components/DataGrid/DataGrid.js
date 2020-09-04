@@ -8,6 +8,7 @@ import { getTypeName } from "@raw-temp/rawgraphs-core"
 import S from "./DataGrid.module.scss"
 import { keyBy, get, isEqual } from "lodash";
 import { dataTypeIcons, DateIcon, StringIcon, NumberIcon } from "../../constants";
+import { BsFillCaretRightFill } from "react-icons/bs";
 
 const DATE_FORMATS = [
   "YYYY-MM-DD",
@@ -42,7 +43,7 @@ const DateFormatSelector = React.forwardRef(({ currentFormat, onChange, classNam
   )
 })
 
-function DataTypeSelector({ currentType: typeDescriptor, onTypeChange }) {
+function DataTypeSelector({ currentType: typeDescriptor, onTypeChange, currentTypeComplete }) {
   const dataTypeIconDomRef = useRef(null)
   const [showPicker, setShowPicker] = useState(false)
   const currentType = get(typeDescriptor, "type", typeDescriptor)
@@ -80,7 +81,7 @@ function DataTypeSelector({ currentType: typeDescriptor, onTypeChange }) {
       <Overlay
         target={dataTypeIconDomRef.current}
         show={showPicker}
-        placement="bottom"
+        placement="bottom-start"
         rootClose={true}
         rootCloseEvent="click"
         onHide={() => {
@@ -117,10 +118,14 @@ function DataTypeSelector({ currentType: typeDescriptor, onTypeChange }) {
                     ref={ref}
                     data-datatype="date"
                     {...triggerHandler}
-                    className={classNames(S["data-type-selector-item"], { [S.selected]: currentType === "date" })}
+                    className={classNames(S["data-type-selector-item"], S["parent-type-selector"], { [S.selected]: currentType === "date" })}
                   >
-                    <DateIcon />
-                    {" Date"}
+                    <div>
+                      <DateIcon />
+                      {"Date"}
+                      {currentType==="date" && <span className={S["date-format-preview"]}>{" ("+currentTypeComplete.dateFormat+")  "}</span>}
+                    </div>
+                    <BsFillCaretRightFill style={{marginRight:0, fill: 'var(--gray-700)'}}/>
                   </div>
                 )}
               </OverlayTrigger>
@@ -142,8 +147,10 @@ function HeaderRenderer({ column, ...props }) {
       <DataTypeSelector
         currentType={column._raw_datatype}
         onTypeChange={column._raw_coerceType}
+
+        currentTypeComplete={column._raw_datatype}
       />
-      <span>{column.name}</span>
+      <span className={S["column-name"]}>{column.name}</span>
     </div>
   )
 }
@@ -187,6 +194,7 @@ export default function DataGrid({ userDataset, dataset, errors, dataTypes, coer
         _raw_datatype: dataTypes[k],
         _raw_coerceType: nextType => coerceTypes({ ...dataTypes, [k]: nextType }),
         sortable: true,
+        resizable: true,
         width: 180,
       })) 
     ]
@@ -225,6 +233,7 @@ export default function DataGrid({ userDataset, dataset, errors, dataTypes, coer
       minColumnWidth={idColumnWidth}
       columns={columns}
       rows={sortedDataset}
+      rowHeight={48}
       sortColumn={sortColumn}
       sortDirection={sortDirection}
       onSort={handleSort}
