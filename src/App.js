@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import {
   getOptionsConfig,
   getDefaultOptionsValues,
@@ -14,33 +14,61 @@ import charts from "./charts";
 import ChartSelector from "./components/ChartSelector";
 import DataMapping from "./components/DataMapping";
 import ChartPreviewWithOptions from "./components/ChartPreviewWIthOptions";
-import Exporter from './components/Exporter'
+import Exporter from "./components/Exporter";
+import get from "lodash/get";
+import usePrevious from "./hooks/usePrevious";
 
 // #TODO: i18n
 
 function App() {
-  const [dataSource, setDataSource] = useState(null)
+  const [dataSource, setDataSource] = useState(null);
   const [data, setData] = useState(null);
   const [currentChart, setCurrentChart] = useState(charts[0]);
   const [mapping, setMapping] = useState({});
   const [visualOptions, setVisualOptions] = useState({});
-  const [rawViz, setRawViz] = useState(null)
+  const [rawViz, setRawViz] = useState(null);
 
-  
+  const columnNames = useMemo(() => {
+    if (get(data, "dataTypes")) {
+      return Object.keys(data.dataTypes);
+    }
+  }, [data]);
+
+  const prevColumnNames = usePrevious(columnNames);
+
+  //resetting mapping when column names changes (ex: separator change in parsing)
+  useEffect(() => {
+    if (prevColumnNames) {
+      if (!columnNames) {
+        setMapping({});
+      } else {
+        const prevCols = prevColumnNames.join(".");
+        const currentCols = columnNames.join(".");
+        if (prevCols !== currentCols) {
+          setMapping({});
+        }
+      }
+    }
+  }, [columnNames, prevColumnNames]);
 
   const handleChartChange = useCallback((nextChart) => {
     setCurrentChart(nextChart);
     setMapping({});
     const options = getOptionsConfig(nextChart?.visualOptions);
     setVisualOptions(getDefaultOptionsValues(options));
-    setRawViz(null)
+    setRawViz(null);
   }, []);
 
   return (
     <div className="App">
       <Header menuItems={HeaderItems} />
       <Section title="1. Load your data">
-        <DataLoader data={data} setData={setData} dataSource={dataSource} setDataSource={setDataSource} />
+        <DataLoader
+          data={data}
+          setData={setData}
+          dataSource={dataSource}
+          setDataSource={setDataSource}
+        />
       </Section>
       {data && (
         <Section title="2. Choose a chart">
@@ -74,7 +102,11 @@ function App() {
           />
         </Section>
       )}
-      {rawViz && <Section title="5. Export"><Exporter rawViz={rawViz}/></Section>}
+      {rawViz && (
+        <Section title="5. Export">
+          <Exporter rawViz={rawViz} />
+        </Section>
+      )}
       {/* <Section title="0. Typography">{typography}</Section> */}
       <Footer>Footer items go here!</Footer>
     </div>

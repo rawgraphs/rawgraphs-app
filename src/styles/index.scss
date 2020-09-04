@@ -9,12 +9,14 @@ $theme-colors: (
 );
 
 :root {
+  --gray-bg: #F5F8FA;
   --primary-lighter: #DEFFF0;
   --warning-lighter: #fff8c6;
   --gray-100: #f8f8f8;
   --gray-300: #C2C1C1;
-  --gray-400: #E2E2E2;
-  --gray-700: ##495057;
+  --gray-400: #E4E3E3;
+  --gray-600: #888e94;
+  --gray-700: #495057;
   --gray-900: #181818;
   --header-height: 50px;
 }
@@ -27,11 +29,17 @@ $theme-colors: (
 
 // Import Inter typeface
 @import "~/typeface-inter/Inter (web)/inter.css";
+@import "~/typeface-ibm-plex-mono/index.css";
+
+
 html, body { font-family: 'Inter', sans-serif; }
 
 // HTML tags
 html {
   font-size: 13px;
+}
+body {
+  background-color: var(--gray-bg);
 }
 h1 {
   font-size: 1.8461538462rem;
