@@ -25,6 +25,7 @@ import { get } from "lodash";
 import styles from "./DataLoader.module.scss";
 import { stackData } from "./stack";
 import UrlFetch from "./loaders/UrlFetch";
+import { WEBWORKER_ACTIVE } from '../../constants'
 
 function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
   /* Data to be plot in the chart */
@@ -68,14 +69,16 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
     })
   }, [setData, setLoading])
 
-  // const parseDatasetAsyncAndSetData = useCallback(
-  //   (data, dataTypes, parsingOptions) => {
-  //     setLoading(true);
-  //     setData(parseDataset(data, dataTypes, parsingOptions));
-  //     setLoading(false);
-  //   },
-  //   [setData, setLoading]
-  // );
+  const parseDatasetSyncAndSetData = useCallback(
+    (data, dataTypes, parsingOptions) => {
+      setLoading(true);
+      setData(parseDataset(data, dataTypes, parsingOptions));
+      setLoading(false);
+    },
+    [setData, setLoading]
+  );
+
+  const parseDatasetAndSetData = WEBWORKER_ACTIVE ? parseDatasetAsyncAndSetData : parseDatasetSyncAndSetData
 
   /*
    * Callback to handle user injecting data
@@ -94,7 +97,7 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
     // Data parsed ok set parent data
     if (dataType !== "json" && !error) {
       setUserData(parsedUserData);
-      parseDatasetAsyncAndSetData(parsedUserData, undefined, {
+      parseDatasetAndSetData(parsedUserData, undefined, {
         locale,
         decimal: decimalsSeparator,
         group: thousandsSeparator,
@@ -118,7 +121,7 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
     setParserError(error);
     if (dataType !== "json" && !error && newSeparator) {
       setUserData(parsedUserData);
-      parseDatasetAsyncAndSetData(parsedUserData, undefined, {
+      parseDatasetAndSetData(parsedUserData, undefined, {
         locale,
         decimal: decimalsSeparator,
         group: thousandsSeparator,
@@ -136,7 +139,7 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
     setParserError(error);
     if (dataType !== "json" && !error) {
       setUserData(parsedUserData);
-      parseDatasetAsyncAndSetData(parsedUserData, undefined, {
+      parseDatasetAndSetData(parsedUserData, undefined, {
         locale: newLocale,
         decimal: decimalsSeparator,
         group: thousandsSeparator,
@@ -155,7 +158,7 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
     if (dataType !== "json" && !error) {
       setUserData(parsedUserData);
       setLoading(true);
-      parseDatasetAsyncAndSetData(parsedUserData, undefined, {
+      parseDatasetAndSetData(parsedUserData, undefined, {
         locale,
         decimal: newDecimalSeparator,
         group: thousandsSeparator,
@@ -174,7 +177,7 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
     setParserError(error);
     if (dataType !== "json" && !error) {
       setUserData(parsedUserData);
-      parseDatasetAsyncAndSetData(parsedUserData, undefined, {
+      parseDatasetAndSetData(parsedUserData, undefined, {
         locale,
         decimal: decimalsSeparator,
         group: newThousandsSeparator,
@@ -189,7 +192,7 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
    * the raw-core library starting from the parsed data (stage-2 data)
    */
   function coerceTypes(nextTypes) {
-    parseDatasetAsyncAndSetData(userData, nextTypes, {
+    parseDatasetAndSetData(userData, nextTypes, {
       locale,
       decimal: decimalsSeparator,
       group: thousandsSeparator,
@@ -214,7 +217,7 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
 
   function handleInlineEdit(newDataset) {
     setUserData(newDataset);
-    parseDatasetAsyncAndSetData(newDataset, data.dataTypes, {
+    parseDatasetAndSetData(newDataset, data.dataTypes, {
       locale,
       decimal: decimalsSeparator,
       group: thousandsSeparator,
@@ -238,7 +241,7 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
       // setData(parseDataset(stackedData, undefined, { locale }))
     } else {
       setUserData(unstackedData);
-      parseDatasetAsyncAndSetData(unstackedData, undefined, {
+      parseDatasetAndSetData(unstackedData, undefined, {
         locale,
         decimal: decimalsSeparator,
         group: thousandsSeparator,

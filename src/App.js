@@ -28,6 +28,7 @@ function App() {
   const [visualOptions, setVisualOptions] = useState({});
   const [rawViz, setRawViz] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [mappingLoading, setMappingLoading] = useState(false);
 
   const columnNames = useMemo(() => {
     if (get(data, "dataTypes")) {
@@ -82,7 +83,7 @@ function App() {
         </Section>
       )}
       {data && currentChart && (
-        <Section title="3. Mapping">
+        <Section title={`3. Mapping ${mappingLoading ? '..loading': ''}`}>
           <DataMapping
             dimensions={currentChart.dimensions}
             dataTypes={data.dataTypes}
@@ -101,6 +102,7 @@ function App() {
             visualOptions={visualOptions}
             setVisualOptions={setVisualOptions}
             setRawViz={setRawViz}
+            setMappingLoading={setMappingLoading}
           />
         </Section>
       )}

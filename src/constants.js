@@ -17,3 +17,6 @@ export const dataTypeIcons = {
   'number': NumberIcon,
   'string': StringIcon
 }
+
+
+export const WEBWORKER_ACTIVE = true
