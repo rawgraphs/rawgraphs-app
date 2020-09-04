@@ -19,6 +19,12 @@ const samplesList = [
     'category': 'Weighted Hierarchies',
     'url': './sample-datasets/Sunburst - Wine Tasting - data.tsv',
     'delimiter': "\t"
+  },
+  {
+    'name': 'US Elections',
+    'category': 'Temporal Evolution',
+    'url': './sample-datasets/Line graph - US presidential election.tsv',
+    'delimiter': "\t"
   }
 ]
 export default function DataSamples({ onSampleReady }) {
