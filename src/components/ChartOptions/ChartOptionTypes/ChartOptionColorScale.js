@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useCallback } from "react";
+import React, { useState, useMemo, useEffect, useCallback, useContext } from "react";
 import { chart as rawChart } from "@raw-temp/rawgraphs-core"
 import { Row, Col } from "react-bootstrap";
 import get from "lodash/get";
@@ -45,24 +45,25 @@ const ChartOptionColorScale = ({
   mapping,
   dataTypes,
   chart,
+  mappedData,
   ...props
 }) => {
 
-  const mappedDataset = useMemo(() => {
-    try {
+  // const mappedDataset = useMemo(() => {
+  //   try {
       
-      const viz = rawChart(chart, {
-        data: dataset,
-        mapping,
-        dataTypes,
-        visualOptions: {},
-      })
-      return viz.mapData()
-    } catch (e) {
-      return undefined
+  //     const viz = rawChart(chart, {
+  //       data: dataset,
+  //       mapping,
+  //       dataTypes,
+  //       visualOptions: {},
+  //     })
+  //     return viz.mapData()
+  //   } catch (e) {
+  //     return undefined
       
-    }
-  }, [chart, mapping, dataTypes, dataset])
+  //   }
+  // }, [chart, mapping, dataTypes, dataset])
 
   const [scaleType, setScaleType] = useState("ordinal");
 
@@ -84,12 +85,12 @@ const ChartOptionColorScale = ({
   }, [colorDataType]);
 
   const colorDataset = useMemo(() => {
-    if (mappedDataset) {
-      return mappedDataset.map((d) => get(d, dimension));
+    if (mappedData) {
+      return mappedData.map((d) => get(d, dimension));
     } else {
       return [];
     }
-  }, [dimension, mappedDataset]);
+  }, [dimension, mappedData]);
 
   const interpolators = useMemo(() => {
     return Object.keys(colorPresets[scaleType]);
@@ -193,6 +194,7 @@ const ChartOptionColorScale = ({
     scaleType,
     userValuesForFinalScale,
   ]);
+
 
   useEffect(() => {
     const outScaleParams = {

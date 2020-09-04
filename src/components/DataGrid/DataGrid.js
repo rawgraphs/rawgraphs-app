@@ -187,7 +187,8 @@ export default function DataGrid({ userDataset, dataset, errors, dataTypes, coer
         formatter: ({ row }) => {
           return (
             <div className={classNames({ [S["has-error"]]: row?._errors?.[k] })}>
-              {row[k]}
+              {row[k]?.toString()}
+              {/* {row[k]} */}
             </div>
           )
         },
@@ -218,7 +219,7 @@ export default function DataGrid({ userDataset, dataset, errors, dataTypes, coer
     else if (sortColumnType === "date") {
       datasetWithIds = datasetWithIds.sort((a, b) => a._stage3[sortColumn]?.valueOf() ?? 0 - b._stage3[sortColumn]?.valueOf()) ?? 0
     } else {
-      datasetWithIds = datasetWithIds.sort((a, b) => a._stage3[sortColumn].toString().localeCompare(b._stage3[sortColumn].toString()))
+      datasetWithIds = datasetWithIds.sort((a, b) => a._stage3[sortColumn]?.toString().localeCompare(b._stage3[sortColumn].toString()))
     }
 
     return sortDirection === 'DESC' ? datasetWithIds.reverse() : datasetWithIds;

@@ -1,8 +1,10 @@
 import React, { useRef, useEffect } from "react"
 import { chart as rawChart } from "@raw-temp/rawgraphs-core"
+import {mapDataInWorker} from "../../worker";
 import useDebounce from "../../hooks/useDebounce"
+import charts from "../../charts";
 
-const ChartPreview = ({ chart, dataset: data, dataTypes, mapping, visualOptions, error, setError, setRawViz }) => {
+const ChartPreview = ({ chart, dataset: data, dataTypes, mapping, visualOptions, error, setError, setRawViz, mappedData }) => {
 
   const domRef = useRef(null)
 
@@ -10,16 +12,30 @@ const ChartPreview = ({ chart, dataset: data, dataTypes, mapping, visualOptions,
 
   useEffect(() => {
     console.info("Updating viz")
+    setError(null)
+    if(!mappedData){
+      setRawViz(null)
+      while (domRef.current.firstChild) {
+        domRef.current.removeChild(domRef.current.firstChild)
+      }
+      return
+    }
     try {
-      setError(null)
+      
       const viz = rawChart(chart, {
         data,
         mapping: mapping,
         dataTypes,
         visualOptions: vizOptionsDebounced
       })
-      const rawViz = viz.renderToDOM(domRef.current)
-      setRawViz(rawViz)
+      try{
+        const rawViz = viz.renderToDOM(domRef.current, mappedData)
+        setRawViz(rawViz)
+      } catch(e){
+        setError(e)
+        setRawViz(null)
+        
+      }
       
     } catch (e) {
       while (domRef.current.firstChild) {
@@ -29,8 +45,9 @@ const ChartPreview = ({ chart, dataset: data, dataTypes, mapping, visualOptions,
       setError(e)
       setRawViz(null)
       
+      
     }
-  }, [chart, data, mapping, dataTypes, setError, vizOptionsDebounced, setRawViz])
+  }, [chart, data, mapping, dataTypes, setError, vizOptionsDebounced, setRawViz, mappedData])
 
   return (
     <>
@@ -46,4 +63,4 @@ const ChartPreview = ({ chart, dataset: data, dataTypes, mapping, visualOptions,
   )
 }
 
-export default ChartPreview
+export default React.memo(ChartPreview)
