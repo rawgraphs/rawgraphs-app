@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@raw-temp/rawgraphs-charts": "^0.0.17",
-    "@raw-temp/rawgraphs-core": "^0.1.21",
+    "@raw-temp/rawgraphs-charts": "^0.0.18",
+    "@raw-temp/rawgraphs-core": "^0.1.22",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",

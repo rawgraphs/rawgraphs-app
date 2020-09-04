@@ -7,7 +7,7 @@ import { scatterplot, linechart, matrixplot, colortest, sunburst, sankeydiagram,
 const chartArray = [
   scatterplot,
   linechart,
-  colortest,
+  // colortest,
   matrixplot,
 	sunburst,
 	sankeydiagram,
