@@ -11,15 +11,18 @@ const ChartPreview = ({ chart, dataset: data, dataTypes, mapping, visualOptions,
   const vizOptionsDebounced = useDebounce(visualOptions, 200)
 
   useEffect(() => {
-    console.info("Updating viz", vizOptionsDebounced)
+    
     setError(null)
     if(!mappedData){
+      console.info("Clearing viz")  
       setRawViz(null)
       while (domRef.current.firstChild) {
         domRef.current.removeChild(domRef.current.firstChild)
       }
       return
     }
+
+    console.info("Updating viz", vizOptionsDebounced, mappedData)
     try {
       
       const viz = rawChart(chart, {
@@ -31,6 +34,7 @@ const ChartPreview = ({ chart, dataset: data, dataTypes, mapping, visualOptions,
       try{
         const rawViz = viz.renderToDOM(domRef.current, mappedData)
         setRawViz(rawViz)
+        setError(null)
       } catch(e){
         setError(e)
         setRawViz(null)
@@ -47,7 +51,8 @@ const ChartPreview = ({ chart, dataset: data, dataTypes, mapping, visualOptions,
       
       
     }
-  }, [chart, data, mapping, dataTypes, setError, vizOptionsDebounced, setRawViz, mappedData])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setError, vizOptionsDebounced, setRawViz, mappedData])
 
   return (
     <>
