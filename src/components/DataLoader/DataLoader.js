@@ -168,7 +168,6 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
   }
 
   function handleChangeThousandsSeparator(newThousandsSeparator) {
-    console.log("ssss thousands");
     const [dataType, parsedUserData, error] = parseAndCheckData(userInput, {
       separator,
     });

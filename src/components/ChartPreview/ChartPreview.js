@@ -11,7 +11,7 @@ const ChartPreview = ({ chart, dataset: data, dataTypes, mapping, visualOptions,
   const vizOptionsDebounced = useDebounce(visualOptions, 200)
 
   useEffect(() => {
-    console.info("Updating viz")
+    console.info("Updating viz", vizOptionsDebounced)
     setError(null)
     if(!mappedData){
       setRawViz(null)
