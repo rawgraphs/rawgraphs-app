@@ -35,6 +35,7 @@ const ChartPreviewWithOptions = ({
             setMappedData(mappedData);
           })
           .catch((err) => {
+            console.error(err)
             setMappingLoading(false);
             setMappedData(null);
           });
@@ -49,6 +50,7 @@ const ChartPreviewWithOptions = ({
         setMappedData(vizData);
       }
     } catch (e) {
+      console.error(e)
       setMappingLoading(false);
       setMappedData(null);
     }

@@ -168,14 +168,14 @@ const ChartOptionColorScale = ({
 
   const currentFinalScale = useMemo(() => {
     if (
-      !colorDataset.length ||
-      !colorDataType ||
+      // !colorDataset.length ||
+      // !colorDataType ||
       !scaleType ||
       !interpolator ||
-      !userValuesForFinalScale ||
+      // !userValuesForFinalScale ||
       !colorPresets[scaleType][interpolator]
     ) {
-      return null;
+      return
     }
 
     const previewScale = getColorScale(
