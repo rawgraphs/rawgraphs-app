@@ -1,5 +1,4 @@
-import React, { useState, useMemo, useEffect, useCallback, useContext } from "react";
-import { chart as rawChart } from "@raw-temp/rawgraphs-core"
+import React, { useState, useMemo, useEffect, useCallback } from "react";
 import { Row, Col } from "react-bootstrap";
 import get from "lodash/get";
 import {
