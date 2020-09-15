@@ -16,7 +16,7 @@ export default function DateLocaleSelector({ title, value, localeList, onChange,
       <Dropdown className="d-inline-block">
         <Dropdown.Toggle variant="white" className="">{value}</Dropdown.Toggle>
         <Dropdown.Menu>
-        <Dropdown.Header>from <a href="https://github.com/d3/d3-format/tree/master/locale" target="_blank" rel="noopener noreferrer">d3-format</a></Dropdown.Header>
+        <Dropdown.Header>from <a href="https://github.com/d3/d3-time-format/tree/master/locale" target="_blank" rel="noopener noreferrer">d3-time-format</a></Dropdown.Header>
         {
           Object.keys(localeList).map(d=>{
           return <Dropdown.Item key={d} onSelect={ ()=>handleChange(d) }>{d}</Dropdown.Item>
