@@ -1,70 +1,70 @@
-import React, { useState, useCallback, useMemo, useEffect } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from 'react'
 import {
   getOptionsConfig,
   getDefaultOptionsValues,
-} from "@raw-temp/rawgraphs-core";
+} from '@raw-temp/rawgraphs-core'
 
-import HeaderItems from "./HeaderItems";
-import Header from "./components/Header";
-import Section from "./components/Section";
-import Footer from "./components/Footer";
+import HeaderItems from './HeaderItems'
+import Header from './components/Header'
+import Section from './components/Section'
+import Footer from './components/Footer'
 
-import DataLoader from "./components/DataLoader";
-import charts from "./charts";
-import ChartSelector from "./components/ChartSelector";
-import DataMapping from "./components/DataMapping";
-import ChartPreviewWithOptions from "./components/ChartPreviewWIthOptions";
-import Exporter from "./components/Exporter";
-import get from "lodash/get";
-import usePrevious from "./hooks/usePrevious";
+import DataLoader from './components/DataLoader'
+import charts from './charts'
+import ChartSelector from './components/ChartSelector'
+import DataMapping from './components/DataMapping'
+import ChartPreviewWithOptions from './components/ChartPreviewWIthOptions'
+import Exporter from './components/Exporter'
+import get from 'lodash/get'
+import usePrevious from './hooks/usePrevious'
 
 // #TODO: i18n
 
 function App() {
-  const [dataSource, setDataSource] = useState(null);
-  const [data, setData] = useState(null);
-  const [currentChart, setCurrentChart] = useState(charts[0]);
-  const [mapping, setMapping] = useState({});
-  const [visualOptions, setVisualOptions] = useState({});
-  const [rawViz, setRawViz] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [mappingLoading, setMappingLoading] = useState(false);
+  const [dataSource, setDataSource] = useState(null)
+  const [data, setData] = useState(null)
+  const [currentChart, setCurrentChart] = useState(charts[0])
+  const [mapping, setMapping] = useState({})
+  const [visualOptions, setVisualOptions] = useState({})
+  const [rawViz, setRawViz] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [mappingLoading, setMappingLoading] = useState(false)
 
   const columnNames = useMemo(() => {
-    if (get(data, "dataTypes")) {
-      return Object.keys(data.dataTypes);
+    if (get(data, 'dataTypes')) {
+      return Object.keys(data.dataTypes)
     }
-  }, [data]);
+  }, [data])
 
-  const prevColumnNames = usePrevious(columnNames);
+  const prevColumnNames = usePrevious(columnNames)
 
   //resetting mapping when column names changes (ex: separator change in parsing)
   useEffect(() => {
     if (prevColumnNames) {
       if (!columnNames) {
-        setMapping({});
+        setMapping({})
       } else {
-        const prevCols = prevColumnNames.join(".");
-        const currentCols = columnNames.join(".");
+        const prevCols = prevColumnNames.join('.')
+        const currentCols = columnNames.join('.')
         if (prevCols !== currentCols) {
-          setMapping({});
+          setMapping({})
         }
       }
     }
-  }, [columnNames, prevColumnNames]);
+  }, [columnNames, prevColumnNames])
 
   const handleChartChange = useCallback((nextChart) => {
-    setCurrentChart(nextChart);
-    setMapping({});
-    const options = getOptionsConfig(nextChart?.visualOptions);
-    setVisualOptions(getDefaultOptionsValues(options));
-    setRawViz(null);
-  }, []);
+    setCurrentChart(nextChart)
+    setMapping({})
+    const options = getOptionsConfig(nextChart?.visualOptions)
+    setVisualOptions(getDefaultOptionsValues(options))
+    setRawViz(null)
+  }, [])
 
   return (
     <div className="App">
       <Header menuItems={HeaderItems} />
-      <Section title={`1. Load your data ${loading ? '..loading': ''}`}>
+      <Section title={`1. Load your data ${loading ? '..loading' : ''}`}>
         <DataLoader
           data={data}
           setData={setData}
@@ -83,7 +83,7 @@ function App() {
         </Section>
       )}
       {data && currentChart && (
-        <Section title={`3. Mapping ${mappingLoading ? '..loading': ''}`}>
+        <Section title={`3. Mapping ${mappingLoading ? '..loading' : ''}`}>
           <DataMapping
             dimensions={currentChart.dimensions}
             dataTypes={data.dataTypes}
@@ -114,10 +114,10 @@ function App() {
       {/* <Section title="0. Typography">{typography}</Section> */}
       <Footer>Footer items go here!</Footer>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
 
 // const typography = (
 //   <>

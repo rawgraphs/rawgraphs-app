@@ -1,1 +1,1 @@
-export  { default } from './ParsingOptions';
+export { default } from './ParsingOptions'

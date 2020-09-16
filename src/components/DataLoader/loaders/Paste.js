@@ -4,7 +4,7 @@ export default function Paste({ userInput, setUserInput }) {
   return (
     <textarea
       value={userInput}
-      onChange={e => {
+      onChange={(e) => {
         const str = e.target.value
         setUserInput(str)
       }}

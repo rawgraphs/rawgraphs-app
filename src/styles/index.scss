@@ -1,20 +1,20 @@
 // Variables override
-$body-bg: #F5F8FA;
+$body-bg: #f5f8fa;
 $theme-colors: (
-  "primary": #4bc06a,
-  "success": #4bc06a,
-  "warning": #E7B332,
-  "danger": #D04949,
-  "light": #d8d8d8,
+  'primary': #4bc06a,
+  'success': #4bc06a,
+  'warning': #e7b332,
+  'danger': #d04949,
+  'light': #d8d8d8,
 );
 
 :root {
-  --gray-bg: #F5F8FA;
-  --primary-lighter: #DEFFF0;
+  --gray-bg: #f5f8fa;
+  --primary-lighter: #defff0;
   --warning-lighter: #fff8c6;
   --gray-100: #f8f8f8;
-  --gray-300: #C2C1C1;
-  --gray-400: #E4E3E3;
+  --gray-300: #c2c1c1;
+  --gray-400: #e4e3e3;
   --gray-600: #888e94;
   --gray-700: #495057;
   --gray-900: #181818;
@@ -22,17 +22,19 @@ $theme-colors: (
 }
 
 // Boostrap scss
-@import "~bootstrap/scss/bootstrap";
+@import '~bootstrap/scss/bootstrap';
 
 // React Data Table css
-@import "~react-data-grid/dist/react-data-grid.css";
+@import '~react-data-grid/dist/react-data-grid.css';
 
 // Import Inter typeface
-@import "~/typeface-inter/Inter (web)/inter.css";
-@import "~/typeface-ibm-plex-mono/index.css";
+@import '~/typeface-inter/Inter (web)/inter.css';
+@import '~/typeface-ibm-plex-mono/index.css';
 
-
-html, body { font-family: 'Inter', sans-serif; }
+html,
+body {
+  font-family: 'Inter', sans-serif;
+}
 
 // HTML tags
 html {
@@ -79,20 +81,20 @@ h5 {
   height: 56px;
   border: none;
   &.alert-success {
-    background-color: theme-color("success");
+    background-color: theme-color('success');
   }
   &.alert-warning {
-    background-color: theme-color("warning");
+    background-color: theme-color('warning');
   }
   &.alert-danger {
-    background-color: theme-color("danger");
+    background-color: theme-color('danger');
   }
 }
 .btn {
   height: 40px;
 }
 .btn-white {
-  color: theme-color("dark");
+  color: theme-color('dark');
   background-color: white;
   border: none;
   border-bottom: 1px solid var(--light);
@@ -124,7 +126,8 @@ h5 {
     background-color: var(--primary-lighter);
   }
 }
-.cursorpointer, .cursor-pointer {
+.cursorpointer,
+.cursor-pointer {
   cursor: pointer;
 }
 .text-field {
@@ -134,7 +137,7 @@ h5 {
   border-radius: 4px;
 }
 .underlined {
-  border-bottom: 1px solid theme-color("primary");
+  border-bottom: 1px solid theme-color('primary');
 }
 .divider {
   width: 100%;

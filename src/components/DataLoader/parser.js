@@ -42,41 +42,41 @@ export function parseAndCheckData(dataString, opts) {
 }
 
 function isScalarType(item) {
-  return ["string", "number", "boolean"].includes(typeof item)
+  return ['string', 'number', 'boolean'].includes(typeof item)
 }
 
 export function normalizeJsonArray(jsonArray) {
-  return jsonArray.map(element => {
-    let iterateElement = element
-    if (Array.isArray(iterateElement)) {
-      const tmp = {}
-      iterateElement.forEach((item, i) => {
-        tmp[`Column ${i + 1}`] = item
-      })
-      iterateElement = tmp
-    }
-    if (isScalarType(iterateElement) || iterateElement === null) {
-      iterateElement = { value: iterateElement }
-    }
-    const outElement = {}
-    for (const property in iterateElement) {
-      const value = iterateElement[property]
-      const valueType = typeof value
-      if (Array.isArray(value)) {
-        outElement[property] = value.filter(isScalarType).join(" ")
+  return jsonArray
+    .map((element) => {
+      let iterateElement = element
+      if (Array.isArray(iterateElement)) {
+        const tmp = {}
+        iterateElement.forEach((item, i) => {
+          tmp[`Column ${i + 1}`] = item
+        })
+        iterateElement = tmp
       }
-      else if (valueType === "object" && valueType !== null) {
-        for (const nestedProperty in value) {
-          const nestedValue = value[nestedProperty]
-          if (isScalarType(nestedValue)) {
-            outElement[`${property}.${nestedProperty}`] = nestedValue
+      if (isScalarType(iterateElement) || iterateElement === null) {
+        iterateElement = { value: iterateElement }
+      }
+      const outElement = {}
+      for (const property in iterateElement) {
+        const value = iterateElement[property]
+        const valueType = typeof value
+        if (Array.isArray(value)) {
+          outElement[property] = value.filter(isScalarType).join(' ')
+        } else if (valueType === 'object' && valueType !== null) {
+          for (const nestedProperty in value) {
+            const nestedValue = value[nestedProperty]
+            if (isScalarType(nestedValue)) {
+              outElement[`${property}.${nestedProperty}`] = nestedValue
+            }
           }
+        } else if (isScalarType(value)) {
+          outElement[property] = value
         }
       }
-      else if (isScalarType(value)) {
-        outElement[property] = value
-      }
-    }
-    return outElement
-  }).filter(item => item !== null)
+      return outElement
+    })
+    .filter((item) => item !== null)
 }

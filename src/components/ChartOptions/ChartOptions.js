@@ -18,12 +18,15 @@ const CHART_OPTION_COMPONENTS = {
 function WrapControlComponent({ type, optionId, setVisualOptions, ...props }) {
   const Component = CHART_OPTION_COMPONENTS[type]
 
-  const handleControlChange = useCallback((nextValue) => {
-    setVisualOptions((visualOptions) => ({
-      ...visualOptions,
-      [optionId]: nextValue,
-    }))
-  }, [optionId, setVisualOptions])
+  const handleControlChange = useCallback(
+    (nextValue) => {
+      setVisualOptions((visualOptions) => ({
+        ...visualOptions,
+        [optionId]: nextValue,
+      }))
+    },
+    [optionId, setVisualOptions]
+  )
 
   return (
     <Component
@@ -58,7 +61,6 @@ const ChartOptions = ({
       return acc
     }, {})
   }, [chart])
-
 
   return (
     <div>

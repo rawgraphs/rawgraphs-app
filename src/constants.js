@@ -1,5 +1,5 @@
 // import React from "react"
-import { BsClock, BsHash, BsType } from "react-icons/bs"
+import { BsClock, BsHash, BsType } from 'react-icons/bs'
 
 // // creplaced with the following
 // export const DATATYPE_ICONS = {
@@ -13,10 +13,9 @@ export const NumberIcon = BsHash
 export const StringIcon = BsType
 
 export const dataTypeIcons = {
-  'date': DateIcon,
-  'number': NumberIcon,
-  'string': StringIcon
+  date: DateIcon,
+  number: NumberIcon,
+  string: StringIcon,
 }
-
 
 export const WEBWORKER_ACTIVE = true

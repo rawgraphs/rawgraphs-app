@@ -1,10 +1,26 @@
-import React from "react"
-import { Row, Col } from "react-bootstrap";
+import React from 'react'
+import { Row, Col } from 'react-bootstrap'
 import ChartOptionSelect from './ChartOptionSelect'
 
-const ChartOptionNumber = ({ value, error, onChange, default: defaultValue, label, ...props }) => {
-  if(props.options){
-    return <ChartOptionSelect value={value} error={error} onChange={onChange} default={defaultValue} label={label} {...props} />
+const ChartOptionNumber = ({
+  value,
+  error,
+  onChange,
+  default: defaultValue,
+  label,
+  ...props
+}) => {
+  if (props.options) {
+    return (
+      <ChartOptionSelect
+        value={value}
+        error={error}
+        onChange={onChange}
+        default={defaultValue}
+        label={label}
+        {...props}
+      />
+    )
   }
   return (
     <Row>
@@ -13,11 +29,11 @@ const ChartOptionNumber = ({ value, error, onChange, default: defaultValue, labe
         <input
           className="w-100 form-control text-field"
           type="number"
-          value={value ?? ""}
+          value={value ?? ''}
           step={props.step}
-          onChange={e => {
+          onChange={(e) => {
             const str = e.target.value
-            if (str === "") {
+            if (str === '') {
               onChange(undefined)
             } else {
               const n = parseInt(str, 10)
@@ -31,7 +47,11 @@ const ChartOptionNumber = ({ value, error, onChange, default: defaultValue, labe
           placeholder={defaultValue}
         />
       </Col>
-      {error && <small><i>{error}</i></small>}
+      {error && (
+        <small>
+          <i>{error}</i>
+        </small>
+      )}
     </Row>
   )
 }

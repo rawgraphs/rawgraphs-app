@@ -5,7 +5,7 @@
 .data-type-selector {
   background-color: #fff;
   min-width: 140px;
-  box-shadow: 0px 6px 12px rgba(0,0,0,0.3);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
   z-index: 10000;
 
   .data-type-selector-item {
@@ -45,7 +45,7 @@
 .date-format-selector {
   background-color: white;
   min-width: 140px;
-  box-shadow: 0px 3px 6px rgba(0,0,0,0.3);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
 
   .date-format-selector-entry {
     padding: 8px;
@@ -54,7 +54,7 @@
     &:hover {
       background-color: var(--gray-bg);
     }
-  
+
     .selected {
       background-color: var(--primary-lighter) !important;
     }

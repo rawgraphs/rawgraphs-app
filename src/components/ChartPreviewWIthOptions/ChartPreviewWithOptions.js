@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
-import ChartOptions from "../ChartOptions";
-import ChartPreview from "../ChartPreview";
-import { chart as rawChart } from "@raw-temp/rawgraphs-core";
-import { mapDataInWorker } from "../../worker";
-import { WEBWORKER_ACTIVE } from "../../constants";
+import React, { useState, useEffect } from 'react'
+import { Row, Col } from 'react-bootstrap'
+import ChartOptions from '../ChartOptions'
+import ChartPreview from '../ChartPreview'
+import { chart as rawChart } from '@raw-temp/rawgraphs-core'
+import { mapDataInWorker } from '../../worker'
+import { WEBWORKER_ACTIVE } from '../../constants'
 
 const ChartPreviewWithOptions = ({
   chart,
@@ -16,13 +16,13 @@ const ChartPreviewWithOptions = ({
   setRawViz,
   setMappingLoading,
 }) => {
-  const [error, setError] = useState(null);
-  const [mappedData, setMappedData] = useState(null);
+  const [error, setError] = useState(null)
+  const [mappedData, setMappedData] = useState(null)
 
   useEffect(() => {
-    console.info("Updating mapped dataset");
+    console.info('Updating mapped dataset')
     try {
-      setMappingLoading(true);
+      setMappingLoading(true)
 
       if (WEBWORKER_ACTIVE) {
         mapDataInWorker(chart.metadata.name, {
@@ -31,14 +31,14 @@ const ChartPreviewWithOptions = ({
           dataTypes,
         })
           .then((mappedData) => {
-            setMappingLoading(false);
-            setMappedData(mappedData);
+            setMappingLoading(false)
+            setMappedData(mappedData)
           })
           .catch((err) => {
             console.error(err)
-            setMappingLoading(false);
-            setMappedData(null);
-          });
+            setMappingLoading(false)
+            setMappedData(null)
+          })
       } else {
         const viz = rawChart(chart, {
           data: dataset,
@@ -46,13 +46,13 @@ const ChartPreviewWithOptions = ({
           dataTypes,
         })
         const vizData = viz._getVizData()
-        setMappingLoading(false);
-        setMappedData(vizData);
+        setMappingLoading(false)
+        setMappedData(vizData)
       }
     } catch (e) {
       console.error(e)
-      setMappingLoading(false);
-      setMappedData(null);
+      setMappingLoading(false)
+      setMappedData(null)
     }
   }, [
     chart,
@@ -62,7 +62,7 @@ const ChartPreviewWithOptions = ({
     setRawViz,
     setMappingLoading,
     dataset,
-  ]);
+  ])
 
   return (
     <Row>
@@ -92,7 +92,7 @@ const ChartPreviewWithOptions = ({
         />
       </Col>
     </Row>
-  );
-};
+  )
+}
 
-export default ChartPreviewWithOptions;
+export default ChartPreviewWithOptions
