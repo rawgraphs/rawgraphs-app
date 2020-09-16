@@ -22,4 +22,4 @@ const ChartOptionText = ({ value, error, onChange, default: defaultValue, label,
   )
 }
 
-export default ChartOptionText
+export default React.memo(ChartOptionText)

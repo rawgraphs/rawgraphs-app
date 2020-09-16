@@ -47,10 +47,9 @@ const ChartOptionColorScale = ({
   mappedData,
   ...props
 }) => {
-
   // const mappedDataset = useMemo(() => {
   //   try {
-      
+
   //     const viz = rawChart(chart, {
   //       data: dataset,
   //       mapping,
@@ -60,7 +59,7 @@ const ChartOptionColorScale = ({
   //     return viz.mapData()
   //   } catch (e) {
   //     return undefined
-      
+
   //   }
   // }, [chart, mapping, dataTypes, dataset])
 
@@ -202,7 +201,7 @@ const ChartOptionColorScale = ({
       userScaleValues: userValuesForFinalScale,
     };
     onChange(outScaleParams);
-  }, [interpolator, scaleType, userValuesForFinalScale]);
+  }, [interpolator, scaleType, userValuesForFinalScale, onChange]);
 
   return (
     <div>
@@ -294,4 +293,4 @@ const ChartOptionColorScale = ({
   );
 };
 
-export default ChartOptionColorScale;
+export default React.memo(ChartOptionColorScale);
