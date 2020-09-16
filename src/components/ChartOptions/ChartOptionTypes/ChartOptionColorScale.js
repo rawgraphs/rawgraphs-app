@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback, useContext } from "react";
 import { chart as rawChart } from "@raw-temp/rawgraphs-core"
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Dropdown } from "react-bootstrap";
 import get from "lodash/get";
 import {
   getInitialScaleValues,
@@ -248,10 +248,60 @@ const ChartOptionColorScale = ({
             ))}
           </select>
         </Col>
+
+        <Col xs={6}>Color scheme 2</Col>
+        <Col xs={6}>
+
+          <Dropdown className="d-inline-block raw-dropdown">
+            <Dropdown.Toggle
+              variant="white"
+              className="truncate-160px">
+              
+              {interpolator}
+              
+              scale preview
+
+              {console.log('currentFinalScale', currentFinalScale)}
+              
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {
+                interpolators.map(interpolator => {
+                  return <Dropdown.Item key={interpolator} onSelect={() => setInterpolator(interpolator)}>
+                    {interpolator}
+
+                    {/* <CurrentPreset
+                      scale={currentFinalScale}
+                      label={"Scale preview"}
+                    ></CurrentPreset> */}
+
+                  </Dropdown.Item>
+                })
+              }
+            </Dropdown.Menu>
+          </Dropdown>
+
+          <select
+            disabled={!colorDataType}
+            className="custom-select"
+            value={interpolator}
+            onChange={(e) => {
+              setInterpolator(e.target.value);
+            }}
+          >
+            {interpolators.map((interpolator) => (
+              <option key={interpolator} value={interpolator}>
+                {colorPresets[scaleType][interpolator].label}
+              </option>
+            ))}
+
+          </select>
+        </Col>
       </Row>
 
       {currentFinalScale && (
         <Row>
+          <hr />
           <Col xs={12}>
             <CurrentPreset
               scale={currentFinalScale}

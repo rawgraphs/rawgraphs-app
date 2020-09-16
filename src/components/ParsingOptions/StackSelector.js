@@ -12,7 +12,7 @@ export default function StackSelector({ title, value, list, onChange, ...props }
   return (
     <div className="option">
       {title}
-      <Dropdown className="d-inline-block">
+      <Dropdown className="d-inline-block raw-dropdown">
         <Dropdown.Toggle
           variant="white"
           className="truncate-160px"

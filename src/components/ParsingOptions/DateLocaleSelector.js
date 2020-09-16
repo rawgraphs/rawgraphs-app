@@ -13,7 +13,7 @@ export default function DateLocaleSelector({ title, value, localeList, onChange,
   return (
     <div className="option">
       {title}
-      <Dropdown className="d-inline-block">
+      <Dropdown className="d-inline-block raw-dropdown">
         <Dropdown.Toggle variant="white" className="">{value}</Dropdown.Toggle>
         <Dropdown.Menu>
         <Dropdown.Header>from <a href="https://github.com/d3/d3-format/tree/master/locale" target="_blank" rel="noopener noreferrer">d3-format</a></Dropdown.Header>

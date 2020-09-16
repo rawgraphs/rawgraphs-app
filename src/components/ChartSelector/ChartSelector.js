@@ -18,7 +18,7 @@ function ChartSelector({
       <Row>
         <Col className="text-right">
           Show
-          <Dropdown className="d-inline-block ml-2">
+          <Dropdown className="d-inline-block ml-2 raw-dropdown">
             <Dropdown.Toggle variant="white" className="pr-5">{filter}</Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item key={'All charts'} onClick={() => setFilter('All charts')}>All charts</Dropdown.Item>
@@ -42,8 +42,13 @@ function ChartSelector({
                 <Card.Text>
                   {currentChart.metadata.description}
                 </Card.Text>
-                <Card.Link className="underlined" href={currentChart.metadata.code} target="_blank"><BsLink color="black" /> Code</Card.Link>
-                <Card.Link className="underlined" href={currentChart.metadata.tutorial} target="_blank"><BsLink color="black" /> Tutorial</Card.Link>
+                {
+                  currentChart.metadata.code && <Card.Link className="underlined" href={currentChart.metadata.code} target="_blank"><BsLink color="black" /> Code</Card.Link>
+                }
+                {
+                  currentChart.metadata.tutorial && <Card.Link className="underlined" href={currentChart.metadata.tutorial} target="_blank"><BsLink color="black" /> Tutorial</Card.Link>
+                }
+                
               </Card.Body>
             </Card>
           )}
@@ -52,8 +57,8 @@ function ChartSelector({
           <Row>
             {charts.map((d, i) => {
               return (
-                <Col xs={4} key={'chart-' + i} className={`p-3 cursor-pointer`}>
-                  <Card onClick={() => { setCurrentChart(d) }} className={`flex-row h-100 ${d === currentChart ? 'active' : ''}`}>
+                <Col xs={4} key={'chart-' + i} className={`p-3`}>
+                  <Card onClick={() => { setCurrentChart(d) }} className={`flex-row h-100 cursor-pointer ${d === currentChart ? 'active' : ''}`}>
                     <div className={`h-100 w-25 ${styles.thumbnail}`} style={{ backgroundImage: `url("${bubbles}")` }}></div>
                     <Card.Body className="w-75 px-2 py-3">
                       <Card.Title className="m-0"><h2 className="m-0">{d.metadata.name}</h2></Card.Title>
