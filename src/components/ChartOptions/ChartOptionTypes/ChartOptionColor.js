@@ -23,7 +23,7 @@ const ChartOptionColor = ({
       />
     )
   }
-  console.log('CC', value)
+
   return (
     <label className="row">
       <Col xs={4}>{label}</Col>
