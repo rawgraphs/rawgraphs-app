@@ -26,4 +26,4 @@ const ChartOptionColor = ({ value, error, onChange, default: defaultValue, label
   )
 }
 
-export default ChartOptionColor
+export default React.memo(ChartOptionColor)

@@ -36,4 +36,4 @@ const ChartOptionNumber = ({ value, error, onChange, default: defaultValue, labe
   )
 }
 
-export default ChartOptionNumber
+export default React.memo(ChartOptionNumber)

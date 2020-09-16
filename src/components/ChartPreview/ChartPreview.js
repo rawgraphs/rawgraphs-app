@@ -1,8 +1,6 @@
 import React, { useRef, useEffect } from "react"
 import { chart as rawChart } from "@raw-temp/rawgraphs-core"
-import {mapDataInWorker} from "../../worker";
 import useDebounce from "../../hooks/useDebounce"
-import charts from "../../charts";
 
 const ChartPreview = ({ chart, dataset: data, dataTypes, mapping, visualOptions, error, setError, setRawViz, mappedData }) => {
 

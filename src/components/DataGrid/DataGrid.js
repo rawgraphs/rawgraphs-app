@@ -2,7 +2,7 @@ import React, { useMemo, useRef, useState, useCallback } from "react";
 import ReactDataGrid from 'react-data-grid';
 import { Overlay, OverlayTrigger } from "react-bootstrap";
 import classNames from "classnames";
-import { getTypeName } from "@raw-temp/rawgraphs-core"
+import { getTypeName, dateFormats } from "@raw-temp/rawgraphs-core"
 
 
 import S from "./DataGrid.module.scss"
@@ -10,12 +10,14 @@ import { keyBy, get, isEqual } from "lodash";
 import { dataTypeIcons, DateIcon, StringIcon, NumberIcon } from "../../constants";
 import { BsFillCaretRightFill } from "react-icons/bs";
 
-const DATE_FORMATS = [
-  "YYYY-MM-DD",
-  "YY-MM",
-  "DD Month YYYY",
-  "YYYY",
-]
+// const DATE_FORMATS = [
+//   "YYYY-MM-DD",
+//   "YY-MM",
+//   "DD Month YYYY",
+//   "YYYY",
+// ]
+
+const DATE_FORMATS = Object.keys(dateFormats)
 
 const DateFormatSelector = React.forwardRef(({ currentFormat, onChange, className, ...props }, ref) => {
   return (

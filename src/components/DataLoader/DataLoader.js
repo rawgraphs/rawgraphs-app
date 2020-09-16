@@ -54,12 +54,11 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
   const [decimalsSeparator, setDecimalsSeparator] = useState(".");
   const [locale, setLocale] = useState(navigator.language || "en-US");
   const [stackDimension, setStackDimension] = useState();
-
+ 
   //wrapper for async parse via web worker 
-  
   const parseDatasetAsyncAndSetData = useCallback((data, dataTypes, parsingOptions) => {
     setLoading(true)
-    parseDatasetInWorker(data, dataTypes, parsingOptions)
+    parseDatasetInWorker(data, dataTypes, {...parsingOptions, dateLocale:get(localeList, parsingOptions.locale)})
     .then(setData)
     .catch(err => {
       console.log("eee", err)
@@ -72,7 +71,7 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
   const parseDatasetSyncAndSetData = useCallback(
     (data, dataTypes, parsingOptions) => {
       setLoading(true);
-      setData(parseDataset(data, dataTypes, parsingOptions));
+      setData(parseDataset(data, dataTypes, {...parsingOptions, dateLocale:get(localeList, parsingOptions.locale)}));
       setLoading(false);
     },
     [setData, setLoading]
@@ -131,21 +130,16 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
   }
 
   function handleChangeLocale(newLocale) {
-    const [dataType, parsedUserData, error] = parseAndCheckData(userInput, {
-      separator,
+    if(!data){
+      return
+    }
+    parseDatasetAndSetData(data.dataset, data.dataTypes, {
+      locale: newLocale,
+      decimal: decimalsSeparator,
+      group: thousandsSeparator,
     });
     setLocale(newLocale);
-    setUserDataType(dataType);
-    setParserError(error);
-    if (dataType !== "json" && !error) {
-      setUserData(parsedUserData);
-      parseDatasetAndSetData(parsedUserData, undefined, {
-        locale: newLocale,
-        decimal: decimalsSeparator,
-        group: thousandsSeparator,
-      });
-      // setData(parseDataset(parsedUserData, undefined, {locale: newLocale, decimal: decimalsSeparator, group:thousandsSeparator}));
-    }
+    
   }
 
   function handleChangeDecimalSeparator(newDecimalSeparator) {

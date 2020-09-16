@@ -10,7 +10,7 @@ const ChartOptionSelect = ({
   label,
   ...props
 }) => {
-  
+
   return (
     <label className="d-block">
       <b>{label}</b>
@@ -19,12 +19,12 @@ const ChartOptionSelect = ({
         className="custom-select"
         value={value ?? defaultValue}
         onChange={(e) => {
-          const stringValue = e.target.value 
+          const stringValue = e.target.value
           const value = props.type === 'number' ? Number(stringValue) : stringValue
           onChange(value);
         }}
       >
-        {options.map((option) => 
+        {options.map((option) =>
           isObject(option) ? <option
             key={option.value}
             value={option.value}
@@ -47,4 +47,4 @@ const ChartOptionSelect = ({
   );
 };
 
-export default ChartOptionSelect;
+export default React.memo(ChartOptionSelect);

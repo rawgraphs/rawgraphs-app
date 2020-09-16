@@ -1,5 +1,4 @@
-import React, { useState, useMemo, useEffect, useCallback, useContext } from "react";
-import { chart as rawChart } from "@raw-temp/rawgraphs-core"
+import React, { useState, useMemo, useEffect, useCallback } from "react";
 import { Row, Col, Dropdown } from "react-bootstrap";
 import get from "lodash/get";
 import {
@@ -48,10 +47,9 @@ const ChartOptionColorScale = ({
   mappedData,
   ...props
 }) => {
-
   // const mappedDataset = useMemo(() => {
   //   try {
-      
+
   //     const viz = rawChart(chart, {
   //       data: dataset,
   //       mapping,
@@ -61,7 +59,7 @@ const ChartOptionColorScale = ({
   //     return viz.mapData()
   //   } catch (e) {
   //     return undefined
-      
+
   //   }
   // }, [chart, mapping, dataTypes, dataset])
 
@@ -203,7 +201,7 @@ const ChartOptionColorScale = ({
       userScaleValues: userValuesForFinalScale,
     };
     onChange(outScaleParams);
-  }, [interpolator, scaleType, userValuesForFinalScale]);
+  }, [interpolator, scaleType, userValuesForFinalScale, onChange]);
 
   return (
     <div>
@@ -345,4 +343,4 @@ const ChartOptionColorScale = ({
   );
 };
 
-export default ChartOptionColorScale;
+export default React.memo(ChartOptionColorScale);

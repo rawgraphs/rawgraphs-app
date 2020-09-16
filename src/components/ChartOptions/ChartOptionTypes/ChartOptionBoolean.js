@@ -21,4 +21,4 @@ const ChartOptionBoolean = ({optionId, label, value, error, onChange}) => {
 
 }
 
-export default ChartOptionBoolean
+export default React.memo(ChartOptionBoolean)

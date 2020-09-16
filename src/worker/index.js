@@ -1,11 +1,8 @@
 import * as Comlink from 'comlink';
 /* eslint-disable import/no-webpack-loader-syntax */
 import Worker from 'worker-loader!./worker';
-// import { chart as rawChart } from "@raw-temp/rawgraphs-core";
-import omit from 'lodash/omit'
 
 let parsingWorker// = new Worker()
-// let obj// = Comlink.wrap(parsingWorker);
 
 export function parseDatasetInWorker(data, dataTypes, parsingOptions) {  
   try {
