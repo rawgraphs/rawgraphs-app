@@ -1,5 +1,9 @@
 import React, { useCallback, useMemo } from 'react'
-import { getOptionsConfig } from '@raw-temp/rawgraphs-core'
+import {
+  getOptionsConfig,
+  getContainerOptions,
+  getDefaultOptionsValues,
+} from '@raw-temp/rawgraphs-core'
 import ChartOptionNumber from './ChartOptionTypes/ChartOptionNumber'
 import ChartOptionText from './ChartOptionTypes/ChartOptionText'
 import ChartOptionColor from './ChartOptionTypes/ChartOptionColor'
@@ -48,11 +52,13 @@ const ChartOptions = ({
   error,
   mappedData,
 }) => {
-  const optionsDefinitionsByGroup = useMemo(() => {
-    const options = getOptionsConfig(chart?.visualOptions)
+  const optionsConfig = useMemo(() => {
+    return getOptionsConfig(chart?.visualOptions)
+  }, [chart])
 
-    return Object.keys(options).reduce((acc, optionId) => {
-      const option = options[optionId]
+  const optionsDefinitionsByGroup = useMemo(() => {
+    return Object.keys(optionsConfig).reduce((acc, optionId) => {
+      const option = optionsConfig[optionId]
       const group = option?.group || ''
       if (!acc[group]) {
         acc[group] = {}
@@ -60,7 +66,18 @@ const ChartOptions = ({
       acc[group][optionId] = option
       return acc
     }, {})
-  }, [chart])
+  }, [optionsConfig])
+  
+  const containerOptions = useMemo(() => {
+    const defaultOptionsValues = getDefaultOptionsValues(optionsConfig)
+    const opts = {
+      ...defaultOptionsValues,
+      ...visualOptions,
+    }
+    return getContainerOptions(optionsConfig, opts)
+  }, [optionsConfig, visualOptions])
+
+  
 
   return (
     <div>
@@ -93,7 +110,7 @@ const ChartOptions = ({
             })}
             {groupName === 'artboard' && (
               <p className="small">
-                The final output will be 99999 px * 99999 px
+                The final output will be {containerOptions?.width} px * {containerOptions?.height} px
                 <br />
                 including the legend.
               </p>
