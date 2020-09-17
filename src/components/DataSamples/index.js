@@ -1,1 +1,1 @@
-export { default } from './DataSamples';
+export { default } from './DataSamples'

@@ -1,1 +1,1 @@
-export { default } from "./JsonViewer" 
+export { default } from './JsonViewer'

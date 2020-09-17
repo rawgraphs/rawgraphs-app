@@ -1,43 +1,60 @@
-import React, { useCallback, useState } from "react"
-import { map } from "lodash"
-import "./JsonViewer.scss"
+import React, { useCallback, useState } from 'react'
+import { map } from 'lodash'
+import './JsonViewer.scss'
 
-const JsonViewerRecursive = ({ contextName, nestingLevel, context, selectFilter, onSelect }) => {
+const JsonViewerRecursive = ({
+  contextName,
+  nestingLevel,
+  context,
+  selectFilter,
+  onSelect,
+}) => {
   const isSelectable = selectFilter(context)
   const contextType = typeof context
   const [mouseOver, setMouseOver] = useState(false)
 
   const classes = [
-    "json-nested",
-    isSelectable ? "selectable" : null,
-    mouseOver ? "hover": null
-  ].filter(i => i !== null).join(" ")
+    'json-nested',
+    isSelectable ? 'selectable' : null,
+    mouseOver ? 'hover' : null,
+  ]
+    .filter((i) => i !== null)
+    .join(' ')
 
-  const handleSelect = useCallback(e => {
-    if (isSelectable) {
-      e.stopPropagation()
-      e.preventDefault()
-      if (onSelect) onSelect(context)
-    }
-  }, [context, isSelectable, onSelect])
+  const handleSelect = useCallback(
+    (e) => {
+      if (isSelectable) {
+        e.stopPropagation()
+        e.preventDefault()
+        if (onSelect) onSelect(context)
+      }
+    },
+    [context, isSelectable, onSelect]
+  )
 
-  const handleMouseOver = useCallback(e => {
-    if (isSelectable) {
-      e.stopPropagation()
-      e.preventDefault()
-      setMouseOver(true)
-    }
-  }, [isSelectable])
+  const handleMouseOver = useCallback(
+    (e) => {
+      if (isSelectable) {
+        e.stopPropagation()
+        e.preventDefault()
+        setMouseOver(true)
+      }
+    },
+    [isSelectable]
+  )
 
-  const handleMouseOut = useCallback(e => {
-    if (isSelectable) {
-      e.stopPropagation()
-      e.preventDefault()
-      setMouseOver(false)
-    }
-  }, [isSelectable])
+  const handleMouseOut = useCallback(
+    (e) => {
+      if (isSelectable) {
+        e.stopPropagation()
+        e.preventDefault()
+        setMouseOver(false)
+      }
+    },
+    [isSelectable]
+  )
 
-  if (contextType === "object" && contextType !== null) {
+  if (contextType === 'object' && contextType !== null) {
     return (
       <div
         className={classes}
@@ -48,14 +65,14 @@ const JsonViewerRecursive = ({ contextName, nestingLevel, context, selectFilter,
         {contextName && (
           <>
             <span className="property-name">{contextName}</span>
-            <span className="colon">{": "}</span>
+            <span className="colon">{': '}</span>
           </>
         )}
         {!Array.isArray(context) && (
-          <span className="curly-bracket open-bracket">{"{"}</span>
+          <span className="curly-bracket open-bracket">{'{'}</span>
         )}
         {Array.isArray(context) && (
-          <span className="square-bracket open-bracket">{"["}</span>
+          <span className="square-bracket open-bracket">{'['}</span>
         )}
         {map(context, (value, property) => (
           <JsonViewerRecursive
@@ -68,10 +85,10 @@ const JsonViewerRecursive = ({ contextName, nestingLevel, context, selectFilter,
           />
         ))}
         {!Array.isArray(context) && (
-          <span className="curly-bracket close-bracket">{"}"}</span>
+          <span className="curly-bracket close-bracket">{'}'}</span>
         )}
         {Array.isArray(context) && (
-          <span className="square-bracket close-bracket">{"]"}</span>
+          <span className="square-bracket close-bracket">{']'}</span>
         )}
       </div>
     )
@@ -86,25 +103,31 @@ const JsonViewerRecursive = ({ contextName, nestingLevel, context, selectFilter,
         {contextName && (
           <>
             <span className="property-name">{contextName}</span>
-            <span className="colon">{": "}</span>
+            <span className="colon">{': '}</span>
           </>
         )}
-        {context === null && (
-          <span className="scalar-value">null</span>
-        )}
+        {context === null && <span className="scalar-value">null</span>}
         {context !== null && (
           <>
-            {(contextType === "bigint" || contextType === "number") && (
-              <span className="scalar-value scalar-value-numeric">{context.toString()}</span>
+            {(contextType === 'bigint' || contextType === 'number') && (
+              <span className="scalar-value scalar-value-numeric">
+                {context.toString()}
+              </span>
             )}
-            {contextType === "string" && (
-              <span className="scalar-value scalar-value-string">"{context.toString()}"</span>
-              )}
-            {contextType === "boolean" && (
-              <span className="scalar-value scalar-value-bool">"{context ? "true" : "false"}"</span>
+            {contextType === 'string' && (
+              <span className="scalar-value scalar-value-string">
+                "{context.toString()}"
+              </span>
             )}
-            {contextType === "undefined" && (
-              <span className="scalar-value scalar-value-undefined">undefined</span>
+            {contextType === 'boolean' && (
+              <span className="scalar-value scalar-value-bool">
+                "{context ? 'true' : 'false'}"
+              </span>
+            )}
+            {contextType === 'undefined' && (
+              <span className="scalar-value scalar-value-undefined">
+                undefined
+              </span>
             )}
           </>
         )}

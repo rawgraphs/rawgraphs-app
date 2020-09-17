@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import isObject from 'lodash/isObject'
 
 const ChartOptionSelect = ({
@@ -10,7 +10,6 @@ const ChartOptionSelect = ({
   label,
   ...props
 }) => {
-
   return (
     <label className="d-block">
       <b>{label}</b>
@@ -20,22 +19,21 @@ const ChartOptionSelect = ({
         value={value ?? defaultValue}
         onChange={(e) => {
           const stringValue = e.target.value
-          const value = props.type === 'number' ? Number(stringValue) : stringValue
-          onChange(value);
+          const value =
+            props.type === 'number' ? Number(stringValue) : stringValue
+          onChange(value)
         }}
       >
         {options.map((option) =>
-          isObject(option) ? <option
-            key={option.value}
-            value={option.value}
-          >
-            {option.label}
-          </option> : <option
-          key={option}
-          value={option}
-        >
-          {option}
-        </option>
+          isObject(option) ? (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ) : (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          )
         )}
       </select>
       {error && (
@@ -44,7 +42,7 @@ const ChartOptionSelect = ({
         </small>
       )}
     </label>
-  );
-};
+  )
+}
 
-export default React.memo(ChartOptionSelect);
+export default React.memo(ChartOptionSelect)
