@@ -20,7 +20,7 @@ export default function StackSelector({
   return (
     <div className="option">
       {title}
-      <Dropdown className="d-inline-block raw-dropdown">
+      <Dropdown className="d-inline-block">
         <Dropdown.Toggle
           variant="white"
           className="truncate-160px"

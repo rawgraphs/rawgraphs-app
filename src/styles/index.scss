@@ -90,31 +90,21 @@ h5 {
     background-color: theme-color('danger');
   }
 }
-
 .btn {
   height: 40px;
 }
-
 .btn-white {
   color: theme-color('dark');
   background-color: white;
   border: none;
   border-bottom: 1px solid var(--light);
 }
-
-.raw-dropdown {
-  .dropdown-toggle {
-    text-align: left;
-    &::after {
-      right: 8px;
-      bottom: calc(50% - 1px);
-      position: absolute;
-    }
-  }
-
-  .dropdown-menu {
-    max-height: 40vh;
-    overflow-y: auto;
+.dropdown-toggle {
+  text-align: left;
+  &::after {
+    right: 8px;
+    bottom: calc(50% - 1px);
+    position: absolute;
   }
 }
 .truncate-160px {
@@ -122,7 +112,10 @@ h5 {
   overflow-x: hidden;
   text-overflow: ellipsis;
 }
-
+.dropdown-menu {
+  max-height: 40vh;
+  overflow-y: auto;
+}
 .card {
   border-radius: 4px;
   &:hover {
