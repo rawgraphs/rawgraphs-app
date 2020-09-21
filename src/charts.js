@@ -1,7 +1,3 @@
-// import { LineGraph, ScatterPlot } from "rawgraphs-charts";
-
-// export default [LineGraph, ScatterPlot];
-
 import {
   scatterplot,
   linechart,
@@ -11,14 +7,13 @@ import {
   alluvialdiagram,
 } from '@raw-temp/rawgraphs-charts'
 
-const chartArray = [
+const charts = [
   scatterplot,
   linechart,
-  // colortest,
   matrixplot,
   sunburst,
   sankeydiagram,
   alluvialdiagram,
 ]
 
-export default chartArray
+export default charts

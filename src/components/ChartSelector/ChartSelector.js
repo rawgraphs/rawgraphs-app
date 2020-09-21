@@ -87,7 +87,7 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
                   >
                     <div
                       className={`h-100 w-25 ${styles.thumbnail}`}
-                      style={{ backgroundImage: `url("${bubbles}")` }}
+                      style={{ backgroundImage: `url("${d.metadata.icon}")` }}
                     ></div>
                     <Card.Body className="w-75 px-2 py-3">
                       <Card.Title className="m-0">

@@ -28,7 +28,7 @@ const ChartPreview = ({
       return
     }
 
-    console.info('Updating viz', vizOptionsDebounced, mappedData)
+    console.info('Updating viz')
     try {
       const viz = rawChart(chart, {
         data,
