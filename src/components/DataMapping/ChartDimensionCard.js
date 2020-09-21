@@ -116,8 +116,8 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
               </span>
               <span className={styles['column-title']}>{columnId}</span>
               {dimension.aggregation && (
-                <Dropdown className="d-inline-block ml-2">
-                  <Dropdown.Toggle variant="white" className="pr-5">
+                <Dropdown className="d-inline-block ml-2 raw-dropdown">
+                  <Dropdown.Toggle variant="primary" className="pr-5">
                     {relatedAggregation}
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
