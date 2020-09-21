@@ -15,6 +15,7 @@ $theme-colors: (
   --gray-100: #f8f8f8;
   --gray-300: #c2c1c1;
   --gray-400: #e4e3e3;
+  --gray-500: #a3a8ad;
   --gray-600: #888e94;
   --gray-700: #495057;
   --gray-900: #181818;
@@ -72,6 +73,10 @@ h5 {
   letter-spacing: 0;
   line-height: 1.2307692308rem;
   margin-bottom: 16px;
+}
+
+.small {
+  color: var(--gray-500);
 }
 // UI
 .alert {

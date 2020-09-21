@@ -11,6 +11,8 @@ import ChartOptionColorScale from './ChartOptionTypes/ChartOptionColorScale'
 import ChartOptionBoolean from './ChartOptionTypes/ChartOptionBoolean'
 import { map } from 'lodash'
 
+import styles from './ChartOptions.module.scss'
+
 const CHART_OPTION_COMPONENTS = {
   number: ChartOptionNumber,
   text: ChartOptionText,
@@ -80,17 +82,19 @@ const ChartOptions = ({
   
 
   return (
-    <div>
+    <div className={styles["chart-options"] + ' col-3'}>
       {map(optionsDefinitionsByGroup, (options, groupName) => {
         return (
           <div
             key={groupName}
+            groupname={groupName}
             style={{ borderTop: '1px solid var(--gray-400)' }}
           >
             <h2 className="text-capitalize">{groupName}</h2>
             {map(options, (def, optionId) => {
               return (
                 <WrapControlComponent
+                  className={styles["chart-option"]}
                   key={optionId}
                   {...def}
                   optionId={optionId}
@@ -110,9 +114,7 @@ const ChartOptions = ({
             })}
             {groupName === 'artboard' && (
               <p className="small">
-                The final output will be {containerOptions?.width} px * {containerOptions?.height} px
-                <br />
-                including the legend.
+                The final output will be {containerOptions?.width}px * {containerOptions?.height}px including the legend.
               </p>
             )}
           </div>
