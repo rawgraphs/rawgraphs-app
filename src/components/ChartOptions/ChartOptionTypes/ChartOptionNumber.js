@@ -23,8 +23,8 @@ const ChartOptionNumber = ({
     )
   }
   return (
-    <Row>
-      <Col xs={6}>{label}</Col>
+    <Row className={props.className}>
+      <Col xs={4} className="d-flex align-items-center">{label}</Col>
       <Col xs={6}>
         <input
           className="w-100 form-control text-field"

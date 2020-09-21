@@ -1,9 +1,9 @@
 import React from 'react'
 import { Row, Col, Form } from 'react-bootstrap'
 
-const ChartOptionBoolean = ({ optionId, label, value, error, onChange }) => {
+const ChartOptionBoolean = ({ optionId, label, value, error, onChange, className }) => {
   return (
-    <Row>
+    <Row className={className}>
       <Col xs={6}>{label}</Col>
       <Form className="col-6">
         <Form.Check

@@ -1,19 +1,19 @@
-import {
-  scatterplot,
-  linechart,
-  matrixplot,
-  sunburst,
-  sankeydiagram,
-  alluvialdiagram,
-} from '@raw-temp/rawgraphs-charts'
+import { scatterplot, linechart, colortest, matrixplot, sunburst, sankeydiagram, alluvialdiagram, beeswarm, treemap, circlepacking, dendrogram } from "@raw-temp/rawgraphs-charts";
 
-const charts = [
+// New charts, not included into first release.
+// Comment at necessity.
+let charts = [
   scatterplot,
-  linechart,
   matrixplot,
+  // circlepacking,
+  // treemap,
   sunburst,
-  sankeydiagram,
-  alluvialdiagram,
+  // dendrogram,
+	// sankeydiagram,
+  // alluvialdiagram,
+  // beeswarm,
+  linechart,
+  //colortest
 ]
 
 export default charts
