@@ -1,1 +1,1 @@
-export { default } from "./ChartPreviewWithOptions"
+export { default } from './ChartPreviewWithOptions'

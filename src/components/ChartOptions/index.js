@@ -1,1 +1,1 @@
-export { default } from "./ChartOptions"
+export { default } from './ChartOptions'

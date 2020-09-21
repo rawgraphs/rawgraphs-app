@@ -1,22 +1,23 @@
-import React, { useState, useMemo, useEffect, useCallback } from "react";
-import { Row, Col, Dropdown } from "react-bootstrap";
-import get from "lodash/get";
+import React, { useState, useMemo, useEffect, useCallback } from 'react'
+import InilineColorPicker from '../../InlineColorPicker'
+import { Row, Col } from 'react-bootstrap'
+import get from 'lodash/get'
 import {
   getInitialScaleValues,
   getColorScale,
   getColorDomain,
   colorPresets,
   getTypeName,
-} from "@raw-temp/rawgraphs-core";
+} from '@raw-temp/rawgraphs-core'
 
-const scaleTypes = Object.keys(colorPresets);
+const scaleTypes = Object.keys(colorPresets)
 
 const CurrentPreset = ({ label, scale }) => {
-  let samples;
+  let samples
   if (scale.ticks) {
-    samples = scale.ticks();
+    samples = scale.ticks()
   } else {
-    samples = scale.domain();
+    samples = scale.domain()
   }
   return (
     <div>
@@ -30,8 +31,8 @@ const CurrentPreset = ({ label, scale }) => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
 const ChartOptionColorScale = ({
   value,
@@ -63,79 +64,83 @@ const ChartOptionColorScale = ({
   //   }
   // }, [chart, mapping, dataTypes, dataset])
 
-  const [scaleType, setScaleType] = useState("ordinal");
+  const [scaleType, setScaleType] = useState('ordinal')
 
   const mappingValue = useMemo(() => {
-    return get(mapping, `[${dimension}].value`);
-  }, [dimension, mapping]);
+    return get(mapping, `[${dimension}].value`)
+  }, [dimension, mapping])
 
   const colorDataType = useMemo(() => {
     return dataTypes[mappingValue]
       ? getTypeName(dataTypes[mappingValue])
-      : undefined;
-  }, [dataTypes, mappingValue]);
+      : undefined
+  }, [dataTypes, mappingValue])
 
   const availableScaleTypes = useMemo(() => {
-    if (colorDataType === "number" || colorDataType === "date") {
-      return scaleTypes;
+    if (colorDataType === 'number' || colorDataType === 'date') {
+      return scaleTypes
     }
-    return ["ordinal"];
-  }, [colorDataType]);
+    return ['ordinal']
+  }, [colorDataType])
 
   const colorDataset = useMemo(() => {
     if (mappedData) {
-      return mappedData.map((d) => get(d, dimension));
+      return mappedData.map((d) => get(d, dimension))
     } else {
-      return [];
+      return []
     }
-  }, [dimension, mappedData]);
+  }, [dimension, mappedData])
 
   const interpolators = useMemo(() => {
-    return Object.keys(colorPresets[scaleType]);
-  }, [scaleType]);
+    return Object.keys(colorPresets[scaleType])
+  }, [scaleType])
 
-  const [interpolator, setInterpolator] = useState(interpolators[0]);
+  const [interpolator, setInterpolator] = useState(interpolators[0])
 
-  const [userValues, setUserValues] = useState([]);
-
-  useEffect(() => {
-    setInterpolator(interpolators[0]);
-  }, [scaleType, interpolators]);
+  const [userValues, setUserValues] = useState([])
 
   useEffect(() => {
-    setScaleType(availableScaleTypes[0]);
-  }, [availableScaleTypes]);
+    setInterpolator(interpolators[0])
+  }, [scaleType, interpolators])
+
+  useEffect(() => {
+    setScaleType(availableScaleTypes[0])
+  }, [availableScaleTypes])
 
   const setUserValueRange = useCallback(
     (index, value) => {
-      const newUserValues = [...userValues];
-      newUserValues[index].userRange = value;
-      setUserValues(newUserValues);
+      const newUserValues = [...userValues]
+      newUserValues[index].userRange = value
+      setUserValues(newUserValues)
     },
     [userValues]
-  );
+  )
 
   const setUserValueDomain = useCallback(
     (index, value) => {
-      const newUserValues = [...userValues];
-      newUserValues[index].userDomain = value;
-      setUserValues(newUserValues);
+      const newUserValues = [...userValues]
+      newUserValues[index].userDomain = value
+      setUserValues(newUserValues)
     },
     [userValues]
-  );
+  )
 
   useEffect(() => {
-    if (!colorDataset || !interpolator || !colorPresets[scaleType][interpolator]) {
-      return;
+    if (
+      !colorDataset ||
+      !interpolator ||
+      !colorPresets[scaleType][interpolator]
+    ) {
+      return
     }
     if (!mappingValue) {
-      return;
+      return
     }
     if (!colorDataType) {
-      return;
+      return
     }
 
-    const domain = getColorDomain(colorDataset, colorDataType, scaleType);
+    const domain = getColorDomain(colorDataset, colorDataType, scaleType)
     const userValues = getInitialScaleValues(
       domain,
       scaleType,
@@ -144,8 +149,8 @@ const ChartOptionColorScale = ({
       ...userValue,
       userRange: userValue.range,
       userDomain: userValue.domain,
-    }));
-    setUserValues(userValues);
+    }))
+    setUserValues(userValues)
   }, [
     scaleType,
     interpolator,
@@ -155,14 +160,14 @@ const ChartOptionColorScale = ({
     dataTypes,
     mappingValue,
     colorDataType,
-  ]);
+  ])
 
   const userValuesForFinalScale = useMemo(() => {
     return userValues.map((value) => ({
       range: value.userRange,
       domain: value.userDomain,
-    }));
-  }, [userValues]);
+    }))
+  }, [userValues])
 
   const currentFinalScale = useMemo(() => {
     if (
@@ -182,26 +187,25 @@ const ChartOptionColorScale = ({
       scaleType, //
       interpolator,
       userValuesForFinalScale
-    );
+    )
 
-    return previewScale;
+    return previewScale
   }, [
     colorDataType,
     colorDataset,
     interpolator,
     scaleType,
     userValuesForFinalScale,
-  ]);
-
+  ])
 
   useEffect(() => {
     const outScaleParams = {
       scaleType,
       interpolator,
       userScaleValues: userValuesForFinalScale,
-    };
-    onChange(outScaleParams);
-  }, [interpolator, scaleType, userValuesForFinalScale, onChange]);
+    }
+    onChange(outScaleParams)
+  }, [interpolator, scaleType, userValuesForFinalScale, onChange])
 
   return (
     <div>
@@ -216,7 +220,7 @@ const ChartOptionColorScale = ({
             className="custom-select"
             value={scaleType}
             onChange={(e) => {
-              setScaleType(e.target.value);
+              setScaleType(e.target.value)
             }}
           >
             {availableScaleTypes.map((s) => (
@@ -236,7 +240,7 @@ const ChartOptionColorScale = ({
             className="custom-select"
             value={interpolator}
             onChange={(e) => {
-              setInterpolator(e.target.value);
+              setInterpolator(e.target.value)
             }}
           >
             {interpolators.map((interpolator) => (
@@ -244,66 +248,16 @@ const ChartOptionColorScale = ({
                 {colorPresets[scaleType][interpolator].label}
               </option>
             ))}
-          </select>
-        </Col>
-
-        <Col xs={6}>Color scheme 2</Col>
-        <Col xs={6}>
-
-          <Dropdown className="d-inline-block raw-dropdown">
-            <Dropdown.Toggle
-              variant="white"
-              className="truncate-160px">
-              
-              {interpolator}
-              
-              scale preview
-
-              {console.log('currentFinalScale', currentFinalScale)}
-              
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {
-                interpolators.map(interpolator => {
-                  return <Dropdown.Item key={interpolator} onSelect={() => setInterpolator(interpolator)}>
-                    {interpolator}
-
-                    {/* <CurrentPreset
-                      scale={currentFinalScale}
-                      label={"Scale preview"}
-                    ></CurrentPreset> */}
-
-                  </Dropdown.Item>
-                })
-              }
-            </Dropdown.Menu>
-          </Dropdown>
-
-          <select
-            disabled={!colorDataType}
-            className="custom-select"
-            value={interpolator}
-            onChange={(e) => {
-              setInterpolator(e.target.value);
-            }}
-          >
-            {interpolators.map((interpolator) => (
-              <option key={interpolator} value={interpolator}>
-                {colorPresets[scaleType][interpolator].label}
-              </option>
-            ))}
-
           </select>
         </Col>
       </Row>
 
       {currentFinalScale && (
         <Row>
-          <hr />
           <Col xs={12}>
             <CurrentPreset
               scale={currentFinalScale}
-              label={"Scale preview"}
+              label={'Scale preview'}
             ></CurrentPreset>
           </Col>
         </Row>
@@ -314,33 +268,39 @@ const ChartOptionColorScale = ({
           {userValues.map((userValue, i) => (
             <Row key={i}>
               <Col xs={6}>
-                {scaleType === "ordinal" && userValue.domain}
-                {scaleType !== "ordinal" && (
+                {scaleType === 'ordinal' && userValue.domain}
+                {scaleType !== 'ordinal' && (
                   <input
                     type="number"
                     value={userValue.userDomain || ''}
                     onChange={(e) => {
-                      setUserValueDomain(i, e.target.value);
+                      setUserValueDomain(i, e.target.value)
                     }}
                   ></input>
                 )}
               </Col>
               <Col xs={6}>
                 {userValue.range}
-                <input
+                <InilineColorPicker
+                  color={userValue.userRange}
+                  onChange={(color) => {
+                    setUserValueRange(i, color)
+                  }}
+                />
+                {/* <input
                   type="color"
                   value={userValue.userRange}
                   onChange={(e) => {
-                    setUserValueRange(i, e.target.value);
+                    setUserValueRange(i, e.target.value)
                   }}
-                ></input>
+                ></input> */}
               </Col>
             </Row>
           ))}
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default React.memo(ChartOptionColorScale);
+export default React.memo(ChartOptionColorScale)

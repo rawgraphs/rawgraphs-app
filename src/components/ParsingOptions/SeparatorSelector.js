@@ -1,20 +1,28 @@
-import React, { useCallback } from "react"
+import React, { useCallback } from 'react'
 
-export default function SeparatorSelector({title, value, onChange, ...props }) {
+export default function SeparatorSelector({
+  title,
+  value,
+  onChange,
+  ...props
+}) {
   const inputValue = value
-    .replace(/\r/g, "\\r")
-    .replace(/\n/g, "\\n")
-    .replace(/\t/g, "\\t")
+    .replace(/\r/g, '\\r')
+    .replace(/\n/g, '\\n')
+    .replace(/\t/g, '\\t')
 
-  const handleChange = useCallback(e => {
-    if (onChange) {
-      const nextValue = e.target.value
-        .replace(/\\r/g, "\r")
-        .replace(/\\n/g, "\n")
-        .replace(/\\t/g, "\t")
-      onChange(nextValue)
-    }
-  }, [onChange])
+  const handleChange = useCallback(
+    (e) => {
+      if (onChange) {
+        const nextValue = e.target.value
+          .replace(/\\r/g, '\r')
+          .replace(/\\n/g, '\n')
+          .replace(/\\t/g, '\t')
+        onChange(nextValue)
+      }
+    },
+    [onChange]
+  )
 
   return (
     <div className="option">
@@ -23,7 +31,7 @@ export default function SeparatorSelector({title, value, onChange, ...props }) {
         type="text"
         className="form-control text-field d-inline-block"
         value={inputValue}
-        onChange={handleChange} 
+        onChange={handleChange}
         {...props}
       />
     </div>

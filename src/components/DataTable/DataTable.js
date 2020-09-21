@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTable, useBlockLayout, useFlexLayout } from 'react-table'
 import { FixedSizeList } from 'react-window'
-import "./DataTable.scss"
+import './DataTable.scss'
 
 export default function DataTable({ columns, data }) {
   const defaultColumn = React.useMemo(
@@ -23,7 +23,6 @@ export default function DataTable({ columns, data }) {
       columns,
       data,
       defaultColumn,
-      
     },
     useBlockLayout
     // useFlexLayout
@@ -40,7 +39,7 @@ export default function DataTable({ columns, data }) {
           })}
           className="datatable-row"
         >
-          {row.cells.map(cell => {
+          {row.cells.map((cell) => {
             return (
               <td {...cell.getCellProps()} className="datatable-cell">
                 {cell.render('Cell')}
@@ -58,10 +57,13 @@ export default function DataTable({ columns, data }) {
     <div className="datatable-container">
       <table {...getTableProps()} className="datatable">
         <thead>
-          {headerGroups.map(headerGroup => (
+          {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()} className="tr">
-              {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps()} className="datatable-header-cell">
+              {headerGroup.headers.map((column) => (
+                <th
+                  {...column.getHeaderProps()}
+                  className="datatable-header-cell"
+                >
                   {column.render('Header')}
                 </th>
               ))}
@@ -83,4 +85,3 @@ export default function DataTable({ columns, data }) {
     </div>
   )
 }
-

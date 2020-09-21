@@ -1,23 +1,44 @@
-import React from "react"
+import React from 'react'
 import ChartOptionSelect from './ChartOptionSelect'
 
-const ChartOptionText = ({ value, error, onChange, default: defaultValue, label, ...props }) => {
-  if(props.options){
-    return <ChartOptionSelect value={value} error={error} onChange={onChange} default={defaultValue} label={label} {...props} />
+const ChartOptionText = ({
+  value,
+  error,
+  onChange,
+  default: defaultValue,
+  label,
+  ...props
+}) => {
+  if (props.options) {
+    return (
+      <ChartOptionSelect
+        value={value}
+        error={error}
+        onChange={onChange}
+        default={defaultValue}
+        label={label}
+        {...props}
+      />
+    )
   }
   return (
     <label className="d-block">
-      <b>{label}</b><br />
+      <b>{label}</b>
+      <br />
       <input
         type="text"
-        value={value ?? ""}
+        value={value ?? ''}
         step={props.step}
-        onChange={e => {
+        onChange={(e) => {
           onChange(e.target.value)
         }}
         placeholder={defaultValue}
       />
-      {error && <small><i>{error}</i></small>}
+      {error && (
+        <small>
+          <i>{error}</i>
+        </small>
+      )}
     </label>
   )
 }

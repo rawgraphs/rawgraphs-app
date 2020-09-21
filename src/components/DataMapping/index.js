@@ -1,1 +1,1 @@
-export { default } from './DataMapping.js';
+export { default } from './DataMapping.js'
