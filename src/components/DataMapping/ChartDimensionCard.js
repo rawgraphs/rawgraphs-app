@@ -1,20 +1,21 @@
 import React, { useCallback } from 'react'
-import { Col, Dropdown } from 'react-bootstrap'
+import { Col } from 'react-bootstrap'
 import { useDrop, useDrag } from 'react-dnd'
 import { get } from 'lodash'
 import classnames from 'classnames'
 
 // import { DATATYPE_ICONS } from "../../constants"
 import { dataTypeIcons } from '../../constants'
-import { BsX } from 'react-icons/bs'
 import {
   getTypeName,
   getAggregatorNames,
   getDefaultDimensionAggregation,
 } from '@raw-temp/rawgraphs-core'
+import ChartDimensionItem from './ChartDimensionItem'
 
 import styles from './DataMapping.module.scss'
 const aggregators = getAggregatorNames()
+const emptyList = []
 
 const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
   const [{ isOver }, drop] = useDrop({
@@ -43,9 +44,9 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
   })
 
   // const [collectedProps, drag] = useDrag({
-  //   item: { 
+  //   item: {
   //     type: 'card',
-  
+
   //   }
   // })
 
@@ -59,8 +60,36 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
     [mapping, setMapping]
   )
 
-  const columnsMappedHere = get(mapping, 'value', [])
-  let aggregationsMappedHere = get(mapping, 'config.aggregation', [])
+  const columnsMappedHere = get(mapping, 'value', emptyList)
+  let aggregationsMappedHere = get(mapping, 'config.aggregation', emptyList)
+
+  const onChangeAggregation = useCallback(
+    (i, aggregatorName) => {
+      const newAggregations = [...aggregationsMappedHere]
+      newAggregations[i] = aggregatorName
+      setAggregation(newAggregations)
+    },
+    [aggregationsMappedHere, setAggregation]
+  )
+
+  const onDeleteItem = useCallback(
+    (i) => {
+      let nextConfig
+      if (mapping.config) {
+        nextConfig = {
+          ...mapping.config,
+          aggregation: mapping.config.aggregation.filter((col, j) => j !== i),
+        }
+      }
+
+      setMapping({
+        ...mapping,
+        value: mapping.value.filter((col, j) => j !== i),
+        config: nextConfig,
+      })
+    },
+    [mapping, setMapping]
+  )
 
   return (
     // <div
@@ -106,66 +135,20 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
               ? styles['column-valid']
               : styles['column-invalid']
           const DataTypeIcon = dataTypeIcons[getTypeName(dataTypes[columnId])]
+
           return (
-            <div
+            <ChartDimensionItem
               key={i}
-              className={classnames(
-                'assigned-column',
-                styles['column-card'],
-                styles['assigned-column'],
-                isValid
-              )}
-            >
-              <span>
-                {!!DataTypeIcon && (
-                  <DataTypeIcon className={styles['data-type-icon']} />
-                )}
-              </span>
-              <span className={styles['column-title']}>{columnId}</span>
-              {dimension.aggregation && (
-                <Dropdown className="d-inline-block ml-2 raw-dropdown">
-                  <Dropdown.Toggle variant="primary" className="pr-5">
-                    {relatedAggregation}
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    {aggregators.map((aggregatorName) => (
-                      <Dropdown.Item
-                        key={aggregatorName}
-                        onClick={() => {
-                          const newAggregations = [...aggregationsMappedHere]
-                          newAggregations[i] = aggregatorName
-                          setAggregation(newAggregations)
-                        }}
-                      >
-                        {aggregatorName}
-                      </Dropdown.Item>
-                    ))}
-                  </Dropdown.Menu>
-                </Dropdown>
-              )}
-              <button
-                className={styles['remove-assigned']}
-                type="button"
-                onClick={() => {
-
-                  let nextConfig
-                  if(mapping.config){
-                    nextConfig = {
-                      ...mapping.config,
-                      aggregation: mapping.config.aggregation.filter((col, j) => j !== i)
-                    }
-                  }
-
-                  setMapping({
-                    ...mapping,
-                    value: mapping.value.filter((col, j) => j !== i),
-                    config: nextConfig
-                  })
-                }}
-              >
-                <BsX />
-              </button>
-            </div>
+              index={i}
+              onChangeAggregation={onChangeAggregation}
+              onDeleteItem={onDeleteItem}
+              isValid={isValid}
+              DataTypeIcon={DataTypeIcon}
+              columnId={columnId}
+              dimension={dimension}
+              aggregators={aggregators}
+              relatedAggregation={relatedAggregation}
+            />
           )
         })}
 
