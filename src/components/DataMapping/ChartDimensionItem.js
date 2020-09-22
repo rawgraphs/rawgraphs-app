@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Dropdown } from 'react-bootstrap'
+import { Dropdown } from 'react-bootstrap'
 import classnames from 'classnames'
 import styles from './DataMapping.module.scss'
 import { BsX } from 'react-icons/bs'

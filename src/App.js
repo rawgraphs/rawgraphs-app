@@ -110,7 +110,7 @@ function App() {
         </Section>
       )}
       {/* <Section title="0. Typography">{typography}</Section> */}
-      <Footer>Footer items go here!</Footer>
+      <Footer/>
     </div>
   )
 }
