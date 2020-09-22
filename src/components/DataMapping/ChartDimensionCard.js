@@ -1,8 +1,10 @@
 import React, { useCallback } from 'react'
 import { Col } from 'react-bootstrap'
 import { useDrop, useDrag } from 'react-dnd'
-import { get } from 'lodash'
+import get from 'lodash/get'
+import uniqueId from 'lodash/uniqueId'
 import classnames from 'classnames'
+import arrayMove from 'array-move'
 
 // import { DATATYPE_ICONS } from "../../constants"
 import { dataTypeIcons } from '../../constants'
@@ -30,6 +32,7 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
 
       setMapping({
         ...mapping,
+        ids: (mapping.ids || []).concat(uniqueId()),
         value: [...(mapping.value || []), item.id],
         config: dimension.aggregation
           ? {
@@ -60,6 +63,7 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
     [mapping, setMapping]
   )
 
+  const idsMappedHere = get(mapping, 'ids', emptyList)
   const columnsMappedHere = get(mapping, 'value', emptyList)
   let aggregationsMappedHere = get(mapping, 'config.aggregation', emptyList)
 
@@ -84,6 +88,7 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
 
       setMapping({
         ...mapping,
+        ids: mapping.ids.filter((col, j) => j !== i),
         value: mapping.value.filter((col, j) => j !== i),
         config: nextConfig,
       })
@@ -100,6 +105,27 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
     },
     [mapping, setMapping]
   )
+
+  const onMove = useCallback((dragIndex, hoverIndex) => {
+    let nextConfig
+    if (mapping.config) {
+      nextConfig = {
+        ...mapping.config,
+        aggregation: arrayMove(
+          mapping.config.aggregation,
+          dragIndex,
+          hoverIndex
+        ),
+      }
+    }
+
+    setMapping({
+      ...mapping,
+      ids: arrayMove(mapping.ids, dragIndex, hoverIndex),
+      value: arrayMove(mapping.value, dragIndex, hoverIndex),
+      config: nextConfig,
+    })
+  }, [mapping, setMapping])
 
   return (
     // <div
@@ -131,9 +157,14 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
             {dimension.required && `\u2055`}
           </span>
         </div>
+        <div>
+
+          <pre>{JSON.stringify(mapping, 0, 2)}</pre>
+        </div>
 
         {/* These are the columns that have been dropped on the current dimension */}
-        {columnsMappedHere.map((columnId, i) => {
+        {idsMappedHere.map((renderId, i) => {
+          const columnId = columnsMappedHere[i]
           const columnDataType = getTypeName(dataTypes[columnId])
           const relatedAggregation = dimension.aggregation
             ? aggregationsMappedHere[i] ||
@@ -148,8 +179,9 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
 
           return (
             <ChartDimensionItem
-              key={i}
+              key={renderId}
               index={i}
+              onMove={onMove}
               onChangeDimension={onChangeDimension}
               onChangeAggregation={onChangeAggregation}
               onDeleteItem={onDeleteItem}

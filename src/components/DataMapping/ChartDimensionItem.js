@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Col, Dropdown } from 'react-bootstrap'
 import classnames from 'classnames'
 import styles from './DataMapping.module.scss'
 import { BsX } from 'react-icons/bs'
-import { useDrop } from 'react-dnd'
+import { useDrag, useDrop } from 'react-dnd'
 
 export default function ChartDimensionItem({
   index,
@@ -13,33 +13,94 @@ export default function ChartDimensionItem({
   dimension,
   aggregators,
   relatedAggregation,
+  onMove,
 
   onChangeAggregation,
   onDeleteItem,
   onChangeDimension,
-
-
 }) {
+  const ref = useRef(null)
+
   const [{ isOver }, drop] = useDrop({
-    accept: 'column',
-    collect: (monitor) => ({
-      isOver: monitor.isOver(),
-    }),
+    accept: ['column', 'card'],
+    // accept: 'card',
+    collect: (monitor, x) => {
+      // console.log('X', x, monitor.getItem())
+      return {
+        isOver: monitor.isOver() && monitor.getItem().type === 'column',
+      }
+    },
+    hover(item, monitor) {
+      if (item.type === 'column') {
+        return
+      }
+      if (!ref.current) {
+        return
+      }
+      const dragIndex = item.index
+      const hoverIndex = index
+      // Don't replace items with themselves
+      if (dragIndex === hoverIndex) {
+        return
+      }
+      // Determine rectangle on screen
+      const hoverBoundingRect = ref.current?.getBoundingClientRect()
+      // Get vertical middle
+      const hoverMiddleY =
+        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
+      // Determine mouse position
+      const clientOffset = monitor.getClientOffset()
+      // Get pixels to the top
+      const hoverClientY = clientOffset.y - hoverBoundingRect.top
+      // Only perform the move when the mouse has crossed half of the items height
+      // When dragging downwards, only move when the cursor is below 50%
+      // When dragging upwards, only move when the cursor is above 50%
+      // Dragging downwards
+      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+        return
+      }
+      // Dragging upwards
+      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+        return
+      }
+      // Time to actually perform the action
+      onMove(dragIndex, hoverIndex)
+      // Note: we're mutating the monitor item here!
+      // Generally it's better to avoid mutations,
+      // but it's good here for the sake of performance
+      // to avoid expensive index searches.
+      item.index = hoverIndex
+    },
     drop: (item, monitor) => {
-      onChangeDimension(index, item.id)
-    }
+      if (item.type === 'column') {
+        onChangeDimension(index, item.id)
+      }
+    },
   })
+
+  const [{ isDragging }, drag] = useDrag({
+    item: { type: 'card', index },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  })
+
+  drag(drop(ref))
 
   return (
     <div
-      ref={drop}
+      ref={ref}
+      style={{
+        opacity: isDragging ? 0 : 1,
+      }}
       className={classnames(
         'assigned-column',
         styles['column-card'],
         styles['assigned-column'],
         isValid,
         {
-          'border border-danger': isOver
+          'border border-danger': isOver,
+          // 'border border-warning': isDragging,
         }
       )}
     >

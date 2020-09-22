@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "array-move": "^3.0.1",
     "bootstrap": "^4.5.0",
     "classnames": "^2.2.6",
     "comlink": "^4.3.0",
