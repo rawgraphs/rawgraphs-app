@@ -2,14 +2,38 @@
     .chart-option {
         margin: 8px -15px;
         height: 40px;
+        &.color-swatch {
+            margin: 0px -15px;
+            .color-scale-item {
+                background-color: white;
+                display: flex;
+                align-items: center;
+                border: none;
+                border-bottom: 1px solid var(--light);
+                height: 100%;
+                padding: 0 8px;
+                > * {
+                    width: 50%;
+                    flex-grow: 1;
+                    padding: 0;
+                    border: none;
+                    background: none;
+                    font-size: 1rem;
+                }
+            }
+            
+        }
+    }
+    .color-swatches-list{
+        margin: 8px 0;
+        // max-height: 180px;
+        // overflow: scroll;
     }
 }
 .options-group {
     transition: max-height 1s ease;
     height: auto;
-    max-height: 100vh;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    overflow: visible;
     .group-header {
         height: 40px;
         &:before {
@@ -26,7 +50,7 @@
         }
     }
     &.collapsed {
-        max-height: 40px;
+        height: 40px !important;
         overflow: hidden;
         .collapse-button {
             &:before {
