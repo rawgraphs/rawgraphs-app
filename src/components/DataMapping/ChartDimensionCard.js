@@ -91,6 +91,16 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
     [mapping, setMapping]
   )
 
+  const onChangeDimension = useCallback(
+    (i, newCol) => {
+      setMapping({
+        ...mapping,
+        value: mapping.value.map((col, j) => (j === i ? newCol : col)),
+      })
+    },
+    [mapping, setMapping]
+  )
+
   return (
     // <div
     //   className="Xcard Xp-3 Xm-2 "
@@ -140,6 +150,7 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
             <ChartDimensionItem
               key={i}
               index={i}
+              onChangeDimension={onChangeDimension}
               onChangeAggregation={onChangeAggregation}
               onDeleteItem={onDeleteItem}
               isValid={isValid}

@@ -3,6 +3,7 @@ import { Col, Dropdown } from 'react-bootstrap'
 import classnames from 'classnames'
 import styles from './DataMapping.module.scss'
 import { BsX } from 'react-icons/bs'
+import { useDrop } from 'react-dnd'
 
 export default function ChartDimensionItem({
   index,
@@ -12,19 +13,34 @@ export default function ChartDimensionItem({
   dimension,
   aggregators,
   relatedAggregation,
-  
+
   onChangeAggregation,
   onDeleteItem,
-  
+  onChangeDimension,
+
 
 }) {
+  const [{ isOver }, drop] = useDrop({
+    accept: 'column',
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+    }),
+    drop: (item, monitor) => {
+      onChangeDimension(index, item.id)
+    }
+  })
+
   return (
     <div
+      ref={drop}
       className={classnames(
         'assigned-column',
         styles['column-card'],
         styles['assigned-column'],
-        isValid
+        isValid,
+        {
+          'border border-danger': isOver
+        }
       )}
     >
       <span>
