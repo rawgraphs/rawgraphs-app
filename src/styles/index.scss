@@ -9,7 +9,7 @@ $theme-colors: (
 );
 
 :root {
-  --gray-bg: #f5f8fa;
+  --gray-bg: rgb(245 248 250);
   --primary-lighter: #defff0;
   --warning-lighter: #fff8c6;
   --gray-100: #f8f8f8;
@@ -68,6 +68,7 @@ h4 {
 }
 h5 {
   font-size: 1.2307692308rem;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--gray-700);
   letter-spacing: 0;
@@ -104,14 +105,6 @@ h5 {
   border: none;
   border-bottom: 1px solid var(--light);
 }
-// .dropdown-toggle {
-//   text-align: left;
-//   &::after {
-//     right: 8px;
-//     bottom: calc(50% - 1px);
-//     position: absolute;
-//   }
-// }
 .raw-dropdown {
   .dropdown-toggle {
     text-align: left;
@@ -126,14 +119,17 @@ h5 {
     overflow-y: auto;
   }
 }
+.raw-select{
+  height: 40px;
+  color: theme-color('dark');
+  background-color: white;
+  border: none;
+  border-bottom: 1px solid var(--light);
+}
 .truncate-160px {
   max-width: 160px;
   overflow-x: hidden;
   text-overflow: ellipsis;
-}
-.dropdown-menu {
-  max-height: 40vh;
-  overflow-y: auto;
 }
 .card {
   border-radius: 4px;
@@ -148,6 +144,10 @@ h5 {
 .cursorpointer,
 .cursor-pointer {
   cursor: pointer;
+}
+.nowrap,
+.no-wrap {
+  white-space: nowrap;
 }
 .text-field {
   height: 40px;

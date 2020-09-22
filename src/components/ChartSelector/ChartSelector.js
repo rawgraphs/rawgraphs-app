@@ -91,7 +91,7 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
                     ></div>
                     <Card.Body className="w-75 px-2 py-3">
                       <Card.Title className="m-0">
-                        <h2 className="m-0">{d.metadata.name}</h2>
+                        <h2 className="m-0" style={{whiteSpace: 'nowrap'}}>{d.metadata.name}</h2>
                       </Card.Title>
                       <Card.Subtitle className="m-0">
                         <h4 className="m-0">{d.metadata.category}</h4>

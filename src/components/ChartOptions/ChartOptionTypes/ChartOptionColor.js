@@ -26,7 +26,7 @@ const ChartOptionColor = ({
 
   return (
     <label className={props.className+" row"}>
-      <Col xs={4} className="d-flex align-items-center">{label}</Col>
+      <Col xs={6} className="d-flex align-items-center">{label}</Col>
       <Col xs={6}>
         <InilineColorPicker color={value} onChange={onChange} />
       </Col>

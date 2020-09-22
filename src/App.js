@@ -73,15 +73,13 @@ function App() {
           setLoading={setLoading}
         />
       </Section>
-      {data && (
-        <Section title="2. Choose a chart">
-          <ChartSelector
-            availableCharts={charts}
-            currentChart={currentChart}
-            setCurrentChart={handleChartChange}
-          />
-        </Section>
-      )}
+      <Section title="2. Choose a chart">
+        <ChartSelector
+          availableCharts={charts}
+          currentChart={currentChart}
+          setCurrentChart={handleChartChange}
+        />
+      </Section>
       {data && currentChart && (
         <Section title={`3. Mapping ${mappingLoading ? '..loading' : ''}`}>
           <DataMapping

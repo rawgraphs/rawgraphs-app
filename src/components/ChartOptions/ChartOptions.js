@@ -1,4 +1,5 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useState, useMemo } from 'react'
+import { Row, Col } from 'react-bootstrap'
 import {
   getOptionsConfig,
   getContainerOptions,
@@ -58,7 +59,30 @@ const ChartOptions = ({
     return getOptionsConfig(chart?.visualOptions)
   }, [chart])
 
+  const [collapseStatus,setCollapseStatus] = useState(
+    ()=>{
+      const groups = {}
+      for (const option in optionsConfig) {
+        const group = optionsConfig[option].group;
+        if (!groups.hasOwnProperty(group)) {
+          groups[group] = true;
+        }
+      }
+      return groups
+    }
+  )
+  
   const optionsDefinitionsByGroup = useMemo(() => {
+    // update "collapseStatus" state
+    // add/remove options groups when selected charts changes
+    const groups = {}
+    for (const option in optionsConfig) {
+      const group = optionsConfig[option].group;
+      if (!groups.hasOwnProperty(group)) {
+        groups[group] = group==='artboard'?false:true;
+      }
+    }
+    setCollapseStatus(groups);
     return Object.keys(optionsConfig).reduce((acc, optionId) => {
       const option = optionsConfig[optionId]
       const group = option?.group || ''
@@ -78,19 +102,30 @@ const ChartOptions = ({
     }
     return getContainerOptions(optionsConfig, opts)
   }, [optionsConfig, visualOptions])
-
-  
-
   return (
-    <div className={styles["chart-options"] + ' col-3'}>
+    <div className={[styles["chart-options"],'col-3'].join(' ')}>
       {map(optionsDefinitionsByGroup, (options, groupName) => {
         return (
           <div
             key={groupName}
             groupname={groupName}
             style={{ borderTop: '1px solid var(--gray-400)' }}
+            className={
+              [
+                styles["options-group"],
+                collapseStatus[groupName]?styles["collapsed"]:''
+              ].join(' ')
+            }
           >
-            <h2 className="text-capitalize">{groupName}</h2>
+            <Row className="sticky-top">
+              <Col className={`d-flex justify-content-between align-items-center ${styles["group-header"]}`}>
+                <h5 className="text-uppercase m-0">{groupName}</h5>
+                <span
+                  className={[styles["collapse-button"], "cursor-pointer"].join(' ')}
+                  onClick={()=>setCollapseStatus({...collapseStatus, [groupName]:!collapseStatus[groupName]})}
+                ></span>
+              </Col>
+            </Row>
             {map(options, (def, optionId) => {
               return (
                 <WrapControlComponent
