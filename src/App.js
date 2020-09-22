@@ -104,7 +104,7 @@ function App() {
           />
         </Section>
       )}
-      {rawViz && (
+      {data && currentChart && rawViz && (
         <Section title="5. Export">
           <Exporter rawViz={rawViz} />
         </Section>
