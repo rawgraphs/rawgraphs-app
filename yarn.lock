@@ -1919,7 +1919,7 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.2.tgz#7c6dc4ecef16149fd7a736710baa1b811017fdca"
   integrity sha512-JlGTGRYHC2QK+DDbePyXdBdooxFq2+noLfWpRqJtkxcb/oYWzOF0kcbfvvbWrwevCC1l6hLUg1wHYT+ona5BWQ==
 
-"@raw-temp/rawgraphs-charts@0.0.24":
+"@raw-temp/rawgraphs-charts@^0.0.24":
   version "0.0.24"
   resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-0.0.24.tgz#46a89498f7d80132e23f06d59ed4796bc9e38ff8"
   integrity sha512-/Z/E6yHJ0VZiicd6DQLH7EyRJF494B+/3Lvxfq/+fQUe+yx1ioE3aIP9CEm25kFvzESexYBrvjMl8u868ZjqUw==
