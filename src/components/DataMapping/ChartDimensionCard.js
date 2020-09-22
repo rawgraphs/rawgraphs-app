@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { Col, Dropdown } from 'react-bootstrap'
-import { useDrop } from 'react-dnd'
+import { useDrop, useDrag } from 'react-dnd'
 import { get } from 'lodash'
 import classnames from 'classnames'
 
@@ -41,6 +41,13 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
       })
     },
   })
+
+  // const [collectedProps, drag] = useDrag({
+  //   item: { 
+  //     type: 'card',
+  
+  //   }
+  // })
 
   const setAggregation = useCallback(
     (newAggregations) => {
@@ -140,9 +147,19 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
                 className={styles['remove-assigned']}
                 type="button"
                 onClick={() => {
+
+                  let nextConfig
+                  if(mapping.config){
+                    nextConfig = {
+                      ...mapping.config,
+                      aggregation: mapping.config.aggregation.filter((col, j) => j !== i)
+                    }
+                  }
+
                   setMapping({
                     ...mapping,
-                    value: mapping.value.filter((col) => col !== columnId),
+                    value: mapping.value.filter((col, j) => j !== i),
+                    config: nextConfig
                   })
                 }}
               >
