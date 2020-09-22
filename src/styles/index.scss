@@ -104,12 +104,26 @@ h5 {
   border: none;
   border-bottom: 1px solid var(--light);
 }
-.dropdown-toggle {
-  text-align: left;
-  &::after {
-    right: 8px;
-    bottom: calc(50% - 1px);
-    position: absolute;
+// .dropdown-toggle {
+//   text-align: left;
+//   &::after {
+//     right: 8px;
+//     bottom: calc(50% - 1px);
+//     position: absolute;
+//   }
+// }
+.raw-dropdown {
+  .dropdown-toggle {
+    text-align: left;
+    &::after {
+      right: 8px;
+      bottom: calc(50% - 1px);
+      position: absolute;
+    }
+  }
+  .dropdown-menu {
+    max-height: 40vh;
+    overflow-y: auto;
   }
 }
 .truncate-160px {

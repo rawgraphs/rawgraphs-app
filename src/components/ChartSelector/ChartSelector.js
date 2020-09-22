@@ -17,7 +17,7 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
       <Row>
         <Col className="text-right">
           Show
-          <Dropdown className="d-inline-block ml-2">
+          <Dropdown className="d-inline-block ml-2 raw-dropdown">
             <Dropdown.Toggle variant="white" className="pr-5">
               {filter}
             </Dropdown.Toggle>
@@ -76,12 +76,12 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
           <Row>
             {charts.map((d, i) => {
               return (
-                <Col xs={4} key={'chart-' + i} className={`p-3 cursor-pointer`}>
+                <Col xs={4} key={'chart-' + i} className={`p-3`}>
                   <Card
                     onClick={() => {
                       setCurrentChart(d)
                     }}
-                    className={`flex-row h-100 ${
+                    className={`flex-row h-100 cursor-pointer ${
                       d === currentChart ? 'active' : ''
                     }`}
                   >
