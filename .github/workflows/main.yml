@@ -37,6 +37,9 @@ jobs:
         env:
           CI: false
           REACT_APP_VERSION: ${{ steps.vars.outputs.sha_short }}
+
+      - name: List output files
+        run: find build/ -print
           
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
@@ -48,7 +51,7 @@ jobs:
           # FTP account password
           ftp-password: ${{ secrets.FTP_PASSWORD }}
           # The local folder to copy, defaults to root project folder
-          local-dir: ./build/
+          local-dir: build
         
       
       
