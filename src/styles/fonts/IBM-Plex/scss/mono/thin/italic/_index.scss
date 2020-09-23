@@ -1,0 +1,16 @@
+$font-prefix: '..' !default;
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: italic;
+  font-weight: 100;
+  src: local('IBM Plex Mono Thin Italic'),
+    local('IBMPlexMono-ThinItalic'),
+    url('#{$font-prefix}/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-ThinItalic.woff2') format('woff2'),
+    url('#{$font-prefix}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-ThinItalic.woff') format('woff');
+}
+
+@import 'cyrillic';
+@import 'pi';
+@import 'latin3';
+@import 'latin2';
+@import 'latin1';
