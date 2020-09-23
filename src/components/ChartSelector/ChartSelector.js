@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styles from './ChartSelector.module.scss'
 import { Row, Col, Card, Dropdown } from 'react-bootstrap'
 import { BsLink } from 'react-icons/bs'
-import bubbles from './bubbles.svg'
 import uniq from 'lodash/uniq'
 
 function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {

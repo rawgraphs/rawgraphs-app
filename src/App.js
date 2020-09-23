@@ -23,7 +23,7 @@ import usePrevious from './hooks/usePrevious'
 function App() {
   const [dataSource, setDataSource] = useState(null)
   const [data, setData] = useState(null)
-  const [currentChart, setCurrentChart] = useState(charts[0])
+  const [currentChart, setCurrentChart] = useState(null)
   const [mapping, setMapping] = useState({})
   const [visualOptions, setVisualOptions] = useState({})
   const [rawViz, setRawViz] = useState(null)
@@ -59,6 +59,13 @@ function App() {
     const options = getOptionsConfig(nextChart?.visualOptions)
     setVisualOptions(getDefaultOptionsValues(options))
     setRawViz(null)
+  }, [])
+
+  //setting initial chart and related options
+  useEffect(() => {
+    setCurrentChart(charts[0])
+    const options = getOptionsConfig(charts[0]?.visualOptions)
+    setVisualOptions(getDefaultOptionsValues(options))
   }, [])
 
   return (
