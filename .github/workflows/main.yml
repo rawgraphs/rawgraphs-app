@@ -48,7 +48,7 @@ jobs:
           # FTP account password
           ftp-password: ${{ secrets.FTP_PASSWORD }}
           # The local folder to copy, defaults to root project folder
-          local-dir: build
+          local-dir: ./build/
         
       
       
