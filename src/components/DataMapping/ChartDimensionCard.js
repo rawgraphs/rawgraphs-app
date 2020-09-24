@@ -1,10 +1,11 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { Col } from 'react-bootstrap'
 import { useDrop, useDrag } from 'react-dnd'
 import get from 'lodash/get'
 import uniqueId from 'lodash/uniqueId'
 import classnames from 'classnames'
 import arrayMove from 'array-move'
+import arrayInsert from 'array-insert'
 
 // import { DATATYPE_ICONS } from "../../constants"
 import { dataTypeIcons } from '../../constants'
@@ -26,6 +27,10 @@ const ChartDimensionCard = ({
   setMapping,
   commitLocalMapping,
   rollbackLocalMapping,
+  draggingId,
+  setDraggingId,
+  replaceDimension,
+  localMappding,
 }) => {
   const [{ isOver }, drop] = useDrop({
     accept: 'column',
@@ -140,6 +145,29 @@ const ChartDimensionCard = ({
     [mapping, setMapping]
   )
 
+  const onInsertColumn = useCallback((index, item) => {
+    const defaulAggregation = dimension.aggregation
+      ? getDefaultDimensionAggregation(dimension, dataTypes[item.id])
+      : null
+
+    const nextId = uniqueId()
+    setDraggingId(nextId)
+    setMapping({
+      ...mapping,
+      ids: arrayInsert(mapping.ids ?? [], index, nextId),
+      value: arrayInsert(mapping.value ?? [], index, item.id),
+      config: dimension.aggregation
+        ? {
+            aggregation: arrayInsert(
+              get(mapping, 'config.aggregation', []),
+              index,
+              defaulAggregation
+            ),
+          }
+        : undefined,
+    }, true)
+  }, [dataTypes, dimension, mapping, setDraggingId, setMapping])
+
   return (
     // <div
     //   className="Xcard Xp-3 Xm-2 "
@@ -191,6 +219,7 @@ const ChartDimensionCard = ({
 
           return (
             <ChartDimensionItem
+              id={renderId}
               key={renderId}
               index={i}
               onMove={onMove}
@@ -205,6 +234,10 @@ const ChartDimensionCard = ({
               relatedAggregation={relatedAggregation}
               commitLocalMapping={commitLocalMapping}
               rollbackLocalMapping={rollbackLocalMapping}
+              onInsertColumn={onInsertColumn}
+              draggingColumn={draggingId === renderId}
+              replaceDimension={replaceDimension}
+              localMappding={localMappding}
             />
           )
         })}

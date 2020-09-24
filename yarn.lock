@@ -2845,6 +2845,11 @@ array-includes@^3.1.1:
     es-abstract "^1.17.0"
     is-string "^1.0.5"
 
+array-insert@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/array-insert/-/array-insert-2.0.0.tgz#994f8834efea4d210695e6c7cef1aa07e01c51c6"
+  integrity sha1-mU+INO/qTSEGlebHzvGqB+AcUcY=
+
 array-move@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/array-move/-/array-move-3.0.1.tgz#179645cc0987b65953a4fc06b6df9045e4ba9618"
