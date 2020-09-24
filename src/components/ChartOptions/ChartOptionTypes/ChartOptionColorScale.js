@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import InilineColorPicker from '../../InlineColorPicker'
+import ColorSchemesDropDown from './ColorSchemesDropDown'
 import { Row, Col } from 'react-bootstrap'
 import get from 'lodash/get'
 import {
@@ -15,6 +16,7 @@ import styles from '../ChartOptions.module.scss'
 const scaleTypes = Object.keys(colorPresets)
 
 const CurrentPreset = ({ label, scale }) => {
+  console.log(scale)
   let samples
   if (scale.ticks) {
     samples = scale.ticks()
@@ -223,7 +225,6 @@ const ChartOptionColorScale = ({
             value={scaleType}
             onChange={(e) => {
               setScaleType(e.target.value)
-              console.log(scaleType)
             }}
           >
             {availableScaleTypes.map((s) => (
@@ -234,27 +235,20 @@ const ChartOptionColorScale = ({
           </select>
         </Col>
       </Row>
-
+      
+      {/* Color scheme */}
       <Row className={[props.className].join(' ')}>
         <Col xs={6} className="d-flex align-items-center nowrap">Color scheme</Col>
         <Col xs={6}>
-          <select
-            disabled={!colorDataType}
-            className="custom-select raw-select"
-            value={interpolator}
-            onChange={(e) => {
-              setInterpolator(e.target.value)
-            }}
-          >
-            {interpolators.map((interpolator) => (
-              <option key={interpolator} value={interpolator}>
-                {colorPresets[scaleType][interpolator].label}
-              </option>
-            ))}
-          </select>
+          <ColorSchemesDropDown
+            interpolators={interpolators}
+            interpolator={interpolator}
+            setInterpolator={setInterpolator}
+          />
         </Col>
       </Row>
-
+      
+      {/* Scale preview */}
       {currentFinalScale && (
         <Row className={[props.className].join(' ')}>
           <Col xs={12}>
@@ -266,9 +260,9 @@ const ChartOptionColorScale = ({
         </Row>
       )}
 
+      {/* Scale color swatches */}
       {colorDataType && userValues && (
         <div className={styles["color-swatches-list"]}>
-          {console.log(userValues)}
           {userValues.map((userValue, i) => (
             <Row key={i} className={[styles["chart-option"],styles["color-swatch"],scaleType!=='ordinal'?styles["not-ordinal"]:styles["ordinal"]].join(' ')}>
               <Col xs={12}>
