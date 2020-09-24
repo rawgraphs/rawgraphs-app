@@ -3,7 +3,9 @@ import { Dropdown } from 'react-bootstrap'
 import ColorSchemePreview from './ColorSchemePreview'
 import {
   getColorScale,
-  colorPresets
+  colorPresets,
+  getColorDomain,
+  getInitialScaleValues
 } from '@raw-temp/rawgraphs-core'
 
 import styles from '../ChartOptions.module.scss'
@@ -18,7 +20,6 @@ const ColorSchemesDropDown = ({
     scaleType,
     userValuesForFinalScale
 }) => {
-
   return (
     <Dropdown className="d-inline-block raw-dropdown w-100">
       <Dropdown.Toggle variant="white" className="w-100" style={{paddingRight:24}}>
@@ -39,18 +40,24 @@ const ColorSchemesDropDown = ({
         (intrplr) => {
           return (
             <Dropdown.Item key={intrplr} onClick={()=>setInterpolator(intrplr)} className={styles["color-scheme-dropdown-item"]}>
-              { colorDataset[0] && colorPresets[scaleType][interpolator] && <ColorSchemePreview
-                scale={
-                  getColorScale(
-                    colorDataset,
-                    colorDataType,
-                    scaleType,
-                    intrplr,
-                    userValuesForFinalScale
-                  )
-                }
-                label={intrplr}
-              />}
+              { colorDataset[0] && colorPresets[scaleType][interpolator] && 
+                <ColorSchemePreview
+                  scale={
+                    getColorScale(
+                      colorDataset,
+                      colorDataType,
+                      scaleType,
+                      intrplr,
+                      getInitialScaleValues(
+                        getColorDomain(colorDataset, colorDataType, scaleType),
+                        scaleType,
+                        intrplr
+                      )
+                    )
+                  }
+                  label={intrplr}
+                />
+              }
             </Dropdown.Item>
           )
         }

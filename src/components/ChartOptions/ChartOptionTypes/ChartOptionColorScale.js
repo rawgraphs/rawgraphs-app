@@ -163,14 +163,6 @@ const ChartOptionColorScale = ({
       return
     }
 
-    console.log(
-      colorDataset, //the array of values of the dataset mapped on the color dimension
-      colorDataType,
-      scaleType, //
-      interpolator,
-      userValuesForFinalScale
-    )
-
     const previewScale = getColorScale(
       colorDataset, //the array of values of the dataset mapped on the color dimension
       colorDataType,
