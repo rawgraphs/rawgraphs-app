@@ -4,8 +4,8 @@ import { Row, Col, Form } from 'react-bootstrap'
 const ChartOptionBoolean = ({ optionId, label, value, error, onChange, className }) => {
   return (
     <Row className={className}>
-      <Col xs={6}>{label}</Col>
-      <Form className="col-6">
+      <Col xs={6} className="d-flex align-items-center nowrap">{label}</Col>
+      <Form className="col-6 d-flex align-items-center">
         <Form.Check
           type="switch"
           checked={!!value}

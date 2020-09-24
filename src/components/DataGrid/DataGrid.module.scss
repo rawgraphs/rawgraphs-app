@@ -101,7 +101,7 @@
 }
 
 :global .rdg-row {
-  font-family: 'IBM Plex Mono';
+  font-family: var(--font-family-monospace);
   & .rdg-cell:first-child {
     text-align: center;
     color: var(--gray-600);

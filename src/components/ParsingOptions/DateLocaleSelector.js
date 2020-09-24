@@ -21,7 +21,7 @@ export default function DateLocaleSelector({
   return (
     <div className="option">
       {title}
-      <Dropdown className="d-inline-block">
+      <Dropdown className="d-inline-block raw-dropdown">
         <Dropdown.Toggle variant="white" className="">
           {value}
         </Dropdown.Toggle>

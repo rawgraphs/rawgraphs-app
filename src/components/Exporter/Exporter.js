@@ -71,11 +71,11 @@ export default function Exporter({ rawViz }) {
 
   return (
     <div className="row">
-      <div className="col col-sm-4">
+      <div className="col col-sm-3">
         <InputGroup className="mb-3">
           <input
             type="text"
-            className="form-control"
+            className="form-control text-field"
             value={currentFile}
             onChange={(e) => setCurrentFile(e.target.value)}
           ></input>
@@ -98,8 +98,8 @@ export default function Exporter({ rawViz }) {
         </InputGroup>
       </div>
 
-      <div className="col col-sm-4">
-        <button className="btn btn-primary" onClick={downloadViz}>
+      <div className="col col-sm-2">
+        <button className="btn btn-primary btn-block" onClick={downloadViz}>
           Download
         </button>
       </div>

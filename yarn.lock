@@ -1919,19 +1919,19 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.2.tgz#7c6dc4ecef16149fd7a736710baa1b811017fdca"
   integrity sha512-JlGTGRYHC2QK+DDbePyXdBdooxFq2+noLfWpRqJtkxcb/oYWzOF0kcbfvvbWrwevCC1l6hLUg1wHYT+ona5BWQ==
 
-"@raw-temp/rawgraphs-charts@0.0.23":
-  version "0.0.23"
-  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-0.0.23.tgz#da5b590ffab5faaf2e687faf758288c20be4ca14"
-  integrity sha512-hglWqediOLoEoaYS7O3wh6OOSs7Xyt5QdbAsZlTuKQVQ0QBACql8G76631YWGkh4MA/Hyqc+urVbjsLkCd6jAw==
+"@raw-temp/rawgraphs-charts@0.0.25":
+  version "0.0.25"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-0.0.25.tgz#bce7ea8de5174d77c9c6f54a10268b7a328d8a33"
+  integrity sha512-6O70DLKBe35Fcmmd58sgCjg6IvSVHDv5CDlvlTVZnBXT/AB7yc1cfQww5gegGSqlMnD0q4FXO1RVDn/RwYkJYg==
   dependencies:
     d3 "^6.1.1"
     d3-array "^2.5.0"
     d3-sankey "^0.12.3"
 
-"@raw-temp/rawgraphs-core@0.1.32":
-  version "0.1.32"
-  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-0.1.32.tgz#66d23944a710e82540ddb9adfb755e155e371192"
-  integrity sha512-pEu0ubu0nXrTsGo8u2MTGsPH8+8U8wAPlucDbKwk1BF1vPviQZvs0U28IrYQjIwBXkGTRTMT4IY+rjk3AN8bNg==
+"@raw-temp/rawgraphs-core@0.1.34":
+  version "0.1.34"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-0.1.34.tgz#6c2c24c9fe9ef81ebc1fd665bc5262f3d4f45829"
+  integrity sha512-uyjVZLcCqhTTVfAwlVUE7q92webOI9fv6VH6odQJjB6Z3cBpW61ZzRtmDVtbrKkcc5VSHeHEpYKH2lYB5s3CmA==
   dependencies:
     d3-array "^2.4.0"
     d3-axis "^1.0.12"
@@ -12361,11 +12361,6 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
-
-typeface-ibm-plex-mono@^0.0.61:
-  version "0.0.61"
-  resolved "https://registry.yarnpkg.com/typeface-ibm-plex-mono/-/typeface-ibm-plex-mono-0.0.61.tgz#ee7f12643e2bfee5c5c6915350005d6dfdaa66fd"
-  integrity sha512-4Pzza33ihcW1l9qSs6WmRRb6FxVoDvpoTws55V9rwN7zVqURFh1c/i4qWCmHJ0Dyr0c+pYgQVyb/aAwsRjv2Lg==
 
 typeface-inter@^3.12.0:
   version "3.12.0"

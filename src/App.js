@@ -23,7 +23,7 @@ import usePrevious from './hooks/usePrevious'
 function App() {
   const [dataSource, setDataSource] = useState(null)
   const [data, setData] = useState(null)
-  const [currentChart, setCurrentChart] = useState(charts[0])
+  const [currentChart, setCurrentChart] = useState(null)
   const [mapping, setMapping] = useState({})
   const [visualOptions, setVisualOptions] = useState({})
   const [rawViz, setRawViz] = useState(null)
@@ -61,6 +61,13 @@ function App() {
     setRawViz(null)
   }, [])
 
+  //setting initial chart and related options
+  useEffect(() => {
+    setCurrentChart(charts[0])
+    const options = getOptionsConfig(charts[0]?.visualOptions)
+    setVisualOptions(getDefaultOptionsValues(options))
+  }, [])
+
   return (
     <div className="App">
       <Header menuItems={HeaderItems} />
@@ -73,15 +80,13 @@ function App() {
           setLoading={setLoading}
         />
       </Section>
-      {data && (
-        <Section title="2. Choose a chart">
-          <ChartSelector
-            availableCharts={charts}
-            currentChart={currentChart}
-            setCurrentChart={handleChartChange}
-          />
-        </Section>
-      )}
+      <Section title="2. Choose a chart">
+        <ChartSelector
+          availableCharts={charts}
+          currentChart={currentChart}
+          setCurrentChart={handleChartChange}
+        />
+      </Section>
       {data && currentChart && (
         <Section title={`3. Mapping ${mappingLoading ? '..loading' : ''}`}>
           <DataMapping
@@ -106,13 +111,13 @@ function App() {
           />
         </Section>
       )}
-      {rawViz && (
+      {data && currentChart && rawViz && (
         <Section title="5. Export">
           <Exporter rawViz={rawViz} />
         </Section>
       )}
       {/* <Section title="0. Typography">{typography}</Section> */}
-      <Footer>Footer items go here!</Footer>
+      <Footer/>
     </div>
   )
 }

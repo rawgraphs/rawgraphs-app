@@ -10,6 +10,8 @@ import {
   getTypeName,
 } from '@raw-temp/rawgraphs-core'
 
+import styles from '../ChartOptions.module.scss'
+
 const scaleTypes = Object.keys(colorPresets)
 
 const CurrentPreset = ({ label, scale }) => {
@@ -208,7 +210,7 @@ const ChartOptionColorScale = ({
   }, [interpolator, scaleType, userValuesForFinalScale, onChange])
 
   return (
-    <div>
+    <div className={styles["color-scale-option"]}>
       <Row>
         <Col xs={12}>{label}</Col>
       </Row>
@@ -264,36 +266,30 @@ const ChartOptionColorScale = ({
       )}
 
       {colorDataType && userValues && (
-        <div>
+        <div className={styles["color-swatches-list"]}>
           {userValues.map((userValue, i) => (
-            <Row key={i}>
-              <Col xs={6}>
-                {scaleType === 'ordinal' && userValue.domain}
-                {scaleType !== 'ordinal' && (
-                  <input
-                    type="number"
-                    value={userValue.userDomain || ''}
-                    onChange={(e) => {
-                      setUserValueDomain(i, e.target.value)
+            <Row key={i} className={[styles["chart-option"],styles["color-swatch"]].join(' ')}>
+              <Col xs={12}>
+                <div className={styles["color-scale-item"]}>
+                  {scaleType === 'ordinal' && 
+                    <span className="nowrap">{userValue.domain===""?'[empty string]':userValue.domain}</span>
+                  }
+                  {scaleType !== 'ordinal' && (
+                    <input
+                      type="number"
+                      value={userValue.userDomain || ''}
+                      onChange={(e) => {
+                        setUserValueDomain(i, e.target.value)
+                      }}
+                    ></input>
+                  )}
+                  <InilineColorPicker
+                    color={userValue.userRange}
+                    onChange={(color) => {
+                      setUserValueRange(i, color)
                     }}
-                  ></input>
-                )}
-              </Col>
-              <Col xs={6}>
-                {userValue.range}
-                <InilineColorPicker
-                  color={userValue.userRange}
-                  onChange={(color) => {
-                    setUserValueRange(i, color)
-                  }}
-                />
-                {/* <input
-                  type="color"
-                  value={userValue.userRange}
-                  onChange={(e) => {
-                    setUserValueRange(i, e.target.value)
-                  }}
-                ></input> */}
+                  />
+                </div>
               </Col>
             </Row>
           ))}
