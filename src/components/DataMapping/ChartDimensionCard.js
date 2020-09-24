@@ -19,7 +19,14 @@ import styles from './DataMapping.module.scss'
 const aggregators = getAggregatorNames()
 const emptyList = []
 
-const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
+const ChartDimensionCard = ({
+  dimension,
+  dataTypes,
+  mapping,
+  setMapping,
+  commitLocalMapping,
+  rollbackLocalMapping,
+}) => {
   const [{ isOver }, drop] = useDrop({
     accept: 'column',
     collect: (monitor) => ({
@@ -106,26 +113,32 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
     [mapping, setMapping]
   )
 
-  const onMove = useCallback((dragIndex, hoverIndex) => {
-    let nextConfig
-    if (mapping.config) {
-      nextConfig = {
-        ...mapping.config,
-        aggregation: arrayMove(
-          mapping.config.aggregation,
-          dragIndex,
-          hoverIndex
-        ),
+  const onMove = useCallback(
+    (dragIndex, hoverIndex) => {
+      let nextConfig
+      if (mapping.config) {
+        nextConfig = {
+          ...mapping.config,
+          aggregation: arrayMove(
+            mapping.config.aggregation,
+            dragIndex,
+            hoverIndex
+          ),
+        }
       }
-    }
 
-    setMapping({
-      ...mapping,
-      ids: arrayMove(mapping.ids, dragIndex, hoverIndex),
-      value: arrayMove(mapping.value, dragIndex, hoverIndex),
-      config: nextConfig,
-    })
-  }, [mapping, setMapping])
+      setMapping(
+        {
+          ...mapping,
+          ids: arrayMove(mapping.ids, dragIndex, hoverIndex),
+          value: arrayMove(mapping.value, dragIndex, hoverIndex),
+          config: nextConfig,
+        },
+        true
+      )
+    },
+    [mapping, setMapping]
+  )
 
   return (
     // <div
@@ -158,7 +171,6 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
           </span>
         </div>
         <div>
-
           <pre>{JSON.stringify(mapping, 0, 2)}</pre>
         </div>
 
@@ -191,6 +203,8 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
               dimension={dimension}
               aggregators={aggregators}
               relatedAggregation={relatedAggregation}
+              commitLocalMapping={commitLocalMapping}
+              rollbackLocalMapping={rollbackLocalMapping}
             />
           )
         })}

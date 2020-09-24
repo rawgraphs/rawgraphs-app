@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect } from 'react'
+import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react'
 import {
   getOptionsConfig,
   getDefaultOptionsValues,
@@ -29,6 +29,7 @@ function App() {
   const [rawViz, setRawViz] = useState(null)
   const [loading, setLoading] = useState(false)
   const [mappingLoading, setMappingLoading] = useState(false)
+  const dataMappingRef = useRef(null)
 
   const columnNames = useMemo(() => {
     if (get(data, 'dataTypes')) {
@@ -37,29 +38,37 @@ function App() {
   }, [data])
 
   const prevColumnNames = usePrevious(columnNames)
+  const clearLocalMapping = useCallback(() => {
+    if (dataMappingRef.current) {
+      dataMappingRef.current.clearLocalMapping()
+    }
+  }, [])
 
   //resetting mapping when column names changes (ex: separator change in parsing)
   useEffect(() => {
     if (prevColumnNames) {
       if (!columnNames) {
         setMapping({})
+        clearLocalMapping()
       } else {
         const prevCols = prevColumnNames.join('.')
         const currentCols = columnNames.join('.')
         if (prevCols !== currentCols) {
           setMapping({})
+          clearLocalMapping()
         }
       }
     }
-  }, [columnNames, prevColumnNames])
+  }, [columnNames, prevColumnNames, clearLocalMapping])
 
   const handleChartChange = useCallback((nextChart) => {
     setCurrentChart(nextChart)
     setMapping({})
+    clearLocalMapping()
     const options = getOptionsConfig(nextChart?.visualOptions)
     setVisualOptions(getDefaultOptionsValues(options))
     setRawViz(null)
-  }, [])
+  }, [clearLocalMapping])
 
   //setting initial chart and related options
   useEffect(() => {
@@ -87,9 +96,11 @@ function App() {
           setCurrentChart={handleChartChange}
         />
       </Section>
+      <pre>{JSON.stringify(mapping, null, 2)}</pre>
       {data && currentChart && (
         <Section title={`3. Mapping ${mappingLoading ? '..loading' : ''}`}>
           <DataMapping
+            ref={dataMappingRef}
             dimensions={currentChart.dimensions}
             dataTypes={data.dataTypes}
             mapping={mapping}

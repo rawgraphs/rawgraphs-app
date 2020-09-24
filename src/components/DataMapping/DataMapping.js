@@ -1,21 +1,45 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useImperativeHandle, useState } from 'react'
 import { Row, Col } from 'react-bootstrap'
-import { map } from 'lodash'
+import map from 'lodash/map'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
 import ColumnCard from './ColumnCard'
 import ChartDimensionCard from './ChartDimensionCard'
 
-function DataMapping({ dataTypes, dimensions, mapping, setMapping }) {
+function DataMapping({ dataTypes, dimensions, mapping, setMapping }, ref) {
+  const [localMappding, setLocalMapping] = useState(mapping)
+
   const updateMapping = useCallback(
-    (dimension, mappingConf) => {
-      setMapping((prev) => ({
+    (dimension, mappingConf, isLocal) => {
+      // Local
+      setLocalMapping((prev) => ({
         ...prev,
         [dimension]: mappingConf,
       }))
+      if (!isLocal) {
+        // Gloab mapping
+        setMapping((prev) => ({
+          ...prev,
+          [dimension]: mappingConf,
+        }))
+      }
     },
     [setMapping]
   )
+
+  const rollbackLocalMapping = useCallback(() => {
+    setLocalMapping(mapping)
+  }, [mapping])
+
+  const commitLocalMapping = useCallback(() => {
+    setMapping(localMappding)
+  }, [localMappding, setMapping])
+
+  useImperativeHandle(ref, () => ({
+    clearLocalMapping: () => {
+      setLocalMapping({})
+    }
+  }))
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -45,8 +69,13 @@ function DataMapping({ dataTypes, dimensions, mapping, setMapping }) {
                   key={d.id}
                   dimension={d}
                   dataTypes={dataTypes}
-                  mapping={mapping[d.id] || {}}
-                  setMapping={(mappingConf) => updateMapping(d.id, mappingConf)}
+                  // mapping={mapping[d.id] || {}}
+                  mapping={localMappding[d.id] || {}}
+                  setMapping={(mappingConf, isLocal = false) =>
+                    updateMapping(d.id, mappingConf, isLocal)
+                  }
+                  commitLocalMapping={commitLocalMapping}
+                  rollbackLocalMapping={rollbackLocalMapping}
                 />
               )
             })}
@@ -58,4 +87,4 @@ function DataMapping({ dataTypes, dimensions, mapping, setMapping }) {
   )
 }
 
-export default React.memo(DataMapping)
+export default React.memo(React.forwardRef(DataMapping))

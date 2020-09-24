@@ -18,6 +18,9 @@ export default function ChartDimensionItem({
   onChangeAggregation,
   onDeleteItem,
   onChangeDimension,
+
+  commitLocalMapping,
+  rollbackLocalMapping,
 }) {
   const ref = useRef(null)
 
@@ -83,6 +86,17 @@ export default function ChartDimensionItem({
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
+    end: (dropResult, monitor) => {
+      const didDrop = monitor.didDrop()
+      if (didDrop) {
+        commitLocalMapping()
+        console.log('COMMIT BACK')
+      } else {
+        rollbackLocalMapping()
+        console.log('ROLL BACK')
+      }
+      // console.log('DID DROP', didDrop)
+    },
   })
 
   drag(drop(ref))
