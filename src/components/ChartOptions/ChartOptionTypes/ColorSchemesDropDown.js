@@ -67,4 +67,4 @@ const ColorSchemesDropDown = ({
   )
 }
 
-export default ColorSchemesDropDown
+export default React.memo(ColorSchemesDropDown)
