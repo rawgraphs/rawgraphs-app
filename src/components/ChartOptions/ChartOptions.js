@@ -79,7 +79,7 @@ const ChartOptions = ({
     for (const option in optionsConfig) {
       const group = optionsConfig[option].group;
       if (!groups.hasOwnProperty(group)) {
-        groups[group] = group==='chart'?false:true;
+        groups[group] = group==='artboard'?false:true;
       }
     }
     setCollapseStatus(groups);
