@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import InilineColorPicker from '../../InlineColorPicker'
 import ColorSchemesDropDown from './ColorSchemesDropDown'
+import ColorSchemePreview from './ColorSchemePreview'
 import { Row, Col } from 'react-bootstrap'
 import get from 'lodash/get'
 import {
@@ -14,29 +15,6 @@ import {
 import styles from '../ChartOptions.module.scss'
 
 const scaleTypes = Object.keys(colorPresets)
-
-const CurrentPreset = ({ label, scale }) => {
-  console.log(scale)
-  let samples
-  if (scale.ticks) {
-    samples = scale.ticks()
-  } else {
-    samples = scale.domain()
-  }
-  return (
-    <div>
-      <div>{label}</div>
-      <div className="d-flex">
-        {samples.map((sample) => (
-          <div
-            key={sample}
-            style={{ flex: 1, height: 10, background: scale(sample) }}
-          ></div>
-        ))}
-      </div>
-    </div>
-  )
-}
 
 const ChartOptionColorScale = ({
   value,
@@ -185,6 +163,14 @@ const ChartOptionColorScale = ({
       return
     }
 
+    console.log(
+      colorDataset, //the array of values of the dataset mapped on the color dimension
+      colorDataType,
+      scaleType, //
+      interpolator,
+      userValuesForFinalScale
+    )
+
     const previewScale = getColorScale(
       colorDataset, //the array of values of the dataset mapped on the color dimension
       colorDataType,
@@ -213,9 +199,6 @@ const ChartOptionColorScale = ({
 
   return (
     <>
-      {/* <Row>
-        <Col xs={12}>{label}</Col>
-      </Row> */}
       <Row className={[props.className].join(' ')}>
         <Col xs={6} className="d-flex align-items-center nowrap">{label}</Col>
         <Col xs={6}>
@@ -244,6 +227,11 @@ const ChartOptionColorScale = ({
             interpolators={interpolators}
             interpolator={interpolator}
             setInterpolator={setInterpolator}
+            // To display color-scale preview
+            colorDataset={colorDataset}
+            colorDataType={colorDataType}
+            scaleType={scaleType}
+            userValuesForFinalScale={userValuesForFinalScale}
           />
         </Col>
       </Row>
@@ -252,10 +240,10 @@ const ChartOptionColorScale = ({
       {currentFinalScale && (
         <Row className={[props.className].join(' ')}>
           <Col xs={12}>
-            <CurrentPreset
+            <ColorSchemePreview
               scale={currentFinalScale}
-              label={'Scale preview'}
-            ></CurrentPreset>
+              label={['Scale preview',scaleType,interpolator].join('-')}
+            />
           </Col>
         </Row>
       )}
