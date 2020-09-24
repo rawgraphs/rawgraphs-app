@@ -2,10 +2,9 @@ import React from 'react'
 import { Dropdown } from 'react-bootstrap'
 import ColorSchemePreview from './ColorSchemePreview'
 import {
-  getColorScale,
   colorPresets,
   getColorDomain,
-  getInitialScaleValues
+  getPresetScale
 } from '@raw-temp/rawgraphs-core'
 
 import styles from '../ChartOptions.module.scss'
@@ -18,24 +17,17 @@ const ColorSchemesDropDown = ({
     colorDataset,
     colorDataType,
     scaleType,
-    userValuesForFinalScale
+    currentFinalScale
 }) => {
   return (
     <Dropdown className="d-inline-block raw-dropdown w-100">
-      <Dropdown.Toggle variant="white" className="w-100" style={{paddingRight:24}}>
-        { colorDataset[0] && colorPresets[scaleType][interpolator] && <ColorSchemePreview
-          scale={
-            getColorScale(
-              colorDataset,
-              colorDataType,
-              scaleType,
-              interpolator,
-              userValuesForFinalScale)
-          }
+      <Dropdown.Toggle variant="white" className="w-100" style={{paddingRight:24}} disabled={!colorDataType}>
+        { currentFinalScale && <ColorSchemePreview
+          scale={currentFinalScale}
           xlabel={interpolator}
         />}
       </Dropdown.Toggle>
-      <Dropdown.Menu className="w-100" styles={{padding:'4px 0'}}>
+      {colorDataType && <Dropdown.Menu className="w-100" styles={{padding:'4px 0'}}>
       {interpolators.map(
         (intrplr) => {
           return (
@@ -43,17 +35,7 @@ const ColorSchemesDropDown = ({
               { colorDataset[0] && colorPresets[scaleType][interpolator] && 
                 <ColorSchemePreview
                   scale={
-                    getColorScale(
-                      colorDataset,
-                      colorDataType,
-                      scaleType,
-                      intrplr,
-                      getInitialScaleValues(
-                        getColorDomain(colorDataset, colorDataType, scaleType),
-                        scaleType,
-                        intrplr
-                      )
-                    )
+                    getPresetScale(scaleType, getColorDomain(colorDataset, colorDataType, scaleType), intrplr)
                   }
                   label={intrplr}
                 />
@@ -62,7 +44,7 @@ const ColorSchemesDropDown = ({
           )
         }
       )}
-      </Dropdown.Menu>
+      </Dropdown.Menu>}
     </Dropdown>
   )
 }
