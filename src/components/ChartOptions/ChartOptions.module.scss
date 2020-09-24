@@ -4,6 +4,34 @@
         height: 40px;
         &.color-swatch {
             margin: 0px -15px;
+            &.ordinal{
+                .color-scale-item {
+                    > * {
+                        width: 50%;
+                        flex-grow: 1;
+                        padding: 0;
+                        border: none;
+                        background: none;
+                        font-size: 1rem;
+                    }
+                }
+            }
+            &.not-ordinal{
+                margin-bottom:8px;
+                // display: flex;
+                // align-items: center;
+                // justify-content: space-between;
+                .color-scale-item {
+                    border: none;
+                    background-color: transparent;
+                    padding: 0;
+                    display: flex;
+                    justify-content: space-between;
+                    > * {
+                        width: 30%;
+                    }
+                }
+            }
             .color-scale-item {
                 background-color: white;
                 display: flex;
@@ -12,16 +40,7 @@
                 border-bottom: 1px solid var(--light);
                 height: 100%;
                 padding: 0 8px;
-                > * {
-                    width: 50%;
-                    flex-grow: 1;
-                    padding: 0;
-                    border: none;
-                    background: none;
-                    font-size: 1rem;
-                }
             }
-            
         }
     }
     .color-swatches-list{
