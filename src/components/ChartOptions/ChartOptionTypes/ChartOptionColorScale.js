@@ -223,7 +223,7 @@ const ChartOptionColorScale = ({
             colorDataset={colorDataset}
             colorDataType={colorDataType}
             scaleType={scaleType}
-            userValuesForFinalScale={userValuesForFinalScale}
+            currentFinalScale={currentFinalScale}
           />
         </Col>
       </Row>

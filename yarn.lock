@@ -1928,10 +1928,10 @@
     d3-array "^2.5.0"
     d3-sankey "^0.12.3"
 
-"@raw-temp/rawgraphs-core@0.1.34":
-  version "0.1.34"
-  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-0.1.34.tgz#6c2c24c9fe9ef81ebc1fd665bc5262f3d4f45829"
-  integrity sha512-uyjVZLcCqhTTVfAwlVUE7q92webOI9fv6VH6odQJjB6Z3cBpW61ZzRtmDVtbrKkcc5VSHeHEpYKH2lYB5s3CmA==
+"@raw-temp/rawgraphs-core@0.1.37":
+  version "0.1.37"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-0.1.37.tgz#482d6733b8dca426a2a2bff18ba54f8e8392d45e"
+  integrity sha512-2HjmCSQyifBxZqHiOzKTwxghhSKKQII31F09XGSxD/g9cthZMmtIhbzJcoe5ESbOC5Vn1OGR7Dc0VUiFblohXA==
   dependencies:
     d3-array "^2.4.0"
     d3-axis "^1.0.12"
