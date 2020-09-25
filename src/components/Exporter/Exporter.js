@@ -81,25 +81,12 @@ export default function Exporter({ rawViz }) {
             value={currentFile}
             onChange={(e) => setCurrentFile(e.target.value)}
           ></input>
-
           <DropdownButton
             as={InputGroup.Append}
             title={`.${currentFormat}`}
             id="input-group-dropdown-1"
             className="raw-dropdown"
           >
-            {/* <Dropdown.Item href="#" onClick={() => setCurrentFormat('svg')}>
-              .svg
-            </Dropdown.Item>
-            <Dropdown.Item href="#" onClick={() => setCurrentFormat('png')}>
-              .png
-            </Dropdown.Item>
-            <Dropdown.Item href="#" onClick={() => setCurrentFormat('jpg')}>
-              .jpg
-            </Dropdown.Item>
-            <Dropdown.Item href="#" disabled>
-              .rawgraphs
-            </Dropdown.Item> */}
             {exportFormats.map(
               (d) => {
                 return (
@@ -110,24 +97,6 @@ export default function Exporter({ rawViz }) {
               }
             )}
           </DropdownButton>
-
-          {/* <Dropdown className="d-inline-block ml-2 raw-dropdown">
-            <Dropdown.Toggle variant="primary" className="pr-5">
-              .{currentFormat}
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {exportFormats.map(
-                (d) => {
-                  return (
-                    <Dropdown.Item key={d} onClick={() => setCurrentFormat(d)} disabled={d==='rawgraphs'}>
-                      .{d}
-                    </Dropdown.Item>
-                  )
-                }
-              )}
-            </Dropdown.Menu>
-          </Dropdown> */}
-
         </InputGroup>
       </div>
 
