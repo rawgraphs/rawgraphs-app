@@ -49,6 +49,8 @@ export default function Exporter({ rawViz }) {
     [rawViz]
   )
 
+  const [exportFormats, setExportFormats] = useState(['svg','png','jpg','rawgraphs'])
+
   const [currentFormat, setCurrentFormat] = useState('svg')
   const [currentFile, setCurrentFile] = useState('viz')
 
@@ -72,7 +74,7 @@ export default function Exporter({ rawViz }) {
   return (
     <div className="row">
       <div className="col col-sm-3">
-        <InputGroup className="mb-3">
+        <InputGroup className="mb-3 raw-input-group">
           <input
             type="text"
             className="form-control text-field"
@@ -84,8 +86,9 @@ export default function Exporter({ rawViz }) {
             as={InputGroup.Append}
             title={`.${currentFormat}`}
             id="input-group-dropdown-1"
+            className="raw-dropdown"
           >
-            <Dropdown.Item href="#" onClick={() => setCurrentFormat('svg')}>
+            {/* <Dropdown.Item href="#" onClick={() => setCurrentFormat('svg')}>
               .svg
             </Dropdown.Item>
             <Dropdown.Item href="#" onClick={() => setCurrentFormat('png')}>
@@ -94,7 +97,37 @@ export default function Exporter({ rawViz }) {
             <Dropdown.Item href="#" onClick={() => setCurrentFormat('jpg')}>
               .jpg
             </Dropdown.Item>
+            <Dropdown.Item href="#" disabled>
+              .rawgraphs
+            </Dropdown.Item> */}
+            {exportFormats.map(
+              (d) => {
+                return (
+                  <Dropdown.Item key={d} onClick={() => setCurrentFormat(d)} disabled={d==='rawgraphs'}>
+                    .{d}
+                  </Dropdown.Item>
+                )
+              }
+            )}
           </DropdownButton>
+
+          {/* <Dropdown className="d-inline-block ml-2 raw-dropdown">
+            <Dropdown.Toggle variant="primary" className="pr-5">
+              .{currentFormat}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {exportFormats.map(
+                (d) => {
+                  return (
+                    <Dropdown.Item key={d} onClick={() => setCurrentFormat(d)} disabled={d==='rawgraphs'}>
+                      .{d}
+                    </Dropdown.Item>
+                  )
+                }
+              )}
+            </Dropdown.Menu>
+          </Dropdown> */}
+
         </InputGroup>
       </div>
 

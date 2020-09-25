@@ -121,6 +121,13 @@ h5 {
     overflow-y: auto;
   }
 }
+.raw-input-group {
+  .raw-dropdown {
+    button {
+      padding-right: 3rem;
+    }
+  }
+}
 .raw-select{
   height: 40px;
   color: theme-color('dark');
