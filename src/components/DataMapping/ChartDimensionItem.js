@@ -45,8 +45,9 @@ export default function ChartDimensionItem({
       }
 
       const hoverIndex = index
-
-      if (item.type === 'column') {
+      
+      //#TODO: for now we allow only dropping on "drop another dimension here" in case of multiple dimensions
+      if (false && item.type === 'column') {
         onInsertColumn(hoverIndex, item)
         item.type = 'card'
         item.dimensionId = dimension.id
