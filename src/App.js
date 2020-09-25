@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react'
+import { withResizeDetector } from 'react-resize-detector';
 import {
   getOptionsConfig,
   getDefaultOptionsValues,
@@ -8,6 +9,7 @@ import HeaderItems from './HeaderItems'
 import Header from './components/Header'
 import Section from './components/Section'
 import Footer from './components/Footer'
+import ScreenSizeAlert from './components/ScreenSizeAlert'
 
 import DataLoader from './components/DataLoader'
 import charts from './charts'
@@ -17,6 +19,8 @@ import ChartPreviewWithOptions from './components/ChartPreviewWIthOptions'
 import Exporter from './components/Exporter'
 import get from 'lodash/get'
 import usePrevious from './hooks/usePrevious'
+
+const ModalScreenSize = withResizeDetector(ScreenSizeAlert)
 
 // #TODO: i18n
 
@@ -128,6 +132,7 @@ function App() {
         )}
         <Footer/>
       </div>
+      <ModalScreenSize />
     </div>
   )
 }

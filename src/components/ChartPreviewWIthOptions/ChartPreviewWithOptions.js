@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
 import ChartOptions from '../ChartOptions'
 import ChartPreview from '../ChartPreview'
 import { chart as rawChart } from '@raw-temp/rawgraphs-core'

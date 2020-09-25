@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import InilineColorPicker from '../../InlineColorPicker'
 import ColorSchemesDropDown from './ColorSchemesDropDown'
-import ColorSchemePreview from './ColorSchemePreview'
 import { Row, Col } from 'react-bootstrap'
 import get from 'lodash/get'
 import {
