@@ -24,7 +24,6 @@ const ColorSchemesDropDown = ({
       <Dropdown.Toggle variant="white" className="w-100" style={{paddingRight:24}} disabled={!colorDataType}>
         { currentFinalScale && <ColorSchemePreview
           scale={currentFinalScale}
-          xlabel={interpolator}
         />}
       </Dropdown.Toggle>
       {colorDataType && <Dropdown.Menu className="w-100" styles={{padding:'4px 0'}}>

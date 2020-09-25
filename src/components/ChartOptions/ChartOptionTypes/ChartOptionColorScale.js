@@ -244,7 +244,12 @@ const ChartOptionColorScale = ({
       {colorDataType && userValues && (
         <div className={styles["color-swatches-list"]}>
           {userValues.map((userValue, i) => (
-            <Row key={i} className={[styles["chart-option"],styles["color-swatch"],scaleType!=='ordinal'?styles["not-ordinal"]:styles["ordinal"]].join(' ')}>
+            <Row key={i} className={[
+                styles["chart-option"],
+                styles["color-swatch"],
+                scaleType!=='ordinal'?styles["not-ordinal"]:styles["ordinal"]
+              ].join(' ')}
+            >
               <Col xs={12}>
                 <div className={styles["color-scale-item"]}>
                   {scaleType === 'ordinal' && 
