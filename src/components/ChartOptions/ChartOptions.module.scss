@@ -62,6 +62,7 @@
             height: 100%;
             background-color: var(--gray-bg);
             position: absolute;
+            left:-15px;
             z-index: -10;
             opacity: 0.8;
             backdrop-filter: blur(1px);

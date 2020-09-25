@@ -66,7 +66,6 @@ const ChartPreviewWithOptions = ({
 
   return (
     <Row>
-      {/* <Col xs={3}> */}
         <ChartOptions
           chart={chart}
           dataset={dataset}
@@ -77,8 +76,6 @@ const ChartPreviewWithOptions = ({
           error={error}
           mappedData={mappedData}
         />
-      {/* </Col> */}
-      <Col>
         <ChartPreview
           chart={chart}
           dataset={dataset}
@@ -90,7 +87,6 @@ const ChartPreviewWithOptions = ({
           setRawViz={setRawViz}
           mappedData={mappedData}
         />
-      </Col>
     </Row>
   )
 }

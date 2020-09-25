@@ -11,7 +11,7 @@ const ChartPreview = ({
   error,
   setError,
   setRawViz,
-  mappedData,
+  mappedData
 }) => {
   const domRef = useRef(null)
 
@@ -56,10 +56,10 @@ const ChartPreview = ({
   }, [setError, vizOptionsDebounced, setRawViz, mappedData])
 
   return (
-    <>
-      <div ref={domRef}>{/* Don't put content in this <div /> */}</div>
+    <div className={"col-9"}>
+      <div className={['overflow-auto', 'position-sticky'].join(' ')} style={{top:'calc(15px + var(--header-height))'}} ref={domRef}>{/* Don't put content in this <div /> */}</div>
       {error !== null && <div className="error-message">{error.message}</div>}
-    </>
+    </div>
   )
 }
 
