@@ -4,7 +4,10 @@ import charts from '../charts'
 
 const obj = {
   parseDataset(data, dataTypes, parsingOptions) {
-    return parseDataset(data, dataTypes, parsingOptions)
+    let out =  parseDataset(data, dataTypes, parsingOptions)
+    out.errors = (out.errors || []).map(err => ({row: err.row}))
+    return out
+  
   },
   mapData(chartName, { data, mapping, visualOptions, dataTypes }) {
     const chart = charts.find((item) => item.metadata.name === chartName)

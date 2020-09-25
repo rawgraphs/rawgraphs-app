@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect } from 'react'
+import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react'
 import {
   getOptionsConfig,
   getDefaultOptionsValues,
@@ -29,6 +29,7 @@ function App() {
   const [rawViz, setRawViz] = useState(null)
   const [loading, setLoading] = useState(false)
   const [mappingLoading, setMappingLoading] = useState(false)
+  const dataMappingRef = useRef(null)
 
   const columnNames = useMemo(() => {
     if (get(data, 'dataTypes')) {
@@ -37,29 +38,37 @@ function App() {
   }, [data])
 
   const prevColumnNames = usePrevious(columnNames)
+  const clearLocalMapping = useCallback(() => {
+    if (dataMappingRef.current) {
+      dataMappingRef.current.clearLocalMapping()
+    }
+  }, [])
 
   //resetting mapping when column names changes (ex: separator change in parsing)
   useEffect(() => {
     if (prevColumnNames) {
       if (!columnNames) {
         setMapping({})
+        clearLocalMapping()
       } else {
         const prevCols = prevColumnNames.join('.')
         const currentCols = columnNames.join('.')
         if (prevCols !== currentCols) {
           setMapping({})
+          clearLocalMapping()
         }
       }
     }
-  }, [columnNames, prevColumnNames])
+  }, [columnNames, prevColumnNames, clearLocalMapping])
 
   const handleChartChange = useCallback((nextChart) => {
     setCurrentChart(nextChart)
     setMapping({})
+    clearLocalMapping()
     const options = getOptionsConfig(nextChart?.visualOptions)
     setVisualOptions(getDefaultOptionsValues(options))
     setRawViz(null)
-  }, [])
+  }, [clearLocalMapping])
 
   //setting initial chart and related options
   useEffect(() => {
@@ -117,7 +126,6 @@ function App() {
             <Exporter rawViz={rawViz} />
           </Section>
         )}
-        {/* <Section title="0. Typography">{typography}</Section> */}
         <Footer/>
       </div>
     </div>
@@ -125,33 +133,3 @@ function App() {
 }
 
 export default App
-
-// const typography = (
-//   <>
-//     <h1>
-//       h1. Bootstrap heading <small>Secondary text in heading</small>
-//     </h1>
-//     <h2>
-//       h2. Bootstrap heading <small>Secondary text in heading</small>
-//     </h2>
-//     <h3>
-//       h3. Bootstrap heading <small>Secondary text in heading</small>
-//     </h3>
-//     <h4>
-//       h4. Bootstrap heading <small>Secondary text in heading</small>
-//     </h4>
-//     <h5>
-//       h5. Bootstrap heading <small>Secondary text in heading</small>
-//     </h5>
-//     <h6>
-//       h6. Bootstrap heading <small>Secondary text in heading</small>
-//     </h6>
-//     <p className="lead">
-//       Lead Paragraph. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
-//       dolor auctor.
-//     </p>
-//     <p>An ordinary paragraph.</p>
-//     <p className="lighter">Paragraph classed "lighter"</p>
-//     <p className="small">A paragraph classed "small"</p>
-//   </>
-// );

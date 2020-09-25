@@ -1,8 +1,11 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { Col } from 'react-bootstrap'
-import { useDrop } from 'react-dnd'
-import { get } from 'lodash'
+import { useDrop, useDrag } from 'react-dnd'
+import get from 'lodash/get'
+import uniqueId from 'lodash/uniqueId'
 import classnames from 'classnames'
+import arrayMove from 'array-move'
+import arrayInsert from 'array-insert'
 
 // import { DATATYPE_ICONS } from "../../constants"
 import { dataTypeIcons } from '../../constants'
@@ -17,19 +20,33 @@ import styles from './DataMapping.module.scss'
 const aggregators = getAggregatorNames()
 const emptyList = []
 
-const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
+const ChartDimensionCard = ({
+  dimension,
+  dataTypes,
+  mapping,
+  setMapping,
+  commitLocalMapping,
+  rollbackLocalMapping,
+  draggingId,
+  setDraggingId,
+  replaceDimension,
+  localMappding,
+}) => {
   const [{ isOver }, drop] = useDrop({
-    accept: 'column',
+    accept: ['column', 'card'],
     collect: (monitor) => ({
       isOver: monitor.isOver(),
     }),
     drop: (item, monitor) => {
-      const defaulAggregation = dimension.aggregation
+      if(item.type === 'column'){
+        const defaulAggregation = dimension.aggregation
         ? getDefaultDimensionAggregation(dimension, dataTypes[item.id])
         : null
+        
 
       setMapping({
         ...mapping,
+        ids: (mapping.ids || []).concat(uniqueId()),
         value: [...(mapping.value || []), item.id],
         config: dimension.aggregation
           ? {
@@ -40,6 +57,16 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
             }
           : undefined,
       })
+      } else if(item.dimensionId !== dimension.id) {
+        replaceDimension(
+          item.dimensionId,
+          dimension.id,
+          item.index,
+          mapping.value ? mapping.value.length : 0,
+          true
+        )
+      }
+      
     },
   })
 
@@ -60,6 +87,7 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
     [mapping, setMapping]
   )
 
+  const idsMappedHere = get(mapping, 'ids', emptyList)
   const columnsMappedHere = get(mapping, 'value', emptyList)
   let aggregationsMappedHere = get(mapping, 'config.aggregation', emptyList)
 
@@ -84,12 +112,73 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
 
       setMapping({
         ...mapping,
+        ids: mapping.ids.filter((col, j) => j !== i),
         value: mapping.value.filter((col, j) => j !== i),
         config: nextConfig,
       })
     },
     [mapping, setMapping]
   )
+
+  const onChangeDimension = useCallback(
+    (i, newCol) => {
+      setMapping({
+        ...mapping,
+        value: mapping.value.map((col, j) => (j === i ? newCol : col)),
+      })
+    },
+    [mapping, setMapping]
+  )
+
+  const onMove = useCallback(
+    (dragIndex, hoverIndex) => {
+      let nextConfig
+      if (mapping.config) {
+        nextConfig = {
+          ...mapping.config,
+          aggregation: arrayMove(
+            mapping.config.aggregation,
+            dragIndex,
+            hoverIndex
+          ),
+        }
+      }
+
+      setMapping(
+        {
+          ...mapping,
+          ids: arrayMove(mapping.ids, dragIndex, hoverIndex),
+          value: arrayMove(mapping.value, dragIndex, hoverIndex),
+          config: nextConfig,
+        },
+        true
+      )
+    },
+    [mapping, setMapping]
+  )
+
+  const onInsertColumn = useCallback((index, item) => {
+    const defaulAggregation = dimension.aggregation
+      ? getDefaultDimensionAggregation(dimension, dataTypes[item.id])
+      : null
+
+    const nextId = uniqueId()
+    setDraggingId(nextId)
+    setMapping({
+      ...mapping,
+      ids: arrayInsert(mapping.ids ?? [], index, nextId),
+      value: arrayInsert(mapping.value ?? [], index, item.id),
+      config: dimension.aggregation
+        ? {
+            aggregation: arrayInsert(
+              get(mapping, 'config.aggregation', []),
+              index,
+              defaulAggregation
+            ),
+          }
+        : undefined,
+    }, true)
+  }, [dataTypes, dimension, mapping, setDraggingId, setMapping])
 
   return (
     // <div
@@ -121,9 +210,10 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
             {dimension.required && `\u2055`}
           </span>
         </div>
-
+        
         {/* These are the columns that have been dropped on the current dimension */}
-        {columnsMappedHere.map((columnId, i) => {
+        {idsMappedHere.map((renderId, i) => {
+          const columnId = columnsMappedHere[i]
           const columnDataType = getTypeName(dataTypes[columnId])
           const relatedAggregation = dimension.aggregation
             ? aggregationsMappedHere[i] ||
@@ -132,14 +222,16 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
           const isValid =
             dimension.validTypes?.length === 0 ||
             dimension.validTypes?.includes(columnDataType)
-              ? styles['column-valid']
-              : styles['column-invalid']
+              
           const DataTypeIcon = dataTypeIcons[getTypeName(dataTypes[columnId])]
 
           return (
             <ChartDimensionItem
-              key={i}
+              id={renderId}
+              key={renderId}
               index={i}
+              onMove={onMove}
+              onChangeDimension={onChangeDimension}
               onChangeAggregation={onChangeAggregation}
               onDeleteItem={onDeleteItem}
               isValid={isValid}
@@ -148,6 +240,12 @@ const ChartDimensionCard = ({ dimension, dataTypes, mapping, setMapping }) => {
               dimension={dimension}
               aggregators={aggregators}
               relatedAggregation={relatedAggregation}
+              commitLocalMapping={commitLocalMapping}
+              rollbackLocalMapping={rollbackLocalMapping}
+              onInsertColumn={onInsertColumn}
+              draggingColumn={draggingId === renderId}
+              replaceDimension={replaceDimension}
+              localMappding={localMappding}
             />
           )
         })}

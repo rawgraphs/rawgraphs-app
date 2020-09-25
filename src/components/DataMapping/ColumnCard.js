@@ -6,12 +6,26 @@ import { useDrag } from 'react-dnd'
 
 import styles from './DataMapping.module.scss'
 
-const ColumnCard = ({ dimensionName, dimensionType }) => {
+const ColumnCard = ({
+  dimensionName,
+  dimensionType,
+  commitLocalMapping,
+  rollbackLocalMapping,
+}) => {
   const [{ isDragging }, drag] = useDrag({
     item: { id: dimensionName, type: 'column' },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
+    end: (dropResult, monitor) => {
+      const didDrop = monitor.didDrop()
+      if (didDrop) {
+        commitLocalMapping()
+      } else {
+        rollbackLocalMapping()
+      }
+      // console.log('DID DROP', didDrop)
+    },
   })
 
   const dimType = getTypeName(dimensionType)
