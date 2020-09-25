@@ -398,7 +398,7 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
         {!userData && (
           <Col
             xs={3}
-            lg={2}
+            lg={3}
             className="d-flex flex-column justify-content-start pl-3 pr-0 options"
           >
             {options.map((d, i) => {
@@ -433,7 +433,7 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
         {userData && (
           <Col
             xs={3}
-            lg={2}
+            lg={3}
             className="d-flex flex-column justify-content-start pl-3 pr-0 options"
           >
             <div
@@ -475,8 +475,8 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
           </Col>
         )}
         <Col>
-          <Row>
-            <Col>
+          <Row className="h-100">
+            <Col className="h-100">
               {mainContent}
               {parseError && (
                 <Alert variant="danger" className="mt-3">

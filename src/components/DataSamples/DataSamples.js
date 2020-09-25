@@ -39,7 +39,7 @@ export default function DataSamples({ onSampleReady }) {
     <Row>
       {samplesList.map((d, i) => {
         return (
-          <Col xs={6} sm={6} md={4} lg={3} key={i}>
+          <Col xs={6} lg={4} xl={3} key={i} style={{marginBottom:15}}>
             <Card
               onClick={() => {
                 select(d)
