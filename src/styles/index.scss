@@ -15,6 +15,7 @@ $font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI",
   --primary-lighter: #defff0;
   --warning-lighter: #fff8c6;
   --gray-100: #f8f8f8;
+  --gray-200: #dee1e2;
   --gray-300: #c2c1c1;
   --gray-400: #e4e3e3;
   --gray-500: #a3a8ad;
@@ -163,6 +164,9 @@ h5 {
   border: none;
   border-bottom: 1px solid var(--light);
   border-radius: 4px;
+  &::placeholder {
+    color: #cecece;
+  }
 }
 .underlined {
   border-bottom: 1px solid theme-color('primary');

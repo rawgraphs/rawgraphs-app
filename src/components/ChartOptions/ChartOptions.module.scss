@@ -4,6 +4,17 @@
         height: 40px;
         &.color-swatch {
             margin: 0px -15px;
+            &:first-child {
+                .color-scale-item {
+                    border-radius: 4px 4px 0 0;
+                }
+            }
+            &:last-child {
+                .color-scale-item {
+                    border-radius: 0px 0px 4px 4px;
+                    border: none;
+                }
+            }
             &.ordinal{
                 .color-scale-item {
                     > * {
@@ -18,9 +29,6 @@
             }
             &.not-ordinal{
                 margin-bottom:8px;
-                // display: flex;
-                // align-items: center;
-                // justify-content: space-between;
                 .color-scale-item {
                     border: none;
                     background-color: transparent;
@@ -37,7 +45,7 @@
                 display: flex;
                 align-items: center;
                 border: none;
-                border-bottom: 1px solid var(--light);
+                border-bottom: 1px solid var(--gray-200);
                 height: 100%;
                 padding: 0 8px;
             }
@@ -45,8 +53,6 @@
     }
     .color-swatches-list{
         margin: 8px 0;
-        // max-height: 180px;
-        // overflow: scroll;
     }
 }
 .options-group {
