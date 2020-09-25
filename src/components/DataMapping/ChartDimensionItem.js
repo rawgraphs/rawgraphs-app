@@ -85,15 +85,18 @@ export default function ChartDimensionItem({
         // to avoid expensive index searches.
         item.index = hoverIndex
       } else {
-        replaceDimension(
-          item.dimensionId,
-          dimension.id,
-          item.index,
-          index,
-          true
-        )
-        item.dimensionId = dimension.id
-        item.index = hoverIndex
+        //#TODO: for now we allow only dropping on "drop another dimension here" in case of multiple dimensions
+        
+        // replaceDimension(
+        //   item.dimensionId,
+        //   dimension.id,
+        //   item.index,
+        //   index,
+        //   true
+        // )
+        // item.dimensionId = dimension.id
+        // item.index = hoverIndex
+        return
       }
     },
     drop: (item, monitor) => {
@@ -107,14 +110,12 @@ export default function ChartDimensionItem({
     },
   })
 
-  console.log('____', localMappding)
   const [{ isDragging }, drag] = useDrag({
     item: { type: 'card', index, id: columnId, dimensionId: dimension.id },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
     end: (dropResult, monitor) => {
-      console.log('----->', localMappding)
       const didDrop = monitor.didDrop()
       if (didDrop) {
         commitLocalMapping()
@@ -136,7 +137,7 @@ export default function ChartDimensionItem({
         'assigned-column',
         styles['column-card'],
         styles['assigned-column'],
-        isValid,
+        isValid ? styles['column-valid'] : styles['column-invalid'],
         {
           'border border-danger': isOver,
           // 'border border-warning': isDragging,
@@ -151,7 +152,7 @@ export default function ChartDimensionItem({
       <span className={styles['column-title']}>{columnId}</span>
       {dimension.aggregation && (
         <Dropdown className="d-inline-block ml-2 raw-dropdown">
-          <Dropdown.Toggle variant="primary" className="pr-5">
+          <Dropdown.Toggle variant={isValid ? "primary" : "danger"} className="pr-5">
             {relatedAggregation}
           </Dropdown.Toggle>
           <Dropdown.Menu>

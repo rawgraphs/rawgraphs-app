@@ -31,6 +31,8 @@ const ChartOptionNumber = ({
           type="number"
           value={value ?? ''}
           step={props.step}
+          min={props.min}
+          max={props.max}
           onChange={(e) => {
             const str = e.target.value
             if (str === '') {

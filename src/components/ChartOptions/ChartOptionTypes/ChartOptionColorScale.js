@@ -1,5 +1,7 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import InilineColorPicker from '../../InlineColorPicker'
+import ColorSchemesDropDown from './ColorSchemesDropDown'
+import ColorSchemePreview from './ColorSchemePreview'
 import { Row, Col } from 'react-bootstrap'
 import get from 'lodash/get'
 import {
@@ -13,28 +15,6 @@ import {
 import styles from '../ChartOptions.module.scss'
 
 const scaleTypes = Object.keys(colorPresets)
-
-const CurrentPreset = ({ label, scale }) => {
-  let samples
-  if (scale.ticks) {
-    samples = scale.ticks()
-  } else {
-    samples = scale.domain()
-  }
-  return (
-    <div>
-      <div>{label}</div>
-      <div className="d-flex">
-        {samples.map((sample) => (
-          <div
-            key={sample}
-            style={{ flex: 1, height: 10, background: scale(sample) }}
-          ></div>
-        ))}
-      </div>
-    </div>
-  )
-}
 
 const ChartOptionColorScale = ({
   value,
@@ -210,16 +190,13 @@ const ChartOptionColorScale = ({
   }, [interpolator, scaleType, userValuesForFinalScale, onChange])
 
   return (
-    <div className={styles["color-scale-option"]}>
-      <Row>
-        <Col xs={12}>{label}</Col>
-      </Row>
-      <Row>
-        <Col xs={6}>Scale type</Col>
+    <>
+      <Row className={[props.className].join(' ')}>
+        <Col xs={6} className="d-flex align-items-center nowrap">{label}</Col>
         <Col xs={6}>
           <select
             disabled={!colorDataType}
-            className="custom-select"
+            className="custom-select raw-select"
             value={scaleType}
             onChange={(e) => {
               setScaleType(e.target.value)
@@ -233,55 +210,60 @@ const ChartOptionColorScale = ({
           </select>
         </Col>
       </Row>
-
-      <Row>
-        <Col xs={6}>Color scheme</Col>
+      
+      {/* Color scheme */}
+      <Row className={[props.className].join(' ')}>
+        <Col xs={6} className="d-flex align-items-center nowrap">Color scheme</Col>
         <Col xs={6}>
-          <select
-            disabled={!colorDataType}
-            className="custom-select"
-            value={interpolator}
-            onChange={(e) => {
-              setInterpolator(e.target.value)
-            }}
-          >
-            {interpolators.map((interpolator) => (
-              <option key={interpolator} value={interpolator}>
-                {colorPresets[scaleType][interpolator].label}
-              </option>
-            ))}
-          </select>
+          <ColorSchemesDropDown
+            interpolators={interpolators}
+            interpolator={interpolator}
+            setInterpolator={setInterpolator}
+            // To display color-scale preview
+            colorDataset={colorDataset}
+            colorDataType={colorDataType}
+            scaleType={scaleType}
+            currentFinalScale={currentFinalScale}
+          />
         </Col>
       </Row>
-
+      
+      {/* Scale preview */}
       {currentFinalScale && (
-        <Row>
+        <Row className={[props.className].join(' ')}>
           <Col xs={12}>
-            <CurrentPreset
+            <ColorSchemePreview
               scale={currentFinalScale}
-              label={'Scale preview'}
-            ></CurrentPreset>
+              label={['Scale preview',scaleType,interpolator].join('-')}
+            />
           </Col>
         </Row>
       )}
 
+      {/* Scale color swatches */}
       {colorDataType && userValues && (
         <div className={styles["color-swatches-list"]}>
           {userValues.map((userValue, i) => (
-            <Row key={i} className={[styles["chart-option"],styles["color-swatch"]].join(' ')}>
+            <Row key={i} className={[styles["chart-option"],styles["color-swatch"],scaleType!=='ordinal'?styles["not-ordinal"]:styles["ordinal"]].join(' ')}>
               <Col xs={12}>
                 <div className={styles["color-scale-item"]}>
                   {scaleType === 'ordinal' && 
                     <span className="nowrap">{userValue.domain===""?'[empty string]':userValue.domain}</span>
                   }
                   {scaleType !== 'ordinal' && (
-                    <input
-                      type="number"
-                      value={userValue.userDomain || ''}
-                      onChange={(e) => {
-                        setUserValueDomain(i, e.target.value)
-                      }}
-                    ></input>
+                    <>
+                      <span className="nowrap">{
+                        i===0?'Start':i===(userValues.length-1)?'End':'Middle'
+                      }</span>
+                      <input
+                        type="number"
+                        className="form-control text-field"
+                        value={userValue.userDomain || ''}
+                        onChange={(e) => {
+                          setUserValueDomain(i, e.target.value)
+                        }}
+                      ></input>
+                    </>
                   )}
                   <InilineColorPicker
                     color={userValue.userRange}
@@ -295,7 +277,7 @@ const ChartOptionColorScale = ({
           ))}
         </div>
       )}
-    </div>
+    </>
   )
 }
 

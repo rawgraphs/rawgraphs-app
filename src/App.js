@@ -89,14 +89,13 @@ function App() {
           setLoading={setLoading}
         />
       </Section>
-      <Section title="2. Choose a chart">
+      {data && <Section title="2. Choose a chart">
         <ChartSelector
           availableCharts={charts}
           currentChart={currentChart}
           setCurrentChart={handleChartChange}
         />
-      </Section>
-      <pre>{JSON.stringify(mapping, null, 2)}</pre>
+      </Section>}
       {data && currentChart && (
         <Section title={`3. Mapping ${mappingLoading ? '..loading' : ''}`}>
           <DataMapping

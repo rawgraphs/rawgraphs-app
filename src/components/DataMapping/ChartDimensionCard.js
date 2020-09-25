@@ -33,14 +33,16 @@ const ChartDimensionCard = ({
   localMappding,
 }) => {
   const [{ isOver }, drop] = useDrop({
-    accept: 'column',
+    accept: ['column', 'card'],
     collect: (monitor) => ({
       isOver: monitor.isOver(),
     }),
     drop: (item, monitor) => {
-      const defaulAggregation = dimension.aggregation
+      if(item.type === 'column'){
+        const defaulAggregation = dimension.aggregation
         ? getDefaultDimensionAggregation(dimension, dataTypes[item.id])
         : null
+        
 
       setMapping({
         ...mapping,
@@ -55,6 +57,16 @@ const ChartDimensionCard = ({
             }
           : undefined,
       })
+      } else {
+        replaceDimension(
+          item.dimensionId,
+          dimension.id,
+          item.index,
+          mapping.value ? mapping.value.length : 0,
+          true
+        )
+      }
+      
     },
   })
 
@@ -198,10 +210,7 @@ const ChartDimensionCard = ({
             {dimension.required && `\u2055`}
           </span>
         </div>
-        <div>
-          <pre>{JSON.stringify(mapping, 0, 2)}</pre>
-        </div>
-
+        
         {/* These are the columns that have been dropped on the current dimension */}
         {idsMappedHere.map((renderId, i) => {
           const columnId = columnsMappedHere[i]
@@ -213,8 +222,7 @@ const ChartDimensionCard = ({
           const isValid =
             dimension.validTypes?.length === 0 ||
             dimension.validTypes?.includes(columnDataType)
-              ? styles['column-valid']
-              : styles['column-invalid']
+              
           const DataTypeIcon = dataTypeIcons[getTypeName(dataTypes[columnId])]
 
           return (

@@ -1919,19 +1919,18 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.2.tgz#7c6dc4ecef16149fd7a736710baa1b811017fdca"
   integrity sha512-JlGTGRYHC2QK+DDbePyXdBdooxFq2+noLfWpRqJtkxcb/oYWzOF0kcbfvvbWrwevCC1l6hLUg1wHYT+ona5BWQ==
 
-"@raw-temp/rawgraphs-charts@0.0.25":
-  version "0.0.25"
-  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-0.0.25.tgz#bce7ea8de5174d77c9c6f54a10268b7a328d8a33"
-  integrity sha512-6O70DLKBe35Fcmmd58sgCjg6IvSVHDv5CDlvlTVZnBXT/AB7yc1cfQww5gegGSqlMnD0q4FXO1RVDn/RwYkJYg==
+"@raw-temp/rawgraphs-charts@0.0.26":
+  version "0.0.26"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-0.0.26.tgz#3bb8faa165907cc56933c6012f33e2a44288d1ef"
+  integrity sha512-JTLUCdQPI8sYp5XD3GL5niWinANyhvxkdlVWEtbLdgIcNiyJbWDQ+d6j7ThT2leliPi71OTRPILXEhXTWPJgsg==
   dependencies:
-    d3 "^6.1.1"
-    d3-array "^2.5.0"
+    d3 "^6.2.0"
     d3-sankey "^0.12.3"
 
-"@raw-temp/rawgraphs-core@0.1.34":
-  version "0.1.34"
-  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-0.1.34.tgz#6c2c24c9fe9ef81ebc1fd665bc5262f3d4f45829"
-  integrity sha512-uyjVZLcCqhTTVfAwlVUE7q92webOI9fv6VH6odQJjB6Z3cBpW61ZzRtmDVtbrKkcc5VSHeHEpYKH2lYB5s3CmA==
+"@raw-temp/rawgraphs-core@0.1.37":
+  version "0.1.37"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-0.1.37.tgz#482d6733b8dca426a2a2bff18ba54f8e8392d45e"
+  integrity sha512-2HjmCSQyifBxZqHiOzKTwxghhSKKQII31F09XGSxD/g9cthZMmtIhbzJcoe5ESbOC5Vn1OGR7Dc0VUiFblohXA==
   dependencies:
     d3-array "^2.4.0"
     d3-axis "^1.0.12"
@@ -4399,11 +4398,6 @@ d3-array@1.0.1:
   resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-2.7.0.tgz#d30287e2580ecf1f4748800b71bcbc2ca8bd96db"
   integrity sha512-4T2QVIgIvsuWo3ZxlweERUA37nc8uEIykD8bbpnbdgROio1TIh9uoMmi5E1SckAjFdb9b7hTWV0dExnxNqaAVg==
 
-d3-array@^2.5.0:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-2.5.1.tgz#cc785e1c4b560a34b8c77af9e6709bdf3f2ee117"
-  integrity sha512-cKvAlQZUKhXInw5mosJMtAYsY3dDYwTess/WOFUQTGcr8xV04SZMJs6n6QznsqZC5vJTkvZuCgsH9fo981ysPA==
-
 d3-axis@2:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/d3-axis/-/d3-axis-2.0.0.tgz#40aebb65626ffe6d95e9441fbf9194274b328a8b"
@@ -4768,6 +4762,42 @@ d3@^6.1.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/d3/-/d3-6.1.1.tgz#c92f8dfb5d6889ee0d518ea1e0e6afb8642ef991"
   integrity sha512-bJYW9wlS2uvP2EoMkcPptrUzLMHQKCbiSW+/la8iGSLZgs4KbI/f3Fch4RtnUA9PA+/nPlwyFYzTwDjX80Of8w==
+  dependencies:
+    d3-array "2"
+    d3-axis "2"
+    d3-brush "2"
+    d3-chord "2"
+    d3-color "2"
+    d3-contour "2"
+    d3-delaunay "5"
+    d3-dispatch "2"
+    d3-drag "2"
+    d3-dsv "2"
+    d3-ease "2"
+    d3-fetch "2"
+    d3-force "2"
+    d3-format "2"
+    d3-geo "2"
+    d3-hierarchy "2"
+    d3-interpolate "2"
+    d3-path "2"
+    d3-polygon "2"
+    d3-quadtree "2"
+    d3-random "2"
+    d3-scale "3"
+    d3-scale-chromatic "2"
+    d3-selection "2"
+    d3-shape "2"
+    d3-time "2"
+    d3-time-format "3"
+    d3-timer "2"
+    d3-transition "2"
+    d3-zoom "2"
+
+d3@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/d3/-/d3-6.2.0.tgz#f19b0ecb16ca4ad2171ce8b37c63247e71c6f01d"
+  integrity sha512-aH+kx55J8vRBh4K4k9GN4EbNO3QnZsXy4XBfrnr4fL2gQuszUAPQU3fV2oObO2iSpreRH/bG/wfvO+hDu2+e9w==
   dependencies:
     d3-array "2"
     d3-axis "2"

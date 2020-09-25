@@ -55,7 +55,7 @@ function handleReplaceLocalMapping(
 
   let moveFn = multiple ? arrayInsert : arrayReplace
 
-  const prevToMapping = prev[toDimension]
+  const prevToMapping = prev[toDimension] || {}
   const toDimensionMapping = {
     ...prevToMapping,
     ids: moveFn(prevToMapping.ids ?? [], toIndex, nextId),
@@ -149,7 +149,6 @@ function DataMapping({ dataTypes, dimensions, mapping, setMapping }, ref) {
   const [draggingId, setDraggingId] = useState(null)
 
   const rollbackLocalMapping = useCallback(() => {
-    console.log('ROLL')
     setLocalMapping(mapping)
     setDraggingId(null)
   }, [mapping])
@@ -160,7 +159,6 @@ function DataMapping({ dataTypes, dimensions, mapping, setMapping }, ref) {
   //   setDraggingId(null)
   // }, [localMappding, setMapping])
   const commitLocalMapping = () => {
-    console.log('COMMIT!', localMappding, lastMapping.current)
     // setMapping()
     setMapping(lastMapping.current)
     setDraggingId(null)
@@ -170,8 +168,6 @@ function DataMapping({ dataTypes, dimensions, mapping, setMapping }, ref) {
   useEffect(() => {
     lastMapping.current = localMappding
   })
-
-  console.log('LOCAL', localMappding)
 
   useImperativeHandle(ref, () => ({
     clearLocalMapping: () => {
