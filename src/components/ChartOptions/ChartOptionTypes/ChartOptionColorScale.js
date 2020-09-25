@@ -253,7 +253,7 @@ const ChartOptionColorScale = ({
               <Col xs={12}>
                 <div className={styles["color-scale-item"]}>
                   {scaleType === 'ordinal' && 
-                    <span className="nowrap">{userValue.domain===""?'[empty string]':userValue.domain}</span>
+                    <span className="nowrap text-truncate pr-2" title={userValue.domain}>{userValue.domain===""?'[empty string]':userValue.domain}</span>
                   }
                   {scaleType !== 'ordinal' && (
                     <>

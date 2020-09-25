@@ -13,7 +13,7 @@ const ColorSchemePreview = ({ label, scale }) => {
       <div className="d-flex">
         {samples.map((sample) => (
           <div
-            key={sample}
+            key={'sample-'+sample}
             style={{ flex: 1, height: 10, background: scale(sample) }}
           ></div>
         ))}
