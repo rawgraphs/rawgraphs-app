@@ -229,7 +229,7 @@ const ChartOptionColorScale = ({
       </Row>
       
       {/* Scale preview */}
-      {currentFinalScale && (
+      {/* {currentFinalScale && (
         <Row className={[props.className].join(' ')}>
           <Col xs={12}>
             <ColorSchemePreview
@@ -238,7 +238,7 @@ const ChartOptionColorScale = ({
             />
           </Col>
         </Row>
-      )}
+      )} */}
 
       {/* Scale color swatches */}
       {colorDataType && userValues && (

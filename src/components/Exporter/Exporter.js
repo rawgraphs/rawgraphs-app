@@ -49,7 +49,7 @@ export default function Exporter({ rawViz }) {
     [rawViz]
   )
 
-  const [exportFormats, setExportFormats] = useState(['svg','png','jpg','rawgraphs'])
+  const exportFormats = ['svg','png','jpg','rawgraphs'];
 
   const [currentFormat, setCurrentFormat] = useState('svg')
   const [currentFile, setCurrentFile] = useState('viz')
