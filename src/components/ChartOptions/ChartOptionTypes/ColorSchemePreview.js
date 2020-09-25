@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ColorSchemePreview = ({ label, scale }) => {
+const ColorSchemePreview = ({ label, scale, numSamples=150 }) => {
   let samples
   if (scale.ticks) {
-    samples = scale.ticks()
+    samples = scale.ticks(numSamples)
   } else {
     samples = scale.domain()
   }
