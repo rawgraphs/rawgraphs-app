@@ -57,7 +57,7 @@ const ChartDimensionCard = ({
             }
           : undefined,
       })
-      } else {
+      } else if(item.dimensionId !== dimension.id) {
         replaceDimension(
           item.dimensionId,
           dimension.id,
