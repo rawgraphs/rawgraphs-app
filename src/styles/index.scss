@@ -33,7 +33,6 @@ $font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI",
 // Fonts
 @import 'fonts';
 
-// HTML tags
 html {
   font-size: 13px;
 }
@@ -76,6 +75,13 @@ h5 {
   color: var(--gray-500);
 }
 // UI
+.app-sections {
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .alert {
   color: var(--gray-100);
   display: flex;

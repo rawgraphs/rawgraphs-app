@@ -71,53 +71,55 @@ function App() {
   return (
     <div className="App">
       <Header menuItems={HeaderItems} />
-      <Section title={`1. Load your data ${loading ? '..loading' : ''}`}>
-        <DataLoader
-          data={data}
-          setData={setData}
-          dataSource={dataSource}
-          setDataSource={setDataSource}
-          setLoading={setLoading}
-        />
-      </Section>
-      {data && <Section title="2. Choose a chart">
-        <ChartSelector
-          availableCharts={charts}
-          currentChart={currentChart}
-          setCurrentChart={handleChartChange}
-        />
-      </Section>}
-      {data && currentChart && (
-        <Section title={`3. Mapping ${mappingLoading ? '..loading' : ''}`}>
-          <DataMapping
-            dimensions={currentChart.dimensions}
-            dataTypes={data.dataTypes}
-            mapping={mapping}
-            setMapping={setMapping}
+      <div className="app-sections">
+        <Section title={`1. Load your data ${loading ? '..loading' : ''}`}>
+          <DataLoader
+            data={data}
+            setData={setData}
+            dataSource={dataSource}
+            setDataSource={setDataSource}
+            setLoading={setLoading}
           />
         </Section>
-      )}
-      {data && currentChart && (
-        <Section title="4. Customize">
-          <ChartPreviewWithOptions
-            chart={currentChart}
-            dataset={data.dataset}
-            dataTypes={data.dataTypes}
-            mapping={mapping}
-            visualOptions={visualOptions}
-            setVisualOptions={setVisualOptions}
-            setRawViz={setRawViz}
-            setMappingLoading={setMappingLoading}
+        {data && <Section title="2. Choose a chart">
+          <ChartSelector
+            availableCharts={charts}
+            currentChart={currentChart}
+            setCurrentChart={handleChartChange}
           />
-        </Section>
-      )}
-      {data && currentChart && rawViz && (
-        <Section title="5. Export">
-          <Exporter rawViz={rawViz} />
-        </Section>
-      )}
-      {/* <Section title="0. Typography">{typography}</Section> */}
-      <Footer/>
+        </Section>}
+        {data && currentChart && (
+          <Section title={`3. Mapping ${mappingLoading ? '..loading' : ''}`}>
+            <DataMapping
+              dimensions={currentChart.dimensions}
+              dataTypes={data.dataTypes}
+              mapping={mapping}
+              setMapping={setMapping}
+            />
+          </Section>
+        )}
+        {data && currentChart && (
+          <Section title="4. Customize">
+            <ChartPreviewWithOptions
+              chart={currentChart}
+              dataset={data.dataset}
+              dataTypes={data.dataTypes}
+              mapping={mapping}
+              visualOptions={visualOptions}
+              setVisualOptions={setVisualOptions}
+              setRawViz={setRawViz}
+              setMappingLoading={setMappingLoading}
+            />
+          </Section>
+        )}
+        {data && currentChart && rawViz && (
+          <Section title="5. Export">
+            <Exporter rawViz={rawViz} />
+          </Section>
+        )}
+        {/* <Section title="0. Typography">{typography}</Section> */}
+        <Footer/>
+      </div>
     </div>
   )
 }
