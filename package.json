@@ -26,7 +26,6 @@
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.0.3",
     "react-icons": "^3.10.0",
-    "react-resize-detector": "^5.2.0",
     "react-scripts": "3.4.1",
     "typeface-inter": "^3.12.0",
     "worker-loader": "^3.0.2"

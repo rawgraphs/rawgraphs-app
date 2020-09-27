@@ -75,6 +75,10 @@ h5 {
 .small {
   color: var(--gray-500);
 }
+
+.big {
+  font-size: 1.25rem;
+}
 // UI
 .app-sections {
   min-height: calc(100vh - var(--header-height));
@@ -82,7 +86,6 @@ h5 {
   flex-direction: column;
   justify-content: space-between;
 }
-
 .alert {
   color: var(--gray-100);
   display: flex;
@@ -135,6 +138,17 @@ h5 {
   background-color: white;
   border: none;
   border-bottom: 1px solid var(--light);
+}
+.raw-modal {
+  .modal-content {
+    background-color: var(--gray-bg);
+    border: none;
+    border-radius: 4px;
+  }
+  .modal-footer {
+    border: none;
+    justify-content: flex-start;
+  }
 }
 .truncate-160px {
   max-width: 160px;

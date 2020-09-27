@@ -20,8 +20,6 @@ import Exporter from './components/Exporter'
 import get from 'lodash/get'
 import usePrevious from './hooks/usePrevious'
 
-const ModalScreenSize = withResizeDetector(ScreenSizeAlert)
-
 // #TODO: i18n
 
 function App() {
@@ -132,7 +130,7 @@ function App() {
         )}
         <Footer/>
       </div>
-      <ModalScreenSize />
+      <ScreenSizeAlert />
     </div>
   )
 }
