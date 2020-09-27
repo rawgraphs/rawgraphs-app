@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react'
-import { withResizeDetector } from 'react-resize-detector';
 import {
   getOptionsConfig,
   getDefaultOptionsValues,
