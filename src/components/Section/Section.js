@@ -7,7 +7,7 @@ export default function Section(props) {
     <Container
       fluid
       className={
-        styles.section + (props.className ? ' ' + props.className : '')
+        [styles.section, props.className].join(' ')
       }
     >
       <Row>
