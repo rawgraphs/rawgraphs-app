@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import styles from './ChartSelector.module.scss'
 import { Row, Col, Card, Dropdown } from 'react-bootstrap'
 import { BsLink } from 'react-icons/bs'
 import uniq from 'lodash/uniq'
+import styles from './ChartSelector.module.scss'
 
 function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
   const [filter, setFilter] = useState('All charts')
@@ -43,7 +43,7 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
       <Row>
         <Col xs={3} className="pt-3">
           {currentChart && (
-            <Card>
+            <Card className={styles.currentChart}>
               <Card.Img variant="top" src={currentChart.metadata.thumbnail} />
               <Card.Body>
                 <Card.Title className="m-0">
@@ -54,14 +54,14 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
                 </Card.Subtitle>
                 <Card.Text>{currentChart.metadata.description}</Card.Text>
                 <Card.Link
-                  className="underlined"
+                  className={`${styles.disabled} underlined`}
                   href={currentChart.metadata.code}
                   target="_blank"
                 >
                   <BsLink color="black" /> Code
                 </Card.Link>
                 <Card.Link
-                  className="underlined"
+                  className={`${styles.disabled} underlined`}
                   href={currentChart.metadata.tutorial}
                   target="_blank"
                 >
@@ -90,7 +90,9 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
                     ></div>
                     <Card.Body className="w-75 px-2 py-3">
                       <Card.Title className="m-0">
-                        <h2 className="m-0" style={{whiteSpace: 'nowrap'}}>{d.metadata.name}</h2>
+                        <h2 className="m-0" style={{ whiteSpace: 'nowrap' }}>
+                          {d.metadata.name}
+                        </h2>
                       </Card.Title>
                       <Card.Subtitle className="m-0">
                         <h4 className="m-0">{d.metadata.category}</h4>
