@@ -28,7 +28,7 @@ function App() {
   const [mapping, setMapping] = useState({})
   const [visualOptions, setVisualOptions] = useState({})
   const [rawViz, setRawViz] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [mappingLoading, setMappingLoading] = useState(false)
   const dataMappingRef = useRef(null)
 
@@ -82,7 +82,7 @@ function App() {
     <div className="App">
       <Header menuItems={HeaderItems} />
       <div className="app-sections">
-        <Section title={`1. Load your data`}>
+        <Section title={`1. Load your data`} loading={loading}>
           <DataLoader
             data={data}
             setData={setData}
@@ -100,7 +100,7 @@ function App() {
           />
         </Section>}
         {data && currentChart && (
-          <Section title={`3. Mapping ${loading ? '..loading' : ''}`}>
+          <Section title={`3. Mapping`} loading={mappingLoading}>
             <DataMapping
               dimensions={currentChart.dimensions}
               dataTypes={data.dataTypes}

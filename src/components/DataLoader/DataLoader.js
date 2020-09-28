@@ -402,7 +402,7 @@ function DataLoader({ data, setData, dataSource, setDataSource, loading, setLoad
         {!userData && (
           <Col
             xs={3}
-            lg={3}
+            lg={2}
             className="d-flex flex-column justify-content-start pl-3 pr-0 options"
           >
             {options.map((d, i) => {
@@ -437,7 +437,7 @@ function DataLoader({ data, setData, dataSource, setDataSource, loading, setLoad
         {userData && (
           <Col
             xs={3}
-            lg={3}
+            lg={2}
             className="d-flex flex-column justify-content-start pl-3 pr-0 options"
           >
             <div
