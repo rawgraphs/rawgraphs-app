@@ -5,6 +5,6 @@ const separatorsLabels = {
   '|':'Pipe'
 }
 
-const separatorsList = Object.keys(separatorsLabels);
+const separatorsList = Object.keys(separatorsLabels)
 
 export { separatorsList, separatorsLabels }
