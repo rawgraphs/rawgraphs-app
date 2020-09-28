@@ -49,3 +49,18 @@
   box-sizing: border-box;
   border-radius: 4px;
 }
+
+.loading-component {
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-lighter), var(--gray-bg));
+  & > h1 {
+    color: inherit;
+    margin: 0;
+  }
+}

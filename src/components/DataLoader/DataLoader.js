@@ -12,6 +12,7 @@ import {
 import DataSamples from '../DataSamples/DataSamples'
 import { parseDataset } from '@raw-temp/rawgraphs-core'
 import { parseDatasetInWorker } from '../../worker'
+import Loading from './loading'
 
 import localeList from './localeList'
 import { separatorsList } from './separators'
@@ -28,7 +29,7 @@ import { stackData } from './stack'
 import UrlFetch from './loaders/UrlFetch'
 import { WEBWORKER_ACTIVE } from '../../constants'
 
-function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
+function DataLoader({ data, setData, dataSource, setDataSource, loading, setLoading }) {
   /* Data to be plot in the chart */
   /* First stage: raw user input */
   const [userInput, setUserInput] = useState('')
@@ -374,6 +375,8 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
         }}
       />
     )
+  } else if (loading && !data) {
+    mainContent = <Loading/>
   } else {
     mainContent = (
       <>
