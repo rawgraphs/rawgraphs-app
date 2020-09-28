@@ -14,6 +14,7 @@ import { parseDataset } from '@raw-temp/rawgraphs-core'
 import { parseDatasetInWorker } from '../../worker'
 
 import localeList from './localeList'
+import { separatorsList } from './separators'
 import ParsingOptions from '../ParsingOptions'
 import Paste from './loaders/Paste'
 import UploadFile from './loaders/UploadFile'
@@ -49,7 +50,7 @@ function DataLoader({ data, setData, dataSource, setDataSource, setLoading }) {
   ])
 
   /* Parsing Options */
-  const [separator, setSeparator] = useState(',')
+  const [separator, setSeparator] = useState(separatorsList[2])
   const [thousandsSeparator, setThousandsSeparator] = useState(',')
   const [decimalsSeparator, setDecimalsSeparator] = useState('.')
   const [locale, setLocale] = useState(navigator.language || 'en-US')

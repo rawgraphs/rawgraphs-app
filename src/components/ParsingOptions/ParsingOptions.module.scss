@@ -17,7 +17,7 @@
     button {
       padding-right: 24px;
       height: 40px;
-      width: 108px;
+      width: 128px;
     }
   }
   :global .option {
@@ -35,4 +35,16 @@
     justify-content: center;
     align-items: center;
   }
+}
+
+.separator-preview {
+  font-family: var(--font-family-monospace);
+  background-color: var(--gray-200);
+  color: var(--gray-900);
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 4px;
+  margin-right:4px;
 }
