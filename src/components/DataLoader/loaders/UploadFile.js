@@ -17,14 +17,23 @@ export default function UploadFile({ userInput, setUserInput }) {
     },
     [setUserInput]
   )
-  const { getRootProps, getInputProps, isDragReject } = useDropzone({
+  const {
+    getRootProps,
+    getInputProps,
+    isDragReject,
+    isDragAccept,
+  } = useDropzone({
     onDrop,
-    accept: '.csv, .tsv, .txt, .json',
+    accept:
+      'text/csv,text/plain,application/json,application/vnd.ms-excel,text/tsv,text/tab-separated-values',
     maxFiles: 1,
   })
   return (
     <div
-      className={classNames(S.dropzone, { [S.reject]: isDragReject })}
+      className={classNames(S.dropzone, {
+        [S.reject]: isDragReject,
+        [S.accept]: isDragAccept,
+      })}
       {...getRootProps()}
     >
       <input {...getInputProps()} />
@@ -33,6 +42,8 @@ export default function UploadFile({ userInput, setUserInput }) {
         Browse
       </Button>
       <span>a file from your computer</span>
+      {isDragAccept && <p>All files will be accepted</p>}
+      {isDragReject && <p>Some files will be rejected</p>}
     </div>
   )
 }

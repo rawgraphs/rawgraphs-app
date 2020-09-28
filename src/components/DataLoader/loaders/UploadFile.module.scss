@@ -11,6 +11,10 @@
   border: 2px dashed var(--danger);
 }
 
+.dropzone.accept {
+  border: 2px dashed var(--success);
+}
+
 .browse-button {
   font-size: 13px;
   line-height: 16px;
