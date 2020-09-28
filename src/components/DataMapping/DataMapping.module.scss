@@ -70,9 +70,8 @@
   align-items: center;
   justify-items: center;
   justify-content: space-between;
-  cursor: unset;
+  cursor: pointer;
   margin-bottom: 4px;
-
   &.column-valid {
     background-color: var(--primary);
   }

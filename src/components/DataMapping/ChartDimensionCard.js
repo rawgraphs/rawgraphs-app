@@ -38,26 +38,25 @@ const ChartDimensionCard = ({
       isOver: monitor.isOver(),
     }),
     drop: (item, monitor) => {
-      if(item.type === 'column'){
+      if (item.type === 'column') {
         const defaulAggregation = dimension.aggregation
-        ? getDefaultDimensionAggregation(dimension, dataTypes[item.id])
-        : null
-        
+          ? getDefaultDimensionAggregation(dimension, dataTypes[item.id])
+          : null
 
-      setMapping({
-        ...mapping,
-        ids: (mapping.ids || []).concat(uniqueId()),
-        value: [...(mapping.value || []), item.id],
-        config: dimension.aggregation
-          ? {
-              aggregation: [
-                ...(get(mapping, 'config.aggregation') || []),
-                defaulAggregation,
-              ],
-            }
-          : undefined,
-      })
-      } else if(item.dimensionId !== dimension.id) {
+        setMapping({
+          ...mapping,
+          ids: (mapping.ids || []).concat(uniqueId()),
+          value: [...(mapping.value || []), item.id],
+          config: dimension.aggregation
+            ? {
+                aggregation: [
+                  ...(get(mapping, 'config.aggregation') || []),
+                  defaulAggregation,
+                ],
+              }
+            : undefined,
+        })
+      } else if (item.dimensionId !== dimension.id) {
         replaceDimension(
           item.dimensionId,
           dimension.id,
@@ -66,7 +65,6 @@ const ChartDimensionCard = ({
           true
         )
       }
-      
     },
   })
 
@@ -157,28 +155,34 @@ const ChartDimensionCard = ({
     [mapping, setMapping]
   )
 
-  const onInsertColumn = useCallback((index, item) => {
-    const defaulAggregation = dimension.aggregation
-      ? getDefaultDimensionAggregation(dimension, dataTypes[item.id])
-      : null
+  const onInsertColumn = useCallback(
+    (index, item) => {
+      const defaulAggregation = dimension.aggregation
+        ? getDefaultDimensionAggregation(dimension, dataTypes[item.id])
+        : null
 
-    const nextId = uniqueId()
-    setDraggingId(nextId)
-    setMapping({
-      ...mapping,
-      ids: arrayInsert(mapping.ids ?? [], index, nextId),
-      value: arrayInsert(mapping.value ?? [], index, item.id),
-      config: dimension.aggregation
-        ? {
-            aggregation: arrayInsert(
-              get(mapping, 'config.aggregation', []),
-              index,
-              defaulAggregation
-            ),
-          }
-        : undefined,
-    }, true)
-  }, [dataTypes, dimension, mapping, setDraggingId, setMapping])
+      const nextId = uniqueId()
+      setDraggingId(nextId)
+      setMapping(
+        {
+          ...mapping,
+          ids: arrayInsert(mapping.ids ?? [], index, nextId),
+          value: arrayInsert(mapping.value ?? [], index, item.id),
+          config: dimension.aggregation
+            ? {
+                aggregation: arrayInsert(
+                  get(mapping, 'config.aggregation', []),
+                  index,
+                  defaulAggregation
+                ),
+              }
+            : undefined,
+        },
+        true
+      )
+    },
+    [dataTypes, dimension, mapping, setDraggingId, setMapping]
+  )
 
   return (
     // <div
@@ -210,7 +214,7 @@ const ChartDimensionCard = ({
             {dimension.required && `\u2055`}
           </span>
         </div>
-        
+
         {/* These are the columns that have been dropped on the current dimension */}
         {idsMappedHere.map((renderId, i) => {
           const columnId = columnsMappedHere[i]
@@ -222,7 +226,7 @@ const ChartDimensionCard = ({
           const isValid =
             dimension.validTypes?.length === 0 ||
             dimension.validTypes?.includes(columnDataType)
-              
+
           const DataTypeIcon = dataTypeIcons[getTypeName(dataTypes[columnId])]
 
           return (
@@ -253,11 +257,9 @@ const ChartDimensionCard = ({
         {/* This is the dropzone */}
         {(dimension.multiple || columnsMappedHere.length === 0) && (
           <div
-            className={classnames(
-              'dropzone',
-              styles['dropzone'],
-              isOver ? styles['active'] : null
-            )}
+            className={classnames('dropzone', styles['dropzone'], {
+              [styles['active']]: isOver,
+            })}
             ref={drop}
           >
             {!dimension.multiple && 'Drop dimension here'}
