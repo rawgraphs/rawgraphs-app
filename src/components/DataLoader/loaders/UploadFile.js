@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react'
 import { Button } from 'react-bootstrap'
 import { useDropzone } from 'react-dropzone'
+import classNames from 'classnames'
 import S from './UploadFile.module.scss'
 
 export default function UploadFile({ userInput, setUserInput }) {
@@ -10,13 +11,22 @@ export default function UploadFile({ userInput, setUserInput }) {
       reader.addEventListener('load', (e) => {
         setUserInput(e.target.result)
       })
-      reader.readAsText(acceptedFiles[0])
+      if (acceptedFiles.length) {
+        reader.readAsText(acceptedFiles[0])
+      }
     },
     [setUserInput]
   )
-  const { getRootProps, getInputProps } = useDropzone({ onDrop })
+  const { getRootProps, getInputProps, isDragReject } = useDropzone({
+    onDrop,
+    accept: '.csv, .tsv, .txt, .json',
+    maxFiles: 1,
+  })
   return (
-    <div className={S.dropzone} {...getRootProps()}>
+    <div
+      className={classNames(S.dropzone, { [S.reject]: isDragReject })}
+      {...getRootProps()}
+    >
       <input {...getInputProps()} />
       <span>Drag a file here or </span>
       <Button className={S['browse-button']} color="primary">

@@ -7,6 +7,10 @@
   align-items: center;
 }
 
+.dropzone.reject {
+  border: 2px dashed var(--danger);
+}
+
 .browse-button {
   font-size: 13px;
   line-height: 16px;
