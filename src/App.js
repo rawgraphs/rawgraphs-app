@@ -63,9 +63,9 @@ function App() {
   }, [columnNames, prevColumnNames, clearLocalMapping])
 
   const handleChartChange = useCallback((nextChart) => {
-    setCurrentChart(nextChart)
     setMapping({})
     clearLocalMapping()
+    setCurrentChart(nextChart)
     const options = getOptionsConfig(nextChart?.visualOptions)
     setVisualOptions(getDefaultOptionsValues(options))
     setRawViz(null)
@@ -102,6 +102,7 @@ function App() {
         {data && currentChart && (
           <Section title={`3. Mapping`} loading={mappingLoading}>
             <DataMapping
+              ref={dataMappingRef}
               dimensions={currentChart.dimensions}
               dataTypes={data.dataTypes}
               mapping={mapping}
