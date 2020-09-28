@@ -29,22 +29,6 @@ const ChartOptionColorScale = ({
   mappedData,
   ...props
 }) => {
-  // const mappedDataset = useMemo(() => {
-  //   try {
-
-  //     const viz = rawChart(chart, {
-  //       data: dataset,
-  //       mapping,
-  //       dataTypes,
-  //       visualOptions: {},
-  //     })
-  //     return viz.mapData()
-  //   } catch (e) {
-  //     return undefined
-
-  //   }
-  // }, [chart, mapping, dataTypes, dataset])
-
   const [scaleType, setScaleType] = useState('ordinal')
 
   const mappingValue = useMemo(() => {
@@ -106,6 +90,28 @@ const ChartOptionColorScale = ({
     [userValues]
   )
 
+  const resetUserValues = useCallback(() => {
+    const domain = getColorDomain(colorDataset, colorDataType, scaleType)
+    const userValues = getInitialScaleValues(
+      domain,
+      scaleType,
+      interpolator
+    ).map((userValue) => ({
+      ...userValue,
+      userRange: userValue.range,
+      userDomain: userValue.domain,
+    }))
+    setUserValues(userValues)
+  }, [colorDataType, colorDataset, interpolator, scaleType])
+
+  const setInterpolatorAndReset = useCallback(
+    (nextInterpolator) => {
+      nextInterpolator === interpolator && resetUserValues()
+      setInterpolator(nextInterpolator)
+    },
+    [interpolator, resetUserValues]
+  )
+
   useEffect(() => {
     if (
       !colorDataset ||
@@ -120,18 +126,7 @@ const ChartOptionColorScale = ({
     if (!colorDataType) {
       return
     }
-
-    const domain = getColorDomain(colorDataset, colorDataType, scaleType)
-    const userValues = getInitialScaleValues(
-      domain,
-      scaleType,
-      interpolator
-    ).map((userValue) => ({
-      ...userValue,
-      userRange: userValue.range,
-      userDomain: userValue.domain,
-    }))
-    setUserValues(userValues)
+    resetUserValues()
   }, [
     scaleType,
     interpolator,
@@ -141,6 +136,7 @@ const ChartOptionColorScale = ({
     dataTypes,
     mappingValue,
     colorDataType,
+    resetUserValues,
   ])
 
   const userValuesForFinalScale = useMemo(() => {
@@ -191,7 +187,9 @@ const ChartOptionColorScale = ({
   return (
     <>
       <Row className={[props.className].join(' ')}>
-        <Col xs={6} className="d-flex align-items-center nowrap">{label}</Col>
+        <Col xs={6} className="d-flex align-items-center nowrap">
+          {label}
+        </Col>
         <Col xs={6}>
           <select
             disabled={!colorDataType}
@@ -209,15 +207,17 @@ const ChartOptionColorScale = ({
           </select>
         </Col>
       </Row>
-      
+
       {/* Color scheme */}
       <Row className={[props.className].join(' ')}>
-        <Col xs={6} className="d-flex align-items-center nowrap">Color scheme</Col>
+        <Col xs={6} className="d-flex align-items-center nowrap">
+          Color scheme
+        </Col>
         <Col xs={6}>
           <ColorSchemesDropDown
             interpolators={interpolators}
             interpolator={interpolator}
-            setInterpolator={setInterpolator}
+            setInterpolator={setInterpolatorAndReset}
             // To display color-scale preview
             colorDataset={colorDataset}
             colorDataType={colorDataType}
@@ -226,7 +226,7 @@ const ChartOptionColorScale = ({
           />
         </Col>
       </Row>
-      
+
       {/* Scale preview */}
       {/* {currentFinalScale && (
         <Row className={[props.className].join(' ')}>
@@ -241,24 +241,39 @@ const ChartOptionColorScale = ({
 
       {/* Scale color swatches */}
       {colorDataType && userValues && (
-        <div className={styles["color-swatches-list"]}>
+        <div className={styles['color-swatches-list']}>
           {userValues.map((userValue, i) => (
-            <Row key={i} className={[
-                styles["chart-option"],
-                styles["color-swatch"],
-                scaleType!=='ordinal'?styles["not-ordinal"]:styles["ordinal"]
+            <Row
+              key={i}
+              className={[
+                styles['chart-option'],
+                styles['color-swatch'],
+                scaleType !== 'ordinal'
+                  ? styles['not-ordinal']
+                  : styles['ordinal'],
               ].join(' ')}
             >
               <Col xs={12}>
-                <div className={styles["color-scale-item"]}>
-                  {scaleType === 'ordinal' && 
-                    <span className="nowrap text-truncate pr-2" title={userValue.domain}>{userValue.domain===""?'[empty string]':userValue.domain}</span>
-                  }
+                <div className={styles['color-scale-item']}>
+                  {scaleType === 'ordinal' && (
+                    <span
+                      className="nowrap text-truncate pr-2"
+                      title={userValue.domain}
+                    >
+                      {userValue.domain === ''
+                        ? '[empty string]'
+                        : userValue.domain}
+                    </span>
+                  )}
                   {scaleType !== 'ordinal' && (
                     <>
-                      <span className="nowrap">{
-                        i===0?'Start':i===(userValues.length-1)?'End':'Middle'
-                      }</span>
+                      <span className="nowrap">
+                        {i === 0
+                          ? 'Start'
+                          : i === userValues.length - 1
+                          ? 'End'
+                          : 'Middle'}
+                      </span>
                       <input
                         type="number"
                         className="form-control text-field"

@@ -1,6 +1,6 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback } from 'react'
 import { Col } from 'react-bootstrap'
-import { useDrop, useDrag } from 'react-dnd'
+import { useDrop } from 'react-dnd'
 import get from 'lodash/get'
 import uniqueId from 'lodash/uniqueId'
 import classnames from 'classnames'

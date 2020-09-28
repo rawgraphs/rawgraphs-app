@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react'
-import { Col, Dropdown } from 'react-bootstrap'
+import React, { useRef } from 'react'
+import { Dropdown } from 'react-bootstrap'
 import classnames from 'classnames'
 import styles from './DataMapping.module.scss'
 import { BsX } from 'react-icons/bs'
@@ -45,7 +45,7 @@ export default function ChartDimensionItem({
       }
 
       const hoverIndex = index
-      
+
       //#TODO: for now we allow only dropping on "drop another dimension here" in case of multiple dimensions
       if (false && item.type === 'column') {
         onInsertColumn(hoverIndex, item)
@@ -87,7 +87,7 @@ export default function ChartDimensionItem({
         item.index = hoverIndex
       } else {
         //#TODO: for now we allow only dropping on "drop another dimension here" in case of multiple dimensions
-        
+
         // replaceDimension(
         //   item.dimensionId,
         //   dimension.id,
@@ -153,7 +153,10 @@ export default function ChartDimensionItem({
       <span className={styles['column-title']}>{columnId}</span>
       {dimension.aggregation && (
         <Dropdown className="d-inline-block ml-2 raw-dropdown">
-          <Dropdown.Toggle variant={isValid ? "primary" : "danger"} className="pr-5">
+          <Dropdown.Toggle
+            variant={isValid ? 'primary' : 'danger'}
+            className="pr-5"
+          >
             {relatedAggregation}
           </Dropdown.Toggle>
           <Dropdown.Menu>
