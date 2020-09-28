@@ -109,7 +109,6 @@ const ChartOptions = ({
           <div
             key={groupName}
             groupname={groupName}
-            style={{ borderTop: '1px solid var(--gray-400)' }}
             className={
               [
                 styles["options-group"],

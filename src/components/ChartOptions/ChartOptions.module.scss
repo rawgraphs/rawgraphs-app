@@ -59,6 +59,7 @@
     transition: max-height 1s ease;
     height: auto;
     overflow: visible;
+    border-top: 1px solid var(--gray-400);
     .group-header {
         height: 40px;
         &:before {
