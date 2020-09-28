@@ -49,3 +49,40 @@
   box-sizing: border-box;
   border-radius: 4px;
 }
+
+.loading-component {
+  // border: 1px solid var(--primary);
+  border-radius: 4px;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+
+  & .bg-animated {
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(-45deg, var(--primary-lighter), var(--gray-bg), var(--primary-lighter), var(--gray-bg), var(--primary-lighter));
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    animation-name: bg-animation;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+  
+  & > p {
+    color: black;
+    margin: 0;
+  }
+}
+
+@keyframes bg-animation {
+  from {left:0%}
+  to {left:-100%}
+}

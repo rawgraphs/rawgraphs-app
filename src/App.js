@@ -82,12 +82,13 @@ function App() {
     <div className="App">
       <Header menuItems={HeaderItems} />
       <div className="app-sections">
-        <Section title={`1. Load your data ${loading ? '..loading' : ''}`}>
+        <Section title={`1. Load your data`} loading={loading}>
           <DataLoader
             data={data}
             setData={setData}
             dataSource={dataSource}
             setDataSource={setDataSource}
+            loading={loading}
             setLoading={setLoading}
           />
         </Section>
@@ -99,7 +100,7 @@ function App() {
           />
         </Section>}
         {data && currentChart && (
-          <Section title={`3. Mapping ${mappingLoading ? '..loading' : ''}`}>
+          <Section title={`3. Mapping`} loading={mappingLoading}>
             <DataMapping
               dimensions={currentChart.dimensions}
               dataTypes={data.dataTypes}
