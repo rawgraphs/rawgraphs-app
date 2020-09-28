@@ -1,10 +1,10 @@
 const separatorsLabels = {
-  '\\t':'Tab',
-  ';':'Semicolumn',
-  ',':'Comma',
-  '|':'Vertical bar'
+  '\\t': 'Tab',
+  ';': 'Semicolon',
+  ',': 'Comma',
+  '|': 'Vertical bar',
 }
 
-const separatorsList = Object.keys(separatorsLabels);
+const separatorsList = Object.keys(separatorsLabels)
 
 export { separatorsList, separatorsLabels }
