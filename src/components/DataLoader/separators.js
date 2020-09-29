@@ -1,8 +1,8 @@
 const separatorsLabels = {
-  '\\t':'Tab',
-  ';':'Semicol',
-  ',':'Comma',
-  '|':'Pipe'
+  '\\t': 'Tab',
+  ';': 'Semicolon',
+  ',': 'Comma',
+  '|': 'Pipe',
 }
 
 const separatorsList = Object.keys(separatorsLabels)
