@@ -3,28 +3,30 @@ import { Row, Col, Card } from 'react-bootstrap'
 
 const samplesList = [
   {
-    name: 'Movie Data',
-    category: 'Dispersions',
-    url:
-      './sample-datasets/Scatterplot - Highest Grossing Blockbusters of All Time Adjusted for Inflation - data.tsv',
+    name: 'Highest grossing movies in history',
+    category: 'Bubble chart',
+    url: './sample-datasets/Bubble Chart - TOP 50 Groossing Movies.tsv',
     delimiter: '\t',
   },
+
   {
-    name: 'Music Industry',
-    category: 'Lines',
-    url: './sample-datasets/Line graph - RIAA Music format revenues - data.tsv',
+    name: 'US Presidential Elections (1976-2016)',
+    category: 'Line Graph',
+    url: './sample-datasets/Line Graph - US Presidential Elections.tsv',
     delimiter: '\t',
   },
+
   {
-    name: 'Wine Tasting',
-    category: 'Weighted Hierarchies',
-    url: './sample-datasets/Sunburst - Wine Tasting - data.tsv',
+    name: 'Letter Frequency by Language',
+    category: 'Matrix plot (Heatmap)',
+    url: './sample-datasets/Matrix Plot - Letters frequencies by language.tsv',
     delimiter: '\t',
   },
+
   {
-    name: 'US Elections',
-    category: 'Temporal Evolution',
-    url: './sample-datasets/Line graph - US presidential election.tsv',
+    name: 'Aromas of wine and frequency',
+    category: 'Sunburst Diagram',
+    url: './sample-datasets/Sunburst - Wine Aromas.tsv',
     delimiter: '\t',
   },
 ]
@@ -39,7 +41,7 @@ export default function DataSamples({ onSampleReady }) {
     <Row>
       {samplesList.map((d, i) => {
         return (
-          <Col xs={6} lg={4} xl={3} key={i} style={{marginBottom:15}}>
+          <Col xs={6} lg={4} xl={3} key={i} style={{ marginBottom: 15 }}>
             <Card
               onClick={() => {
                 select(d)

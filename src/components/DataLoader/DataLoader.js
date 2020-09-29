@@ -300,7 +300,7 @@ function DataLoader({
     {
       id: 'samples',
       name: 'Try our data samples',
-      message: 'Wanna know more about what you can do with RAWGraphs?',
+      message: '',
       loader: <DataSamples onSampleReady={loadSample} />,
       icon: BsGift,
     },
