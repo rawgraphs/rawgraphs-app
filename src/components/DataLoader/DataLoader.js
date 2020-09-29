@@ -29,7 +29,14 @@ import { stackData } from './stack'
 import UrlFetch from './loaders/UrlFetch'
 import { WEBWORKER_ACTIVE } from '../../constants'
 
-function DataLoader({ data, setData, dataSource, setDataSource, loading, setLoading }) {
+function DataLoader({
+  data,
+  setData,
+  dataSource,
+  setDataSource,
+  loading,
+  setLoading,
+}) {
   /* Data to be plot in the chart */
   /* First stage: raw user input */
   const [userInput, setUserInput] = useState('')
@@ -273,7 +280,7 @@ function DataLoader({ data, setData, dataSource, setDataSource, loading, setLoad
         />
       ),
       message:
-        'Copy and paste your data from other applications or websites. You can use tabular (TSV, CSV, DSV) or JSON data. Questions about how to format your data?',
+        'Copy and paste your data from other applications or websites. You can use tabular (TSV, CSV, DSV) or JSON data.',
       icon: BsClipboard,
     },
     {
@@ -287,8 +294,7 @@ function DataLoader({ data, setData, dataSource, setDataSource, loading, setLoad
           }
         />
       ),
-      message:
-        'You can load tabular (TSV, CSV, DSV) or JSON data. Questions about how to format your data?',
+      message: 'You can load tabular (TSV, CSV, DSV) or JSON data.',
       icon: BsUpload,
     },
     {
@@ -376,21 +382,20 @@ function DataLoader({ data, setData, dataSource, setDataSource, loading, setLoad
       />
     )
   } else if (loading && !data) {
-    mainContent = <Loading/>
+    mainContent = <Loading />
   } else {
     mainContent = (
       <>
         {selectedOption.loader}
         <p className="mt-3">
-          {selectedOption.message}{' '}
-          <a
+          {selectedOption.message}
+          {/*<a
             href="https://rawgraphs.io/learning"
             target="_blank"
             rel="noopener noreferrer"
           >
             Check out our guides
-          </a>
-          .
+          </a>*/}
         </p>
       </>
     )
