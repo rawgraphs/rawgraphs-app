@@ -22,6 +22,7 @@ export default function InlineColorPicker({ color: maybeColor, onChange }) {
             onClick={() => setDisplayColorPicker(false)}
           />
           <SketchPicker
+            disableAlpha
             color={color}
             onChangeComplete={(color) => onChange(color.hex)}
           />
