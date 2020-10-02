@@ -101,7 +101,7 @@ export default function Exporter({ rawViz }) {
       </div>
 
       <div className="col col-sm-2">
-        <button className="btn btn-primary btn-block" onClick={downloadViz}>
+        <button className="btn btn-primary btn-block raw-btn" onClick={downloadViz}>
           Download
         </button>
       </div>

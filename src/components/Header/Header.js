@@ -16,6 +16,12 @@ export default function Header({ menuItems }) {
               </Nav.Link>
             )
           })}
+          <button className="btn btn-sm btn-primary ml-2" onClick={()=>{
+            const win = window.open("https://forms.gle/T8y8HvQ1754hMfjH7","_blank");
+            win.focus();
+          }}>
+            Bugs? Feedback?
+          </button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

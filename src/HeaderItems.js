@@ -1,14 +1,14 @@
 const headerItems = [
-  {
-    label: 'About',
-    slug: 'about',
-    href: 'https://rawgraphs.io/about',
-  },
-  {
-    label: 'Gallery',
-    slug: 'gallery',
-    href: 'https://rawgraphs.io/gallery',
-  },
+  // {
+  //   label: 'About',
+  //   slug: 'about',
+  //   href: 'https://rawgraphs.io/about',
+  // },
+  // {
+  //   label: 'Gallery',
+  //   slug: 'gallery',
+  //   href: 'https://rawgraphs.io/gallery',
+  // },
   // {
   //   label: 'Learning',
   //   slug: 'learning',
@@ -20,7 +20,12 @@ const headerItems = [
   //   href: 'https://github.com/rawgraphs/raw/wiki/FAQs',
   // },
   {
-    label: 'Github',
+    label: "RAWGraphs 1.3",
+    slug: 'rawgraphs-1-3',
+    href: 'https://app.rawgraphs.io',
+  },
+  {
+    label: 'GitHub',
     slug: 'github',
     href: 'https://github.com/rawgraphs',
   },
