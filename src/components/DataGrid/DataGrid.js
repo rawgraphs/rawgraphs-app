@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState, useCallback } from 'react'
+import React, { useMemo, useRef, useState, useCallback, useEffect } from 'react'
 import ReactDataGrid from 'react-data-grid'
 import { Overlay, OverlayTrigger } from 'react-bootstrap'
 import classNames from 'classnames'
@@ -307,6 +307,10 @@ export default function DataGrid({
   const handleSort = useCallback((columnKey, direction) => {
     setSort([columnKey, direction])
   }, [])
+
+  useEffect(() => {
+    document.getElementsByClassName('rdg')[0].classList.add('rdg-light')
+  })
 
   return (
     <ReactDataGrid
