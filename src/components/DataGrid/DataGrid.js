@@ -309,7 +309,7 @@ export default function DataGrid({
   }, [])
 
   useEffect(() => {
-    document.getElementsByClassName('rdg')[0].classList.add('rdg-light')
+    document.getElementsByClassName('rdg')[0].classList.add('rdg-light');
   })
 
   return (
