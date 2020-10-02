@@ -9,7 +9,7 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
   const charts =
     filter === 'All charts'
       ? availableCharts
-      : availableCharts.filter((d) => d.metadata.category === filter)
+      : availableCharts.filter((d) => d.metadata.categories.indexOf(filter) !== -1)
 
   return (
     <>
@@ -27,7 +27,7 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
               >
                 All charts
               </Dropdown.Item>
-              {uniq(availableCharts.map((d) => d.metadata.category)).map(
+              {uniq(availableCharts.map((d) => d.metadata.categories).flat()).map(
                 (d) => {
                   return (
                     <Dropdown.Item key={d} onClick={() => setFilter(d)}>
@@ -95,7 +95,7 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
                         </h2>
                       </Card.Title>
                       <Card.Subtitle className="m-0">
-                        <h4 className="m-0">{d.metadata.category}</h4>
+                        <h4 className="m-0">{d.metadata.categories.join(', ')}</h4>
                       </Card.Subtitle>
                     </Card.Body>
                   </Card>
