@@ -308,10 +308,6 @@ export default function DataGrid({
     setSort([columnKey, direction])
   }, [])
 
-  useEffect(() => {
-    document.getElementsByClassName('rdg')[0].classList.add('rdg-light');
-  })
-
   return (
     <ReactDataGrid
       minColumnWidth={idColumnWidth}
