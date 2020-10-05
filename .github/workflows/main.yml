@@ -4,13 +4,12 @@ name: Deploy RAWGRAPHS alpha
 # events but only for the v2 branch
 on:
   push:
-    branches: [ v2 ]
+    branches: [v2]
   pull_request:
-    branches: [ v2 ]
+    branches: [v2]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  
   deploy:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -25,26 +24,41 @@ jobs:
         with:
           node-version: 12.x
 
-      - name: Install Packages
-        run: npm install
-      
+      - name: Install Yarn
+      - run: npm install -g yarn
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v1
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install
+
       - name: Get short git hash
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-      
+
       - name: Build app
-        run: npm run build
+        run: yarn build
         env:
           CI: false
           REACT_APP_VERSION: ${{ steps.vars.outputs.sha_short }}
 
       - name: List output files
         run: find build/ -print
-          
+
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
-        # Deployment destination server & path. Formatted as protocol://domain.com:port/full/destination/path/
+          # Deployment destination server & path. Formatted as protocol://domain.com:port/full/destination/path/
           ftp-server: ftp://dev.rawgraphs.io/dev.rawgraphs.io/
           # FTP account username
           ftp-username: ${{ secrets.FTP_USERNAME }}
@@ -52,7 +66,3 @@ jobs:
           ftp-password: ${{ secrets.FTP_PASSWORD }}
           # The local folder to copy, defaults to root project folder
           local-dir: build
-        
-      
-      
-
