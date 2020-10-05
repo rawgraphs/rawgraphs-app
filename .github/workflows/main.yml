@@ -26,7 +26,7 @@ jobs:
           node-version: 12.x
 
       - name: Install Packages
-        run: npm install
+        run: yarn install
       
       - name: Get short git hash
         id: vars
