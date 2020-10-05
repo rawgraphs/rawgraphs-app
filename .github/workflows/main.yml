@@ -1,5 +1,4 @@
 name: Deploy RAWGRAPHS alpha
-
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the v2 branch
 on:
