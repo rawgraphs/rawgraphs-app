@@ -23,9 +23,6 @@ jobs:
         with:
           node-version: 12.x
 
-      - name: Install Yarn
-        run: npm install -g yarn
-
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
