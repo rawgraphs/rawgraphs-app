@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col, Form } from 'react-bootstrap'
 
-const ChartOptionBoolean = ({ optionId, label, value, error, onChange, className }) => {
+const ChartOptionBoolean = ({ optionId, label, value, error, onChange, className, isEnabled }) => {
   return (
     <Row className={className}>
       <Col xs={6} className="d-flex align-items-center nowrap">{label}</Col>
@@ -9,6 +9,7 @@ const ChartOptionBoolean = ({ optionId, label, value, error, onChange, className
         <Form.Check
           type="switch"
           checked={!!value}
+          disabled={!isEnabled}
           onChange={(e) => {
             onChange(e.target.checked)
           }}

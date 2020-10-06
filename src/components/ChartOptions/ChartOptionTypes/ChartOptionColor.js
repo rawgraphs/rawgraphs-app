@@ -9,6 +9,7 @@ const ChartOptionColor = ({
   onChange,
   default: defaultValue,
   label,
+  isEnabled,
   ...props
 }) => {
   if (props.options) {
@@ -28,7 +29,7 @@ const ChartOptionColor = ({
     <label className={props.className+" row"}>
       <Col xs={6} className="d-flex align-items-center">{label}</Col>
       <Col xs={6}>
-        <InilineColorPicker color={value} onChange={onChange} />
+        <InilineColorPicker disabled={!isEnabled} color={value} onChange={onChange} />
       </Col>
       {error && (
         <small>

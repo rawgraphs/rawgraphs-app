@@ -7,6 +7,7 @@ const ChartOptionText = ({
   onChange,
   default: defaultValue,
   label,
+  isEnabled,
   ...props
 }) => {
   if (props.options) {
@@ -29,6 +30,7 @@ const ChartOptionText = ({
         type="text"
         value={value ?? ''}
         step={props.step}
+        disabled={!isEnabled}
         onChange={(e) => {
           onChange(e.target.value)
         }}
