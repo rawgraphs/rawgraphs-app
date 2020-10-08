@@ -3,13 +3,14 @@ import {
   linechart,
   matrixplot,
   sunburst,
+  dendrogram,
+  circularDendrogram,
   // sankeydiagram,
   // alluvialdiagram,
   // beeswarm,
   // treemap,
   // circlepacking,
-  // dendrogram,
-  circularDendrogram,
+  // barchart,
 } from '@raw-temp/rawgraphs-charts'
 
 // New charts, not included into first release.
@@ -19,13 +20,14 @@ let charts = [
   linechart,
   matrixplot,
   sunburst,
+  dendrogram,
+  circularDendrogram,
   // sankeydiagram,
   // alluvialdiagram,
   // beeswarm,
   // circlepacking,
   // treemap,
-  // dendrogram,
-  circularDendrogram,
+  // barchart,
 ]
 
 export default charts
