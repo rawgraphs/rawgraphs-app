@@ -41,6 +41,7 @@ const ChartOptionColorScale = ({
       : undefined
   }, [dataTypes, mappingValue])
 
+
   const availableScaleTypes = useMemo(() => {
     if (colorDataType === 'number' || colorDataType === 'date') {
       return scaleTypes
@@ -142,9 +143,10 @@ const ChartOptionColorScale = ({
   const userValuesForFinalScale = useMemo(() => {
     return userValues.map((value) => ({
       range: value.userRange,
-      domain: value.userDomain,
+      domain: colorDataType === 'date' ? value.userDomain?.toString() : value.userDomain,
+      // domain: value.userDomain,
     }))
-  }, [userValues])
+  }, [colorDataType, userValues])
 
   const currentFinalScale = useMemo(() => {
     if (
@@ -183,6 +185,9 @@ const ChartOptionColorScale = ({
     }
     onChange(outScaleParams)
   }, [interpolator, scaleType, userValuesForFinalScale, onChange])
+
+
+  console.log("userValues", userValues)
 
   return (
     <>
@@ -258,11 +263,11 @@ const ChartOptionColorScale = ({
                   {scaleType === 'ordinal' && (
                     <span
                       className="nowrap text-truncate pr-2"
-                      title={userValue.domain}
+                      title={userValue.domain.toString()}
                     >
                       {userValue.domain === ''
                         ? '[empty string]'
-                        : userValue.domain}
+                        : userValue.domain.toString()}
                     </span>
                   )}
                   {scaleType !== 'ordinal' && (
@@ -275,15 +280,23 @@ const ChartOptionColorScale = ({
                           : 'Middle'}
                       </span>
                       <input
-                        type="number"
+                        type={colorDataType}
                         className="form-control text-field"
                         value={
-                          userValue.userDomain === 0 || userValue.userDomain
-                            ? userValue.userDomain
-                            : ''
+                          colorDataType !== 'date' 
+                          ? userValue.userDomain === 0 || userValue.userDomain
+                              ? userValue.userDomain
+                              : ''
+
+                            : userValue.userDomain ? userValue.userDomain.toISOString().substring(0, 10) : ''
                         }
                         onChange={(e) => {
-                          setUserValueDomain(i, e.target.value)
+                          if(colorDataType === 'date'){
+                            setUserValueDomain(i, new Date(e.target.value))
+                          } else {
+                            setUserValueDomain(i, e.target.value)
+                          }
+                          
                         }}
                       ></input>
                     </>
