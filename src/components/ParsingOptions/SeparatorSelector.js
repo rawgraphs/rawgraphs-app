@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { Dropdown } from 'react-bootstrap'
-import { separatorsLabels } from '../DataLoader/separators'
+import { separatorsLabels } from '../../constants'
 
 import styles from './ParsingOptions.module.scss'
 
