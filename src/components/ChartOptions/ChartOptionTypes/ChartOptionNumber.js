@@ -8,6 +8,7 @@ const ChartOptionNumber = ({
   onChange,
   default: defaultValue,
   label,
+  isEnabled,
   ...props
 }) => {
   if (props.options) {
@@ -17,6 +18,7 @@ const ChartOptionNumber = ({
         error={error}
         onChange={onChange}
         default={defaultValue}
+        disabled={!isEnabled}
         label={label}
         {...props}
       />
@@ -33,6 +35,7 @@ const ChartOptionNumber = ({
           step={props.step}
           min={props.min}
           max={props.max}
+          disabled={!isEnabled}
           onChange={(e) => {
             const str = e.target.value
             if (str === '') {

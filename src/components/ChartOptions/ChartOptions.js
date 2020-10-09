@@ -4,6 +4,7 @@ import {
   getOptionsConfig,
   getContainerOptions,
   getDefaultOptionsValues,
+  getEnabledOptions,
 } from '@raw-temp/rawgraphs-core'
 import ChartOptionNumber from './ChartOptionTypes/ChartOptionNumber'
 import ChartOptionText from './ChartOptionTypes/ChartOptionText'
@@ -71,6 +72,10 @@ const ChartOptions = ({
       return groups
     }
   )
+
+  const enabledOptions = useMemo(() => {
+    return getEnabledOptions(optionsConfig, visualOptions)
+  }, [optionsConfig, visualOptions])
   
   const optionsDefinitionsByGroup = useMemo(() => {
     // update "collapseStatus" state
@@ -138,11 +143,9 @@ const ChartOptions = ({
                   chart={def.type === 'colorScale' ? chart : undefined}
                   dataset={def.type === 'colorScale' ? dataset : undefined}
                   dataTypes={def.type === 'colorScale' ? dataTypes : undefined}
-                  // mappedData={
-                  //   def.type === "colorScale" ? mappedData : undefined
-                  // }
                   mappedData={mappedData}
                   setVisualOptions={setVisualOptions}
+                  isEnabled={enabledOptions[optionId]}
                 />
               )
             })}

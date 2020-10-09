@@ -277,7 +277,11 @@ const ChartOptionColorScale = ({
                       <input
                         type="number"
                         className="form-control text-field"
-                        value={userValue.userDomain || ''}
+                        value={
+                          userValue.userDomain === 0 || userValue.userDomain
+                            ? userValue.userDomain
+                            : ''
+                        }
                         onChange={(e) => {
                           setUserValueDomain(i, e.target.value)
                         }}

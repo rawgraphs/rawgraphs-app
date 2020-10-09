@@ -4,8 +4,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@raw-temp/rawgraphs-charts": "0.0.29",
-    "@raw-temp/rawgraphs-core": "0.1.39",
+    "@raw-temp/rawgraphs-charts": "0.0.31",
+    "@raw-temp/rawgraphs-core": "0.1.40",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
