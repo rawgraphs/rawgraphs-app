@@ -18,7 +18,7 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
           Show
           <Dropdown className="d-inline-block ml-2 raw-dropdown">
             <Dropdown.Toggle variant="white" className="pr-5">
-              {filter}
+            {filter.charAt(0).toUpperCase() + filter.slice(1)}
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item
@@ -31,7 +31,7 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
                 (d) => {
                   return (
                     <Dropdown.Item key={d} onClick={() => setFilter(d)}>
-                      {d}
+                      {d.charAt(0).toUpperCase() + d.slice(1)}
                     </Dropdown.Item>
                   )
                 }
@@ -95,7 +95,9 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
                         </h2>
                       </Card.Title>
                       <Card.Subtitle className="m-0">
-                        <h4 className="m-0">{d.metadata.categories.join(', ')}</h4>
+                        <h4 className="m-0">{
+                          d.metadata.categories.join(', ').charAt(0).toUpperCase() + d.metadata.categories.join(', ').slice(1)                        
+                        }</h4>
                       </Card.Subtitle>
                     </Card.Body>
                   </Card>
