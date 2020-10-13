@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Col, Card, Dropdown } from 'react-bootstrap'
 import { BsLink } from 'react-icons/bs'
 import uniq from 'lodash/uniq'
@@ -6,10 +6,15 @@ import styles from './ChartSelector.module.scss'
 
 function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
   const [filter, setFilter] = useState('All charts')
+
   const charts =
     filter === 'All charts'
       ? availableCharts
-      : availableCharts.filter((d) => d.metadata.categories.indexOf(filter) !== -1)
+      : availableCharts.filter((d) => d.metadata.categories.indexOf(filter) !== -1);
+
+  useEffect(()=>{
+    setCurrentChart(charts[0]);
+  }, [charts,setCurrentChart]);
 
   return (
     <>
