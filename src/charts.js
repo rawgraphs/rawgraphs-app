@@ -11,6 +11,8 @@ import {
   // treemap,
   // circlepacking,
   // barchart,
+  // barchartstacked,
+  // barchartmultiset,
 } from '@raw-temp/rawgraphs-charts'
 
 // New charts, not included into first release.
@@ -28,6 +30,8 @@ let charts = [
   // circlepacking,
   // treemap,
   // barchart,
+  // barchartstacked,
+  // barchartmultiset,
 ]
 
 export default charts
