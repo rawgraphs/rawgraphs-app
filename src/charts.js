@@ -9,7 +9,7 @@ import {
   // alluvialdiagram,
   beeswarm,
   // treemap,
-  // circlepacking,
+  circlepacking,
   // barchart,
 } from '@raw-temp/rawgraphs-charts'
 
@@ -25,7 +25,7 @@ let charts = [
   // sankeydiagram,
   // alluvialdiagram,
   beeswarm,
-  // circlepacking,
+  circlepacking,
   // treemap,
   // barchart,
 ]
