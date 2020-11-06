@@ -112,8 +112,10 @@ h5 {
   border-bottom: 1px solid var(--light);
 }
 .raw-dropdown {
+  height: 40px;
   .dropdown-toggle {
     text-align: left;
+    height: 100%;
     &::after {
       right: 8px;
       bottom: calc(50% - 1px);

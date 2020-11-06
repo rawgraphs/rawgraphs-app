@@ -7,10 +7,12 @@ import {
   circularDendrogram,
   // sankeydiagram,
   // alluvialdiagram,
-  // beeswarm,
+  beeswarm,
   // treemap,
-  // circlepacking,
+  circlepacking,
   // barchart,
+  // barchartstacked,
+  // barchartmultiset,
 } from '@raw-temp/rawgraphs-charts'
 
 // New charts, not included into first release.
@@ -24,10 +26,12 @@ let charts = [
   circularDendrogram,
   // sankeydiagram,
   // alluvialdiagram,
-  // beeswarm,
-  // circlepacking,
+  beeswarm,
+  circlepacking,
   // treemap,
   // barchart,
+  // barchartstacked,
+  // barchartmultiset,
 ]
 
 export default charts
