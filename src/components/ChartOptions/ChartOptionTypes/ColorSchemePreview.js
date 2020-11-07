@@ -7,8 +7,6 @@ const ColorSchemePreview = ({ label, scale, numSamples=150 }) => {
   } else {
     samples = scale.domain()
   }
-
-  console.log("samples", samples, scale)
   return (
     <div>
       {label && <div>{label}</div>}

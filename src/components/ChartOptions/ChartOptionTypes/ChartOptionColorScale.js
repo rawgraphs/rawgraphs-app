@@ -3,17 +3,39 @@ import InilineColorPicker from '../../InlineColorPicker'
 import ColorSchemesDropDown from './ColorSchemesDropDown'
 import { Row, Col } from 'react-bootstrap'
 import get from 'lodash/get'
+import isFunction from 'lodash/isFunction'
+import { timeParse } from "d3-time-format";
 import {
   getInitialScaleValues,
   getColorScale,
   getColorDomain,
   colorPresets,
   getTypeName,
+  getAvailableScaleTypes,
+  getValueType,
 } from '@raw-temp/rawgraphs-core'
 
 import styles from '../ChartOptions.module.scss'
 
 const scaleTypes = Object.keys(colorPresets)
+
+function getDatePickerValue(userValue){
+  
+  if(userValue.userDomain === 0){
+    return 0
+  }
+  if(!userValue.userDomain){
+    return ''
+  }
+
+  if(getValueType(userValue.userDomain) === 'date'){
+    return userValue.userDomain.toISOString().substring(0, 10)
+  }
+  
+  return userValue.userDomain
+}
+
+
 
 const ChartOptionColorScale = ({
   value,
@@ -35,19 +57,16 @@ const ChartOptionColorScale = ({
     return get(mapping, `[${dimension}].value`)
   }, [dimension, mapping])
 
+  const mappingAggregation = useMemo(() => {
+    return get(mapping, `[${dimension}].config.aggregation`)
+  }, [dimension, mapping])
+
   const colorDataType = useMemo(() => {
     return dataTypes[mappingValue]
       ? getTypeName(dataTypes[mappingValue])
       : undefined
   }, [dataTypes, mappingValue])
 
-
-  const availableScaleTypes = useMemo(() => {
-    if (colorDataType === 'number' || colorDataType === 'date') {
-      return scaleTypes
-    }
-    return ['ordinal']
-  }, [colorDataType])
 
   const colorDataset = useMemo(() => {
     if (mappedData) {
@@ -56,6 +75,22 @@ const ChartOptionColorScale = ({
       return []
     }
   }, [dimension, mappedData])
+
+
+  const availableScaleTypes = useMemo(() => {
+    
+    
+    return getAvailableScaleTypes(colorDataType, colorDataset)
+    // // FOR NOW WE ALLOW ONLY ORDINAL SCALES ON AGGREGATED DIMENSIONS
+    // if(mappingAggregation && mappingAggregation[0]){
+    //   return ['ordinal']
+    // }
+
+    // if (colorDataType === 'number' || colorDataType === 'date') {
+    //   return scaleTypes
+    // }
+    // return ['ordinal']
+  }, [colorDataType, colorDataset])
 
   const interpolators = useMemo(() => {
     return Object.keys(colorPresets[scaleType])
@@ -187,8 +222,6 @@ const ChartOptionColorScale = ({
   }, [interpolator, scaleType, userValuesForFinalScale, onChange])
 
 
-  console.log("userValues", userValues)
-
   return (
     <>
       <Row className={[props.className].join(' ')}>
@@ -260,10 +293,10 @@ const ChartOptionColorScale = ({
             >
               <Col xs={12}>
                 <div className={styles['color-scale-item']}>
-                  {scaleType === 'ordinal' && (
+                  {scaleType === 'ordinal' && get(userValue, 'domain') !== undefined && (
                     <span
                       className="nowrap text-truncate pr-2"
-                      title={userValue.domain.toString()}
+                      title={userValue.domain && userValue.domain.toString()}
                     >
                       {userValue.domain === ''
                         ? '[empty string]'
@@ -280,16 +313,9 @@ const ChartOptionColorScale = ({
                           : 'Middle'}
                       </span>
                       <input
-                        type={colorDataType}
+                        type={getValueType(userValue.userDomain)}
                         className="form-control text-field"
-                        value={
-                          colorDataType !== 'date' 
-                          ? userValue.userDomain === 0 || userValue.userDomain
-                              ? userValue.userDomain
-                              : ''
-
-                            : userValue.userDomain ? userValue.userDomain.toISOString().substring(0, 10) : ''
-                        }
+                        value={getDatePickerValue(userValue)}
                         onChange={(e) => {
                           if(colorDataType === 'date'){
                             setUserValueDomain(i, new Date(e.target.value))
