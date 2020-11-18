@@ -1,20 +1,29 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useMemo, useCallback } from 'react'
 import { Row, Col, Card, Dropdown } from 'react-bootstrap'
 import { BsLink } from 'react-icons/bs'
 import uniq from 'lodash/uniq'
 import styles from './ChartSelector.module.scss'
 
+function filterCharts(charts, filter) {
+  return filter === 'All charts'
+    ? charts
+    : charts.filter((d) => d.metadata.categories.indexOf(filter) !== -1)
+}
+
 function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
   const [filter, setFilter] = useState('All charts')
 
-  const charts =
-    filter === 'All charts'
-      ? availableCharts
-      : availableCharts.filter((d) => d.metadata.categories.indexOf(filter) !== -1);
+  const charts = useMemo(() => {
+    return filterCharts(availableCharts, filter)
+  }, [availableCharts, filter])
 
-  useEffect(()=>{
-    setCurrentChart(charts[0]);
-  }, [charts,setCurrentChart]);
+  const handleFilterChange = useCallback((nextFilter) => {
+    setFilter(nextFilter)
+    const nextCharts = filterCharts(availableCharts, nextFilter)
+    if (nextCharts.indexOf(currentChart) === -1) {
+      setCurrentChart(nextCharts[0])
+    }
+  }, [availableCharts, currentChart, setCurrentChart])
 
   return (
     <>
@@ -23,24 +32,24 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
           Show
           <Dropdown className="d-inline-block ml-2 raw-dropdown">
             <Dropdown.Toggle variant="white" className="pr-5">
-            {filter.charAt(0).toUpperCase() + filter.slice(1)}
+              {filter.charAt(0).toUpperCase() + filter.slice(1)}
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item
                 key={'All charts'}
-                onClick={() => setFilter('All charts')}
+                onClick={() => handleFilterChange('All charts')}
               >
                 All charts
               </Dropdown.Item>
-              {uniq(availableCharts.map((d) => d.metadata.categories).flat()).map(
-                (d) => {
-                  return (
-                    <Dropdown.Item key={d} onClick={() => setFilter(d)}>
-                      {d.charAt(0).toUpperCase() + d.slice(1)}
-                    </Dropdown.Item>
-                  )
-                }
-              )}
+              {uniq(
+                availableCharts.map((d) => d.metadata.categories).flat()
+              ).map((d) => {
+                return (
+                  <Dropdown.Item key={d} onClick={() => handleFilterChange(d)}>
+                    {d.charAt(0).toUpperCase() + d.slice(1)}
+                  </Dropdown.Item>
+                )
+              })}
             </Dropdown.Menu>
           </Dropdown>
         </Col>
@@ -100,9 +109,13 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
                         </h2>
                       </Card.Title>
                       <Card.Subtitle className="m-0">
-                        <h4 className="m-0">{
-                          d.metadata.categories.join(', ').charAt(0).toUpperCase() + d.metadata.categories.join(', ').slice(1)                        
-                        }</h4>
+                        <h4 className="m-0">
+                          {d.metadata.categories
+                            .join(', ')
+                            .charAt(0)
+                            .toUpperCase() +
+                            d.metadata.categories.join(', ').slice(1)}
+                        </h4>
                       </Card.Subtitle>
                     </Card.Body>
                   </Card>

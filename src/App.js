@@ -18,17 +18,36 @@ import ChartPreviewWithOptions from './components/ChartPreviewWIthOptions'
 import Exporter from './components/Exporter'
 import get from 'lodash/get'
 import usePrevious from './hooks/usePrevious'
+import { serializeProject as serializeProjectV1 } from './import_export_v1'
+import useDataLoader from './hooks/useDataLoader'
 
 // #TODO: i18n
 
 function App() {
-  const [dataSource, setDataSource] = useState(null)
-  const [data, setData] = useState(null)
+  const dataLoader = useDataLoader()
+  const {
+    userInput,
+    userData,
+    userDataType,
+    parseError,
+    unstackedData,
+    unstackedColumns,
+    data,
+    separator,
+    thousandsSeparator,
+    decimalsSeparator,
+    locale,
+    stackDimension,
+    dataSource,
+    loading,
+    hydrateFromSavedProject,
+  } = dataLoader
+
+  /* From here on, we deal with viz state */
   const [currentChart, setCurrentChart] = useState(null)
   const [mapping, setMapping] = useState({})
   const [visualOptions, setVisualOptions] = useState({})
   const [rawViz, setRawViz] = useState(null)
-  const [loading, setLoading] = useState(false)
   const [mappingLoading, setMappingLoading] = useState(false)
   const dataMappingRef = useRef(null)
 
@@ -71,6 +90,38 @@ function App() {
     setRawViz(null)
   }, [clearLocalMapping])
 
+  const exportProject = useCallback(() => {
+    return serializeProjectV1(
+      userInput,
+      userData,
+      userDataType,
+      parseError,
+      unstackedData,
+      unstackedColumns,
+      data,
+      separator,
+      thousandsSeparator,
+      decimalsSeparator,
+      locale,
+      stackDimension,
+      dataSource,
+      currentChart,
+      mapping,
+      visualOptions,
+    )
+  }, [
+    currentChart, data, dataSource, decimalsSeparator, locale, mapping,
+    parseError, separator, stackDimension, thousandsSeparator, userData,
+    userDataType, userInput, visualOptions, unstackedColumns, unstackedData
+  ])
+
+  const importProject = useCallback(project => {
+    hydrateFromSavedProject(project)
+    setCurrentChart(project.currentChart)
+    setMapping(project.mapping)
+    setVisualOptions(project.visualOptions)
+  }, [hydrateFromSavedProject])
+
   //setting initial chart and related options
   useEffect(() => {
     setCurrentChart(charts[0])
@@ -84,12 +135,8 @@ function App() {
       <div className="app-sections">
         <Section title={`1. Load your data`} loading={loading}>
           <DataLoader
-            data={data}
-            setData={setData}
-            dataSource={dataSource}
-            setDataSource={setDataSource}
-            loading={loading}
-            setLoading={setLoading}
+            {...dataLoader}
+            hydrateFromProject={importProject}
           />
         </Section>
         {data && <Section title="2. Choose a chart">
@@ -126,10 +173,10 @@ function App() {
         )}
         {data && currentChart && rawViz && (
           <Section title="5. Export">
-            <Exporter rawViz={rawViz} />
+            <Exporter rawViz={rawViz} exportProject={exportProject} />
           </Section>
         )}
-        <Footer/>
+        <Footer />
       </div>
       <ScreenSizeAlert />
     </div>

@@ -46,7 +46,6 @@ export default function ParsingOptions(props) {
         <DateLocaleSelector
           title="Date Locale"
           value={props.locale}
-          localeList={props.localeList}
           onChange={(nextLocale) => props.setLocale(nextLocale)}
         />
 

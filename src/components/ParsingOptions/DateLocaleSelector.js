@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react'
 import { Dropdown } from 'react-bootstrap'
+import { localeList } from '../../constants'
 
 export default function DateLocaleSelector({
   title,
   value,
-  localeList,
   onChange,
   ...props
 }) {

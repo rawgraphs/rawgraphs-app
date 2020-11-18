@@ -10,7 +10,7 @@ function downloadBlob(url, filename) {
   return a
 }
 
-export default function Exporter({ rawViz }) {
+export default function Exporter({ rawViz, exportProject }) {
   const downloadSvg = useCallback(
     (filename) => {
       var svgString = new XMLSerializer().serializeToString(
@@ -49,6 +49,19 @@ export default function Exporter({ rawViz }) {
     [rawViz]
   )
 
+  const downloadProject = useCallback(
+    filename => {
+      const project = exportProject()
+      const str = JSON.stringify(project)
+      const blob = new Blob([str], { type: 'application/json' })
+      const DOMURL = window.URL || window.webkitURL || window
+      const url = DOMURL.createObjectURL(blob)
+      downloadBlob(url, filename)
+      DOMURL.revokeObjectURL(url)
+    },
+    [exportProject]
+  )
+
   const exportFormats = ['svg','png','jpg','rawgraphs'];
 
   const [currentFormat, setCurrentFormat] = useState('svg')
@@ -65,11 +78,13 @@ export default function Exporter({ rawViz }) {
       case 'jpg':
         downloadImage('image/jpeg', `${currentFile}.jpg`)
         break
-
+      case 'rawgraphs':
+        downloadProject(`${currentFile}.rawgraphs`)
+        break
       default:
         break
     }
-  }, [currentFile, currentFormat, downloadImage, downloadSvg])
+  }, [currentFile, currentFormat, downloadImage, downloadProject, downloadSvg])
 
   return (
     <div className="row">
@@ -90,7 +105,7 @@ export default function Exporter({ rawViz }) {
             {exportFormats.map(
               (d) => {
                 return (
-                  <Dropdown.Item key={d} onClick={() => setCurrentFormat(d)} disabled={d==='rawgraphs'}>
+                  <Dropdown.Item key={d} onClick={() => setCurrentFormat(d)}>
                     .{d}
                   </Dropdown.Item>
                 )
