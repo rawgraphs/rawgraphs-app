@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react'
+import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react'
 import InilineColorPicker from '../../InlineColorPicker'
 import ColorSchemesDropDown from './ColorSchemesDropDown'
 import { Row, Col } from 'react-bootstrap'
@@ -51,7 +51,8 @@ const ChartOptionColorScale = ({
   mappedData,
   ...props
 }) => {
-  const [scaleType, setScaleType] = useState('ordinal')
+  // console.log("value",value)
+  const [scaleType, setScaleType] = useState(get(value, 'scaleType', 'ordinal'))
 
   const mappingValue = useMemo(() => {
     return get(mapping, `[${dimension}].value`)
@@ -67,7 +68,7 @@ const ChartOptionColorScale = ({
       : undefined
   }, [dataTypes, mappingValue])
 
-
+  
   const colorDataset = useMemo(() => {
     if (mappedData) {
       return mappedData.map((d) => get(d, dimension))
@@ -76,11 +77,27 @@ const ChartOptionColorScale = ({
     }
   }, [dimension, mappedData])
 
+  const maybeSetScaleType = useCallback((availableScaleTypes) => {
+    const nextScaleType = availableScaleTypes[0]
+    console.log("xx", nextScaleType, availableScaleTypes, scaleType)
+    if((availableScaleTypes.indexOf(scaleType) === -1) && nextScaleType !== scaleType){
+      setScaleType(nextScaleType)
+    }
+
+  }, [scaleType, setScaleType])
+
+  
 
   const availableScaleTypes = useMemo(() => {
     
-    
-    return getAvailableScaleTypes(colorDataType, colorDataset)
+    if(!colorDataset.length || !colorDataType){
+      return scaleTypes
+    }
+
+    const nextTypes = getAvailableScaleTypes(colorDataType, colorDataset)
+    console.log("c availableScaleTypes", colorDataType, colorDataset, nextTypes)
+    maybeSetScaleType(nextTypes)
+    return nextTypes
     // // FOR NOW WE ALLOW ONLY ORDINAL SCALES ON AGGREGATED DIMENSIONS
     // if(mappingAggregation && mappingAggregation[0]){
     //   return ['ordinal']
@@ -90,23 +107,34 @@ const ChartOptionColorScale = ({
     //   return scaleTypes
     // }
     // return ['ordinal']
-  }, [colorDataType, colorDataset])
+  }, [colorDataType, colorDataset, maybeSetScaleType])
+
 
   const interpolators = useMemo(() => {
     return Object.keys(colorPresets[scaleType])
   }, [scaleType])
 
-  const [interpolator, setInterpolator] = useState(interpolators[0])
+  const [interpolator, setInterpolator] = useState(get(value, 'interpolator', interpolators[0]))
+  const [userValues, setUserValues] = useState(get(value, 'userScaleValues', []))
 
-  const [userValues, setUserValues] = useState([])
+  const maybeSetInterpolator = useCallback((nextInterpolator) => {
+    if(!interpolator || interpolator !== nextInterpolator){
+      console.log("setInterpolator", interpolators[0])
+      setInterpolator(nextInterpolator)
+    }
+  }, [interpolator])
+
+
+  
 
   useEffect(() => {
-    setInterpolator(interpolators[0])
-  }, [scaleType, interpolators])
+    maybeSetInterpolator(interpolators[0])
+  }, [scaleType, interpolators, maybeSetInterpolator])
 
-  useEffect(() => {
-    setScaleType(availableScaleTypes[0])
-  }, [availableScaleTypes])
+  // useEffect(() => {
+  //   console.log("setScaleType",availableScaleTypes[0])
+  //   maybeSetScaleType(availableScaleTypes)
+  // }, [availableScaleTypes])
 
   const setUserValueRange = useCallback(
     (index, value) => {
@@ -126,9 +154,16 @@ const ChartOptionColorScale = ({
     [userValues]
   )
 
-  const resetUserValues = useCallback(() => {
+  const defaultUserValues = useMemo(() => {
+    console.log("updating defaultUserValues")
+    if(!colorDataset.length || !colorDataType ||!scaleType){ return []}
+    if(!colorPresets[scaleType][interpolator]){
+      return []
+    }
+
     const domain = getColorDomain(colorDataset, colorDataType, scaleType)
-    const userValues = getInitialScaleValues(
+    
+    return getInitialScaleValues(
       domain,
       scaleType,
       interpolator
@@ -137,15 +172,42 @@ const ChartOptionColorScale = ({
       userRange: userValue.range,
       userDomain: userValue.domain,
     }))
-    setUserValues(userValues)
+
   }, [colorDataType, colorDataset, interpolator, scaleType])
+
+
+  // const resetUserValues = useCallback(() => {
+  //   const domain = getColorDomain(colorDataset, colorDataType, scaleType)
+  //   const nextUserValues = getInitialScaleValues(
+  //     domain,
+  //     scaleType,
+  //     interpolator
+  //   ).map((userValue) => ({
+  //     ...userValue,
+  //     userRange: userValue.range,
+  //     userDomain: userValue.domain,
+  //   }))
+  //   setUserValues(nextUserValues)
+  //   return
+  //   // console.log("resetUserValues", nextUserValues, userValues)
+  //   if(userValues.length !== nextUserValues.length){
+  //     setUserValues(nextUserValues)
+  //   } else {
+  //     // const newValues = nextUserValues.map((v, i) => ({
+  //     //   ...v,
+  //     //   userRange: userValues[i].userRange,
+  //     //   userDomain: userValues[i].userDomain,
+  //     // }))
+  //     setUserValues(nextUserValues)
+  //   }
+  // }, [colorDataType, colorDataset, interpolator, scaleType, userValues.length])
 
   const setInterpolatorAndReset = useCallback(
     (nextInterpolator) => {
-      nextInterpolator === interpolator && resetUserValues()
+      nextInterpolator === interpolator && setUserValues(defaultUserValues)
       setInterpolator(nextInterpolator)
     },
-    [interpolator, resetUserValues]
+    [defaultUserValues, interpolator]
   )
 
   useEffect(() => {
@@ -162,18 +224,8 @@ const ChartOptionColorScale = ({
     if (!colorDataType) {
       return
     }
-    resetUserValues()
-  }, [
-    scaleType,
-    interpolator,
-    colorDataset,
-    mapping,
-    dimension,
-    dataTypes,
-    mappingValue,
-    colorDataType,
-    resetUserValues,
-  ])
+    setUserValues(defaultUserValues)
+  }, [scaleType, interpolator, colorDataset, mapping, dimension, dataTypes, mappingValue, colorDataType, defaultUserValues])
 
   const userValuesForFinalScale = useMemo(() => {
     return userValues.map((value) => ({
@@ -189,7 +241,7 @@ const ChartOptionColorScale = ({
       // !colorDataType ||
       !scaleType ||
       !interpolator ||
-      // !userValuesForFinalScale ||
+      // !userValuesForFinalScale || !userValuesForFinalScale.length ||
       !colorPresets[scaleType][interpolator]
     ) {
       return
