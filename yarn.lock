@@ -1919,10 +1919,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.2.tgz#7c6dc4ecef16149fd7a736710baa1b811017fdca"
   integrity sha512-JlGTGRYHC2QK+DDbePyXdBdooxFq2+noLfWpRqJtkxcb/oYWzOF0kcbfvvbWrwevCC1l6hLUg1wHYT+ona5BWQ==
 
-"@raw-temp/rawgraphs-charts@0.0.371":
-  version "0.0.371"
-  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-0.0.371.tgz#92f5983a2ceb5b789c85caf6049627217f42530c"
-  integrity sha512-UvUQnY2C0rCZS46XVaPqJr/Xq41Z4agH37BUNr+2qk9GKbaeJFct8FyjkflMdjSX6rOeW1kirpempSK+48sWbw==
+"@raw-temp/rawgraphs-charts@0.0.38":
+  version "0.0.38"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-0.0.38.tgz#34a9846cfb86db6a7f73b6c3d9f399558e4833c6"
+  integrity sha512-ym83XZFhmSuKFsY/RMTvSrBjkhMdpPLoVxsBBWnMhGTZtuV7WPH0iOgiRl01sM7CAqX3EVD4PKVY1wKTZebqzw==
   dependencies:
     d3 "^6.2.0"
     d3-gridding "^0.2.0"
