@@ -1,11 +1,10 @@
 name: Deploy RAWGRAPHS alpha
 # Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the v2 branch
+# events but only for tagged versions
 on:
   push:
-    branches: [private]
-  pull_request:
-    branches: [private]
+    tags:
+      - '*'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
