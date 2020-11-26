@@ -1,4 +1,4 @@
-## 2.0.0beta1
+## 2.0.0beta2
 #### 26 Nov 2020
 
 Bugfixes:
