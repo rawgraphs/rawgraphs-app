@@ -1,10 +1,11 @@
 import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react'
 import InilineColorPicker from '../../InlineColorPicker'
 import ColorSchemesDropDown from './ColorSchemesDropDown'
+import usePrevious from '../../../hooks/usePrevious'
 import { Row, Col } from 'react-bootstrap'
 import get from 'lodash/get'
 import isFunction from 'lodash/isFunction'
-import { timeParse } from "d3-time-format";
+import { timeParse } from 'd3-time-format'
 import {
   getInitialScaleValues,
   getColorScale,
@@ -17,25 +18,20 @@ import {
 
 import styles from '../ChartOptions.module.scss'
 
-const scaleTypes = Object.keys(colorPresets)
-
-function getDatePickerValue(userValue){
-  
-  if(userValue.userDomain === 0){
+function getDatePickerValue(userValue) {
+  if (userValue.userDomain === 0) {
     return 0
   }
-  if(!userValue.userDomain){
+  if (!userValue.userDomain) {
     return ''
   }
 
-  if(getValueType(userValue.userDomain) === 'date'){
+  if (getValueType(userValue.userDomain) === 'date') {
     return userValue.userDomain.toISOString().substring(0, 10)
   }
-  
+
   return userValue.userDomain
 }
-
-
 
 const ChartOptionColorScale = ({
   value,
@@ -51,15 +47,9 @@ const ChartOptionColorScale = ({
   mappedData,
   ...props
 }) => {
-  // console.log("value",value)
-  const [scaleType, setScaleType] = useState(get(value, 'scaleType', 'ordinal'))
-
+  
   const mappingValue = useMemo(() => {
     return get(mapping, `[${dimension}].value`)
-  }, [dimension, mapping])
-
-  const mappingAggregation = useMemo(() => {
-    return get(mapping, `[${dimension}].config.aggregation`)
   }, [dimension, mapping])
 
   const colorDataType = useMemo(() => {
@@ -68,7 +58,6 @@ const ChartOptionColorScale = ({
       : undefined
   }, [dataTypes, mappingValue])
 
-  
   const colorDataset = useMemo(() => {
     if (mappedData) {
       return mappedData.map((d) => get(d, dimension))
@@ -77,72 +66,135 @@ const ChartOptionColorScale = ({
     }
   }, [dimension, mappedData])
 
-  const maybeSetScaleType = useCallback((availableScaleTypes) => {
-    const nextScaleType = availableScaleTypes[0]
-    console.log("xx", nextScaleType, availableScaleTypes, scaleType)
-    if((availableScaleTypes.indexOf(scaleType) === -1) && nextScaleType !== scaleType){
-      setScaleType(nextScaleType)
-    }
-
-  }, [scaleType, setScaleType])
-
-  
+  const [scaleType, setScaleType] = useState(get(value, 'scaleType'))
 
   const availableScaleTypes = useMemo(() => {
-    
-    if(!colorDataset.length || !colorDataType){
-      return scaleTypes
+    if (!colorDataset.length || !colorDataType) {
+      return ['ordinal', 'sequential', 'diverging']
     }
-
     const nextTypes = getAvailableScaleTypes(colorDataType, colorDataset)
-    console.log("c availableScaleTypes", colorDataType, colorDataset, nextTypes)
-    maybeSetScaleType(nextTypes)
     return nextTypes
-    // // FOR NOW WE ALLOW ONLY ORDINAL SCALES ON AGGREGATED DIMENSIONS
-    // if(mappingAggregation && mappingAggregation[0]){
-    //   return ['ordinal']
-    // }
+  }, [colorDataType, colorDataset])
 
-    // if (colorDataType === 'number' || colorDataType === 'date') {
-    //   return scaleTypes
-    // }
-    // return ['ordinal']
-  }, [colorDataType, colorDataset, maybeSetScaleType])
+  const [interpolators, setInterpolators] = useState(
+    get(value, 'scaleType') ? Object.keys(colorPresets[get(value, 'scaleType')]) : []
+  )
+
+  const [interpolator, setInterpolator] = useState(get(value, 'interpolator'))
+  const [userValues, setUserValues] = useState(
+    get(value, 'userScaleValues', []).map((userValue) => ({
+      ...userValue,
+      userDomain: userValue.domain,
+      userRange: userValue.range,
+    }))
+  )
+
+  const getCurrentFinalScale = useCallback(
+    (interpolator, scaleType, userValuesForFinalScale) => {
+      if (
+        !scaleType ||
+        !interpolator ||
+        !colorPresets[scaleType][interpolator] ||
+        !userValuesForFinalScale ||
+        !userValuesForFinalScale.length
+      ) {
+        return
+      }
+
+      const domains = userValuesForFinalScale
+        .map((x) => x.domain)
+        .filter((x) => x !== undefined)
+      if (!domains.length) {
+        return
+      }
+
+      const previewScale = getColorScale(
+        colorDataset, //the array of values of the dataset mapped on the color dimension
+        colorDataType,
+        scaleType, //
+        interpolator,
+        userValuesForFinalScale
+      )
+
+      return previewScale
+    },
+    [colorDataType, colorDataset]
+  )
 
 
-  const interpolators = useMemo(() => {
-    return Object.keys(colorPresets[scaleType])
-  }, [scaleType])
+  const getDefaultUserValues = useCallback(
+    (interpolator, scaleType) => {
+      if (!colorDataset.length || !colorDataType || !scaleType) {
+        return []
+      }
+      if (!colorPresets[scaleType][interpolator]) {
+        return []
+      }
 
-  const [interpolator, setInterpolator] = useState(get(value, 'interpolator', interpolators[0]))
-  const [userValues, setUserValues] = useState(get(value, 'userScaleValues', []))
+      const domain = getColorDomain(colorDataset, colorDataType, scaleType)
 
-  const maybeSetInterpolator = useCallback((nextInterpolator) => {
-    if(!interpolator || interpolator !== nextInterpolator){
-      console.log("setInterpolator", interpolators[0])
-      setInterpolator(nextInterpolator)
+      return getInitialScaleValues(domain, scaleType, interpolator).map(
+        (userValue) => ({
+          ...userValue,
+          userRange: userValue.range,
+          userDomain: userValue.domain,
+        })
+      )
+    },
+    [colorDataType, colorDataset]
+  )
+
+  const getUserValuesForFinalScale = useCallback(
+    (values) => {
+      return values.map((value) => ({
+        range: value.userRange,
+        domain:
+          colorDataType === 'date'
+            ? value.userDomain?.toString()
+            : value.userDomain,
+        // domain: value.userDomain,
+      }))
+    },
+    [colorDataType]
+  )
+
+  const currentFinalScale = useMemo(() => {
+    if (scaleType && interpolator && userValues && userValues.length) {
+      const valuesForFinalScale = getUserValuesForFinalScale(userValues)
+      return getCurrentFinalScale(interpolator, scaleType, valuesForFinalScale)
     }
-  }, [interpolator])
+    return null
+  }, [
+    getCurrentFinalScale,
+    getUserValuesForFinalScale,
+    interpolator,
+    scaleType,
+    userValues,
+  ])
 
-
-  
-
-  useEffect(() => {
-    maybeSetInterpolator(interpolators[0])
-  }, [scaleType, interpolators, maybeSetInterpolator])
-
-  // useEffect(() => {
-  //   console.log("setScaleType",availableScaleTypes[0])
-  //   maybeSetScaleType(availableScaleTypes)
-  // }, [availableScaleTypes])
+  const handleChangeValues = useCallback(
+    (nextUserValues) => {
+      const valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
+      
+      //notify ui
+      const outScaleParams = {
+        scaleType,
+        interpolator: interpolator,
+        userScaleValues: valuesForFinalScale,
+      }
+      onChange(outScaleParams)
+    },
+    [getUserValuesForFinalScale, interpolator, onChange, scaleType]
+  )
 
   const setUserValueRange = useCallback(
     (index, value) => {
       const newUserValues = [...userValues]
       newUserValues[index].userRange = value
       setUserValues(newUserValues)
+      handleChangeValues(newUserValues)
     },
-    [userValues]
+    [handleChangeValues, userValues]
   )
 
   const setUserValueDomain = useCallback(
@@ -150,133 +202,89 @@ const ChartOptionColorScale = ({
       const newUserValues = [...userValues]
       newUserValues[index].userDomain = value
       setUserValues(newUserValues)
+      handleChangeValues(newUserValues)
     },
-    [userValues]
+    [handleChangeValues, userValues]
   )
 
-  const defaultUserValues = useMemo(() => {
-    console.log("updating defaultUserValues")
-    if(!colorDataset.length || !colorDataType ||!scaleType){ return []}
-    if(!colorPresets[scaleType][interpolator]){
-      return []
-    }
+  const handleChangeScaleType = useCallback(
+    (nextScaleType) => {
+      setScaleType(nextScaleType)
 
-    const domain = getColorDomain(colorDataset, colorDataType, scaleType)
-    
-    return getInitialScaleValues(
-      domain,
-      scaleType,
-      interpolator
-    ).map((userValue) => ({
-      ...userValue,
-      userRange: userValue.range,
-      userDomain: userValue.domain,
-    }))
+      //update interpolators
+      const nextInterpolators = colorPresets[nextScaleType]
+        ? Object.keys(colorPresets[nextScaleType])
+        : []
+      setInterpolators(nextInterpolators)
 
-  }, [colorDataType, colorDataset, interpolator, scaleType])
-
-
-  // const resetUserValues = useCallback(() => {
-  //   const domain = getColorDomain(colorDataset, colorDataType, scaleType)
-  //   const nextUserValues = getInitialScaleValues(
-  //     domain,
-  //     scaleType,
-  //     interpolator
-  //   ).map((userValue) => ({
-  //     ...userValue,
-  //     userRange: userValue.range,
-  //     userDomain: userValue.domain,
-  //   }))
-  //   setUserValues(nextUserValues)
-  //   return
-  //   // console.log("resetUserValues", nextUserValues, userValues)
-  //   if(userValues.length !== nextUserValues.length){
-  //     setUserValues(nextUserValues)
-  //   } else {
-  //     // const newValues = nextUserValues.map((v, i) => ({
-  //     //   ...v,
-  //     //   userRange: userValues[i].userRange,
-  //     //   userDomain: userValues[i].userDomain,
-  //     // }))
-  //     setUserValues(nextUserValues)
-  //   }
-  // }, [colorDataType, colorDataset, interpolator, scaleType, userValues.length])
-
-  const setInterpolatorAndReset = useCallback(
-    (nextInterpolator) => {
-      nextInterpolator === interpolator && setUserValues(defaultUserValues)
+      //set first interpolator
+      const nextInterpolator = nextInterpolators[0]
       setInterpolator(nextInterpolator)
+
+      //user values
+      const nextUserValues = getDefaultUserValues(
+        nextInterpolator,
+        nextScaleType
+      )
+      setUserValues(nextUserValues)
+      const valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
+
+      //notify ui
+      const outScaleParams = {
+        scaleType: nextScaleType,
+        interpolator: nextInterpolator,
+        userScaleValues: valuesForFinalScale,
+      }
+      onChange(outScaleParams)
     },
-    [defaultUserValues, interpolator]
+    [getDefaultUserValues, getUserValuesForFinalScale, onChange]
   )
 
-  useEffect(() => {
+  const handleSetInterpolator = useCallback(
+    (nextInterpolator) => {
+      setInterpolator(nextInterpolator)
+
+      //user values
+      const nextUserValues = getDefaultUserValues(nextInterpolator, scaleType)
+      setUserValues(nextUserValues)
+      const valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
+
+      //notify ui
+      const outScaleParams = {
+        scaleType,
+        interpolator: nextInterpolator,
+        userScaleValues: valuesForFinalScale,
+      }
+      onChange(outScaleParams)
+    },
+    [getDefaultUserValues, getUserValuesForFinalScale, onChange, scaleType]
+  )
+
+  const initialValues = useRef({ scaleType, interpolator, userValues })
+
+  const prevMapping = usePrevious(mapping)
+  const maybeSetScaleType = useCallback(() => {
     if (
-      !colorDataset ||
-      !interpolator ||
-      !colorPresets[scaleType][interpolator]
+      (initialValues.current?.scaleType &&
+        initialValues.current?.interpolator) ||
+      prevMapping !== mapping
     ) {
-      return
+      if (prevMapping === mapping) {
+        initialValues.current = false
+      }
+    } else {
+      const nextScaleType = availableScaleTypes[0]
+      handleChangeScaleType(nextScaleType)
     }
-    if (!mappingValue) {
-      return
-    }
-    if (!colorDataType) {
-      return
-    }
-    setUserValues(defaultUserValues)
-  }, [scaleType, interpolator, colorDataset, mapping, dimension, dataTypes, mappingValue, colorDataType, defaultUserValues])
-
-  const userValuesForFinalScale = useMemo(() => {
-    return userValues.map((value) => ({
-      range: value.userRange,
-      domain: colorDataType === 'date' ? value.userDomain?.toString() : value.userDomain,
-      // domain: value.userDomain,
-    }))
-  }, [colorDataType, userValues])
-
-  const currentFinalScale = useMemo(() => {
-    if (
-      // !colorDataset.length ||
-      // !colorDataType ||
-      !scaleType ||
-      !interpolator ||
-      // !userValuesForFinalScale || !userValuesForFinalScale.length ||
-      !colorPresets[scaleType][interpolator]
-    ) {
-      return
-    }
-
-    const previewScale = getColorScale(
-      colorDataset, //the array of values of the dataset mapped on the color dimension
-      colorDataType,
-      scaleType, //
-      interpolator,
-      userValuesForFinalScale
-    )
-
-    return previewScale
-  }, [
-    colorDataType,
-    colorDataset,
-    interpolator,
-    scaleType,
-    userValuesForFinalScale,
-  ])
+  }, [availableScaleTypes, handleChangeScaleType, mapping, prevMapping])
 
   useEffect(() => {
-    const outScaleParams = {
-      scaleType,
-      interpolator,
-      userScaleValues: userValuesForFinalScale,
-    }
-    onChange(outScaleParams)
-  }, [interpolator, scaleType, userValuesForFinalScale, onChange])
-
+    maybeSetScaleType()
+  }, [maybeSetScaleType, availableScaleTypes, mapping])
 
   return (
     <>
-      <Row className={[props.className].join(' ')}>
+      <Row className={props.className}>
         <Col xs={6} className="d-flex align-items-center nowrap">
           {label}
         </Col>
@@ -286,7 +294,7 @@ const ChartOptionColorScale = ({
             className="custom-select raw-select"
             value={scaleType}
             onChange={(e) => {
-              setScaleType(e.target.value)
+              handleChangeScaleType(e.target.value)
             }}
           >
             {availableScaleTypes.map((s) => (
@@ -307,7 +315,7 @@ const ChartOptionColorScale = ({
           <ColorSchemesDropDown
             interpolators={interpolators}
             interpolator={interpolator}
-            setInterpolator={setInterpolatorAndReset}
+            setInterpolator={handleSetInterpolator}
             // To display color-scale preview
             colorDataset={colorDataset}
             colorDataType={colorDataType}
@@ -345,16 +353,17 @@ const ChartOptionColorScale = ({
             >
               <Col xs={12}>
                 <div className={styles['color-scale-item']}>
-                  {scaleType === 'ordinal' && get(userValue, 'domain') !== undefined && (
-                    <span
-                      className="nowrap text-truncate pr-2"
-                      title={userValue.domain && userValue.domain.toString()}
-                    >
-                      {userValue.domain === ''
-                        ? '[empty string]'
-                        : userValue.domain.toString()}
-                    </span>
-                  )}
+                  {scaleType === 'ordinal' &&
+                    get(userValue, 'domain') !== undefined && (
+                      <span
+                        className="nowrap text-truncate pr-2"
+                        title={userValue.domain && userValue.domain.toString()}
+                      >
+                        {userValue.domain === ''
+                          ? '[empty string]'
+                          : userValue.domain.toString()}
+                      </span>
+                    )}
                   {scaleType !== 'ordinal' && (
                     <>
                       <span className="nowrap">
@@ -369,12 +378,11 @@ const ChartOptionColorScale = ({
                         className="form-control text-field"
                         value={getDatePickerValue(userValue)}
                         onChange={(e) => {
-                          if(colorDataType === 'date'){
+                          if (colorDataType === 'date') {
                             setUserValueDomain(i, new Date(e.target.value))
                           } else {
                             setUserValueDomain(i, e.target.value)
                           }
-                          
                         }}
                       ></input>
                     </>

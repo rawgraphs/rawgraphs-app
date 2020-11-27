@@ -5,7 +5,12 @@ const ColorSchemePreview = ({ label, scale, numSamples=150 }) => {
   if (scale.ticks) {
     samples = scale.ticks(numSamples)
   } else {
-    samples = scale.domain()
+    if(scale.domain){
+      samples = scale.domain()
+    } else {
+      samples = []
+    }
+    
   }
   return (
     <div>
@@ -22,4 +27,4 @@ const ColorSchemePreview = ({ label, scale, numSamples=150 }) => {
   )
 }
 
-export default ColorSchemePreview
+export default React.memo(ColorSchemePreview)

@@ -6,7 +6,7 @@ import {
   getColorDomain,
   getPresetScale
 } from '@raw-temp/rawgraphs-core'
-
+import get from 'lodash/get'
 import styles from '../ChartOptions.module.scss'
 
 const ColorSchemesDropDown = ({
@@ -19,6 +19,7 @@ const ColorSchemesDropDown = ({
     scaleType,
     currentFinalScale
 }) => {
+
   return (
     <Dropdown className="d-inline-block raw-dropdown w-100">
       <Dropdown.Toggle variant="white" className="w-100" style={{paddingRight:24}} disabled={!colorDataType}>

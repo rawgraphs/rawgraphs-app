@@ -1928,16 +1928,16 @@
     d3-gridding "^0.2.0"
     d3-sankey "^0.12.3"
 
-"@raw-temp/rawgraphs-core@0.1.40":
-  version "0.1.40"
-  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-0.1.40.tgz#2a8206a5ab75016565efa2263c4c1a5ba7e9e9c3"
-  integrity sha512-ZMV3bSG4RWoChAOlT0OFPjIURssuw7hUr+3AT8X/+DkaujeGO6trpvKE/Y2He5zOual0qu2HzT60vPIuln1Sbw==
+"@raw-temp/rawgraphs-core@1.0.0beta2":
+  version "1.0.0-beta2"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-1.0.0-beta2.tgz#c7c24373d73e874e7217fdd7c8b8e417ec720913"
+  integrity sha512-lxhes89KxzdwtQbGdi/UrHAdUFeDMwNbSxCZMyk/IgcXWRBnwL55w46k5fq3LHkAwjee44JGUx7P3fMYOr5/4g==
   dependencies:
     d3-array "^2.4.0"
     d3-axis "^1.0.12"
     d3-color "^1.4.1"
     d3-dsv "^1.2.0"
-    d3-format "^1.4.4"
+    d3-format "^1.4.5"
     d3-interpolate "^1.4.0"
     d3-scale "^3.2.1"
     d3-scale-chromatic "^1.5.0"
@@ -4589,7 +4589,7 @@ d3-format@1.0.2:
   resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-1.0.2.tgz#138618320b4bbeb43b5c0ff30519079fbbd7375e"
   integrity sha1-E4YYMgtLvrQ7XA/zBRkHn7vXN14=
 
-d3-format@^1.4.4:
+d3-format@^1.4.5:
   version "1.4.5"
   resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-1.4.5.tgz#374f2ba1320e3717eb74a9356c67daee17a7edb4"
   integrity sha512-J0piedu6Z8iB6TbIGfZgDzfXxUFN3qQRMofy2oPdXzQibYGqPB/9iMcxr/TGalU+2RsyDO+U4f33id8tbnSRMQ==
