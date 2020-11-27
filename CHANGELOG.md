@@ -1,3 +1,12 @@
+## NEXT
+
+Features:
+- Handling dates in color scales
+
+Bugfixes:
+- Fixed restoring color scales when loading project
+
+
 ## 2.0.0beta2
 #### 26 Nov 2020
 
