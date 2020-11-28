@@ -130,6 +130,31 @@ function App() {
     setVisualOptions(getDefaultOptionsValues(options))
   }, [])
 
+  //when mapping changes
+  useEffect(() => {
+    const cfg = getOptionsConfig(currentChart?.visualOptions)
+    const options = getDefaultOptionsValues(cfg, mapping)
+    const allOptions = Object.keys(cfg)
+    const xOptions = allOptions.filter(id => !!cfg[id].repeatFor)
+    const optsFixed = []
+    const newOpts = {...visualOptions}
+    xOptions.forEach(opt => {
+      const vOpt = get(visualOptions, opt)
+      const nOpt = get(options, opt, [])
+      if(!vOpt || !Array.isArray(vOpt) || vOpt.length < nOpt.length){
+        newOpts[opt] = newOpts[opt] || []
+        newOpts[opt].push(cfg[opt].default)
+        optsFixed.push(opt)
+      }
+      if(optsFixed.length){
+        setVisualOptions(newOpts)
+      }
+    })
+    
+  }, [mapping])
+
+  
+
   return (
     <div className="App">
       <Header menuItems={HeaderItems} />

@@ -11,7 +11,8 @@ import ChartOptionText from './ChartOptionTypes/ChartOptionText'
 import ChartOptionColor from './ChartOptionTypes/ChartOptionColor'
 import ChartOptionColorScale from './ChartOptionTypes/ChartOptionColorScale'
 import ChartOptionBoolean from './ChartOptionTypes/ChartOptionBoolean'
-import { map } from 'lodash'
+import get from 'lodash/get'
+import map from 'lodash/map'
 
 import styles from './ChartOptions.module.scss'
 
@@ -23,23 +24,52 @@ const CHART_OPTION_COMPONENTS = {
   boolean: ChartOptionBoolean,
 }
 
-function WrapControlComponent({ type, optionId, setVisualOptions, ...props }) {
+function getPartialMapping(mapping, dimension, repeatIndex) {
+  const nv = get(mapping[dimension], `value[${repeatIndex}]`)
+  return {
+    ...mapping,
+    [dimension]: {
+      ...mapping[dimension],
+      value: [nv]
+    }
+  }
+}
+
+function getPartialMappedData(mappedData, dimension, repeatIndex) {
+  return Array.isArray(mappedData) ? mappedData.map(datum => {
+    const value = get(datum[dimension], `[${repeatIndex}]`)
+    return {
+      ...datum,
+      [dimension]: value,
+    }
+  }) : mappedData
+}
+
+function WrapControlComponent({ type, optionId, setVisualOptions, label, repeatIndex, ...props }) {
   const Component = CHART_OPTION_COMPONENTS[type]
 
   const handleControlChange = useCallback(
     (nextValue) => {
-      setVisualOptions((visualOptions) => ({
+      
+      setVisualOptions((visualOptions) => {
+        let newValue = nextValue
+        if(repeatIndex !== undefined){
+          newValue = visualOptions[optionId] || []
+          newValue[repeatIndex] = nextValue
+        }
+        return {
         ...visualOptions,
-        [optionId]: nextValue,
-      }))
+        [optionId]: newValue,
+      }})
     },
-    [optionId, setVisualOptions]
+    [optionId, repeatIndex, setVisualOptions]
   )
 
   return (
     <Component
       type={type}
       optionId={optionId}
+      label={repeatIndex !== undefined ? <React.Fragment>{label} ({repeatIndex+1})</React.Fragment> : label}
       {...props}
       onChange={handleControlChange}
     />
@@ -100,13 +130,14 @@ const ChartOptions = ({
   }, [optionsConfig])
   
   const containerOptions = useMemo(() => {
-    const defaultOptionsValues = getDefaultOptionsValues(optionsConfig)
+    const defaultOptionsValues = getDefaultOptionsValues(optionsConfig, mapping)
     const opts = {
       ...defaultOptionsValues,
       ...visualOptions,
     }
     return getContainerOptions(optionsConfig, opts)
-  }, [optionsConfig, visualOptions])
+  }, [mapping, optionsConfig, visualOptions])
+
   return (
     <div className={[styles["chart-options"],'col-3'].join(' ')}>
       {map(optionsDefinitionsByGroup, (options, groupName) => {
@@ -131,7 +162,28 @@ const ChartOptions = ({
               </Col>
             </Row>
             {map(options, (def, optionId) => {
-              return (
+              return def.repeatFor ? (
+                get(mapping, `[${def.repeatFor}].value`, []).map((v,repeatIndex) => (
+                  <WrapControlComponent
+                  className={styles["chart-option"]}
+                  key={optionId+repeatIndex}
+                  repeatIndex={repeatIndex}
+                  {...def}
+                  optionId={optionId}
+                  error={error?.errors?.[optionId+repeatIndex]}
+                  value={visualOptions?.[optionId]?.[repeatIndex] || def.default}
+                  mapping={def.type === 'colorScale' ? getPartialMapping(mapping, def.repeatFor, repeatIndex) : undefined}
+                  chart={def.type === 'colorScale' ? chart : undefined}
+                  dataset={def.type === 'colorScale' ? dataset : undefined}
+                  dataTypes={def.type === 'colorScale' ? dataTypes : undefined}
+                  mappedData={getPartialMappedData(mappedData, def.repeatFor, repeatIndex)}
+                  setVisualOptions={setVisualOptions}
+                  isEnabled={enabledOptions[optionId]}
+                />  
+                ))
+                
+                
+              ) : (
                 <WrapControlComponent
                   className={styles["chart-option"]}
                   key={optionId}
