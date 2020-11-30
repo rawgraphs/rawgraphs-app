@@ -130,20 +130,22 @@ function App() {
     setVisualOptions(getDefaultOptionsValues(options))
   }, [])
 
-  //when mapping changes
+  // when mapping changes repeated visual options could need an extension
+  // #TODO: fix case when more than one item is added the mapping
   useEffect(() => {
     const cfg = getOptionsConfig(currentChart?.visualOptions)
     const options = getDefaultOptionsValues(cfg, mapping)
     const allOptions = Object.keys(cfg)
-    const xOptions = allOptions.filter(id => !!cfg[id].repeatFor)
+    const repeatedOptions = allOptions.filter(id => !!cfg[id].repeatFor)
     const optsFixed = []
     const newOpts = {...visualOptions}
-    xOptions.forEach(opt => {
+    repeatedOptions.forEach((opt) => {
       const vOpt = get(visualOptions, opt)
-      const nOpt = get(options, opt, [])
-      if(!vOpt || !Array.isArray(vOpt) || vOpt.length < nOpt.length){
+      const expectedOpt = get(options, opt, [])
+      if(!vOpt || !Array.isArray(vOpt) || vOpt.length < expectedOpt.length){
         newOpts[opt] = newOpts[opt] || []
-        newOpts[opt].push(cfg[opt].default)
+        const newValue = Array.isArray(cfg[opt].repeatDefault) ? cfg[opt].repeatDefault[vOpt ? vOpt.length : 0] : cfg[opt].default
+        newOpts[opt].push(newValue)
         optsFixed.push(opt)
       }
       if(optsFixed.length){
@@ -151,9 +153,10 @@ function App() {
       }
     })
     
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mapping])
 
-  
+
 
   return (
     <div className="App">
