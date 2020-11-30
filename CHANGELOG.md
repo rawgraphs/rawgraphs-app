@@ -2,6 +2,7 @@
 
 Features:
 - Handling dates in color scales
+- Added treemap chart
 
 Bugfixes:
 - Fixed restoring color scales when loading project
