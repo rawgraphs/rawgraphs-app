@@ -116,7 +116,6 @@ function App() {
   ])
 
   const importProject = useCallback(project => {
-    
     hydrateFromSavedProject(project)
     setCurrentChart(project.currentChart)
     setMapping(project.mapping)

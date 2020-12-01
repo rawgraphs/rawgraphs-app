@@ -1,8 +1,12 @@
-## NEXT
+## 2.0.0-beta.3
+#### 01 Dec 2020
+
 
 Features:
 - Handling dates in color scales
 - Added treemap chart
+- Support for repeated options
+- Updated dependencies: d3, rawgraphs-charts and rawgraphs-core
 
 Bugfixes:
 - Fixed restoring color scales when loading project

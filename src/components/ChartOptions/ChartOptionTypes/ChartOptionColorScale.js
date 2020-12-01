@@ -4,8 +4,6 @@ import ColorSchemesDropDown from './ColorSchemesDropDown'
 import usePrevious from '../../../hooks/usePrevious'
 import { Row, Col } from 'react-bootstrap'
 import get from 'lodash/get'
-import isFunction from 'lodash/isFunction'
-import { timeParse } from 'd3-time-format'
 import {
   getInitialScaleValues,
   getColorScale,
@@ -159,18 +157,13 @@ const ChartOptionColorScale = ({
   )
 
   const currentFinalScale = useMemo(() => {
-    if (scaleType && interpolator && userValues && userValues.length) {
-      const valuesForFinalScale = getUserValuesForFinalScale(userValues)
+    if (scaleType && interpolator) {
+      const currentUserValues = userValues && userValues.length ? userValues : getDefaultUserValues(interpolator, scaleType)
+      const valuesForFinalScale = getUserValuesForFinalScale(currentUserValues)
       return getCurrentFinalScale(interpolator, scaleType, valuesForFinalScale)
     }
     return null
-  }, [
-    getCurrentFinalScale,
-    getUserValuesForFinalScale,
-    interpolator,
-    scaleType,
-    userValues,
-  ])
+  }, [getCurrentFinalScale, getDefaultUserValues, getUserValuesForFinalScale, interpolator, scaleType, userValues])
 
   const handleChangeValues = useCallback(
     (nextUserValues) => {

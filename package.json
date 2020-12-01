@@ -1,11 +1,11 @@
 {
   "name": "rawgraphs-frontend",
   "homepage": ".",
-  "version": "2.0.0beta2",
+  "version": "2.0.0-beta.3",
   "private": true,
   "dependencies": {
-    "@raw-temp/rawgraphs-charts": "0.0.39",
-    "@raw-temp/rawgraphs-core": "1.0.0beta2",
+    "@raw-temp/rawgraphs-charts": "1.0.0-beta.1",
+    "@raw-temp/rawgraphs-core": "1.0.0-beta.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -14,7 +14,7 @@
     "bootstrap": "^4.5.0",
     "classnames": "^2.2.6",
     "comlink": "^4.3.0",
-    "d3": "^6.1.1",
+    "d3": "6.2.0",
     "dayjs": "^1.8.33",
     "lodash": "^4.17.15",
     "react": "^16.13.1",

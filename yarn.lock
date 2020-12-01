@@ -1919,19 +1919,19 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.2.tgz#7c6dc4ecef16149fd7a736710baa1b811017fdca"
   integrity sha512-JlGTGRYHC2QK+DDbePyXdBdooxFq2+noLfWpRqJtkxcb/oYWzOF0kcbfvvbWrwevCC1l6hLUg1wHYT+ona5BWQ==
 
-"@raw-temp/rawgraphs-charts@0.0.39":
-  version "0.0.39"
-  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-0.0.39.tgz#ba9ee036b577584ba0d911f84ec19b77b4007fe9"
-  integrity sha512-28inWYf+DGGkAEd+HXQAAfIIbfMcRIUCxe/lAIyA2Z5cbjhXgu1NKl92oaud+0xfRI+ajy1GRoPJW0JTVrwuLg==
+"@raw-temp/rawgraphs-charts@1.0.0-beta.1":
+  version "1.0.0-beta.1"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-1.0.0-beta.1.tgz#e5a41f86327caa9390ed8a4d381f1a42762106fd"
+  integrity sha512-tVjTcYmUbJYLVf2Sthe3jLobnVsXm8ZD8UvOk07kdowdTR56gJwQT+JS5laCWsAMjNAqnKAo9iFy0d3mGkgonA==
   dependencies:
     d3 "^6.2.0"
     d3-gridding "^0.2.0"
     d3-sankey "^0.12.3"
 
-"@raw-temp/rawgraphs-core@1.0.0beta2":
-  version "1.0.0-beta2"
-  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-1.0.0-beta2.tgz#c7c24373d73e874e7217fdd7c8b8e417ec720913"
-  integrity sha512-lxhes89KxzdwtQbGdi/UrHAdUFeDMwNbSxCZMyk/IgcXWRBnwL55w46k5fq3LHkAwjee44JGUx7P3fMYOr5/4g==
+"@raw-temp/rawgraphs-core@1.0.0-beta.3":
+  version "1.0.0-beta.3"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-1.0.0-beta.3.tgz#1ba7cb209da137d2ca2473a66199db592c4f6771"
+  integrity sha512-5FgJgvaS9OrQdr9uBM7sAUBYzqGeiRvUTFw/MID+BtlAC+Jqp3mX04mceU/qz/LO4vlRUnOBXNUZDrsBb8PtQQ==
   dependencies:
     d3-array "^2.4.0"
     d3-axis "^1.0.12"
@@ -1939,8 +1939,10 @@
     d3-dsv "^1.2.0"
     d3-format "^1.4.5"
     d3-interpolate "^1.4.0"
+    d3-quadtree "^2.0.0"
     d3-scale "^3.2.1"
     d3-scale-chromatic "^1.5.0"
+    d3-selection "^1.4.2"
     d3-svg-legend "^2.25.6"
     d3-time-format "^2.2.3"
     lodash "^4.17.15"
@@ -4668,7 +4670,7 @@ d3-quadtree@1:
   resolved "https://registry.yarnpkg.com/d3-quadtree/-/d3-quadtree-1.0.7.tgz#ca8b84df7bb53763fe3c2f24bd435137f4e53135"
   integrity sha512-RKPAeXnkC59IDGD0Wu5mANy0Q2V28L+fNe65pOCXVdVuTJS3WPKaJlFHer32Rbh9gIo9qMuJXio8ra4+YmIymA==
 
-"d3-quadtree@1 - 2", d3-quadtree@2:
+"d3-quadtree@1 - 2", d3-quadtree@2, d3-quadtree@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/d3-quadtree/-/d3-quadtree-2.0.0.tgz#edbad045cef88701f6fee3aee8e93fb332d30f9d"
   integrity sha512-b0Ed2t1UUalJpc3qXzKi+cPGxeXRr4KU9YSlocN74aTzp6R/Ud43t79yLLqxHRWZfsvWXmbDWPpoENK1K539xw==
@@ -4770,7 +4772,7 @@ d3-selection@2:
   resolved "https://registry.yarnpkg.com/d3-selection/-/d3-selection-2.0.0.tgz#94a11638ea2141b7565f883780dabc7ef6a61066"
   integrity sha512-XoGGqhLUN/W14NmaqcO/bb1nqjDAw5WtSYb2X8wiuQWvSZUsUVYsOSkOybUrNvcBjaywBdYPy03eXHMXjk9nZA==
 
-d3-selection@^1.1.0:
+d3-selection@^1.1.0, d3-selection@^1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/d3-selection/-/d3-selection-1.4.2.tgz#dcaa49522c0dbf32d6c1858afc26b6094555bc5c"
   integrity sha512-SJ0BqYihzOjDnnlfyeHT0e30k0K1+5sR3d5fNueCNeuhZTnGw4M4o8mqJchSwgKMXCNFo+e2VTChiSJ0vYtXkg==
@@ -4942,43 +4944,7 @@ d3-zoom@2:
     d3-voronoi "1"
     d3-zoom "1"
 
-d3@^6.1.1:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/d3/-/d3-6.1.1.tgz#c92f8dfb5d6889ee0d518ea1e0e6afb8642ef991"
-  integrity sha512-bJYW9wlS2uvP2EoMkcPptrUzLMHQKCbiSW+/la8iGSLZgs4KbI/f3Fch4RtnUA9PA+/nPlwyFYzTwDjX80Of8w==
-  dependencies:
-    d3-array "2"
-    d3-axis "2"
-    d3-brush "2"
-    d3-chord "2"
-    d3-color "2"
-    d3-contour "2"
-    d3-delaunay "5"
-    d3-dispatch "2"
-    d3-drag "2"
-    d3-dsv "2"
-    d3-ease "2"
-    d3-fetch "2"
-    d3-force "2"
-    d3-format "2"
-    d3-geo "2"
-    d3-hierarchy "2"
-    d3-interpolate "2"
-    d3-path "2"
-    d3-polygon "2"
-    d3-quadtree "2"
-    d3-random "2"
-    d3-scale "3"
-    d3-scale-chromatic "2"
-    d3-selection "2"
-    d3-shape "2"
-    d3-time "2"
-    d3-time-format "3"
-    d3-timer "2"
-    d3-transition "2"
-    d3-zoom "2"
-
-d3@^6.2.0:
+d3@6.2.0, d3@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/d3/-/d3-6.2.0.tgz#f19b0ecb16ca4ad2171ce8b37c63247e71c6f01d"
   integrity sha512-aH+kx55J8vRBh4K4k9GN4EbNO3QnZsXy4XBfrnr4fL2gQuszUAPQU3fV2oObO2iSpreRH/bG/wfvO+hDu2+e9w==
