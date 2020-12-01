@@ -157,19 +157,13 @@ const ChartOptionColorScale = ({
   )
 
   const currentFinalScale = useMemo(() => {
-    if (scaleType && interpolator && userValues && userValues.length) {
-      const valuesForFinalScale = getUserValuesForFinalScale(userValues)
+    if (scaleType && interpolator) {
+      const currentUserValues = userValues && userValues.length ? userValues : getDefaultUserValues(interpolator, scaleType)
+      const valuesForFinalScale = getUserValuesForFinalScale(currentUserValues)
       return getCurrentFinalScale(interpolator, scaleType, valuesForFinalScale)
     }
-    console.log("no final scale sorry", scaleType, interpolator, userValues)
     return null
-  }, [
-    getCurrentFinalScale,
-    getUserValuesForFinalScale,
-    interpolator,
-    scaleType,
-    userValues,
-  ])
+  }, [getCurrentFinalScale, getDefaultUserValues, getUserValuesForFinalScale, interpolator, scaleType, userValues])
 
   const handleChangeValues = useCallback(
     (nextUserValues) => {
@@ -278,7 +272,7 @@ const ChartOptionColorScale = ({
   }, [availableScaleTypes, handleChangeScaleType, mapping, prevMapping])
 
   useEffect(() => {
-    // maybeSetScaleType()
+    maybeSetScaleType()
   }, [maybeSetScaleType, availableScaleTypes, mapping])
 
   return (
