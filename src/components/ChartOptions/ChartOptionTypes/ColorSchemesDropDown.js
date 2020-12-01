@@ -6,7 +6,6 @@ import {
   getColorDomain,
   getPresetScale
 } from '@raw-temp/rawgraphs-core'
-import get from 'lodash/get'
 import styles from '../ChartOptions.module.scss'
 
 const ColorSchemesDropDown = ({

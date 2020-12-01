@@ -116,7 +116,6 @@ function App() {
   ])
 
   const importProject = useCallback(project => {
-    
     hydrateFromSavedProject(project)
     setCurrentChart(project.currentChart)
     setMapping(project.mapping)
@@ -129,34 +128,6 @@ function App() {
     const options = getOptionsConfig(charts[0]?.visualOptions)
     setVisualOptions(getDefaultOptionsValues(options))
   }, [])
-
-  // when mapping changes repeated visual options could need an extension
-  // #TODO: fix case when more than one item is added the mapping
-  useEffect(() => {
-    const cfg = getOptionsConfig(currentChart?.visualOptions)
-    const options = getDefaultOptionsValues(cfg, mapping)
-    const allOptions = Object.keys(cfg)
-    const repeatedOptions = allOptions.filter(id => !!cfg[id].repeatFor)
-    const optsFixed = []
-    const newOpts = {...visualOptions}
-    repeatedOptions.forEach((opt) => {
-      const vOpt = get(visualOptions, opt)
-      const expectedOpt = get(options, opt, [])
-      if(!vOpt || !Array.isArray(vOpt) || vOpt.length < expectedOpt.length){
-        newOpts[opt] = newOpts[opt] || []
-        const newValue = Array.isArray(cfg[opt].repeatDefault) ? cfg[opt].repeatDefault[vOpt ? vOpt.length : 0] : cfg[opt].default
-        newOpts[opt].push(newValue)
-        optsFixed.push(opt)
-      }
-      if(optsFixed.length){
-        setVisualOptions(newOpts)
-      }
-    })
-    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mapping])
-
-
 
   return (
     <div className="App">

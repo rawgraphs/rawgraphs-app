@@ -45,6 +45,15 @@ function getPartialMappedData(mappedData, dimension, repeatIndex) {
   }) : mappedData
 }
 
+
+function getDefaultForRepeat(def, index){
+  if(Array.isArray(def.repeatDefault)){
+    return get(def.repeatDefault, `[${index}]`, def.default)
+  }
+  return def.default
+}
+
+
 function WrapControlComponent({ type, optionId, setVisualOptions, label, repeatIndex, ...props }) {
   const Component = CHART_OPTION_COMPONENTS[type]
 
@@ -162,6 +171,11 @@ const ChartOptions = ({
               </Col>
             </Row>
             {map(options, (def, optionId) => {
+
+              // repeated options: notice that value is set to a default if undefined
+              // this is caused by changes in shapes of the mapping object 
+              // (when a new value is dragged to the dimension that repeats the option)
+              // the same approach is applied in option validation by the raw core lib
               return def.repeatFor ? (
                 get(mapping, `[${def.repeatFor}].value`, []).map((v,repeatIndex) => (
                   <WrapControlComponent
@@ -171,7 +185,7 @@ const ChartOptions = ({
                   {...def}
                   optionId={optionId}
                   error={error?.errors?.[optionId+repeatIndex]}
-                  value={visualOptions?.[optionId]?.[repeatIndex] || def.default}
+                  value={visualOptions?.[optionId]?.[repeatIndex] ?? getDefaultForRepeat(def, repeatIndex)}
                   mapping={def.type === 'colorScale' ? getPartialMapping(mapping, def.repeatFor, repeatIndex) : undefined}
                   chart={def.type === 'colorScale' ? chart : undefined}
                   dataset={def.type === 'colorScale' ? dataset : undefined}
@@ -181,7 +195,6 @@ const ChartOptions = ({
                   isEnabled={enabledOptions[optionId]}
                 />  
                 ))
-                
                 
               ) : (
                 <WrapControlComponent
