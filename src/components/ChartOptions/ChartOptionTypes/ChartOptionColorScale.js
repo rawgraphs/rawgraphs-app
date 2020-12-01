@@ -13,7 +13,6 @@ import {
   getAvailableScaleTypes,
   getValueType,
 } from '@raw-temp/rawgraphs-core'
-
 import styles from '../ChartOptions.module.scss'
 
 function getDatePickerValue(userValue) {
@@ -45,7 +44,6 @@ const ChartOptionColorScale = ({
   mappedData,
   ...props
 }) => {
-  
   const mappingValue = useMemo(() => {
     return get(mapping, `[${dimension}].value`)
   }, [dimension, mapping])
@@ -58,7 +56,11 @@ const ChartOptionColorScale = ({
 
   const colorDataset = useMemo(() => {
     if (mappedData) {
-      return mappedData.map((d) => get(d, dimension))
+      return mappedData
+        .map((d) => get(d, dimension))
+        .filter(
+          (item) => item !== undefined && !(Array.isArray(item) && !item.length)
+        )
     } else {
       return []
     }
@@ -75,7 +77,9 @@ const ChartOptionColorScale = ({
   }, [colorDataType, colorDataset])
 
   const [interpolators, setInterpolators] = useState(
-    get(value, 'scaleType') ? Object.keys(colorPresets[get(value, 'scaleType')]) : []
+    get(value, 'scaleType')
+      ? Object.keys(colorPresets[get(value, 'scaleType')])
+      : []
   )
 
   const [interpolator, setInterpolator] = useState(get(value, 'interpolator'))
@@ -119,7 +123,6 @@ const ChartOptionColorScale = ({
     [colorDataType, colorDataset]
   )
 
-
   const getDefaultUserValues = useCallback(
     (interpolator, scaleType) => {
       if (!colorDataset.length || !colorDataType || !scaleType) {
@@ -158,17 +161,27 @@ const ChartOptionColorScale = ({
 
   const currentFinalScale = useMemo(() => {
     if (scaleType && interpolator) {
-      const currentUserValues = userValues && userValues.length ? userValues : getDefaultUserValues(interpolator, scaleType)
+      const currentUserValues =
+        userValues && userValues.length
+          ? userValues
+          : getDefaultUserValues(interpolator, scaleType)
       const valuesForFinalScale = getUserValuesForFinalScale(currentUserValues)
       return getCurrentFinalScale(interpolator, scaleType, valuesForFinalScale)
     }
     return null
-  }, [getCurrentFinalScale, getDefaultUserValues, getUserValuesForFinalScale, interpolator, scaleType, userValues])
+  }, [
+    getCurrentFinalScale,
+    getDefaultUserValues,
+    getUserValuesForFinalScale,
+    interpolator,
+    scaleType,
+    userValues,
+  ])
 
   const handleChangeValues = useCallback(
     (nextUserValues) => {
       const valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
-      
+
       //notify ui
       const outScaleParams = {
         scaleType,
@@ -253,27 +266,29 @@ const ChartOptionColorScale = ({
     [getDefaultUserValues, getUserValuesForFinalScale, onChange, scaleType]
   )
 
+  const prevDataset = usePrevious(colorDataset)
+  // const dset = useMemo(() => {
+  //   if(isEqual(prevDataset, colorDataset)){
+  //     return prevDataset
+  //   }
+  //   return colorDataset
+  // }, [colorDataset, prevDataset])
+
   const initialValues = useRef({ scaleType, interpolator, userValues })
-
-  const prevMapping = usePrevious(mapping)
-  const maybeSetScaleType = useCallback(() => {
-    if (
-      (initialValues.current?.scaleType &&
-        initialValues.current?.interpolator) ||
-      prevMapping !== mapping
-    ) {
-      if (prevMapping === mapping) {
-        initialValues.current = false
-      }
-    } else {
-      const nextScaleType = availableScaleTypes[0]
-      handleChangeScaleType(nextScaleType)
-    }
-  }, [availableScaleTypes, handleChangeScaleType, mapping, prevMapping])
-
   useEffect(() => {
-    maybeSetScaleType()
-  }, [maybeSetScaleType, availableScaleTypes, mapping])
+    if (prevDataset && prevDataset.length && !colorDataset.length) {
+      initialValues.current = false
+    }
+  }, [prevDataset, colorDataset])
+  useEffect(() => {
+    if (initialValues.current?.scaleType) {
+      return
+    }
+    const nextTypes = getAvailableScaleTypes(colorDataType, colorDataset)
+    if (nextTypes && nextTypes.length) {
+      handleChangeScaleType(nextTypes[0])
+    }
+  }, [colorDataType, colorDataset, handleChangeScaleType])
 
   return (
     <>
@@ -396,4 +411,4 @@ const ChartOptionColorScale = ({
   )
 }
 
-export default React.memo(ChartOptionColorScale)
+export default ChartOptionColorScale
