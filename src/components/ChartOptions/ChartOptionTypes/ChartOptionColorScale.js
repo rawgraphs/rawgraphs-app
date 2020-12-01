@@ -14,6 +14,7 @@ import {
   getValueType,
 } from '@raw-temp/rawgraphs-core'
 import styles from '../ChartOptions.module.scss'
+import isEqual from 'lodash/isEqual'
 
 function getDatePickerValue(userValue) {
   if (userValue.userDomain === 0) {
@@ -267,28 +268,26 @@ const ChartOptionColorScale = ({
   )
 
   const prevDataset = usePrevious(colorDataset)
-  // const dset = useMemo(() => {
-  //   if(isEqual(prevDataset, colorDataset)){
-  //     return prevDataset
-  //   }
-  //   return colorDataset
-  // }, [colorDataset, prevDataset])
-
-  const initialValues = useRef({ scaleType, interpolator, userValues })
+  
+  const initialValues = useRef(currentFinalScale)
+  
   useEffect(() => {
-    if (prevDataset && prevDataset.length && !colorDataset.length) {
-      initialValues.current = false
-    }
-  }, [prevDataset, colorDataset])
-  useEffect(() => {
-    if (initialValues.current?.scaleType) {
+    if (initialValues.current || isEqual(colorDataset, prevDataset)) {
       return
     }
     const nextTypes = getAvailableScaleTypes(colorDataType, colorDataset)
     if (nextTypes && nextTypes.length) {
       handleChangeScaleType(nextTypes[0])
     }
-  }, [colorDataType, colorDataset, handleChangeScaleType])
+  }, [colorDataType, colorDataset, prevDataset, handleChangeScaleType])
+  
+  useEffect(() => {
+    //reset on change (is empty)
+    if (prevDataset && prevDataset.length && !colorDataset.length) {
+      initialValues.current = false
+    }
+  }, [prevDataset, colorDataset])
+  
 
   return (
     <>
