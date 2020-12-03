@@ -29,6 +29,29 @@ const samplesList = [
     url: './sample-datasets/Sunburst - Wine Aromas.tsv',
     delimiter: '\t',
   },
+
+  {
+    name: 'Orchestras by musical instrument',
+    category: 'Treemap',
+    url: './sample-datasets/Treemap - Orchestra.tsv',
+    delimiter: '\t',
+  },
+
+  {
+    name: 'Animal kingdom classification',
+    category: 'Dendogram',
+    url: './sample-datasets/Dendogram - animal kingdom.tsv',
+    delimiter: '\t',
+  },
+
+  {
+    name: 'Most populated cities per continent',
+    category: 'Circle Packing',
+    url: './sample-datasets/CirclePacking - biggest-cities.tsv',
+    delimiter: '\t',
+  },
+
+
 ]
 export default function DataSamples({ onSampleReady }) {
   const select = async (sample) => {
