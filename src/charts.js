@@ -10,7 +10,7 @@ import {
   beeswarm,
   treemap,
   circlepacking,
-  // barchart,
+  barchart,
   // barchartstacked,
   // barchartmultiset,
 } from '@raw-temp/rawgraphs-charts'
@@ -29,7 +29,7 @@ let charts = [
   beeswarm,
   circlepacking,
   treemap,
-  // barchart,
+  barchart,
   // barchartstacked,
   // barchartmultiset,
 ]
