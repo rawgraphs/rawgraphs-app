@@ -1,6 +1,11 @@
+## 2.0.0-beta.4
+#### 15 Dec 2020
+
+Features:
+- Added bar chart
+
 ## 2.0.0-beta.3
 #### 01 Dec 2020
-
 
 Features:
 - Handling dates in color scales
