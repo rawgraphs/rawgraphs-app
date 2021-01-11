@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import { chart as rawChart } from '@raw-temp/rawgraphs-core'
+import { Alert } from 'react-bootstrap'
 import useDebounce from '../../hooks/useDebounce'
 
 const ChartPreview = ({
@@ -57,8 +58,11 @@ const ChartPreview = ({
 
   return (
     <div className={"col-9"}>
-      <div className={['overflow-auto', 'position-sticky'].join(' ')} style={{top:'calc(15px + var(--header-height))'}} ref={domRef}>{/* Don't put content in this <div /> */}</div>
-      {error !== null && <div className="error-message">{error.message}</div>}
+      <div className={['overflow-auto', 'position-sticky'].join(' ')} style={{top:'calc(15px + var(--header-height))'}} >
+        <div ref={domRef}>{/* Don't put content in this <div /> */}</div>
+        {error !== null && <Alert variant="danger" className="mt-2">{error.message}</Alert>}
+      </div>
+      
     </div>
   )
 }
