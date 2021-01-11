@@ -16,6 +16,7 @@ Features:
 - Added treemap chart
 - Support for repeated options
 - Updated dependencies: d3, rawgraphs-charts and rawgraphs-core
+- New data samples
 
 Bugfixes:
 - Fixed restoring color scales when loading project
