@@ -15,6 +15,7 @@ import {
 } from '@raw-temp/rawgraphs-core'
 import styles from '../ChartOptions.module.scss'
 import isEqual from 'lodash/isEqual'
+import uniq from 'lodash/uniq'
 
 function getDatePickerValue(userValue) {
   if (userValue.userDomain === 0) {
@@ -49,7 +50,26 @@ const ChartOptionColorScale = ({
     return get(mapping, `[${dimension}].value`)
   }, [dimension, mapping])
 
+  // #TODO: this seems to work with also with multiple color dimensions
+  // but it's still very complex, as custom mappings could build
+  // color data in many ways.
+  // for those cases we should let the chart declare
+  // if there are some constraints on color scale types
   const colorDataType = useMemo(() => {
+    if (!mappingValue) {
+      return undefined
+    }
+    const isMultiple = Array.isArray(mappingValue)
+    if (isMultiple) {
+      if (!mappingValue.length) {
+        return undefined
+      }
+      const foundTypes = uniq(
+        mappingValue.map((v) => getTypeName(dataTypes[v]))
+      )
+      return foundTypes.length === 1 ? foundTypes[0] : 'string'
+    }
+
     return dataTypes[mappingValue]
       ? getTypeName(dataTypes[mappingValue])
       : undefined
@@ -268,9 +288,9 @@ const ChartOptionColorScale = ({
   )
 
   const prevDataset = usePrevious(colorDataset)
-  
+
   const initialValues = useRef(currentFinalScale)
-  
+
   useEffect(() => {
     if (initialValues.current || isEqual(colorDataset, prevDataset)) {
       return
@@ -280,14 +300,13 @@ const ChartOptionColorScale = ({
       handleChangeScaleType(nextTypes[0])
     }
   }, [colorDataType, colorDataset, prevDataset, handleChangeScaleType])
-  
+
   useEffect(() => {
     //reset on change (is empty)
     if (prevDataset && prevDataset.length && !colorDataset.length) {
       initialValues.current = false
     }
   }, [prevDataset, colorDataset])
-  
 
   return (
     <>
