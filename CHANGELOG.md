@@ -2,6 +2,7 @@
 
 - update gh action
 - change data workflow
+- color scales: partial support for multiple dimensions in mapping.
   
 ## 2.0.0-beta.4
 #### 15 Dec 2020
