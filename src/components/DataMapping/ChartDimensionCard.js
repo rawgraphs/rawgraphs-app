@@ -1,4 +1,6 @@
 import React, { useCallback } from 'react'
+import DataTypeIcon from './DataTypeIcon'
+import RequiredIcon from './RequiredIcon'
 import { Col } from 'react-bootstrap'
 import { useDrop } from 'react-dnd'
 import get from 'lodash/get'
@@ -198,12 +200,13 @@ const ChartDimensionCard = ({
         >
           <span className="text-left">
             {dimension.validTypes.map((t) => {
-              const DataTypeIcon = dataTypeIcons[t]
-              return (
-                <span key={t}>
-                  <DataTypeIcon className={styles['accepted-type-icon']} />
-                </span>
-              )
+              return <DataTypeIcon key={t} type={t} />
+              // const DataTypeIcon = dataTypeIcons[t]
+              // return (
+              //   <span key={t}>
+              //     <DataTypeIcon className={styles['accepted-type-icon']} />
+              //   </span>
+              // )
             })}
           </span>
           <span className="text-capitalize text-center">{dimension.name}</span>
@@ -211,7 +214,7 @@ const ChartDimensionCard = ({
             className={styles['dimension-required'] + ' text-right'}
             style={{ opacity: dimension.required ? 1 : 0 }}
           >
-            {dimension.required && `\u2055`}
+            {dimension.required && <RequiredIcon />}
           </span>
         </div>
 
