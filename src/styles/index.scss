@@ -95,6 +95,9 @@ h5 {
   &.alert-success {
     background-color: theme-color('success');
   }
+  &.alert-secondary {
+    color: var(--gray-700);
+  }
   &.alert-warning {
     background-color: theme-color('warning');
   }

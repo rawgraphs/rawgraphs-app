@@ -1,6 +1,6 @@
 import { get } from 'lodash'
 import React, { useState } from 'react'
-import { Alert, Col, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 import {
   BsArrowCounterclockwise,
   BsClipboard,
@@ -22,6 +22,7 @@ import Paste from './loaders/Paste'
 import UploadFile from './loaders/UploadFile'
 import UrlFetch from './loaders/UrlFetch'
 import Loading from './loading'
+import WarningMessage from '../WarningMessage'
 
 function DataLoader({
   userInput,
@@ -55,6 +56,7 @@ function DataLoader({
   replaceRequiresConfirmation,
   hydrateFromProject,
 }) {
+  const [loadingError, setLoadingError] = useState();
   const options = [
     {
       id: 'paste',
@@ -109,6 +111,7 @@ function DataLoader({
         <UrlFetch
           userInput={userInput}
           setUserInput={(rawInput, source) => setUserInput(rawInput, source)}
+          setLoadingError={setLoadingError}
         />
       ),
       icon: BsSearch,
@@ -119,8 +122,8 @@ function DataLoader({
       id: 'project',
       name: 'Open your project',
       message:
-        'Load a .rawgraphs project. Questions about how to save your work?',
-      loader: <LoadProject onProjectSelected={hydrateFromProject} />,
+        'Load a .rawgraphs project.',
+      loader: <LoadProject onProjectSelected={hydrateFromProject} setLoadingError={setLoadingError} />,
       icon: BsFolder,
       allowedForReplace: false,
     },
@@ -168,6 +171,17 @@ function DataLoader({
         </p>
       </>
     )
+  }
+
+  function parsingErrors(data) {
+    const errors = get(data, 'errors', [])
+    const successCells = data.dataset.length * Object.keys(data.dataTypes).length - errors.length;
+    let message = `Ops, please check row ${errors[0].row + 1} at column "Column Name". `;
+    if (errors.length > 1) {
+      message += `There are issues in ${errors.length - 1} more cells. `
+    }
+    message += `The ${successCells} remaining cells look fine.`
+    return message
   }
 
   return (
@@ -264,19 +278,23 @@ function DataLoader({
           <Row className="h-100">
             <Col className="h-100">
               {mainContent}
+
+              {data && !parseError && get(data, 'errors', []).length===0 && (
+                <WarningMessage variant="success" message={`${ data.dataset.length * Object.keys(data.dataTypes).length } cells have been successfully parsed, now you can choose a chart!`} />
+              )}
+
               {parseError && (
-                <Alert variant="danger" className="mt-3">
-                  <p className="m-0">{parseError}</p>
-                </Alert>
+                <WarningMessage variant="danger" message={parseError} />
               )}
+
               {get(data, 'errors', []).length > 0 && (
-                <Alert variant="warning" className="mt-3">
-                  <p className="m-0">
-                    Ops here something seems weird. Check row{' '}
-                    {data.errors[0].row + 1}!
-                  </p>
-                </Alert>
+                <WarningMessage variant="warning" message={parsingErrors(data)} />
               )}
+
+              {loadingError && (
+                <WarningMessage variant="danger" message={loadingError} />
+              )}
+              
             </Col>
           </Row>
         </Col>

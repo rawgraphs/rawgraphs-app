@@ -29,14 +29,14 @@ export function parseAndCheckData(dataString, opts) {
   const [dataType, data] = parseData(dataString, opts)
   if (dataType === null) {
     // This should never happen
-    return [dataType, data, 'Cannot parse dataset!']
+    return [dataType, data, 'Cannot parse dataset! (This should never happen)']
   } else {
     if (dataType === 'json') {
       return ['json', data, null]
     } else if (data.length > 0) {
       return [dataType, data, null]
     } else {
-      return [null, null, 'Bad data']
+      return [null, null, 'We can\'t parse your data.']
     }
   }
 }

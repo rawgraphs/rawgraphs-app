@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import { Button } from 'react-bootstrap'
 import { useDropzone } from 'react-dropzone'
 import classNames from 'classnames'
@@ -10,30 +10,38 @@ const DESERIALIZERS = {
   "1": deserializeProjectV1
 }
 
-export default function LoadProject({ onProjectSelected }) {
-  const [error, setError] = useState(null)
+export default function LoadProject({ onProjectSelected, setLoadingError }) {
+  // const [error, setError] = useState(null)
 
   const onDrop = useCallback(
     (acceptedFiles) => {
       const reader = new FileReader()
       reader.addEventListener('load', (e) => {
+        try {
+          JSON.parse(e.target.result)
+        } catch (e) {
+          // setError(e.message)
+          setLoadingError("Can't open your project. "+e.message)
+        }
         const serializedProject = JSON.parse(e.target.result)
         const version = get(serializedProject, "version", "unknown")
         if (DESERIALIZERS[version]) {
           try {
             onProjectSelected(DESERIALIZERS[version](serializedProject))
           } catch (e) {
-            setError(e.message)
+            // setError(e.message)
+            setLoadingError("Can't open your project. "+e.message)
           }
         } else {
-          setError("Invalid file")
+          // setError("Invalid file")
+          setLoadingError("Can't open your project. Invalid file")
         }
       })
       if (acceptedFiles.length) {
         reader.readAsText(acceptedFiles[0])
       }
     },
-    [onProjectSelected]
+    [onProjectSelected, setLoadingError]
   )
   const {
     getRootProps,
@@ -62,7 +70,7 @@ export default function LoadProject({ onProjectSelected }) {
       <span>a file from your computer</span>
       {isDragAccept && <p>All files will be accepted</p>}
       {isDragReject && <p>Some files will be rejected</p>}
-      {error && <p>{error}</p>}
+      {/* {error && <p>{error}</p>} */}
     </div>
   )
 }
