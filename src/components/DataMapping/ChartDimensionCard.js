@@ -45,10 +45,17 @@ const ChartDimensionCard = ({
           ? getDefaultDimensionAggregation(dimension, dataTypes[item.id])
           : null
 
+        const columnDataType = getTypeName(dataTypes[item.id]);
+        const isValid =
+          dimension.validTypes?.length === 0 ||
+          dimension.validTypes?.includes(columnDataType)
+
         setMapping({
           ...mapping,
           ids: (mapping.ids || []).concat(uniqueId()),
           value: [...(mapping.value || []), item.id],
+          isValid: isValid,
+          mappedType: columnDataType,
           config: dimension.aggregation
             ? {
                 aggregation: [

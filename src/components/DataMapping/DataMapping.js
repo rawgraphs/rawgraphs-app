@@ -194,7 +194,6 @@ function DataMapping({ dataTypes, dimensions, mapping, setMapping }, ref) {
         </Col>
         <Col>
           <h5 className="text-uppercase">Chart Variables</h5>
-          {/* <div className="d-flex flex-row flex-wrap"> */}
           <Row
             className="sticky-top"
             style={{ top: 'calc(var(--header-height) + 16px)' }}
@@ -220,7 +219,6 @@ function DataMapping({ dataTypes, dimensions, mapping, setMapping }, ref) {
               )
             })}
           </Row>
-          {/* </div> */}
         </Col>
       </Row>
     </DndProvider>

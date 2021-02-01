@@ -16,7 +16,7 @@ const ChartPreviewWithOptions = ({
   setRawViz,
   setMappingLoading,
 }) => {
-  const [error, setError] = useState(null)
+  const [error, setError] = useState({variant: "secondary", message: "Required chart variables"})
   const [mappedData, setMappedData] = useState(null)
 
   useEffect(() => {
