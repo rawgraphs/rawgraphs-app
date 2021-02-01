@@ -56,23 +56,24 @@ const ChartOptionColorScale = ({
   // for those cases we should let the chart declare
   // if there are some constraints on color scale types
   const colorDataType = useMemo(() => {
-    if (!mappingValue) {
-      return undefined
-    }
-    const isMultiple = Array.isArray(mappingValue)
-    if (isMultiple) {
-      if (!mappingValue.length) {
-        return undefined
-      }
-      const foundTypes = uniq(
-        mappingValue.map((v) => getTypeName(dataTypes[v]))
-      )
-      return foundTypes.length === 1 ? foundTypes[0] : 'string'
-    }
+    
+    // if (!mappingValue) {
+    //   return 'string'
+    // }
+    // const isMultiple = Array.isArray(mappingValue)
+    // if (isMultiple) {
+    //   if (!mappingValue.length) {
+    //     return undefined
+    //   }
+    //   const foundTypes = uniq(
+    //     mappingValue.map((v) => getTypeName(dataTypes[v]))
+    //   )
+    //   return foundTypes.length === 1 ? foundTypes[0] : 'string'
+    // }
 
     return dataTypes[mappingValue]
       ? getTypeName(dataTypes[mappingValue])
-      : undefined
+      : 'string'
   }, [dataTypes, mappingValue])
 
   const colorDataset = useMemo(() => {
@@ -86,6 +87,8 @@ const ChartOptionColorScale = ({
       return []
     }
   }, [dimension, mappedData])
+
+  console.log("colorDataset", colorDataset, colorDataType)
 
   const [scaleType, setScaleType] = useState(get(value, 'scaleType'))
 
