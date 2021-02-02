@@ -15,6 +15,7 @@ export default function UrlFetch({ userInput, setUserInput, setLoadingError }) {
     }
     const text = await response.text()
     setUserInput(text, { type: 'url', url })
+    setLoadingError(null)
   }
   return (
     <input

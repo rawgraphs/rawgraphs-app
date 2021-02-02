@@ -18,15 +18,15 @@
     opacity: 1;
   }
   &:last-child {
-    align-self: flex-end;
-    &:hover {
-      background-color: var(--warning-lighter);
-    }
-    &:active,
-    &.active {
-      border-color: var(--warning);
-      background-color: var(--warning-lighter);
-    }
+    // align-self: flex-end;
+    // &:hover {
+    //   background-color: var(--warning-lighter);
+    // }
+    // &:active,
+    // &.active {
+    //   border-color: var(--warning);
+    //   background-color: var(--warning-lighter);
+    // }
   }
   // &:last-child, &.separated {
   //   position: relative;

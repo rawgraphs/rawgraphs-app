@@ -1,12 +1,13 @@
 import React from 'react'
 
-export default function Paste({ userInput, setUserInput }) {
+export default function Paste({ userInput, setUserInput, setLoadingError }) {
   return (
     <textarea
       value={userInput}
       onChange={(e) => {
         const str = e.target.value
         setUserInput(str)
+        setLoadingError(null)
       }}
       style={{
         backgroundColor: 'white',

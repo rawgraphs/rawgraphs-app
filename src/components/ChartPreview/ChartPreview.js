@@ -24,57 +24,83 @@ const ChartPreview = ({
 
     // control required variables
     // need to create this array because the prop mapping does not return to {} when data is inserted and removed
-    const currentlyMapped = [];
+    const currentlyMapped = []
     for (let variable in mapping) {
-      if (mapping[variable].ids && mapping[variable].ids.length>0) {
-        currentlyMapped.push(variable);
+      if (mapping[variable].ids && mapping[variable].ids.length > 0) {
+        currentlyMapped.push(variable)
       }
     }
-    let requiredVariables = JSON.parse(JSON.stringify(chart.dimensions.filter(d=>d.required)))
-    requiredVariables.forEach(r=>r.mapped = currentlyMapped.indexOf(r.id)>-1)
-    requiredVariables = requiredVariables.filter(d=>!d.mapped)
+
+    let requiredVariables = chart.dimensions.filter(
+      (d) => d.required && currentlyMapped.indexOf(d.id) === -1
+    )
 
     if (requiredVariables.length > 0) {
-      let errorMessage = "Required chart variables: you need to map " + requiredVariables.map(d=>d.name).join(" and ")
-      setError({variant: "secondary", message: errorMessage});
+      let errorMessage = (
+        <span>
+          Required chart variables: you need to map{' '}
+          {requiredVariables
+            .map((d) => <span className="font-weight-bold">{d.name}</span>)
+            .reduce((prev, curr) => [prev, ' and ', curr])}
+        </span>
+      )
+      setError({ variant: 'secondary', message: errorMessage })
       setRawViz(null)
       while (domRef.current.firstChild) {
         domRef.current.removeChild(domRef.current.firstChild)
       }
-      return;
+      return
     }
 
     // control multiple required variables
-    const multivaluesVariables = JSON.parse(JSON.stringify(chart.dimensions.filter(d=>d.multiple&&d.required)))
-    multivaluesVariables.forEach(m=>{
-      // mapping[m.id] exists because this is a required dimension
-      m.missing = mapping[m.id].ids.length < 2
-    })
-    if (multivaluesVariables.filter(m=>m.missing).length > 0) {
-      let errorMessage = "Please map more dimensions on " + multivaluesVariables.map(d=>d.name).join(" and ")
-      setError({variant: "secondary", message: errorMessage})
+    const multivaluesVariables = chart.dimensions.filter(
+      (d) =>
+        d.multiple &&
+        d.required &&
+        d.minValues &&
+        mapping[d.id].ids.length < d.minValues
+    )
+    if (multivaluesVariables.length > 0) {
+      let errorMessage = (
+        <span>
+          Please map{' '}
+          {multivaluesVariables
+            .map((d) => (
+              <>
+                at least <span className="font-weight-bold">{d.minValues}</span>{' '}
+                dimensions on <span className="font-weight-bold">{d.name}</span>
+              </>
+            ))
+            .reduce((prev, curr) => [prev, ' and ', curr])}
+          .
+        </span>
+      )
+      setError({ variant: 'secondary', message: errorMessage })
       setRawViz(null)
       while (domRef.current.firstChild) {
         domRef.current.removeChild(domRef.current.firstChild)
       }
-      return;
+      return
     }
 
     // control data-types mismatches
     const mismatching = []
     for (let variable in mapping) {
-      if ( (mapping[variable].ids && mapping[variable].ids.length>0) && !mapping[variable].isValid) {
-        const variableObj = chart.dimensions.find(d=>d.id===variable)
+      if (
+        mapping[variable].ids &&
+        mapping[variable].ids.length > 0 &&
+        !mapping[variable].isValid
+      ) {
+        const variableObj = chart.dimensions.find((d) => d.id === variable)
         const errorMessage = `Data-type mismatch: you can’t map ${mapping[variable].mappedType}s on ${variableObj.name}.`
-        setError({variant: "danger", message: errorMessage})
+        setError({ variant: 'danger', message: errorMessage })
         setRawViz(null)
         while (domRef.current.firstChild) {
           domRef.current.removeChild(domRef.current.firstChild)
         }
-        return;
+        return
       }
     }
-
 
     if (!mappedData) {
       console.info('Clearing viz')
@@ -98,7 +124,7 @@ const ChartPreview = ({
         setRawViz(rawViz)
         setError(null)
       } catch (e) {
-        setError({variant: "danger", message: "Chart error. "+e.message})
+        setError({ variant: 'danger', message: 'Chart error. ' + e.message })
         setRawViz(null)
       }
     } catch (e) {
@@ -106,7 +132,7 @@ const ChartPreview = ({
         domRef.current.removeChild(domRef.current.firstChild)
       }
       console.log({ e })
-      setError({variant: "danger", message: "Chart error. "+e.message})
+      setError({ variant: 'danger', message: 'Chart error. ' + e.message })
       setRawViz(null)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -118,12 +144,9 @@ const ChartPreview = ({
         className={['overflow-auto', 'position-sticky'].join(' ')}
         style={{ top: 'calc(15px + var(--header-height))' }}
       >
-        {/* {error !== null && (
-          <Alert variant="danger" className="mt-2">
-            {error.message}
-          </Alert>
-        )} */}
-        {error && <WarningMessage variant={error.variant} message={error.message} />}
+        {error && (
+          <WarningMessage variant={error.variant} message={error.message} />
+        )}
         <div ref={domRef}>{/* Don't put content in this <div /> */}</div>
       </div>
     </div>

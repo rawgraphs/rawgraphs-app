@@ -56,7 +56,7 @@ function DataLoader({
   replaceRequiresConfirmation,
   hydrateFromProject,
 }) {
-  const [loadingError, setLoadingError] = useState();
+  const [loadingError, setLoadingError] = useState()
   const options = [
     {
       id: 'paste',
@@ -65,6 +65,7 @@ function DataLoader({
         <Paste
           userInput={userInput}
           setUserInput={(rawInput) => setUserInput(rawInput, { type: 'paste' })}
+          setLoadingError={setLoadingError}
         />
       ),
       message:
@@ -79,6 +80,7 @@ function DataLoader({
         <UploadFile
           userInput={userInput}
           setUserInput={(rawInput) => setUserInput(rawInput, { type: 'file' })}
+          setLoadingError={setLoadingError}
         />
       ),
       message: 'You can load tabular (TSV, CSV, DSV) or JSON data.',
@@ -89,7 +91,12 @@ function DataLoader({
       id: 'samples',
       name: 'Try our data samples',
       message: '',
-      loader: <DataSamples onSampleReady={loadSample} />,
+      loader: (
+        <DataSamples
+          onSampleReady={loadSample}
+          setLoadingError={setLoadingError}
+        />
+      ),
       icon: BsGift,
       allowedForReplace: true,
     },
@@ -121,9 +128,13 @@ function DataLoader({
     {
       id: 'project',
       name: 'Open your project',
-      message:
-        'Load a .rawgraphs project.',
-      loader: <LoadProject onProjectSelected={hydrateFromProject} setLoadingError={setLoadingError} />,
+      message: 'Load a .rawgraphs project.',
+      loader: (
+        <LoadProject
+          onProjectSelected={hydrateFromProject}
+          setLoadingError={setLoadingError}
+        />
+      ),
       icon: BsFolder,
       allowedForReplace: false,
     },
@@ -175,13 +186,17 @@ function DataLoader({
 
   function parsingErrors(data) {
     const errors = get(data, 'errors', [])
-    const successCells = data.dataset.length * Object.keys(data.dataTypes).length - errors.length;
-    let message = `Ops, please check row ${errors[0].row + 1} at column "Column Name". `;
-    if (errors.length > 1) {
-      message += `There are issues in ${errors.length - 1} more cells. `
-    }
-    message += `The ${successCells} remaining cells look fine.`
-    return message
+    const successRows = data.dataset.length - errors.length
+    const row = errors[0].row + 1
+    const column = Object.keys(errors[0].error)[0]
+    return (
+      <span>
+        Ops, please check <span className="font-weight-bold">row {row}</span> at column <span className="font-weight-bold">{column}</span>.{" "}
+        {errors.length === 2 && <> There's another issue at row <span className="font-weight-bold">{errors[1].row + 1}</span>. </>}
+        {errors.length > 2 && <> There are issues in <span className="font-weight-bold">{errors.length - 1}</span> more rows. </>}
+        {successRows > 0 && <>The remaining <span className="font-weight-bold">{successRows} row{successRows>1 && <>s</>}</span> look{successRows===1 && <>s</>} fine.</>}
+      </span>
+    )
   }
 
   return (
@@ -279,8 +294,11 @@ function DataLoader({
             <Col className="h-100">
               {mainContent}
 
-              {data && !parseError && get(data, 'errors', []).length===0 && (
-                <WarningMessage variant="success" message={`${ data.dataset.length * Object.keys(data.dataTypes).length } cells have been successfully parsed, now you can choose a chart!`} />
+              {data && !parseError && get(data, 'errors', []).length === 0 && (
+                <WarningMessage
+                  variant="success"
+                  message={<span><span className="font-weight-bold">{data.dataset.length} rows</span> ({data.dataset.length * Object.keys(data.dataTypes).length} cells) have been successfully parsed, now you can choose a chart!</span>}
+                />
               )}
 
               {parseError && (
@@ -288,13 +306,15 @@ function DataLoader({
               )}
 
               {get(data, 'errors', []).length > 0 && (
-                <WarningMessage variant="warning" message={parsingErrors(data)} />
+                <WarningMessage
+                  variant="warning"
+                  message={parsingErrors(data)}
+                />
               )}
 
               {loadingError && (
                 <WarningMessage variant="danger" message={loadingError} />
               )}
-              
             </Col>
           </Row>
         </Col>

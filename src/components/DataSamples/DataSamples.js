@@ -50,15 +50,20 @@ const samplesList = [
     url: './sample-datasets/CirclePacking - biggest-cities.tsv',
     delimiter: '\t',
   },
-
-
 ]
-export default function DataSamples({ onSampleReady }) {
+export default function DataSamples({ onSampleReady, setLoadingError }) {
   const select = async (sample) => {
     const { delimiter, url } = sample
-    const response = await fetch(url)
+    let response;
+    try {
+      response = await fetch(url)
+    } catch (e) {
+      setLoadingError('Loading error. ' + e.message)
+      return
+    }
     const text = await response.text()
     onSampleReady(text, delimiter)
+    setLoadingError(null)
   }
   return (
     <Row>
