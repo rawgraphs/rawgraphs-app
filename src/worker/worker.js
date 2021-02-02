@@ -5,7 +5,7 @@ import charts from '../charts'
 const obj = {
   parseDataset(data, dataTypes, parsingOptions) {
     let out =  parseDataset(data, dataTypes, parsingOptions)
-    out.errors = (out.errors || []).map(err => ({row: err.row}))
+    out.errors = (out.errors || []).map(err => ({row: err.row, error: err.error}))
     return out
   
   },
