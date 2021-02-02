@@ -50,13 +50,15 @@ const ChartOptionColorScale = ({
     return get(mapping, `[${dimension}].value`)
   }, [dimension, mapping])
 
+
+
   // #TODO: this seems to work with also with multiple color dimensions
   // but it's still very complex, as custom mappings could build
   // color data in many ways.
   // for those cases we should let the chart declare
   // if there are some constraints on color scale types
   const colorDataType = useMemo(() => {
-    
+
     // if (!mappingValue) {
     //   return 'string'
     // }
@@ -89,6 +91,9 @@ const ChartOptionColorScale = ({
   }, [dimension, mappedData])
 
   const [scaleType, setScaleType] = useState(get(value, 'scaleType'))
+
+  const [defaultColor, setDefaultColor] = useState(get(value, 'defaultColor'))
+  console.log("defaultColor", defaultColor)
 
   const availableScaleTypes = useMemo(() => {
     if (!colorDataset.length || !colorDataType) {
@@ -209,6 +214,7 @@ const ChartOptionColorScale = ({
         scaleType,
         interpolator: interpolator,
         userScaleValues: valuesForFinalScale,
+        defaultColor,
       }
       onChange(outScaleParams)
     },
@@ -233,6 +239,22 @@ const ChartOptionColorScale = ({
       handleChangeValues(newUserValues)
     },
     [handleChangeValues, userValues]
+  )
+
+  const handleChangeDefaultColor = useCallback(
+    (nextDefaultColor) => {
+      setDefaultColor(nextDefaultColor)
+
+      //notify ui
+      const outScaleParams = {
+        scaleType,
+        interpolator,
+        userScaleValues: userValues,
+        defaultColor: nextDefaultColor,
+      }
+      onChange(outScaleParams)
+    },
+    [onChange]
   )
 
   const handleChangeScaleType = useCallback(
@@ -262,6 +284,7 @@ const ChartOptionColorScale = ({
         scaleType: nextScaleType,
         interpolator: nextInterpolator,
         userScaleValues: valuesForFinalScale,
+        defaultColor,
       }
       onChange(outScaleParams)
     },
@@ -282,6 +305,7 @@ const ChartOptionColorScale = ({
         scaleType,
         interpolator: nextInterpolator,
         userScaleValues: valuesForFinalScale,
+        defaultColor,
       }
       onChange(outScaleParams)
     },
@@ -311,6 +335,19 @@ const ChartOptionColorScale = ({
 
   return (
     <>
+
+      <Row>
+        <Col xs={6} className="d-flex align-items-center nowrap">
+          Default color
+        </Col>
+        <Col xs={6}>
+          <InilineColorPicker
+            color={defaultColor}
+            onChange={handleChangeDefaultColor}
+          />
+        </Col>
+
+      </Row>
       <Row className={props.className}>
         <Col xs={6} className="d-flex align-items-center nowrap">
           {label}
@@ -397,8 +434,8 @@ const ChartOptionColorScale = ({
                         {i === 0
                           ? 'Start'
                           : i === userValues.length - 1
-                          ? 'End'
-                          : 'Middle'}
+                            ? 'End'
+                            : 'Middle'}
                       </span>
                       <input
                         type={getValueType(userValue.userDomain)}
