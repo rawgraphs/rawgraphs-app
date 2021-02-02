@@ -28,6 +28,7 @@ export default function LoadProject({ onProjectSelected, setLoadingError }) {
         if (DESERIALIZERS[version]) {
           try {
             onProjectSelected(DESERIALIZERS[version](serializedProject))
+            setLoadingError(null)
           } catch (e) {
             // setError(e.message)
             setLoadingError("Can't open your project. "+e.message)

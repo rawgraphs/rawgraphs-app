@@ -4,12 +4,13 @@ import { useDropzone } from 'react-dropzone'
 import classNames from 'classnames'
 import S from './UploadFile.module.scss'
 
-export default function UploadFile({ userInput, setUserInput }) {
+export default function UploadFile({ userInput, setUserInput, setLoadingError }) {
   const onDrop = useCallback(
     (acceptedFiles) => {
       const reader = new FileReader()
       reader.addEventListener('load', (e) => {
         setUserInput(e.target.result)
+        setLoadingError(null)
       })
       if (acceptedFiles.length) {
         reader.readAsText(acceptedFiles[0])
