@@ -45,10 +45,10 @@ const ChartPreview = ({
     }
 
     // control multiple required variables
-    const multivaluesVariables = JSON.parse(JSON.stringify(chart.dimensions.filter(d=>d.multiple&&d.required)))
+    const multivaluesVariables = JSON.parse(JSON.stringify(chart.dimensions.filter(d=>d.multiple&&d.required&&d.minValues)))
     multivaluesVariables.forEach(m=>{
       // mapping[m.id] exists because this is a required dimension
-      m.missing = mapping[m.id].ids.length < 2
+      m.missing = mapping[m.id].ids.length < m.minValues
     })
     if (multivaluesVariables.filter(m=>m.missing).length > 0) {
       let errorMessage = "Please map more dimensions on " + multivaluesVariables.map(d=>d.name).join(" and ")
