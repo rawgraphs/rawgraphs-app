@@ -88,8 +88,6 @@ const ChartOptionColorScale = ({
     }
   }, [dimension, mappedData])
 
-  console.log("colorDataset", colorDataset, colorDataType)
-
   const [scaleType, setScaleType] = useState(get(value, 'scaleType'))
 
   const availableScaleTypes = useMemo(() => {
