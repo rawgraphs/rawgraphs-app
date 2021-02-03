@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState, useCallback } from 'react'
+import React, { useMemo, useRef, useState, useCallback, useEffect, useLayoutEffect } from 'react'
 import ReactDataGrid from 'react-data-grid'
 import { Overlay, OverlayTrigger } from 'react-bootstrap'
 import classNames from 'classnames'
@@ -225,12 +225,18 @@ export default function DataGrid({
 
   const keyedErrors = useMemo(() => keyBy(errors, 'row'), [errors])
 
+  const containerEl = useRef()
+
   // Make id column just as large as needed
   // Adjust constants to fit cell padding and font size
   // (Math.floor(Math.log10(data.dataset.length)) + 1) is the number
   //   of digits of the highest id
   const idColumnWidth =
     24 + 8 * (Math.floor(Math.log10(userDataset.length)) + 1)
+
+  const columnWidth = 180;
+
+  const lastColumnWidth = containerEl.current?.getBoundingClientRect().width - idColumnWidth - (Object.keys(dataTypes).length - 1) * columnWidth 
 
   const columns = useMemo(() => {
     if (!userDataset || !dataTypes) {
@@ -245,7 +251,7 @@ export default function DataGrid({
         width: idColumnWidth,
         sortable: true,
       },
-      ...Object.keys(dataTypes).map((k) => ({
+      ...Object.keys(dataTypes).map((k,i) => ({
         key: k,
         name: k,
         headerRenderer: HeaderRenderer,
@@ -265,7 +271,7 @@ export default function DataGrid({
           coerceTypes({ ...dataTypes, [k]: nextType }),
         sortable: true,
         resizable: true,
-        width: 180,
+        width: i < Object.keys(dataTypes).length-1 ? columnWidth : lastColumnWidth,
       })),
     ]
   }, [coerceTypes, dataTypes, userDataset, idColumnWidth])
@@ -309,25 +315,28 @@ export default function DataGrid({
   }, [])
 
   return (
-    <ReactDataGrid
-      minColumnWidth={idColumnWidth}
-      columns={columns}
-      rows={sortedDataset}
-      rowHeight={48}
-      sortColumn={sortColumn}
-      sortDirection={sortDirection}
-      onSort={handleSort}
-      height={432}
-      onRowsUpdate={(update) => {
-        if (update.action === 'CELL_UPDATE') {
-          const newDataset = [...userDataset]
-          newDataset[update.fromRow] = {
-            ...newDataset[update.fromRow],
-            [update.cellKey]: update.updated[update.cellKey],
+    <div ref={containerEl}>
+      <ReactDataGrid
+        minColumnWidth={idColumnWidth}
+        columns={columns}
+        rows={sortedDataset}
+        rowHeight={48}
+        sortColumn={sortColumn}
+        sortDirection={sortDirection}
+        onSort={handleSort}
+        height={432}
+        onColumnResize={()=>console.log("r")}
+        onRowsUpdate={(update) => {
+          if (update.action === 'CELL_UPDATE') {
+            const newDataset = [...userDataset]
+            newDataset[update.fromRow] = {
+              ...newDataset[update.fromRow],
+              [update.cellKey]: update.updated[update.cellKey],
+            }
+            onDataUpdate && onDataUpdate(newDataset)
           }
-          onDataUpdate && onDataUpdate(newDataset)
-        }
-      }}
-    />
+        }}
+      />
+    </div>
   )
 }
