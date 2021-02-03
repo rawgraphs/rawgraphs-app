@@ -14,7 +14,6 @@ import { DATA_LOADER_MODE } from '../../hooks/useDataLoader'
 import DataGrid from '../DataGrid/DataGrid'
 import DataSamples from '../DataSamples/DataSamples'
 import JsonViewer from '../JsonViewer'
-import Modal from '../Modal'
 import ParsingOptions from '../ParsingOptions'
 import styles from './DataLoader.module.scss'
 import LoadProject from './loaders/LoadProject'
@@ -23,6 +22,7 @@ import UploadFile from './loaders/UploadFile'
 import UrlFetch from './loaders/UrlFetch'
 import Loading from './loading'
 import WarningMessage from '../WarningMessage'
+import DataMismatchModal from './DataMismatchModal'
 
 function DataLoader({
   userInput,
@@ -191,10 +191,32 @@ function DataLoader({
     const column = Object.keys(errors[0].error)[0]
     return (
       <span>
-        Ops, please check <span className="font-weight-bold">row {row}</span> at column <span className="font-weight-bold">{column}</span>.{" "}
-        {errors.length === 2 && <> There's another issue at row <span className="font-weight-bold">{errors[1].row + 1}</span>. </>}
-        {errors.length > 2 && <> There are issues in <span className="font-weight-bold">{errors.length - 1}</span> more rows. </>}
-        {successRows > 0 && <>The remaining <span className="font-weight-bold">{successRows} row{successRows>1 && <>s</>}</span> look{successRows===1 && <>s</>} fine.</>}
+        Ops, please check <span className="font-weight-bold">row {row}</span> at
+        column <span className="font-weight-bold">{column}</span>.{' '}
+        {errors.length === 2 && (
+          <>
+            {' '}
+            There's another issue at row{' '}
+            <span className="font-weight-bold">{errors[1].row + 1}</span>.{' '}
+          </>
+        )}
+        {errors.length > 2 && (
+          <>
+            {' '}
+            There are issues in{' '}
+            <span className="font-weight-bold">{errors.length - 1}</span> more
+            rows.{' '}
+          </>
+        )}
+        {successRows > 0 && (
+          <>
+            The remaining{' '}
+            <span className="font-weight-bold">
+              {successRows} row{successRows > 1 && <>s</>}
+            </span>{' '}
+            look{successRows === 1 && <>s</>} fine.
+          </>
+        )}
       </span>
     )
   }
@@ -297,7 +319,17 @@ function DataLoader({
               {data && !parseError && get(data, 'errors', []).length === 0 && (
                 <WarningMessage
                   variant="success"
-                  message={<span><span className="font-weight-bold">{data.dataset.length} rows</span> ({data.dataset.length * Object.keys(data.dataTypes).length} cells) have been successfully parsed, now you can choose a chart!</span>}
+                  message={
+                    <span>
+                      <span className="font-weight-bold">
+                        {data.dataset.length} rows
+                      </span>{' '}
+                      (
+                      {data.dataset.length * Object.keys(data.dataTypes).length}{' '}
+                      cells) have been successfully parsed, now you can choose a
+                      chart!
+                    </span>
+                  }
                 />
               )}
 
@@ -320,40 +352,11 @@ function DataLoader({
         </Col>
       </Row>
       {replaceRequiresConfirmation && (
-        <Modal isOpen={true} toggle={() => {}}>
-          <p className="text-warning text-uppercase">Warning</p>
-          <div style={{ height: 150 }}>
-            {replaceRequiresConfirmation === 'parse-error' && (
-              <p>There was an error while parsing new data.</p>
-            )}
-            {replaceRequiresConfirmation.startsWith('missing-column:') && (
-              <p>{`The project needs the dimension "${
-                replaceRequiresConfirmation.split(':')[1]
-              }" that we can't find in new data.`}</p>
-            )}
-            {replaceRequiresConfirmation === 'type-mismatch' && (
-              <p>{`There was some error while applying your data types to new data.`}</p>
-            )}
-          </div>
-          <div>
-            <button
-              className="btn btn-light mr-3"
-              onClick={() => {
-                commitDataReplace()
-              }}
-            >
-              Use the new data anyway
-            </button>
-            <button
-              className="btn btn-light mr-3"
-              onClick={() => {
-                cancelDataReplace()
-              }}
-            >
-              Cancel
-            </button>
-          </div>
-        </Modal>
+        <DataMismatchModal
+          replaceRequiresConfirmation={replaceRequiresConfirmation}
+          commitDataReplace={commitDataReplace}
+          cancelDataReplace={cancelDataReplace}
+        />
       )}
     </>
   )
