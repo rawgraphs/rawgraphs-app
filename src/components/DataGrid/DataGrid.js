@@ -1,4 +1,11 @@
-import React, { useMemo, useRef, useState, useCallback, useEffect, useLayoutEffect } from 'react'
+import React, {
+  useMemo,
+  useRef,
+  useState,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+} from 'react'
 import ReactDataGrid from 'react-data-grid'
 import { Overlay, OverlayTrigger } from 'react-bootstrap'
 import classNames from 'classnames'
@@ -200,15 +207,24 @@ function DataTypeSelector({
   )
 }
 
-function HeaderRenderer({ column, ...props }) {
+function HeaderRenderer({ ...props }) {
+  const { column } = props
+  const { key, sortColumn, sortDirection } = column
   return (
-    <div>
+    <div
+      className={classNames(
+        { [S['raw-col-header']]: true },
+        { [S['unsorted']]: key !== sortColumn || (key === sortColumn && sortDirection === 'NONE') },
+        { [S['acs']]: key === sortColumn && sortDirection === 'ASC' },
+        { [S['desc']]: key === sortColumn && sortDirection === 'DESC' }
+      )}
+    >
       <DataTypeSelector
         currentType={column._raw_datatype}
         onTypeChange={column._raw_coerceType}
         currentTypeComplete={column._raw_datatype}
       />
-      <span className={S['column-name']}>{column.name}</span>
+      <span className={classNames(S['column-name'], 'text-truncate', 'd-block')} title={column.name}>{column.name}</span>
     </div>
   )
 }
@@ -234,9 +250,12 @@ export default function DataGrid({
   const idColumnWidth =
     24 + 8 * (Math.floor(Math.log10(userDataset.length)) + 1)
 
-  const columnWidth = 180;
+  const columnWidth = 180
 
-  const lastColumnWidth = containerEl.current?.getBoundingClientRect().width - idColumnWidth - (Object.keys(dataTypes).length - 1) * columnWidth 
+  const lastColumnWidth =
+    containerEl.current?.getBoundingClientRect().width -
+    idColumnWidth -
+    (Object.keys(dataTypes).length - 1) * columnWidth
 
   const columns = useMemo(() => {
     if (!userDataset || !dataTypes) {
@@ -251,9 +270,11 @@ export default function DataGrid({
         width: idColumnWidth,
         sortable: true,
       },
-      ...Object.keys(dataTypes).map((k,i) => ({
+      ...Object.keys(dataTypes).map((k, i) => ({
         key: k,
         name: k,
+        sortColumn: sortColumn,
+        sortDirection: sortDirection,
         headerRenderer: HeaderRenderer,
         editable: true,
         formatter: ({ row }) => {
@@ -271,10 +292,18 @@ export default function DataGrid({
           coerceTypes({ ...dataTypes, [k]: nextType }),
         sortable: true,
         resizable: true,
-        width: i < Object.keys(dataTypes).length-1 ? columnWidth : lastColumnWidth,
+        width:
+          i < Object.keys(dataTypes).length - 1 ? columnWidth : lastColumnWidth,
       })),
     ]
-  }, [coerceTypes, dataTypes, userDataset, idColumnWidth])
+  }, [
+    coerceTypes,
+    dataTypes,
+    userDataset,
+    idColumnWidth,
+    sortColumn,
+    sortDirection,
+  ])
 
   const sortedDataset = useMemo(() => {
     let datasetWithIds = userDataset.map((item, i) => ({
@@ -325,7 +354,7 @@ export default function DataGrid({
         sortDirection={sortDirection}
         onSort={handleSort}
         height={432}
-        onColumnResize={()=>console.log("r")}
+        onColumnResize={() => console.log('r')}
         onRowsUpdate={(update) => {
           if (update.action === 'CELL_UPDATE') {
             const newDataset = [...userDataset]
