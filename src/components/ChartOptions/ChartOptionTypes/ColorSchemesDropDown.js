@@ -16,7 +16,6 @@ const ColorSchemesDropDown = ({
     colorDataset,
     colorDataType,
     scaleType,
-    defaultColor,
     currentFinalScale
 }) => {
 
@@ -35,7 +34,7 @@ const ColorSchemesDropDown = ({
               { colorDataset[0] && colorPresets[scaleType][interpolator] && 
                 <ColorSchemePreview
                   scale={
-                    getPresetScale(scaleType, getColorDomain(colorDataset, colorDataType, scaleType), intrplr, defaultColor)
+                    getPresetScale(scaleType, getColorDomain(colorDataset, colorDataType, scaleType), intrplr)
                   }
                   label={intrplr}
                 />

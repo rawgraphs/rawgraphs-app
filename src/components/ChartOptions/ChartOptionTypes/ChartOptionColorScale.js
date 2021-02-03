@@ -94,8 +94,7 @@ const ChartOptionColorScale = ({
   const [scaleType, setScaleType] = useState(get(value, 'scaleType'))
 
   const [defaultColor, setDefaultColor] = useState(get(defaultValue, 'defaultColor', '#cccccc'))
-  console.log("defaultColor", defaultColor, defaultValue)
-
+  
   const availableScaleTypes = useMemo(() => {
     if (!colorDataset.length || !colorDataType) {
       return ['ordinal', 'sequential', 'diverging']
@@ -128,7 +127,7 @@ const ChartOptionColorScale = ({
         !userValuesForFinalScale ||
         !userValuesForFinalScale.length
       ) {
-        return
+        return 
       }
 
       const domains = userValuesForFinalScale
@@ -154,7 +153,6 @@ const ChartOptionColorScale = ({
 
   const getDefaultUserValues = useCallback(
     (interpolator, scaleType, defaultColor) => {
-      console.log("getDefaultUserValues", interpolator, scaleType, defaultColor)
       if (!colorDataset.length || !colorDataType || !scaleType) {
         return []
       }
@@ -190,7 +188,10 @@ const ChartOptionColorScale = ({
   )
 
   const currentFinalScale = useMemo(() => {
-    if (scaleType && interpolator) {
+    if(!mappingValue){
+      return getDefaultColorScale(defaultColor)
+    }
+    if (mappingValue && scaleType && interpolator) {
       const currentUserValues =
         userValues && userValues.length
           ? userValues
@@ -207,6 +208,7 @@ const ChartOptionColorScale = ({
     scaleType,
     defaultColor,
     userValues,
+    mappingValue,
   ])
 
   const handleChangeValues = useCallback(
@@ -218,7 +220,6 @@ const ChartOptionColorScale = ({
         scaleType,
         interpolator: interpolator,
         userScaleValues: valuesForFinalScale,
-        defaultColor,
       }
       onChange(outScaleParams)
     },
@@ -251,28 +252,28 @@ const ChartOptionColorScale = ({
       setDefaultColor(nextDefaultColor)
       
 
-      //user values
-      const nextUserValues = getDefaultUserValues(interpolator, scaleType, nextDefaultColor)
-      console.log("xxx", nextUserValues)
-      console.log("yyy", userValues)
-      setUserValues(nextUserValues)
+      // //user values
+      // const nextUserValues = getDefaultUserValues(interpolator, scaleType, nextDefaultColor)
+      // console.log("xxx", nextUserValues)
+      // console.log("yyy", userValues)
+      // setUserValues(nextUserValues)
 
-      let valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
-      // we pick back colors set by user explicity
-      const userValuesByDomain = keyBy(userValues.filter(x => !!x.setByUser), 'userDomain')
-      valuesForFinalScale = valuesForFinalScale.map(item => ({
-        ...item,
-        range: userValuesByDomain[item.domain.toString()] ? userValuesByDomain[item.domain.toString()].range : item.range,
-        userRange: userValuesByDomain[item.domain.toString()] ? userValuesByDomain[item.domain.toString()].userRange : item.range,
-      }))
+      // let valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
+      // // we pick back colors set by user explicity
+      // const userValuesByDomain = keyBy(userValues.filter(x => !!x.setByUser), 'userDomain')
+      // valuesForFinalScale = valuesForFinalScale.map(item => ({
+      //   ...item,
+      //   range: userValuesByDomain[item.domain.toString()] ? userValuesByDomain[item.domain.toString()].range : item.range,
+      //   userRange: userValuesByDomain[item.domain.toString()] ? userValuesByDomain[item.domain.toString()].userRange : item.range,
+      // }))
 
-      console.log("zzz", valuesForFinalScale)
+      // console.log("zzz", valuesForFinalScale)
 
-      //notify ui
+      // //notify ui
       const outScaleParams = {
-        scaleType,
+        scaleType: scaleType,
         interpolator,
-        userScaleValues: valuesForFinalScale,
+        userScaleValues:[],
         defaultColor: nextDefaultColor,
       }
       onChange(outScaleParams)
@@ -285,6 +286,8 @@ const ChartOptionColorScale = ({
       handleChangeDefaultColor(defaultValue.defaultColor)
     }
   }, [defaultValue])
+
+  
 
   const handleChangeScaleType = useCallback(
     (nextScaleType) => {
@@ -304,7 +307,6 @@ const ChartOptionColorScale = ({
       const nextUserValues = getDefaultUserValues(
         nextInterpolator,
         nextScaleType,
-        defaultColor,
       )
       setUserValues(nextUserValues)
       const valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
@@ -326,7 +328,7 @@ const ChartOptionColorScale = ({
       setInterpolator(nextInterpolator)
 
       //user values
-      const nextUserValues = getDefaultUserValues(nextInterpolator, scaleType, defaultColor)
+      const nextUserValues = getDefaultUserValues(nextInterpolator, scaleType)
       setUserValues(nextUserValues)
       const valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
 
@@ -363,10 +365,32 @@ const ChartOptionColorScale = ({
     }
   }, [prevDataset, colorDataset])
 
+  
+  const hasAnyMapping = useMemo(() => {
+    return !!mappingValue && mappingValue.length > 0 && colorDataset.length > 0
+  }, [mappingValue, colorDataset])
+
+  const hadAnyMapping = usePrevious(hasAnyMapping)
+
+  useEffect(() => {
+    if (hasAnyMapping && !hadAnyMapping && interpolator) {
+      handleSetInterpolator(interpolator)
+    }
+
+  }, [hasAnyMapping, hadAnyMapping, interpolator, scaleType])
+
+  useEffect(() => {
+    if (!hasAnyMapping && hadAnyMapping) {
+      handleChangeDefaultColor(defaultColor)
+    }
+
+  }, [hasAnyMapping, hadAnyMapping, defaultColor])
+  
+
   return (
     <>
 
-      <Row>
+      { !hasAnyMapping && <Row>
         <Col xs={6} className="d-flex align-items-center nowrap">
           Default color
         </Col>
@@ -377,8 +401,8 @@ const ChartOptionColorScale = ({
           />
         </Col>
 
-      </Row>
-      { mappingValue && mappingValue.length && (<>
+      </Row>}
+      { hasAnyMapping && (<>
 
       <Row className={props.className}>
         <Col xs={6} className="d-flex align-items-center nowrap">
@@ -416,7 +440,6 @@ const ChartOptionColorScale = ({
             colorDataset={colorDataset}
             colorDataType={colorDataType}
             scaleType={scaleType}
-            defaultColor={defaultColor}
             currentFinalScale={currentFinalScale}
           />
         </Col>
