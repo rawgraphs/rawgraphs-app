@@ -18,7 +18,7 @@ const ChartPreview = ({
   const domRef = useRef(null)
 
   const vizOptionsDebounced = useDebounce(visualOptions, 200)
-
+  
   useEffect(() => {
     setError(null)
 

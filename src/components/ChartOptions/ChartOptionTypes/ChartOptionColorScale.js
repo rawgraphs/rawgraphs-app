@@ -7,6 +7,7 @@ import get from 'lodash/get'
 import {
   getInitialScaleValues,
   getColorScale,
+  getDefaultColorScale,
   getColorDomain,
   colorPresets,
   getTypeName,
@@ -15,7 +16,7 @@ import {
 } from '@raw-temp/rawgraphs-core'
 import styles from '../ChartOptions.module.scss'
 import isEqual from 'lodash/isEqual'
-import uniq from 'lodash/uniq'
+import keyBy from 'lodash/keyBy'
 
 function getDatePickerValue(userValue) {
   if (userValue.userDomain === 0) {
@@ -92,8 +93,8 @@ const ChartOptionColorScale = ({
 
   const [scaleType, setScaleType] = useState(get(value, 'scaleType'))
 
-  const [defaultColor, setDefaultColor] = useState(get(value, 'defaultColor'))
-  console.log("defaultColor", defaultColor)
+  const [defaultColor, setDefaultColor] = useState(get(defaultValue, 'defaultColor', '#cccccc'))
+  console.log("defaultColor", defaultColor, defaultValue)
 
   const availableScaleTypes = useMemo(() => {
     if (!colorDataset.length || !colorDataType) {
@@ -119,7 +120,7 @@ const ChartOptionColorScale = ({
   )
 
   const getCurrentFinalScale = useCallback(
-    (interpolator, scaleType, userValuesForFinalScale) => {
+    (interpolator, scaleType, userValuesForFinalScale, defaultColor) => {
       if (
         !scaleType ||
         !interpolator ||
@@ -142,7 +143,8 @@ const ChartOptionColorScale = ({
         colorDataType,
         scaleType, //
         interpolator,
-        userValuesForFinalScale
+        userValuesForFinalScale,
+        defaultColor,
       )
 
       return previewScale
@@ -151,7 +153,8 @@ const ChartOptionColorScale = ({
   )
 
   const getDefaultUserValues = useCallback(
-    (interpolator, scaleType) => {
+    (interpolator, scaleType, defaultColor) => {
+      console.log("getDefaultUserValues", interpolator, scaleType, defaultColor)
       if (!colorDataset.length || !colorDataType || !scaleType) {
         return []
       }
@@ -161,7 +164,7 @@ const ChartOptionColorScale = ({
 
       const domain = getColorDomain(colorDataset, colorDataType, scaleType)
 
-      return getInitialScaleValues(domain, scaleType, interpolator).map(
+      return getInitialScaleValues(domain, scaleType, interpolator, defaultColor).map(
         (userValue) => ({
           ...userValue,
           userRange: userValue.range,
@@ -191,17 +194,18 @@ const ChartOptionColorScale = ({
       const currentUserValues =
         userValues && userValues.length
           ? userValues
-          : getDefaultUserValues(interpolator, scaleType)
+          : getDefaultUserValues(interpolator, scaleType, defaultColor)
       const valuesForFinalScale = getUserValuesForFinalScale(currentUserValues)
-      return getCurrentFinalScale(interpolator, scaleType, valuesForFinalScale)
+      return getCurrentFinalScale(interpolator, scaleType, valuesForFinalScale, defaultColor)
     }
-    return null
+    return getDefaultColorScale(defaultColor)
   }, [
     getCurrentFinalScale,
     getDefaultUserValues,
     getUserValuesForFinalScale,
     interpolator,
     scaleType,
+    defaultColor,
     userValues,
   ])
 
@@ -225,6 +229,7 @@ const ChartOptionColorScale = ({
     (index, value) => {
       const newUserValues = [...userValues]
       newUserValues[index].userRange = value
+      newUserValues[index].setByUser = value
       setUserValues(newUserValues)
       handleChangeValues(newUserValues)
     },
@@ -244,18 +249,42 @@ const ChartOptionColorScale = ({
   const handleChangeDefaultColor = useCallback(
     (nextDefaultColor) => {
       setDefaultColor(nextDefaultColor)
+      
+
+      //user values
+      const nextUserValues = getDefaultUserValues(interpolator, scaleType, nextDefaultColor)
+      console.log("xxx", nextUserValues)
+      console.log("yyy", userValues)
+      setUserValues(nextUserValues)
+
+      let valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
+      // we pick back colors set by user explicity
+      const userValuesByDomain = keyBy(userValues.filter(x => !!x.setByUser), 'userDomain')
+      valuesForFinalScale = valuesForFinalScale.map(item => ({
+        ...item,
+        range: userValuesByDomain[item.domain.toString()] ? userValuesByDomain[item.domain.toString()].range : item.range,
+        userRange: userValuesByDomain[item.domain.toString()] ? userValuesByDomain[item.domain.toString()].userRange : item.range,
+      }))
+
+      console.log("zzz", valuesForFinalScale)
 
       //notify ui
       const outScaleParams = {
         scaleType,
         interpolator,
-        userScaleValues: userValues,
+        userScaleValues: valuesForFinalScale,
         defaultColor: nextDefaultColor,
       }
       onChange(outScaleParams)
     },
-    [onChange]
+    [getDefaultUserValues, getUserValuesForFinalScale, onChange, scaleType, interpolator]
   )
+
+  useEffect(() => {
+    if(defaultValue  && defaultValue.defaultColor !== defaultColor){
+      handleChangeDefaultColor(defaultValue.defaultColor)
+    }
+  }, [defaultValue])
 
   const handleChangeScaleType = useCallback(
     (nextScaleType) => {
@@ -274,7 +303,8 @@ const ChartOptionColorScale = ({
       //user values
       const nextUserValues = getDefaultUserValues(
         nextInterpolator,
-        nextScaleType
+        nextScaleType,
+        defaultColor,
       )
       setUserValues(nextUserValues)
       const valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
@@ -288,7 +318,7 @@ const ChartOptionColorScale = ({
       }
       onChange(outScaleParams)
     },
-    [getDefaultUserValues, getUserValuesForFinalScale, onChange]
+    [getDefaultUserValues, getUserValuesForFinalScale, onChange, defaultColor]
   )
 
   const handleSetInterpolator = useCallback(
@@ -296,7 +326,7 @@ const ChartOptionColorScale = ({
       setInterpolator(nextInterpolator)
 
       //user values
-      const nextUserValues = getDefaultUserValues(nextInterpolator, scaleType)
+      const nextUserValues = getDefaultUserValues(nextInterpolator, scaleType, defaultColor)
       setUserValues(nextUserValues)
       const valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
 
@@ -309,7 +339,7 @@ const ChartOptionColorScale = ({
       }
       onChange(outScaleParams)
     },
-    [getDefaultUserValues, getUserValuesForFinalScale, onChange, scaleType]
+    [getDefaultUserValues, getUserValuesForFinalScale, onChange, scaleType, defaultColor]
   )
 
   const prevDataset = usePrevious(colorDataset)
@@ -348,6 +378,8 @@ const ChartOptionColorScale = ({
         </Col>
 
       </Row>
+      { mappingValue && mappingValue.length && (<>
+
       <Row className={props.className}>
         <Col xs={6} className="d-flex align-items-center nowrap">
           {label}
@@ -384,6 +416,7 @@ const ChartOptionColorScale = ({
             colorDataset={colorDataset}
             colorDataType={colorDataType}
             scaleType={scaleType}
+            defaultColor={defaultColor}
             currentFinalScale={currentFinalScale}
           />
         </Col>
@@ -461,8 +494,10 @@ const ChartOptionColorScale = ({
               </Col>
             </Row>
           ))}
+          
         </div>
       )}
+      </>)}
     </>
   )
 }

@@ -59,6 +59,8 @@ function WrapControlComponent({ type, optionId, setVisualOptions, label, repeatI
 
   const handleControlChange = useCallback(
     (nextValue) => {
+
+      console.log("handleControlChange", nextValue)
       
       setVisualOptions((visualOptions) => {
         let newValue = nextValue
