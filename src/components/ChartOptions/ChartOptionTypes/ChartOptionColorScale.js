@@ -209,9 +209,7 @@ const ChartOptionColorScale = ({
 
   const handleChangeScaleType = useCallback(
     (nextScaleType) => {
-      if (nextScaleType === scaleType) {
-        return
-      }
+     
       setScaleType(nextScaleType)
 
       //update interpolators
@@ -233,7 +231,10 @@ const ChartOptionColorScale = ({
       const valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
 
       //if we change scale type we should unlock
-      setLocked(false)
+      if (nextScaleType !== scaleType) {
+        setLocked(false)
+      }
+      
 
       //notify ui
       const outScaleParams = {
@@ -241,11 +242,12 @@ const ChartOptionColorScale = ({
         interpolator: nextInterpolator,
         userScaleValues: valuesForFinalScale,
         defaultColor,
-        locked: false,
+        locked: nextScaleType === scaleType ? locked : false,
       }
       onChange(outScaleParams)
     },
-    [scaleType, getDefaultUserValues, getUserValuesForFinalScale, defaultColor, onChange]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [getDefaultUserValues, getUserValuesForFinalScale, defaultColor, onChange, locked]
   )
 
   const handleSetInterpolator = useCallback(
@@ -322,30 +324,31 @@ const ChartOptionColorScale = ({
       handleChangeScaleType(nextScaleType)
     }
 
-  }, [availableScaleTypes, handleChangeScaleType, scaleType])
+  }, [availableScaleTypes, handleChangeScaleType])
 
-  //update scale on dataset update.
-  const prevDataset = usePrevious(colorDataset)
-  useEffect(() => {
-    if (!locked && colorDataset !== prevDataset && prevMappingValue === mappingValue) {
-      const nextUserValues = getDefaultUserValues(
-        interpolator,
-        scaleType,
-      )
-      setUserValues(nextUserValues)
-      const valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
-      //notify ui
-      const outScaleParams = {
-        scaleType,
-        interpolator,
-        userScaleValues: valuesForFinalScale,
-        defaultColor,
-        locked,
-      }
-      onChange(outScaleParams)
-    }
-
-  }, [colorDataset, defaultColor, getDefaultUserValues, getUserValuesForFinalScale, interpolator, locked, mappingValue, onChange, prevDataset, prevMappingValue, scaleType])
+  // update scale on dataset update.
+  // #TODO: fixme
+  
+  // const prevDataset = usePrevious(colorDataset)
+  // useEffect(() => {
+  //   if (!locked && colorDataset !== prevDataset && prevMappingValue === mappingValue) {
+  //     const nextUserValues = getDefaultUserValues(
+  //       interpolator,
+  //       scaleType,
+  //     )
+  //     setUserValues(nextUserValues)
+  //     const valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
+  //     //notify ui
+  //     const outScaleParams = {
+  //       scaleType,
+  //       interpolator,
+  //       userScaleValues: valuesForFinalScale,
+  //       defaultColor,
+  //       locked,
+  //     }
+  //     onChange(outScaleParams)
+  //   }
+  // }, [colorDataset, getDefaultUserValues, getUserValuesForFinalScale, mappingValue, onChange, prevDataset, prevMappingValue])
 
 
   return hasAnyMapping ? (
