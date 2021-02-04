@@ -9,7 +9,7 @@ import {
 import ChartOptionNumber from './ChartOptionTypes/ChartOptionNumber'
 import ChartOptionText from './ChartOptionTypes/ChartOptionText'
 import ChartOptionColor from './ChartOptionTypes/ChartOptionColor'
-import ChartOptionColorScale from './ChartOptionTypes/ChartOptionColorScale'
+import ChartOptionColorScaleWrapper from './ChartOptionTypes/ChartOptionColorScaleWrapper'
 import ChartOptionBoolean from './ChartOptionTypes/ChartOptionBoolean'
 import get from 'lodash/get'
 import map from 'lodash/map'
@@ -20,7 +20,7 @@ const CHART_OPTION_COMPONENTS = {
   number: ChartOptionNumber,
   text: ChartOptionText,
   color: ChartOptionColor,
-  colorScale: ChartOptionColorScale,
+  colorScale: ChartOptionColorScaleWrapper,
   boolean: ChartOptionBoolean,
 }
 
@@ -60,8 +60,6 @@ function WrapControlComponent({ type, optionId, setVisualOptions, label, repeatI
   const handleControlChange = useCallback(
     (nextValue) => {
 
-      console.log("handleControlChange", nextValue)
-      
       setVisualOptions((visualOptions) => {
         let newValue = nextValue
         if(repeatIndex !== undefined){
