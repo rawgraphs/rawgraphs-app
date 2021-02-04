@@ -18,7 +18,7 @@
     "dayjs": "^1.8.33",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
-    "react-bootstrap": "^1.4.0",
+    "react-bootstrap": "1.4.3",
     "react-color": "2.17.3",
     "react-data-grid": "^7.0.0-canary.16",
     "react-dnd": "^11.1.3",
