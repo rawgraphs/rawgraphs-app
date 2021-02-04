@@ -54,13 +54,13 @@ const ChartOptionColorScale = ({
 
   const [scaleType, setScaleType] = useState(get(value, 'scaleType'))
 
-  
   const defaultColor = useMemo(() => {
     const colorFromDefault = get(defaultValue, 'defaultColor', '#cccccc')
     return get(value, 'defaultColor', colorFromDefault)
   }, [defaultValue, value])
 
-  
+  const [locked, setLocked] = useState(get(value, 'locked'))
+
   const availableScaleTypes = useMemo(() => {
     const nextTypes = getAvailableScaleTypes(colorDataType, colorDataset)
     return nextTypes
@@ -172,17 +172,18 @@ const ChartOptionColorScale = ({
   const handleChangeValues = useCallback(
     (nextUserValues) => {
       let valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
-      
+
       //notify ui
       const outScaleParams = {
         scaleType,
         interpolator: interpolator,
         userScaleValues: valuesForFinalScale,
         defaultColor,
+        locked,
       }
       onChange(outScaleParams)
     },
-    [getUserValuesForFinalScale, interpolator, onChange, scaleType, defaultColor]
+    [getUserValuesForFinalScale, scaleType, interpolator, defaultColor, locked, onChange]
   )
 
   const setUserValueRange = useCallback(
@@ -208,6 +209,9 @@ const ChartOptionColorScale = ({
 
   const handleChangeScaleType = useCallback(
     (nextScaleType) => {
+      if (nextScaleType === scaleType) {
+        return
+      }
       setScaleType(nextScaleType)
 
       //update interpolators
@@ -228,16 +232,20 @@ const ChartOptionColorScale = ({
       setUserValues(nextUserValues)
       const valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
 
+      //if we change scale type we should unlock
+      setLocked(false)
+
       //notify ui
       const outScaleParams = {
         scaleType: nextScaleType,
         interpolator: nextInterpolator,
         userScaleValues: valuesForFinalScale,
         defaultColor,
+        locked: false,
       }
       onChange(outScaleParams)
     },
-    [getDefaultUserValues, getUserValuesForFinalScale, onChange, defaultColor]
+    [scaleType, getDefaultUserValues, getUserValuesForFinalScale, defaultColor, onChange]
   )
 
   const handleSetInterpolator = useCallback(
@@ -255,51 +263,89 @@ const ChartOptionColorScale = ({
         interpolator: nextInterpolator,
         userScaleValues: valuesForFinalScale,
         defaultColor,
+        locked,
       }
       onChange(outScaleParams)
     },
-    [getDefaultUserValues, getUserValuesForFinalScale, onChange, scaleType, defaultColor]
+    [getDefaultUserValues, getUserValuesForFinalScale, onChange, scaleType, defaultColor, locked,]
   )
+
+  const handleChangeLocked = useCallback(
+    (nextLocked) => {
+      setLocked(nextLocked)
+      const outScaleParams = {
+        ...value,
+        locked: nextLocked,
+      }
+      onChange(outScaleParams)
+    },
+    [value, onChange]
+  )
+
+
 
   const resetScale = useCallback(() => {
     handleSetInterpolator(interpolator)
   }, [handleSetInterpolator, interpolator])
 
   const invertScale = useCallback(() => {
-    
-    
+
     let reversedValues = [...userValues]
     reversedValues.reverse()
-    
+
     const invertedValues = userValues.map((v, i) => ({
       ...v,
-      userRange: reversedValues[i].userRange, 
-      range: reversedValues[i].range, 
+      userRange: reversedValues[i].userRange,
+      range: reversedValues[i].range,
 
     }))
-    
+
     setUserValues(invertedValues)
     handleChangeValues(invertedValues)
   }, [handleChangeValues, userValues])
 
-  
+
+
   // here we leverage injection of the __loaded prop in the color scale, see App.js
-  const initialValue  = useRef(!!value.__loaded)
+  const initialValue = useRef(!!value.__loaded)
   const prevMappingValue = usePrevious(mappingValue)
 
   useEffect(() => {
-    if(prevMappingValue && mappingValue !== prevMappingValue){
+    if (prevMappingValue && mappingValue !== prevMappingValue) {
       initialValue.current = false
     }
   }, [mappingValue, prevMappingValue])
 
   useEffect(() => {
-    if(!initialValue.current){
+    if (!initialValue.current) {
       const nextScaleType = availableScaleTypes[0]
       handleChangeScaleType(nextScaleType)
     }
-     
+
   }, [availableScaleTypes, handleChangeScaleType, scaleType])
+
+  //update scale on dataset update.
+  const prevDataset = usePrevious(colorDataset)
+  useEffect(() => {
+    if (!locked && colorDataset !== prevDataset && prevMappingValue === mappingValue) {
+      const nextUserValues = getDefaultUserValues(
+        interpolator,
+        scaleType,
+      )
+      setUserValues(nextUserValues)
+      const valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
+      //notify ui
+      const outScaleParams = {
+        scaleType,
+        interpolator,
+        userScaleValues: valuesForFinalScale,
+        defaultColor,
+        locked,
+      }
+      onChange(outScaleParams)
+    }
+
+  }, [colorDataset, defaultColor, getDefaultUserValues, getUserValuesForFinalScale, interpolator, locked, mappingValue, onChange, prevDataset, prevMappingValue, scaleType])
 
 
   return hasAnyMapping ? (
@@ -382,6 +428,7 @@ const ChartOptionColorScale = ({
                             : 'Middle'}
                       </span>
                       <input
+                        disabled={locked}
                         type={getValueType(userValue.userDomain)}
                         className="form-control text-field"
                         value={getDatePickerValue(userValue)}
@@ -407,8 +454,14 @@ const ChartOptionColorScale = ({
           ))}
           <Row>
             <Col>
-            <button type="button" onClick={resetScale}>RESET</button>
-            <button type="button" onClick={invertScale}>INVERT</button>
+              <button type="button" className="btn btn-sm" onClick={resetScale}>RESET</button>
+              <button type="button" className="btn btn-sm" onClick={invertScale}>INVERT</button>
+              {
+                scaleType !== 'ordinal' && (
+                  <button type="button" className={`btn btn-sm ${locked ? 'btn-primary' : ''}`} onClick={() => handleChangeLocked(!locked)}>{locked ? 'UNLOCK' : 'LOCK'}</button>
+                )
+              }
+
             </Col>
           </Row>
 
