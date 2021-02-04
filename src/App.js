@@ -20,6 +20,7 @@ import get from 'lodash/get'
 import usePrevious from './hooks/usePrevious'
 import { serializeProject as serializeProjectV1 } from './import_export_v1'
 import useDataLoader from './hooks/useDataLoader'
+import isPlainObject from 'lodash/isPlainObject'
 
 // #TODO: i18n
 
@@ -115,10 +116,22 @@ function App() {
     userDataType, userInput, visualOptions, unstackedColumns, unstackedData
   ])
 
+  // project import
   const importProject = useCallback(project => {
     hydrateFromSavedProject(project)
     setCurrentChart(project.currentChart)
     setMapping(project.mapping)
+    // adding "annotations" for color scale:
+    // we annotate the incoming options values (complex ones such as color scales)
+    // to le the ui know they are coming from a loaded project
+    // so we don't have to re-evaluate defaults
+    // this is due to the current implementation of the color scale
+    const patchedOptions = {...project.visualOptions}
+    Object.keys(patchedOptions).forEach(k => {
+      if(isPlainObject(patchedOptions[k])){
+        patchedOptions[k].__loaded = true
+      }
+    })
     setVisualOptions(project.visualOptions)
   }, [hydrateFromSavedProject])
 

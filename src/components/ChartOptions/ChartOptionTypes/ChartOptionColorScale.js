@@ -283,23 +283,23 @@ const ChartOptionColorScale = ({
   }, [handleChangeValues, userValues])
 
   
-  const firstValueSet = useRef(scaleType === value.scaleType)
-  const hadAnyMapping = usePrevious(hasAnyMapping)
+  // here we leverage injection of the __loaded prop in the color scale, see App.js
+  const initialValue  = useRef(!!value.__loaded)
+  const prevMappingValue = usePrevious(mappingValue)
 
   useEffect(() => {
-    if(!firstValueSet.current){
+    if(prevMappingValue && mappingValue !== prevMappingValue){
+      initialValue.current = false
+    }
+  }, [mappingValue, prevMappingValue])
+
+  useEffect(() => {
+    if(!initialValue.current){
       const nextScaleType = availableScaleTypes[0]
       handleChangeScaleType(nextScaleType)
     }
      
   }, [availableScaleTypes, handleChangeScaleType, scaleType])
-
-
-  useEffect(() => {
-    if(!hasAnyMapping && hadAnyMapping){
-      firstValueSet.current = false
-    }
-  }, [mapping, hasAnyMapping, hadAnyMapping])
 
 
   return hasAnyMapping ? (
