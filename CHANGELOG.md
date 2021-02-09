@@ -6,6 +6,7 @@
 - color scales: partial support for multiple dimensions in mapping.
 - color scales: support for default color
 - color scales: invert, reset, lock
+- updated rawgraphs-core (beta 5) and rawgraphs-charts (beta 9)
   
 ## 2.0.0-beta.4
 #### 15 Dec 2020
