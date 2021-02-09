@@ -3,6 +3,7 @@ import InilineColorPicker from '../../InlineColorPicker'
 import ColorSchemesDropDown from './ColorSchemesDropDown'
 import { Row, Col } from 'react-bootstrap'
 import get from 'lodash/get'
+import keyBy from 'lodash/keyBy'
 import {
   getInitialScaleValues,
   getColorScale,
@@ -14,8 +15,6 @@ import {
 } from '@raw-temp/rawgraphs-core'
 import styles from '../ChartOptions.module.scss'
 import usePrevious from '../../../hooks/usePrevious'
-import { initial, isEqual } from 'lodash'
-
 
 function getDatePickerValue(userValue) {
   if (userValue.userDomain === 0) {
@@ -209,7 +208,7 @@ const ChartOptionColorScale = ({
 
   const handleChangeScaleType = useCallback(
     (nextScaleType) => {
-     
+
       setScaleType(nextScaleType)
 
       //update interpolators
@@ -230,19 +229,13 @@ const ChartOptionColorScale = ({
       setUserValues(nextUserValues)
       const valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
 
-      //if we change scale type we should unlock
-      if (nextScaleType !== scaleType) {
-        setLocked(false)
-      }
-      
-
       //notify ui
       const outScaleParams = {
         scaleType: nextScaleType,
         interpolator: nextInterpolator,
         userScaleValues: valuesForFinalScale,
         defaultColor,
-        locked: nextScaleType === scaleType ? locked : false,
+        locked,
       }
       onChange(outScaleParams)
     },
@@ -251,13 +244,25 @@ const ChartOptionColorScale = ({
   )
 
   const handleSetInterpolator = useCallback(
-    (nextInterpolator) => {
+    (nextInterpolator, customUserValues) => {
       setInterpolator(nextInterpolator)
 
       //user values
       const nextUserValues = getDefaultUserValues(nextInterpolator, scaleType)
       setUserValues(nextUserValues)
-      const valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
+      let valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
+
+      console.log("customUserValues", customUserValues, valuesForFinalScale)
+      if(customUserValues){
+        const byDomain = keyBy(customUserValues, 'domain')
+        console.log("byDomain", byDomain)
+        valuesForFinalScale = valuesForFinalScale.map(v => ({
+          ...v,
+          range: byDomain[v.domain.toString] ? byDomain[v.domain.toString()].userRange : v.range
+        }))
+      }
+
+      console.log("xxx", valuesForFinalScale)
 
       //notify ui
       const outScaleParams = {
@@ -275,20 +280,26 @@ const ChartOptionColorScale = ({
   const handleChangeLocked = useCallback(
     (nextLocked) => {
       setLocked(nextLocked)
+      //this is needed for disabiling automatic scale reset
+      initialValue.current = true
+
       const outScaleParams = {
-        ...value,
+        scaleType,
+        interpolator,
+        userScaleValues: userValues,
+        defaultColor,
         locked: nextLocked,
       }
       onChange(outScaleParams)
     },
-    [value, onChange]
+    [scaleType, interpolator, userValues, defaultColor, onChange]
   )
 
 
 
   const resetScale = useCallback(() => {
-    handleSetInterpolator(interpolator)
-  }, [handleSetInterpolator, interpolator])
+    handleSetInterpolator(interpolator, userValues)
+  }, [handleSetInterpolator, interpolator, userValues])
 
   const invertScale = useCallback(() => {
 
@@ -319,19 +330,22 @@ const ChartOptionColorScale = ({
   }, [mappingValue, prevMappingValue])
 
   useEffect(() => {
-    if (!initialValue.current) {
+    if (!initialValue.current && !locked) {
       const nextScaleType = availableScaleTypes[0]
       handleChangeScaleType(nextScaleType)
     }
 
-  }, [availableScaleTypes, handleChangeScaleType])
+  }, [availableScaleTypes, handleChangeScaleType, locked])
 
   // update scale on dataset update.
   // #TODO: fixme
-  
+
   // const prevDataset = usePrevious(colorDataset)
+  // const prevScaleType = usePrevious(colorDataset)
+
   // useEffect(() => {
-  //   if (!locked && colorDataset !== prevDataset && prevMappingValue === mappingValue) {
+  //   if (!locked && colorDataset !== prevDataset && prevScaleType === scaleType) {
+  //     console.info("dddd resetting scope")
   //     const nextUserValues = getDefaultUserValues(
   //       interpolator,
   //       scaleType,
@@ -348,7 +362,7 @@ const ChartOptionColorScale = ({
   //     }
   //     onChange(outScaleParams)
   //   }
-  // }, [colorDataset, getDefaultUserValues, getUserValuesForFinalScale, mappingValue, onChange, prevDataset, prevMappingValue])
+  // }, [colorDataset, defaultColor, getDefaultUserValues, getUserValuesForFinalScale, interpolator, locked, onChange, prevDataset, prevScaleType, scaleType])
 
 
   return hasAnyMapping ? (

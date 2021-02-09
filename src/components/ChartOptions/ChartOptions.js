@@ -124,7 +124,6 @@ const ChartOptions = ({
     return mapValues(keyBy(enabledGroupsNames), x => true)
   }, [enabledOptions, optionsConfig])
 
-  console.log("enabledGroupsByName", enabledGroupsByName)
 
   const optionsDefinitionsByGroup = useMemo(() => {
     // update "collapseStatus" state
