@@ -1,6 +1,6 @@
 import {
   alluvialdiagram,
-  arcdiagram,
+  //arcdiagram,
   barchart,
   barchartmultiset,
   barchartstacked,
@@ -16,14 +16,14 @@ import {
   sankeydiagram,
   sunburst,
   treemap,
-  violinplot,
+  //violinplot,
 } from '@raw-temp/rawgraphs-charts'
 
 // New charts, not included into first release.
 // Comment at necessity.
 let charts = [
   alluvialdiagram,
-  arcdiagram,
+  //arcdiagram,
   barchart,
   barchartmultiset,
   barchartstacked,
@@ -39,7 +39,7 @@ let charts = [
   sankeydiagram,
   sunburst,
   treemap,
-  violinplot,
+  //violinplot,
 ]
 
 export default charts
