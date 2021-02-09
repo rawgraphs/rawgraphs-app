@@ -1919,19 +1919,21 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.2.tgz#7c6dc4ecef16149fd7a736710baa1b811017fdca"
   integrity sha512-JlGTGRYHC2QK+DDbePyXdBdooxFq2+noLfWpRqJtkxcb/oYWzOF0kcbfvvbWrwevCC1l6hLUg1wHYT+ona5BWQ==
 
-"@raw-temp/rawgraphs-charts@1.0.0-beta.3":
-  version "1.0.0-beta.3"
-  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-1.0.0-beta.3.tgz#919f5397fb6918eeab5e4858b245606e739f9abc"
-  integrity sha512-i2Tr2ks5DNwjYR0JT8Ew9rCSHRk5NQHKFDyo35bVq7V4aWg4iNckJctyUiOt96ktRqNZPkYlQduXP4GqCM7/+Q==
+"@raw-temp/rawgraphs-charts@1.0.0-beta.9":
+  version "1.0.0-beta.9"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-1.0.0-beta.9.tgz#8aeb5ae5c39a628601167440c26dbfb345bc449c"
+  integrity sha512-1TCXfEriT8+/E/nLkC4cCi7K5Oh/vkAZKbwbhGySP1KcOrtf3DljJ50NM3wWojqeFyLgy2RM2UFNEZ6lSNyLTg==
   dependencies:
+    css "^3.0.0"
     d3 "^6.2.0"
     d3-gridding "^0.2.0"
     d3-sankey "^0.12.3"
+    louvain "^1.2.0"
 
-"@raw-temp/rawgraphs-core@1.0.0-beta.3":
-  version "1.0.0-beta.3"
-  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-1.0.0-beta.3.tgz#1ba7cb209da137d2ca2473a66199db592c4f6771"
-  integrity sha512-5FgJgvaS9OrQdr9uBM7sAUBYzqGeiRvUTFw/MID+BtlAC+Jqp3mX04mceU/qz/LO4vlRUnOBXNUZDrsBb8PtQQ==
+"@raw-temp/rawgraphs-core@1.0.0-beta.5":
+  version "1.0.0-beta.5"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-1.0.0-beta.5.tgz#22b78a3f6f13e03709858a0c718fe288e9a64416"
+  integrity sha512-L1vhemXbAGBOn8OALV7JxDibeIdBh2qiB0siNhhtqsX5Ae0ugFNLZXWUpnSE8y7u+NXijxz9XRKFsNuhL+FroQ==
   dependencies:
     d3-array "^2.4.0"
     d3-axis "^1.0.12"
@@ -2970,7 +2972,7 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
 
-atob@^2.1.1:
+atob@^2.1.1, atob@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
@@ -4256,6 +4258,15 @@ css@^2.0.0, css@^2.2.3:
     source-map "^0.6.1"
     source-map-resolve "^0.5.2"
     urix "^0.1.0"
+
+css@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/css/-/css-3.0.0.tgz#4447a4d58fdd03367c516ca9f64ae365cee4aa5d"
+  integrity sha512-DG9pFfwOrzc+hawpmqX/dHYHJG+Bsdb0klhyi1sDneOgGOXy9wQIC8hzyVp1e4NRYDBdxcylvywPkkXCHAzTyQ==
+  dependencies:
+    inherits "^2.0.4"
+    source-map "^0.6.1"
+    source-map-resolve "^0.6.0"
 
 cssdb@^4.4.0:
   version "4.4.0"
@@ -6933,7 +6944,7 @@ inflight@^1.0.4:
     once "^1.3.0"
     wrappy "1"
 
-inherits@2, inherits@2.0.4, inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.0, inherits@~2.0.1, inherits@~2.0.3:
+inherits@2, inherits@2.0.4, inherits@^2.0.1, inherits@^2.0.3, inherits@^2.0.4, inherits@~2.0.0, inherits@~2.0.1, inherits@~2.0.3:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
@@ -8286,6 +8297,11 @@ loud-rejection@^1.0.0:
   dependencies:
     currently-unhandled "^0.4.1"
     signal-exit "^3.0.0"
+
+louvain@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/louvain/-/louvain-1.2.0.tgz#7c6327bacdf9a5a9717c35abe4ae82a3bb7fd5c9"
+  integrity sha512-UCUNpTKEW14ZGce8HvpBK+VLppkTOu5JWA54jGYjLzjCvlYavVxy1SZYKb+f4GM2Xet82/W2X2H2fwMywgf1Bw==
 
 lower-case@^2.0.1:
   version "2.0.1"
@@ -11768,6 +11784,14 @@ source-map-resolve@^0.5.0, source-map-resolve@^0.5.2:
     resolve-url "^0.2.1"
     source-map-url "^0.4.0"
     urix "^0.1.0"
+
+source-map-resolve@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/source-map-resolve/-/source-map-resolve-0.6.0.tgz#3d9df87e236b53f16d01e58150fc7711138e5ed2"
+  integrity sha512-KXBr9d/fO/bWo97NXsPIAW1bFSBOuCnjbNTBMO7N59hsv5i9yzRDfcYwwt0l04+VqnKC+EwzvJZIP/qkuMgR/w==
+  dependencies:
+    atob "^2.1.2"
+    decode-uri-component "^0.2.0"
 
 source-map-support@^0.5.6, source-map-support@~0.5.12:
   version "0.5.16"
