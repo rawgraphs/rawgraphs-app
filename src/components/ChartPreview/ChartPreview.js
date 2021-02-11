@@ -40,7 +40,7 @@ const ChartPreview = ({
         <span>
           Required chart variables: you need to map{' '}
           {requiredVariables
-            .map((d) => <span className="font-weight-bold">{d.name}</span>)
+            .map((d, i) => <span key={i} className="font-weight-bold">{d.name}</span>)
             .reduce((prev, curr) => [prev, ' and ', curr])}
         </span>
       )
