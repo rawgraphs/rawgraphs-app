@@ -28,7 +28,7 @@ const ChartOptionColorScaleWrapper = ({
 
 
   const remainingOptions = useMemo(() => {
-    return Object.keys(omit(visualOptions, props.optionId)).map(k => visualOptions[k].value).join('-')
+    return Object.keys(omit(visualOptions, props.optionId)).map(k => get(visualOptions[k], 'value', '')).join('-')
   }, [visualOptions, props.optionId])
   
 
