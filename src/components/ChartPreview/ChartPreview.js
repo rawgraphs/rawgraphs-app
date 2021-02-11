@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react'
 import { chart as rawChart } from '@raw-temp/rawgraphs-core'
-import { Alert } from 'react-bootstrap'
 import useDebounce from '../../hooks/useDebounce'
 import WarningMessage from '../WarningMessage'
 
@@ -84,7 +83,6 @@ const ChartPreview = ({
     }
 
     // control data-types mismatches
-    const mismatching = []
     for (let variable in mapping) {
       if (
         mapping[variable].ids &&

@@ -119,10 +119,13 @@ const ChartOptions = ({
     return getEnabledOptions(optionsConfig, visualOptions, mapping)
   }, [optionsConfig, visualOptions, mapping])
 
+  
   const enabledGroupsByName = useMemo(() => {
     const enabledGroupsNames = Object.keys(optionsConfig).map(optionName => enabledOptions[optionName] ? optionsConfig[optionName].group : null).filter(x => !!x)
     return mapValues(keyBy(enabledGroupsNames), x => true)
   }, [enabledOptions, optionsConfig])
+  // #TODO we can use enabledGroupsByName to disable the group
+  console.log("enabledGroupsByName", enabledGroupsByName)
 
 
   const optionsDefinitionsByGroup = useMemo(() => {

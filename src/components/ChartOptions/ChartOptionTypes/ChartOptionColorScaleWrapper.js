@@ -1,5 +1,6 @@
-import React, { useMemo, useRef } from 'react'
+import React, { useMemo } from 'react'
 import get from 'lodash/get'
+import omit from 'lodash/omit'
 import {
   getTypeName,
 } from '@raw-temp/rawgraphs-core'
@@ -25,12 +26,16 @@ const ChartOptionColorScaleWrapper = ({
   ...props
 }) => {
 
-  
+
+  const remainingOptions = useMemo(() => {
+    return Object.keys(omit(visualOptions, props.optionId)).map(k => visualOptions[k].value).join('-')
+  }, [visualOptions, props.optionId])
   
 
   const domainFromChart = useMemo(() => {
     return domain ? chart[domain](mappedData, mapping, visualOptions) : null
-  }, [domain, mappedData, mapping])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chart, domain, mappedData, mapping, remainingOptions])
 
   const mappingValue = useMemo(() => {
     return domainFromChart ? '__custom__' :  get(mapping, `[${dimension}].value`)
@@ -71,6 +76,7 @@ const ChartOptionColorScaleWrapper = ({
 
   const hasAnyMapping = useMemo(() => {
     return ((!!mappingValue && mappingValue.length > 0) || domainFromChart) && colorDataset.length > 0
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mappingValue,  colorDataset])
 
  
