@@ -41,7 +41,7 @@ const ChartOptionNumber = ({
             if (str === '') {
               onChange(undefined)
             } else {
-              const n = parseInt(str, 10)
+              const n = parseFloat(str)
               if (!isNaN(n)) {
                 onChange(n)
               } else {
