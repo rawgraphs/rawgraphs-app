@@ -14,16 +14,29 @@ const ChartOptionColorScaleWrapper = ({
   default: defaultValue,
   label,
   dimension,
+  domain,
+  //#todo: remove?
   dataset,
   mapping,
   dataTypes,
   chart,
   mappedData,
+  visualOptions,
   ...props
 }) => {
+
+  
+  
+
+  const domainFromChart = useMemo(() => {
+    return domain ? chart[domain](mappedData, mapping, visualOptions) : null
+  }, [domain, mappedData, mapping])
+
   const mappingValue = useMemo(() => {
-    return get(mapping, `[${dimension}].value`)
-  }, [dimension, mapping])
+    return domainFromChart ? '__custom__' :  get(mapping, `[${dimension}].value`)
+  }, [dimension, domainFromChart, mapping])
+
+  
 
   // #TODO: this seems to work with also with multiple color dimensions
   // but it's still very complex, as custom mappings could build
@@ -31,13 +44,19 @@ const ChartOptionColorScaleWrapper = ({
   // for those cases we should let the chart declare
   // if there are some constraints on color scale types
   const colorDataType = useMemo(() => {
-
+    if(domainFromChart){
+      return domainFromChart.type
+    }
     return dataTypes[mappingValue]
       ? getTypeName(dataTypes[mappingValue])
       : 'string'
-  }, [dataTypes, mappingValue])
+  }, [dataTypes, domainFromChart, mappingValue])
 
   const colorDataset = useMemo(() => {
+    if(domainFromChart){
+      return domainFromChart.domain
+    }
+
     if (mappedData) {
       return mappedData
         .map((d) => get(d, dimension))
@@ -47,12 +66,12 @@ const ChartOptionColorScaleWrapper = ({
     } else {
       return []
     }
-  }, [dimension, mappedData])
+  }, [dimension, domainFromChart, mappedData])
 
 
   const hasAnyMapping = useMemo(() => {
-    return !!mappingValue && mappingValue.length > 0 && colorDataset.length > 0
-  }, [mappingValue, colorDataset])
+    return ((!!mappingValue && mappingValue.length > 0) || domainFromChart) && colorDataset.length > 0
+  }, [mappingValue,  colorDataset])
 
  
 

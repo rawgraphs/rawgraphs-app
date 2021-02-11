@@ -110,7 +110,6 @@ const ChartPreview = ({
       }
       return
     }
-
     console.info('Updating viz')
     try {
       const viz = rawChart(chart, {
@@ -124,6 +123,7 @@ const ChartPreview = ({
         setRawViz(rawViz)
         setError(null)
       } catch (e) {
+        console.log("chart error", e)
         setError({ variant: 'danger', message: 'Chart error. ' + e.message })
         setRawViz(null)
       }

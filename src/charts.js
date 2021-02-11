@@ -17,6 +17,7 @@ import {
   sunburst,
   treemap,
   violinplot,
+  hexagonalBinning,
 } from '@raw-temp/rawgraphs-charts'
 
 // New charts, not included into first release.
@@ -40,6 +41,7 @@ let charts = [
   sunburst,
   treemap,
   violinplot,
+  hexagonalBinning,
 ]
 
 export default charts

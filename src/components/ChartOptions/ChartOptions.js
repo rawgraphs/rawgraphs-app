@@ -199,6 +199,7 @@ const ChartOptions = ({
                     chart={def.type === 'colorScale' ? chart : undefined}
                     dataset={def.type === 'colorScale' ? dataset : undefined}
                     dataTypes={def.type === 'colorScale' ? dataTypes : undefined}
+                    visualOptions={def.type === 'colorScale' ? visualOptions : undefined}
                     mappedData={getPartialMappedData(mappedData, def.repeatFor, repeatIndex)}
                     setVisualOptions={setVisualOptions}
                     isEnabled={enabledOptions[optionId]}
@@ -217,6 +218,7 @@ const ChartOptions = ({
                     chart={def.type === 'colorScale' ? chart : undefined}
                     dataset={def.type === 'colorScale' ? dataset : undefined}
                     dataTypes={def.type === 'colorScale' ? dataTypes : undefined}
+                    visualOptions={def.type === 'colorScale' ? visualOptions : undefined}
                     mappedData={mappedData}
                     setVisualOptions={setVisualOptions}
                     isEnabled={enabledOptions[optionId]}
