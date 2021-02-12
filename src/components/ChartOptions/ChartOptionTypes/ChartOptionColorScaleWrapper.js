@@ -13,33 +13,27 @@ const ChartOptionColorScaleWrapper = ({
   error,
   onChange,
   default: defaultValue,
-  label,
-  dimension,
-  domain,
-  //#todo: remove?
-  dataset,
-  mapping,
-  dataTypes,
-  chart,
-  mappedData,
-  visualOptions,
-  ...props
+  domainFromChart,
+  mappingValue,
+  colorDataType,
+  colorDataset,
+
 }) => {
 
 
-  const remainingOptions = useMemo(() => {
-    return Object.keys(omit(visualOptions, props.optionId)).map(k => get(visualOptions[k], 'value', '')).join('-')
-  }, [visualOptions, props.optionId])
+  // const remainingOptions = useMemo(() => {
+  //   return Object.keys(omit(visualOptions, props.optionId)).map(k => get(visualOptions[k], 'value', '')).join('-')
+  // }, [visualOptions, props.optionId])
   
 
-  const domainFromChart = useMemo(() => {
-    return domain ? chart[domain](mappedData, mapping, visualOptions) : null
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chart, domain, mappedData, mapping, remainingOptions])
+  // const domainFromChart = useMemo(() => {
+  //   return domain ? chart[domain](mappedData, mapping, visualOptions) : null
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [chart, domain, mappedData, mapping, remainingOptions])
 
-  const mappingValue = useMemo(() => {
-    return domainFromChart ? '__custom__' :  get(mapping, `[${dimension}].value`)
-  }, [dimension, domainFromChart, mapping])
+  // const mappingValue = useMemo(() => {
+  //   return domainFromChart ? '__custom__' :  get(mapping, `[${dimension}].value`)
+  // }, [dimension, domainFromChart, mapping])
 
   
 
@@ -48,30 +42,30 @@ const ChartOptionColorScaleWrapper = ({
   // color data in many ways.
   // for those cases we should let the chart declare
   // if there are some constraints on color scale types
-  const colorDataType = useMemo(() => {
-    if(domainFromChart){
-      return domainFromChart.type
-    }
-    return dataTypes[mappingValue]
-      ? getTypeName(dataTypes[mappingValue])
-      : 'string'
-  }, [dataTypes, domainFromChart, mappingValue])
+  // const colorDataType = useMemo(() => {
+  //   if(domainFromChart){
+  //     return domainFromChart.type
+  //   }
+  //   return dataTypes[mappingValue]
+  //     ? getTypeName(dataTypes[mappingValue])
+  //     : 'string'
+  // }, [dataTypes, domainFromChart, mappingValue])
 
-  const colorDataset = useMemo(() => {
-    if(domainFromChart){
-      return domainFromChart.domain
-    }
+  // const colorDataset = useMemo(() => {
+  //   if(domainFromChart){
+  //     return domainFromChart.domain
+  //   }
 
-    if (mappedData) {
-      return mappedData
-        .map((d) => get(d, dimension))
-        .filter(
-          (item) => item !== undefined && !(Array.isArray(item) && !item.length)
-        )
-    } else {
-      return []
-    }
-  }, [dimension, domainFromChart, mappedData])
+  //   if (mappedData) {
+  //     return mappedData
+  //       .map((d) => get(d, dimension))
+  //       .filter(
+  //         (item) => item !== undefined && !(Array.isArray(item) && !item.length)
+  //       )
+  //   } else {
+  //     return []
+  //   }
+  // }, [dimension, domainFromChart, mappedData])
 
 
   const hasAnyMapping = useMemo(() => {
@@ -83,7 +77,7 @@ const ChartOptionColorScaleWrapper = ({
 
   return <>
     {!hasAnyMapping && <ChartOptionColorScaleDefault onChange={onChange} defaultValue={defaultValue} value={value} />}
-    <ChartOptionColorScale hasAnyMapping={hasAnyMapping} mappingValue={mappingValue} defaultValue={defaultValue} value={value} colorDataType={colorDataType} colorDataset={colorDataset} onChange={onChange} />
+    {hasAnyMapping &&  <ChartOptionColorScale hasAnyMapping={hasAnyMapping} mappingValue={mappingValue} defaultValue={defaultValue} value={value} colorDataType={colorDataType} colorDataset={colorDataset} onChange={onChange} />}
   </>
 }
 

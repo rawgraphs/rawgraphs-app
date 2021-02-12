@@ -5,6 +5,7 @@ import {
   getContainerOptions,
   getDefaultOptionsValues,
   getEnabledOptions,
+  getTypeName,
 } from '@raw-temp/rawgraphs-core'
 import ChartOptionNumber from './ChartOptionTypes/ChartOptionNumber'
 import ChartOptionText from './ChartOptionTypes/ChartOptionText'
@@ -16,7 +17,7 @@ import map from 'lodash/map'
 import mapValues from 'lodash/mapValues'
 
 import styles from './ChartOptions.module.scss'
-import { keyBy } from 'lodash'
+import { keyBy, omit } from 'lodash'
 
 const CHART_OPTION_COMPONENTS = {
   number: ChartOptionNumber,
@@ -59,6 +60,63 @@ function getDefaultForRepeat(def, index) {
 function WrapControlComponent({ type, optionId, setVisualOptions, label, repeatIndex, ...props }) {
   const Component = CHART_OPTION_COMPONENTS[type]
 
+  const remainingOptions = useMemo(() => {
+    if(type !== 'colorScale'){
+      return null
+    }
+    return Object.keys(omit(props.visualOptions, optionId)).map(k => get(props.visualOptions[k], 'value', '')).join('-')
+  }, [type, props.visualOptions, optionId])
+  
+
+  const domainFromChart = useMemo(() => {
+    if(type !== 'colorScale'){
+      return null
+    }
+    return props.domain ? props.chart[props.domain](props.mappedData, props.mapping, props.visualOptions) : null
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [type, props.chart, props.domain, props.mappedData, props.mapping, remainingOptions])
+
+  const mappingValue = useMemo(() => {
+    if(type !== 'colorScale'){
+      return null
+    }
+    return domainFromChart ? '__custom__' :  get(props.mapping, `[${props.dimension}].value`)
+  }, [domainFromChart, props.dimension, props.mapping, type])
+
+  const colorDataType = useMemo(() => {
+    if(type !== 'colorScale'){
+      return null
+    }
+    if(domainFromChart){
+      return domainFromChart.type
+    }
+    return props.dataTypes[mappingValue]
+      ? getTypeName(props.dataTypes[mappingValue])
+      : 'string'
+  }, [type, props.dataTypes, domainFromChart, mappingValue])
+
+  const colorDataset = useMemo(() => {
+    if(type !== 'colorScale'){
+      return null
+    }
+    if(domainFromChart){
+      return domainFromChart.domain
+    }
+
+    if (props.mappedData) {
+      return props.mappedData
+        .map((d) => get(d, props.dimension))
+        .filter(
+          (item) => item !== undefined && !(Array.isArray(item) && !item.length)
+        )
+    } else {
+      return []
+    }
+  }, [type, props.dimension, domainFromChart, props.mappedData])
+
+
+
+
   const handleControlChange = useCallback(
     (nextValue) => {
 
@@ -80,9 +138,13 @@ function WrapControlComponent({ type, optionId, setVisualOptions, label, repeatI
   return (
     <Component
       type={type}
+      domainFromChart={domainFromChart}
+      mappingValue={mappingValue}
+      colorDataType={colorDataType}
+      colorDataset={colorDataset}
       optionId={optionId}
       label={repeatIndex !== undefined ? <React.Fragment>{label} ({repeatIndex + 1})</React.Fragment> : label}
-      {...props}
+      {...omit(props, ['mapping', 'visualOptions', 'chart', 'dataset', 'dataTypes', 'mappedData',])}
       onChange={handleControlChange}
     />
   )

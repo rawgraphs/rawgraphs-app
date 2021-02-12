@@ -50,7 +50,9 @@ const ChartOptionColorScale = ({
   ...props
 }) => {
 
-
+  // here we leverage injection of the __loaded prop in the color scale, see App.js
+  const initialValue = useRef(!!value.__loaded)
+  
   const [scaleType, setScaleType] = useState(get(value, 'scaleType'))
 
   const defaultColor = useMemo(() => {
@@ -255,15 +257,11 @@ const ChartOptionColorScale = ({
       console.log("customUserValues", customUserValues, valuesForFinalScale)
       if(customUserValues){
         const byDomain = keyBy(customUserValues, 'domain')
-        console.log("byDomain", byDomain)
         valuesForFinalScale = valuesForFinalScale.map(v => ({
           ...v,
           range: byDomain[v.domain.toString] ? byDomain[v.domain.toString()].userRange : v.range
         }))
       }
-
-      console.log("xxx", valuesForFinalScale)
-
       //notify ui
       const outScaleParams = {
         scaleType,
@@ -319,8 +317,6 @@ const ChartOptionColorScale = ({
 
 
 
-  // here we leverage injection of the __loaded prop in the color scale, see App.js
-  const initialValue = useRef(!!value.__loaded)
   const prevMappingValue = usePrevious(mappingValue)
 
   useEffect(() => {
