@@ -71,7 +71,7 @@ const ChartOptionColorScaleWrapper = ({
   const hasAnyMapping = useMemo(() => {
     return colorDataset && colorDataset.length > 0
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mappingValue,  colorDataset])
+  }, [colorDataset])
 
  
 
