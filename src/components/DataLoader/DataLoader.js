@@ -1,5 +1,5 @@
 import { get } from 'lodash'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import {
   BsArrowCounterclockwise,
@@ -184,6 +184,7 @@ function DataLoader({
     )
   }
 
+  // #TODO: memoize/move to component?
   function parsingErrors(data) {
     const errors = get(data, 'errors', [])
     const successRows = data.dataset.length - errors.length
@@ -221,6 +222,12 @@ function DataLoader({
     )
   }
 
+  const reloadRAW = useCallback(() => {
+    window.location.replace(window.location.pathname);
+  }, [])
+
+
+
   return (
     <>
       <Row>
@@ -231,6 +238,15 @@ function DataLoader({
             className="d-flex flex-column justify-content-start pl-3 pr-0 options"
           >
             {dataLoaderMode === DATA_LOADER_MODE.REPLACE && (
+              <>
+              <div
+              className={`w-100 mb-2 d-flex justify-content-center align-items-center ${styles['start-over']} user-select-none cursor-pointer`}
+              onClick={reloadRAW}
+              >
+                <BsArrowCounterclockwise className="mr-2" />
+                <h4 className="m-0 d-inline-block">{'Reset'}</h4>
+              </div>
+
               <div
                 className={`w-100 d-flex justify-content-center align-items-center ${styles['start-over']} user-select-none cursor-pointer mb-3`}
                 onClick={() => {
@@ -239,6 +255,7 @@ function DataLoader({
               >
                 <h4 className="m-0 d-inline-block">{'Cancel'}</h4>
               </div>
+              </>
             )}
             {options
               .filter((opt) => {
@@ -282,6 +299,15 @@ function DataLoader({
             lg={2}
             className="d-flex flex-column justify-content-start pl-3 pr-0 options"
           >
+
+            <div
+              className={`w-100 mb-2 d-flex justify-content-center align-items-center ${styles['start-over']} user-select-none cursor-pointer`}
+              onClick={reloadRAW}
+            >
+              <BsArrowCounterclockwise className="mr-2" />
+              <h4 className="m-0 d-inline-block">{'Reset'}</h4>
+            </div>
+
             <div
               className={`w-100 d-flex justify-content-center align-items-center ${styles['start-over']} user-select-none cursor-pointer`}
               onClick={() => {
@@ -292,6 +318,9 @@ function DataLoader({
               <BsArrowCounterclockwise className="mr-2" />
               <h4 className="m-0 d-inline-block">{'Change data'}</h4>
             </div>
+
+            
+
             <div className="my-3 divider" />
             <ParsingOptions
               locale={locale}

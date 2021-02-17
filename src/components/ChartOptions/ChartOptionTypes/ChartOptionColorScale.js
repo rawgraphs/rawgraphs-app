@@ -253,13 +253,12 @@ const ChartOptionColorScale = ({
       const nextUserValues = getDefaultUserValues(nextInterpolator, scaleType)
       setUserValues(nextUserValues)
       let valuesForFinalScale = getUserValuesForFinalScale(nextUserValues)
-
-      console.log("customUserValues", customUserValues, valuesForFinalScale)
+      
       if(customUserValues){
         const byDomain = keyBy(customUserValues, 'domain')
         valuesForFinalScale = valuesForFinalScale.map(v => ({
           ...v,
-          range: byDomain[v.domain.toString] ? byDomain[v.domain.toString()].userRange : v.range
+          range: byDomain[v.domain.toString()] ? byDomain[v.domain.toString()].userRange : v.range
         }))
       }
       //notify ui

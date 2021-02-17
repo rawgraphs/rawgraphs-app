@@ -72,7 +72,19 @@ function WrapControlComponent({ type, optionId, setVisualOptions, label, repeatI
     if(type !== 'colorScale'){
       return null
     }
-    return props.domain ? props.chart[props.domain](props.mappedData, props.mapping, props.visualOptions) : null
+    if(props.domain && props.chart[props.domain]){
+      //as sometimes the current chart is not in synch with current options (chart is set before options, we just handle an exception)
+      //everything should be ok on the next render.
+      try{
+        const domain = props.chart[props.domain](props.mappedData, props.mapping, props.visualOptions) 
+        return domain
+      } catch(e){
+        return null
+      }
+
+    } else {
+      return null
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type, props.chart, props.domain, props.mappedData, props.mapping, remainingOptions])
 
