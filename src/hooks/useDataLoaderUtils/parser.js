@@ -15,9 +15,12 @@ const PARSERS = [
 ]
 
 export function parseData(dataString, opts) {
+  //Removing white lines (useful when pasting from sheets, ecc)
+  const trimmedDataString = dataString.trim().replace(/^(?=\n)$|^\s*|\s*$|\n\n+/gm,"")
+  
   for (const parser of PARSERS) {
     try {
-      return [parser.dataType, parser.parse(dataString, opts)]
+      return [parser.dataType, parser.parse(trimmedDataString, opts)]
     } catch (e) {
       // console.error('Parsing error', e)
     }
