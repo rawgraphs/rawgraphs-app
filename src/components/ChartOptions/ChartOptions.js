@@ -64,10 +64,10 @@ function WrapControlComponent({ type, optionId, setVisualOptions, label, repeatI
     if(type !== 'colorScale'){
       return null
     }
-    return Object.keys(omit(props.visualOptions, optionId)).map(k => get(props.visualOptions[k], 'value', '')).join('-')
+
+    return Object.keys(omit(props.visualOptions, optionId)).map(k => JSON.stringify(get(props.visualOptions, k, ''))).join('-')
   }, [type, props.visualOptions, optionId])
   
-
   const domainFromChart = useMemo(() => {
     if(type !== 'colorScale'){
       return null
