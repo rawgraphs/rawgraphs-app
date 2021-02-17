@@ -1,6 +1,6 @@
 ---
 name: Feature suggestion
-about: Suggest an idea for this project
+about: Suggest an idea to improve RAWGraphs
 title: ''
 labels: enhancement
 assignees: ''

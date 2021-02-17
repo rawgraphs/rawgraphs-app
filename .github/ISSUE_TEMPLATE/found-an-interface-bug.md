@@ -4,7 +4,7 @@ about: This template is for reporting interface bugs (broken or incorrect behavi
   If you have questions on how to use RAWGraphs, please visit https://groups.google.com/g/densitydesign-raw
 title: ''
 labels: bug
-assignees: mikima
+assignees: ''
 
 ---
 
