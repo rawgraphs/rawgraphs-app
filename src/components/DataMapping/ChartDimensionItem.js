@@ -4,6 +4,8 @@ import classnames from 'classnames'
 import styles from './DataMapping.module.scss'
 import { BsX } from 'react-icons/bs'
 import { useDrag, useDrop } from 'react-dnd'
+import get from 'lodash/get'
+import { AGGREGATIONS_LABELS } from '../../constants'
 
 export default function ChartDimensionItem({
   draggingColumn,
@@ -157,7 +159,7 @@ export default function ChartDimensionItem({
             variant={isValid ? 'primary' : 'danger'}
             className="pr-5"
           >
-            {relatedAggregation}
+            {get(AGGREGATIONS_LABELS, relatedAggregation, relatedAggregation)}
           </Dropdown.Toggle>
           <Dropdown.Menu>
             {aggregators.map((aggregatorName) => (
@@ -165,7 +167,7 @@ export default function ChartDimensionItem({
                 key={aggregatorName}
                 onClick={() => onChangeAggregation(index, aggregatorName)}
               >
-                {aggregatorName}
+                {get(AGGREGATIONS_LABELS, aggregatorName, aggregatorName)}
               </Dropdown.Item>
             ))}
           </Dropdown.Menu>

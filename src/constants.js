@@ -93,3 +93,15 @@ export const separatorsLabels = {
 export const separatorsList = Object.keys(separatorsLabels)
 
 export const DefaultSeparator = ","
+
+export const AGGREGATIONS_LABELS = {
+  "count": "Count",
+  "mean": "Average",
+  "median": "Median",
+  "max": "Max",
+  "min": "Min",
+  "countDistinct": "Count unique",
+  "sum": "Sum",
+  "csv": "CSV",
+  "csvDistinct": "CSV (unique)",
+}
