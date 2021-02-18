@@ -122,12 +122,13 @@
     content: ' ';
     display: flex;
     width: 16px;
-    height: 2rem;
+    height: 1rem;
     // position: absolute;
     // right: 0;
     // top: calc(50% - 1rem);
     background-position: center;
     background-repeat: no-repeat;
+    background-size: contain;
   }
   &.unsorted {
     &:after {
