@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react'
 import InilineColorPicker from '../../InlineColorPicker'
 import { Row, Col } from 'react-bootstrap'
 import get from 'lodash/get'
+import style from '../ChartOptions.module.scss'
 
 const ChartOptionColorScaleDefault = ({
   value,
@@ -54,10 +55,8 @@ const ChartOptionColorScaleDefault = ({
   return (
     <>
 
-      <Row>
-        <Col xs={6} className="d-flex align-items-center nowrap">
-          Default color
-        </Col>
+      <label className={[style['chart-option'],"row"].join(" ")}>
+        <Col xs={6} className="d-flex align-items-center">Default</Col>
         <Col xs={6}>
           <InilineColorPicker
             color={defaultColor}
@@ -65,7 +64,7 @@ const ChartOptionColorScaleDefault = ({
           />
         </Col>
 
-      </Row>
+      </label>
     </>
   )
 }

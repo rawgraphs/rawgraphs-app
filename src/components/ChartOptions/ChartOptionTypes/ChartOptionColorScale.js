@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react'
 import InilineColorPicker from '../../InlineColorPicker'
 import ColorSchemesDropDown from './ColorSchemesDropDown'
 import { Row, Col } from 'react-bootstrap'
+import { ResetBtn, InvertBtn, LockBtn } from './ColorScaleUtils'
 import get from 'lodash/get'
 import keyBy from 'lodash/keyBy'
 import {
@@ -465,12 +466,12 @@ const ChartOptionColorScale = ({
             </Row>
           ))}
           <Row>
-            <Col>
-              <button type="button" className="btn btn-sm" onClick={resetScale}>RESET</button>
-              <button type="button" className="btn btn-sm" onClick={invertScale}>INVERT</button>
+            <Col className="d-flex justify-content-end">
+              <ResetBtn resetScale={resetScale} />
+              <InvertBtn invertScale={invertScale} />
               {
                 scaleType !== 'ordinal' && (
-                  <button type="button" className={`btn btn-sm ${locked ? 'btn-primary' : ''}`} onClick={() => handleChangeLocked(!locked)}>{locked ? 'UNLOCK' : 'LOCK'}</button>
+                  <LockBtn locked={locked} handleChangeLocked={handleChangeLocked} />
                 )
               }
 
