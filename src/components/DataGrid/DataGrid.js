@@ -245,8 +245,7 @@ export default function DataGrid({
     24 + 8 * (Math.floor(Math.log10(userDataset.length)) + 1)
   
   const equalDinstribution = (containerEl.current?.getBoundingClientRect().width - idColumnWidth - 1) / Object.keys(dataTypes).length
-
-  const columnWidth = Math.max(equalDinstribution, 170)
+  const columnWidth = equalDinstribution ? Math.max(equalDinstribution, 170) : 170;
 
   const columns = useMemo(() => {
     if (!userDataset || !dataTypes) {
@@ -291,6 +290,7 @@ export default function DataGrid({
     dataTypes,
     userDataset,
     idColumnWidth,
+    columnWidth,
     sortColumn,
     sortDirection,
   ])
