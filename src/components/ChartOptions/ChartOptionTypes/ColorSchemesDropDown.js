@@ -26,7 +26,7 @@ const ColorSchemesDropDown = ({
           scale={currentFinalScale}
         />}
       </Dropdown.Toggle>
-      {colorDataType && <Dropdown.Menu className="w-100" styles={{padding:'4px 0'}}>
+      {colorDataType && <Dropdown.Menu className="w-100">
       {interpolators.map(
         (intrplr) => {
           return (

@@ -14,9 +14,9 @@ function ResetBtn({ resetScale }) {
       placement="bottom"
       overlay={<Tooltip id={`tooltip-top`}>Reset domain</Tooltip>}
     >
-      <button type="button" className="btn" onClick={resetScale}>
+      <span type="button" className="btn" onClick={resetScale}>
         <BsArrowCounterclockwise width="16" height="16" />
-      </button>
+      </span>
     </OverlayTrigger>
   )
 }
@@ -28,9 +28,9 @@ function InvertBtn({ invertScale }) {
       placement="bottom"
       overlay={<Tooltip id={`tooltip-top`}>Invert</Tooltip>}
     >
-      <button type="button" className="btn" onClick={invertScale}>
+      <span type="button" className="btn" onClick={invertScale}>
         <BsArrowLeftRight width="16" height="16" />
-      </button>
+      </span>
     </OverlayTrigger>
   )
 }
@@ -42,13 +42,13 @@ function LockBtn({ handleChangeLocked, locked }) {
       placement="bottom"
       overlay={<Tooltip id={`tooltip-top`}>{locked ? 'Unlock' : 'Lock'} scale</Tooltip>}
     >
-      <button
+      <span
         type="button"
-        className={`btn ${locked ? 'btn-primary' : ''}`}
+        className={`btn ${locked ? 'Xbtn-primary' : ''}`}
         onClick={() => handleChangeLocked(!locked)}
       >
         {locked ? <BsUnlockFill width="16" height="16" /> : <BsLockFill width="16" height="16" />}
-      </button>
+      </span>
     </OverlayTrigger>
   )
 }

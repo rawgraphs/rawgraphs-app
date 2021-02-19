@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from '../ChartOptions.module.scss'
 
 const ColorSchemePreview = ({ label, scale, numSamples=150 }) => {
   let samples
@@ -13,7 +14,7 @@ const ColorSchemePreview = ({ label, scale, numSamples=150 }) => {
     
   }
   return (
-    <div>
+    <div className={styles['scheme-preview']}>
       {label && <div>{label}</div>}
       <div className="d-flex">
         {samples.map((sample) => (

@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react'
 import InilineColorPicker from '../../InlineColorPicker'
 import ColorSchemesDropDown from './ColorSchemesDropDown'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Dropdown } from 'react-bootstrap'
 import { ResetBtn, InvertBtn, LockBtn } from './ColorScaleUtils'
 import get from 'lodash/get'
 import keyBy from 'lodash/keyBy'
@@ -363,34 +363,36 @@ const ChartOptionColorScale = ({
 
   return hasAnyMapping ? (
     <>
-      <Row className={props.className}>
-        <Col xs={6} className="d-flex align-items-center nowrap">
-          {label}
+      <Row className={props.className} style={{marginTop:'8px', marginBottom:'8px'}}>
+        <Col xs={5} className="d-flex align-items-center nowrap">
+          Color scale
         </Col>
-        <Col xs={6}>
-          <select
-            disabled={!colorDataType}
-            className="custom-select raw-select"
-            value={scaleType}
-            onChange={(e) => {
-              handleChangeScaleType(e.target.value)
-            }}
-          >
-            {availableScaleTypes.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
+        <Col xs={7}>
+          <Dropdown className="d-inline-block raw-dropdown w-100">
+            <Dropdown.Toggle variant="white" className="w-100" style={{paddingRight:24}} disabled={!colorDataType}>
+              {scaleType}
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="w-100">
+            {availableScaleTypes.map(
+              (s) => {
+                return (
+                  <Dropdown.Item key={s} onClick={()=>handleChangeScaleType(s)}>
+                    {s}
+                  </Dropdown.Item>
+                )
+              }
+            )}
+            </Dropdown.Menu>
+          </Dropdown>
         </Col>
       </Row>
 
       {/* Color scheme */}
-      <Row className={[props.className].join(' ')}>
-        <Col xs={6} className="d-flex align-items-center nowrap">
+      <Row className={[props.className].join(' ')} style={{marginTop:'8px', marginBottom:'8px'}}>
+        <Col xs={5} className="d-flex align-items-center nowrap">
           Color scheme
         </Col>
-        <Col xs={6}>
+        <Col xs={7}>
           <ColorSchemesDropDown
             interpolators={interpolators}
             interpolator={interpolator}

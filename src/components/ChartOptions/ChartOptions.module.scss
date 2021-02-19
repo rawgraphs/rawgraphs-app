@@ -118,6 +118,10 @@
     }
 }
 .color-scheme-dropdown-item {
-    padding: 8px 8px 12px 8px;
     margin: 0;
+    height: 48px !important;
+    border-bottom: none !important;
+    .scheme-preview {
+        width: 100%;
+    }
 }
