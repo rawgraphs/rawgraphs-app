@@ -3,6 +3,7 @@ import InilineColorPicker from '../../InlineColorPicker'
 import ColorSchemesDropDown from './ColorSchemesDropDown'
 import { Row, Col, Dropdown } from 'react-bootstrap'
 import { ResetBtn, InvertBtn, LockBtn } from './ColorScaleUtils'
+import { SCALES_LABELS } from '../../../constants'
 import get from 'lodash/get'
 import keyBy from 'lodash/keyBy'
 import {
@@ -370,14 +371,14 @@ const ChartOptionColorScale = ({
         <Col xs={7}>
           <Dropdown className="d-inline-block raw-dropdown w-100">
             <Dropdown.Toggle variant="white" className="w-100" style={{paddingRight:24}} disabled={!colorDataType}>
-              {scaleType}
+              {get(SCALES_LABELS, scaleType, scaleType)}
             </Dropdown.Toggle>
             <Dropdown.Menu className="w-100">
             {availableScaleTypes.map(
               (s) => {
                 return (
                   <Dropdown.Item key={s} onClick={()=>handleChangeScaleType(s)}>
-                    {s}
+                    {get(SCALES_LABELS, s, s)}
                   </Dropdown.Item>
                 )
               }

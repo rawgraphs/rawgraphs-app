@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from '../ChartOptions.module.scss'
+import { COLOR_SCHEMES_LABELS } from '../../../constants'
+import get from 'lodash/get'
 
 const ColorSchemePreview = ({ label, scale, numSamples=150 }) => {
   let samples
@@ -15,7 +17,7 @@ const ColorSchemePreview = ({ label, scale, numSamples=150 }) => {
   }
   return (
     <div className={styles['scheme-preview']}>
-      {label && <div>{label}</div>}
+      {label && <div style={{marginBottom:2}}>{get(COLOR_SCHEMES_LABELS, label, label)}</div>}
       <div className="d-flex">
         {samples.map((sample) => (
           <div
