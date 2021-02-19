@@ -120,6 +120,6 @@ export const COLOR_SCHEMES_LABELS = {
   "interpolateBrBG": "BrBG diverging",
   "interpolatePiYG": "PiYG diverging",
   "schemeCategory10": "Categorical 10",
-  "interpolateTurbo": "Turbo",
-  "interpolateSpectral": "Spectral"
+  "interpolateTurbo": "Turbo discrete",
+  "interpolateSpectral": "Spectral discrete"
 }
