@@ -1,6 +1,6 @@
-import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import InilineColorPicker from '../../InlineColorPicker'
-import { Row, Col } from 'react-bootstrap'
+import { Col } from 'react-bootstrap'
 import get from 'lodash/get'
 import style from '../ChartOptions.module.scss'
 
@@ -21,17 +21,12 @@ const ChartOptionColorScaleDefault = ({
   colorDataset,
   ...props
 }) => {
-
-
-
-
   const colorFromValue = useMemo(() => {
     const colorFromDefault = get(defaultValue, 'defaultColor', '#cccccc')
     return get(value, 'defaultColor', colorFromDefault)
   }, [defaultValue, value])
 
   const [defaultColor, setDefaultColor] = useState(colorFromValue)
-
 
   const handleChangeDefaultColor = useCallback(
     (nextDefaultColor) => {
@@ -51,19 +46,18 @@ const ChartOptionColorScaleDefault = ({
     }
   }, [defaultColor, defaultValue, handleChangeDefaultColor])
 
-
   return (
     <>
-
-      <label className={[style['chart-option'],"row"].join(" ")}>
-        <Col xs={6} className="d-flex align-items-center">Default</Col>
+      <label className={[style['chart-option'], 'row'].join(' ')}>
+        <Col xs={6} className="d-flex align-items-center">
+          Default
+        </Col>
         <Col xs={6}>
           <InilineColorPicker
             color={defaultColor}
             onChange={handleChangeDefaultColor}
           />
         </Col>
-
       </label>
     </>
   )

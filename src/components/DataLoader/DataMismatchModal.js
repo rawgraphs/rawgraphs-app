@@ -7,11 +7,9 @@ function DataMismatchModal({
   cancelDataReplace,
 }) {
   const [showModal, setShowModal] = useState(true)
-  const [modalWasClosed, setModalWasClosed] = useState(false)
 
   const handleClose = () => {
     setShowModal(false)
-    setModalWasClosed(true)
   }
   return (
     <Modal

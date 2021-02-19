@@ -1926,21 +1926,23 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.7.0.tgz#5f7760965170f7f1e2910d2498c5be88b47a2a8c"
   integrity sha512-V3WyEc8ZyAuOQ2fpFuTuYYOd2tV4NePeSdxaHYgYAOs7ERLxlcFi2XsmgI5LJFdAUmJKXsg8jaIiVTkTHQygQw==
 
-"@raw-temp/rawgraphs-charts@1.0.0-beta.9":
-  version "1.0.0-beta.9"
-  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-1.0.0-beta.9.tgz#8aeb5ae5c39a628601167440c26dbfb345bc449c"
-  integrity sha512-1TCXfEriT8+/E/nLkC4cCi7K5Oh/vkAZKbwbhGySP1KcOrtf3DljJ50NM3wWojqeFyLgy2RM2UFNEZ6lSNyLTg==
+"@raw-temp/rawgraphs-charts@^1.0.0-beta.10":
+  version "1.0.0-beta.10"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-charts/-/rawgraphs-charts-1.0.0-beta.10.tgz#03938aa6457f18a0324b4b83639e6a10d6c505a1"
+  integrity sha512-/GmaMad3iwtez5ZRnXMq9G1UKgBfAoepvVCjSs+aiLy+ZpEJv1FlOrGIhv2vLpyq7uc8Q5qfG9Mk+qUk9N4sMw==
   dependencies:
     css "^3.0.0"
     d3 "^6.2.0"
+    d3-contour "^2.0.0"
     d3-gridding "^0.2.0"
+    d3-hexbin "^0.2.2"
     d3-sankey "^0.12.3"
     louvain "^1.2.0"
 
-"@raw-temp/rawgraphs-core@1.0.0-beta.5":
-  version "1.0.0-beta.5"
-  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-1.0.0-beta.5.tgz#22b78a3f6f13e03709858a0c718fe288e9a64416"
-  integrity sha512-L1vhemXbAGBOn8OALV7JxDibeIdBh2qiB0siNhhtqsX5Ae0ugFNLZXWUpnSE8y7u+NXijxz9XRKFsNuhL+FroQ==
+"@raw-temp/rawgraphs-core@^1.0.0-beta.7":
+  version "1.0.0-beta.7"
+  resolved "https://npm.inmagik.com/@raw-temp%2frawgraphs-core/-/rawgraphs-core-1.0.0-beta.7.tgz#8c9e8dd32d899200f08c7c65c0f8d834a5006fb6"
+  integrity sha512-SsojhsW6eXchCBCilIE9MRwX0UjQjhcpYLwkw+k88+Waz+LbOpTX2ejsbwPIkhf/FNuomDSdC1B/273Q/0lPXQ==
   dependencies:
     d3-array "^2.4.0"
     d3-axis "^1.0.12"
@@ -4496,7 +4498,7 @@ d3-contour@1:
   dependencies:
     d3-array "^1.1.1"
 
-d3-contour@2:
+d3-contour@2, d3-contour@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/d3-contour/-/d3-contour-2.0.0.tgz#80ee834988563e3bea9d99ddde72c0f8c089ea40"
   integrity sha512-9unAtvIaNk06UwqBmvsdHX7CZ+NPDZnn8TtNH1myW93pWJkhsV25JcgnYAu0Ck5Veb1DHiCv++Ic5uvJ+h50JA==
@@ -4646,6 +4648,11 @@ d3-gridding@^0.2.0:
     d3-hierarchy "^1.1.4"
     d3-scale "2.1.2"
     d3-shape "^1.0.2"
+
+d3-hexbin@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/d3-hexbin/-/d3-hexbin-0.2.2.tgz#9c5837dacfd471ab05337a9e91ef10bfc4f98831"
+  integrity sha1-nFg32s/UcasFM3qeke8Qv8T5iDE=
 
 d3-hierarchy@1, d3-hierarchy@^1.1.4:
   version "1.1.9"

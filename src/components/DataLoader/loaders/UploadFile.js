@@ -4,7 +4,10 @@ import { useDropzone } from 'react-dropzone'
 import classNames from 'classnames'
 import S from './UploadFile.module.scss'
 
-export default function UploadFile({ userInput, setUserInput, setLoadingError }) {
+export default function UploadFile({
+  setUserInput,
+  setLoadingError,
+}) {
   const onDrop = useCallback(
     (acceptedFiles) => {
       const reader = new FileReader()
@@ -16,7 +19,7 @@ export default function UploadFile({ userInput, setUserInput, setLoadingError })
         reader.readAsText(acceptedFiles[0])
       }
     },
-    [setUserInput]
+    [setLoadingError, setUserInput]
   )
   const {
     getRootProps,

@@ -1,16 +1,8 @@
-import React, {
-  useMemo,
-  useRef,
-  useState,
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-} from 'react'
+import React, { useMemo, useRef, useState, useCallback } from 'react'
 import ReactDataGrid from 'react-data-grid'
 import { Overlay, OverlayTrigger } from 'react-bootstrap'
 import classNames from 'classnames'
 import { getTypeName, dateFormats } from '@raw-temp/rawgraphs-core'
-
 import S from './DataGrid.module.scss'
 import { keyBy, get, isEqual } from 'lodash'
 import {
@@ -20,13 +12,6 @@ import {
   NumberIcon,
 } from '../../constants'
 import { BsFillCaretRightFill } from 'react-icons/bs'
-
-// const DATE_FORMATS = [
-//   "YYYY-MM-DD",
-//   "YY-MM",
-//   "DD Month YYYY",
-//   "YYYY",
-// ]
 
 const DATE_FORMATS = Object.keys(dateFormats)
 
@@ -214,7 +199,11 @@ function HeaderRenderer({ ...props }) {
     <div
       className={classNames(
         { [S['raw-col-header']]: true },
-        { [S['unsorted']]: key !== sortColumn || (key === sortColumn && sortDirection === 'NONE') },
+        {
+          [S['unsorted']]:
+            key !== sortColumn ||
+            (key === sortColumn && sortDirection === 'NONE'),
+        },
         { [S['acs']]: key === sortColumn && sortDirection === 'ASC' },
         { [S['desc']]: key === sortColumn && sortDirection === 'DESC' }
       )}
@@ -224,7 +213,12 @@ function HeaderRenderer({ ...props }) {
         onTypeChange={column._raw_coerceType}
         currentTypeComplete={column._raw_datatype}
       />
-      <span className={classNames(S['column-name'], 'text-truncate', 'd-block')} title={column.name}>{column.name}</span>
+      <span
+        className={classNames(S['column-name'], 'text-truncate', 'd-block')}
+        title={column.name}
+      >
+        {column.name}
+      </span>
     </div>
   )
 }
@@ -354,7 +348,9 @@ export default function DataGrid({
         sortDirection={sortDirection}
         onSort={handleSort}
         height={432}
-        onColumnResize={() => console.log('r')}
+        onColumnResize={() => {
+          
+        }}
         onRowsUpdate={(update) => {
           if (update.action === 'CELL_UPDATE') {
             const newDataset = [...userDataset]
