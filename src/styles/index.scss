@@ -133,6 +133,13 @@ h5 {
     z-index: 1030;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid var(--light);
+    .dropdown-header {
+      padding: 0 8px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--light);
+    }
     .dropdown-item {
       height: 40px;
       padding: 0 8px;

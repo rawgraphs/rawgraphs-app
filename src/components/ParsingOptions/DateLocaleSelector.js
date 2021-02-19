@@ -27,14 +27,16 @@ export default function DateLocaleSelector({
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Header>
-            from{' '}
-            <a
-              href="https://github.com/d3/d3-time-format/tree/master/locale"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              d3-time-format
-            </a>
+            <span>
+              from{' '}
+              <a
+                href="https://github.com/d3/d3-time-format/tree/master/locale"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                d3-time-format
+              </a>
+            </span>
           </Dropdown.Header>
           {Object.keys(localeList).map((d) => {
             return (
