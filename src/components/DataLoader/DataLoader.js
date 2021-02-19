@@ -223,10 +223,8 @@ function DataLoader({
   }
 
   const reloadRAW = useCallback(() => {
-    window.location.replace(window.location.pathname);
+    window.location.replace(window.location.pathname)
   }, [])
-
-
 
   return (
     <>
@@ -237,26 +235,6 @@ function DataLoader({
             lg={2}
             className="d-flex flex-column justify-content-start pl-3 pr-0 options"
           >
-            {dataLoaderMode === DATA_LOADER_MODE.REPLACE && (
-              <>
-              <div
-              className={`w-100 mb-2 d-flex justify-content-center align-items-center ${styles['start-over']} user-select-none cursor-pointer`}
-              onClick={reloadRAW}
-              >
-                <BsArrowCounterclockwise className="mr-2" />
-                <h4 className="m-0 d-inline-block">{'Reset'}</h4>
-              </div>
-
-              <div
-                className={`w-100 d-flex justify-content-center align-items-center ${styles['start-over']} user-select-none cursor-pointer mb-3`}
-                onClick={() => {
-                  cancelDataReplace()
-                }}
-              >
-                <h4 className="m-0 d-inline-block">{'Cancel'}</h4>
-              </div>
-              </>
-            )}
             {options
               .filter((opt) => {
                 return (
@@ -291,6 +269,28 @@ function DataLoader({
                   </div>
                 )
               })}
+
+            {dataLoaderMode === DATA_LOADER_MODE.REPLACE && (
+              <>
+                <div className="divider mb-3 mt-0" />
+                <div
+                  className={`w-100 mb-2 d-flex justify-content-center align-items-center ${styles['start-over']} user-select-none cursor-pointer`}
+                  onClick={reloadRAW}
+                >
+                  <BsArrowCounterclockwise className="mr-2" />
+                  <h4 className="m-0 d-inline-block">{'Reset'}</h4>
+                </div>
+
+                <div
+                  className={`w-100 d-flex justify-content-center align-items-center ${styles['start-over']} ${styles['cancel']} user-select-none cursor-pointer mb-3`}
+                  onClick={() => {
+                    cancelDataReplace()
+                  }}
+                >
+                  <h4 className="m-0 d-inline-block">{'Cancel'}</h4>
+                </div>
+              </>
+            )}
           </Col>
         )}
         {userData && (
@@ -299,6 +299,24 @@ function DataLoader({
             lg={2}
             className="d-flex flex-column justify-content-start pl-3 pr-0 options"
           >
+            <ParsingOptions
+              locale={locale}
+              setLocale={setLocale}
+              separator={separator}
+              setSeparator={setSeparator}
+              thousandsSeparator={thousandsSeparator}
+              setThousandsSeparator={setThousandsSeparator}
+              decimalsSeparator={decimalsSeparator}
+              setDecimalsSeparator={setDecimalsSeparator}
+              dimensions={data ? unstackedColumns || data.dataTypes : []}
+              stackDimension={stackDimension}
+              setStackDimension={handleStackOperation}
+              userDataType={userDataType}
+              dataSource={dataSource}
+              onDataRefreshed={(rawInput) => setUserInput(rawInput, dataSource)}
+            />
+
+            <div className="divider mb-3 mt-0" />
 
             <div
               className={`w-100 mb-2 d-flex justify-content-center align-items-center ${styles['start-over']} user-select-none cursor-pointer`}
@@ -318,26 +336,6 @@ function DataLoader({
               <BsArrowCounterclockwise className="mr-2" />
               <h4 className="m-0 d-inline-block">{'Change data'}</h4>
             </div>
-
-            
-
-            <div className="my-3 divider" />
-            <ParsingOptions
-              locale={locale}
-              setLocale={setLocale}
-              separator={separator}
-              setSeparator={setSeparator}
-              thousandsSeparator={thousandsSeparator}
-              setThousandsSeparator={setThousandsSeparator}
-              decimalsSeparator={decimalsSeparator}
-              setDecimalsSeparator={setDecimalsSeparator}
-              dimensions={data ? unstackedColumns || data.dataTypes : []}
-              stackDimension={stackDimension}
-              setStackDimension={handleStackOperation}
-              userDataType={userDataType}
-              dataSource={dataSource}
-              onDataRefreshed={(rawInput) => setUserInput(rawInput, dataSource)}
-            />
           </Col>
         )}
         <Col>

@@ -43,11 +43,23 @@
 .start-over {
   height: 48px;
   text-align: center;
-  background: var(--gray-400);
+  background-color: var(--gray-400);
   mix-blend-mode: normal;
   border: 1px solid var(--gray-400);
   box-sizing: border-box;
   border-radius: 4px;
+  &.cancel {
+    background: none;
+    // text-decoration: underline;
+    border: none;
+    transition: background-color 0.35s ease;
+    h4 {
+      border-bottom: 1px solid var(--gray-700);
+    }
+    &:hover {
+      background-color: var(--gray-400);
+    }
+  }
 }
 
 .loading-component {
