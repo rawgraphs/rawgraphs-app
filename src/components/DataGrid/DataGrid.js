@@ -243,13 +243,10 @@ export default function DataGrid({
   //   of digits of the highest id
   const idColumnWidth =
     24 + 8 * (Math.floor(Math.log10(userDataset.length)) + 1)
+  
+  const equalDinstribution = (containerEl.current?.getBoundingClientRect().width - idColumnWidth - 1) / Object.keys(dataTypes).length
 
-  const columnWidth = 180
-
-  const lastColumnWidth =
-    containerEl.current?.getBoundingClientRect().width -
-    idColumnWidth -
-    (Object.keys(dataTypes).length - 1) * columnWidth
+  const columnWidth = Math.max(equalDinstribution, 170)
 
   const columns = useMemo(() => {
     if (!userDataset || !dataTypes) {
@@ -286,8 +283,7 @@ export default function DataGrid({
           coerceTypes({ ...dataTypes, [k]: nextType }),
         sortable: true,
         resizable: true,
-        width:
-          i < Object.keys(dataTypes).length - 1 ? columnWidth : lastColumnWidth,
+        width: columnWidth
       })),
     ]
   }, [
