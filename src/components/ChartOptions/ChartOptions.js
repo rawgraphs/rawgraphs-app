@@ -302,7 +302,7 @@ const ChartOptions = ({
                   />
                 )
             })}
-            {groupName === 'artboard' && (
+            {groupName === 'artboard' && visualOptions.showLegend && (
               <p className="small">
                 The final output will be {containerOptions?.width}px * {containerOptions?.height}px including the legend.
               </p>
