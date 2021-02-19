@@ -3,6 +3,7 @@ import React, { useCallback, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import {
   BsArrowCounterclockwise,
+  BsArrowRepeat,
   BsClipboard,
   BsCloud,
   BsFolder,
@@ -277,7 +278,7 @@ function DataLoader({
                   className={`w-100 mb-2 d-flex justify-content-center align-items-center ${styles['start-over']} user-select-none cursor-pointer`}
                   onClick={reloadRAW}
                 >
-                  <BsArrowCounterclockwise className="mr-2" />
+                  <BsArrowRepeat className="mr-2" />
                   <h4 className="m-0 d-inline-block">{'Reset'}</h4>
                 </div>
 
@@ -322,7 +323,7 @@ function DataLoader({
               className={`w-100 mb-2 d-flex justify-content-center align-items-center ${styles['start-over']} user-select-none cursor-pointer`}
               onClick={reloadRAW}
             >
-              <BsArrowCounterclockwise className="mr-2" />
+              <BsArrowRepeat className="mr-2" />
               <h4 className="m-0 d-inline-block">{'Reset'}</h4>
             </div>
 
