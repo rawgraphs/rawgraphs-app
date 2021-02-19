@@ -137,7 +137,7 @@ const ChartPreview = ({
   }, [setError, vizOptionsDebounced, setRawViz, mappedData, chart, mapping])
 
   return (
-    <div className={'col-9'}>
+    <div className={'col-8 col-xl-9'}>
       <div
         className={['overflow-auto', 'position-sticky'].join(' ')}
         style={{ top: 'calc(15px + var(--header-height))' }}

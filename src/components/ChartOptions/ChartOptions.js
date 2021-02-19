@@ -234,7 +234,7 @@ const ChartOptions = ({
   }, [mapping, optionsConfig, visualOptions])
 
   return (
-    <div className={[styles["chart-options"], 'col-3'].join(' ')}>
+    <div className={[styles["chart-options"], 'col-4', 'col-xl-3' ].join(' ')}>
       {map(optionsDefinitionsByGroup, (options, groupName) => {
         return (
           <div
