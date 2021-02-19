@@ -101,14 +101,14 @@ const ChartPreview = ({
     }
 
     if (!mappedData) {
-      console.info('Clearing viz')
+      // console.info('Clearing viz')
       setRawViz(null)
       while (domRef.current.firstChild) {
         domRef.current.removeChild(domRef.current.firstChild)
       }
       return
     }
-    console.info('Updating viz')
+    // console.info('Updating viz')
     try {
       const viz = rawChart(chart, {
         data,

@@ -20,7 +20,7 @@ const ChartPreviewWithOptions = ({
   const [mappedData, setMappedData] = useState(null)
 
   useEffect(() => {
-    console.info('Updating mapped dataset')
+    // console.info('Updating mapped dataset')
     try {
       setMappingLoading(true)
 
