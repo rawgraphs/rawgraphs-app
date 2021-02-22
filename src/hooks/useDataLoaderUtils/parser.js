@@ -1,12 +1,44 @@
 import { dsvFormat } from 'd3'
+import { DefaultSeparator, separatorsList } from '../../constants'
 
 function JsonParser(dataString) {
-  return JSON.parse(dataString)
+  return [JSON.parse(dataString), {}]
 }
 
 function CsvParser(dataString, opts) {
-  const parser = dsvFormat(opts.separator || ',')
-  return parser.parse(dataString)
+  // Use the separator the user gives me, if any
+  if (opts.separator) {
+    return [
+      dsvFormat(opts.separator).parse(dataString),
+      {
+        separator: opts.separator,
+      },
+    ]
+  }
+  // Otherwise, try to infer it
+  const candidates = []
+  for (const _separator of separatorsList) {
+    const separator = _separator
+      .replace(/\\r/g, '\r')
+      .replace(/\\n/g, '\n')
+      .replace(/\\t/g, '\t')
+    try {
+      const parser = dsvFormat(separator)
+      const parsed = parser.parse(dataString)
+      if (
+        (parsed.length > 0 && Object.keys(parsed[0]).length > 1) ||
+        separator === DefaultSeparator
+      ) {
+        candidates.push({
+          separator,
+          score: Object.keys(parsed[0]).length,
+          parsed,
+        })
+      }
+    } catch (e) {}
+  }
+  candidates.sort((a, b) => b.score - a.score)
+  return [candidates[0].parsed, { separator: candidates[0].separator }]
 }
 
 const PARSERS = [
@@ -16,11 +48,14 @@ const PARSERS = [
 
 export function parseData(dataString, opts) {
   //Removing white lines (useful when pasting from sheets, ecc)
-  const trimmedDataString = dataString.trim().replace(/^(?=\n)$|^\s*|\s*$|\n\n+/gm,"")
-  
+  const trimmedDataString = dataString
+    .trim()
+    .replace(/^(?=\n)$|^\s*|\s*$|\n\n+/gm, '')
+
   for (const parser of PARSERS) {
     try {
-      return [parser.dataType, parser.parse(trimmedDataString, opts)]
+      const [parsed, extra] = parser.parse(trimmedDataString, opts)
+      return [parser.dataType, parsed, extra]
     } catch (e) {
       // console.error('Parsing error', e)
     }
@@ -29,17 +64,22 @@ export function parseData(dataString, opts) {
 }
 
 export function parseAndCheckData(dataString, opts) {
-  const [dataType, data] = parseData(dataString, opts)
+  const [dataType, data, extra] = parseData(dataString, opts)
   if (dataType === null) {
     // This should never happen
-    return [dataType, data, 'Cannot parse dataset! (This should never happen)']
+    return [
+      dataType,
+      data,
+      'Cannot parse dataset! (This should never happen)',
+      {},
+    ]
   } else {
     if (dataType === 'json') {
-      return ['json', data, null]
+      return ['json', data, null, extra]
     } else if (data.length > 0) {
-      return [dataType, data, null]
+      return [dataType, data, null, extra]
     } else {
-      return [null, null, 'We can\'t parse your data.']
+      return [null, null, "We can't parse your data.", {}]
     }
   }
 }

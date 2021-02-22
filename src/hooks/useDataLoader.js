@@ -263,13 +263,16 @@ export default function useDataLoader() {
    * Finally, if read is successful, we go inferring types using the raw-core library
    */
   function setUserDataAndDetect(str, source, options) {
-    const [dataType, parsedUserData, error] = parseAndCheckData(str, {
-      separator: get(options, 'separator', separator),
+    const [dataType, parsedUserData, error, extra] = parseAndCheckData(str, {
+      separator: get(options, 'separator', null),
     })
     setUserInput(str)
     setDataSource(source)
     setUserDataType(dataType)
     setParserError(error)
+    if (extra && typeof extra === "object" && "separator" in extra) {
+      setSeparator(extra.separator)
+    }
     // Data parsed ok set parent data
     if (dataType !== 'json' && !error) {
       handleNewUserData(parsedUserData)
