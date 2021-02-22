@@ -1,0 +1,218 @@
+// Variables override
+$body-bg: #f5f8fa;
+$theme-colors: (
+  'primary': #4bc06a,
+  'success': #4bc06a,
+  'warning': #e7b332,
+  'danger': #d04949,
+  'light': #d8d8d8,
+);
+$font-family-monospace: 'IBM Plex Mono', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+:root {
+  --gray-bg: rgb(245 248 250);
+  --primary-lighter: #defff0;
+  --warning-lighter: #fff8c6;
+  --gray-100: #f8f8f8;
+  --gray-200: #dee1e2;
+  --gray-300: #c2c1c1;
+  --gray-400: #e4e3e3;
+  --gray-500: #a3a8ad;
+  --gray-600: #888e94;
+  --gray-700: #495057;
+  --gray-900: #181818;
+  --header-height: 50px;
+}
+
+// Boostrap scss
+@import '~bootstrap/scss/bootstrap';
+
+// React Data Table css
+@import '~react-data-grid/dist/react-data-grid.css';
+
+// Fonts
+@import 'fonts';
+
+html {
+  font-size: 13px;
+}
+body {
+  background-color: var(--gray-bg);
+}
+h1 {
+  font-size: 1.8461538462rem;
+  font-weight: normal;
+  color: var(--gray-900);
+  letter-spacing: -0.5px;
+  line-height: 32px;
+  margin-bottom: 2px;
+}
+h2 {
+  font-size: 1.3846153846rem;
+  font-weight: normal;
+  color: var(--gray-900);
+  letter-spacing: 0;
+  line-height: 24px;
+}
+h4 {
+  font-size: 0.9230769231rem;
+  font-weight: normal;
+  color: var(--gray-700);
+  letter-spacing: 0;
+  line-height: 16px;
+}
+h5 {
+  font-size: 1.2307692308rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--gray-700);
+  letter-spacing: 0;
+  line-height: 1.2307692308rem;
+  margin-bottom: 16px;
+}
+
+.small {
+  color: var(--gray-500);
+}
+
+.big {
+  font-size: 1.25rem;
+}
+// UI
+.app-sections {
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.alert {
+  color: var(--gray-100);
+  display: flex;
+  align-items: center;
+  height: 56px;
+  border: none;
+  &.alert-success {
+    background-color: theme-color('success');
+  }
+  &.alert-secondary {
+    color: var(--gray-700);
+  }
+  &.alert-warning {
+    background-color: theme-color('warning');
+  }
+  &.alert-danger {
+    background-color: theme-color('danger');
+  }
+}
+.raw-btn {
+  height: 40px;
+}
+.btn-white {
+  color: theme-color('dark');
+  background-color: white;
+  border: none;
+  border-bottom: 1px solid var(--light);
+}
+.raw-dropdown {
+  height: 40px;
+  .dropdown-toggle {
+    text-align: left;
+    height: 100%;
+    &::after {
+      right: 8px;
+      bottom: calc(50% - 1px);
+      position: absolute;
+    }
+  }
+  .dropdown-menu {
+    max-height: 40vh;
+    overflow-y: auto;
+    padding: 0;
+    border: none;
+    z-index: 1030;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--light);
+    .dropdown-header {
+      padding: 0 8px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--light);
+    }
+    .dropdown-item {
+      height: 40px;
+      padding: 0 8px;
+      display: flex;
+      align-items: center;
+      &:not(:last-child) {
+        border-bottom: 1px solid var(--light);
+      }
+    }
+  }
+}
+.raw-input-group {
+  .raw-dropdown {
+    button {
+      padding-right: 3rem;
+    }
+  }
+}
+.raw-select{
+  height: 40px;
+  color: theme-color('dark');
+  background-color: white;
+  border: none;
+  border-bottom: 1px solid var(--light);
+}
+.raw-modal {
+  .modal-content {
+    background-color: var(--gray-bg);
+    border: none;
+    border-radius: 4px;
+  }
+  .modal-footer {
+    border: none;
+    justify-content: flex-start;
+  }
+}
+.truncate-160px {
+  max-width: 160px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+.card {
+  border-radius: 4px;
+  &:hover {
+    background-color: var(--primary-lighter);
+  }
+  &.active {
+    border-color: var(--primary);
+    background-color: var(--primary-lighter);
+  }
+}
+.cursorpointer,
+.cursor-pointer {
+  cursor: pointer;
+}
+.nowrap,
+.no-wrap {
+  white-space: nowrap;
+}
+.text-field {
+  height: 40px;
+  border: none;
+  border-bottom: 1px solid var(--light);
+  border-radius: 4px;
+  &::placeholder {
+    color: #cecece;
+  }
+}
+.underlined {
+  border-bottom: 1px solid theme-color('primary');
+}
+.divider {
+  width: 100%;
+  border-top: 1px solid var(--gray-400);
+  display: inline-block;
+}

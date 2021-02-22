@@ -1,0 +1,156 @@
+:global .rdg {
+  font-size: 1rem;
+}
+
+.data-type-selector {
+  background-color: #fff;
+  min-width: 140px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+
+  .data-type-selector-item {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--gray-bg);
+    }
+
+    & svg {
+      margin-right: 8px;
+    }
+  }
+
+  .selected {
+    background-color: var(--primary-lighter) !important;
+  }
+}
+
+.date-format-preview {
+  color: var(--gray-600);
+}
+
+.data-type-selector-trigger {
+  background-color: var(--gray-400);
+  border-radius: 50%;
+  height: 24px;
+  width: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.date-format-selector {
+  background-color: white;
+  min-width: 140px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
+
+  .date-format-selector-entry {
+    padding: 8px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--gray-bg);
+    }
+
+    .selected {
+      background-color: var(--primary-lighter) !important;
+    }
+  }
+}
+
+.parent-type-selector {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column-name {
+  width: calc(100% - 52px)
+}
+
+.has-error {
+  // background-color: var(--warning-lighter);
+  margin: 0 -8px; // Override default padding from .rdg-cell
+  padding: 0 8px; // Override default padding from .rdg-cell
+  box-shadow: inset 0 0 10px 6px var(--warning-lighter);
+}
+
+:global .rdg-header-row {
+  background-color: var(--gray-bg);
+  font-weight: normal;
+}
+
+:global .rdg-cell-frozen {
+  background-color: var(--gray-bg);
+}
+
+:global .rdg-selected {
+  border-color: var(--primary);
+  border-width: 1px;
+}
+
+:global .rdg-cell {
+  border-color: var(--gray-400);
+}
+
+:global .rdg-cell-frozen-last {
+  box-shadow: none;
+}
+
+:global .rdg-row {
+  font-family: var(--font-family-monospace);
+  & .rdg-cell:first-child {
+    text-align: center;
+    color: var(--gray-600);
+  }
+}
+
+:global .rdg-row:hover {
+  background-color: var(--gray-bg);
+}
+
+.raw-col-header {
+  position: relative;
+  height: 100%;
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+  &:after {
+    content: ' ';
+    display: flex;
+    width: 16px;
+    height: 1rem;
+    // position: absolute;
+    // right: 0;
+    // top: calc(50% - 1rem);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  &.unsorted {
+    &:after {
+      opacity: 0.3;
+      background-image: url('./icons/arrow-down-up.svg');
+    }
+  }
+  &.acs {
+    &:after {
+      background-image: url('./icons/arrow-up.svg');
+    }
+  }
+  &.desc {
+    &:after {
+      background-image: url('./icons/arrow-down.svg');
+    }
+  }
+}
+
+:global .rdg-header-sort-cell {
+  height: 100%;
+  & > span:last-child {
+    display: none;
+  }
+}

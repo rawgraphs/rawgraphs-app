@@ -1,0 +1,21 @@
+.json-viewer {
+  height: 40vh;
+  overflow-y: auto;
+  background-color: white;
+  padding: 1rem;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+}
+
+.event-sandbox {
+  pointer-events: none;
+}
+
+.json-nested {
+  padding-left: 10px;
+  pointer-events: all;
+
+  &.selectable.hover {
+    background: lightgreen;
+  }
+}

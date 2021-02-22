@@ -1,0 +1,50 @@
+.parsingOptions {
+  // display: flex;
+  // justify-content: space-between;
+  // margin-bottom: 8px;
+
+  b {
+    font-weight: 500;
+  }
+
+  input {
+    width: 40px;
+    height: 40px;
+    margin-left: 8px;
+  }
+  :global .dropdown {
+    margin-left: 8px;
+    button {
+      padding-right: 24px;
+      height: 40px;
+      width: 108px;
+    }
+  }
+  :global .option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px 0;
+  }
+
+  .refresh-button {
+    width: 100%;
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.separator-preview {
+  font-family: var(--font-family-monospace);
+  background-color: var(--gray-200);
+  color: var(--gray-900);
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 4px;
+  margin-right:4px;
+}

@@ -1,0 +1,51 @@
+IMDB ID	Rank	Year	Title	Genre	Rating	Runtime (minutes)	Certificate	Real Worldwide Box Office (Millions)	Box Office (Millions, adjusted for inflation)	Budget (Millions)	Budget (Millions, adjusted for inflation)	ROI
+tt0031381	1	1939	Gone with the Wind	Drama	8.1	238	Passed	402	3750	3.9	35.9	104.5
+tt0499549	2	2009	Avatar	Action	7.8	162	PG-13	2790	3350	237.0	284.6	11.8
+tt0120338	3	1997	Titanic	Drama	7.8	194	PG-13	2194	3250	200.0	296.2	11.0
+tt0076759	4	1977	Star Wars: Episode IV - A New Hope	Action	8.6	121	PG	776	2950	11.0	41.8	70.5
+tt4154796	5	2019	Avengers: Endgame	Action	8.4	181	PG-13	2798	2900	356.0	369.0	7.9
+tt0059742	6	1965	The Sound of Music	Biography	8.0	172	G	286	2450	8.2	70.2	34.9
+tt0083866	7	1982	E.T. the Extra-Terrestrial	Family	7.8	115	PG	793	2350	10.5	31.1	75.5
+tt0049833	8	1956	The Ten Commandments	Adventure	7.8	220	G	123	2250	13.0	238.4	9.4
+tt0059113	9	1965	Doctor Zhivago	Drama	8.0	197	PG-13	245	2200	11.0	98.8	22.3
+tt2488496	10	2015	Star Wars: Episode VII - The Force Awakens	Action	7.9	138	PG-13	2068	2200	258.0	274.4	8.0
+tt0029583	11	1937	Snow White and the Seven Dwarfs	Animation	7.6	83	G	418	2175	1.5	7.8	278.7
+tt0107290	12	1993	Jurassic Park	Action	8.1	127	PG-13	1032	2150	63.0	131.3	16.4
+tt0073195	13	1975	Jaws	Adventure	8.0	124	PG	471	2150	9.0	41.1	52.4
+tt4154756	14	2018	Avengers: Infinity War	Action	8.5	149	PG-13	2048	2050	358.0	358.3	5.7
+tt0070047	15	1973	The Exorcist	Horror            	8.0	122	R	441	1950	12.0	53.0	36.8
+tt0055254	16	1961	One Hundred and One Dalmatians	Animation	7.2	79	G	303	1900	4.0	25.1	75.8
+tt0110357	17	1994	The Lion King	Animation	8.5	88	G	969	1925	45.0	89.4	21.5
+tt0369610	18	2015	Jurassic World	Action	7.0	124	PG-13	1670	1850	150.0	166.1	11.1
+tt0061852	19	1967	The Jungle Book	Animation	7.6	78	G	378	1825	4.0	19.3	94.5
+tt0120915	20	1999	Star Wars: Episode I - The Phantom Menace	Action	6.5	136	PG	1027	1825	115.0	204.4	8.9
+tt0052618	21	1959	Ben-Hur	Adventure	8.1	212	G	147	1825	15.2	188.8	9.7
+tt0848228	22	2012	The Avengers	Action	8.0	143	PG-13	1519	1750	220.0	253.5	6.9
+tt0167260	23	2003	The Lord of the Rings: The Return of the King	Adventure	8.9	201	PG-13	1142	1725	94.0	142.0	12.2
+tt0080684	24	1980	Star Wars: Episode V - The Empire Strikes Back	Action	8.7	124	PG	548	1725	23.0	72.4	23.8
+tt0116629	25	1996	Independence Day	Action	7.0	145	PG-13	817	1725	75.0	158.3	10.9
+tt6105098	26	2019	The Lion King	Animation	6.9	118	PG	1657	1725	255.0	265.5	6.5
+tt2820852	27	2015	Furious 7	Action	7.1	137	PG-13	1515	1650	190.0	206.9	8.0
+tt0241527	28	2001	Harry Potter and the Sorcerer's Stone	Adventure	7.6	152	PG	978	1625	125.0	207.7	7.8
+tt0042332	29	1950	Cinderella	Animation	7.3	74	G	264	1600	2.9	17.6	90.9
+tt1201607	30	2011	Harry Potter and the Deathly Hallows: Part 2	Adventure	8.1	130	PG-13	1342	1575	175.0	205.4	7.7
+tt0059800	31	1965	Thunderball	Action	7.0	130	PG	141	1575	10.0	111.5	14.1
+tt0034492	32	1942	Bambi	Animation	7.3	70	G	268	1575	0.9	5.3	297.2
+tt0383574	33	2006	Pirates of the Caribbean: Dead Man's Chest	Action	7.3	151	PG-13	1066	1525	225.0	321.8	4.7
+tt2395427	34	2015	Avengers: Age of Ultron	Action	7.3	141	PG-13	1403	1525	365.0	396.8	3.8
+tt0058150	35	1964	Goldfinger	Action	7.7	110	PG	125	1500	3.5	42.0	35.7
+tt0077631	36	1978	Grease	Musical	7.2	110	PG	397	1500	6.0	22.7	66.2
+tt0109830	37	1994	Forrest Gump	Drama	8.8	142	PG-13	678	1475	55.0	119.7	12.3
+tt0167261	38	2002	The Lord of the Rings: The Two Towers	Adventure	8.7	179	PG-13	951	1475	94.0	145.8	10.1
+tt0120737	39	2001	The Lord of the Rings: The Fellowship of the Ring	Action	8.8	178	PG-13	888	1450	93.0	151.9	9.5
+tt2294629	40	2013	Frozen	Animation	7.4	102	PG	1281	1460	150.0	171.0	8.5
+tt4520988	41	2019	Frozen II	Animation	6.9	103	PG	1450	1450	150.0	150.0	9.7
+tt0266543	42	2003	Finding Nemo	Animation	8.1	100	G	940	1425	94.0	142.5	10.0
+tt0295297	43	2002	Harry Potter and the Chamber of Secrets	Adventure	7.4	161	PG	879	1425	100.0	162.0	8.8
+tt0298148	44	2004	Shrek 2	Animation	7.2	93	PG	929	1375	150.0	222.1	6.2
+tt1825683	45	2018	Black Panther	Action	7.3	134	PG-13	1347	1375	200.0	204.2	6.7
+tt2527336	46	2017	Star Wars: Episode VIII - The Last Jedi	Action	7.0	152	PG-13	1333	1360	258.5	263.8	5.2
+tt0086190	47	1983	Star Wars: Episode VI - Return of the Jedi	Action	8.3	131	PG	475	1350	32.4	92.1	14.7
+tt1300854	48	2013	Iron Man 3	Action	7.2	130	PG-13	1215	1360	200.0	223.9	6.1
+tt4881806	49	2018	Jurassic World: Fallen Kingdom	Action	6.2	128	PG-13	1308	1350	178.5	184.2	7.3
+tt0068646	50	1972	The Godfather	Crime	9.2	175	R	246	1325	5.8	31.0	42.8

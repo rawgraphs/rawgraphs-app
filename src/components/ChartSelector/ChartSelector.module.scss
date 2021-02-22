@@ -1,0 +1,13 @@
+.thumbnail {
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.currentChart:hover {
+  background-color: white !important;
+}
+
+.disabled {
+  pointer-events: none;
+  filter: grayscale(1);
+}

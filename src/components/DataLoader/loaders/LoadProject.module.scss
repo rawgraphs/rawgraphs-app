@@ -1,0 +1,26 @@
+.dropzone {
+  height: 432px;
+  border: 1px dashed var(--gray-300);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropzone.reject {
+  border: 2px dashed var(--danger);
+}
+
+.dropzone.accept {
+  border: 2px dashed var(--success);
+}
+
+.browse-button {
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #ffffff;
+  height: 28px;
+  width: 80px;
+  margin: 0 10px;
+}

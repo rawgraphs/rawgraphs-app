@@ -1,0 +1,33 @@
+.swatch {
+  padding: 4px 8px;;
+  background: white;
+  border: none;
+  border-bottom: 1px solid var(--light);
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  font-size: 0.8461538462rem;
+}
+
+.color {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ddd;
+  margin-right: 8px;
+}
+
+.popover {
+  position: absolute;
+  z-index: 2000;
+}
+
+.cover {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}

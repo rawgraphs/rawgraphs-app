@@ -1,0 +1,23 @@
+.datatable-container {
+  overflow-x: auto;
+}
+
+.datatable {
+  // width: 100%;
+  // height: 40vh;
+
+  .datatable-cell {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    background: white;
+    border: 1px solid #ccc;
+  }
+  .datatable-header-cell {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    background: #dedede;
+    border: 1px solid #ccc;
+  }
+}
