@@ -21,6 +21,8 @@ import usePrevious from './hooks/usePrevious'
 import { serializeProject as serializeProjectV1_1 } from './import_export_v1.1'
 import useDataLoader from './hooks/useDataLoader'
 import isPlainObject from 'lodash/isPlainObject'
+import CookieConsent from "react-cookie-consent"
+
 
 // #TODO: i18n
 
@@ -190,6 +192,30 @@ function App() {
           </Section>
         )}
         <Footer />
+        <CookieConsent
+        location="bottom"
+        buttonText="Got it!"
+        style={{ background: "#f5f5f5", color: "#646467" }}
+        buttonStyle={{
+          background: "#646467",
+          color: "white",
+          fontSize: "13px",
+          borderRadius: "3px",
+          padding: "5px 20px",
+        }}
+        buttonClasses="btn btn-default btn-grey"
+        acceptOnScroll={true}
+      >
+        This website uses Google Analytics to anonymously collect browsing data.{" "}
+        <a
+          href="https://rawgraphs.io/privacy/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ml-2 text-body border-bottom border-dark"
+        >
+          Learn More
+        </a>
+      </CookieConsent>
       </div>
       <ScreenSizeAlert />
     </div>
