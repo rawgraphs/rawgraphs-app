@@ -18,7 +18,7 @@ import ChartPreviewWithOptions from './components/ChartPreviewWIthOptions'
 import Exporter from './components/Exporter'
 import get from 'lodash/get'
 import usePrevious from './hooks/usePrevious'
-import { serializeProject as serializeProjectV1 } from './import_export_v1'
+import { serializeProject as serializeProjectV1_1 } from './import_export_v1.1'
 import useDataLoader from './hooks/useDataLoader'
 import isPlainObject from 'lodash/isPlainObject'
 
@@ -92,7 +92,7 @@ function App() {
   }, [clearLocalMapping])
 
   const exportProject = useCallback(() => {
-    return serializeProjectV1(
+    return serializeProjectV1_1(
       userInput,
       userData,
       userDataType,

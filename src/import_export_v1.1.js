@@ -1,7 +1,7 @@
 import { get, has } from "lodash"
 import charts from "./charts"
 
-export const VERSION = "1"
+export const VERSION = "1.1"
 
 function objectsToMatrix(listOfObjects, columns) {
   return listOfObjects.map(obj => {
@@ -38,7 +38,7 @@ export function serializeProject(
   visualOptions,
 ) {
   const project = {
-    version: "1",
+    version: VERSION,
   }
 
   /* First stage: user input */
@@ -63,7 +63,7 @@ export function serializeProject(
   project.dataTypes = data.dataTypes
 
   /* Chart: mapping and visual options */
-  project.chart = currentChart.metadata.name
+  project.chart = currentChart.metadata.id
   project.mapping = mapping
   project.visualOptions = visualOptions
 
@@ -79,12 +79,12 @@ function getOrError(object, path) {
 }
 
 export function deserializeProject(project) {
-  if (project.version !== "1") {
+  if (project.version !== VERSION) {
     throw new Error("Invalid version number, please use a suitable deserializer")
   }
 
-  const chartName = getOrError(project, "chart")
-  const chart = charts.find(c => c.metadata.name === chartName)
+  const chartId = getOrError(project, "chart")
+  const chart = charts.find(c => c.metadata.id === chartId)
   if (!chart) {
     throw new Error("Unknown chart!")
   }

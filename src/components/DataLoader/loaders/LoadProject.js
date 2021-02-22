@@ -3,12 +3,11 @@ import { Button } from 'react-bootstrap'
 import { useDropzone } from 'react-dropzone'
 import classNames from 'classnames'
 import S from './LoadProject.module.scss'
-import { get } from 'lodash'
-import { deserializeProject as deserializeProjectV1 } from '../../../import_export_v1'
+import { get, keyBy } from 'lodash'
+import * as IO1 from '../../../import_export_v1'
+import * as IO1_1 from '../../../import_export_v1.1'
 
-const DESERIALIZERS = {
-  "1": deserializeProjectV1
-}
+const DESERIALIZERS = keyBy([IO1, IO1_1], 'VERSION')
 
 export default function LoadProject({ onProjectSelected, setLoadingError }) {
   // const [error, setError] = useState(null)
@@ -18,24 +17,23 @@ export default function LoadProject({ onProjectSelected, setLoadingError }) {
       const reader = new FileReader()
       reader.addEventListener('load', (e) => {
         try {
-          JSON.parse(e.target.result)
+          const serializedProject = JSON.parse(e.target.result)
+          const version = get(serializedProject, 'version', 'unknown')
+          if (DESERIALIZERS[version]) {
+            try {
+              onProjectSelected(DESERIALIZERS[version].deserializeProject(serializedProject))
+              setLoadingError(null)
+            } catch (e) {
+              // setError(e.message)
+              setLoadingError("Can't open your project. " + e.message)
+            }
+          } else {
+            // setError("Invalid file")
+            setLoadingError("Can't open your project. Invalid file")
+          }
         } catch (e) {
           // setError(e.message)
-          setLoadingError("Can't open your project. "+e.message)
-        }
-        const serializedProject = JSON.parse(e.target.result)
-        const version = get(serializedProject, "version", "unknown")
-        if (DESERIALIZERS[version]) {
-          try {
-            onProjectSelected(DESERIALIZERS[version](serializedProject))
-            setLoadingError(null)
-          } catch (e) {
-            // setError(e.message)
-            setLoadingError("Can't open your project. "+e.message)
-          }
-        } else {
-          // setError("Invalid file")
-          setLoadingError("Can't open your project. Invalid file")
+          setLoadingError("Can't open your project. " + e.message)
         }
       })
       if (acceptedFiles.length) {
@@ -51,8 +49,7 @@ export default function LoadProject({ onProjectSelected, setLoadingError }) {
     isDragAccept,
   } = useDropzone({
     onDrop,
-    accept:
-      '.rawgraphs',
+    accept: '.rawgraphs',
     maxFiles: 1,
   })
   return (
