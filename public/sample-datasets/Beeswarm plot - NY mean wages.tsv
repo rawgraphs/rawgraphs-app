@@ -1,0 +1,782 @@
+Occupation	Mean wage	category
+Management	160290	Management
+Chief Executives	219390	Management
+General and Operations Managers	158460	Management
+Legislators	91870	Management
+Advertising and Promotions Managers	188270	Management
+Marketing Managers	189730	Management
+Sales Managers	197610	Management
+Public Relations and Fundraising Managers	177400	Management
+Administrative Services Managers	140700	Management
+Computer and Information Systems Managers	193840	Management
+Financial Managers	214050	Management
+Industrial Production Managers	133390	Management
+Purchasing Managers	161430	Management
+Transportation, Storage, and Distribution Managers	122880	Management
+Compensation and Benefits Managers	179260	Management
+Human Resources Managers	161710	Management
+Training and Development Managers	159750	Management
+Farmers, Ranchers, and Other Agricultural Managers	102580	Management
+Construction Managers	137780	Management
+Education Administrators, Preschool and Childcare Center/Program	77160	Management
+Education Administrators, Elementary and Secondary School	132970	Management
+Education Administrators, Postsecondary	143430	Management
+Education Administrators, All Other	113940	Management
+Architectural and Engineering Managers	167320	Management
+Food Service Managers	77140	Management
+Gaming Managers	83150	Management
+Lodging Managers	84200	Management
+Medical and Health Services Managers	149670	Management
+Natural Sciences Managers	162490	Management
+Postmasters and Mail Superintendents	80780	Management
+Property, Real Estate, and Community Association Managers	111590	Management
+Social and Community Service Managers	87900	Management
+Emergency Management Directors	102110	Management
+Funeral Home Managers	111230	Management
+Personal Service Managers, All Other; Entertainment and Recreation Managers, Except Gambling; and Managers, All Other	135120	Management
+Business and Financial Operations	97890	Business and Financial Operations
+Agents and Business Managers of Artists, Performers, and Athletes	103590	Business and Financial Operations
+Buyers and Purchasing Agents	77410	Business and Financial Operations
+Claims Adjusters, Examiners, and Investigators	74630	Business and Financial Operations
+Insurance Appraisers, Auto Damage	69180	Business and Financial Operations
+Compliance Officers	79660	Business and Financial Operations
+Cost Estimators	79530	Business and Financial Operations
+Human Resources Specialists	77550	Business and Financial Operations
+Labor Relations Specialists	83040	Business and Financial Operations
+Logisticians	77340	Business and Financial Operations
+Management Analysts	114310	Business and Financial Operations
+Meeting, Convention, and Event Planners	70510	Business and Financial Operations
+Fundraisers	72120	Business and Financial Operations
+Compensation, Benefits, and Job Analysis Specialists	80240	Business and Financial Operations
+Training and Development Specialists	73380	Business and Financial Operations
+Market Research Analysts and Marketing Specialists	79660	Business and Financial Operations
+Project Management Specialists and Business Operations Specialists, All Other	93730	Business and Financial Operations
+Accountants and Auditors	100440	Business and Financial Operations
+Appraisers and Assessors of Real Estate	66560	Business and Financial Operations
+Budget Analysts	81750	Business and Financial Operations
+Credit Analysts	125700	Business and Financial Operations
+Personal Financial Advisors	169810	Business and Financial Operations
+Insurance Underwriters	100550	Business and Financial Operations
+Financial Examiners	123030	Business and Financial Operations
+Credit Counselors	64660	Business and Financial Operations
+Loan Officers	104910	Business and Financial Operations
+Tax Examiners and Collectors, and Revenue Agents	72350	Business and Financial Operations
+Tax Preparers	66770	Business and Financial Operations
+Financial and Investment Analysts, Financial Risk Specialists, and Financial Specialists, All Other	134690	Business and Financial Operations
+Computer and Mathematical	102210	Computer and Mathematical
+Computer Systems Analysts	112260	Computer and Mathematical
+Information Security Analysts	124360	Computer and Mathematical
+Computer and Information Research Scientists	140770	Computer and Mathematical
+Computer Network Support Specialists	79450	Computer and Mathematical
+Computer User Support Specialists	62730	Computer and Mathematical
+Computer Network Architects	125390	Computer and Mathematical
+Network and Computer Systems Administrators	99920	Computer and Mathematical
+Database Administrators and Architects	105380	Computer and Mathematical
+Computer Programmers	94530	Computer and Mathematical
+Software Developers and Software Quality Assurance Analysts and Testers	122130	Computer and Mathematical
+Web Developers and Digital Interface Designers	84690	Computer and Mathematical
+Computer, All Other	79940	Computer and Mathematical
+Actuaries	156200	Computer and Mathematical
+Mathematicians	121760	Computer and Mathematical
+Operations Research Analysts	107140	Computer and Mathematical
+Statisticians	97450	Computer and Mathematical
+Data Scientists and Mathematical Science, All Other	127860	Computer and Mathematical
+Architecture and Engineering	92420	Architecture and Engineering
+Architects, Except Landscape and Naval	109200	Architecture and Engineering
+Landscape Architects	82020	Architecture and Engineering
+Cartographers and Photogrammetrists	85610	Architecture and Engineering
+Surveyors	84830	Architecture and Engineering
+Aerospace Engineers	122700	Architecture and Engineering
+Agricultural Engineers	122760	Architecture and Engineering
+Biomedical Engineers	103430	Architecture and Engineering
+Chemical Engineers	106450	Architecture and Engineering
+Civil Engineers	105020	Architecture and Engineering
+Computer Hardware Engineers	122900	Architecture and Engineering
+Electrical Engineers	108650	Architecture and Engineering
+Electronics Engineers, Except Computer	101120	Architecture and Engineering
+Environmental Engineers	96790	Architecture and Engineering
+Health and Safety Engineers, Except Mining Safety Engineers and Inspectors	100550	Architecture and Engineering
+Industrial Engineers	98600	Architecture and Engineering
+Marine Engineers and Naval Architects	141190	Architecture and Engineering
+Materials Engineers	102840	Architecture and Engineering
+Mechanical Engineers	95090	Architecture and Engineering
+Mining and Geological Engineers, Including Mining Safety Engineers	107870	Architecture and Engineering
+Nuclear Engineers	115830	Architecture and Engineering
+Engineers, All Other	96570	Architecture and Engineering
+Architectural and Civil Drafters	63170	Architecture and Engineering
+Electrical and Electronics Drafters	76340	Architecture and Engineering
+Mechanical Drafters	60210	Architecture and Engineering
+Drafters, All Other	66240	Architecture and Engineering
+Aerospace Engineering and Operations Technicians	68630	Architecture and Engineering
+Civil Engineering Technicians	58910	Architecture and Engineering
+Electrical and Electronic Engineering Technicians	69070	Architecture and Engineering
+Electro-Mechanical Technicians	65510	Architecture and Engineering
+Environmental Engineering Technicians	55680	Architecture and Engineering
+Industrial Engineering Technicians	58120	Architecture and Engineering
+Mechanical Engineering Technicians	58960	Architecture and Engineering
+Surveying and Mapping Technicians	53920	Architecture and Engineering
+Calibration Technologists and Technicians and Engineering Technologists and Technicians, Except Drafters, All Other	63610	Architecture and Engineering
+Life, Physical, and Social Science	80400	Life, Physical, and Social Science
+Animal Scientists	65450	Life, Physical, and Social Science
+Food Scientists and Technologists	77140	Life, Physical, and Social Science
+Soil and Plant Scientists	82100	Life, Physical, and Social Science
+Biochemists and Biophysicists	84290	Life, Physical, and Social Science
+Microbiologists	83290	Life, Physical, and Social Science
+Zoologists and Wildlife Biologists	77750	Life, Physical, and Social Science
+Biological Scientists, All Other	94310	Life, Physical, and Social Science
+Conservation Scientists	73930	Life, Physical, and Social Science
+Foresters	68580	Life, Physical, and Social Science
+Epidemiologists	112480	Life, Physical, and Social Science
+Medical Scientists, Except Epidemiologists	107010	Life, Physical, and Social Science
+Life Scientists, All Other	79690	Life, Physical, and Social Science
+Physicists	147590	Life, Physical, and Social Science
+Atmospheric and Space Scientists	109470	Life, Physical, and Social Science
+Chemists	88650	Life, Physical, and Social Science
+Materials Scientists	103930	Life, Physical, and Social Science
+Environmental Scientists and Specialists, Including Health	85880	Life, Physical, and Social Science
+Geoscientists, Except Hydrologists and Geographers	79390	Life, Physical, and Social Science
+Hydrologists	80260	Life, Physical, and Social Science
+Physical Scientists, All Other	110680	Life, Physical, and Social Science
+Economists	148970	Life, Physical, and Social Science
+Survey Researchers	81870	Life, Physical, and Social Science
+Clinical, Counseling, and School Psychologists	98230	Life, Physical, and Social Science
+Psychologists, All Other	99280	Life, Physical, and Social Science
+Sociologists	84280	Life, Physical, and Social Science
+Urban and Regional Planners	89400	Life, Physical, and Social Science
+Anthropologists and Archeologists	74960	Life, Physical, and Social Science
+Geographers	80550	Life, Physical, and Social Science
+Historians	34550	Life, Physical, and Social Science
+Political Scientists	130400	Life, Physical, and Social Science
+Social Scientists and Related Workers, All Other	92410	Life, Physical, and Social Science
+Agricultural and Food Science Technicians	54630	Life, Physical, and Social Science
+Biological Technicians	50930	Life, Physical, and Social Science
+Chemical Technicians	53760	Life, Physical, and Social Science
+Environmental Science and Protection Technicians, Including Health	53610	Life, Physical, and Social Science
+Geological and Hydrologic Technicians	54960	Life, Physical, and Social Science
+Nuclear Technicians	103600	Life, Physical, and Social Science
+Social Science Research Assistants	53370	Life, Physical, and Social Science
+Forest and Conservation Technicians	51670	Life, Physical, and Social Science
+Forensic Science Technicians	69450	Life, Physical, and Social Science
+Life, Physical, and Social Science Technicians, All Other	56350	Life, Physical, and Social Science
+Occupational Health and Safety Specialists	79010	Life, Physical, and Social Science
+Occupational Health and Safety Technicians	62980	Life, Physical, and Social Science
+Community and Social Service	56240	Community and Social Service
+Educational, Guidance, School, and Vocational Counselors	70370	Community and Social Service
+Marriage and Family Therapists	50480	Community and Social Service
+Rehabilitation Counselors	37760	Community and Social Service
+Substance abuse, behavioral disorder, and mental health counselors?(OES-specific code and title)	55450	Community and Social Service
+Counselors, All Other	62680	Community and Social Service
+Child, Family, and School Social Workers	61680	Community and Social Service
+Healthcare Social Workers	62780	Community and Social Service
+Mental Health and Substance Abuse Social Workers	64880	Community and Social Service
+Social Workers, All Other	69030	Community and Social Service
+Health Educators	59720	Community and Social Service
+Probation Officers and Correctional Treatment Specialists	72810	Community and Social Service
+Social and Human Service Assistants	39680	Community and Social Service
+Community Health Workers	46000	Community and Social Service
+Community and Social Service Specialists, All Other	58920	Community and Social Service
+Clergy	59750	Community and Social Service
+Directors, Religious Activities and Education	51780	Community and Social Service
+Religious Workers, All Other	39600	Community and Social Service
+Legal	139380	Legal
+Lawyers	172400	Legal
+Judicial Law Clerks	122070	Legal
+Administrative Law Judges, Adjudicators, and Hearing Officers	115580	Legal
+Arbitrators, Mediators, and Conciliators	86520	Legal
+Judges, Magistrate Judges, and Magistrates	188040	Legal
+Technical Writers	79870	Arts, Design, Entertainment, Sports, and Media
+Paralegals and Legal Assistants	59320	Legal
+Title Examiners, Abstractors, and Searchers	65390	Legal
+Legal Support Workers, All Other	66350	Legal
+Education, Training, and Library	74700	Educational Instruction and Library
+Business Teachers, Postsecondary	118460	Educational Instruction and Library
+Computer Science Teachers, Postsecondary	114070	Educational Instruction and Library
+Mathematical Science Teachers, Postsecondary	113440	Educational Instruction and Library
+Architecture Teachers, Postsecondary	136220	Educational Instruction and Library
+Engineering Teachers, Postsecondary	131770	Educational Instruction and Library
+Agricultural Sciences Teachers, Postsecondary	107290	Educational Instruction and Library
+Biological Science Teachers, Postsecondary	110920	Educational Instruction and Library
+Forestry and Conservation Science Teachers, Postsecondary	84540	Educational Instruction and Library
+Atmospheric, Earth, Marine, and Space Sciences Teachers, Postsecondary	118780	Educational Instruction and Library
+Chemistry Teachers, Postsecondary	111700	Educational Instruction and Library
+Environmental Science Teachers, Postsecondary	99000	Educational Instruction and Library
+Physics Teachers, Postsecondary	126580	Educational Instruction and Library
+Anthropology and Archeology Teachers, Postsecondary	111450	Educational Instruction and Library
+Area, Ethnic, and Cultural Studies Teachers, Postsecondary	106710	Educational Instruction and Library
+Economics Teachers, Postsecondary	137900	Educational Instruction and Library
+Geography Teachers, Postsecondary	85460	Educational Instruction and Library
+Political Science Teachers, Postsecondary	133900	Educational Instruction and Library
+Psychology Teachers, Postsecondary	100960	Educational Instruction and Library
+Sociology Teachers, Postsecondary	108000	Educational Instruction and Library
+Social Sciences Teachers, Postsecondary, All Other	110310	Educational Instruction and Library
+Health Specialties Teachers, Postsecondary	133120	Educational Instruction and Library
+Nursing Instructors and Teachers, Postsecondary	99840	Educational Instruction and Library
+Education Teachers, Postsecondary	94860	Educational Instruction and Library
+Library Science Teachers, Postsecondary	90230	Educational Instruction and Library
+Criminal Justice and Law Enforcement Teachers, Postsecondary	74310	Educational Instruction and Library
+Law Teachers, Postsecondary	139340	Educational Instruction and Library
+Social Work Teachers, Postsecondary	98140	Educational Instruction and Library
+Art, Drama, and Music Teachers, Postsecondary	107080	Educational Instruction and Library
+Communications Teachers, Postsecondary	95970	Educational Instruction and Library
+English Language and Literature Teachers, Postsecondary	105160	Educational Instruction and Library
+Foreign Language and Literature Teachers, Postsecondary	93060	Educational Instruction and Library
+History Teachers, Postsecondary	103260	Educational Instruction and Library
+Philosophy and Religion Teachers, Postsecondary	88130	Educational Instruction and Library
+Recreation and Fitness Studies Teachers, Postsecondary	80160	Educational Instruction and Library
+Vocational Education Teachers, Postsecondary	76520	Educational Instruction and Library
+Postsecondary Teachers, All Other	122460	Educational Instruction and Library
+Preschool Teachers, Except Special Education	43240	Educational Instruction and Library
+Kindergarten Teachers, Except Special Education	79820	Educational Instruction and Library
+Elementary School Teachers, Except Special Education	84600	Educational Instruction and Library
+Middle School Teachers, Except Special and Career/Technical Education	88920	Educational Instruction and Library
+Career/Technical  Education Teachers, Middle School	87540	Educational Instruction and Library
+Secondary School Teachers, Except Special and Career/Technical Education	89110	Educational Instruction and Library
+Career/Technical Education Teachers, Secondary School	80640	Educational Instruction and Library
+Special Education Teachers, Preschool	91860	Educational Instruction and Library
+Special Education Teachers, Kindergarten and Elementary School	83420	Educational Instruction and Library
+Special Education Teachers, Middle School	89310	Educational Instruction and Library
+Special Education Teachers, Secondary School	85690	Educational Instruction and Library
+Special Education Teachers, All Other	90050	Educational Instruction and Library
+Adult Basic and Secondary Education and Literacy Teachers and Instructors	72920	Educational Instruction and Library
+Self-Enrichment Education Teachers	63600	Educational Instruction and Library
+Substitute Teachers, Short-Term	42140	Educational Instruction and Library
+Teachers and Instructors, All Other, Except Substitute Teachers	64350	Educational Instruction and Library
+Archivists	61600	Educational Instruction and Library
+Curators	73970	Educational Instruction and Library
+Museum Technicians and Conservators	60870	Educational Instruction and Library
+Librarians and Media Collections Specialists	71480	Educational Instruction and Library
+Library Technicians	36710	Educational Instruction and Library
+Farm and Home Management Advisors	48570	Educational Instruction and Library
+Instructional Coordinators	76540	Educational Instruction and Library
+Teaching Assistants, Postsecondary	46000	Educational Instruction and Library
+Teaching Assistants, Except Postsecondary	34440	Educational Instruction and Library
+Education, Training, and Library Workers, All Other	53110	Educational Instruction and Library
+Arts, Design, Entertainment, Sports, and Media	85180	Arts, Design, Entertainment, Sports, and Media
+Art Directors	137730	Arts, Design, Entertainment, Sports, and Media
+Craft Artists	51840	Arts, Design, Entertainment, Sports, and Media
+Fine Artists, Including Painters, Sculptors, and Illustrators	99450	Arts, Design, Entertainment, Sports, and Media
+Multimedia Artists and Animators	97320	Arts, Design, Entertainment, Sports, and Media
+Artists and Related Workers, All Other	97670	Arts, Design, Entertainment, Sports, and Media
+Commercial and Industrial Designers	86890	Arts, Design, Entertainment, Sports, and Media
+Fashion Designers	94850	Arts, Design, Entertainment, Sports, and Media
+Floral Designers	34140	Arts, Design, Entertainment, Sports, and Media
+Graphic Designers	68310	Arts, Design, Entertainment, Sports, and Media
+Interior Designers	70420	Arts, Design, Entertainment, Sports, and Media
+Merchandise Displayers and Window Trimmers	38910	Arts, Design, Entertainment, Sports, and Media
+Set and Exhibit Designers	87590	Arts, Design, Entertainment, Sports, and Media
+Designers, All Other	75210	Arts, Design, Entertainment, Sports, and Media
+Producers and Directors	120620	Arts, Design, Entertainment, Sports, and Media
+Athletes and Sports Competitors	93920	Arts, Design, Entertainment, Sports, and Media
+Coaches and Scouts	57250	Arts, Design, Entertainment, Sports, and Media
+Umpires, Referees, and Other Sports Officials	137140	Arts, Design, Entertainment, Sports, and Media
+Choreographers	93980	Arts, Design, Entertainment, Sports, and Media
+Music Directors and Composers	78820	Arts, Design, Entertainment, Sports, and Media
+Radio and Television Announcers	81250	Arts, Design, Entertainment, Sports, and Media
+News Analysts, Reporters, and Journalist	92090	Arts, Design, Entertainment, Sports, and Media
+Public Relations Specialists	79910	Arts, Design, Entertainment, Sports, and Media
+Editors	89010	Arts, Design, Entertainment, Sports, and Media
+Writers and Authors	93230	Arts, Design, Entertainment, Sports, and Media
+Interpreters and Translators	74130	Arts, Design, Entertainment, Sports, and Media
+Court Reporters and Simultaneous Captioners	92440	Arts, Design, Entertainment, Sports, and Media
+Media and Communication Workers, All Other	58880	Arts, Design, Entertainment, Sports, and Media
+Audio and Video Equipment Technicians	59570	Arts, Design, Entertainment, Sports, and Media
+Broadcast Technicians	59060	Arts, Design, Entertainment, Sports, and Media
+Sound Engineering Technicians	81110	Arts, Design, Entertainment, Sports, and Media
+Photographers	66460	Arts, Design, Entertainment, Sports, and Media
+Camera Operators, Television, Video, and Motion Picture	101920	Arts, Design, Entertainment, Sports, and Media
+Film and Video Editors	92230	Arts, Design, Entertainment, Sports, and Media
+Lighting Technicians and Media and Communication Equipment Workers, All Other	75100	Arts, Design, Entertainment, Sports, and Media
+Healthcare Practitioners and Technical	95110	Healthcare Practitioners and Technical
+Chiropractors	84540	Healthcare Practitioners and Technical
+Dentists, General	170670	Healthcare Practitioners and Technical
+Oral and Maxillofacial Surgeons	235670	Healthcare Practitioners and Technical
+Orthodontists	198770	Healthcare Practitioners and Technical
+Dentists, All Other Specialists	191910	Healthcare Practitioners and Technical
+Dietitians and Nutritionists	70060	Healthcare Practitioners and Technical
+Optometrists	139460	Healthcare Practitioners and Technical
+Pharmacists	124080	Healthcare Practitioners and Technical
+Physician Assistants	125720	Healthcare Practitioners and Technical
+Podiatrists	160780	Healthcare Practitioners and Technical
+Occupational Therapists	91850	Healthcare Practitioners and Technical
+Physical Therapists	92820	Healthcare Practitioners and Technical
+Radiation Therapists	117620	Healthcare Practitioners and Technical
+Recreational Therapists	57420	Healthcare Practitioners and Technical
+Respiratory Therapists	78640	Healthcare Practitioners and Technical
+Speech-Language Pathologists	98840	Healthcare Practitioners and Technical
+Exercise Physiologists	69870	Healthcare Practitioners and Technical
+Therapists, All Other	65060	Healthcare Practitioners and Technical
+Veterinarians	123160	Healthcare Practitioners and Technical
+Registered Nurses	89720	Healthcare Practitioners and Technical
+Nurse Anesthetists	204650	Healthcare Practitioners and Technical
+Nurse Midwives	122970	Healthcare Practitioners and Technical
+Nurse Practitioners	125170	Healthcare Practitioners and Technical
+Audiologists	87330	Healthcare Practitioners and Technical
+Anesthesiologists	217300	Healthcare Practitioners and Technical
+Family Medicine Physicians	198230	Healthcare Practitioners and Technical
+General Internal Medicine Physicians	192410	Healthcare Practitioners and Technical
+Obstetricians and Gynecologists	221410	Healthcare Practitioners and Technical
+Pediatricians, General	172420	Healthcare Practitioners and Technical
+Psychiatrists	220920	Healthcare Practitioners and Technical
+Physicians, All Other; and Ophthalmologists, Except Pediatric	182950	Healthcare Practitioners and Technical
+Surgeons, Except Ophthalmologists	235840	Healthcare Practitioners and Technical
+Dental Hygienists	78610	Healthcare Practitioners and Technical
+Acupuncturists and Healthcare Diagnosing or Treating Practitioners, All Other	80970	Healthcare Practitioners and Technical
+Clinical Laboratory Technologists and Technicians	66960	Healthcare Practitioners and Technical
+Cardiovascular Technologists and Technicians	66060	Healthcare Practitioners and Technical
+Diagnostic Medical Sonographers	78710	Healthcare Practitioners and Technical
+Nuclear Medicine Technologists	88610	Healthcare Practitioners and Technical
+Radiologic Technologists	72140	Healthcare Practitioners and Technical
+Magnetic Resonance Imaging Technologists	86090	Healthcare Practitioners and Technical
+Emergency Medical Technicians and Paramedics	45880	Healthcare Practitioners and Technical
+Dietetic Technicians	42010	Healthcare Practitioners and Technical
+Pharmacy Technicians	36560	Healthcare Practitioners and Technical
+Psychiatric Technicians	41200	Healthcare Practitioners and Technical
+Surgical Technologists	58660	Healthcare Practitioners and Technical
+Veterinary Technologists and Technicians	44630	Healthcare Practitioners and Technical
+Ophthalmic Medical Technicians	37970	Healthcare Practitioners and Technical
+Licensed Practical and Licensed Vocational Nurses	50930	Healthcare Practitioners and Technical
+Opticians, Dispensing	55840	Healthcare Practitioners and Technical
+Orthotists and Prosthetists	72650	Healthcare Practitioners and Technical
+Hearing Aid Specialists	55450	Healthcare Practitioners and Technical
+Medical Dosimetrists, Medical Records Specialists, and Health Technologists and Technicians, All Other	53660	Healthcare Practitioners and Technical
+Athletic Trainers	54970	Healthcare Practitioners and Technical
+Genetic Counselors	94930	Healthcare Practitioners and Technical
+Health Information Technologists, Medical Registrars, Surgical Assistants, and Healthcare Practitioners and Technical Workers, All Other	70710	Healthcare Practitioners and Technical
+Healthcare Support	33520	Healthcare Support
+Home Health & Personal Care Aides	30170	Healthcare Support
+Nursing Assistants	39970	Healthcare Support
+Orderlies	38700	Healthcare Support
+Psychiatric Aides	44720	Healthcare Support
+Occupational Therapy Assistants	65180	Healthcare Support
+Occupational Therapy Aides	49700	Healthcare Support
+Physical Therapist Assistants	56620	Healthcare Support
+Physical Therapist Aides	33170	Healthcare Support
+Massage Therapists	54280	Healthcare Support
+Dental Assistants	41910	Healthcare Support
+Medical Assistants	39750	Healthcare Support
+Medical Equipment Preparers	46560	Healthcare Support
+Medical Transcriptionists	35960	Healthcare Support
+Pharmacy Aides	32110	Healthcare Support
+Veterinary Assistants and Laboratory Animal Caretakers	34220	Healthcare Support
+Phlebotomists	44240	Healthcare Support
+Healthcare Support Workers, All Other	41240	Healthcare Support
+Protective Service	58900	Protective Service
+First-Line Supervisors of Correctional Officers	96240	Protective Service
+First-Line Supervisors of Police and Detectives	122760	Protective Service
+First-Line Supervisors of Fire Fighting and Prevention Workers	113810	Protective Service
+Miscellaneous First-Line Supervisors, Protective Service Workers	61910	Protective Service
+Firefighters	77410	Protective Service
+Forest Fire Inspectors and Prevention Specialists	51080	Protective Service
+Bailiffs	71750	Protective Service
+Correctional Officers and Jailers	67990	Protective Service
+Detectives and Criminal Investigators	95380	Protective Service
+Fish and Game Wardens	70860	Protective Service
+Parking Enforcement Workers	46130	Protective Service
+Police and Sheriff's Patrol Officers	79810	Protective Service
+Transit and Railroad Police	72190	Protective Service
+Animal Control Workers	41250	Protective Service
+Private Detectives and Investigators	60870	Protective Service
+Gaming Surveillance Officers and Gaming Investigators	38480	Protective Service
+Security Guards	38640	Protective Service
+Crossing Guards	39820	Protective Service
+Lifeguards, Ski Patrol, and Other Recreational Protective Service	31060	Protective Service
+Transportation Security Screeners	43430	Protective Service
+School Bus Monitors and Protective Service Workers, All Other	32280	Protective Service
+Food Preparation and Serving Related	34290	Food Preparation and Serving Related
+Chefs and Head Cooks	61170	Food Preparation and Serving Related
+First-Line Supervisors of Food Preparation and Serving Workers	43530	Food Preparation and Serving Related
+Cooks, Fast Food	28690	Food Preparation and Serving Related
+Cooks, Institution and Cafeteria	37050	Food Preparation and Serving Related
+Cooks, Private Household	50820	Food Preparation and Serving Related
+Cooks, Restaurant	33420	Food Preparation and Serving Related
+Cooks, Short Order	30130	Food Preparation and Serving Related
+Cooks, All Other	35590	Food Preparation and Serving Related
+Food Preparation Workers	31380	Food Preparation and Serving Related
+Bartenders	38910	Food Preparation and Serving Related
+Fast Food and Counter Workers	28530	Food Preparation and Serving Related
+Waiters and Waitresses	38270	Food Preparation and Serving Related
+Food Servers, Nonrestaurant	34960	Food Preparation and Serving Related
+Dining Room and Cafeteria Attendants and Bartender Helpers	33380	Food Preparation and Serving Related
+Dishwashers	29360	Food Preparation and Serving Related
+Hosts and Hostesses, Restaurant, Lounge, and Coffee Shop	30880	Food Preparation and Serving Related
+Food Preparation and Serving Related Workers, All Other	32390	Food Preparation and Serving Related
+Building and Grounds Cleaning and Maintenance	38980	Building and Grounds Cleaning and Maintenance
+First-Line Supervisors of Housekeeping and Janitorial Workers	57090	Building and Grounds Cleaning and Maintenance
+First-Line Supervisors of Landscaping, Lawn Service, and Groundskeeping Workers	64240	Building and Grounds Cleaning and Maintenance
+Janitors and Cleaners, Except Maids and Housekeeping Cleaners	37500	Building and Grounds Cleaning and Maintenance
+Maids and Housekeeping Cleaners	38680	Building and Grounds Cleaning and Maintenance
+Building Cleaning Workers, All Other	46300	Building and Grounds Cleaning and Maintenance
+Pest Control Workers	43520	Building and Grounds Cleaning and Maintenance
+Landscaping and Groundskeeping Workers	37190	Building and Grounds Cleaning and Maintenance
+Pesticide Handlers, Sprayers, and Applicators, Vegetation	47500	Building and Grounds Cleaning and Maintenance
+Tree Trimmers and Pruners	51980	Building and Grounds Cleaning and Maintenance
+Grounds Maintenance Workers, All Other	31220	Building and Grounds Cleaning and Maintenance
+Personal Care and Service	37660	Personal Care and Service
+First-line Supervisors of Gambling Services Workers	58270	Personal Care and Service
+First-Line Supervisors of Personal Service and Entertainment and Recreation Workers, Except Gambling Services	50460	Personal Care and Service
+Animal Trainers	43410	Personal Care and Service
+Nonfarm Animal Caretakers	31850	Personal Care and Service
+Gaming Dealers	32590	Personal Care and Service
+Gaming and Sports Book Writers and Runners	31080	Personal Care and Service
+Gaming Service Workers, All Other	32600	Personal Care and Service
+Motion Picture Projectionists	42800	Personal Care and Service
+Ushers, Lobby Attendants, and Ticket Takers	33350	Personal Care and Service
+Amusement and Recreation Attendants	28990	Personal Care and Service
+Costume Attendants	78240	Personal Care and Service
+Locker Room, Coatroom, and Dressing Room Attendants	34160	Personal Care and Service
+Entertainment Attendants and Related Workers, All Other	33320	Personal Care and Service
+Funeral Attendants	34720	Personal Care and Service
+Morticians, Undertakers, and Funeral Directors	66530	Personal Care and Service
+Barbers	34590	Personal Care and Service
+Hairdressers, Hairstylists, and Cosmetologists	35110	Personal Care and Service
+Makeup Artists, Theatrical and Performance	108450	Personal Care and Service
+Manicurists and Pedicurists	27430	Personal Care and Service
+Shampooers	26190	Personal Care and Service
+Skincare Specialists	42910	Personal Care and Service
+Baggage Porters and Bellhops	37490	Personal Care and Service
+Concierges	48370	Personal Care and Service
+Tour and Travel Guides	37940	Personal Care and Service
+Childcare Workers	30780	Personal Care and Service
+Fitness Trainers and Aerobics Instructors	60440	Personal Care and Service
+Recreation Workers	35500	Personal Care and Service
+Residential Advisors	38370	Personal Care and Service
+Crematory Operators and Personal Care and Service Workers, All Other	37930	Personal Care and Service
+Sales and Related	57850	Sales and Related
+First-Line Supervisors of Retail Sales Workers	53920	Sales and Related
+First-Line Supervisors of Non-Retail Sales Workers	110220	Sales and Related
+Cashiers	28960	Sales and Related
+Gaming Change Persons and Booth Cashiers	42550	Sales and Related
+Counter and Rental Clerks	35020	Sales and Related
+Parts Salespersons	41270	Sales and Related
+Retail Salespersons	33640	Sales and Related
+Advertising Sales Agents	88470	Sales and Related
+Insurance Sales Agents	86810	Sales and Related
+Securities, Commodities, and Financial Services Sales Agents	160150	Sales and Related
+Travel Agents	46610	Sales and Related
+Sales Representatives of Services, Except Advertising, Insurance, Financial Services, and Travel	82690	Sales and Related
+Sales Representatives, Wholesale and Manufacturing, Technical and Scientific Products	118820	Sales and Related
+Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products	76880	Sales and Related
+Demonstrators and Product Promoters	40500	Sales and Related
+Models	49190	Sales and Related
+Real Estate Brokers	104060	Sales and Related
+Real Estate Sales Agents	116420	Sales and Related
+Sales Engineers	116580	Sales and Related
+Telemarketers	36960	Sales and Related
+Door-to-Door Sales Workers, News and Street Vendors, and Related Workers	50080	Sales and Related
+Sales and Related Workers, All Other	40110	Sales and Related
+Office and Administrative Support	48080	Office and Administrative Support
+First-Line Supervisors of Office and Administrative Support Workers	73980	Office and Administrative Support
+Switchboard Operators, Including Answering Service	40640	Office and Administrative Support
+Telephone Operators	46570	Office and Administrative Support
+Communications Equipment Operators, All Other	50130	Office and Administrative Support
+Bill and Account Collectors	44000	Office and Administrative Support
+Billing and Posting Clerks	46610	Office and Administrative Support
+Bookkeeping, Accounting, and Auditing Clerks	48370	Office and Administrative Support
+Gaming Cage Workers	33610	Office and Administrative Support
+Payroll and Timekeeping Clerks	50900	Office and Administrative Support
+Procurement Clerks	46080	Office and Administrative Support
+Tellers	34370	Office and Administrative Support
+Financial Clerks, All Other	57050	Office and Administrative Support
+Brokerage Clerks	72610	Office and Administrative Support
+Correspondence Clerks	41470	Office and Administrative Support
+Court, Municipal, and License Clerks	60110	Office and Administrative Support
+Credit Authorizers, Checkers, and Clerks	50320	Office and Administrative Support
+Customer Service Representatives	43550	Office and Administrative Support
+Eligibility Interviewers, Government Programs	51650	Office and Administrative Support
+File Clerks	36140	Office and Administrative Support
+Hotel, Motel, and Resort Desk Clerks	35550	Office and Administrative Support
+Interviewers, Except Eligibility and Loan	42170	Office and Administrative Support
+Library Assistants, Clerical	35670	Office and Administrative Support
+Loan Interviewers and Clerks	47230	Office and Administrative Support
+New Accounts Clerks	40730	Office and Administrative Support
+Order Clerks	37090	Office and Administrative Support
+Human Resources Assistants, Except Payroll and Timekeeping	48590	Office and Administrative Support
+Receptionists and Information Clerks	36740	Office and Administrative Support
+Reservation and Transportation Ticket Agents and Travel Clerks	44710	Office and Administrative Support
+Information and Record Clerks, All Other	47860	Office and Administrative Support
+Cargo and Freight Agents	52100	Office and Administrative Support
+Couriers and Messengers	35950	Office and Administrative Support
+Police, Fire, and Ambulance Dispatchers	49880	Office and Administrative Support
+Dispatchers, Except Police, Fire, and Ambulance	53710	Office and Administrative Support
+Meter Readers, Utilities	62670	Office and Administrative Support
+Postal Service Clerks	52140	Office and Administrative Support
+Postal Service Mail Carriers	53950	Office and Administrative Support
+Postal Service Mail Sorters, Processors, and Processing Machine Operators	52800	Office and Administrative Support
+Production, Planning, and Expediting Clerks	53200	Office and Administrative Support
+Shipping, Receiving, and Traffic Clerks	39730	Office and Administrative Support
+Weighers, Measurers, Checkers, and Samplers, Recordkeeping	38790	Office and Administrative Support
+Executive Secretaries and Executive Administrative Assistants	75230	Office and Administrative Support
+Legal Secretaries	57360	Office and Administrative Support
+Medical Secretaries	42500	Office and Administrative Support
+Secretaries and Administrative Assistants, Except Legal, Medical, and Executive	43520	Office and Administrative Support
+Data Entry Keyers	40370	Office and Administrative Support
+Word Processors and Typists	44690	Office and Administrative Support
+Desktop Publishers	53480	Office and Administrative Support
+Insurance Claims and Policy Processing Clerks	49640	Office and Administrative Support
+Mail Clerks and Mail Machine Operators, Except Postal Service	36920	Office and Administrative Support
+Office Clerks, General	38070	Office and Administrative Support
+Office Machine Operators, Except Computer	38180	Office and Administrative Support
+Proofreaders and Copy Markers	51880	Office and Administrative Support
+Statistical Assistants	59530	Office and Administrative Support
+Office and Administrative Support Workers, All Other	30620	Office and Administrative Support
+Farming, Fishing, and Forestry	39570	Farming, Fishing, and Forestry
+First-Line Supervisors of Farming, Fishing, and Forestry Workers	64390	Farming, Fishing, and Forestry
+Agricultural Inspectors	65520	Farming, Fishing, and Forestry
+Animal Breeders	46790	Farming, Fishing, and Forestry
+Graders and Sorters, Agricultural Products	33370	Farming, Fishing, and Forestry
+Agricultural Equipment Operators	41390	Farming, Fishing, and Forestry
+Farmworkers and Laborers, Crop, Nursery, and Greenhouse	33650	Farming, Fishing, and Forestry
+Farmworkers, Farm, Ranch, and Aquacultural Animals	37840	Farming, Fishing, and Forestry
+Forest and Conservation Workers	37010	Farming, Fishing, and Forestry
+Logging Equipment Operators	40860	Farming, Fishing, and Forestry
+Log Graders and Scalers	41910	Farming, Fishing, and Forestry
+Logging Workers, All Other	30630	Farming, Fishing, and Forestry
+Construction and Extraction	68390	Construction and Extraction
+Supervisors of Construction and Extraction Workers	91980	Construction and Extraction
+Boilermakers	88890	Construction and Extraction
+Brickmasons and Blockmasons	78010	Construction and Extraction
+Stonemasons	56010	Construction and Extraction
+Carpenters	67840	Construction and Extraction
+Carpet Installers	50240	Construction and Extraction
+Floor Layers, Except Carpet, Wood, and Hard Tiles	59040	Construction and Extraction
+Floor Sanders and Finishers	35120	Construction and Extraction
+Tile and Marble Setters	63680	Construction and Extraction
+Cement Masons and Concrete Finishers	70430	Construction and Extraction
+Construction Laborers	55640	Construction and Extraction
+Paving, Surfacing, and Tamping Equipment Operators	62520	Construction and Extraction
+Pile-Driver Operators	106620	Construction and Extraction
+Operating Engineers and Other Construction Equipment Operators	86370	Construction and Extraction
+Drywall and Ceiling Tile Installers	55490	Construction and Extraction
+Tapers	75280	Construction and Extraction
+Electricians	81870	Construction and Extraction
+Glaziers	67220	Construction and Extraction
+Insulation Workers, Floor, Ceiling, and Wall	50740	Construction and Extraction
+Insulation Workers, Mechanical	82950	Construction and Extraction
+Painters, Construction and Maintenance	54100	Construction and Extraction
+Paperhangers	58390	Construction and Extraction
+Pipelayers	57280	Construction and Extraction
+Plumbers, Pipefitters, and Steamfitters	75110	Construction and Extraction
+Plasterers and Stucco Masons	57330	Construction and Extraction
+Reinforcing Iron and Rebar Workers	82270	Construction and Extraction
+Roofers	69280	Construction and Extraction
+Sheet Metal Workers	75040	Construction and Extraction
+Structural Iron and Steel Workers	90150	Construction and Extraction
+Solar Photovoltaic Installers	52880	Construction and Extraction
+Helpers--Brickmasons, Blockmasons, Stonemasons, and Tile and Marble Setters	51640	Construction and Extraction
+Helpers--Carpenters	35350	Construction and Extraction
+Helpers--Electricians	41660	Construction and Extraction
+Helpers--Painters, Paperhangers, Plasterers, and Stucco Masons	44060	Construction and Extraction
+Helpers--Pipelayers, Plumbers, Pipefitters, and Steamfitters	39970	Construction and Extraction
+Helpers--Roofers	32370	Construction and Extraction
+Helpers, Construction Trades, All Other	39060	Construction and Extraction
+Construction and Building Inspectors	70370	Construction and Extraction
+Elevator Installers and Repairers	86460	Construction and Extraction
+Fence Erectors	45640	Construction and Extraction
+Hazardous Materials Removal Workers	64180	Construction and Extraction
+Highway Maintenance Workers	47650	Construction and Extraction
+Rail-Track Laying and Maintenance Equipment Operators	72880	Construction and Extraction
+Septic Tank Servicers and Sewer Pipe Cleaners	44610	Construction and Extraction
+Miscellaneous Construction and Related Workers	46400	Construction and Extraction
+Rotary Drill Operators, Oil and Gas	51200	Construction and Extraction
+Service Unit Operators, Oil, Gas, and Mining	64530	Construction and Extraction
+Excavating and Loading Machine and Dragline Operators, Surface Mining	71750	Construction and Extraction
+Continuous Mining Machine Operators	46420	Construction and Extraction
+Rock Splitters, Quarry	34220	Construction and Extraction
+Helpers--Extraction Workers	44440	Construction and Extraction
+Earth Drillers, Except Oil and Gas; and Explosives Workers, Ordnance Handling Experts, and Blasters	62760	Construction and Extraction
+Underground Mining Machine Operators and Extraction Workers, All Other	48710	Construction and Extraction
+Installation, Maintenance, and Repair	55700	Installation, Maintenance, and Repair
+First-Line Supervisors of Mechanics, Installers, and Repairers	80510	Installation, Maintenance, and Repair
+Computer, Automated Teller, and Office Machine Repairers	46300	Installation, Maintenance, and Repair
+Radio, Cellular, and Tower Equipment Installers and Repairers	62930	Installation, Maintenance, and Repair
+Telecommunications Equipment Installers and Repairers, Except Line Installers	72980	Installation, Maintenance, and Repair
+Avionics Technicians	70710	Installation, Maintenance, and Repair
+Electric Motor, Power Tool, and Related Repairers	50040	Installation, Maintenance, and Repair
+Electrical and Electronics Installers and Repairers, Transportation Equipment	68810	Installation, Maintenance, and Repair
+Electrical and Electronics Repairers, Commercial and Industrial Equipment	61190	Installation, Maintenance, and Repair
+Electrical and Electronics Repairers, Powerhouse, Substation, and Relay	87580	Installation, Maintenance, and Repair
+Electronic Equipment Installers and Repairers, Motor Vehicles	42860	Installation, Maintenance, and Repair
+Electronic Home Entertainment Equipment Installers and Repairers	48040	Installation, Maintenance, and Repair
+Security and Fire Alarm Systems Installers	57630	Installation, Maintenance, and Repair
+Aircraft Mechanics and Service Technicians	72950	Installation, Maintenance, and Repair
+Automotive Body and Related Repairers	48740	Installation, Maintenance, and Repair
+Automotive Glass Installers and Repairers	35470	Installation, Maintenance, and Repair
+Automotive Service Technicians and Mechanics	45650	Installation, Maintenance, and Repair
+Bus and Truck Mechanics and Diesel Engine Specialists	57990	Installation, Maintenance, and Repair
+Farm Equipment Mechanics and Service Technicians	42560	Installation, Maintenance, and Repair
+Mobile Heavy Equipment Mechanics, Except Engines	65420	Installation, Maintenance, and Repair
+Rail Car Repairers	72340	Installation, Maintenance, and Repair
+Motorboat Mechanics and Service Technicians	42530	Installation, Maintenance, and Repair
+Motorcycle Mechanics	41350	Installation, Maintenance, and Repair
+Outdoor Power Equipment and Other Small Engine Mechanics	42340	Installation, Maintenance, and Repair
+Bicycle Repairers	35060	Installation, Maintenance, and Repair
+Recreational Vehicle Service Technicians	39690	Installation, Maintenance, and Repair
+Tire Repairers and Changers	31560	Installation, Maintenance, and Repair
+Mechanical Door Repairers	45520	Installation, Maintenance, and Repair
+Control and Valve Installers and Repairers, Except Mechanical Door	77760	Installation, Maintenance, and Repair
+Heating, Air Conditioning, and Refrigeration Mechanics and Installers	60990	Installation, Maintenance, and Repair
+Home Appliance Repairers	43410	Installation, Maintenance, and Repair
+Industrial Machinery Mechanics	61280	Installation, Maintenance, and Repair
+Maintenance Workers, Machinery	55090	Installation, Maintenance, and Repair
+Millwrights	72630	Installation, Maintenance, and Repair
+Electrical Power-Line Installers and Repairers	82390	Installation, Maintenance, and Repair
+Telecommunications Line Installers and Repairers	72540	Installation, Maintenance, and Repair
+Camera and Photographic Equipment Repairers	48540	Installation, Maintenance, and Repair
+Medical Equipment Repairers	65200	Installation, Maintenance, and Repair
+Musical Instrument Repairers and Tuners	42800	Installation, Maintenance, and Repair
+Watch Repairers	50170	Installation, Maintenance, and Repair
+Precision Instrument and Equipment Repairers, All Other	58630	Installation, Maintenance, and Repair
+Maintenance and Repair Workers, General	47500	Installation, Maintenance, and Repair
+Coin, Vending, and Amusement Machine Servicers and Repairers	48610	Installation, Maintenance, and Repair
+Commercial Divers	88150	Installation, Maintenance, and Repair
+Locksmiths and Safe Repairers	53780	Installation, Maintenance, and Repair
+Manufactured Building and Mobile Home Installers	35780	Installation, Maintenance, and Repair
+Riggers	83720	Installation, Maintenance, and Repair
+Signal and Track Switch Repairers	76130	Installation, Maintenance, and Repair
+Helpers--Installation, Maintenance, and Repair Workers	39900	Installation, Maintenance, and Repair
+Installation, Maintenance, and Repair Workers, All Other	44240	Installation, Maintenance, and Repair
+Production	43470	Production
+First-Line Supervisors of Production and Operating Workers	70840	Production
+Coil Winders, Tapers, and Finishers	36290	Production
+Electrical, electronic, and electromechanical assemblers, except coil winders, tapers, and finishers?(OES-specific code and title)	36820	Production
+Engine and Other Machine Assemblers	49530	Production
+Structural Metal Fabricators and Fitters	51640	Production
+Fiberglass Laminators and Fabricators	40780	Production
+Miscellaneous Assemblers and Fabricators	35780	Production
+Bakers	33570	Production
+Butchers and Meat Cutters	39290	Production
+Meat, Poultry, and Fish Cutters and Trimmers	29560	Production
+Slaughterers and Meat Packers	35420	Production
+Food and Tobacco Roasting, Baking, and Drying Machine Operators and Tenders	32730	Production
+Food Batchmakers	32560	Production
+Food Cooking Machine Operators and Tenders	36140	Production
+Food Processing Workers, All Other	30220	Production
+Extruding and Drawing Machine Setters, Operators, and Tenders, Metal and Plastic	38940	Production
+Forging Machine Setters, Operators, and Tenders, Metal and Plastic	46350	Production
+Rolling Machine Setters, Operators, and Tenders, Metal and Plastic	46170	Production
+Cutting, Punching, and Press Machine Setters, Operators, and Tenders, Metal and Plastic	41660	Production
+Drilling and Boring Machine Tool Setters, Operators, and Tenders, Metal and Plastic	39560	Production
+Grinding, Lapping, Polishing, and Buffing Machine Tool Setters, Operators, and Tenders, Metal and Plastic	40370	Production
+Lathe and Turning Machine Tool Setters, Operators, and Tenders, Metal and Plastic	42040	Production
+Milling and Planing Machine Setters, Operators, and Tenders, Metal and Plastic	44780	Production
+Machinists	48430	Production
+Metal-Refining Furnace Operators and Tenders	45990	Production
+Pourers and Casters, Metal	44720	Production
+Model Makers, Metal and Plastic	61610	Production
+Patternmakers, Metal and Plastic	52930	Production
+Foundry Mold and Coremakers	41680	Production
+Molding, Coremaking, and Casting Machine Setters, Operators, and Tenders, Metal and Plastic	34400	Production
+Multiple Machine Tool Setters, Operators, and Tenders, Metal and Plastic	39880	Production
+Tool and Die Makers	57480	Production
+Welders, Cutters, Solderers, and Brazers	50330	Production
+Welding, Soldering, and Brazing Machine Setters, Operators, and Tenders	46440	Production
+Heat Treating Equipment Setters, Operators, and Tenders, Metal and Plastic	45110	Production
+Layout Workers, Metal and Plastic	49990	Production
+Plating and Coating Machine Setters, Operators, and Tenders, Metal and Plastic	38820	Production
+Tool Grinders, Filers, and Sharpeners	44460	Production
+Metal Workers and Plastic Workers, All Other	43700	Production
+Prepress Technician and Workers	47740	Production
+Printing Press Operators	42670	Production
+Print Binding and Finishing Workers	36660	Production
+Laundry and Dry-Cleaning Workers	29460	Production
+Pressers, Textile, Garment, and Related Materials	29990	Production
+Sewing Machine Operators	33670	Production
+Shoe and Leather Workers and Repairers	28710	Production
+Shoe Machine Operators and Tenders	30540	Production
+Sewers, Hand	34200	Production
+Tailors, Dressmakers, and Custom Sewers	39910	Production
+Textile Bleaching and Dyeing Machine Operators and Tenders	28870	Production
+Textile Cutting Machine Setters, Operators, and Tenders	35210	Production
+Textile Knitting and Weaving Machine Setters, Operators, and Tenders	32450	Production
+Textile Winding, Twisting, and Drawing Out Machine Setters, Operators, and Tenders	32340	Production
+Fabric and Apparel Patternmakers	76840	Production
+Upholsterers	40570	Production
+Textile, Apparel, and Furnishings Workers, All Other	39290	Production
+Cabinetmakers and Bench Carpenters	46420	Production
+Furniture Finishers	40990	Production
+Model Makers, Wood	47220	Production
+Patternmakers, Wood	70340	Production
+Sawing Machine Setters, Operators, and Tenders, Wood	35310	Production
+Woodworking Machine Setters, Operators, and Tenders, Except Sawing	34930	Production
+Woodworkers, All Other	43570	Production
+Nuclear Power Reactor Operators	116260	Production
+Power Distributors and Dispatchers	105310	Production
+Power Plant Operators	88480	Production
+Stationary Engineers and Boiler Operators	81650	Production
+Water and Wastewater Treatment Plant and System Operators	63590	Production
+Chemical Plant and System Operators	57930	Production
+Gas Plant Operators	86550	Production
+Petroleum Pump System Operators, Refinery Operators, and Gaugers	52720	Production
+Plant and System Operators, All Other	63520	Production
+Chemical Equipment Operators and Tenders	50040	Production
+Separating, Filtering, Clarifying, Precipitating, and Still Machine Setters, Operators, and Tenders	44700	Production
+Crushing, Grinding, and Polishing Machine Setters, Operators, and Tenders	41240	Production
+Grinding and Polishing Workers, Hand	38720	Production
+Mixing and Blending Machine Setters, Operators, and Tenders	41110	Production
+Cutters and Trimmers, Hand	40670	Production
+Cutting and Slicing Machine Setters, Operators, and Tenders	38890	Production
+Extruding, Forming, Pressing, and Compacting Machine Setters, Operators, and Tenders	44170	Production
+Furnace, Kiln, Oven, Drier, and Kettle Operators and Tenders	46430	Production
+Inspectors, Testers, Sorters, Samplers, and Weighers	44890	Production
+Jewelers and Precious Stone and Metal Workers	56720	Production
+Dental Laboratory Technicians	53940	Production
+Medical Appliance Technicians	42440	Production
+Ophthalmic Laboratory Technicians	38420	Production
+Packaging and Filling Machine Operators and Tenders	33860	Production
+Painting, Coating, and Decorating Workers	38470	Production
+Coating, Painting, and Spraying Machine Setters, Operators, and Tenders	42280	Production
+Photographic Process Workers and Processing Machine Operators	48760	Production
+Computer Numerically Controlled Tool Operators	41180	Production
+Computer Numerically Controlled Tool Programmers	58580	Production
+Adhesive Bonding Machine Operators and Tenders	37000	Production
+Cleaning, Washing, and Metal Pickling Equipment Operators and Tenders	37710	Production
+Cooling and Freezing Equipment Operators and Tenders	38760	Production
+Etchers and Engravers	41280	Production
+Molders, Shapers, and Casters, Except Metal and Plastic	38410	Production
+Paper Goods Machine Setters, Operators, and Tenders	41240	Production
+Helpers--Production Workers	34190	Production
+Production Workers, All Other	37710	Production
+Transportation and Material Moving	44230	Transportation and Material Moving
+Aircraft Cargo Handling Supervisors	64930	Transportation and Material Moving
+First-Line Supervisors of Transportation and Material Moving Workers, Except Aircraft Cargo Handling Supervisors	65250	Transportation and Material Moving
+Airline Pilots, Copilots, and Flight Engineers	125030	Transportation and Material Moving
+Commercial Pilots	153450	Transportation and Material Moving
+Air Traffic Controllers	136040	Transportation and Material Moving
+Airfield Operations Specialists	66950	Transportation and Material Moving
+Flight Attendants	52270	Transportation and Material Moving
+Ambulance Drivers and Attendants, Except Emergency Medical Technicians	35720	Transportation and Material Moving
+Driver/Sales Workers	32600	Transportation and Material Moving
+Heavy and Tractor-Trailer Truck Drivers	55180	Transportation and Material Moving
+Light Truck or Delivery Services Drivers	41320	Transportation and Material Moving
+Bus Drivers, Transit and Intercity	64360	Transportation and Material Moving
+Passenger Vehicle Drivers, Except Bus Drivers, Transit and Intercity	43140	Transportation and Material Moving
+Motor Vehicle Operators, All Other	37360	Transportation and Material Moving
+Locomotive Engineers	83270	Transportation and Material Moving
+Rail Yard Engineers, Dinkey Operators, and Hostlers	78500	Transportation and Material Moving
+Railroad Brake, Signal, and Switch Operators and Locomotive Firers	75600	Transportation and Material Moving
+Railroad Conductors and Yardmasters	71800	Transportation and Material Moving
+Sailors and Marine Oilers	49820	Transportation and Material Moving
+Captains, Mates, and Pilots of Water Vessels	93370	Transportation and Material Moving
+Motorboat Operators	71080	Transportation and Material Moving
+Ship Engineers	102530	Transportation and Material Moving
+Bridge and Lock Tenders	49880	Transportation and Material Moving
+Parking Lot Attendants	30070	Transportation and Material Moving
+Automotive and Watercraft Service Attendants	29010	Transportation and Material Moving
+Traffic Technicians	64010	Transportation and Material Moving
+Transportation Attendants, Except Flight Attendants	32830	Transportation and Material Moving
+Aircraft Service Attendants and Transportation Workers, All Other	39500	Transportation and Material Moving
+Conveyor Operators and Tenders	35380	Transportation and Material Moving
+Crane and Tower Operators	128300	Transportation and Material Moving
+Hoist and Winch Operators	43420	Transportation and Material Moving
+Industrial Truck and Tractor Operators	45490	Transportation and Material Moving
+Cleaners of Vehicles and Equipment	36550	Transportation and Material Moving
+Laborers and Freight, Stock, and Material Movers, Hand	37620	Transportation and Material Moving
+Machine Feeders and Offbearers	35510	Transportation and Material Moving
+Packers and Packagers, Hand	31280	Transportation and Material Moving
+Stockers and Order Fillers	31930	Transportation and Material Moving
+Gas Compressor and Gas Pumping Station Operators	60750	Transportation and Material Moving
+Pump Operators, Except Wellhead Pumpers	53900	Transportation and Material Moving
+Wellhead Pumpers	44590	Transportation and Material Moving
+Refuse and Recyclable Material Collectors	61340	Transportation and Material Moving
+Tank Car, Truck, and Ship Loaders	42370	Transportation and Material Moving
+Material Moving Workers, All Other	51440	Transportation and Material Moving
