@@ -22,7 +22,7 @@ import {
   sunburst,
   treemap,
   violinplot,
-} from '@raw-temp/rawgraphs-charts'
+} from '@rawgraphs/rawgraphs-charts'
 
 // New charts, not included into first release.
 // Comment at necessity.
