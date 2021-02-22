@@ -3,9 +3,9 @@ import styles from './Footer.module.scss'
 import { Row, Col, Container } from 'react-bootstrap'
 import { BsFillEnvelopeFill, BsBarChartFill } from 'react-icons/bs'
 import { FaTwitter, FaGithub } from 'react-icons/fa'
-import { GiMoneyStack } from 'react-icons/gi'
 
-const commitHash = process.env.REACT_APP_VERSION || 'dev'
+// #TODO add commit hash
+// const commitHash = process.env.REACT_APP_VERSION || 'dev'
 
 export default function Footer(props) {
   return (
