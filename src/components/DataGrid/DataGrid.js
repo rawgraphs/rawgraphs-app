@@ -2,7 +2,7 @@ import React, { useMemo, useRef, useState, useCallback } from 'react'
 import ReactDataGrid from 'react-data-grid'
 import { Overlay, OverlayTrigger } from 'react-bootstrap'
 import classNames from 'classnames'
-import { getTypeName, dateFormats } from '@raw-temp/rawgraphs-core'
+import { getTypeName, dateFormats } from '@rawgraphs/rawgraphs-core'
 import S from './DataGrid.module.scss'
 import { keyBy, get, isEqual } from 'lodash'
 import {

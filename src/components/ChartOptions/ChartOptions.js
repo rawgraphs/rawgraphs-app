@@ -6,7 +6,7 @@ import {
   getDefaultOptionsValues,
   getEnabledOptions,
   getTypeName,
-} from '@raw-temp/rawgraphs-core'
+} from '@rawgraphs/rawgraphs-core'
 import ChartOptionNumber from './ChartOptionTypes/ChartOptionNumber'
 import ChartOptionText from './ChartOptionTypes/ChartOptionText'
 import ChartOptionColor from './ChartOptionTypes/ChartOptionColor'

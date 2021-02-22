@@ -14,7 +14,7 @@ import ChartDimensionCard from './ChartDimensionCard'
 import get from 'lodash/get'
 import uniqueId from 'lodash/uniqueId'
 import arrayInsert from 'array-insert'
-import { getDefaultDimensionAggregation } from '@raw-temp/rawgraphs-core'
+import { getDefaultDimensionAggregation } from '@rawgraphs/rawgraphs-core'
 
 function removeIndex(mapping, i) {
   let nextConfig

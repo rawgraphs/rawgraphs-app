@@ -2,7 +2,7 @@ import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react'
 import {
   getOptionsConfig,
   getDefaultOptionsValues,
-} from '@raw-temp/rawgraphs-core'
+} from '@rawgraphs/rawgraphs-core'
 
 import HeaderItems from './HeaderItems'
 import Header from './components/Header'

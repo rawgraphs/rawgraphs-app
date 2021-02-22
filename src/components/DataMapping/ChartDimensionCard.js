@@ -15,7 +15,7 @@ import {
   getTypeName,
   getAggregatorNames,
   getDefaultDimensionAggregation,
-} from '@raw-temp/rawgraphs-core'
+} from '@rawgraphs/rawgraphs-core'
 import ChartDimensionItem from './ChartDimensionItem'
 
 import styles from './DataMapping.module.scss'

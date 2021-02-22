@@ -1,6 +1,6 @@
 import React from 'react'
 import { dataTypeIcons } from '../../constants'
-import { getTypeName } from '@raw-temp/rawgraphs-core'
+import { getTypeName } from '@rawgraphs/rawgraphs-core'
 
 import { useDrag } from 'react-dnd'
 

@@ -1,5 +1,5 @@
 import * as Comlink from 'comlink'
-import { parseDataset, chart as rawChart } from '@raw-temp/rawgraphs-core'
+import { parseDataset, chart as rawChart } from '@rawgraphs/rawgraphs-core'
 import charts from '../charts'
 
 const obj = {

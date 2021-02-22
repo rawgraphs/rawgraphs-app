@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Row } from 'react-bootstrap'
 import ChartOptions from '../ChartOptions'
 import ChartPreview from '../ChartPreview'
-import { chart as rawChart } from '@raw-temp/rawgraphs-core'
+import { chart as rawChart } from '@rawgraphs/rawgraphs-core'
 import { mapDataInWorker } from '../../worker'
 import { WEBWORKER_ACTIVE } from '../../constants'
 
