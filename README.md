@@ -27,7 +27,7 @@ If you want to run your instance of RAWGraphs locally on your machine, be sure y
 
 - [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) (coould be used through the interface of [GitHub Desktop](https://desktop.github.com/))
 - [Node.js](https://nodejs.org/en/)
-- [Yarn](https://classic.yarnpkg.com/en/docs/install)
+- [Yarn](https://yarnpkg.com/getting-started/install)
 
 ### Instructions
 
