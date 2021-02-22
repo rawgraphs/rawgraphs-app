@@ -3,8 +3,7 @@ name: Deploy RAWGRAPHS alpha
 # events but only for tagged versions
 on:
   push:
-    tags:
-      - v*
+    branches: [master]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -20,7 +19,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 14.x
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
