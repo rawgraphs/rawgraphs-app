@@ -1,6 +1,13 @@
-## Next
+## NEXT
 ##### date
 
+
+
+## 2.0.0-beta.6
+##### 23 Feb 2021
+
+- refine UI for public release
+- update gh action
 - added samples datasets
 
 ## 2.0.0-beta.5
