@@ -1,7 +1,7 @@
 {
   "name": "rawgraphs-frontend",
   "homepage": "https://app.rawgraphs.io",
-  "version": "2.0.0-beta.5",
+  "version": "2.0.0-beta.6",
   "private": true,
   "dependencies": {
     "@rawgraphs/rawgraphs-charts": "^1.0.0-beta.13",
