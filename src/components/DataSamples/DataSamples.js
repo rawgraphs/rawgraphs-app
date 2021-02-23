@@ -90,15 +90,15 @@ const samplesList = [
     name: 'Energy flows',
     category: 'Sankey diagram, Arc diagram',
     url: './sample-datasets/Sankey - Energy flows.csv',
-    delimiter: '\t',
+    delimiter: ',',
   },
 
-  {
-    name: 'COVID-19 Vaccines',
-    category: 'Stacked barchart, Multiset barchart',
-    url: './sample-datasets/Stacked barchart - COVID-19 Vaccines.tsv',
-    delimiter: '\t',
-  },
+  // {
+  //   name: 'COVID-19 Vaccines',
+  //   category: 'Stacked barchart, Multiset barchart',
+  //   url: './sample-datasets/Stacked barchart - COVID-19 Vaccines.tsv',
+  //   delimiter: '\t',
+  // },
 
   {
     name: 'New York mean wage per occupation',
