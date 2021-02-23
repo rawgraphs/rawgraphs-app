@@ -5,7 +5,7 @@ import { Navbar, Nav } from 'react-bootstrap'
 export default function Header({ menuItems }) {
   return (
     <Navbar bg="white" expand="lg" sticky="top" className={styles.navbar}>
-      <Navbar.Brand href="/">RAWGraphs 2.0 beta</Navbar.Brand>
+      <Navbar.Brand href="/"><b>RAW</b><span className="text-primary">Graphs</span> 2.0 beta</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
