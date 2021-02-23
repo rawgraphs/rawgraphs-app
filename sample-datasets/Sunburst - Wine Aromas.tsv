@@ -1,0 +1,73 @@
+Root	Category	Type	Aroma	Results
+Aromas	Fruits White Wine	Citrus	Grapefruit	712000
+Aromas	Fruits White Wine	Citrus	Lemon	5040000
+Aromas	Fruits White Wine	Citrus	Lime	2920000
+Aromas	Fruits White Wine	Citrus	Mandarine	26200
+Aromas	Fruits White Wine	Tree Fruits	Pear	1050000
+Aromas	Fruits White Wine	Tree Fruits	Apple	122000
+Aromas	Fruits White Wine	Tree Fruits	Green Apple	955000
+Aromas	Fruits White Wine	Tree Fruits	Peach	1560000
+Aromas	Fruits White Wine	Tropical Fruits	Melon	539000
+Aromas	Fruits White Wine	Tropical Fruits	Guava	151000
+Aromas	Fruits White Wine	Tropical Fruits	Pineapple	2050000
+Aromas	Fruits White Wine	Tropical Fruits	Passion Fruit	926000
+Aromas	Fruits White Wine	Tropical Fruits	Lychee	107000
+Aromas	Fruits Red Wine	Red Berries	Redcurrant	38000
+Aromas	Fruits Red Wine	Red Berries	Blackcurrant	81900
+Aromas	Fruits Red Wine	Red Berries	Strawberry	2320000
+Aromas	Fruits Red Wine	Red Berries	Blackberry	630000
+Aromas	Fruits Red Wine	Tree Fruits	Cherry	2400000
+Aromas	Fruits Red Wine	Tree Fruits	Plum	945000
+Aromas	Floral	Honeysuckle		86100
+Aromas	Floral	Hawthorn		80100
+Aromas	Floral	Orange Blossom		35300000
+Aromas	Floral	Linden		72100
+Aromas	Floral	Jasmine		399000
+Aromas	Floral	Acacia		79200
+Aromas	Floral	Violet		255000
+Aromas	Floral	Lavender		484000
+Aromas	Floral	Rose		123000
+Aromas	Vegetal	Vegetables	Green Pepper	34800000
+Aromas	Vegetal	Vegetables	Tomato	3980000
+Aromas	Vegetal	Fresh Herbs	Cut Grass	34400000
+Aromas	Vegetal	Fresh Herbs	Dill	1130000
+Aromas	Vegetal	Fresh Herbs	Thyme	1860000
+Aromas	Vegetal	Fresh Herbs	Mint	1860000
+Aromas	Vegetal	Dried Herbs	Tabacco	22800
+Aromas	Vegetal	Dried Herbs	Hay	180000
+Aromas	Vegetal	Leaves	Blackcurrant Leaf	34200000
+Aromas	Vegetal	Leaves	Eucalyptus	80100
+Bouquet	Mineral	Young White Wine	Flint	95100
+Bouquet	Mineral	Aged White Wine	Kerosene	35300
+Bouquet	Mineral	Aged Red Wine	Tar	96100
+Bouquet	Yeast	Bread		5600000
+Bouquet	Malolactic Fermentation	Yoghurt		244000
+Bouquet	Malolactic Fermentation	Butter		5880000
+Bouquet	Oak Aging	Smoked		2290000
+Bouquet	Oak Aging	Coffee		160000
+Bouquet	Oak Aging	Toast		2620000
+Bouquet	Oak Aging	Woods	Pine	943000
+Bouquet	Oak Aging	Woods	Cedar	383000
+Bouquet	Oak Aging	Woods	Sandalwood	44700
+Bouquet	Oak Aging	Woods	Oak	234000
+Bouquet	Oak Aging	Nuts	Almond	1860000
+Bouquet	Oak Aging	Nuts	Hazelnut	429000
+Bouquet	Oak Aging	Nuts	Coconut	2690000
+Bouquet	Late Harvest / Botrytis	Dry Apricot		34200000
+Bouquet	Late Harvest / Botrytis	Orange Peel		34900000
+Bouquet	Fortified Wine	Prune		107000
+Bouquet	Aged White Wine	Honey		3930000
+Bouquet	Aged Red Wine	Chocolate		144000
+Bouquet	Aged Red Wine	Animal		174000
+Bouquet	Aged Red Wine	Leather		191000
+Bouquet	Aged Red Wine	Musk		71600
+Faults	Trichloroanisole	Corked		64300
+Faults	Oxygen	Sherry		1140000
+Faults	Heat	Madeira		230000
+Faults	Volatile Acidity	Ethyl Acetate	Nail Polish Remover	34500000
+Faults	Volatile Acidity	Acetic Acid	Vinegar	3470000
+Faults	Sulfides	Dimethyl Sulfide	Sweet Corn	35600000
+Faults	Sulfides	Ethyl Mercaptan	Onion	4740000
+Faults	Sulfides	Hudrogen Sulfide	Rotten Egg	34300000
+Faults	Sulfides	Sulfer Dioxide	Rubber	236000
+Faults	Brett	Ethyl-phenol	Old band-aid	34200000

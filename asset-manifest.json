@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.379d10a5.chunk.css",
+    "main.js": "/static/js/main.0d55fc97.chunk.js",
+    "main.js.map": "/static/js/main.0d55fc97.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.fd18ba66.js",
+    "runtime-main.js.map": "/static/js/runtime-main.fd18ba66.js.map",
+    "static/css/2.95af4277.chunk.css": "/static/css/2.95af4277.chunk.css",
+    "static/js/2.d2a80183.chunk.js": "/static/js/2.d2a80183.chunk.js",
+    "static/js/2.d2a80183.chunk.js.map": "/static/js/2.d2a80183.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.f14f03492ee809722ef43c0f8012b426.js": "/precache-manifest.f14f03492ee809722ef43c0f8012b426.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.95af4277.chunk.css.map": "/static/css/2.95af4277.chunk.css.map",
+    "static/css/main.379d10a5.chunk.css.map": "/static/css/main.379d10a5.chunk.css.map",
+    "static/js/2.d2a80183.chunk.js.LICENSE.txt": "/static/js/2.d2a80183.chunk.js.LICENSE.txt",
+    "static/js/worker.46bd5d63.worker.js": "/static/js/worker.46bd5d63.worker.js",
+    "static/js/worker.46bd5d63.worker.js.map": "/static/js/worker.46bd5d63.worker.js.map",
+    "static/media/index.scss": "/static/media/Inter.var.f065685b.woff2",
+    "static/media/DataGrid.module.scss": "/static/media/arrow-up.3808d262.svg",
+    "static/media/asterisk.b07fc856.svg": "/static/media/asterisk.b07fc856.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fd18ba66.js",
+    "static/css/2.95af4277.chunk.css",
+    "static/js/2.d2a80183.chunk.js",
+    "static/css/main.379d10a5.chunk.css",
+    "static/js/main.0d55fc97.chunk.js"
+  ]
+}
