@@ -140,13 +140,13 @@ export default function DataSamples({ onSampleReady, setLoadingError }) {
                 onClick={() => {
                   select(d)
                 }}
-                className="cursor-pointer"
+                className="cursor-pointer h-100"
               >
-                <Card.Body className="">
+                <Card.Body className="d-flex flex-column">
                   <Card.Title className="">
                     <h2 className="">{d.name}</h2>
                   </Card.Title>
-                  <Card.Subtitle className="">
+                  <Card.Subtitle className="mt-auto">
                     <h4 className="m-0">{d.category}</h4>
                   </Card.Subtitle>
                 </Card.Body>
