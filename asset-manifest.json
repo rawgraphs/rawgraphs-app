@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/static/css/main.379d10a5.chunk.css",
-    "main.js": "/static/js/main.8c44d532.chunk.js",
-    "main.js.map": "/static/js/main.8c44d532.chunk.js.map",
+    "main.js": "/static/js/main.fee1d69e.chunk.js",
+    "main.js.map": "/static/js/main.fee1d69e.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.fd18ba66.js",
     "runtime-main.js.map": "/static/js/runtime-main.fd18ba66.js.map",
     "static/css/2.95af4277.chunk.css": "/static/css/2.95af4277.chunk.css",
-    "static/js/2.dc3fddab.chunk.js": "/static/js/2.dc3fddab.chunk.js",
-    "static/js/2.dc3fddab.chunk.js.map": "/static/js/2.dc3fddab.chunk.js.map",
+    "static/js/2.b443cc6c.chunk.js": "/static/js/2.b443cc6c.chunk.js",
+    "static/js/2.b443cc6c.chunk.js.map": "/static/js/2.b443cc6c.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.b559d1b2d2fc35320922e13383e38053.js": "/precache-manifest.b559d1b2d2fc35320922e13383e38053.js",
+    "precache-manifest.681f5d8f31f72b1432a99e463c4067c4.js": "/precache-manifest.681f5d8f31f72b1432a99e463c4067c4.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.95af4277.chunk.css.map": "/static/css/2.95af4277.chunk.css.map",
     "static/css/main.379d10a5.chunk.css.map": "/static/css/main.379d10a5.chunk.css.map",
-    "static/js/2.dc3fddab.chunk.js.LICENSE.txt": "/static/js/2.dc3fddab.chunk.js.LICENSE.txt",
-    "static/js/worker.1598e617.worker.js": "/static/js/worker.1598e617.worker.js",
-    "static/js/worker.1598e617.worker.js.map": "/static/js/worker.1598e617.worker.js.map",
+    "static/js/2.b443cc6c.chunk.js.LICENSE.txt": "/static/js/2.b443cc6c.chunk.js.LICENSE.txt",
+    "static/js/worker.a8e90a07.worker.js": "/static/js/worker.a8e90a07.worker.js",
+    "static/js/worker.a8e90a07.worker.js.map": "/static/js/worker.a8e90a07.worker.js.map",
     "static/media/index.scss": "/static/media/Inter.var.f065685b.woff2",
     "static/media/DataGrid.module.scss": "/static/media/arrow-up.3808d262.svg",
     "static/media/asterisk.b07fc856.svg": "/static/media/asterisk.b07fc856.svg"
@@ -23,8 +23,8 @@
   "entrypoints": [
     "static/js/runtime-main.fd18ba66.js",
     "static/css/2.95af4277.chunk.css",
-    "static/js/2.dc3fddab.chunk.js",
+    "static/js/2.b443cc6c.chunk.js",
     "static/css/main.379d10a5.chunk.css",
-    "static/js/main.8c44d532.chunk.js"
+    "static/js/main.fee1d69e.chunk.js"
   ]
 }
