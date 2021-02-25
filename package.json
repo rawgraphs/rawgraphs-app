@@ -1,11 +1,11 @@
 {
   "name": "rawgraphs-frontend",
   "homepage": "https://app.rawgraphs.io",
-  "version": "2.0.0-beta.6",
+  "version": "2.0.0-beta.7",
   "private": true,
   "dependencies": {
     "@rawgraphs/rawgraphs-charts": "^1.0.0-beta.15",
-    "@rawgraphs/rawgraphs-core": "^1.0.0-beta.10",
+    "@rawgraphs/rawgraphs-core": "^1.0.0-beta.11",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
