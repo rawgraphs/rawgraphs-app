@@ -1939,10 +1939,10 @@
     d3-sankey "^0.12.3"
     louvain "^1.2.0"
 
-"@rawgraphs/rawgraphs-core@^1.0.0-beta.11":
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-core/-/rawgraphs-core-1.0.0-beta.11.tgz#a737f1f9766a1ca2b4e434f25be997c9d4c9d4f9"
-  integrity sha512-8OPwRydpQWFulFfrN8fIY+1GjB0SxUBYgiZNmkkJp6ukpNx1JbkCIe1TPxklhLdainuBGhnvtJ+dFBTF2NQpmQ==
+"@rawgraphs/rawgraphs-core@1.0.0-beta.12":
+  version "1.0.0-beta.12"
+  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-core/-/rawgraphs-core-1.0.0-beta.12.tgz#d36320eb809b4f1ab58b2f03d94eaae79fe81d6d"
+  integrity sha512-d5ZsQrfwM4nLTErBM0lnlGTJ0jJMERBP1QoZ9b0vThAswHD+O1DrF8ADbMrOMASsduu5t6eN+UZJb4Lx1P27rQ==
   dependencies:
     d3-array "^2.4.0"
     d3-axis "^1.0.12"

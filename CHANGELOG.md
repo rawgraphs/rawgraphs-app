@@ -1,3 +1,7 @@
+
+## 2.0.0-beta.8
+##### 25 Feb 2021
+- updated rawgrahps-core to 1.0.0-beta.12 (dates parsing finally ok)
 ## 2.0.0-beta.7
 ##### 25 Feb 2021
 - updated rawgrahps-core to 1.0.0-beta.11 (fixes parsing)
