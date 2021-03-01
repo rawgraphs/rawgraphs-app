@@ -10,7 +10,7 @@ const samplesList = [
   },
 
   {
-    name: 'US Presidential Elections (1976-2016)',
+    name: 'US Presidential Elections (1976-2020)',
     category: 'Line Graph',
     url: './sample-datasets/Line Graph - US Presidential Elections.tsv',
     delimiter: '\t',
@@ -72,12 +72,12 @@ const samplesList = [
     delimiter: '\t',
   },
 
-  // {
-  //   name: 'Italian Presidents',
-  //   category: 'Gantt chart',
-  //   url: './sample-datasets/Gantt chart - Italian Presidents.tsv',
-  //   delimiter: '\t',
-  // },
+  {
+    name: 'Italian Presidents',
+    category: 'Gantt chart',
+    url: './sample-datasets/Gantt chart - Italian Presidents.tsv',
+    delimiter: '\t',
+  },
 
   {
     name: 'Basketball shots',
