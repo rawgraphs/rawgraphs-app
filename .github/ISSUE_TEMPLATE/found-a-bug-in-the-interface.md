@@ -1,7 +1,7 @@
 ---
-name: Found an interface bug
+name: Found a bug in the interface
 about: This template is for reporting interface bugs (broken or incorrect behaviour).
-  If you have questions on how to use RAWGraphs, please visit https://groups.google.com/g/densitydesign-raw
+  If is related to a specific chart, please use the other template.
 title: ''
 labels: bug
 assignees: ''

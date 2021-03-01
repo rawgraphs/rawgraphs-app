@@ -1,5 +1,12 @@
-## NEXT
-##### date
+
+## 2.0.0-beta.8
+##### 25 Feb 2021
+- updated rawgrahps-core to 1.0.0-beta.12 (dates parsing finally ok)
+## 2.0.0-beta.7
+##### 25 Feb 2021
+- updated rawgrahps-core to 1.0.0-beta.11 (fixes parsing)
+## 2.0.0-beta.6
+##### 25 Feb 2021
 
 
 
@@ -9,6 +16,11 @@
 - refine UI for public release
 - update gh action
 - added samples datasets
+- publishing to github pages
+- support for iso dates
+- fixed d3 version compatibility with rawgrahps-charts
+- updated rawgrahps-core to 1.0.0-beta.10
+- updated rawgrahps-charts to 1.0.0-beta.15
 
 ## 2.0.0-beta.5
 ##### 09 Feb 2021

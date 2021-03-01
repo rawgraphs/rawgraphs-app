@@ -31,7 +31,7 @@ If you want to run your instance of RAWGraphs locally on your machine, be sure y
 
 ### Instructions
 
-1. Clone the rawgraphs-frontend repository ([follow this link to clone it with GitHub Desktop](x-github-client://openRepo/https://github.com/rawgraphs/rawgraphs-frontend))
+1. Clone the rawgraphs-app repository
 2. open the terminal (on Mac) or command prompt (on Windows) and browse to the flower containing the project
 3. Install needed dependencies typing the command `yarn install`
 4. Run the program locally in development mode: `yarn start`

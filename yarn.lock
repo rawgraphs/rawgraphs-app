@@ -1926,23 +1926,23 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.7.0.tgz#5f7760965170f7f1e2910d2498c5be88b47a2a8c"
   integrity sha512-V3WyEc8ZyAuOQ2fpFuTuYYOd2tV4NePeSdxaHYgYAOs7ERLxlcFi2XsmgI5LJFdAUmJKXsg8jaIiVTkTHQygQw==
 
-"@rawgraphs/rawgraphs-charts@^1.0.0-beta.13":
-  version "1.0.0-beta.13"
-  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-charts/-/rawgraphs-charts-1.0.0-beta.13.tgz#986d196925348705aaa607ca8cb03b307e796ef5"
-  integrity sha512-ugwPhl4/3y+rIn8+zUAvel7LshQZ1DQHQd0aUYJ4sEAwy+tvTUpobjxNIpzbCfXuj83kzqm1NECRcY/FWZcEMQ==
+"@rawgraphs/rawgraphs-charts@^1.0.0-beta.15":
+  version "1.0.0-beta.15"
+  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-charts/-/rawgraphs-charts-1.0.0-beta.15.tgz#179a61f5654c787d17609bb1dfe5cc976a71d002"
+  integrity sha512-GQR87jPNELEuqDSGGeNVU72mYWZKqIJfg4RP7NJX72qonFQqTU/cw3t1+di03+1MwXytzLIhTuXJONNJFiXsJQ==
   dependencies:
     css "^3.0.0"
-    d3 "^6.2.0"
+    d3 "^6.5.0"
     d3-contour "^2.0.0"
     d3-gridding "^0.2.0"
     d3-hexbin "^0.2.2"
     d3-sankey "^0.12.3"
     louvain "^1.2.0"
 
-"@rawgraphs/rawgraphs-core@^1.0.0-beta.8":
-  version "1.0.0-beta.8"
-  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-core/-/rawgraphs-core-1.0.0-beta.8.tgz#6fb5c8bce2a5bdc48844226eb0ad2bd8c5395ed9"
-  integrity sha512-2csCE/y5Gn+iKEGdRy1j3YHeZ7al7u79tHyG05aJCxpKzUhQp71/1Dm864/URTpIQWPfxbUHsqs8VzfFZq1O3g==
+"@rawgraphs/rawgraphs-core@1.0.0-beta.12":
+  version "1.0.0-beta.12"
+  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-core/-/rawgraphs-core-1.0.0-beta.12.tgz#d36320eb809b4f1ab58b2f03d94eaae79fe81d6d"
+  integrity sha512-d5ZsQrfwM4nLTErBM0lnlGTJ0jJMERBP1QoZ9b0vThAswHD+O1DrF8ADbMrOMASsduu5t6eN+UZJb4Lx1P27rQ==
   dependencies:
     d3-array "^2.4.0"
     d3-axis "^1.0.12"
@@ -4409,7 +4409,7 @@ d3-array@1, d3-array@^1.1.1, d3-array@^1.2.0:
   resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-1.2.4.tgz#635ce4d5eea759f6f605863dbcfc30edc737f71f"
   integrity sha512-KHW6M86R+FUPYGb3R5XiYjXPq7VzwxZ22buHhAEVG5ztoEcZZMLov530mmccaqA1GghZArjQV46fuc8kUqhhHw==
 
-"d3-array@1 - 2", d3-array@2, d3-array@>=2.5:
+"d3-array@1 - 2":
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-2.7.1.tgz#b1f56065e9aba1ef6f0d0c8c9390b65421593352"
   integrity sha512-dYWhEvg1L2+osFsSqNHpXaPQNugLT4JfyvbLE046I2PDcgYGFYc0w24GSJwbmcjjZYOPC3PNP2S782bWUM967Q==
@@ -4419,7 +4419,14 @@ d3-array@1.0.1:
   resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-1.0.1.tgz#375c02874fcd96c16ed9f1bcf5b4a7be53f358e7"
   integrity sha1-N1wCh0/NlsFu2fG89bSnvlPzWOc=
 
-"d3-array@1.2.0 - 2", d3-array@^2.4.0:
+"d3-array@1.2.0 - 2", d3-array@2, d3-array@>=2.5, d3-array@^2.3.0:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-2.11.0.tgz#5ed6a2869bc7d471aec8df9ff6ed9fef798facc4"
+  integrity sha512-26clcwmHQEdsLv34oNKq5Ia9tQ26Y/4HqS3dQzF42QBUqymZJ+9PORcN1G52bt37NsL2ABoX4lvyYZc+A9Y0zw==
+  dependencies:
+    internmap "^1.0.0"
+
+d3-array@^2.4.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-2.7.0.tgz#d30287e2580ecf1f4748800b71bcbc2ca8bd96db"
   integrity sha512-4T2QVIgIvsuWo3ZxlweERUA37nc8uEIykD8bbpnbdgROio1TIh9uoMmi5E1SckAjFdb9b7hTWV0dExnxNqaAVg==
@@ -4774,7 +4781,18 @@ d3-scale@2.1.2:
     d3-time "1"
     d3-time-format "2"
 
-d3-scale@3, d3-scale@^3.2.1:
+d3-scale@3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-3.2.3.tgz#be380f57f1f61d4ff2e6cbb65a40593a51649cfd"
+  integrity sha512-8E37oWEmEzj57bHcnjPVOBS3n4jqakOeuv1EDdQSiSrYnMCBdMd3nc4HtKk7uia8DUHcY/CGuJ42xxgtEYrX0g==
+  dependencies:
+    d3-array "^2.3.0"
+    d3-format "1 - 2"
+    d3-interpolate "1.2.0 - 2"
+    d3-time "1 - 2"
+    d3-time-format "2 - 3"
+
+d3-scale@^3.2.1:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-3.2.2.tgz#36d4cbc94dc38bbb5bd91ba5eddb44c6d19bad3e"
   integrity sha512-3Mvi5HfqPFq0nlyeFlkskGjeqrR/790pINMHc4RXKJ2E6FraTd3juaRIRZZHyMAbi3LjAMW0EH4FB1WgoGyeXg==
@@ -4972,10 +4990,10 @@ d3-zoom@2:
     d3-voronoi "1"
     d3-zoom "1"
 
-d3@6.2.0, d3@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/d3/-/d3-6.2.0.tgz#f19b0ecb16ca4ad2171ce8b37c63247e71c6f01d"
-  integrity sha512-aH+kx55J8vRBh4K4k9GN4EbNO3QnZsXy4XBfrnr4fL2gQuszUAPQU3fV2oObO2iSpreRH/bG/wfvO+hDu2+e9w==
+d3@^6.5.0:
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/d3/-/d3-6.5.0.tgz#55cc64690cfe7bf18788d2cfbe22d911b01309f0"
+  integrity sha512-gr7FoRecKtBkBxelTeGVYERRTPgjPFLh2rOBisHdbXe3RIrVLjCo7COZYMSeFeiwVPOHDtxAGJlvN7XssNAIcg==
   dependencies:
     d3-array "2"
     d3-axis "2"
@@ -7043,6 +7061,11 @@ internal-slot@^1.0.2:
     es-abstract "^1.17.0-next.1"
     has "^1.0.3"
     side-channel "^1.0.2"
+
+internmap@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/internmap/-/internmap-1.0.0.tgz#3c6bf0944b0eae457698000412108752bbfddb56"
+  integrity sha512-SdoDWwNOTE2n4JWUsLn4KXZGuZPjPF9yyOGc8bnfWnBQh7BD/l80rzSznKc/r4Y0aQ7z3RTk9X+tV4tHBpu+dA==
 
 invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"

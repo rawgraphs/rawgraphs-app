@@ -166,7 +166,7 @@ function DataTypeSelector({
                     {'Date'}
                     {currentType === 'date' && (
                       <span className={S['date-format-preview']}>
-                        {' (' + currentTypeComplete.dateFormat + ')  '}
+                        {' (' + (currentTypeComplete.dateFormat) + ')  '}
                       </span>
                     )}
                   </div>
