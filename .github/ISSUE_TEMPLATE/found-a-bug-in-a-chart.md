@@ -13,7 +13,7 @@ Hi there!
 
 this template is meant to report issues related to charts.
 
-If the problem is related to the behaviour of the frontend interface, please use the dedicate issues: https://github.com/rawgraphs/rawgraphs-frontend/issues. Feel free to remove any portion of the template that is not relevant for your issue.
+If the problem is related to the behaviour of the frontend interface, please use the dedicate issues: https://github.com/rawgraphs/rawgraphs-app/issues. Feel free to remove any portion of the template that is not relevant for your issue.
 
 Be sure to check out how it looks in the Preview tab!
 
