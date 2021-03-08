@@ -1,5 +1,6 @@
 ## Next
 - updated rawgrahps-core to 1.0.0-beta.14 (number parsing with separators)
+- update rawgraphs-charts, added gantt chart
 ## 2.0.0-beta.8
 ##### 25 Feb 2021
 - updated rawgrahps-core to 1.0.0-beta.12 (dates parsing finally ok)

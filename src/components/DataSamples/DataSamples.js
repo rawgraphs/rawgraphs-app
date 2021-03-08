@@ -52,7 +52,7 @@ const samplesList = [
   },
 
   {
-    name: 'FIFA playes statistics',
+    name: 'FIFA players statistics',
     category: 'Radar Chart',
     url: './sample-datasets/Radar Chart - Fifa players.tsv',
     delimiter: '\t',
@@ -73,13 +73,6 @@ const samplesList = [
   },
 
   {
-    name: 'Italian Presidents',
-    category: 'Gantt chart',
-    url: './sample-datasets/Gantt chart - Italian Presidents.tsv',
-    delimiter: '\t',
-  },
-
-  {
     name: 'Basketball shots',
     category: 'Hexagonal Binning',
     url: './sample-datasets/Hexbin - basketball shots.tsv',
@@ -93,12 +86,12 @@ const samplesList = [
     delimiter: ',',
   },
 
-  // {
-  //   name: 'COVID-19 Vaccines',
-  //   category: 'Stacked barchart, Multiset barchart',
-  //   url: './sample-datasets/Stacked barchart - COVID-19 Vaccines.tsv',
-  //   delimiter: '\t',
-  // },
+  {
+    name: 'Italians PMs and Presidents',
+    category: 'Gantt chart',
+    url: './sample-datasets/Gantt chart - italian-PMs-presidents.tsv',
+    delimiter: '\t',
+  },
 
   {
     name: 'New York mean wage per occupation',

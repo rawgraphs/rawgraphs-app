@@ -22,6 +22,7 @@ import {
   sunburst,
   treemap,
   violinplot,
+  ganttChart,
 } from '@rawgraphs/rawgraphs-charts'
 
 // New charts, not included into first release.
@@ -50,6 +51,7 @@ let charts = [
   sunburst,
   treemap,
   violinplot,
+  ganttChart,
 ]
 
 export default charts
