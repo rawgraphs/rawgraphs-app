@@ -25,18 +25,43 @@ If you want to run your instance of RAWGraphs locally on your machine, be sure y
 
 ### Requirements
 
-- [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) (coould be used through the interface of [GitHub Desktop](https://desktop.github.com/))
+If you want to run your instance of RAWGraphs locally on your machine, be sure you have the following requirements installed.
+
+- [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) (it could be used through the interface of [GitHub Desktop](https://desktop.github.com/))
 - [Node.js](https://nodejs.org/en/)
 - [Yarn](https://yarnpkg.com/getting-started/install)
 
-### Instructions
+### Instructions (Mac OS)
 
-1. Clone the rawgraphs-app repository
-2. open the terminal (on Mac) or command prompt (on Windows) and browse to the flower containing the project
-3. Install needed dependencies typing the command `yarn install`
-4. Run the program locally in development mode: `yarn start`
+In terminal, browse the folder where you want to install the app, and clone `RAWGraphs-app` from the command line:
 
-You can build your own version and upload on your server by running the command `yarn build`.
+```shell
+git clone https://github.com/rawgraphs/rawgraphs-app.git
+```
+
+Browse the folder containing the repository:
+
+```shell
+cd rawgraphs-app
+```
+
+Install the needed dependencies through Yarn:
+
+```shell
+yarn install
+```
+
+Now you can run the project locally in development mode with the command:
+
+```shell
+yarn start
+```
+
+You can also build your own version and upload on your server by running the command:
+
+```shell
+yarn build
+```
 
 ## Contributing
 
