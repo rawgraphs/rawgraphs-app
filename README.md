@@ -107,7 +107,7 @@ Bibtex:
 
 RAWGraphs is provided under the [Apache License 2.0](https://github.com/rawgraphs/rawgraphs-frontend/blob/master/LICENSE):
 
-    Copyright (c), 2013-2019 DensityDesign Lab, Calibro, INMAGIK <hello@rawgraphs.io>
+    Copyright (c), 2013-2021 DensityDesign Lab, Calibro, INMAGIK <hello@rawgraphs.io>
     
     Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
