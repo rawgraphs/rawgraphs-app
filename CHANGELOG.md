@@ -1,4 +1,4 @@
-## Next
+## 2.0.0-beta.9
 - updated rawgrahps-core to 1.0.0-beta.14 (number parsing with separators)
 - update rawgraphs-charts, added gantt chart
 ## 2.0.0-beta.8
