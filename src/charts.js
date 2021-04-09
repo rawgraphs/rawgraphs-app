@@ -23,6 +23,8 @@ import {
   treemap,
   violinplot,
   ganttChart,
+  voronoidiagram,
+  horizongraph,
 } from '@rawgraphs/rawgraphs-charts'
 
 // New charts, not included into first release.
@@ -52,6 +54,8 @@ let charts = [
   treemap,
   violinplot,
   ganttChart,
+  voronoidiagram,
+  horizongraph,
 ]
 
 export default charts
