@@ -18,11 +18,10 @@ import ChartPreviewWithOptions from './components/ChartPreviewWIthOptions'
 import Exporter from './components/Exporter'
 import get from 'lodash/get'
 import usePrevious from './hooks/usePrevious'
-import { serializeProject as serializeProjectV1_1 } from './import_export_v1.1'
+import { serializeProject } from '@rawgraphs/rawgraphs-core'
 import useDataLoader from './hooks/useDataLoader'
 import isPlainObject from 'lodash/isPlainObject'
-import CookieConsent from "react-cookie-consent"
-
+import CookieConsent from 'react-cookie-consent'
 
 // #TODO: i18n
 
@@ -84,17 +83,20 @@ function App() {
     }
   }, [columnNames, prevColumnNames, clearLocalMapping])
 
-  const handleChartChange = useCallback((nextChart) => {
-    setMapping({})
-    clearLocalMapping()
-    setCurrentChart(nextChart)
-    const options = getOptionsConfig(nextChart?.visualOptions)
-    setVisualOptions(getDefaultOptionsValues(options))
-    setRawViz(null)
-  }, [clearLocalMapping])
+  const handleChartChange = useCallback(
+    (nextChart) => {
+      setMapping({})
+      clearLocalMapping()
+      setCurrentChart(nextChart)
+      const options = getOptionsConfig(nextChart?.visualOptions)
+      setVisualOptions(getDefaultOptionsValues(options))
+      setRawViz(null)
+    },
+    [clearLocalMapping]
+  )
 
   const exportProject = useCallback(() => {
-    return serializeProjectV1_1(
+    return serializeProject({
       userInput,
       userData,
       userDataType,
@@ -111,31 +113,47 @@ function App() {
       currentChart,
       mapping,
       visualOptions,
-    )
+    })
   }, [
-    currentChart, data, dataSource, decimalsSeparator, locale, mapping,
-    parseError, separator, stackDimension, thousandsSeparator, userData,
-    userDataType, userInput, visualOptions, unstackedColumns, unstackedData
+    currentChart,
+    data,
+    dataSource,
+    decimalsSeparator,
+    locale,
+    mapping,
+    parseError,
+    separator,
+    stackDimension,
+    thousandsSeparator,
+    userData,
+    userDataType,
+    userInput,
+    visualOptions,
+    unstackedColumns,
+    unstackedData,
   ])
 
   // project import
-  const importProject = useCallback(project => {
-    hydrateFromSavedProject(project)
-    setCurrentChart(project.currentChart)
-    setMapping(project.mapping)
-    // adding "annotations" for color scale:
-    // we annotate the incoming options values (complex ones such as color scales)
-    // to le the ui know they are coming from a loaded project
-    // so we don't have to re-evaluate defaults
-    // this is due to the current implementation of the color scale
-    const patchedOptions = {...project.visualOptions}
-    Object.keys(patchedOptions).forEach(k => {
-      if(isPlainObject(patchedOptions[k])){
-        patchedOptions[k].__loaded = true
-      }
-    })
-    setVisualOptions(project.visualOptions)
-  }, [hydrateFromSavedProject])
+  const importProject = useCallback(
+    (project) => {
+      hydrateFromSavedProject(project)
+      setCurrentChart(project.currentChart)
+      setMapping(project.mapping)
+      // adding "annotations" for color scale:
+      // we annotate the incoming options values (complex ones such as color scales)
+      // to le the ui know they are coming from a loaded project
+      // so we don't have to re-evaluate defaults
+      // this is due to the current implementation of the color scale
+      const patchedOptions = { ...project.visualOptions }
+      Object.keys(patchedOptions).forEach((k) => {
+        if (isPlainObject(patchedOptions[k])) {
+          patchedOptions[k].__loaded = true
+        }
+      })
+      setVisualOptions(project.visualOptions)
+    },
+    [hydrateFromSavedProject]
+  )
 
   //setting initial chart and related options
   useEffect(() => {
@@ -149,18 +167,17 @@ function App() {
       <Header menuItems={HeaderItems} />
       <div className="app-sections">
         <Section title={`1. Load your data`} loading={loading}>
-          <DataLoader
-            {...dataLoader}
-            hydrateFromProject={importProject}
-          />
+          <DataLoader {...dataLoader} hydrateFromProject={importProject} />
         </Section>
-        {data && <Section title="2. Choose a chart">
-          <ChartSelector
-            availableCharts={charts}
-            currentChart={currentChart}
-            setCurrentChart={handleChartChange}
-          />
-        </Section>}
+        {data && (
+          <Section title="2. Choose a chart">
+            <ChartSelector
+              availableCharts={charts}
+              currentChart={currentChart}
+              setCurrentChart={handleChartChange}
+            />
+          </Section>
+        )}
         {data && currentChart && (
           <Section title={`3. Mapping`} loading={mappingLoading}>
             <DataMapping
@@ -193,29 +210,30 @@ function App() {
         )}
         <Footer />
         <CookieConsent
-        location="bottom"
-        buttonText="Got it!"
-        style={{ background: "#f5f5f5", color: "#646467" }}
-        buttonStyle={{
-          background: "#646467",
-          color: "white",
-          fontSize: "13px",
-          borderRadius: "3px",
-          padding: "5px 20px",
-        }}
-        buttonClasses="btn btn-default btn-grey"
-        acceptOnScroll={true}
-      >
-        This website uses Google Analytics to anonymously collect browsing data.{" "}
-        <a
-          href="https://rawgraphs.io/privacy/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="ml-2 text-body border-bottom border-dark"
+          location="bottom"
+          buttonText="Got it!"
+          style={{ background: '#f5f5f5', color: '#646467' }}
+          buttonStyle={{
+            background: '#646467',
+            color: 'white',
+            fontSize: '13px',
+            borderRadius: '3px',
+            padding: '5px 20px',
+          }}
+          buttonClasses="btn btn-default btn-grey"
+          acceptOnScroll={true}
         >
-          Learn More
-        </a>
-      </CookieConsent>
+          This website uses Google Analytics to anonymously collect browsing
+          data.{' '}
+          <a
+            href="https://rawgraphs.io/privacy/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-2 text-body border-bottom border-dark"
+          >
+            Learn More
+          </a>
+        </CookieConsent>
       </div>
       <ScreenSizeAlert />
     </div>
