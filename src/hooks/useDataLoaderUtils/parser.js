@@ -2,14 +2,24 @@ import { dsvFormat } from 'd3'
 import { DefaultSeparator, separatorsList } from '../../constants'
 
 function JsonParser(dataString) {
-  return [JSON.parse(dataString), {}]
+  //Removing white lines (useful when pasting from sheets, ecc)
+  const trimmedDataString = dataString
+    .trim()
+    .replace(/^(?=\n)$|^\s*|\s*$|\n\n+/gm, '')
+  
+  return [JSON.parse(trimmedDataString), {}]
 }
 
 function CsvParser(dataString, opts) {
+  //Removing white lines (useful when pasting from sheets, ecc)
+  const trimmedDataString = dataString
+    .trim()
+    .replace(/^(?=\n)$|^\s*|\s*$|\n\n+/gm, '')
+  
   // Use the separator the user gives me, if any
   if (opts.separator) {
     return [
-      dsvFormat(opts.separator).parse(dataString),
+      dsvFormat(opts.separator).parse(trimmedDataString),
       {
         separator: opts.separator,
       },
@@ -24,7 +34,7 @@ function CsvParser(dataString, opts) {
       .replace(/\\t/g, '\t')
     try {
       const parser = dsvFormat(separator)
-      const parsed = parser.parse(dataString)
+      const parsed = parser.parse(trimmedDataString)
       if (
         (parsed.length > 0 && Object.keys(parsed[0]).length > 1) ||
         separator === DefaultSeparator
@@ -41,20 +51,25 @@ function CsvParser(dataString, opts) {
   return [candidates[0].parsed, { separator: candidates[0].separator }]
 }
 
+export const SparqlMarker = Symbol("RawgraphsSparqlMarker")
+
+function SparqlParser(data, opts) {
+  if (data[SparqlMarker] === true) {
+    return [data, {}]
+  } 
+  throw new Error("Not a sparql result")
+}
+
 const PARSERS = [
+  { dataType: 'sparql', parse: SparqlParser },
   { dataType: 'json', parse: JsonParser },
   { dataType: 'csv', parse: CsvParser },
 ]
 
-export function parseData(dataString, opts) {
-  //Removing white lines (useful when pasting from sheets, ecc)
-  const trimmedDataString = dataString
-    .trim()
-    .replace(/^(?=\n)$|^\s*|\s*$|\n\n+/gm, '')
-
+export function parseData(data, opts) {
   for (const parser of PARSERS) {
     try {
-      const [parsed, extra] = parser.parse(trimmedDataString, opts)
+      const [parsed, extra] = parser.parse(data, opts)
       return [parser.dataType, parsed, extra]
     } catch (e) {
       // console.error('Parsing error', e)
