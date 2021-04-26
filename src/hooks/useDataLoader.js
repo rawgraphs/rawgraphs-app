@@ -277,15 +277,23 @@ export default function useDataLoader() {
     if (dataType !== 'json' && !error) {
       handleNewUserData(parsedUserData)
     }
+    const jsonPath = dataSource?.jsonPath ?? undefined
+    if (dataType === 'json' && !error && jsonPath !== undefined) {
+      const jsonData = get(parsedUserData, jsonPath, null)
+      if (Array.isArray(jsonData)) {
+        handleNewUserData(jsonData)
+      }
+    }
   }
 
   const setJsonData = useCallback(
-    (data) => {
+    (data, path) => {
       const normalized = normalizeJsonArray(data)
       setUserData(normalized)
+      setDataSource({...dataSource, jsonPath: path })
       handleNewUserData(normalized)
     },
-    [handleNewUserData]
+    [dataSource, handleNewUserData]
   )
 
   /*

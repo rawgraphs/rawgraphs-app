@@ -8,6 +8,7 @@ const JsonViewerRecursive = ({
   context,
   selectFilter,
   onSelect,
+  path
 }) => {
   const isSelectable = selectFilter(context)
   const contextType = typeof context
@@ -26,10 +27,10 @@ const JsonViewerRecursive = ({
       if (isSelectable) {
         e.stopPropagation()
         e.preventDefault()
-        if (onSelect) onSelect(context)
+        if (onSelect) onSelect(context, path.join("."))
       }
     },
-    [context, isSelectable, onSelect]
+    [context, isSelectable, onSelect, path]
   )
 
   const handleMouseOver = useCallback(
@@ -82,6 +83,7 @@ const JsonViewerRecursive = ({
             context={value}
             selectFilter={selectFilter}
             onSelect={onSelect}
+            path={[...path, property]}
           />
         ))}
         {!Array.isArray(context) && (
@@ -145,6 +147,7 @@ const JsonViewer = ({ context, selectFilter, onSelect }) => {
         context={context}
         selectFilter={selectFilter}
         onSelect={onSelect}
+        path={[]}
       />
     </pre>
   )
