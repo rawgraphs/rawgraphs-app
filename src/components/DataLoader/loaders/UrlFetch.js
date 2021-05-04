@@ -15,7 +15,7 @@ export default function UrlFetch({ userInput, setUserInput, setLoadingError }) {
     const source = { type: 'url', url }
     let data
     try {
-      data = fetchData(source)
+      data = await fetchData(source)
       setUserInput(data, source)
       setLoadingError(null)
     } catch (e) {
