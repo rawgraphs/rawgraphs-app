@@ -21,7 +21,7 @@ The easiest way to use RAWGraphs is by accessing the most updated version on the
 
 ## Installation
 
-If you want to run your instance of RAWGraphs locally on your machine, be sure you have the following requirements installed. the following guide is meant for intermediate users (you will have to open your console and type some commands, it's better it you konw what you are doing).
+If you want to run your instance of RAWGraphs locally on your machine, be sure you have the following requirements installed. the following guide is meant for intermediate users (you will have to open your console and type some commands, it's better it you know what you are doing).
 
 ### Requirements
 
