@@ -160,8 +160,8 @@ function DataLoader({
       <JsonViewer
         context={JSON.parse(userInput)}
         selectFilter={(ctx) => Array.isArray(ctx)}
-        onSelect={(ctx) => {
-          setJsonData(ctx)
+        onSelect={(ctx, path) => {
+          setJsonData(ctx, path)
         }}
       />
     )
