@@ -9,11 +9,24 @@ import StackSelector from './StackSelector'
 import styles from './ParsingOptions.module.scss'
 import { BsArrowRepeat } from 'react-icons/bs'
 import { get } from 'lodash'
+import { fetchData as fetchDataFromUrl } from '../DataLoader/loaders/UrlFetch'
+import { fetchData as fetchDataFromSparql } from '../DataLoader/loaders/SparqlFetch'
+
+const dataRefreshWorkers = {
+  "url": fetchDataFromUrl,
+  "sparql": fetchDataFromSparql
+}
+
+const dataRefreshCaptions = {
+  "url": "Refresh data from url",
+  "sparql": "Refresh data from query"
+}
 
 export default function ParsingOptions(props) {
   const refreshData = async () => {
-    const response = await fetch(props.dataSource.url)
-    props.onDataRefreshed(await response.text())
+    const dataRefreshImpl = dataRefreshWorkers[get(props.dataSource, "type", "")]
+    const data = await dataRefreshImpl(props.dataSource)
+    props.onDataRefreshed(data)
   }
 
   return (
@@ -49,14 +62,14 @@ export default function ParsingOptions(props) {
           onChange={(nextLocale) => props.setLocale(nextLocale)}
         />
 
-        {get(props.dataSource, 'type', '') === 'url' && (
+        {get(dataRefreshWorkers, get(props.dataSource, 'type', ''), null) && (
           <Button
             color="primary"
             className={styles['refresh-button']}
             onClick={() => refreshData()}
           >
             <BsArrowRepeat className="mr-2" />
-            {'Refresh data from url'}
+            {get(dataRefreshCaptions, get(props.dataSource, 'type', ''), "Refresh data")}
           </Button>
         )}
 

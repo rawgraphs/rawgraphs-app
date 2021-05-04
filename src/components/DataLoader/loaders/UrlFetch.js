@@ -2,20 +2,25 @@ import React, { useState } from 'react'
 import classNames from 'classnames'
 import S from './UrlFetch.module.scss'
 
+export async function fetchData(source) {
+  const response = await fetch(source.url)
+  const text = await response.text()
+  return text
+}
+
 export default function UrlFetch({ userInput, setUserInput, setLoadingError }) {
   const [url, setUrl] = useState('')
 
   const fetchUrl = async (url) => {
-    let response;
+    const source = { type: 'url', url }
+    let data
     try {
-      response = await fetch(url)
+      data = fetchData(source)
+      setUserInput(data, source)
+      setLoadingError(null)
     } catch (e) {
       setLoadingError("Loading error. "+e.message)
-      return
     }
-    const text = await response.text()
-    setUserInput(text, { type: 'url', url })
-    setLoadingError(null)
   }
   return (
     <input

@@ -24,6 +24,7 @@ import UrlFetch from './loaders/UrlFetch'
 import Loading from './loading'
 import WarningMessage from '../WarningMessage'
 import DataMismatchModal from './DataMismatchModal'
+import SparqlFetch from './loaders/SparqlFetch'
 
 function DataLoader({
   userInput,
@@ -103,11 +104,17 @@ function DataLoader({
     },
     {
       id: 'sparql',
-      name: 'SPARQL query SOON!',
-      message: 'Load data from a query address.',
-      loader: <DataSamples onSampleReady={loadSample} />,
+      name: 'SPARQL query',
+      message: 'Load data with a SparQL query',
+      loader: (
+        <SparqlFetch
+          userInput={userInput}
+          setUserInput={(rawInput, source) => setUserInput(rawInput, source)}
+          setLoadingError={setLoadingError}
+        />
+      ),
       icon: BsCloud,
-      disabled: true,
+      disabled: false,
       allowedForReplace: true,
     },
     {
