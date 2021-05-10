@@ -25,6 +25,7 @@ import {
   ganttChart,
   voronoidiagram,
   horizongraph,
+  parallelcoordinates,
 } from '@rawgraphs/rawgraphs-charts'
 
 // New charts, not included into first release.
@@ -56,6 +57,7 @@ let charts = [
   ganttChart,
   voronoidiagram,
   horizongraph,
+  parallelcoordinates,
 ]
 
 export default charts
