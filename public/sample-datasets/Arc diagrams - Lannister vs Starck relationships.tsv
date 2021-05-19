@@ -1,0 +1,25 @@
+Source	Target	weight
+Arya Stark	Cersei Lannister	25
+Arya Stark	Jaime Lannister	13
+Arya Stark	Tyrion Lannister	11
+Arya Stark	Tywin Lannister	13
+Benjen Stark	Cersei Lannister	3
+Benjen Stark	Tyrion Lannister	8
+Bran Stark	Cersei Lannister	6
+Bran Stark	Stafford Lannister	3
+Bran Stark	Tyrion Lannister	31
+Catelyn Stark	Cersei Lannister	30
+Catelyn Stark	Jaime Lannister	59
+Catelyn Stark	Stafford Lannister	3
+Catelyn Stark	Tyrion Lannister	69
+Catelyn Stark	Tywin Lannister	21
+Eddard Stark	Jaime Lannister	33
+Eddard Stark	Tyrion Lannister	40
+Eddard Stark	Tywin Lannister	18
+Rickon Stark	Tyrion Lannister	4
+Robb Stark	Stafford Lannister	5
+Robb Stark	Tyrion Lannister	44
+Robb Stark	Tywin Lannister	30
+Robb Stark	Willem Lannister	3
+Sansa Stark	Tyrion Lannister	118
+Sansa Stark	Tywin Lannister	6

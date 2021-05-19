@@ -1,8 +1,11 @@
 ## Upcoming
 
-- update rawgraphs-charts to 1.0.0-beta.18
+- update rawgraphs-charts to 1.0.0-beta.19
 - added Voronoi diagram
 - added Horizon graph
+- added Parallel coordinates
+- Changed datasamples according to upcoming learning section
+- Added sources to data samples
 
 ## 2.0.0-beta.9
 

@@ -1,0 +1,52 @@
+From	To	TWh
+Coal reserves	Coal	63.96
+Coal imports	Coal	31.37
+Oil reserves	Oil	107.70
+Oil imports	Oil	772.37
+Gas reserves	Natural Gas	82.23
+Gas imports	Natural Gas	2034.32
+UK land based bioenergy	Bio-conversion	17.66
+Agricultural 'waste'	Bio-conversion	37.42
+Other waste	Bio-conversion	40.34
+Other waste	Solid	14.24
+Coal	Solid	95.34
+Oil	Liquid	880.08
+Natural Gas	Gas	2116.55
+Bio-conversion	Solid	30.19
+Bio-conversion	Liquid	7.74
+Bio-conversion	Gas	39.59
+Bio-conversion	Losses	17.90
+Solid	Thermal generation	32.82
+Gas	Thermal generation	1152.79
+Thermal generation	District heating	16.14
+Thermal generation	Electricity grid	576.03
+Thermal generation	Losses	593.44
+Wind	Electricity grid	0.08
+Hydro	Electricity grid	5.32
+Electricity grid	Losses	40.55
+District heating	Industry	16.14
+Electricity grid	Heating and cooling - homes	60.65
+Gas	Heating and cooling - homes	517.94
+Electricity grid	Heating and cooling - commercial	31.41
+Gas	Heating and cooling - commercial	141.48
+Electricity grid	Lighting & appliances - homes	103.40
+Gas	Lighting & appliances - homes	8.03
+Electricity grid	Lighting & appliances - commercial	92.33
+Gas	Lighting & appliances - commercial	9.05
+Electricity grid	Industry	227.82
+Solid	Industry	106.05
+Liquid	Industry	199.26
+Gas	Industry	300.59
+Electricity grid	Agriculture	4.47
+Solid	Agriculture	0.89
+Liquid	Agriculture	3.69
+Gas	Agriculture	2.12
+Electricity grid	Road transport	13.84
+Liquid	Road transport	322.01
+Electricity grid	Rail transport	6.94
+Liquid	Rail transport	7.48
+Liquid	Domestic aviation	14.78
+Liquid	National navigation	22.49
+Liquid	International aviation	188.58
+Liquid	International shipping	129.50
+Gas	Losses	24.11

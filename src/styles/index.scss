@@ -7,8 +7,11 @@ $theme-colors: (
   'danger': #d04949,
   'light': #d8d8d8,
 );
-$font-family-monospace: 'IBM Plex Mono', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-$font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-monospace: 'IBM Plex Mono', Menlo, Monaco, Consolas,
+  'Liberation Mono', 'Courier New', monospace;
+$font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
 :root {
   --gray-bg: rgb(245 248 250);
@@ -158,7 +161,7 @@ h5 {
     }
   }
 }
-.raw-select{
+.raw-select {
   height: 40px;
   color: theme-color('dark');
   background-color: white;
