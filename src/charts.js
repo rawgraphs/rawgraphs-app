@@ -45,19 +45,19 @@ let charts = [
   contourPlot,
   convexHull,
   dendrogram,
+  ganttChart,
   hexagonalBinning,
+  horizongraph,
   linechart,
   matrixplot,
+  parallelcoordinates,
   radarchart,
   sankeydiagram,
   streamgraph,
   sunburst,
   treemap,
   violinplot,
-  ganttChart,
   voronoidiagram,
-  horizongraph,
-  parallelcoordinates,
 ]
 
 export default charts

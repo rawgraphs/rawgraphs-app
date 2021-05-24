@@ -140,7 +140,7 @@ const samplesList = [
   },
 
   {
-    name: 'Happiness index ',
+    name: 'Happiness index',
     category: 'Multiset Barchart',
     url: './sample-datasets/Multiset Barchart - Happiness Index.tsv',
     delimiter: '\t',
@@ -172,7 +172,7 @@ const samplesList = [
     category: 'Convex hull, Parallel Coordinates',
     url: './sample-datasets/Convex hull - Iris flowers.tsv',
     delimiter: '\t',
-    sourceName: 'Ronald Fisher',
+    sourceName: 'R. Fisher',
     sourceURL: 'https://en.wikipedia.org/wiki/Iris_flower_data_set',
   },
 
@@ -201,6 +201,25 @@ const samplesList = [
     delimiter: '\t',
     sourceName: 'D. Agrawal via Kaggle',
     sourceURL: 'https://www.kaggle.com/divyansh22/summer-olympics-medals',
+  },
+
+  {
+    name: 'Weather in New York, 2012-2015',
+    category: 'Violin plot, Boxplot',
+    url: './sample-datasets/Violin plot - Weather in New York.tsv',
+    delimiter: '\t',
+    sourceName: 'NOAA via Vega Dataset',
+    sourceURL:
+      'https://github.com/vega/vega-datasets/blob/master/SOURCES.md#seattle-weathercsv',
+  },
+
+  {
+    name: 'Netflix Original Series 2013/2017',
+    category: 'Bar chart',
+    url: './sample-datasets/Bar chart - Netflix Original Series.tsv',
+    delimiter: '\t',
+    sourceName: 'M. Schroyer via Data World',
+    sourceURL: 'https://data.world/mattschroyer/netflix-original-series',
   },
 
   // {
