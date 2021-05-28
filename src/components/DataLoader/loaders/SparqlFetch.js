@@ -32,8 +32,7 @@ export default function SparqlFetch({
   const editorDomRef = useRef()
 
   const onQueryParsed = useCallback((evt) => {
-    const editor = evt.target
-    const query = editor.query
+    const { query } = evt.detail
     if (query.queryType === 'SELECT') {
       setParsedQuery(query)
     } else {
@@ -71,7 +70,7 @@ export default function SparqlFetch({
     const node = editorDomRef.current
     render(
       html`<sparql-editor
-        ?auto-parse=${true}
+        auto-parse
         @parsed=${onQueryParsed}
         @parsing-failed=${onParserFailure}
       ></sparql-editor>`,
