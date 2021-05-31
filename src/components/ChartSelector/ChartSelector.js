@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useCallback } from 'react'
+import classNames from 'classnames'
 import { Row, Col, Card, Dropdown } from 'react-bootstrap'
 import { BsLink } from 'react-icons/bs'
 import uniq from 'lodash/uniq'
@@ -17,13 +18,16 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
     return filterCharts(availableCharts, filter)
   }, [availableCharts, filter])
 
-  const handleFilterChange = useCallback((nextFilter) => {
-    setFilter(nextFilter)
-    const nextCharts = filterCharts(availableCharts, nextFilter)
-    if (nextCharts.indexOf(currentChart) === -1) {
-      setCurrentChart(nextCharts[0])
-    }
-  }, [availableCharts, currentChart, setCurrentChart])
+  const handleFilterChange = useCallback(
+    (nextFilter) => {
+      setFilter(nextFilter)
+      const nextCharts = filterCharts(availableCharts, nextFilter)
+      if (nextCharts.indexOf(currentChart) === -1) {
+        setCurrentChart(nextCharts[0])
+      }
+    },
+    [availableCharts, currentChart, setCurrentChart]
+  )
 
   return (
     <>
@@ -68,14 +72,20 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
                 </Card.Subtitle>
                 <Card.Text>{currentChart.metadata.description}</Card.Text>
                 <Card.Link
-                  className={`${styles.disabled} underlined`}
+                  className={classNames({
+                    [styles.disabled]: !currentChart.metadata.code,
+                    underlined: true,
+                  })}
                   href={currentChart.metadata.code}
                   target="_blank"
                 >
                   <BsLink color="black" /> Code
                 </Card.Link>
                 <Card.Link
-                  className={`${styles.disabled} underlined`}
+                  className={classNames({
+                    [styles.disabled]: !currentChart.metadata.tutorial,
+                    underlined: true,
+                  })}
                   href={currentChart.metadata.tutorial}
                   target="_blank"
                 >
