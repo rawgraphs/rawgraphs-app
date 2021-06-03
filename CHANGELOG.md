@@ -6,6 +6,8 @@
 - added Parallel coordinates
 - Changed datasamples according to upcoming learning section
 - Added sources to data samples
+- Added tutorials and links to source code
+- Added a sample dataset for each chart
 
 ## 2.0.0-beta.9
 
