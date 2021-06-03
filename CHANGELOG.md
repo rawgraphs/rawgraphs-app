@@ -1,6 +1,7 @@
-## Upcoming
+## 2.0.0-beta.10
 
-- update rawgraphs-charts to 1.0.0-beta.19
+- update rawgraphs-charts to 1.0.0-beta.21
+- updated rawgrahps-core to 1.0.0-beta.15
 - added Voronoi diagram
 - added Horizon graph
 - added Parallel coordinates
@@ -8,6 +9,7 @@
 - Added sources to data samples
 - Added tutorials and links to source code
 - Added a sample dataset for each chart
+- Various bugfixing
 
 ## 2.0.0-beta.9
 

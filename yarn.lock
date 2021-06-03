@@ -1926,10 +1926,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.7.0.tgz#5f7760965170f7f1e2910d2498c5be88b47a2a8c"
   integrity sha512-V3WyEc8ZyAuOQ2fpFuTuYYOd2tV4NePeSdxaHYgYAOs7ERLxlcFi2XsmgI5LJFdAUmJKXsg8jaIiVTkTHQygQw==
 
-"@rawgraphs/rawgraphs-charts@^1.0.0-beta.19":
-  version "1.0.0-beta.19"
-  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-charts/-/rawgraphs-charts-1.0.0-beta.19.tgz#cfbd69da966eac4d452c285e04e0b775fc44a242"
-  integrity sha512-SzqfcX9V0rah8GoV7V6m+p6/zF0XOKqoCciofYuiYjM6isCiGv07BEj2SSfhUWGKi9VlnY4Mwo58r46h8yCkaA==
+"@rawgraphs/rawgraphs-charts@^1.0.0-beta.21":
+  version "1.0.0-beta.21"
+  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-charts/-/rawgraphs-charts-1.0.0-beta.21.tgz#53a09e5dd64975a36942529a6886fb190e80ab32"
+  integrity sha512-R4YX6vBDtCdBI6uOiLszbxAcR8VoVIKqfJa3BFPevZAnIj/C6TrRk0yIzZ/D48Ts7TAOkPqlnx5MOkTC/KKqPw==
   dependencies:
     css "^3.0.0"
     d3 "^6.5.0"
@@ -1939,10 +1939,10 @@
     d3-sankey "^0.12.3"
     louvain "^1.2.0"
 
-"@rawgraphs/rawgraphs-core@^1.0.0-beta.14":
-  version "1.0.0-beta.14"
-  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-core/-/rawgraphs-core-1.0.0-beta.14.tgz#2d15e13a025791f7a0eb5e2cba862e7b1643c52d"
-  integrity sha512-2kj7FpK9G2Bt/TR4uOWB4wTjbeK5gpf6X0NapYj0APLAGM77JI6Qm4irRZD55e7A9SCx3STsuJUINCI/Rp60pQ==
+"@rawgraphs/rawgraphs-core@^1.0.0-beta.15":
+  version "1.0.0-beta.16"
+  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-core/-/rawgraphs-core-1.0.0-beta.16.tgz#71fe55faeb0787ba76d0fd1186cfd44c755ea8a8"
+  integrity sha512-wlF9aOZt+d+3t7WVs8B0H992lYTJZAlD6ZKYSqDMXj4X7XXTF2LCk5KsjMbpzYJXBgn+J8W6PsgzFGPyCGzvkA==
   dependencies:
     d3-array "^2.4.0"
     d3-axis "^1.0.12"
