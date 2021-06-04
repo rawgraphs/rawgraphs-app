@@ -1,14 +1,19 @@
 ## 2.0.0-beta.10
 
-- update rawgraphs-charts to 1.0.0-beta.21
-- updated rawgrahps-core to 1.0.0-beta.15
+#### New Features
+
 - added Voronoi diagram
 - added Horizon graph
 - added Parallel coordinates
-- Changed datasamples according to upcoming learning section
+- New datasamples according to upcoming learning section
 - Added sources to data samples
-- Added tutorials and links to source code
-- Added a sample dataset for each chart
+- Added links to tutorials
+- Added links to source code
+
+#### Changes
+
+- update rawgraphs-charts to 1.0.0-beta.21
+- updated rawgrahps-core to 1.0.0-beta.15
 - Various bugfixing
 
 ## 2.0.0-beta.9
