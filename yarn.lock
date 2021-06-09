@@ -1974,23 +1974,23 @@
     "@rdfjs/namespace" "^1.1.0"
     "@types/rdfjs__namespace" "*"
 
-"@rdfjs-elements/editor-base@^0.1.0":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@rdfjs-elements/editor-base/-/editor-base-0.1.2.tgz#6e9729d04f601753fd5efcc474f6a267305bc9ef"
-  integrity sha512-SSd/HziUyoGzK9HZZaGv/UAl71yOVkQ8quQPLyklxd+Ys8C/A3i6+vpDqdiqpBYcsVB/2iMTnb4xu/jIMVBnAA==
+"@rdfjs-elements/editor-base@^0.3.0":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@rdfjs-elements/editor-base/-/editor-base-0.3.1.tgz#fb91eaf1cbefb64be875d61dccec70c4503e8c50"
+  integrity sha512-NDl0Xhqw9sICXNlVJU8pQUJxOSiwN+96jybKVSBOQC3nn7rsGHPQeYYVRZYhem6/OoP6ZOxg0ANG4/LiD8DVXA==
   dependencies:
     "@tpluscode/rdf-ns-builders" "^0.4.0"
-    "@vanillawc/wc-codemirror" "^1.9.1"
-    codemirror "^5.56.0"
+    "@vanillawc/wc-codemirror" "^1.9.7"
+    codemirror "^5.61.1"
     lit-element "^2.2.1"
     throttle-debounce "^3.0.1"
 
-"@rdfjs-elements/sparql-editor@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@rdfjs-elements/sparql-editor/-/sparql-editor-0.1.0.tgz#8aa860da0bbfccfef5d1c90a32c36092d2f59796"
-  integrity sha512-2tOt4QtkF79OZ6FwRf413vT1FGmR0S96oe3Kew0XsHJHZuDDpl0oCcS5rFPkkC4jt6jBasggxAr2WBa1u0nyQw==
+"@rdfjs-elements/sparql-editor@0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@rdfjs-elements/sparql-editor/-/sparql-editor-0.1.5.tgz#684502ea631534272d8f627259c6da933b6bd49c"
+  integrity sha512-LwqbcCQNjCXV0THNHcw9k0Y+9ujgPGdA3qFA95wzGgt/CG1Xk+Sx49o30c0MeATz5KjAapv7aJg2d+TEIpAkwg==
   dependencies:
-    "@rdfjs-elements/editor-base" "^0.1.0"
+    "@rdfjs-elements/editor-base" "^0.3.0"
     sparqljs "^3.4.1"
 
 "@rdfjs/data-model@^1.0.1", "@rdfjs/data-model@^1.1.0", "@rdfjs/data-model@^1.1.2", "@rdfjs/data-model@^1.2":
@@ -2500,10 +2500,10 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
-"@vanillawc/wc-codemirror@^1.9.1":
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/@vanillawc/wc-codemirror/-/wc-codemirror-1.9.1.tgz#ec2c747f29b6160ed9fc179412c106efc8c4fa15"
-  integrity sha512-6Np09pPSZ9dVHo6P8JprlG9mdU33KYbkN0Rkdu1juSm0Kht4/RUtj3q76Lp1BiQ48IUMkH+rrjT+OoGIsM6XFA==
+"@vanillawc/wc-codemirror@^1.9.7":
+  version "1.9.7"
+  resolved "https://registry.yarnpkg.com/@vanillawc/wc-codemirror/-/wc-codemirror-1.9.7.tgz#2d0e1a925fa7f3281c244210acf4dc92d6a6e28b"
+  integrity sha512-GD84ziBwszPs1PGPHMFIxm5OTHRwpCrkKmXm/fJvYO6AcD0A3x37SxrPYb/P+ddgbujNZb5S8/3ufGvBngFwBg==
 
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
@@ -3910,10 +3910,10 @@ code-point-at@^1.0.0:
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
 
-codemirror@^5.56.0:
-  version "5.61.0"
-  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.61.0.tgz#318e5b034a707207948b92ffc2862195e8fdb08e"
-  integrity sha512-D3wYH90tYY1BsKlUe0oNj2JAhQ9TepkD51auk3N7q+4uz7A/cgJ5JsWHreT0PqieW1QhOuqxQ2reCXV1YXzecg==
+codemirror@^5.61.1:
+  version "5.61.1"
+  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.61.1.tgz#ccfc8a43b8fcfb8b12e8e75b5ffde48d541406e0"
+  integrity sha512-+D1NZjAucuzE93vJGbAaXzvoBHwp9nJZWWWF9utjv25+5AZUiah6CIlfb4ikG4MoDsFsCG8niiJH5++OO2LgIQ==
 
 collection-visit@^1.0.0:
   version "1.0.0"

@@ -5,44 +5,8 @@ import { html, render } from 'lit-html'
 import SparqlHttpClient from 'sparql-http-client'
 import { Generator } from 'sparqljs'
 import { fromRdf } from 'rdf-literal'
-import { SparqlEditor } from '@rdfjs-elements/sparql-editor/src/SparqlEditor'
+import '@rdfjs-elements/sparql-editor/sparql-editor.js'
 import { SparqlMarker } from '../../../hooks/useDataLoaderUtils/parser'
-
-/* 
-  SparqlEditor defines a value property that shadows a parent class getter,
-  so remove it from property declaration list
-
-  There is a bug in removing the webcomponent when the react component unmounts
-  Basically, the this.codeMirror.editor reference becomes null, and the updated
-  handler tries to attach some listeners to it. Putting a simple try/catch solves
-  the problem.
-*/
-class RawSparqlEditor extends SparqlEditor {
-  async updated(_changedProperties) {
-    try {
-      await super.updated(_changedProperties)
-
-      let shouldParse = false
-
-      if (_changedProperties.has('value')) {
-        shouldParse = true
-        await this._updateValue(this.value)
-      }
-
-      if (_changedProperties.has('prefixes')) {
-        shouldParse = true
-      }
-
-      if (shouldParse) {
-        this.parse()
-      }
-    } catch (e) {
-      // ignore
-    }
-  }
-}
-
-window.customElements.define('sparql-editor', RawSparqlEditor)
 
 export async function fetchData(source) {
   const sparqlGenerator = new Generator()
@@ -68,8 +32,7 @@ export default function SparqlFetch({
   const editorDomRef = useRef()
 
   const onQueryParsed = useCallback((evt) => {
-    const editor = evt.target
-    const query = editor.query
+    const { query } = evt.detail
     if (query.queryType === 'SELECT') {
       setParsedQuery(query)
     } else {
@@ -107,7 +70,7 @@ export default function SparqlFetch({
     const node = editorDomRef.current
     render(
       html`<sparql-editor
-        ?auto-parse=${true}
+        auto-parse
         @parsed=${onQueryParsed}
         @parsing-failed=${onParserFailure}
       ></sparql-editor>`,
