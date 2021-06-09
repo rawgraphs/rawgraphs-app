@@ -2,21 +2,21 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
 import S from './SparqlFetch.module.scss'
 import { html, render } from 'lit-html'
-import SparqlHttpClient from 'sparql-http-client'
+import SimpleClient from 'sparql-http-client/SimpleClient'
 import { Generator } from 'sparqljs'
-import { fromRdf } from 'rdf-literal'
 import '@rdfjs-elements/sparql-editor/sparql-editor.js'
 import { SparqlMarker } from '../../../hooks/useDataLoaderUtils/parser'
 
 export async function fetchData(source) {
   const sparqlGenerator = new Generator()
-  const client = new SparqlHttpClient({
+  const client = new SimpleClient({
     endpointUrl: source.url,
   })
-  const stream = await client.query.select(
+  const response = await client.query.select(
     sparqlGenerator.stringify(source.query)
   )
-  const rows = await readStream(stream, source.query.variables)
+  const results = await response.json()
+  const rows = bindingsToJson(results.head.vars, results.results.bindings)
   rows[SparqlMarker] = true
   return rows
 }
@@ -107,34 +107,19 @@ export default function SparqlFetch({
   )
 }
 
-function readStream(stream, variables) {
-  return new Promise((resolve, reject) => {
-    const result = []
-    stream.on('data', (record) => {
-      const row = {}
-      for (const variable of variables) {
-        const term = record[variable.value]
-        if (!term) {
-          row[variable.value] = ''
-        }
-
-        if (term.termType === 'Literal') {
-          row[variable.value] = fromRdf(term)
-        }
-
-        if (term.termType === 'NamedNode') {
-          row[variable.value] = term.value
-        }
+function bindingsToJson(varNames, bindings) {
+  const result = []
+  for (const binding of bindings) {
+    const row = {}
+    for (const variable of varNames) {
+      const term = binding[variable]
+      if (!term) {
+        row[variable] = ''
+      } else {
+        row[variable] = term.value
       }
-      result.push(row)
-    })
-
-    stream.on('end', () => {
-      resolve(result)
-    })
-
-    stream.on('error', (err) => {
-      reject(err)
-    })
-  })
+    }
+    result.push(row)
+  }
+  return result
 }
