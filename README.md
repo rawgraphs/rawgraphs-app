@@ -3,13 +3,13 @@
 **RAWGraphs** is an open web tool to create custom vector-based visualizations on top of the amazing [d3.js](https://github.com/mbostock/d3) library.
 It has been developed by [DensityDesign Research Lab](http://www.densitydesign.org/) ([Politecnico di Milano](http://www.polimi.it/)), [Calibro](http://calib.ro/) and [INMAGIK](https://inmagik.com/).
 
-Primarily conceived as a tool for designers and vis geeks, RAWGraphs aims at providing a missing link between spreadsheet applications (e.g. LibreOffice Calc, Microsoft Excel, Apple Numbers, Google Docs, …) and vector graphics editors (e.g. Inkscape, Adobe Illustrator, …).
+Primarily conceived as a tool for designers and vis geeks, RAWGraphs aims at providing a missing link between spreadsheet applications (e.g., LibreOffice Calc, Microsoft Excel, Apple Numbers, Google Docs) and vector graphics editors (e.g., Inkscape, Adobe Illustrator).
 
-RAWGraphs works with [tabular data](<https://en.wikipedia.org/wiki/Table_(information)>) (e.g. spreadhseets and comma-separated values) as well as with copied-and-pasted texts from other applications. Based on the [SVG](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily edited with vector graphics applications for further refinements, or directly embedded into web pages.
+RAWGraphs works with [tabular data](<https://en.wikipedia.org/wiki/Table_(information)>) (e.g., spreadsheets and comma-separated values) as well as with copied-and-pasted texts from other applications. Based on the [SVG](http://en.wikipedia.org/wiki/Svg) format, visualizations can be easily edited with vector graphics applications for further refinements or directly embedded into web pages.
 
-Knowing the need of working with sensitive information, the data injected into RAWGraphs is processed only by the web browser: **no server-side operations or storages are performed** and no one will see, touch or copy your data!
+Knowing the need to work with sensitive information, the data injected into RAWGraphs is processed only by the web browser: **no server-side operations or storages are performed**. No one will see, touch or copy your data!
 
-RAWGraphs is also highly customizable and extensible, accepting new custom layouts defined by users. For more information about how to add or edit layouts, see the [Developer Guide](https://github.com/rawgraphs/raw/wiki/Developer-Guide).
+RAWGraphs is also highly customizable and extensible, accepting new custom layouts defined by users. For more information about adding or editing layouts, see the [Developer Guide](https://github.com/rawgraphs/raw/wiki/Developer-Guide).
 
 - App page: [app.rawgraphs.io](http://app.rawgraphs.io)
 - Project official page: [rawgraphs.io](http://rawgraphs.io)
@@ -17,23 +17,23 @@ RAWGraphs is also highly customizable and extensible, accepting new custom layou
 
 ## Usage
 
-The easiest way to use RAWGraphs is by accessing the most updated version on the **[official app page](http://app.rawgraphs.io)**. However, RAWGraphs can also run locally on your machine: see the installation instructions below to know how.
+The easiest way to use RAWGraphs is by accessing the most updated version on the **[official app page](http://app.rawgraphs.io)**. However, RAWGraphs can also run locally on your machine: see the installation instructions below for know-how.
 
 ## Installation
 
-If you want to run your instance of RAWGraphs locally on your machine, be sure you have the following requirements installed. the following guide is meant for intermediate users (you will have to open your console and type some commands, it's better it you know what you are doing).
+If you want to run your instance of RAWGraphs locally on your machine, be sure you have the following requirements installed. The following guide is for intermediate users (you will have to open your console and type some commands, it's better if you know what you are doing).
 
 ### Requirements
 
 If you want to run your instance of RAWGraphs locally on your machine, be sure you have the following requirements installed.
 
-- [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) (it could be used through the interface of [GitHub Desktop](https://desktop.github.com/))
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) (it could be used through the interface of [GitHub Desktop](https://desktop.github.com/))
 - [Node.js](https://nodejs.org/en/)
 - [Yarn](https://yarnpkg.com/getting-started/install)
 
-### Instructions (Mac OS)
+### Instructions (macOS)
 
-In terminal, browse the folder where you want to install the app, and clone `RAWGraphs-app` from the command line:
+In the terminal, navigate to the folder where you want to install the app and clone the `RAWGraphs-app` GitHub repository:
 
 ```shell
 git clone https://github.com/rawgraphs/rawgraphs-app.git
@@ -57,7 +57,7 @@ Now you can run the project locally in development mode with the command:
 yarn start
 ```
 
-You can also build your own version and upload on your server by running the command:
+You can also build your own version and upload it on your server by running the command:
 
 ```shell
 yarn build
@@ -66,11 +66,11 @@ yarn build
 ## Contributing
 
 Want to contribute to RAWGraphs's development? You are more than welcome! Start by forking the repository (the "Fork" button at the top-right corner of this page) and follow the instructions above to clone it and install dependencies. Then you can use Github's issues and pull requests to discuss and share your work.
-You will need to sign a [Contributor License Agreement (CLA)](https://en.wikipedia.org/wiki/Contributor_License_Agreement) before making a submission. We adopted CLA to be sure that the project will remain open source. For more information, write us: <hello@rawgraphs.io>.
+You will need to sign a [Contributor License Agreement (CLA)](https://en.wikipedia.org/wiki/Contributor_License_Agreement) before submitting. We adopted CLA to be sure that the project will remain open source. For more information, write us: <hello@rawgraphs.io>.
 
 ## Publications / Citing RAWGraphs
 
-If you have found RAWGraphs useful in your research, or if you want to reference it in your work, please consider to cite the paper we presented at [CHItaly 2017](http://sites.unica.it/chitaly2017/).
+If you have found RAWGraphs helpful in your research, or if you want to reference it in your work, please consider citing the paper we presented at [CHItaly 2017](http://sites.unica.it/chitaly2017/).
 
 you can read the full article in Green Open Access at the following link:
 
