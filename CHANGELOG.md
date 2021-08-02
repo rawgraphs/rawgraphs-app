@@ -1,3 +1,13 @@
+## upcoming
+
+#### New Features
+
+- added Slope chart
+
+#### Changes
+
+- update rawgraphs-charts to 1.0.0-beta.22
+
 ## 2.0.0-beta.10
 
 #### New Features
