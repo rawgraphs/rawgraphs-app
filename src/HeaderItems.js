@@ -9,11 +9,11 @@ const headerItems = [
   //   slug: 'gallery',
   //   href: 'https://rawgraphs.io/gallery',
   // },
-  // {
-  //   label: 'Learning',
-  //   slug: 'learning',
-  //   href: 'https://rawgraphs.io/learning',
-  // },
+  {
+    label: 'Learning',
+    slug: 'learning',
+    href: 'https://rawgraphs.io/learning',
+  },
   // {
   //   label: 'FAQs',
   //   slug: 'faqs',
