@@ -4,7 +4,7 @@
   "version": "2.0.0-beta.10",
   "private": true,
   "dependencies": {
-    "@rawgraphs/rawgraphs-charts": "^1.0.0-beta.24",
+    "@rawgraphs/rawgraphs-charts": "^1.0.0-beta.25",
     "@rawgraphs/rawgraphs-core": "^1.0.0-beta.15",
     "@rdfjs-elements/sparql-editor": "0.1.5",
     "@testing-library/jest-dom": "^4.2.4",

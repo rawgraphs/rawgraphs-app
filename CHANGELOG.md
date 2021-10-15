@@ -3,6 +3,7 @@
 #### New Features
 
 - added Slope chart
+- added Pie chart
 
 #### Changes
 

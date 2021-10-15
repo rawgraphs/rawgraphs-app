@@ -150,7 +150,7 @@ const samplesList = [
 
   {
     name: 'GDP sector composition',
-    category: ', Pie chart, Stacked barchart',
+    category: 'Pie chart, Stacked barchart',
     url: './sample-datasets/Stacked barchart - GDP sector composition.tsv',
     delimiter: '\t',
     sourceName: 'Wikipedia',
