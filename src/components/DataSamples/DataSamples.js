@@ -150,7 +150,7 @@ const samplesList = [
 
   {
     name: 'GDP sector composition',
-    category: 'Stacked barchart',
+    category: ', Pie chart, Stacked barchart',
     url: './sample-datasets/Stacked barchart - GDP sector composition.tsv',
     delimiter: '\t',
     sourceName: 'Wikipedia',
@@ -220,6 +220,15 @@ const samplesList = [
     delimiter: '\t',
     sourceName: 'M. Schroyer via Data World',
     sourceURL: 'https://data.world/mattschroyer/netflix-original-series',
+  },
+
+  {
+    name: 'Premier League and Serie A points',
+    category: 'Slope chart',
+    url: './sample-datasets/Slope graph - Premier SerieA ranking.tsv',
+    delimiter: '\t',
+    sourceName: 'Wikipedia',
+    sourceURL: 'https://en.wikipedia.org/wiki/2019%E2%80%9320_Premier_League',
   },
 
   // {
