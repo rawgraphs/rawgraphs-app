@@ -1926,10 +1926,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.7.0.tgz#5f7760965170f7f1e2910d2498c5be88b47a2a8c"
   integrity sha512-V3WyEc8ZyAuOQ2fpFuTuYYOd2tV4NePeSdxaHYgYAOs7ERLxlcFi2XsmgI5LJFdAUmJKXsg8jaIiVTkTHQygQw==
 
-"@rawgraphs/rawgraphs-charts@^1.0.0-beta.25":
-  version "1.0.0-beta.25"
-  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-charts/-/rawgraphs-charts-1.0.0-beta.25.tgz#5d11c67d417d10096ab0b080c165e5c98d89a7f9"
-  integrity sha512-we8JpOCbd1qlI1jVh0O/BXAJjjPFAAqDRTKPsn9Jlbs/QGBYsb+olZtlpuoyjFtWsXf4ORMith53MoO4A5d/6w==
+"@rawgraphs/rawgraphs-charts@^1.0.0-beta.26":
+  version "1.0.0-beta.26"
+  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-charts/-/rawgraphs-charts-1.0.0-beta.26.tgz#05a87981a1618d3d05b6a6c4c924f3b37b37fbc7"
+  integrity sha512-yEM6MYu1Bg8R7d+ZJPoErcuJZ/H9FvzZ6vyXu7wmNwVBKhtk1l06NouYDGGPsgR/x/FN/s71o0jUCwr64upPUA==
   dependencies:
     css "^3.0.0"
     d3 "^6.5.0"

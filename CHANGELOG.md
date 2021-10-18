@@ -1,4 +1,4 @@
-## upcoming
+## 2.0.0-beta.11
 
 #### New Features
 
@@ -7,7 +7,7 @@
 
 #### Changes
 
-- update rawgraphs-charts to 1.0.0-beta.22
+- update rawgraphs-charts to 1.0.0-beta.26
 
 ## 2.0.0-beta.10
 
