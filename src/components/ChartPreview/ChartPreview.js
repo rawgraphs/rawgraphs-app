@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import { chart as rawChart } from '@rawgraphs/rawgraphs-core'
 import useDebounce from '../../hooks/useDebounce'
 import WarningMessage from '../WarningMessage'
+import { onChartRendered } from '../../gaEvents'
 
 const ChartPreview = ({
   chart,
@@ -17,7 +18,7 @@ const ChartPreview = ({
   const domRef = useRef(null)
 
   const vizOptionsDebounced = useDebounce(visualOptions, 200)
-  
+
   useEffect(() => {
     setError(null)
 
@@ -120,6 +121,7 @@ const ChartPreview = ({
         const rawViz = viz.renderToDOM(domRef.current, mappedData)
         setRawViz(rawViz)
         setError(null)
+        onChartRendered(chart.metadata)
       } catch (e) {
         console.log("chart error", e)
         setError({ variant: 'danger', message: 'Chart error. ' + e.message })
