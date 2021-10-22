@@ -6,7 +6,7 @@
  *  code: string
  *  categories: string[]
  *  tutorial?: string
- * }} ChartMetada
+ * }} chartMetadata
  */
 
 /**
@@ -15,31 +15,31 @@
 let prevChartIdRendered = null
 
 /**
- * @param {ChartMetada} chartMetada
+ * @param {ChartMetada} chartMetadata
  */
-export function onChartRendered(chartMetada) {
-  if (prevChartIdRendered === chartMetada.id) {
+export function onChartRendered(chartMetadata) {
+  if (prevChartIdRendered === chartMetadata.id) {
     // Nothing to report the chart still the same
     return
   }
-  prevChartIdRendered = chartMetada.id
+  prevChartIdRendered = chartMetadata.id
 
   if (typeof window.gtag === 'function') {
     window.gtag('event', 'chart-render', {
-      'event_category': chartMetada.id,
+      event_category: chartMetadata.id,
     })
   }
 }
 
 /**
- * @param {ChartMetada} chartMetada
+ * @param {chartMetadata} chartMetadata
  * @param {string} format
  */
-export function onChartExported(chartMetada, format) {
+export function onChartExported(chartMetadata, format) {
   if (typeof window.gtag === 'function') {
     window.gtag('event', 'chart-export', {
-      'event_category': chartMetada.id,
-      'event_label': format,
+      event_category: chartMetadata.id,
+      event_label: format,
     })
   }
 }
