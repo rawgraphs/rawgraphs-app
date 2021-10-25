@@ -26,13 +26,14 @@ export default function SparqlFetch({
   setUserInput,
   setLoadingError,
 }) {
-  const [url, setUrl] = useState('')
+  const [url, setUrl] = useState('https://query.wikidata.org/sparql')
   const [parsedQuery, setParsedQuery] = useState(null)
 
   const editorDomRef = useRef()
 
   const onQueryParsed = useCallback((evt) => {
     const { query } = evt.detail
+    console.log(query)
     if (query.queryType === 'SELECT') {
       setParsedQuery(query)
     } else {
