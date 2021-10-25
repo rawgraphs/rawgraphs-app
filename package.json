@@ -6,7 +6,7 @@
   "dependencies": {
     "@rawgraphs/rawgraphs-charts": "^1.0.0-beta.26",
     "@rawgraphs/rawgraphs-core": "^1.0.0-beta.15",
-    "@rdfjs-elements/sparql-editor": "0.1.5",
+    "@rdfjs-elements/sparql-editor": "^0.1.6",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -31,8 +31,8 @@
     "react-dropzone": "^11.0.3",
     "react-icons": "^3.10.0",
     "react-scripts": "3.4.1",
-    "sparql-http-client": "^2.3.0",
-    "sparqljs": "^3.4.2",
+    "sparql-http-client": "^2.4.0",
+    "sparqljs": "^3.5.1",
     "typeface-inter": "^3.12.0",
     "worker-loader": "^3.0.2"
   },
