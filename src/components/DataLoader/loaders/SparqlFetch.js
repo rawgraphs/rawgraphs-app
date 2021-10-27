@@ -65,7 +65,6 @@ export default function SparqlFetch({
 
   const onQueryParsed = useCallback((evt) => {
     const { query } = evt.detail
-    console.log(query)
     if (query.queryType === 'SELECT') {
       setParsedQuery(query)
     } else {
