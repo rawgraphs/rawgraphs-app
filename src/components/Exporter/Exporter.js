@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { InputGroup, DropdownButton, Dropdown } from 'react-bootstrap'
+import { onChartExported } from '../../gaEvents'
 
 function downloadBlob(url, filename) {
   // Create a new anchor element
@@ -50,7 +51,7 @@ export default function Exporter({ rawViz, exportProject }) {
   )
 
   const downloadProject = useCallback(
-    filename => {
+    (filename) => {
       const project = exportProject()
       const str = JSON.stringify(project)
       const blob = new Blob([str], { type: 'application/json' })
@@ -62,7 +63,7 @@ export default function Exporter({ rawViz, exportProject }) {
     [exportProject]
   )
 
-  const exportFormats = ['svg','png','jpg','rawgraphs'];
+  const exportFormats = ['svg', 'png', 'jpg', 'rawgraphs']
 
   const [currentFormat, setCurrentFormat] = useState('svg')
   const [currentFile, setCurrentFile] = useState('viz')
@@ -84,7 +85,16 @@ export default function Exporter({ rawViz, exportProject }) {
       default:
         break
     }
-  }, [currentFile, currentFormat, downloadImage, downloadProject, downloadSvg])
+    // TODO: Make a getter for _chartImplementation
+    onChartExported(rawViz._chartImplementation.metadata, currentFormat)
+  }, [
+    currentFile,
+    currentFormat,
+    downloadImage,
+    downloadProject,
+    downloadSvg,
+    rawViz,
+  ])
 
   return (
     <div className="row">
@@ -102,21 +112,22 @@ export default function Exporter({ rawViz, exportProject }) {
             id="input-group-dropdown-1"
             className="raw-dropdown"
           >
-            {exportFormats.map(
-              (d) => {
-                return (
-                  <Dropdown.Item key={d} onClick={() => setCurrentFormat(d)}>
-                    .{d}
-                  </Dropdown.Item>
-                )
-              }
-            )}
+            {exportFormats.map((d) => {
+              return (
+                <Dropdown.Item key={d} onClick={() => setCurrentFormat(d)}>
+                  .{d}
+                </Dropdown.Item>
+              )
+            })}
           </DropdownButton>
         </InputGroup>
       </div>
 
       <div className="col col-sm-2">
-        <button className="btn btn-primary btn-block raw-btn" onClick={downloadViz}>
+        <button
+          className="btn btn-primary btn-block raw-btn"
+          onClick={downloadViz}
+        >
           Download
         </button>
       </div>
