@@ -7,6 +7,38 @@ import { Generator } from 'sparqljs'
 import '@rdfjs-elements/sparql-editor/sparql-editor.js'
 import { SparqlMarker } from '../../../hooks/useDataLoaderUtils/parser'
 
+const DEFAULT_PREFIXES = {
+  wd: 'http://www.wikidata.org/entity/',
+  wds: 'http://www.wikidata.org/entity/statement/',
+  wdv: 'http://www.wikidata.org/value/',
+  wdt: 'http://www.wikidata.org/prop/direct/',
+  wikibase: 'http://wikiba.se/ontology#',
+  p: 'http://www.wikidata.org/prop/',
+  ps: 'http://www.wikidata.org/prop/statement/',
+  pq: 'http://www.wikidata.org/prop/qualifier/',
+  rdfs: 'http://www.w3.org/2000/01/rdf-schema#',
+  bd: 'http://www.bigdata.com/rdf#',
+  wdref: 'http://www.wikidata.org/reference/',
+  psv: 'http://www.wikidata.org/prop/statement/value/',
+  psn: 'http://www.wikidata.org/prop/statement/value-normalized/',
+  pqv: 'http://www.wikidata.org/prop/qualifier/value/',
+  pqn: 'http://www.wikidata.org/prop/qualifier/value-normalized/',
+  pr: 'http://www.wikidata.org/prop/reference/',
+  prv: 'http://www.wikidata.org/prop/reference/value/',
+  prn: 'http://www.wikidata.org/prop/reference/value-normalized/',
+  wdno: 'http://www.wikidata.org/prop/novalue/',
+  wdata: 'http://www.wikidata.org/wiki/Special:EntityData/',
+  schema: 'http://schema.org/',
+  rdf: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+  owl: 'http://www.w3.org/2002/07/owl#',
+  skos: 'http://www.w3.org/2004/02/skos/core#',
+  xsd: 'http://www.w3.org/2001/XMLSchema#',
+  prov: 'http://www.w3.org/ns/prov#',
+  bds: 'http://www.bigdata.com/rdf/search#',
+  gas: 'http://www.bigdata.com/rdf/gas#',
+  hint: 'http://www.bigdata.com/queryHints#',
+}
+
 export async function fetchData(source) {
   const sparqlGenerator = new Generator()
   const client = new SimpleClient({
@@ -26,7 +58,7 @@ export default function SparqlFetch({
   setUserInput,
   setLoadingError,
 }) {
-  const [url, setUrl] = useState('')
+  const [url, setUrl] = useState('https://query.wikidata.org/sparql')
   const [parsedQuery, setParsedQuery] = useState(null)
 
   const editorDomRef = useRef()
@@ -71,6 +103,7 @@ export default function SparqlFetch({
     render(
       html`<sparql-editor
         auto-parse
+        customPrefixes=${JSON.stringify(DEFAULT_PREFIXES)}
         @parsed=${onQueryParsed}
         @parsing-failed=${onParserFailure}
       ></sparql-editor>`,
