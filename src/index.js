@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import './styles/index.scss'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
+import './i18n'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  // TODO: Add a good initial loader for language set up ...
+  <Suspense fallback={<div>Loading...</div>}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Suspense>,
   document.getElementById('root')
 )
 

@@ -22,6 +22,7 @@ import { serializeProject } from '@rawgraphs/rawgraphs-core'
 import useDataLoader from './hooks/useDataLoader'
 import isPlainObject from 'lodash/isPlainObject'
 import CookieConsent from 'react-cookie-consent'
+import { useTranslation } from 'react-i18next'
 
 // #TODO: i18n
 
@@ -162,9 +163,14 @@ function App() {
     setVisualOptions(getDefaultOptionsValues(options))
   }, [])
 
+  const { t, i18n } = useTranslation()
+
   return (
     <div className="App">
       <Header menuItems={HeaderItems} />
+      <h1>{t('hello')}</h1>
+      <button onClick={() => i18n.changeLanguage('it')}>IT</button>
+      <button onClick={() => i18n.changeLanguage('en')}>EN</button>
       <div className="app-sections">
         <Section title={`1. Load your data`} loading={loading}>
           <DataLoader {...dataLoader} hydrateFromProject={importProject} />

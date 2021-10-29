@@ -4,6 +4,7 @@ import { Row, Col, Card, Dropdown } from 'react-bootstrap'
 import { BsLink } from 'react-icons/bs'
 import uniq from 'lodash/uniq'
 import styles from './ChartSelector.module.scss'
+import { useTranslation } from 'react-i18next'
 
 function filterCharts(charts, filter) {
   return filter === 'All charts'
@@ -28,6 +29,7 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
     },
     [availableCharts, currentChart, setCurrentChart]
   )
+  const { t } = useTranslation()
 
   return (
     <>
@@ -70,7 +72,11 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
                 <Card.Subtitle className="m-0">
                   <h4 className="mb-2">{currentChart.metadata.category}</h4>
                 </Card.Subtitle>
-                <Card.Text>{currentChart.metadata.description}</Card.Text>
+                <Card.Text>
+                  {t(`${currentChart.metadata.id.replace("rawgraphs.", "")}.metadata.description`)}
+                  {/* {t(`${currentChart.id}.description`)} */}
+                  {/* {currentChart.metadata.description} */}
+                  </Card.Text>
                 <Card.Link
                   className={classNames({
                     [styles.disabled]: !currentChart.metadata.code,
