@@ -1,3 +1,13 @@
+## 2.0.0-beta.12
+
+#### Changes
+
+- update Sparql editor
+- set sparql base iri to wikidata
+- add wikidata prefixes autoamtically in sparql queries
+- setup Google Analytics to track usage of charts
+- fix min node version to Node14
+
 ## 2.0.0-beta.11
 
 #### New Features
