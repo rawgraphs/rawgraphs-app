@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import classNames from 'classnames'
 import S from './SparqlFetch.module.scss'
 import { html, render } from 'lit-html'
@@ -57,11 +57,21 @@ export default function SparqlFetch({
   userInput,
   setUserInput,
   setLoadingError,
+  initialState,
 }) {
   const [url, setUrl] = useState('https://query.wikidata.org/sparql')
   const [parsedQuery, setParsedQuery] = useState(null)
 
   const editorDomRef = useRef()
+
+  const initialQuery = useMemo(() => {
+    if (initialState?.query) {
+      const sparqlGenerator = new Generator()
+      return sparqlGenerator.stringify(initialState.query)
+    } else {
+      return ''
+    }
+  }, [initialState])
 
   const onQueryParsed = useCallback((evt) => {
     const { query } = evt.detail
@@ -103,13 +113,14 @@ export default function SparqlFetch({
     render(
       html`<sparql-editor
         auto-parse
+        value=${initialQuery}
         customPrefixes=${JSON.stringify(DEFAULT_PREFIXES)}
         @parsed=${onQueryParsed}
         @parsing-failed=${onParserFailure}
       ></sparql-editor>`,
       node
     )
-  }, [onQueryParsed, onParserFailure])
+  }, [onQueryParsed, onParserFailure, initialQuery])
 
   return (
     <>
