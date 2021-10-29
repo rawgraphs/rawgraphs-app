@@ -59,7 +59,7 @@ export default function SparqlFetch({
   setLoadingError,
   initialState,
 }) {
-  const [url, setUrl] = useState('https://query.wikidata.org/sparql')
+  const [url, setUrl] = useState(initialState?.url ?? 'https://query.wikidata.org/sparql')
   const [parsedQuery, setParsedQuery] = useState(null)
 
   const editorDomRef = useRef()
