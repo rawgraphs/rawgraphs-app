@@ -1,3 +1,4 @@
+import { calendarHeatmap } from '@rawgraphs/rawgraphs-calendar-heatmap'
 import {
   alluvialdiagram,
   arcdiagram,
@@ -29,6 +30,7 @@ import {
   violinplot,
   voronoidiagram,
 } from '@rawgraphs/rawgraphs-charts'
+import { polarAreaChart } from '@rawgraphs/rawgraphs-polar-area-chart'
 
 // New charts, not included into first release.
 // Comment at necessity.
@@ -62,6 +64,8 @@ let charts = [
   treemap,
   violinplot,
   voronoidiagram,
+  calendarHeatmap,
+  polarAreaChart
 ]
 
 export default charts

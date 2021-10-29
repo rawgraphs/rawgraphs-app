@@ -1926,6 +1926,14 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.7.0.tgz#5f7760965170f7f1e2910d2498c5be88b47a2a8c"
   integrity sha512-V3WyEc8ZyAuOQ2fpFuTuYYOd2tV4NePeSdxaHYgYAOs7ERLxlcFi2XsmgI5LJFdAUmJKXsg8jaIiVTkTHQygQw==
 
+"@rawgraphs/rawgraphs-calendar-heatmap@^1.0.0-beta.3":
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-calendar-heatmap/-/rawgraphs-calendar-heatmap-1.0.0-beta.3.tgz#71f313ee1cc3f3286e3270735dd38270506cb55f"
+  integrity sha512-w4VWxIH+8Rib/GjGapY4sdxu1xLlRnZgYqil7eqGuiGuTO9VO5pPpzzK8jOsktGLLoBqfc+OjrTyqgcKA9hdFw==
+  dependencies:
+    css "^3.0.0"
+    d3 "^6.5.0"
+
 "@rawgraphs/rawgraphs-charts@^1.0.0-beta.26":
   version "1.0.0-beta.26"
   resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-charts/-/rawgraphs-charts-1.0.0-beta.26.tgz#05a87981a1618d3d05b6a6c4c924f3b37b37fbc7"
@@ -1957,6 +1965,15 @@
     d3-svg-legend "^2.25.6"
     d3-time-format "^2.2.3"
     lodash "^4.17.15"
+
+"@rawgraphs/rawgraphs-polar-area-chart@^1.0.0-beta.1":
+  version "1.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-polar-area-chart/-/rawgraphs-polar-area-chart-1.0.0-beta.1.tgz#09df6d411345efaabc15a826011ede3854fd8b44"
+  integrity sha512-W/sPReiM821T7EIAumjr+Cib4ci7o5zqLTqJPFsPHIIKeq5hb6vr6fFfkOBdq8oh0EQqVDYzhr8Elutxs7+EdA==
+  dependencies:
+    css "^3.0.0"
+    d3 "^6.5.0"
+    d3-gridding "^0.2.0"
 
 "@rdf-esm/data-model@^0.5.1":
   version "0.5.4"
