@@ -9,9 +9,7 @@ import Header from './components/Header'
 import Section from './components/Section'
 import Footer from './components/Footer'
 import ScreenSizeAlert from './components/ScreenSizeAlert'
-
 import DataLoader from './components/DataLoader'
-import charts from './charts'
 import ChartSelector from './components/ChartSelector'
 import DataMapping from './components/DataMapping'
 import ChartPreviewWithOptions from './components/ChartPreviewWIthOptions'
@@ -19,6 +17,7 @@ import Exporter from './components/Exporter'
 import get from 'lodash/get'
 import usePrevious from './hooks/usePrevious'
 import { serializeProject } from '@rawgraphs/rawgraphs-core'
+import useCharts from './hooks/useCharts'
 import useDataLoader from './hooks/useDataLoader'
 import isPlainObject from 'lodash/isPlainObject'
 import CookieConsent from 'react-cookie-consent'
@@ -26,6 +25,7 @@ import CookieConsent from 'react-cookie-consent'
 // #TODO: i18n
 
 function App() {
+  const [charts, { uploadCustomChart }] = useCharts()
   const dataLoader = useDataLoader()
   const {
     userInput,
@@ -46,9 +46,12 @@ function App() {
   } = dataLoader
 
   /* From here on, we deal with viz state */
-  const [currentChart, setCurrentChart] = useState(null)
+  const [currentChart, setCurrentChart] = useState(charts[0])
   const [mapping, setMapping] = useState({})
-  const [visualOptions, setVisualOptions] = useState({})
+  const [visualOptions, setVisualOptions] = useState(() => {
+    const options = getOptionsConfig(charts[0]?.visualOptions)
+    return getDefaultOptionsValues(options)
+  })
   const [rawViz, setRawViz] = useState(null)
   const [mappingLoading, setMappingLoading] = useState(false)
   const dataMappingRef = useRef(null)
@@ -155,13 +158,6 @@ function App() {
     [hydrateFromSavedProject]
   )
 
-  //setting initial chart and related options
-  useEffect(() => {
-    setCurrentChart(charts[0])
-    const options = getOptionsConfig(charts[0]?.visualOptions)
-    setVisualOptions(getDefaultOptionsValues(options))
-  }, [])
-
   return (
     <div className="App">
       <Header menuItems={HeaderItems} />
@@ -171,6 +167,14 @@ function App() {
         </Section>
         {data && (
           <Section title="2. Choose a chart">
+            <input
+              type="file"
+              onChange={(e) => {
+                const file = e.target.files[0]
+                uploadCustomChart(file)
+                e.target.value = ''
+              }}
+            />
             <ChartSelector
               availableCharts={charts}
               currentChart={currentChart}
