@@ -81,7 +81,7 @@ export const localeList = {
   'zh-TW': zhTW,
 }
 
-export const WEBWORKER_ACTIVE = false
+export const WEBWORKER_ACTIVE = true
 
 export const separatorsLabels = {
   '\\t': 'Tab',

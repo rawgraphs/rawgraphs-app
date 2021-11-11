@@ -18,13 +18,18 @@ let mappingWorker // = new Worker()
 
 export function mapDataInWorker(
   chartName,
-  { data, mapping, visualOptions, dataTypes }
+  { data, mapping, visualOptions, dataTypes },
+  customChart
 ) {
   try {
     mappingWorker.terminate()
   } catch (err) {}
   mappingWorker = new Worker()
   let obj = Comlink.wrap(mappingWorker)
-  let out = obj.mapData(chartName, { data, mapping, visualOptions, dataTypes })
+  let out = obj.mapData(
+    chartName,
+    { data, mapping, visualOptions, dataTypes },
+    customChart
+  )
   return out
 }

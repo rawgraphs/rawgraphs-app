@@ -35,20 +35,28 @@ export default function useCharts() {
     // Grab all scripts in cache
     window.caches.open('customCharts').then((cache) => {
       cache
-        .matchAll()
-        // Get all blobs
-        .then((m) => {
-          return Promise.all(m.map((r) => r.blob()))
+        .keys()
+        // Get all blobs ... with packs ...
+        .then((keys) => {
+          return Promise.all(
+            keys.map((k) =>
+              cache
+                .match(k)
+                .then((m) =>
+                  m.blob().then((b) => [k.url.split('/').slice(-1)[0], b])
+                )
+            )
+          )
         })
         // Generate urls for blobs and wait all scripts to load
-        .then((blobs) => {
+        .then((blobsWithPacks) => {
           return Promise.all(
-            blobs.map((blob) => {
+            blobsWithPacks.map(([pack, blob]) => {
               return new Promise((resolve) => {
                 const url = URL.createObjectURL(blob)
                 const scriptTag = document.createElement('script')
                 scriptTag.src = url
-                scriptTag.addEventListener('load', resolve, {
+                scriptTag.addEventListener('load', () => resolve([pack, url]), {
                   once: true,
                 })
                 document.head.append(scriptTag)
@@ -57,9 +65,26 @@ export default function useCharts() {
           )
         })
         // Finally read the stack and add charts in cache to current state
-        .then(() => {
+        .then((packsWithUrls) => {
+          const urlsByPack = packsWithUrls.reduce((by, [pack, url]) => {
+            by[pack] = url
+            return by
+          }, {})
           const newChartsToInject = popAllCustomChartsStack()
-          setCustomCharts(makeSetNewChartsUniqueFn(newChartsToInject))
+          setCustomCharts(
+            makeSetNewChartsUniqueFn(
+              newChartsToInject.map((c) => {
+                // TODO: Find a better approach
+                const rawPkg = c.metadata.id?.split('.')?.[0]
+                return {
+                  ...c,
+                  rawCustomChart: {
+                    url: urlsByPack[rawPkg],
+                  },
+                }
+              })
+            )
+          )
         })
     })
   }, [])
@@ -75,7 +100,16 @@ export default function useCharts() {
       'load',
       () => {
         const newChartsToInject = popAllCustomChartsStack()
-        setCustomCharts(makeSetNewChartsUniqueFn(newChartsToInject))
+        setCustomCharts(
+          makeSetNewChartsUniqueFn(
+            newChartsToInject.map((c) => ({
+              ...c,
+              rawCustomChart: {
+                url,
+              },
+            }))
+          )
+        )
 
         // TODO: Find a better approach
         const rawPkg = newChartsToInject
