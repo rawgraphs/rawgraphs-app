@@ -34,7 +34,7 @@
     "react-dropzone": "^11.0.3",
     "react-i18next": "^11.13.0",
     "react-icons": "^3.10.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^4.0.3",
     "sparql-http-client": "^2.4.0",
     "sparqljs": "^3.5.1",
     "typeface-inter": "^3.12.0",
