@@ -5,10 +5,10 @@ import Worker from 'worker-loader!./worker'
 let parsingWorker // = new Worker()
 
 export function parseDatasetInWorker(data, dataTypes, parsingOptions) {
-  try {
-    parsingWorker.terminate()
-  } catch (err) {}
-  parsingWorker = new Worker()
+  // TODO: Check lazy loading vs terminate on each time
+  if (!parsingWorker) {
+    parsingWorker = new Worker()
+  }
   let obj = Comlink.wrap(parsingWorker)
   let out = obj.parseDataset(data, dataTypes, parsingOptions)
   return out
@@ -21,10 +21,10 @@ export function mapDataInWorker(
   { data, mapping, visualOptions, dataTypes },
   customChart
 ) {
-  try {
-    mappingWorker.terminate()
-  } catch (err) {}
-  mappingWorker = new Worker()
+  // TODO: Check lazy loading vs terminate on each time
+  if (!mappingWorker) {
+    mappingWorker = new Worker()
+  }
   let obj = Comlink.wrap(mappingWorker)
   let out = obj.mapData(
     chartName,

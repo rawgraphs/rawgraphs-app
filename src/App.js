@@ -25,7 +25,10 @@ import CookieConsent from 'react-cookie-consent'
 // #TODO: i18n
 
 function App() {
-  const [charts, { uploadCustomChart, removeCustomChart }] = useCharts()
+  const [
+    charts,
+    { uploadCustomChart, removeCustomChart, loadCustomChartFromUrl },
+  ] = useCharts()
   const dataLoader = useDataLoader()
   const {
     userInput,
@@ -158,6 +161,8 @@ function App() {
     [hydrateFromSavedProject]
   )
 
+  const [chartImportUrl, setChartImportUrl] = useState('')
+
   return (
     <div className="App">
       <Header menuItems={HeaderItems} />
@@ -175,6 +180,16 @@ function App() {
                 e.target.value = ''
               }}
             />
+            <div>
+              <input
+                type="text"
+                value={chartImportUrl}
+                onChange={(e) => setChartImportUrl(e.target.value)}
+              />
+              <button onClick={() => loadCustomChartFromUrl(chartImportUrl)}>
+                IMPORT URL
+              </button>
+            </div>
             <ChartSelector
               onRemoveCustomChart={removeCustomChart}
               availableCharts={charts}

@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import * as Comlink from 'comlink'
 import { parseDataset, chart as rawChart } from '@rawgraphs/rawgraphs-core'
 import charts from '../charts'
@@ -17,7 +16,6 @@ const obj = {
     let chart
     if (customChart) {
       const chartsInPack = requireRawChartsFromUrlWebWorker(customChart.url)
-      console.log(chartsInPack)
       chart = chartsInPack.find((item) => item.metadata.name === chartName)
     } else {
       chart = charts.find((item) => item.metadata.name === chartName)

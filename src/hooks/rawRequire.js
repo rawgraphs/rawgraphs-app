@@ -3,6 +3,7 @@ import * as d3 from 'd3'
 import * as rawgraphsCore from '@rawgraphs/rawgraphs-core'
 
 const queue = []
+const cache = new Map()
 
 const DEPENDENCIES_ALIAS = {
   d3,
@@ -68,7 +69,10 @@ define.amd = {}
  * @param {string} url
  */
 export function requireFromUrl(url) {
-  return new Promise((resolve) => {
+  if (cache.get(url)) {
+    return Promise.resolve(cache.get(url))
+  }
+  return new Promise((resolve, reject) => {
     window.define = define
     const scriptTag = document.createElement('script')
     scriptTag.src = url
@@ -79,7 +83,21 @@ export function requireFromUrl(url) {
         // Pop last exports
         const finalExports = queue.pop()
         scriptTag.remove()
+        // NOTE: Cache only relevant exports ...
+        if (finalExports) {
+          cache.set(url, finalExports)
+        }
         resolve(finalExports)
+      },
+      {
+        once: true,
+      }
+    )
+    scriptTag.addEventListener(
+      'error',
+      () => {
+        scriptTag.remove()
+        reject(`Cannot import url ${url}`)
       },
       {
         once: true,
@@ -119,7 +137,15 @@ export function requireRawChartsFromUrlWebWorker(url) {
  * @param {string} url
  */
 export function requireFromUrlWebWorker(url) {
+  if (cache.get(url)) {
+    return cache.get(url)
+  }
   self.define = define
   self.importScripts(url)
-  return queue.pop()
+  const finalExports = queue.pop()
+  // NOTE: Cache only relevant exports ...
+  if (finalExports) {
+    cache.set(url, finalExports)
+  }
+  return finalExports
 }
