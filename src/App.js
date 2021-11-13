@@ -27,7 +27,12 @@ import CookieConsent from 'react-cookie-consent'
 function App() {
   const [
     charts,
-    { uploadCustomChart, removeCustomChart, loadCustomChartFromUrl },
+    {
+      uploadCustomCharts,
+      loadCustomChartsFromUrl,
+      loadCustomChartsFromNpm,
+      removeCustomChart,
+    },
   ] = useCharts()
   const dataLoader = useDataLoader()
   const {
@@ -161,7 +166,7 @@ function App() {
     [hydrateFromSavedProject]
   )
 
-  const [chartImportUrl, setChartImportUrl] = useState('')
+  const [chartImportStr, setChartImportStr] = useState('')
 
   return (
     <div className="App">
@@ -176,18 +181,21 @@ function App() {
               type="file"
               onChange={(e) => {
                 const file = e.target.files[0]
-                uploadCustomChart(file)
+                uploadCustomCharts(file)
                 e.target.value = ''
               }}
             />
             <div>
               <input
                 type="text"
-                value={chartImportUrl}
-                onChange={(e) => setChartImportUrl(e.target.value)}
+                value={chartImportStr}
+                onChange={(e) => setChartImportStr(e.target.value)}
               />
-              <button onClick={() => loadCustomChartFromUrl(chartImportUrl)}>
-                IMPORT URL
+              <button onClick={() => loadCustomChartsFromUrl(chartImportStr)}>
+                IMPORT FROM URL
+              </button>
+              <button onClick={() => loadCustomChartsFromNpm(chartImportStr)}>
+                IMPORT FROM NPM
               </button>
             </div>
             <ChartSelector

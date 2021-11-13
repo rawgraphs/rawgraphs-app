@@ -7,6 +7,8 @@ import { requireRawChartsFromUrl } from './rawRequire'
 
 const STORE_NS = 'rawCustomCharts'
 
+const NPM_CDN = 'https://cdn.jsdelivr.net/npm/'
+
 function getNextCustomCharts(prevCharts, newChartsToInject) {
   const newIds = newChartsToInject.map((c) => c.metadata.id)
   return prevCharts
@@ -99,12 +101,11 @@ export default function useCharts() {
     loadStoredCustomCharts().then(setCustomCharts)
   }, [])
 
-  async function loadCustomChartFromUrl(url) {
+  async function loadCustomChartsFromUrlAsSource(source, url) {
     let newChartsToInject = await requireRawChartsFromUrl(url)
     if (newChartsToInject.length === 0) {
       return
     }
-    const source = `url:${url}`
     newChartsToInject = newChartsToInject.map((chart) => ({
       ...chart,
       rawCustomChart: {
@@ -120,7 +121,18 @@ export default function useCharts() {
     await storeCustomCharts(nextCustomCharts)
   }
 
-  async function uploadCustomChart(file) {
+  async function loadCustomChartsFromUrl(url) {
+    const source = `url:${url}`
+    await loadCustomChartsFromUrlAsSource(source, url)
+  }
+
+  async function loadCustomChartsFromNpm(name) {
+    const source = `npm:${name}`
+    const url = NPM_CDN + name
+    await loadCustomChartsFromUrlAsSource(source, url)
+  }
+
+  async function uploadCustomCharts(file) {
     if (!file) {
       return
     }
@@ -149,7 +161,9 @@ export default function useCharts() {
   }
 
   async function removeCustomChart(chart) {
-    const nextCustomCharts = customCharts.filter((c) => c.metadata.id !== chart.metadata.id)
+    const nextCustomCharts = customCharts.filter(
+      (c) => c.metadata.id !== chart.metadata.id
+    )
     setCustomCharts(nextCustomCharts)
     await storeCustomCharts(nextCustomCharts)
   }
@@ -157,6 +171,11 @@ export default function useCharts() {
   const allCharts = useMemo(() => charts.concat(customCharts), [customCharts])
   return [
     allCharts,
-    { uploadCustomChart, removeCustomChart, loadCustomChartFromUrl },
+    {
+      uploadCustomCharts,
+      removeCustomChart,
+      loadCustomChartsFromUrl,
+      loadCustomChartsFromNpm,
+    },
   ]
 }
