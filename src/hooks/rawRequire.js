@@ -69,10 +69,7 @@ define.amd = {}
  *
  * @param {string} url
  */
-export function requireFromUrl(url) {
-  if (cache.get(url)) {
-    return Promise.resolve(cache.get(url))
-  }
+function requireFromUrl(url) {
   return new Promise((resolve, reject) => {
     window.define = define
     const scriptTag = document.createElement('script')
@@ -84,10 +81,6 @@ export function requireFromUrl(url) {
         // Pop last exports
         const finalExports = queue.pop()
         scriptTag.remove()
-        // NOTE: Cache only relevant exports ...
-        if (finalExports) {
-          cache.set(url, finalExports)
-        }
         resolve(finalExports)
       },
       {
@@ -118,35 +111,44 @@ function isRawChartLike(obj) {
 }
 
 export async function requireRawChartsFromUrl(url) {
+  if (cache.get(url)) {
+    return Promise.resolve(cache.get(url))
+  }
   const daExports = await requireFromUrl(url)
   if (!daExports) {
     return []
   }
-  return Object.values(daExports).filter(isRawChartLike)
+  const charts = Object.values(daExports).filter(isRawChartLike)
+  // NOTE: Cache only relevant exports ...
+  if (charts.length > 0) {
+    cache.set(url, charts)
+  }
+  return charts
 }
 
 export function requireRawChartsFromUrlWebWorker(url) {
+  if (cache.get(url)) {
+    return cache.get(url)
+  }
   const daExports = requireFromUrlWebWorker(url)
   if (!daExports) {
     return []
   }
-  return Object.values(daExports).filter(isRawChartLike)
+  const charts = Object.values(daExports).filter(isRawChartLike)
+  // NOTE: Cache only relevant exports ...
+  if (charts.length > 0) {
+    cache.set(url, charts)
+  }
+  return charts
 }
 
 /**
  *
  * @param {string} url
  */
-export function requireFromUrlWebWorker(url) {
-  if (cache.get(url)) {
-    return cache.get(url)
-  }
+function requireFromUrlWebWorker(url) {
   self.define = define
   self.importScripts(url)
   const finalExports = queue.pop()
-  // NOTE: Cache only relevant exports ...
-  if (finalExports) {
-    cache.set(url, finalExports)
-  }
   return finalExports
 }

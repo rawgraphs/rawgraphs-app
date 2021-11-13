@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import sha1 from 'js-sha1'
 import difference from 'lodash/difference'
 import uniq from 'lodash/uniq'
@@ -69,6 +69,12 @@ async function loadStoredCustomCharts() {
           url: source.replace('url:', ''),
         })
       }
+      if (source.indexOf('npm:') === 0) {
+        return Promise.resolve({
+          source,
+          url: NPM_CDN + source.replace('npm:', ''),
+        })
+      }
       return Promise.resolve(null)
     })
   ).then((packs) => packs.filter(Boolean))
@@ -101,64 +107,76 @@ export default function useCharts() {
     loadStoredCustomCharts().then(setCustomCharts)
   }, [])
 
-  async function loadCustomChartsFromUrlAsSource(source, url) {
-    let newChartsToInject = await requireRawChartsFromUrl(url)
-    if (newChartsToInject.length === 0) {
-      return
-    }
-    newChartsToInject = newChartsToInject.map((chart) => ({
-      ...chart,
-      rawCustomChart: {
-        source,
-        url,
-      },
-    }))
-    const nextCustomCharts = getNextCustomCharts(
-      customCharts,
-      newChartsToInject
-    )
-    setCustomCharts(nextCustomCharts)
-    await storeCustomCharts(nextCustomCharts)
-  }
+  const loadCustomChartsFromUrlAsSource = useCallback(
+    async (source, url) => {
+      let newChartsToInject = await requireRawChartsFromUrl(url)
+      if (newChartsToInject.length === 0) {
+        return
+      }
+      newChartsToInject = newChartsToInject.map((chart) => ({
+        ...chart,
+        rawCustomChart: {
+          source,
+          url,
+        },
+      }))
+      const nextCustomCharts = getNextCustomCharts(
+        customCharts,
+        newChartsToInject
+      )
+      setCustomCharts(nextCustomCharts)
+      await storeCustomCharts(nextCustomCharts)
+    },
+    [customCharts]
+  )
 
-  async function loadCustomChartsFromUrl(url) {
-    const source = `url:${url}`
-    await loadCustomChartsFromUrlAsSource(source, url)
-  }
+  const loadCustomChartsFromUrl = useCallback(
+    async (url) => {
+      const source = `url:${url}`
+      await loadCustomChartsFromUrlAsSource(source, url)
+    },
+    [loadCustomChartsFromUrlAsSource]
+  )
 
-  async function loadCustomChartsFromNpm(name) {
-    const source = `npm:${name}`
-    const url = NPM_CDN + name
-    await loadCustomChartsFromUrlAsSource(source, url)
-  }
+  const loadCustomChartsFromNpm = useCallback(
+    async (name) => {
+      const source = `npm:${name}`
+      const url = NPM_CDN + name
+      await loadCustomChartsFromUrlAsSource(source, url)
+    },
+    [loadCustomChartsFromUrlAsSource]
+  )
 
-  async function uploadCustomCharts(file) {
-    if (!file) {
-      return
-    }
-    const url = URL.createObjectURL(file)
-    let newChartsToInject = await requireRawChartsFromUrl(url)
-    if (newChartsToInject.length === 0) {
-      return
-    }
-    const fileSha1 = await makeFileSha1(file)
-    const source = `file:${fileSha1}`
-    newChartsToInject = newChartsToInject.map((chart) => ({
-      ...chart,
-      rawCustomChart: {
-        source,
-        url,
-      },
-    }))
-    const nextCustomCharts = getNextCustomCharts(
-      customCharts,
-      newChartsToInject
-    )
-    setCustomCharts(nextCustomCharts)
-    const cache = await window.caches.open(STORE_NS)
-    await cache.put(fileSha1, new Response(file))
-    await storeCustomCharts(nextCustomCharts)
-  }
+  const uploadCustomCharts = useCallback(
+    async (file) => {
+      if (!file) {
+        return
+      }
+      const url = URL.createObjectURL(file)
+      let newChartsToInject = await requireRawChartsFromUrl(url)
+      if (newChartsToInject.length === 0) {
+        return
+      }
+      const fileSha1 = await makeFileSha1(file)
+      const source = `file:${fileSha1}`
+      newChartsToInject = newChartsToInject.map((chart) => ({
+        ...chart,
+        rawCustomChart: {
+          source,
+          url,
+        },
+      }))
+      const nextCustomCharts = getNextCustomCharts(
+        customCharts,
+        newChartsToInject
+      )
+      setCustomCharts(nextCustomCharts)
+      const cache = await window.caches.open(STORE_NS)
+      await cache.put(fileSha1, new Response(file))
+      await storeCustomCharts(nextCustomCharts)
+    },
+    [customCharts]
+  )
 
   async function removeCustomChart(chart) {
     const nextCustomCharts = customCharts.filter(

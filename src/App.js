@@ -21,6 +21,7 @@ import useCharts from './hooks/useCharts'
 import useDataLoader from './hooks/useDataLoader'
 import isPlainObject from 'lodash/isPlainObject'
 import CookieConsent from 'react-cookie-consent'
+import CustomChartLoader from './components/CustomChartLoader'
 
 // #TODO: i18n
 
@@ -166,7 +167,6 @@ function App() {
     [hydrateFromSavedProject]
   )
 
-  const [chartImportStr, setChartImportStr] = useState('')
 
   return (
     <div className="App">
@@ -177,27 +177,11 @@ function App() {
         </Section>
         {data && (
           <Section title="2. Choose a chart">
-            <input
-              type="file"
-              onChange={(e) => {
-                const file = e.target.files[0]
-                uploadCustomCharts(file)
-                e.target.value = ''
-              }}
+            <CustomChartLoader
+              loadCustomChartsFromNpm={loadCustomChartsFromNpm}
+              loadCustomChartsFromUrl={loadCustomChartsFromUrl}
+              uploadCustomCharts={uploadCustomCharts}
             />
-            <div>
-              <input
-                type="text"
-                value={chartImportStr}
-                onChange={(e) => setChartImportStr(e.target.value)}
-              />
-              <button onClick={() => loadCustomChartsFromUrl(chartImportStr)}>
-                IMPORT FROM URL
-              </button>
-              <button onClick={() => loadCustomChartsFromNpm(chartImportStr)}>
-                IMPORT FROM NPM
-              </button>
-            </div>
             <ChartSelector
               onRemoveCustomChart={removeCustomChart}
               availableCharts={charts}
