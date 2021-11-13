@@ -1,9 +1,10 @@
 /* eslint-disable no-restricted-globals */
 import * as d3 from 'd3'
 import * as rawgraphsCore from '@rawgraphs/rawgraphs-core'
+import LRU from 'lru-cache'
 
 const queue = []
-const cache = new Map()
+const cache = new LRU(50)
 
 const DEPENDENCIES_ALIAS = {
   d3,
