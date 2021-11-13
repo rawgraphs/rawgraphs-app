@@ -178,13 +178,16 @@ export default function useCharts() {
     [customCharts]
   )
 
-  async function removeCustomChart(chart) {
-    const nextCustomCharts = customCharts.filter(
-      (c) => c.metadata.id !== chart.metadata.id
-    )
-    setCustomCharts(nextCustomCharts)
-    await storeCustomCharts(nextCustomCharts)
-  }
+  const removeCustomChart = useCallback(
+    async (chart) => {
+      const nextCustomCharts = customCharts.filter(
+        (c) => c.metadata.id !== chart.metadata.id
+      )
+      setCustomCharts(nextCustomCharts)
+      await storeCustomCharts(nextCustomCharts)
+    },
+    [customCharts]
+  )
 
   const allCharts = useMemo(() => charts.concat(customCharts), [customCharts])
   return [
