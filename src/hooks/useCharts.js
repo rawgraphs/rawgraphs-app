@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import sha1 from 'js-sha1'
+import { sha3_512 } from 'js-sha3'
 import difference from 'lodash/difference'
 import uniq from 'lodash/uniq'
 import charts from '../charts'
@@ -16,11 +16,11 @@ function getNextCustomCharts(prevCharts, newChartsToInject) {
     .concat(newChartsToInject)
 }
 
-function makeFileSha1(file) {
+function makeFileHash(file) {
   return new Promise((resolve) => {
     const reader = new FileReader()
     reader.onload = function (event) {
-      resolve(sha1(event.target.result))
+      resolve(sha3_512(event.target.result))
     }
     reader.readAsArrayBuffer(file)
   })
@@ -33,7 +33,7 @@ async function storeCustomCharts(nextCustomCharts) {
   }))
   localStorage.setItem(STORE_NS, JSON.stringify(toStoreCustomCharts))
   const cache = await window.caches.open(STORE_NS)
-  const nextShas = toStoreCustomCharts
+  const nextHashses = toStoreCustomCharts
     .map((chart) =>
       chart.source.indexOf('file:') === 0
         ? chart.source.replace('file:', '')
@@ -41,9 +41,9 @@ async function storeCustomCharts(nextCustomCharts) {
     )
     .filter(Boolean)
   const cacheKeys = await cache.keys()
-  const currentShas = cacheKeys.map((k) => k.url.split('/').slice(-1)[0])
-  const toRemoveShas = difference(currentShas, nextShas)
-  await Promise.all(toRemoveShas.map((rmSha) => cache.delete('/' + rmSha)))
+  const currentHashses = cacheKeys.map((k) => k.url.split('/').slice(-1)[0])
+  const toRemoveHashes = difference(currentHashses, nextHashses)
+  await Promise.all(toRemoveHashes.map((hash) => cache.delete('/' + hash)))
 }
 
 async function loadStoredCustomCharts() {
@@ -157,8 +157,8 @@ export default function useCharts() {
       if (newChartsToInject.length === 0) {
         return
       }
-      const fileSha1 = await makeFileSha1(file)
-      const source = `file:${fileSha1}`
+      const fileHash = await makeFileHash(file)
+      const source = `file:${fileHash}`
       newChartsToInject = newChartsToInject.map((chart) => ({
         ...chart,
         rawCustomChart: {
@@ -172,7 +172,7 @@ export default function useCharts() {
       )
       setCustomCharts(nextCustomCharts)
       const cache = await window.caches.open(STORE_NS)
-      await cache.put(fileSha1, new Response(file))
+      await cache.put(fileHash, new Response(file))
       await storeCustomCharts(nextCustomCharts)
     },
     [customCharts]
