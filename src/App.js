@@ -25,7 +25,7 @@ import CookieConsent from 'react-cookie-consent'
 // #TODO: i18n
 
 function App() {
-  const [charts, { uploadCustomChart }] = useCharts()
+  const [charts, { uploadCustomChart, removeCustomChart }] = useCharts()
   const dataLoader = useDataLoader()
   const {
     userInput,
@@ -176,6 +176,7 @@ function App() {
               }}
             />
             <ChartSelector
+              onRemoveCustomChart={removeCustomChart}
               availableCharts={charts}
               currentChart={currentChart}
               setCurrentChart={handleChartChange}

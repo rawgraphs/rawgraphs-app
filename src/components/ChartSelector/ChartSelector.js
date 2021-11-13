@@ -11,7 +11,12 @@ function filterCharts(charts, filter) {
     : charts.filter((d) => d.metadata.categories.indexOf(filter) !== -1)
 }
 
-function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
+function ChartSelector({
+  availableCharts,
+  currentChart,
+  setCurrentChart,
+  onRemoveCustomChart,
+}) {
   const [filter, setFilter] = useState('All charts')
 
   const charts = useMemo(() => {
@@ -104,9 +109,10 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
                     onClick={() => {
                       setCurrentChart(d)
                     }}
-                    className={`flex-row h-100 cursor-pointer ${
-                      d === currentChart ? 'active' : ''
-                    }`}
+                    className={classNames('flex-row h-100 cursor-pointer', {
+                      active: d === currentChart ? 'active' : '',
+                      [styles.customChart]: !!d.rawCustomChart,
+                    })}
                   >
                     <div
                       className={`h-100 w-25 ${styles.thumbnail}`}
@@ -117,6 +123,17 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
                         <h2 className="m-0" style={{ whiteSpace: 'nowrap' }}>
                           {d.metadata.name}
                         </h2>
+                        {d.rawCustomChart && (
+                          <div>
+                            <button
+                              onClick={() => {
+                                onRemoveCustomChart(d)
+                              }}
+                            >
+                              X
+                            </button>
+                          </div>
+                        )}
                       </Card.Title>
                       <Card.Subtitle className="m-0">
                         <h4 className="m-0">
