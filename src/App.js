@@ -33,8 +33,11 @@ function App() {
       loadCustomChartsFromUrl,
       loadCustomChartsFromNpm,
       removeCustomChart,
+      exportCustomChart,
+      importCustomChartFromProject,
     },
   ] = useCharts()
+
   const dataLoader = useDataLoader()
   const {
     userInput,
@@ -107,7 +110,8 @@ function App() {
     [clearLocalMapping]
   )
 
-  const exportProject = useCallback(() => {
+  const exportProject = useCallback(async () => {
+    const customChart = await exportCustomChart(currentChart)
     return serializeProject({
       userInput,
       userData,
@@ -125,6 +129,7 @@ function App() {
       currentChart,
       mapping,
       visualOptions,
+      customChart,
     })
   }, [
     currentChart,
@@ -143,13 +148,22 @@ function App() {
     visualOptions,
     unstackedColumns,
     unstackedData,
+    exportCustomChart,
   ])
 
   // project import
   const importProject = useCallback(
-    (project) => {
+    async (project) => {
+      let nextCurrentChart
+      if (project.currentChart.rawCustomChart) {
+        nextCurrentChart = await importCustomChartFromProject(
+          project.currentChart
+        )
+      } else {
+        nextCurrentChart = project.currentChart
+      }
       hydrateFromSavedProject(project)
-      setCurrentChart(project.currentChart)
+      setCurrentChart(nextCurrentChart)
       setMapping(project.mapping)
       // adding "annotations" for color scale:
       // we annotate the incoming options values (complex ones such as color scales)
@@ -164,9 +178,8 @@ function App() {
       })
       setVisualOptions(project.visualOptions)
     },
-    [hydrateFromSavedProject]
+    [hydrateFromSavedProject, importCustomChartFromProject]
   )
-
 
   return (
     <div className="App">

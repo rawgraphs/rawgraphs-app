@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { sha3_512 } from 'js-sha3'
 import difference from 'lodash/difference'
 import uniq from 'lodash/uniq'
+import find from 'lodash/find'
 import charts from '../charts'
 import { requireRawChartsFromUrl } from './rawRequire'
 
@@ -100,6 +101,30 @@ async function loadStoredCustomCharts() {
   return storedCustomCharts.map((c) => loadedChartsById[c.id]).filter(Boolean)
 }
 
+async function exportCustomChart(chart) {
+  if (!chart.rawCustomChart) {
+    // Not a custom chart
+    return null
+  }
+  const { source } = chart.rawCustomChart
+  if (source.indexOf('file:') === 0) {
+    const cache = await window.caches.open(STORE_NS)
+    const hash = source.replace('file:', '')
+    const result = await cache.match(`/${hash}`)
+    if (!result) {
+      throw new Error(`File not found: ${hash}`)
+    }
+    const content = await result.text()
+    return {
+      source,
+      content,
+    }
+  }
+  return {
+    source,
+  }
+}
+
 export default function useCharts() {
   const [customCharts, setCustomCharts] = useState([])
 
@@ -178,6 +203,52 @@ export default function useCharts() {
     [customCharts]
   )
 
+  const importCustomChartFromProject = useCallback(
+    async (projectChart) => {
+      const { source, content } = projectChart.rawCustomChart
+      let url, file, fileHash
+      if (source.indexOf('url:') === 0) {
+        url = source.replace('url:', '')
+      } else if (source.indexOf('npm:') === 0) {
+        url = NPM_CDN + source.replace('npm:', '')
+      } else if (source.indexOf('file:') === 0) {
+        fileHash = source.replace('file:', '')
+        file = new File([content], `${fileHash}.js`, {
+          type: 'application/json',
+        })
+        url = URL.createObjectURL(file)
+      } else {
+        throw new Error(`Try to import invalid source ${source}`)
+      }
+      const newChartsToInject = await requireRawChartsFromUrl(url)
+      let newChart = find(
+        newChartsToInject,
+        (c) => c.metadata.id === projectChart.metadata.id
+      )
+      if (!newChart) {
+        throw new Error(
+          `Can't find chart ${projectChart.metadata.id} from ${source}`
+        )
+      }
+      newChart = {
+        ...newChart,
+        rawCustomChart: {
+          source,
+          url,
+        },
+      }
+      const nextCustomCharts = getNextCustomCharts(customCharts, [newChart])
+      setCustomCharts(nextCustomCharts)
+      if (file) {
+        const cache = await window.caches.open(STORE_NS)
+        await cache.put(fileHash, new Response(file))
+      }
+      await storeCustomCharts(nextCustomCharts)
+      return newChart
+    },
+    [customCharts]
+  )
+
   const removeCustomChart = useCallback(
     async (chart) => {
       const nextCustomCharts = customCharts.filter(
@@ -197,6 +268,8 @@ export default function useCharts() {
       removeCustomChart,
       loadCustomChartsFromUrl,
       loadCustomChartsFromNpm,
+      exportCustomChart,
+      importCustomChartFromProject,
     },
   ]
 }
