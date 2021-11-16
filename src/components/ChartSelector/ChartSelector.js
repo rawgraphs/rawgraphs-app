@@ -4,6 +4,7 @@ import { Row, Col, Card, Dropdown } from 'react-bootstrap'
 import { BsLink } from 'react-icons/bs'
 import uniq from 'lodash/uniq'
 import styles from './ChartSelector.module.scss'
+import { BsFillTrashFill } from 'react-icons/bs'
 
 function filterCharts(charts, filter) {
   return filter === 'All charts'
@@ -126,11 +127,13 @@ function ChartSelector({
                         {d.rawCustomChart && (
                           <div>
                             <button
+                              style={{ position: 'absolute', top: -8, right: -8 }}
+                              className="btn btn-sm btn-primary"
                               onClick={() => {
                                 onRemoveCustomChart(d)
                               }}
                             >
-                              X
+                              <BsFillTrashFill />
                             </button>
                             <small
                               style={{
@@ -138,7 +141,7 @@ function ChartSelector({
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
                                 display: 'block',
-                                whiteSpace: 'nowrap'
+                                whiteSpace: 'nowrap',
                               }}
                             >
                               {d.rawCustomChart.source}

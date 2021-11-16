@@ -95,9 +95,7 @@ function App() {
     lasImportProjectRef.current = importProject
   })
   useEffect(() => {
-    const projectUrlStr = new URLSearchParams(window.location.search).get(
-      '__projectUrl'
-    )
+    const projectUrlStr = new URLSearchParams(window.location.search).get('url')
     let projectUrl
     try {
       projectUrl = new URL(projectUrlStr)
@@ -225,7 +223,7 @@ function App() {
           if (err.isAbortByUser) {
             if (fromUrl) {
               // NOTE: clean the url when the user abort loading custom js
-              window.history.replaceState(null, null, '/');
+              window.history.replaceState(null, null, '/')
             }
             return
           }
