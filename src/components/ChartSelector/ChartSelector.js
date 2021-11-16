@@ -132,6 +132,17 @@ function ChartSelector({
                             >
                               X
                             </button>
+                            <small
+                              style={{
+                                maxWidth: '100%',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                display: 'block',
+                                whiteSpace: 'nowrap'
+                              }}
+                            >
+                              {d.rawCustomChart.source}
+                            </small>
                           </div>
                         )}
                       </Card.Title>

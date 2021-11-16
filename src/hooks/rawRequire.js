@@ -3,6 +3,14 @@ import * as d3 from 'd3'
 import * as rawgraphsCore from '@rawgraphs/rawgraphs-core'
 import LRU from 'lru-cache'
 
+/**
+ * NOTE: In a perfect we got type definition from core
+ *
+ * @typedef {{
+ *  metadata: { id: string }
+ * }} ChartContract
+ */
+
 const queue = []
 const cache = new LRU(50)
 
@@ -110,6 +118,10 @@ function isRawChartLike(obj) {
   return false
 }
 
+/**
+ * @param {string} url
+ * @returns {Promise<ChartContract[]>}
+ */
 export async function requireRawChartsFromUrl(url) {
   if (cache.get(url)) {
     return Promise.resolve(cache.get(url))
@@ -126,6 +138,10 @@ export async function requireRawChartsFromUrl(url) {
   return charts
 }
 
+/**
+ * @param {string} url
+ * @returns {ChartContract[]}
+ */
 export function requireRawChartsFromUrlWebWorker(url) {
   if (cache.get(url)) {
     return cache.get(url)

@@ -1,15 +1,19 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { sha3_512 } from 'js-sha3'
 import difference from 'lodash/difference'
 import uniq from 'lodash/uniq'
 import find from 'lodash/find'
-import charts from '../charts'
 import { requireRawChartsFromUrl } from './rawRequire'
+import './chart-types'
 
 const STORE_NS = 'rawCustomCharts'
 
 const NPM_CDN = 'https://cdn.jsdelivr.net/npm/'
 
+/**
+ * @param {CustomChartContract[]} prevCharts
+ * @param {CustomChartContract[]} newChartsToInject
+ */
 function getNextCustomCharts(prevCharts, newChartsToInject) {
   const newIds = newChartsToInject.map((c) => c.metadata.id)
   return prevCharts
@@ -17,16 +21,9 @@ function getNextCustomCharts(prevCharts, newChartsToInject) {
     .concat(newChartsToInject)
 }
 
-function makeFileHash(file) {
-  return new Promise((resolve) => {
-    const reader = new FileReader()
-    reader.onload = function (event) {
-      resolve(sha3_512(event.target.result))
-    }
-    reader.readAsArrayBuffer(file)
-  })
-}
-
+/**
+ * @param {CustomChartContract[]} nextCustomCharts
+ */
 async function storeCustomCharts(nextCustomCharts) {
   const toStoreCustomCharts = nextCustomCharts.map((chart) => ({
     id: chart.metadata.id,
@@ -47,37 +44,62 @@ async function storeCustomCharts(nextCustomCharts) {
   await Promise.all(toRemoveHashes.map((hash) => cache.delete('/' + hash)))
 }
 
+/**
+ * @param {File} file
+ * @returns {Promise<string>}
+ */
+function makeFileHash(file) {
+  return new Promise((resolve) => {
+    const reader = new FileReader()
+    reader.onload = function (event) {
+      resolve(sha3_512(event.target.result))
+    }
+    reader.readAsArrayBuffer(file)
+  })
+}
+
 async function loadStoredCustomCharts() {
+  /**
+   * @type {StoredCustomChart[]}
+   */
   const storedCustomCharts = JSON.parse(localStorage.getItem(STORE_NS) ?? '[]')
   const cache = await window.caches.open(STORE_NS)
 
+  // Calculate an unique list of sources to load
+  // It also read caches storage and create a browser url for file sources
   const packsToLoad = await Promise.all(
-    uniq(storedCustomCharts.map((chart) => chart.source)).map((source) => {
-      if (source.indexOf('file:') === 0) {
-        return cache.match('/' + source.replace('file:', '')).then((m) => {
-          if (!m) {
-            return Promise.resolve(null)
-          }
-          return m.blob().then((b) => ({
+    uniq(storedCustomCharts.map((chart) => chart.source)).map(
+      /**
+       * @param {string} source
+       * @returns {Promise<{ source: string, url: string } | null>}
+       */
+      (source) => {
+        if (source.indexOf('file:') === 0) {
+          return cache.match('/' + source.replace('file:', '')).then((m) => {
+            if (!m) {
+              return Promise.resolve(null)
+            }
+            return m.blob().then((b) => ({
+              source,
+              url: URL.createObjectURL(b),
+            }))
+          })
+        }
+        if (source.indexOf('url:') === 0) {
+          return Promise.resolve({
             source,
-            url: URL.createObjectURL(b),
-          }))
-        })
+            url: source.replace('url:', ''),
+          })
+        }
+        if (source.indexOf('npm:') === 0) {
+          return Promise.resolve({
+            source,
+            url: NPM_CDN + source.replace('npm:', ''),
+          })
+        }
+        return Promise.resolve(null)
       }
-      if (source.indexOf('url:') === 0) {
-        return Promise.resolve({
-          source,
-          url: source.replace('url:', ''),
-        })
-      }
-      if (source.indexOf('npm:') === 0) {
-        return Promise.resolve({
-          source,
-          url: NPM_CDN + source.replace('npm:', ''),
-        })
-      }
-      return Promise.resolve(null)
-    })
+    )
   ).then((packs) => packs.filter(Boolean))
 
   const loadedChartsById = await Promise.all(
@@ -89,14 +111,18 @@ async function loadStoredCustomCharts() {
         }))
       )
     )
-  ).then((nChars) =>
-    nChars.reduce((o, charts) => {
+  ).then((nChars) => {
+    /**
+     * @type {Record<string, CustomChartContract>}
+     */
+    const by = {}
+    return nChars.reduce((o, charts) => {
       charts.forEach((c) => {
         o[c.metadata.id] = c
       })
       return o
-    }, {})
-  )
+    }, by)
+  })
 
   return storedCustomCharts.map((c) => loadedChartsById[c.id]).filter(Boolean)
 }
@@ -125,9 +151,29 @@ async function exportCustomChart(chart) {
   }
 }
 
-export default function useCharts() {
+/**
+ * This hook handle the custom user charts.
+ * It's business is to load custom charts from some `source`:
+ *  - `file:hash` File source we hash the file content to identify "which" file
+ *  - `url:cdn_url` An url that point to a js file bundled as UMD | AMD
+ *  - `npm:name` A valid package name on npm registry bundled also as UMD | AMD
+ *
+ * It loads the current custom charts on mount from user storage and sync
+ * them when you call its methods.
+ *
+ * @returns {[CustomChartContract[], {
+ *  uploadCustomCharts: (file?: File) => Promise<CustomChartContract[]>
+ *  loadCustomChartsFromUrl: (url: string) => Promise<CustomChartContract[]>
+ *  loadCustomChartsFromNpm: (name: string) => Promise<CustomChartContract[]>
+ *  importCustomChartFromProject: (projectChart: CustomChartContract) => Promise<CustomChartContract>
+ *  removeCustomChart: (chart: CustomChartContract) => Promise<CustomChartContract[]>
+ *  exportCustomChart: (chart: CustomChartContract) => Promise<{ source: string, content: string | null }>
+ * }]}
+ */
+export default function useCustomCharts() {
   const [customCharts, setCustomCharts] = useState([])
 
+  // Loads custom charts saved in user storage
   useEffect(() => {
     loadStoredCustomCharts().then(setCustomCharts)
   }, [])
@@ -151,6 +197,7 @@ export default function useCharts() {
       )
       setCustomCharts(nextCustomCharts)
       await storeCustomCharts(nextCustomCharts)
+      return nextCustomCharts
     },
     [customCharts]
   )
@@ -158,7 +205,7 @@ export default function useCharts() {
   const loadCustomChartsFromUrl = useCallback(
     async (url) => {
       const source = `url:${url}`
-      await loadCustomChartsFromUrlAsSource(source, url)
+      return loadCustomChartsFromUrlAsSource(source, url)
     },
     [loadCustomChartsFromUrlAsSource]
   )
@@ -167,7 +214,7 @@ export default function useCharts() {
     async (name) => {
       const source = `npm:${name}`
       const url = NPM_CDN + name
-      await loadCustomChartsFromUrlAsSource(source, url)
+      return loadCustomChartsFromUrlAsSource(source, url)
     },
     [loadCustomChartsFromUrlAsSource]
   )
@@ -175,7 +222,7 @@ export default function useCharts() {
   const uploadCustomCharts = useCallback(
     async (file) => {
       if (!file) {
-        return
+        return []
       }
       const url = URL.createObjectURL(file)
       let newChartsToInject = await requireRawChartsFromUrl(url)
@@ -199,6 +246,7 @@ export default function useCharts() {
       const cache = await window.caches.open(STORE_NS)
       await cache.put(fileHash, new Response(file))
       await storeCustomCharts(nextCustomCharts)
+      return nextCustomCharts
     },
     [customCharts]
   )
@@ -256,13 +304,13 @@ export default function useCharts() {
       )
       setCustomCharts(nextCustomCharts)
       await storeCustomCharts(nextCustomCharts)
+      return nextCustomCharts
     },
     [customCharts]
   )
 
-  const allCharts = useMemo(() => charts.concat(customCharts), [customCharts])
   return [
-    allCharts,
+    customCharts,
     {
       uploadCustomCharts,
       removeCustomChart,

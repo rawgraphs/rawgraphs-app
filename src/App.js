@@ -2,8 +2,8 @@ import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react'
 import {
   getOptionsConfig,
   getDefaultOptionsValues,
+  deserializeProject,
 } from '@rawgraphs/rawgraphs-core'
-
 import HeaderItems from './HeaderItems'
 import Header from './components/Header'
 import Section from './components/Section'
@@ -15,28 +15,35 @@ import DataMapping from './components/DataMapping'
 import ChartPreviewWithOptions from './components/ChartPreviewWIthOptions'
 import Exporter from './components/Exporter'
 import get from 'lodash/get'
+import find from 'lodash/find'
 import usePrevious from './hooks/usePrevious'
 import { serializeProject } from '@rawgraphs/rawgraphs-core'
-import useCharts from './hooks/useCharts'
+import baseCharts from './charts'
+import useSafeCustomCharts from './hooks/useSafeCustomCharts'
 import useDataLoader from './hooks/useDataLoader'
 import isPlainObject from 'lodash/isPlainObject'
 import CookieConsent from 'react-cookie-consent'
 import CustomChartLoader from './components/CustomChartLoader'
+import CustomChartWarnModal from './components/CustomChartWarnModal'
 
 // #TODO: i18n
 
 function App() {
   const [
-    charts,
+    customCharts,
     {
+      toConfirmCustomChart,
+      confirmCustomChartLoad,
+      abortCustomChartLoad,
       uploadCustomCharts,
       loadCustomChartsFromUrl,
       loadCustomChartsFromNpm,
+      importCustomChartFromProject,
       removeCustomChart,
       exportCustomChart,
-      importCustomChartFromProject,
     },
-  ] = useCharts()
+  ] = useSafeCustomCharts()
+  const charts = useMemo(() => baseCharts.concat(customCharts), [customCharts])
 
   const dataLoader = useDataLoader()
   const {
@@ -81,6 +88,39 @@ function App() {
     }
   }, [])
 
+  // NOTE: When we run the import we want to use the "last"
+  // version of importProject callback
+  const lasImportProjectRef = useRef()
+  useEffect(() => {
+    lasImportProjectRef.current = importProject
+  })
+  useEffect(() => {
+    const projectUrlStr = new URLSearchParams(window.location.search).get(
+      '__projectUrl'
+    )
+    let projectUrl
+    try {
+      projectUrl = new URL(projectUrlStr)
+    } catch (e) {
+      // BAD URL
+      return
+    }
+    fetch(projectUrl)
+      .then((r) => (r.ok ? r.text() : Promise.reject(r)))
+      .then(
+        (projectStr) => {
+          const project = deserializeProject(projectStr, baseCharts)
+          const lastImportProject = lasImportProjectRef.current
+          if (lastImportProject) {
+            lastImportProject(project, true)
+          }
+        },
+        (err) => {
+          console.log(`Can't load ${projectUrl}`, err)
+        }
+      )
+  }, [])
+
   //resetting mapping when column names changes (ex: separator change in parsing)
   useEffect(() => {
     if (prevColumnNames) {
@@ -97,6 +137,27 @@ function App() {
       }
     }
   }, [columnNames, prevColumnNames, clearLocalMapping])
+
+  // update current chart when the related custom charts change under the hood
+  // if the related custom chart is removed set the first chart
+  useEffect(() => {
+    if (currentChart.rawCustomChart) {
+      const currentCustom = find(
+        customCharts,
+        (c) => c.metadata.id === currentChart.metadata.id
+      )
+      if (!currentCustom) {
+        setCurrentChart(baseCharts[0])
+        return
+      }
+      if (
+        currentCustom.rawCustomChart.source !==
+        currentChart.rawCustomChart.source
+      ) {
+        setCurrentChart(currentCustom)
+      }
+    }
+  }, [customCharts, currentChart])
 
   const handleChartChange = useCallback(
     (nextChart) => {
@@ -153,12 +214,23 @@ function App() {
 
   // project import
   const importProject = useCallback(
-    async (project) => {
+    async (project, fromUrl) => {
       let nextCurrentChart
       if (project.currentChart.rawCustomChart) {
-        nextCurrentChart = await importCustomChartFromProject(
-          project.currentChart
-        )
+        try {
+          nextCurrentChart = await importCustomChartFromProject(
+            project.currentChart
+          )
+        } catch (err) {
+          if (err.isAbortByUser) {
+            if (fromUrl) {
+              // NOTE: clean the url when the user abort loading custom js
+              window.history.replaceState(null, null, '/');
+            }
+            return
+          }
+          throw err
+        }
       } else {
         nextCurrentChart = project.currentChart
       }
@@ -184,6 +256,11 @@ function App() {
   return (
     <div className="App">
       <Header menuItems={HeaderItems} />
+      <CustomChartWarnModal
+        toConfirmCustomChart={toConfirmCustomChart}
+        confirmCustomChartLoad={confirmCustomChartLoad}
+        abortCustomChartLoad={abortCustomChartLoad}
+      />
       <div className="app-sections">
         <Section title={`1. Load your data`} loading={loading}>
           <DataLoader {...dataLoader} hydrateFromProject={importProject} />
