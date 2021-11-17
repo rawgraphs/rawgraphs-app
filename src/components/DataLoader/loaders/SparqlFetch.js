@@ -118,7 +118,7 @@ export default function SparqlFetch({
   return (
     <>
       <div className={classNames(S['base-iri-input-here'])}>
-        <span>Write your base IRI here</span>
+        <span>Write your SPARQL Endpoint here</span>
       </div>
       <input
         className={classNames('w-100', S['url-input'])}
