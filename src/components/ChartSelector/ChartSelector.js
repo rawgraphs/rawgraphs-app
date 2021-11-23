@@ -3,8 +3,9 @@ import classNames from 'classnames'
 import { Row, Col, Card, Dropdown } from 'react-bootstrap'
 import { BsLink } from 'react-icons/bs'
 import uniq from 'lodash/uniq'
+import capitalize from 'lodash/capitalize'
 import styles from './ChartSelector.module.scss'
-import { useTranslation } from 'react-i18next'
+import { useLazyTranslation } from '../../hooks/useLazyTranslation'
 
 function filterCharts(charts, filter) {
   return filter === 'All charts'
@@ -29,7 +30,7 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
     },
     [availableCharts, currentChart, setCurrentChart]
   )
-  const { t } = useTranslation()
+  const lazyt = useLazyTranslation()
 
   return (
     <>
@@ -38,7 +39,7 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
           Show
           <Dropdown className="d-inline-block ml-2 raw-dropdown">
             <Dropdown.Toggle variant="white" className="pr-5">
-              {filter.charAt(0).toUpperCase() + filter.slice(1)}
+              {capitalize(lazyt(filter))}
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item
@@ -52,7 +53,7 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
               ).map((d) => {
                 return (
                   <Dropdown.Item key={d} onClick={() => handleFilterChange(d)}>
-                    {d.charAt(0).toUpperCase() + d.slice(1)}
+                    {capitalize(lazyt(d))}
                   </Dropdown.Item>
                 )
               })}
@@ -73,10 +74,8 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
                   <h4 className="mb-2">{currentChart.metadata.category}</h4>
                 </Card.Subtitle>
                 <Card.Text>
-                  {t(`${currentChart.metadata.id.replace("rawgraphs.", "")}.metadata.description`)}
-                  {/* {t(`${currentChart.id}.description`)} */}
-                  {/* {currentChart.metadata.description} */}
-                  </Card.Text>
+                  {lazyt(currentChart.metadata.description)}
+                </Card.Text>
                 <Card.Link
                   className={classNames({
                     [styles.disabled]: !currentChart.metadata.code,
@@ -126,11 +125,11 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
                       </Card.Title>
                       <Card.Subtitle className="m-0">
                         <h4 className="m-0">
-                          {d.metadata.categories
-                            .join(', ')
-                            .charAt(0)
-                            .toUpperCase() +
-                            d.metadata.categories.join(', ').slice(1)}
+                          {capitalize(
+                            d.metadata.categories
+                              .map((c) => lazyt(c))
+                              .join(', ')
+                          )}
                         </h4>
                       </Card.Subtitle>
                     </Card.Body>

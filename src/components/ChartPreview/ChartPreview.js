@@ -3,6 +3,7 @@ import { chart as rawChart } from '@rawgraphs/rawgraphs-core'
 import useDebounce from '../../hooks/useDebounce'
 import WarningMessage from '../WarningMessage'
 import { onChartRendered } from '../../gaEvents'
+import LazyTrans from '../LazyTrans'
 
 const ChartPreview = ({
   chart,
@@ -40,7 +41,11 @@ const ChartPreview = ({
         <span>
           Required chart variables: you need to map{' '}
           {requiredVariables
-            .map((d, i) => <span key={i} className="font-weight-bold">{d.name}</span>)
+            .map((d, i) => (
+              <span key={i} className="font-weight-bold">
+                <LazyTrans>{d.name}</LazyTrans>
+              </span>
+            ))
             .reduce((prev, curr) => [prev, ' and ', curr])}
         </span>
       )
@@ -68,7 +73,10 @@ const ChartPreview = ({
             .map((d) => (
               <>
                 at least <span className="font-weight-bold">{d.minValues}</span>{' '}
-                dimensions on <span className="font-weight-bold">{d.name}</span>
+                dimensions on{' '}
+                <span className="font-weight-bold">
+                  <LazyTrans>{d.name}</LazyTrans>
+                </span>
               </>
             ))
             .reduce((prev, curr) => [prev, ' and ', curr])}
@@ -123,7 +131,7 @@ const ChartPreview = ({
         setError(null)
         onChartRendered(chart.metadata)
       } catch (e) {
-        console.log("chart error", e)
+        console.log('chart error', e)
         setError({ variant: 'danger', message: 'Chart error. ' + e.message })
         setRawViz(null)
       }
