@@ -19,6 +19,7 @@ import {
 import ChartDimensionItem from './ChartDimensionItem'
 
 import styles from './DataMapping.module.scss'
+import { useLazyTranslation } from '../../hooks/useLazyTranslation'
 const aggregators = getAggregatorNames()
 const emptyList = []
 
@@ -193,6 +194,8 @@ const ChartDimensionCard = ({
     [dataTypes, dimension, mapping, setDraggingId, setMapping]
   )
 
+  const lazyt = useLazyTranslation()
+
   return (
     // <div
     //   className="Xcard Xp-3 Xm-2 "
@@ -216,7 +219,7 @@ const ChartDimensionCard = ({
               // )
             })}
           </span>
-          <span className="text-capitalize text-center">{dimension.name}</span>
+          <span className="text-capitalize text-center">{lazyt(dimension.name)}</span>
           <span
             className={styles['dimension-required'] + ' text-right'}
             style={{ opacity: dimension.required ? 1 : 0 }}

@@ -16,6 +16,7 @@ import get from 'lodash/get'
 import map from 'lodash/map'
 import styles from './ChartOptions.module.scss'
 import omit from 'lodash/omit'
+import { useLazyTranslation } from '../../hooks/useLazyTranslation'
 
 const CHART_OPTION_COMPONENTS = {
   number: ChartOptionNumber,
@@ -162,6 +163,8 @@ function WrapControlComponent({
     [optionId, repeatIndex, setVisualOptions]
   )
 
+  const lazyt = useLazyTranslation()
+
   return (
     <Component
       type={type}
@@ -173,10 +176,10 @@ function WrapControlComponent({
       label={
         repeatIndex !== undefined ? (
           <React.Fragment>
-            {label} ({repeatIndex + 1})
+            {lazyt(label)} ({repeatIndex + 1})
           </React.Fragment>
         ) : (
-          label
+          lazyt(label)
         )
       }
       {...omit(props, [

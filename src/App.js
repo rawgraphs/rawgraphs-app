@@ -22,8 +22,7 @@ import { serializeProject } from '@rawgraphs/rawgraphs-core'
 import useDataLoader from './hooks/useDataLoader'
 import isPlainObject from 'lodash/isPlainObject'
 import CookieConsent from 'react-cookie-consent'
-
-// #TODO: i18n
+import { useTranslation } from 'react-i18next'
 
 function App() {
   const dataLoader = useDataLoader()
@@ -162,15 +161,17 @@ function App() {
     setVisualOptions(getDefaultOptionsValues(options))
   }, [])
 
+  const { t } = useTranslation()
+
   return (
     <div className="App">
       <Header menuItems={HeaderItems} />
       <div className="app-sections">
-        <Section title={`1. Load your data`} loading={loading}>
+        <Section title={`1. ${t('loadData')}`} loading={loading}>
           <DataLoader {...dataLoader} hydrateFromProject={importProject} />
         </Section>
         {data && (
-          <Section title="2. Choose a chart">
+          <Section title={`2. ${t('chooseChart')}`}>
             <ChartSelector
               availableCharts={charts}
               currentChart={currentChart}
