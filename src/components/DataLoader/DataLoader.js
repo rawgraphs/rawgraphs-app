@@ -61,6 +61,7 @@ function DataLoader({
   hydrateFromProject,
 }) {
   const [loadingError, setLoadingError] = useState()
+  const [initialOptionState, setInitialOptionState] = useState(null)
 
   const options = [
     {
@@ -84,7 +85,9 @@ function DataLoader({
       loader: (
         <UploadFile
           userInput={userInput}
-          setUserInput={(rawInput) => setUserInput(rawInput, { type: 'file' })}
+          setUserInput={(rawInput) =>
+            setUserInput(rawInput, { type: 'upload' })
+          }
           setLoadingError={setLoadingError}
         />
       ),
@@ -93,7 +96,7 @@ function DataLoader({
       allowedForReplace: true,
     },
     {
-      id: 'samples',
+      id: 'sample',
       name: 'Try our data samples',
       message: '',
       loader: (
@@ -114,6 +117,9 @@ function DataLoader({
           userInput={userInput}
           setUserInput={(rawInput, source) => setUserInput(rawInput, source)}
           setLoadingError={setLoadingError}
+          initialState={
+            initialOptionState?.type === 'sparql' ? initialOptionState : null
+          }
         />
       ),
       icon: BsCloud,
@@ -130,6 +136,9 @@ function DataLoader({
           userInput={userInput}
           setUserInput={(rawInput, source) => setUserInput(rawInput, source)}
           setLoadingError={setLoadingError}
+          initialState={
+            initialOptionState?.type === 'url' ? initialOptionState : null
+          }
         />
       ),
       icon: BsSearch,
@@ -277,7 +286,9 @@ function DataLoader({
                   <div
                     key={d.id}
                     className={classnames}
-                    onClick={() => setOptionIndex(i)}
+                    onClick={() => {
+                      setOptionIndex(i)
+                    }}
                   >
                     <d.icon className="w-25" />
                     <h4 className="m-0 d-inline-block">{d.name}</h4>
@@ -344,7 +355,11 @@ function DataLoader({
             <div
               className={`w-100 d-flex justify-content-center align-items-center ${styles['start-over']} user-select-none cursor-pointer`}
               onClick={() => {
-                setOptionIndex(0)
+                setInitialOptionState(dataSource)
+                const dataSourceIndex = options.findIndex(
+                  (opt) => opt.id === dataSource?.type
+                )
+                setOptionIndex(Math.max(dataSourceIndex, 0))
                 startDataReplace()
               }}
             >
