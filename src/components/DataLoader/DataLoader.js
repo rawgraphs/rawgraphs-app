@@ -25,6 +25,8 @@ import Loading from './loading'
 import WarningMessage from '../WarningMessage'
 import DataMismatchModal from './DataMismatchModal'
 import SparqlFetch from './loaders/SparqlFetch'
+import { tsvFormat } from 'd3-dsv'
+import { CopyToClipboardButton } from '../CopyToClipboardButton'
 
 function DataLoader({
   userInput,
@@ -244,6 +246,10 @@ function DataLoader({
     window.location.replace(window.location.pathname)
   }, [])
 
+  const copyToClipboardButton = !!userData ? (
+    <CopyToClipboardButton content={tsvFormat(userData)} />
+  ) : null
+
   return (
     <>
       <Row>
@@ -381,22 +387,32 @@ function DataLoader({
                       chart!
                     </span>
                   }
+                  action={copyToClipboardButton}
                 />
               )}
 
               {parseError && (
-                <WarningMessage variant="danger" message={parseError} />
+                <WarningMessage
+                  variant="danger"
+                  message={parseError}
+                  action={copyToClipboardButton}
+                />
               )}
 
               {get(data, 'errors', []).length > 0 && (
                 <WarningMessage
                   variant="warning"
                   message={parsingErrors(data)}
+                  action={copyToClipboardButton}
                 />
               )}
 
               {loadingError && (
-                <WarningMessage variant="danger" message={loadingError} />
+                <WarningMessage
+                  variant="danger"
+                  message={loadingError}
+                  action={copyToClipboardButton}
+                />
               )}
             </Col>
           </Row>
