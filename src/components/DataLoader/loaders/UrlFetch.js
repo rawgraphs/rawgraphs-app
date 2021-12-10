@@ -56,7 +56,7 @@ export default function UrlFetch({
           disabled={!url}
           type="submit"
         >
-          Run query
+          Load data
         </button>
       </div>
     </form>
