@@ -1,3 +1,16 @@
+## 2.0.0-beta.13
+
+#### Changes
+
+- update d3 to 7.2.0
+- update rawgraphs-charts to 1.0.0-beta.27
+#### New Features
+
+- added Voronoi Treemap
+- added Calendar Heatmap
+- copy dataset to clipboard
+- editable sparql query and api url in data loader
+
 ## 2.0.0-beta.12
 
 #### Changes

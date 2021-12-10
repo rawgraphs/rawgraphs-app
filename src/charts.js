@@ -28,7 +28,10 @@ import {
   treemap,
   violinplot,
   voronoidiagram,
+  voronoitreemap,
 } from '@rawgraphs/rawgraphs-charts'
+
+import { calendarHeatmap } from '@rawgraphs/rawgraphs-calendar-heatmap'
 
 // New charts, not included into first release.
 // Comment at necessity.
@@ -42,6 +45,7 @@ let charts = [
   boxplot,
   bubblechart,
   bumpchart,
+  calendarHeatmap,
   circlepacking,
   circularDendrogram,
   contourPlot,
@@ -62,6 +66,9 @@ let charts = [
   treemap,
   violinplot,
   voronoidiagram,
+  voronoitreemap,
+
+  
 ]
 
 export default charts
