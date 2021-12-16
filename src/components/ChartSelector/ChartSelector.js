@@ -129,7 +129,8 @@ function ChartSelector({
                             <button
                               style={{ position: 'absolute', top: -8, right: -8 }}
                               className="btn btn-sm btn-primary"
-                              onClick={() => {
+                              onClick={(e) => {
+                                e.stopPropagation()
                                 onRemoveCustomChart(d)
                               }}
                             >

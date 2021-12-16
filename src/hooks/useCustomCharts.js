@@ -3,12 +3,10 @@ import { sha3_512 } from 'js-sha3'
 import difference from 'lodash/difference'
 import uniq from 'lodash/uniq'
 import find from 'lodash/find'
-import { requireRawChartsFromUrl } from './rawRequire'
+import { requireRawChartsFromUrl, NPM_CDN } from './rawRequire'
 import './chart-types'
 
 const STORE_NS = 'rawCustomCharts'
-
-const NPM_CDN = 'https://cdn.jsdelivr.net/npm/'
 
 /**
  * @param {CustomChartContract[]} prevCharts

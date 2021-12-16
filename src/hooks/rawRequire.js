@@ -3,6 +3,8 @@ import * as d3 from 'd3'
 import * as rawgraphsCore from '@rawgraphs/rawgraphs-core'
 import LRU from 'lru-cache'
 
+export const NPM_CDN = 'https://cdn.jsdelivr.net/npm/'
+
 /**
  * NOTE: In a perfect we got type definition from core
  *
@@ -12,30 +14,123 @@ import LRU from 'lru-cache'
  */
 
 const queue = []
-const cache = new LRU(50)
+const cacheChartsPkg = new LRU(50)
+const cacheDependenciesTree = new LRU(400)
 
 const DEPENDENCIES_ALIAS = {
   d3,
-  rawgraphsCore,
+  '@rawgraphs/rawgraphs-core': rawgraphsCore,
 }
 
 /**
- * Reauire a dependency
+ * Reauire a dependency in the DOM Context and cache it
  *
  * @param {string} name
  */
-function requireDependency(name) {
-  const dep = DEPENDENCIES_ALIAS[name]
-  if (!dep) {
-    // TODO: Link url tutorial bundler...
-    throw new Error(
-      `Missing dependency ${name} please bundle it in your custom chart build.`
-    )
+async function requireDependency(name) {
+  if (DEPENDENCIES_ALIAS[name]) {
+    return DEPENDENCIES_ALIAS[name]
   }
-  return dep
+  let url
+  try {
+    url = new URL(name)
+  } catch (e) {
+    url = new URL(`${NPM_CDN}${name}`)
+  }
+  const sUrl = url.toString()
+  if (cacheDependenciesTree.has(sUrl)) {
+    return cacheDependenciesTree.get(sUrl)
+  }
+  const v = await requireFromUrl(sUrl.toString())
+  if (v) {
+    cacheDependenciesTree.set(sUrl, v)
+  }
+  return v
 }
 
-function define(...params) {
+/**
+ * AMD Define for the DOM Context
+ */
+function defineDOM(...params) {
+  /**
+   * @type {(dependencies: string[]) void}
+   */
+  let factory
+  /**
+   * @type string[]
+   */
+  let dependencies
+  // Adjust various AMD callding patterhns
+  if (params.length < 2) {
+    factory = params[0]
+    dependencies = []
+  } else {
+    if (params.length >= 3) {
+      params = params.slice(1)
+    }
+    dependencies = params[0]
+    factory = params[1]
+  }
+  // Instance dependencies
+  const exports = {}
+  const module = { exports }
+  const rutimeDepenciesPromises = dependencies.map((dep) =>
+    dep === 'exports'
+      ? Promise.resolve(exports)
+      : dep === 'module'
+      ? Promise.resolve(module)
+      : requireDependency(dep)
+  )
+  queue.push(
+    Promise.all(rutimeDepenciesPromises).then((rutimeDepencies) => {
+      // Run factory ... This will (maybe) write into exports
+      const outFactory = factory(...rutimeDepencies)
+      if (
+        !dependencies.includes('exports') &&
+        !dependencies.includes('module') &&
+        outFactory
+      ) {
+        // NOTE: In this case the factory return module
+        return outFactory
+      }
+      // Push filled exports
+      return exports
+    })
+  )
+}
+
+defineDOM.amd = {}
+
+/**
+ * Reauire a dependency in Web Worker Context
+ *
+ * @param {string} name
+ */
+function requireDependencyWebWorker(name) {
+  if (DEPENDENCIES_ALIAS[name]) {
+    return DEPENDENCIES_ALIAS[name]
+  }
+  let url
+  try {
+    url = new URL(name)
+  } catch (e) {
+    url = new URL(`${NPM_CDN}${name}`)
+  }
+  const sUrl = url.toString()
+  if (cacheDependenciesTree.has(sUrl)) {
+    return cacheDependenciesTree.get(sUrl)
+  }
+  const v = requireFromUrlWebWorker(sUrl.toString())
+  if (v) {
+    cacheDependenciesTree.set(sUrl, v)
+  }
+  return v
+}
+
+/**
+ * AMD Define for the WebWorker Context
+ */
+function defineWebWorker(...params) {
   /**
    * @type {(dependencies: string[]) void}
    */
@@ -63,23 +158,31 @@ function define(...params) {
       ? exports
       : dep === 'module'
       ? module
-      : requireDependency(dep)
+      : requireDependencyWebWorker(dep)
   )
-  // Run factory ... This will write into exports
-  factory(...rutimeDepencies)
-  // Push filled exports
-  queue.push(exports)
+  // Run factory ... This will (maybe) write into exports
+  const outFactory = factory(...rutimeDepencies)
+  if (
+    !dependencies.includes('exports') &&
+    !dependencies.includes('module') &&
+    outFactory
+  ) {
+    // NOTE: In this case the factory return module
+    queue.push(outFactory)
+  } else {
+    queue.push(exports)
+  }
 }
-
-define.amd = {}
+defineWebWorker.amd = {}
 
 /**
+ * Require from URL in the DOM
  *
  * @param {string} url
  */
 function requireFromUrl(url) {
   return new Promise((resolve, reject) => {
-    window.define = define
+    window.define = defineDOM
     const scriptTag = document.createElement('script')
     scriptTag.src = url
     scriptTag.async = true
@@ -87,9 +190,20 @@ function requireFromUrl(url) {
       'load',
       () => {
         // Pop last exports
-        const finalExports = queue.pop()
-        scriptTag.remove()
-        resolve(finalExports)
+        const promiseFinalExports = queue.pop()
+        if (!promiseFinalExports) {
+          reject(`Problem during the execution of ${url}`)
+          return
+        }
+        return promiseFinalExports
+          .then(() => {
+            scriptTag.remove()
+            resolve(promiseFinalExports)
+          })
+          .catch((err) => {
+            scriptTag.remove()
+            reject(err)
+          })
       },
       {
         once: true,
@@ -123,8 +237,8 @@ function isRawChartLike(obj) {
  * @returns {Promise<ChartContract[]>}
  */
 export async function requireRawChartsFromUrl(url) {
-  if (cache.get(url)) {
-    return Promise.resolve(cache.get(url))
+  if (cacheChartsPkg.get(url)) {
+    return Promise.resolve(cacheChartsPkg.get(url))
   }
   const daExports = await requireFromUrl(url)
   if (!daExports) {
@@ -133,7 +247,7 @@ export async function requireRawChartsFromUrl(url) {
   const charts = Object.values(daExports).filter(isRawChartLike)
   // NOTE: Cache only relevant exports ...
   if (charts.length > 0) {
-    cache.set(url, charts)
+    cacheChartsPkg.set(url, charts)
   }
   return charts
 }
@@ -143,8 +257,8 @@ export async function requireRawChartsFromUrl(url) {
  * @returns {ChartContract[]}
  */
 export function requireRawChartsFromUrlWebWorker(url) {
-  if (cache.get(url)) {
-    return cache.get(url)
+  if (cacheChartsPkg.get(url)) {
+    return cacheChartsPkg.get(url)
   }
   const daExports = requireFromUrlWebWorker(url)
   if (!daExports) {
@@ -153,17 +267,18 @@ export function requireRawChartsFromUrlWebWorker(url) {
   const charts = Object.values(daExports).filter(isRawChartLike)
   // NOTE: Cache only relevant exports ...
   if (charts.length > 0) {
-    cache.set(url, charts)
+    cacheChartsPkg.set(url, charts)
   }
   return charts
 }
 
 /**
+ * Require from url in WebWorker context
  *
  * @param {string} url
  */
 function requireFromUrlWebWorker(url) {
-  self.define = define
+  self.define = defineWebWorker
   self.importScripts(url)
   const finalExports = queue.pop()
   return finalExports
