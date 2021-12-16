@@ -159,6 +159,7 @@ async function exportCustomChart(chart) {
  * It loads the current custom charts on mount from user storage and sync
  * them when you call its methods.
  *
+ * @param {{ storage: boolean }}
  * @returns {[CustomChartContract[], {
  *  uploadCustomCharts: (file?: File) => Promise<CustomChartContract[]>
  *  loadCustomChartsFromUrl: (url: string) => Promise<CustomChartContract[]>
@@ -168,13 +169,15 @@ async function exportCustomChart(chart) {
  *  exportCustomChart: (chart: CustomChartContract) => Promise<{ source: string, content: string | null }>
  * }]}
  */
-export default function useCustomCharts() {
+export default function useCustomCharts({ storage = true }) {
   const [customCharts, setCustomCharts] = useState([])
 
   // Loads custom charts saved in user storage
   useEffect(() => {
-    loadStoredCustomCharts().then(setCustomCharts)
-  }, [])
+    if (storage) {
+      loadStoredCustomCharts().then(setCustomCharts)
+    }
+  }, [storage])
 
   const loadCustomChartsFromUrlAsSource = useCallback(
     async (source, url) => {
@@ -194,10 +197,12 @@ export default function useCustomCharts() {
         newChartsToInject
       )
       setCustomCharts(nextCustomCharts)
-      await storeCustomCharts(nextCustomCharts)
+      if (storage) {
+        await storeCustomCharts(nextCustomCharts)
+      }
       return nextCustomCharts
     },
-    [customCharts]
+    [customCharts, storage]
   )
 
   const loadCustomChartsFromUrl = useCallback(
@@ -241,12 +246,14 @@ export default function useCustomCharts() {
         newChartsToInject
       )
       setCustomCharts(nextCustomCharts)
-      const cache = await window.caches.open(STORE_NS)
-      await cache.put(fileHash, new Response(file))
-      await storeCustomCharts(nextCustomCharts)
+      if (storage) {
+        const cache = await window.caches.open(STORE_NS)
+        await cache.put(fileHash, new Response(file))
+        await storeCustomCharts(nextCustomCharts)
+      }
       return nextCustomCharts
     },
-    [customCharts]
+    [customCharts, storage]
   )
 
   const importCustomChartFromProject = useCallback(
@@ -285,14 +292,16 @@ export default function useCustomCharts() {
       }
       const nextCustomCharts = getNextCustomCharts(customCharts, [newChart])
       setCustomCharts(nextCustomCharts)
-      if (file) {
-        const cache = await window.caches.open(STORE_NS)
-        await cache.put(fileHash, new Response(file))
+      if (storage) {
+        if (file) {
+          const cache = await window.caches.open(STORE_NS)
+          await cache.put(fileHash, new Response(file))
+        }
+        await storeCustomCharts(nextCustomCharts)
       }
-      await storeCustomCharts(nextCustomCharts)
       return newChart
     },
-    [customCharts]
+    [customCharts, storage]
   )
 
   const removeCustomChart = useCallback(
@@ -301,10 +310,12 @@ export default function useCustomCharts() {
         (c) => c.metadata.id !== chart.metadata.id
       )
       setCustomCharts(nextCustomCharts)
-      await storeCustomCharts(nextCustomCharts)
+      if (storage) {
+        await storeCustomCharts(nextCustomCharts)
+      }
       return nextCustomCharts
     },
-    [customCharts]
+    [customCharts, storage]
   )
 
   return [

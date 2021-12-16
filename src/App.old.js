@@ -25,55 +25,25 @@ import isPlainObject from 'lodash/isPlainObject'
 import CookieConsent from 'react-cookie-consent'
 import CustomChartLoader from './components/CustomChartLoader'
 import CustomChartWarnModal from './components/CustomChartWarnModal'
-import { useDevChart } from './hooks/useDevChart'
-import CodeChartEditor from './components/CodeChartEditor'
-import useDebounceCallback from './hooks/useDebounceCallback'
 
 // #TODO: i18n
 
-const INITIAL_CODE = `
-export default {
-  type: 'div',
-  metadata: {
-    id: 'mini',
-    name: 'Mini chart 23',
-    categories: [],
-  },
-  visualOptions: {},
-  dimensions: [
-    {
-      id: 'name',
-      name: 'Name',
-      validTypes: ['string'],
-      required: true,
-      operation: 'get',
-    },
-  ],
-  mapData: {
-    name: 'get',
-  },
-  render(node) {
-    node.innerHTML = 'Is this the real life? Is this just fantasy? Try to edit me...'
-  },
-}
-`
-
 function App() {
-  // const [
-  //   customCharts,
-  //   {
-  //     toConfirmCustomChart,
-  //     confirmCustomChartLoad,
-  //     abortCustomChartLoad,
-  //     uploadCustomCharts,
-  //     loadCustomChartsFromUrl,
-  //     loadCustomChartsFromNpm,
-  //     importCustomChartFromProject,
-  //     removeCustomChart,
-  //     exportCustomChart,
-  //   },
-  // ] = useSafeCustomCharts()
-  // const charts = useMemo(() => baseCharts.concat(customCharts), [customCharts])
+  const [
+    customCharts,
+    {
+      toConfirmCustomChart,
+      confirmCustomChartLoad,
+      abortCustomChartLoad,
+      uploadCustomCharts,
+      loadCustomChartsFromUrl,
+      loadCustomChartsFromNpm,
+      importCustomChartFromProject,
+      removeCustomChart,
+      exportCustomChart,
+    },
+  ] = useSafeCustomCharts()
+  const charts = useMemo(() => baseCharts.concat(customCharts), [customCharts])
 
   const dataLoader = useDataLoader()
   const {
@@ -93,8 +63,14 @@ function App() {
     loading,
     hydrateFromSavedProject,
   } = dataLoader
+
+  /* From here on, we deal with viz state */
+  const [currentChart, setCurrentChart] = useState(charts[0])
   const [mapping, setMapping] = useState({})
-  const [visualOptions, setVisualOptions] = useState({})
+  const [visualOptions, setVisualOptions] = useState(() => {
+    const options = getOptionsConfig(charts[0]?.visualOptions)
+    return getDefaultOptionsValues(options)
+  })
   const [rawViz, setRawViz] = useState(null)
   const [mappingLoading, setMappingLoading] = useState(false)
   const dataMappingRef = useRef(null)
@@ -111,23 +87,6 @@ function App() {
       dataMappingRef.current.clearLocalMapping()
     }
   }, [])
-
-  const syncUIWithChart = useCallback(
-    (nextChart) => {
-      setMapping({})
-      clearLocalMapping()
-      const options = getOptionsConfig(nextChart?.visualOptions)
-      setVisualOptions(getDefaultOptionsValues(options))
-      setRawViz(null)
-    },
-    [clearLocalMapping]
-  )
-  const [chartCode, setChartCode] = useState(INITIAL_CODE)
-  const [currentChart, { updateDevChart}] = useDevChart({
-    onChartLoaded: syncUIWithChart,
-    initialCode: chartCode,
-  })
-  const updateDevChartDebounced = useDebounceCallback(updateDevChart, 500)
 
   // NOTE: When we run the import we want to use the "last"
   // version of importProject callback
@@ -179,27 +138,39 @@ function App() {
 
   // update current chart when the related custom charts change under the hood
   // if the related custom chart is removed set the first chart
-  // useEffect(() => {
-  //   if (currentChart.rawCustomChart) {
-  //     const currentCustom = find(
-  //       customCharts,
-  //       (c) => c.metadata.id === currentChart.metadata.id
-  //     )
-  //     if (!currentCustom) {
-  //       setCurrentChart(baseCharts[0])
-  //       return
-  //     }
-  //     if (
-  //       currentCustom.rawCustomChart.source !==
-  //       currentChart.rawCustomChart.source
-  //     ) {
-  //       setCurrentChart(currentCustom)
-  //     }
-  //   }
-  // }, [customCharts, currentChart])
+  useEffect(() => {
+    if (currentChart.rawCustomChart) {
+      const currentCustom = find(
+        customCharts,
+        (c) => c.metadata.id === currentChart.metadata.id
+      )
+      if (!currentCustom) {
+        setCurrentChart(baseCharts[0])
+        return
+      }
+      if (
+        currentCustom.rawCustomChart.source !==
+        currentChart.rawCustomChart.source
+      ) {
+        setCurrentChart(currentCustom)
+      }
+    }
+  }, [customCharts, currentChart])
+
+  const handleChartChange = useCallback(
+    (nextChart) => {
+      setMapping({})
+      clearLocalMapping()
+      setCurrentChart(nextChart)
+      const options = getOptionsConfig(nextChart?.visualOptions)
+      setVisualOptions(getDefaultOptionsValues(options))
+      setRawViz(null)
+    },
+    [clearLocalMapping]
+  )
 
   const exportProject = useCallback(async () => {
-    const customChart = null
+    const customChart = await exportCustomChart(currentChart)
     return serializeProject({
       userInput,
       userData,
@@ -236,32 +207,33 @@ function App() {
     visualOptions,
     unstackedColumns,
     unstackedData,
+    exportCustomChart,
   ])
 
   // project import
   const importProject = useCallback(
     async (project, fromUrl) => {
-      let nextCurrentChart = null
-      // if (project.currentChart.rawCustomChart) {
-      //   try {
-      //     nextCurrentChart = await importCustomChartFromProject(
-      //       project.currentChart
-      //     )
-      //   } catch (err) {
-      //     if (err.isAbortByUser) {
-      //       if (fromUrl) {
-      //         // NOTE: clean the url when the user abort loading custom js
-      //         window.history.replaceState(null, null, '/')
-      //       }
-      //       return
-      //     }
-      //     throw err
-      //   }
-      // } else {
-      //   nextCurrentChart = project.currentChart
-      // }
+      let nextCurrentChart
+      if (project.currentChart.rawCustomChart) {
+        try {
+          nextCurrentChart = await importCustomChartFromProject(
+            project.currentChart
+          )
+        } catch (err) {
+          if (err.isAbortByUser) {
+            if (fromUrl) {
+              // NOTE: clean the url when the user abort loading custom js
+              window.history.replaceState(null, null, '/')
+            }
+            return
+          }
+          throw err
+        }
+      } else {
+        nextCurrentChart = project.currentChart
+      }
       hydrateFromSavedProject(project)
-      // setCurrentChart(nextCurrentChart)
+      setCurrentChart(nextCurrentChart)
       setMapping(project.mapping)
       // adding "annotations" for color scale:
       // we annotate the incoming options values (complex ones such as color scales)
@@ -276,28 +248,22 @@ function App() {
       })
       setVisualOptions(project.visualOptions)
     },
-    [hydrateFromSavedProject]
+    [hydrateFromSavedProject, importCustomChartFromProject]
   )
 
   return (
     <div className="App">
       <Header menuItems={HeaderItems} />
+      <CustomChartWarnModal
+        toConfirmCustomChart={toConfirmCustomChart}
+        confirmCustomChartLoad={confirmCustomChartLoad}
+        abortCustomChartLoad={abortCustomChartLoad}
+      />
       <div className="app-sections">
         <Section title={`1. Load your data`} loading={loading}>
           <DataLoader {...dataLoader} hydrateFromProject={importProject} />
         </Section>
         {data && (
-          <Section title="2. Write Your Chart">
-            <CodeChartEditor
-              code={chartCode}
-              onCodeChange={(code) => {
-                setChartCode(code)
-                updateDevChartDebounced(code)
-              }}
-            />
-          </Section>
-        )}
-        {/* {data && (
           <Section title="2. Choose a chart">
             <CustomChartLoader
               loadCustomChartsFromNpm={loadCustomChartsFromNpm}
@@ -311,7 +277,7 @@ function App() {
               setCurrentChart={handleChartChange}
             />
           </Section>
-        )} */}
+        )}
         {data && currentChart && (
           <Section title={`3. Mapping`} loading={mappingLoading}>
             <DataMapping
