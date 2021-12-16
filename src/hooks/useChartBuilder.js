@@ -29,6 +29,7 @@ export default function useChartBuilder(initialCode, { onBuilded }) {
   const [charts, { uploadCustomCharts }] = useCustomCharts({
     storage: false,
   })
+  console.log('X', charts)
 
   const buildChart = useCallback(
     async (code) => {
@@ -36,7 +37,7 @@ export default function useChartBuilder(initialCode, { onBuilded }) {
       const file = new File([codeBundled], 'devchart.js', {
         type: 'application/json',
       })
-      const nextCharts = await uploadCustomCharts(file)
+      const nextCharts = await uploadCustomCharts(file, 'replace')
       if (nextCharts.length > 0) {
         onBuilded(nextCharts[0])
       }

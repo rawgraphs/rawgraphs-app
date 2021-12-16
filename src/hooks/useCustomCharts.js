@@ -170,7 +170,7 @@ async function exportCustomChart(chart) {
  *
  * @param {{ storage: boolean }}
  * @returns {[CustomChartContract[], {
- *  uploadCustomCharts: (file?: File) => Promise<CustomChartContract[]>
+ *  uploadCustomCharts: (file?: File, mode?:  'replace' | 'add') => Promise<CustomChartContract[]>
  *  loadCustomChartsFromUrl: (url: string) => Promise<CustomChartContract[]>
  *  loadCustomChartsFromNpm: (name: string) => Promise<CustomChartContract[]>
  *  importCustomChartFromProject: (projectChart: CustomChartContract) => Promise<CustomChartContract>
@@ -235,7 +235,7 @@ export default function useCustomCharts({ storage = true }) {
   )
 
   const uploadCustomCharts = useCallback(
-    async (file) => {
+    async (file, mode = 'add') => {
       if (!file) {
         return []
       }
@@ -253,10 +253,10 @@ export default function useCustomCharts({ storage = true }) {
           url,
         },
       }))
-      const [
-        nextCustomCharts,
-        releasedCustomCharts,
-      ] = getNextCustomChartsAndReleased(customCharts, newChartsToInject)
+      const [nextCustomCharts, releasedCustomCharts] =
+        mode === 'replace'
+          ? [newChartsToInject, customCharts]
+          : getNextCustomChartsAndReleased(customCharts, newChartsToInject)
       releasedCustomCharts.forEach((c) => {
         URL.revokeObjectURL(c.rawCustomChart.url)
       })
