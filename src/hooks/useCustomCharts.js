@@ -11,12 +11,21 @@ const STORE_NS = 'rawCustomCharts'
 /**
  * @param {CustomChartContract[]} prevCharts
  * @param {CustomChartContract[]} newChartsToInject
+ * @returns {[CustomChartContract[],CustomChartContract[]]}
  */
-function getNextCustomCharts(prevCharts, newChartsToInject) {
+function getNextCustomChartsAndReleased(prevCharts, newChartsToInject) {
   const newIds = newChartsToInject.map((c) => c.metadata.id)
-  return prevCharts
-    .filter((c) => !newIds.includes(c.metadata.id))
+  const releasedCustomCharts = []
+  const nextCustomCharts = prevCharts
+    .filter((prevChart) => {
+      const shouldBeReleased = newIds.includes(prevChart.metadata.id)
+      if (shouldBeReleased) {
+        releasedCustomCharts.push(prevChart)
+      }
+      return !shouldBeReleased
+    })
     .concat(newChartsToInject)
+  return [nextCustomCharts, releasedCustomCharts]
 }
 
 /**
@@ -192,10 +201,13 @@ export default function useCustomCharts({ storage = true }) {
           url,
         },
       }))
-      const nextCustomCharts = getNextCustomCharts(
-        customCharts,
-        newChartsToInject
-      )
+      const [
+        nextCustomCharts,
+        releasedCustomCharts,
+      ] = getNextCustomChartsAndReleased(customCharts, newChartsToInject)
+      releasedCustomCharts.forEach((c) => {
+        URL.revokeObjectURL(c.rawCustomChart.url)
+      })
       setCustomCharts(nextCustomCharts)
       if (storage) {
         await storeCustomCharts(nextCustomCharts)
@@ -241,10 +253,13 @@ export default function useCustomCharts({ storage = true }) {
           url,
         },
       }))
-      const nextCustomCharts = getNextCustomCharts(
-        customCharts,
-        newChartsToInject
-      )
+      const [
+        nextCustomCharts,
+        releasedCustomCharts,
+      ] = getNextCustomChartsAndReleased(customCharts, newChartsToInject)
+      releasedCustomCharts.forEach((c) => {
+        URL.revokeObjectURL(c.rawCustomChart.url)
+      })
       setCustomCharts(nextCustomCharts)
       if (storage) {
         const cache = await window.caches.open(STORE_NS)
@@ -290,7 +305,13 @@ export default function useCustomCharts({ storage = true }) {
           url,
         },
       }
-      const nextCustomCharts = getNextCustomCharts(customCharts, [newChart])
+      const [
+        nextCustomCharts,
+        releasedCustomCharts,
+      ] = getNextCustomChartsAndReleased(customCharts, [newChart])
+      releasedCustomCharts.forEach((c) => {
+        URL.revokeObjectURL(c.rawCustomChart.url)
+      })
       setCustomCharts(nextCustomCharts)
       if (storage) {
         if (file) {

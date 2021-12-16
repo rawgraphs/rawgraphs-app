@@ -16,6 +16,7 @@ import ChartPreviewWithOptions from './components/ChartPreviewWIthOptions'
 import Exporter from './components/Exporter'
 import get from 'lodash/get'
 import find from 'lodash/find'
+import deepEqual from 'fast-deep-equal'
 import usePrevious from './hooks/usePrevious'
 import { serializeProject } from '@rawgraphs/rawgraphs-core'
 import baseCharts from './charts'
@@ -25,7 +26,7 @@ import isPlainObject from 'lodash/isPlainObject'
 import CookieConsent from 'react-cookie-consent'
 import CustomChartLoader from './components/CustomChartLoader'
 import CustomChartWarnModal from './components/CustomChartWarnModal'
-import { useDevChart } from './hooks/useDevChart'
+import useDevChart from './hooks/useDevChart'
 import CodeChartEditor from './components/CodeChartEditor'
 import useDebounceCallback from './hooks/useDebounceCallback'
 
@@ -59,22 +60,6 @@ export default {
 `
 
 function App() {
-  // const [
-  //   customCharts,
-  //   {
-  //     toConfirmCustomChart,
-  //     confirmCustomChartLoad,
-  //     abortCustomChartLoad,
-  //     uploadCustomCharts,
-  //     loadCustomChartsFromUrl,
-  //     loadCustomChartsFromNpm,
-  //     importCustomChartFromProject,
-  //     removeCustomChart,
-  //     exportCustomChart,
-  //   },
-  // ] = useSafeCustomCharts()
-  // const charts = useMemo(() => baseCharts.concat(customCharts), [customCharts])
-
   const dataLoader = useDataLoader()
   const {
     userInput,
@@ -112,18 +97,35 @@ function App() {
     }
   }, [])
 
+  const lastChartRef = useRef(null)
   const syncUIWithChart = useCallback(
     (nextChart) => {
-      setMapping({})
-      clearLocalMapping()
-      const options = getOptionsConfig(nextChart?.visualOptions)
-      setVisualOptions(getDefaultOptionsValues(options))
+      const prevChart = lastChartRef.current
+      // NOTE: This implementation is balanced from time spent
+      // to implemente the right diff algo Vs user experience
+      // we can avoid for example avoid to reset mappings if only label changes
+      // but for now we simply deep compare them =)
+      if (
+        !prevChart ||
+        !deepEqual(prevChart.dimensions, nextChart.dimensions)
+      ) {
+        setMapping({})
+        clearLocalMapping()
+      }
+      if (
+        !prevChart ||
+        !deepEqual(prevChart.visualOptions, nextChart.visualOptions)
+      ) {
+        const options = getOptionsConfig(nextChart?.visualOptions)
+        setVisualOptions(getDefaultOptionsValues(options))
+      }
       setRawViz(null)
+      lastChartRef.current = nextChart
     },
     [clearLocalMapping]
   )
   const [chartCode, setChartCode] = useState(INITIAL_CODE)
-  const [currentChart, { updateDevChart}] = useDevChart({
+  const [currentChart, { updateDevChart }] = useDevChart({
     onChartLoaded: syncUIWithChart,
     initialCode: chartCode,
   })

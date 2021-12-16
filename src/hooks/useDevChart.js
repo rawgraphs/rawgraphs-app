@@ -17,7 +17,7 @@ async function createBundle(code) {
   return output[0].code
 }
 
-export function useDevChart({ onChartLoaded, initialCode }) {
+export default function useDevChart({ onChartLoaded, initialCode }) {
   const [charts, { uploadCustomCharts }] = useCustomCharts({
     storage: false,
   })
