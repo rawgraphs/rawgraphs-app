@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
+import useDebounceCallback from '../../hooks/useDebounceCallback'
 
-export default function CodeChartEditor({ code, onCodeChange }) {
+export default function CodeChartEditor({ initialCode, build }) {
+  const [code, setCode] = useState(initialCode)
+
+  const buildDebounced = useDebounceCallback(build, 350)
+
   return (
     <textarea
       style={{ width: '100%' }}
       value={code}
       onChange={(e) => {
-        onCodeChange(e.target.value)
+        const nextCode = e.target.value
+        setCode(nextCode)
+        buildDebounced(nextCode)
       }}
       rows={20}
     />

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef } from 'react'
 import useCustomCharts from './useCustomCharts'
 import * as rollup from 'rollup'
 import virtual from '@rollup/plugin-virtual'
+import './chart-types'
 
 async function createBundle(code) {
   const build = await rollup.rollup({
@@ -17,12 +18,19 @@ async function createBundle(code) {
   return output[0].code
 }
 
-export default function useDevChart({ onChartLoaded, initialCode }) {
+/**
+ * Build a cahrt from code
+ *
+ * @param initialCode {string}
+ * @param options {{ onBuilded?(chart: CustomChartContract): void }}
+ * @returns {[CustomChartContract, (code: string): void]}
+ */
+export default function useChartBuilder(initialCode, { onBuilded }) {
   const [charts, { uploadCustomCharts }] = useCustomCharts({
     storage: false,
   })
 
-  const updateDevChart = useCallback(
+  const buildChart = useCallback(
     async (code) => {
       const codeBundled = await createBundle(code)
       const file = new File([codeBundled], 'devchart.js', {
@@ -30,10 +38,10 @@ export default function useDevChart({ onChartLoaded, initialCode }) {
       })
       const nextCharts = await uploadCustomCharts(file)
       if (nextCharts.length > 0) {
-        onChartLoaded(nextCharts[0])
+        onBuilded(nextCharts[0])
       }
     },
-    [onChartLoaded, uploadCustomCharts]
+    [onBuilded, uploadCustomCharts]
   )
 
   const bootedRef = useRef(false)
@@ -42,14 +50,9 @@ export default function useDevChart({ onChartLoaded, initialCode }) {
       return
     }
     bootedRef.current = true
-    updateDevChart(initialCode)
+    buildChart(initialCode)
   })
 
   const chart = charts.length > 0 ? charts[0] : null
-  return [
-    chart,
-    {
-      updateDevChart,
-    },
-  ]
+  return [chart, buildChart]
 }
