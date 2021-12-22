@@ -1,22 +1,9 @@
 import { useCallback, useEffect, useRef } from 'react'
+import * as Comlink from 'comlink'
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import Worker from 'worker-loader!../worker/bundler'
 import useCustomCharts from './useCustomCharts'
-import * as rollup from 'rollup'
-import virtual from '@rollup/plugin-virtual'
 import './chart-types'
-
-async function createBundle(code) {
-  const build = await rollup.rollup({
-    input: 'index',
-    plugins: [
-      virtual({
-        chart: code,
-        index: `export { default as chart } from './chart'`,
-      }),
-    ],
-  })
-  const { output } = await build.generate({ format: 'umd', name: 'devcharts' })
-  return output[0].code
-}
 
 /**
  * Build a cahrt from code
@@ -29,11 +16,29 @@ export default function useChartBuilder(initialCode, { onBuilded }) {
   const [charts, { uploadCustomCharts }] = useCustomCharts({
     storage: false,
   })
-  console.log('X', charts)
+
+  const activeWorker = useRef(null)
+  useEffect(() => {
+    // Good Bye Space Cowboy
+    return () => {
+      const w = activeWorker.current
+      if (w) {
+        try {
+          w.terminate()
+        } catch (e) {}
+      }
+    }
+  }, [])
 
   const buildChart = useCallback(
     async (code) => {
-      const codeBundled = await createBundle(code)
+      if (activeWorker.current === null) {
+        activeWorker.current = new Worker()
+      }
+      const lazyWorker = activeWorker.current
+      const remote = Comlink.wrap(lazyWorker)
+      const codeBundled = await remote.createBundle(code)
+      console.log('Code bundled', codeBundled)
       const file = new File([codeBundled], 'devchart.js', {
         type: 'application/json',
       })
@@ -55,5 +60,6 @@ export default function useChartBuilder(initialCode, { onBuilded }) {
   })
 
   const chart = charts.length > 0 ? charts[0] : null
+  console.log('Chart', chart)
   return [chart, buildChart]
 }
