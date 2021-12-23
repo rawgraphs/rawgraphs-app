@@ -98,6 +98,10 @@ export default {
   index: `export { default as chart } from './chart'`,
 }
 
+// NOTE: Conflict with Monaco loader should find better soluction
+// for now clear AMD define also with the script is loaded
+window.define = null
+
 export default function BuilderApp() {
   const dataLoader = useDataLoader()
   const {
@@ -235,10 +239,11 @@ export default function BuilderApp() {
 
   const editorRef = useRef()
 
-  const exportChart = useCallback(() => {
+  const exportChart = useCallback(async () => {
     const editor = editorRef.current
     const code = editor.getCode()
-    return bundleChart(code)
+    const bundle =  await bundleChart(code, { mode: 'production' })
+    return bundle
   }, [bundleChart])
 
   const exportProject = useCallback(async () => {

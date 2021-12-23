@@ -37,12 +37,12 @@ export default function useChartBuilder(initialCode = null, { onBuilded }) {
     }
   }, [])
 
-  const bundleChart = useCallback((code) => {
+  const bundleChart = useCallback((code, options = {}) => {
     if (lazyWorker === null) {
       lazyWorker = new Worker()
     }
     const remote = Comlink.wrap(lazyWorker)
-    return remote.createBundle(code)
+    return remote.createBundle(code, options)
   }, [])
 
   const buildChart = useCallback(
@@ -58,7 +58,6 @@ export default function useChartBuilder(initialCode = null, { onBuilded }) {
           onBuilded(nextCharts[0])
         }
       } catch (err) {
-        console.log('Err', err)
         setBuildError(err)
       }
     },
