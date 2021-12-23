@@ -12,6 +12,12 @@ const rollup = rollupBrowser
 async function createBundle(code) {
   const build = await rollup.rollup({
     input: 'index',
+    external: (source, importer, isResolved) => {
+      if (source.startsWith('./') || source.startsWith('../')) {
+        return false
+      }
+      return true
+    },
     plugins: [
       virtual({
         chart: code,

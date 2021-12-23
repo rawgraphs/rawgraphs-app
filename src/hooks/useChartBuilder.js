@@ -5,6 +5,8 @@ import Worker from 'worker-loader!../worker/bundler'
 import useCustomCharts from './useCustomCharts'
 import './chart-types'
 
+let lazyWorker = null
+
 /**
  * Build a cahrt from code
  *
@@ -17,34 +19,36 @@ export default function useChartBuilder(initialCode, { onBuilded }) {
     storage: false,
   })
 
-  const activeWorker = useRef(null)
   useEffect(() => {
     // Good Bye Space Cowboy
     return () => {
-      const w = activeWorker.current
-      if (w) {
+      if (lazyWorker !== null) {
         try {
-          w.terminate()
+          lazyWorker.terminate()
         } catch (e) {}
+        lazyWorker = null
       }
     }
   }, [])
 
   const buildChart = useCallback(
     async (code) => {
-      if (activeWorker.current === null) {
-        activeWorker.current = new Worker()
+      if (lazyWorker === null) {
+        lazyWorker = new Worker()
       }
-      const lazyWorker = activeWorker.current
       const remote = Comlink.wrap(lazyWorker)
-      const codeBundled = await remote.createBundle(code)
-      console.log('Code bundled', codeBundled)
-      const file = new File([codeBundled], 'devchart.js', {
-        type: 'application/json',
-      })
-      const nextCharts = await uploadCustomCharts(file, 'replace')
-      if (nextCharts.length > 0) {
-        onBuilded(nextCharts[0])
+      try {
+        const codeBundled = await remote.createBundle(code)
+        console.log('Code bundled', codeBundled)
+        const file = new File([codeBundled], 'devchart.js', {
+          type: 'application/json',
+        })
+        const nextCharts = await uploadCustomCharts(file, 'replace')
+        if (nextCharts.length > 0) {
+          onBuilded(nextCharts[0])
+        }
+      } catch (err) {
+        console.log('Bundling error', err)
       }
     },
     [onBuilded, uploadCustomCharts]

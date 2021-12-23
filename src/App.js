@@ -32,6 +32,10 @@ import CodeChartEditor from './components/CodeChartEditor'
 // #TODO: i18n
 
 const INITIAL_CODE = `
+import uuid from 'uuid/dist/umd/uuidv4.min.js'
+import dayjs from 'dayjs'
+
+
 export default {
   type: 'div',
   metadata: {
@@ -53,7 +57,7 @@ export default {
     name: 'get',
   },
   render(node) {
-    node.innerHTML = 'Is this the real life? Is this just fantasy? Try to edit me...'
+    node.innerHTML = 'Is this the real life? Is this just fantasy? Try to edit me... ' + 'a' + dayjs().format()
   },
 }
 `
