@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import useDebounceCallback from '../../hooks/useDebounceCallback'
 import Editor from '@monaco-editor/react'
+import { Tabs, Tab } from 'react-bootstrap'
 
 export default function CodeChartEditor({ initialCode, build }) {
   const buildDebounced = useDebounceCallback(build, 350)
@@ -18,9 +19,11 @@ export default function CodeChartEditor({ initialCode, build }) {
 
   return (
     <div>
-      {tabs.map(tab => (
-        <button onClick={() => setActiveTab(tab)} key={tab}>{tab}</button>
-      ))}
+      <Tabs activeKey={activeTab} onSelect={setActiveTab}>
+        {tabs.map((tab) => (
+          <Tab key={tab} eventKey={tab} title={tab} />
+        ))}
+      </Tabs>
       <Editor
         path={activeTab}
         theme="vs-dark"
