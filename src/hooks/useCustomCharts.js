@@ -178,7 +178,7 @@ async function exportCustomChart(chart) {
  *  exportCustomChart: (chart: CustomChartContract) => Promise<{ source: string, content: string | null }>
  * }]}
  */
-export default function useCustomCharts({ storage = true }) {
+export default function useCustomCharts({ storage = true } = { storage: true }) {
   const [customCharts, setCustomCharts] = useState([])
 
   // Loads custom charts saved in user storage
