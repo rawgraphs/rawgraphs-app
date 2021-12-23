@@ -232,10 +232,15 @@ export default function BuilderApp() {
   }, [columnNames, prevColumnNames, clearLocalMapping])
 
   const editorRef = useRef()
-  const exportProject = useCallback(async () => {
+
+  const exportChart = useCallback(() => {
     const editor = editorRef.current
     const code = editor.getCode()
-    const content = await bundleChart(code)
+    return bundleChart(code)
+  }, [bundleChart])
+
+  const exportProject = useCallback(async () => {
+    const content = await exportChart()
     const hash = sha3_512(content)
     const customChart = {
       source: `file:${hash}`,
@@ -261,7 +266,7 @@ export default function BuilderApp() {
       customChart,
     })
   }, [
-    bundleChart,
+    exportChart,
     userInput,
     userData,
     userDataType,
@@ -320,17 +325,6 @@ export default function BuilderApp() {
         </Section>
         {data && (
           <Section title="2. Write Your Chart">
-            <button
-              onClick={() => {
-                const editor = editorRef.current
-                const code = editor.getCode()
-                bundleChart(code).then((strCode) => {
-                  console.log('F*** bundle', strCode)
-                })
-              }}
-            >
-              Bundle!
-            </button>
             <button className="btn btn-sm btn-primary mb-2" onClick={resetCode}>
               <BsArrowClockwise className="mr-2" />
               Reset
@@ -370,7 +364,11 @@ export default function BuilderApp() {
         )}
         {data && currentChart && rawViz && (
           <Section title="5. Export">
-            <Exporter rawViz={rawViz} exportProject={exportProject} />
+            <Exporter
+              rawViz={rawViz}
+              exportProject={exportProject}
+              exportChart={exportChart}
+            />
           </Section>
         )}
         <Footer />

@@ -11,7 +11,7 @@ function downloadBlob(url, filename) {
   return a
 }
 
-export default function Exporter({ rawViz, exportProject }) {
+export default function Exporter({ rawViz, exportProject, exportChart }) {
   const downloadSvg = useCallback(
     (filename) => {
       var svgString = new XMLSerializer().serializeToString(
@@ -64,6 +64,21 @@ export default function Exporter({ rawViz, exportProject }) {
   )
 
   const exportFormats = ['svg', 'png', 'jpg', 'rawgraphs']
+  if (exportChart) {
+    exportFormats.push('js')
+  }
+
+  const downloadChart = useCallback(
+    async (filename) => {
+      const source = await exportChart()
+      const blob = new Blob([source], { type: 'text/javascript' })
+      const DOMURL = window.URL || window.webkitURL || window
+      const url = DOMURL.createObjectURL(blob)
+      downloadBlob(url, filename)
+      DOMURL.revokeObjectURL(url)
+    },
+    [exportChart]
+  )
 
   const [currentFormat, setCurrentFormat] = useState('svg')
   const [currentFile, setCurrentFile] = useState('viz')
@@ -82,6 +97,9 @@ export default function Exporter({ rawViz, exportProject }) {
       case 'rawgraphs':
         downloadProject(`${currentFile}.rawgraphs`)
         break
+      case 'js':
+        downloadChart(`${currentFile}.js`)
+        break
       default:
         break
     }
@@ -90,10 +108,11 @@ export default function Exporter({ rawViz, exportProject }) {
   }, [
     currentFile,
     currentFormat,
+    downloadChart,
     downloadImage,
     downloadProject,
     downloadSvg,
-    rawViz,
+    rawViz._chartImplementation.metadata,
   ])
 
   return (
