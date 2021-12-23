@@ -8,11 +8,11 @@ import './chart-types'
 let lazyWorker = null
 
 /**
- * Build a cahrt from code
+ * Build a chart from code
  *
- * @param initialCode {string}
+ * @param initialCode {Record<string, string>}
  * @param options {{ onBuilded?(chart: CustomChartContract): void }}
- * @returns {[CustomChartContract, (code: string): void]}
+ * @returns {[CustomChartContract, (code: Record<string, string>): void]}
  */
 export default function useChartBuilder(initialCode = null, { onBuilded }) {
   const [charts, { uploadCustomCharts }] = useCustomCharts({

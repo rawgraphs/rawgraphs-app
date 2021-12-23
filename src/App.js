@@ -22,6 +22,7 @@ import isPlainObject from 'lodash/isPlainObject'
 import CookieConsent from 'react-cookie-consent'
 import useChartBuilder from './hooks/useChartBuilder'
 import CodeChartEditor from './components/CodeChartEditor'
+import useUserChartCode from './hooks/useUserChartCode'
 
 const INITIAL_CODE = {
   render: `
@@ -171,39 +172,15 @@ function App() {
     },
     [clearLocalMapping]
   )
+  const [initialCode, writeUserCode] = useUserChartCode(INITIAL_CODE)
   const [currentChart, buildChart] = useChartBuilder(null, {
     onBuilded: syncUIWithChart,
   })
-  // // NOTE: When we run the import we want to use the "last"
-  // // version of importProject callback
-  // const lasImportProjectRef = useRef()
-  // useEffect(() => {
-  //   lasImportProjectRef.current = importProject
-  // })
-  // useEffect(() => {
-  //   const projectUrlStr = new URLSearchParams(window.location.search).get('url')
-  //   let projectUrl
-  //   try {
-  //     projectUrl = new URL(projectUrlStr)
-  //   } catch (e) {
-  //     // BAD URL
-  //     return
-  //   }
-  //   fetch(projectUrl)
-  //     .then((r) => (r.ok ? r.text() : Promise.reject(r)))
-  //     .then(
-  //       (projectStr) => {
-  //         const project = deserializeProject(projectStr, baseCharts)
-  //         const lastImportProject = lasImportProjectRef.current
-  //         if (lastImportProject) {
-  //           lastImportProject(project, true)
-  //         }
-  //       },
-  //       (err) => {
-  //         console.log(`Can't load ${projectUrl}`, err)
-  //       }
-  //     )
-  // }, [])
+
+  const handleCodeChange = useCallback(code => {
+    buildChart(code)
+    writeUserCode(code)
+  }, [buildChart, writeUserCode])
 
   //resetting mapping when column names changes (ex: separator change in parsing)
   useEffect(() => {
@@ -333,7 +310,10 @@ function App() {
         </Section>
         {data && (
           <Section title="2. Write Your Chart">
-            <CodeChartEditor initialCode={INITIAL_CODE} build={buildChart} />
+            <CodeChartEditor
+              initialCode={initialCode}
+              onCodeChange={handleCodeChange}
+            />
           </Section>
         )}
         {data && currentChart && (

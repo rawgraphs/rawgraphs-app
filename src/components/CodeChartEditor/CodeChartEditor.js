@@ -3,8 +3,8 @@ import useDebounceCallback from '../../hooks/useDebounceCallback'
 import Editor from '@monaco-editor/react'
 import { Tabs, Tab } from 'react-bootstrap'
 
-export default function CodeChartEditor({ initialCode, build }) {
-  const buildDebounced = useDebounceCallback(build, 350)
+export default function CodeChartEditor({ initialCode, onCodeChange }) {
+  const onCodeChangeDebounced = useDebounceCallback(onCodeChange, 350)
 
   const code = useRef(initialCode)
 
@@ -14,7 +14,7 @@ export default function CodeChartEditor({ initialCode, build }) {
   function handleChange(tabCode) {
     let nextCode = code.current
     nextCode[activeTab] = tabCode
-    buildDebounced(nextCode)
+    onCodeChangeDebounced(nextCode)
   }
 
   return (
@@ -28,7 +28,7 @@ export default function CodeChartEditor({ initialCode, build }) {
         path={activeTab}
         theme="vs-dark"
         onMount={() => {
-          build(initialCode)
+          onCodeChange(initialCode)
         }}
         height={600}
         onChange={handleChange}
