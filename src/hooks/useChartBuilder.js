@@ -12,7 +12,11 @@ let lazyWorker = null
  *
  * @param initialCode {Record<string, string>}
  * @param options {{ onBuilded?(chart: CustomChartContract): void }}
- * @returns {[CustomChartContract, (code: Record<string, string>): void]}
+ * @returns {{
+ *  chart: CustomChartContract,
+ *  buildChart: (code: Record<string, string>): void
+ *  bundleChart: (code: Record<string, string>): Promise<string>
+ * }}
  */
 export default function useChartBuilder(initialCode = null, { onBuilded }) {
   const [charts, { uploadCustomCharts }] = useCustomCharts({
@@ -31,15 +35,19 @@ export default function useChartBuilder(initialCode = null, { onBuilded }) {
     }
   }, [])
 
+  const bundleChart = useCallback((code) => {
+    if (lazyWorker === null) {
+      lazyWorker = new Worker()
+    }
+    const remote = Comlink.wrap(lazyWorker)
+    return remote.createBundle(code)
+  }, [])
+
   const buildChart = useCallback(
     async (code) => {
-      if (lazyWorker === null) {
-        lazyWorker = new Worker()
-      }
-      const remote = Comlink.wrap(lazyWorker)
       try {
-        const codeBundled = await remote.createBundle(code)
-        console.log('Code bundled: ', codeBundled)
+        const codeBundled = await bundleChart(code)
+        // console.log('Code bundled: ', codeBundled)
         const file = new File([codeBundled], 'devchart.js', {
           type: 'application/json',
         })
@@ -51,7 +59,7 @@ export default function useChartBuilder(initialCode = null, { onBuilded }) {
         console.log('Bundling error', err)
       }
     },
-    [onBuilded, uploadCustomCharts]
+    [bundleChart, onBuilded, uploadCustomCharts]
   )
 
   const bootedRef = useRef(false)
@@ -66,5 +74,9 @@ export default function useChartBuilder(initialCode = null, { onBuilded }) {
   })
 
   const chart = charts.length > 0 ? charts[0] : null
-  return [chart, buildChart]
+  return {
+    chart,
+    buildChart,
+    bundleChart,
+  }
 }

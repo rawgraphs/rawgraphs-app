@@ -1,10 +1,17 @@
-import React, { useState, useCallback, useMemo, useEffect, useRef, useLayoutEffect } from 'react'
+import React, {
+  useState,
+  useCallback,
+  useMemo,
+  useEffect,
+  useRef,
+  useLayoutEffect,
+} from 'react'
+import { sha3_512 } from 'js-sha3'
 import { BsArrowClockwise } from 'react-icons/bs'
 import { useMonaco } from '@monaco-editor/react'
 import {
   getOptionsConfig,
   getDefaultOptionsValues,
-  deserializeProject,
 } from '@rawgraphs/rawgraphs-core'
 import HeaderItems from './HeaderItems'
 import Header from './components/Header'
@@ -179,9 +186,12 @@ export default function BuilderApp() {
     writeCode: writeUserCode,
     resetCode: resetUserCode,
   } = useUserChartCode(INITIAL_CODE)
-  const [currentChart, buildChart] = useChartBuilder(null, {
-    onBuilded: syncUIWithChart,
-  })
+  const { chart: currentChart, bundleChart, buildChart } = useChartBuilder(
+    null,
+    {
+      onBuilded: syncUIWithChart,
+    }
+  )
 
   const handleCodeChange = useCallback(
     (code) => {
@@ -221,29 +231,16 @@ export default function BuilderApp() {
     }
   }, [columnNames, prevColumnNames, clearLocalMapping])
 
-  // update current chart when the related custom charts change under the hood
-  // if the related custom chart is removed set the first chart
-  // useEffect(() => {
-  //   if (currentChart.rawCustomChart) {
-  //     const currentCustom = find(
-  //       customCharts,
-  //       (c) => c.metadata.id === currentChart.metadata.id
-  //     )
-  //     if (!currentCustom) {
-  //       setCurrentChart(baseCharts[0])
-  //       return
-  //     }
-  //     if (
-  //       currentCustom.rawCustomChart.source !==
-  //       currentChart.rawCustomChart.source
-  //     ) {
-  //       setCurrentChart(currentCustom)
-  //     }
-  //   }
-  // }, [customCharts, currentChart])
-
+  const editorRef = useRef()
   const exportProject = useCallback(async () => {
-    const customChart = null
+    const editor = editorRef.current
+    const code = editor.getCode()
+    const content = await bundleChart(code)
+    const hash = sha3_512(content)
+    const customChart = {
+      source: `file:${hash}`,
+      content,
+    }
     return serializeProject({
       userInput,
       userData,
@@ -264,46 +261,30 @@ export default function BuilderApp() {
       customChart,
     })
   }, [
-    currentChart,
-    data,
-    dataSource,
-    decimalsSeparator,
-    locale,
-    mapping,
-    parseError,
-    separator,
-    stackDimension,
-    thousandsSeparator,
+    bundleChart,
+    userInput,
     userData,
     userDataType,
-    userInput,
-    visualOptions,
-    unstackedColumns,
+    parseError,
     unstackedData,
+    unstackedColumns,
+    data,
+    separator,
+    thousandsSeparator,
+    decimalsSeparator,
+    locale,
+    stackDimension,
+    dataSource,
+    currentChart,
+    mapping,
+    visualOptions,
   ])
 
+  // NOTE: mmm for now we can import a project here mostly for the UI
+  // but ok is a super experimental demo
   // project import
   const importProject = useCallback(
     async (project, fromUrl) => {
-      let nextCurrentChart = null
-      // if (project.currentChart.rawCustomChart) {
-      //   try {
-      //     nextCurrentChart = await importCustomChartFromProject(
-      //       project.currentChart
-      //     )
-      //   } catch (err) {
-      //     if (err.isAbortByUser) {
-      //       if (fromUrl) {
-      //         // NOTE: clean the url when the user abort loading custom js
-      //         window.history.replaceState(null, null, '/')
-      //       }
-      //       return
-      //     }
-      //     throw err
-      //   }
-      // } else {
-      //   nextCurrentChart = project.currentChart
-      // }
       hydrateFromSavedProject(project)
       // setCurrentChart(nextCurrentChart)
       setMapping(project.mapping)
@@ -339,11 +320,23 @@ export default function BuilderApp() {
         </Section>
         {data && (
           <Section title="2. Write Your Chart">
+            <button
+              onClick={() => {
+                const editor = editorRef.current
+                const code = editor.getCode()
+                bundleChart(code).then((strCode) => {
+                  console.log('F*** bundle', strCode)
+                })
+              }}
+            >
+              Bundle!
+            </button>
             <button className="btn btn-sm btn-primary mb-2" onClick={resetCode}>
               <BsArrowClockwise className="mr-2" />
               Reset
             </button>
             <CodeChartEditor
+              ref={editorRef}
               key={editorResetKey}
               initialCode={initialCode}
               onCodeChange={handleCodeChange}

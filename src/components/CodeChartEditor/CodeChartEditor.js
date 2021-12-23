@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react'
+import React, { useImperativeHandle, useRef, useState } from 'react'
 import useDebounceCallback from '../../hooks/useDebounceCallback'
 import Editor from '@monaco-editor/react'
 import { Tabs, Tab } from 'react-bootstrap'
 
-export default function CodeChartEditor({ initialCode, onCodeChange }) {
+function CodeChartEditor({ initialCode, onCodeChange }, ref) {
   const onCodeChangeDebounced = useDebounceCallback(onCodeChange, 350)
 
   const code = useRef(initialCode)
@@ -20,6 +20,12 @@ export default function CodeChartEditor({ initialCode, onCodeChange }) {
     code.current = nextCode
     onCodeChangeDebounced(nextCode)
   }
+
+  useImperativeHandle(ref, () => ({
+    getCode: () => {
+      return code.current
+    },
+  }))
 
   return (
     <div>
@@ -42,3 +48,5 @@ export default function CodeChartEditor({ initialCode, onCodeChange }) {
     </div>
   )
 }
+
+export default React.memo(React.forwardRef(CodeChartEditor))
