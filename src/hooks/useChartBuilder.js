@@ -14,7 +14,7 @@ let lazyWorker = null
  * @param options {{ onBuilded?(chart: CustomChartContract): void }}
  * @returns {[CustomChartContract, (code: string): void]}
  */
-export default function useChartBuilder(initialCode, { onBuilded }) {
+export default function useChartBuilder(initialCode = null, { onBuilded }) {
   const [charts, { uploadCustomCharts }] = useCustomCharts({
     storage: false,
   })
@@ -39,7 +39,7 @@ export default function useChartBuilder(initialCode, { onBuilded }) {
       const remote = Comlink.wrap(lazyWorker)
       try {
         const codeBundled = await remote.createBundle(code)
-        console.log('Code bundled', codeBundled)
+        console.log('Code bundled: ', codeBundled)
         const file = new File([codeBundled], 'devchart.js', {
           type: 'application/json',
         })
@@ -60,10 +60,11 @@ export default function useChartBuilder(initialCode, { onBuilded }) {
       return
     }
     bootedRef.current = true
-    buildChart(initialCode)
+    if (initialCode !== null) {
+      buildChart(initialCode)
+    }
   })
 
   const chart = charts.length > 0 ? charts[0] : null
-  console.log('Chart', chart)
   return [chart, buildChart]
 }

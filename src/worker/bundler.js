@@ -9,6 +9,10 @@ console.log('Hello bundler worker!')
  */
 const rollup = rollupBrowser
 
+/**
+ * @param {Record<string, string>} code
+ * @returns {Promise<string>}
+ */
 async function createBundle(code) {
   const build = await rollup.rollup({
     input: 'index',
@@ -19,13 +23,10 @@ async function createBundle(code) {
       return true
     },
     plugins: [
-      virtual({
-        chart: code,
-        index: `export { default as chart } from './chart'`,
-      }),
+      virtual(code),
     ],
   })
-  const { output } = await build.generate({ format: 'umd', name: 'devcharts' })
+  const { output } = await build.generate({ format: 'amd' })
   return output[0].code
 }
 

@@ -10,57 +10,83 @@ import Section from './components/Section'
 import Footer from './components/Footer'
 import ScreenSizeAlert from './components/ScreenSizeAlert'
 import DataLoader from './components/DataLoader'
-import ChartSelector from './components/ChartSelector'
 import DataMapping from './components/DataMapping'
 import ChartPreviewWithOptions from './components/ChartPreviewWIthOptions'
 import Exporter from './components/Exporter'
 import get from 'lodash/get'
-import find from 'lodash/find'
 import deepEqual from 'fast-deep-equal'
 import usePrevious from './hooks/usePrevious'
 import { serializeProject } from '@rawgraphs/rawgraphs-core'
-import baseCharts from './charts'
-import useSafeCustomCharts from './hooks/useSafeCustomCharts'
 import useDataLoader from './hooks/useDataLoader'
 import isPlainObject from 'lodash/isPlainObject'
 import CookieConsent from 'react-cookie-consent'
-import CustomChartLoader from './components/CustomChartLoader'
-import CustomChartWarnModal from './components/CustomChartWarnModal'
 import useChartBuilder from './hooks/useChartBuilder'
 import CodeChartEditor from './components/CodeChartEditor'
 
-// #TODO: i18n
-
-const INITIAL_CODE = `
+const INITIAL_CODE = {
+  render: `
 import uuid from 'uuid/dist/umd/uuidv4.min.js'
-import dayjs from 'dayjs'
+import _ from 'lodash'
 
+export default function render(node, data, visualOptions, mapping, originalData, styles) {
+  node.innerHTML = '<div>' +
+    '<h1>Is this the real life? Is this just fantasy? Try 2 edit me...</h1>' +
+    data.map(d => '<h2 style="color:' +  visualOptions.color + '">' + d.name + '</h2>').join('') +
+    '<h3>Some stuff from npm:</h3>' +
+    uuid() + '<br />' + _.repeat('$', 20)
+    '</div>'
+}
+  `.trim(),
+  metadata: `
+export default {
+  id: 'awesome',
+  name: 'Super Awesome',
+  categories: [],
+}
+  `.trim(),
+  dimensions: `
+export default [
+  {
+    id: 'name',
+    name: 'Name',
+    validTypes: ['string'],
+    required: true,
+    operation: 'get',
+  },
+]
+  `.trim(),
+  mapData: `
+export default {
+  name: 'get',
+}
+`.trim(),
+  visualOptions: `
+    export default {
+      color: {
+        type: 'color',
+        label: 'Color',
+        default: '#a41c5b',
+      },
+    }
+  `,
+  chart: `
+import render from './render'
+import metadata from './metadata'
+import dimensions from './dimensions'
+import mapData from './mapData'
+import visualOptions from './visualOptions'
 
 export default {
   type: 'div',
-  metadata: {
-    id: 'mini',
-    name: 'Mini chart 23',
-    categories: [],
-  },
-  visualOptions: {},
-  dimensions: [
-    {
-      id: 'name',
-      name: 'Name',
-      validTypes: ['string'],
-      required: true,
-      operation: 'get',
-    },
-  ],
-  mapData: {
-    name: 'get',
-  },
-  render(node) {
-    node.innerHTML = 'Is this the real life? Is this just fantasy? Try to edit me... ' + 'a' + dayjs().format()
-  },
+  metadata,
+  visualOptions,
+  dimensions,
+  mapData,
+  render,
 }
-`
+  `.trim(),
+  index: `export { default as chart } from './chart'`,
+}
 
 function App() {
   const dataLoader = useDataLoader()
@@ -81,6 +107,24 @@ function App() {
     loading,
     hydrateFromSavedProject,
   } = dataLoader
+
+  // NOTE: This is a tempo workaround in the future i sweart
+  // i can init useDataLoader
+  const initRef = useRef(false)
+  useEffect(() => {
+    if (!initRef.current) {
+      initRef.current = true
+      dataLoader.setUserInput(
+        `
+      text
+      Merry christmas
+      Wo ooo
+    `,
+        { type: 'paste' }
+      )
+    }
+  }, [dataLoader])
+
   const [mapping, setMapping] = useState({})
   const [visualOptions, setVisualOptions] = useState({})
   const [rawViz, setRawViz] = useState(null)
@@ -127,7 +171,7 @@ function App() {
     },
     [clearLocalMapping]
   )
-  const [currentChart, buildChart] = useChartBuilder(INITIAL_CODE, {
+  const [currentChart, buildChart] = useChartBuilder(null, {
     onBuilded: syncUIWithChart,
   })
   // // NOTE: When we run the import we want to use the "last"
