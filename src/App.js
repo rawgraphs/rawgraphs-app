@@ -1,4 +1,6 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react'
+import { BsArrowClockwise } from 'react-icons/bs'
+import { useMonaco } from '@monaco-editor/react'
 import {
   getOptionsConfig,
   getDefaultOptionsValues,
@@ -172,15 +174,35 @@ function App() {
     },
     [clearLocalMapping]
   )
-  const [initialCode, writeUserCode] = useUserChartCode(INITIAL_CODE)
+  const {
+    code: initialCode,
+    writeCode: writeUserCode,
+    resetCode: resetUserCode,
+  } = useUserChartCode(INITIAL_CODE)
   const [currentChart, buildChart] = useChartBuilder(null, {
     onBuilded: syncUIWithChart,
   })
 
-  const handleCodeChange = useCallback(code => {
-    buildChart(code)
-    writeUserCode(code)
-  }, [buildChart, writeUserCode])
+  const handleCodeChange = useCallback(
+    (code) => {
+      buildChart(code)
+      writeUserCode(code)
+    },
+    [buildChart, writeUserCode]
+  )
+
+  // NOTE: Woraround cause i am a lazy boy
+  const [editorResetKey, setEditorResetKey] = useState(0)
+  const monaco = useMonaco()
+  const resetCode = useCallback(() => {
+    if (monaco) {
+      monaco.editor.getModels().forEach((e) => {
+        e.dispose()
+      })
+    }
+    resetUserCode()
+    setEditorResetKey((k) => k + 1)
+  }, [monaco, resetUserCode])
 
   //resetting mapping when column names changes (ex: separator change in parsing)
   useEffect(() => {
@@ -310,7 +332,12 @@ function App() {
         </Section>
         {data && (
           <Section title="2. Write Your Chart">
+            <button className="btn btn-sm btn-primary mb-2" onClick={resetCode}>
+              <BsArrowClockwise className="mr-2" />
+              Reset
+            </button>
             <CodeChartEditor
+              key={editorResetKey}
               initialCode={initialCode}
               onCodeChange={handleCodeChange}
             />

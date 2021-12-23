@@ -1,28 +1,42 @@
-import { useCallback, useRef } from 'react'
+import { useCallback, useState } from 'react'
 
 /**
  * @param {Record<string, string>} initialCode
- * @returns {[Record<string, string>, (code: Record<string, string>): void]}
+ * @returns {{
+ *  code: Record<string, string>,
+ *  writeCode(code: Record<string, string>): void
+ *  resetCode(code?: Record<string, string>): void
+ * }}
  */
 export default function useUserChartCode(initialCode) {
-  const codeRef = useRef(null)
   // NOTE: For now use this stupid implementation simple read and write
   // to local storage no boot lol
-  let code = null
-  if (codeRef.current === null) {
+
+  const [code, setCode] = useState(() => {
+    let storedCode = null
     try {
-      code = JSON.parse(window.localStorage.getItem('userChartCode') ?? 'null')
+      storedCode = JSON.parse(
+        window.localStorage.getItem('userChartCode') ?? 'null'
+      )
     } catch (_) {}
-    if (code === null) {
-      code = initialCode
+    if (storedCode === null) {
+      return initialCode
+    } else {
+      return storedCode
     }
-  } else {
-    code = codeRef.current
-  }
-  return [
+  })
+
+  return {
     code,
-    useCallback((code) => {
+    resetCode: useCallback(
+      (newCode = null) => {
+        window.localStorage.removeItem('serChartCode')
+        setCode(newCode ?? initialCode)
+      },
+      [initialCode]
+    ),
+    writeCode: useCallback((code) => {
       window.localStorage.setItem('userChartCode', JSON.stringify(code))
     }, []),
-  ]
+  }
 }

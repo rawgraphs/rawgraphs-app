@@ -12,8 +12,12 @@ export default function CodeChartEditor({ initialCode, onCodeChange }) {
   const [activeTab, setActiveTab] = useState('render')
 
   function handleChange(tabCode) {
-    let nextCode = code.current
-    nextCode[activeTab] = tabCode
+    const deCode = code.current
+    const nextCode = {
+      ...deCode,
+      [activeTab]: tabCode,
+    }
+    code.current = nextCode
     onCodeChangeDebounced(nextCode)
   }
 
@@ -27,7 +31,7 @@ export default function CodeChartEditor({ initialCode, onCodeChange }) {
       <Editor
         path={activeTab}
         theme="vs-dark"
-        onMount={() => {
+        onMount={(editor, monaco) => {
           onCodeChange(initialCode)
         }}
         height={600}
