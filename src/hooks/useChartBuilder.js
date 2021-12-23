@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import * as Comlink from 'comlink'
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import Worker from 'worker-loader!../worker/bundler'
@@ -16,12 +16,14 @@ let lazyWorker = null
  *  chart: CustomChartContract,
  *  buildChart: (code: Record<string, string>): void
  *  bundleChart: (code: Record<string, string>): Promise<string>
+ *  buildError: any
  * }}
  */
 export default function useChartBuilder(initialCode = null, { onBuilded }) {
   const [charts, { uploadCustomCharts }] = useCustomCharts({
     storage: false,
   })
+  const [buildError, setBuildError] = useState(null)
 
   useEffect(() => {
     // Good Bye Space Cowboy
@@ -45,9 +47,9 @@ export default function useChartBuilder(initialCode = null, { onBuilded }) {
 
   const buildChart = useCallback(
     async (code) => {
+      setBuildError(null)
       try {
         const codeBundled = await bundleChart(code)
-        // console.log('Code bundled: ', codeBundled)
         const file = new File([codeBundled], 'devchart.js', {
           type: 'application/json',
         })
@@ -56,7 +58,8 @@ export default function useChartBuilder(initialCode = null, { onBuilded }) {
           onBuilded(nextCharts[0])
         }
       } catch (err) {
-        console.log('Bundling error', err)
+        console.log('Err', err)
+        setBuildError(err)
       }
     },
     [bundleChart, onBuilded, uploadCustomCharts]
@@ -78,5 +81,6 @@ export default function useChartBuilder(initialCode = null, { onBuilded }) {
     chart,
     buildChart,
     bundleChart,
+    buildError,
   }
 }

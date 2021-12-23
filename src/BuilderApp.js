@@ -186,12 +186,14 @@ export default function BuilderApp() {
     writeCode: writeUserCode,
     resetCode: resetUserCode,
   } = useUserChartCode(INITIAL_CODE)
-  const { chart: currentChart, bundleChart, buildChart } = useChartBuilder(
-    null,
-    {
-      onBuilded: syncUIWithChart,
-    }
-  )
+  const {
+    chart: currentChart,
+    bundleChart,
+    buildChart,
+    buildError,
+  } = useChartBuilder(null, {
+    onBuilded: syncUIWithChart,
+  })
 
   const handleCodeChange = useCallback(
     (code) => {
@@ -334,6 +336,7 @@ export default function BuilderApp() {
               key={editorResetKey}
               initialCode={initialCode}
               onCodeChange={handleCodeChange}
+              error={buildError}
             />
           </Section>
         )}

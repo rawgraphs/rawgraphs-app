@@ -3,7 +3,7 @@ import useDebounceCallback from '../../hooks/useDebounceCallback'
 import Editor from '@monaco-editor/react'
 import { Tabs, Tab } from 'react-bootstrap'
 
-function CodeChartEditor({ initialCode, onCodeChange }, ref) {
+function CodeChartEditor({ initialCode, onCodeChange, error }, ref) {
   const onCodeChangeDebounced = useDebounceCallback(onCodeChange, 350)
 
   const code = useRef(initialCode)
@@ -45,6 +45,9 @@ function CodeChartEditor({ initialCode, onCodeChange }, ref) {
         defaultLanguage="javascript"
         defaultValue={initialCode[activeTab]}
       />
+      {error && (
+        <div className="alert alert-danger mt-2">{String(error)}</div>
+      )}
     </div>
   )
 }
