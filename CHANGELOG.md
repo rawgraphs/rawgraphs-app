@@ -1,3 +1,10 @@
+## netx
+
+#### Changes
+
+- bugfix calendar heatmap
+
+
 ## 2.0.0-beta.13
 
 #### Changes
