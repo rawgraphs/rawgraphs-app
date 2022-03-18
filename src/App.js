@@ -251,6 +251,12 @@ function App() {
     [hydrateFromSavedProject, importCustomChartFromProject]
   )
 
+  const [isModalCustomChartOpen, setModalCustomChartOpen] = useState(false)
+  const toggleModalCustomChart = useCallback(
+    () => setModalCustomChartOpen((o) => !o),
+    []
+  )
+
   return (
     <div className="App">
       <Header menuItems={HeaderItems} />
@@ -266,11 +272,14 @@ function App() {
         {data && (
           <Section title="2. Choose a chart">
             <CustomChartLoader
+              isOpen={isModalCustomChartOpen}
+              onClose={toggleModalCustomChart}
               loadCustomChartsFromNpm={loadCustomChartsFromNpm}
               loadCustomChartsFromUrl={loadCustomChartsFromUrl}
               uploadCustomCharts={uploadCustomCharts}
             />
             <ChartSelector
+              onAddChartClick={toggleModalCustomChart}
               onRemoveCustomChart={removeCustomChart}
               availableCharts={charts}
               currentChart={currentChart}

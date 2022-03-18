@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useCallback } from 'react'
 import classNames from 'classnames'
 import { Row, Col, Card, Dropdown } from 'react-bootstrap'
-import { BsLink } from 'react-icons/bs'
+import { BsLink, BsPlus } from 'react-icons/bs'
 import uniq from 'lodash/uniq'
 import styles from './ChartSelector.module.scss'
 import { BsFillTrashFill } from 'react-icons/bs'
@@ -17,6 +17,7 @@ function ChartSelector({
   currentChart,
   setCurrentChart,
   onRemoveCustomChart,
+  onAddChartClick,
 }) {
   const [filter, setFilter] = useState('All charts')
 
@@ -127,7 +128,11 @@ function ChartSelector({
                         {d.rawCustomChart && (
                           <div>
                             <button
-                              style={{ position: 'absolute', top: -8, right: -8 }}
+                              style={{
+                                position: 'absolute',
+                                top: -8,
+                                right: -8,
+                              }}
                               className="btn btn-sm btn-primary"
                               onClick={(e) => {
                                 e.stopPropagation()
@@ -164,6 +169,25 @@ function ChartSelector({
                 </Col>
               )
             })}
+            <Col xs={4} className={`p-3`}>
+              <Card
+                onClick={() => {
+                  onAddChartClick()
+                }}
+                className={classNames('flex-row h-100 cursor-pointer py-2')}
+              >
+                <div className="d-flex align-items-center justify-content-center w-25">
+                  <BsPlus size={50} color="var(--primary)" />
+                </div>
+                <Card.Body className="w-75 px-2 py-3">
+                  <Card.Title className="m-0">
+                    <h2 className="m-0" style={{ whiteSpace: 'nowrap' }}>
+                      Add your chart!
+                    </h2>
+                  </Card.Title>
+                </Card.Body>
+              </Card>
+            </Col>
           </Row>
         </Col>
       </Row>

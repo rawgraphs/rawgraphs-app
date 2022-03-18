@@ -13,9 +13,10 @@ export default function CustomChartWarnModal({
       centered
       aria-labelledby="contained-modal-title-vcenter"
       className="raw-modal"
+      contentClassName='border'
     >
       <Modal.Header closeButton>
-        <Modal.Title>WARN</Modal.Title>
+        <Modal.Title>Warning!</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
@@ -40,15 +41,15 @@ export default function CustomChartWarnModal({
 
       <Modal.Footer className="d-flex justify-content-between">
         <Button
-          variant="secondary"
+          variant="light"
           onClick={() => {
             abortCustomChartLoad()
           }}
         >
-          Close
+          Don't execute
         </Button>
         <Button
-          variant="warning"
+          variant="primary"
           onClick={() => {
             confirmCustomChartLoad()
           }}
