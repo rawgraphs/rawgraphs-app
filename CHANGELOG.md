@@ -1,9 +1,4 @@
-## netx
-
-#### Changes
-
-- bugfix calendar heatmap
-
+## next
 
 ## 2.0.0-beta.13
 
@@ -11,6 +6,7 @@
 
 - update d3 to 7.2.0
 - update rawgraphs-charts to 1.0.0-beta.27
+
 #### New Features
 
 - added Voronoi Treemap
