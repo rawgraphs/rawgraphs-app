@@ -29,7 +29,7 @@ const ChartPreviewWithOptions = ({
           data: dataset,
           mapping: mapping,
           dataTypes,
-        })
+        }, chart.rawCustomChart)
           .then((mappedData) => {
             setMappingLoading(false)
             setMappedData(mappedData)

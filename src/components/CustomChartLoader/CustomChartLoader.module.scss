@@ -1,0 +1,54 @@
+.loadingOption {
+  height: 48px;
+  margin: 0 0 8px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: var(--primary-lighter);
+  }
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  &.active {
+    background-color: var(--primary-lighter);
+    border-color: var(--primary);
+    opacity: 1;
+  }
+}
+
+.dropzone {
+  position: relative;
+  height: 100%;
+  border: 1px dashed var(--gray-300);
+  background-color: #F5F8FA;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropin {
+  position: absolute;
+  bottom: 0;
+}
+
+.dropzone.reject {
+  border: 2px dashed var(--danger);
+}
+
+.dropzone.accept {
+  border: 2px dashed var(--success);
+}
+
+.browse-button {
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #ffffff;
+  height: 28px;
+  width: 80px;
+  margin: 0 10px;
+}

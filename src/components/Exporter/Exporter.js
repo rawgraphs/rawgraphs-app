@@ -51,8 +51,8 @@ export default function Exporter({ rawViz, exportProject }) {
   )
 
   const downloadProject = useCallback(
-    (filename) => {
-      const project = exportProject()
+    async (filename) => {
+      const project = await exportProject()
       const str = JSON.stringify(project)
       const blob = new Blob([str], { type: 'application/json' })
       const DOMURL = window.URL || window.webkitURL || window

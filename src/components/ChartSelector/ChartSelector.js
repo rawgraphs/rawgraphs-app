@@ -1,9 +1,10 @@
 import React, { useState, useMemo, useCallback } from 'react'
 import classNames from 'classnames'
 import { Row, Col, Card, Dropdown } from 'react-bootstrap'
-import { BsLink } from 'react-icons/bs'
+import { BsLink, BsPlus } from 'react-icons/bs'
 import uniq from 'lodash/uniq'
 import styles from './ChartSelector.module.scss'
+import { BsFillTrashFill } from 'react-icons/bs'
 
 function filterCharts(charts, filter) {
   return filter === 'All charts'
@@ -11,7 +12,13 @@ function filterCharts(charts, filter) {
     : charts.filter((d) => d.metadata.categories.indexOf(filter) !== -1)
 }
 
-function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
+function ChartSelector({
+  availableCharts,
+  currentChart,
+  setCurrentChart,
+  onRemoveCustomChart,
+  onAddChartClick,
+}) {
   const [filter, setFilter] = useState('All charts')
 
   const charts = useMemo(() => {
@@ -104,9 +111,10 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
                     onClick={() => {
                       setCurrentChart(d)
                     }}
-                    className={`flex-row h-100 cursor-pointer ${
-                      d === currentChart ? 'active' : ''
-                    }`}
+                    className={classNames('flex-row h-100 cursor-pointer', {
+                      active: d === currentChart ? 'active' : '',
+                      [styles.customChart]: !!d.rawCustomChart,
+                    })}
                   >
                     <div
                       className={`h-100 w-25 ${styles.thumbnail}`}
@@ -117,6 +125,35 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
                         <h2 className="m-0" style={{ whiteSpace: 'nowrap' }}>
                           {d.metadata.name}
                         </h2>
+                        {d.rawCustomChart && (
+                          <div>
+                            <button
+                              style={{
+                                position: 'absolute',
+                                top: -8,
+                                right: -8,
+                              }}
+                              className="btn btn-sm btn-primary"
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                onRemoveCustomChart(d)
+                              }}
+                            >
+                              <BsFillTrashFill />
+                            </button>
+                            <small
+                              style={{
+                                maxWidth: '100%',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                display: 'block',
+                                whiteSpace: 'nowrap',
+                              }}
+                            >
+                              {d.rawCustomChart.source}
+                            </small>
+                          </div>
+                        )}
                       </Card.Title>
                       <Card.Subtitle className="m-0">
                         <h4 className="m-0">
@@ -132,6 +169,25 @@ function ChartSelector({ availableCharts, currentChart, setCurrentChart }) {
                 </Col>
               )
             })}
+            <Col xs={4} className={`p-3`}>
+              <Card
+                onClick={() => {
+                  onAddChartClick()
+                }}
+                className={classNames('flex-row h-100 cursor-pointer py-2')}
+              >
+                <div className="d-flex align-items-center justify-content-center w-25">
+                  <BsPlus size={50} color="var(--primary)" />
+                </div>
+                <Card.Body className="w-75 px-2 py-3">
+                  <Card.Title className="m-0">
+                    <h2 className="m-0" style={{ whiteSpace: 'nowrap' }}>
+                      Add your chart!
+                    </h2>
+                  </Card.Title>
+                </Card.Body>
+              </Card>
+            </Col>
           </Row>
         </Col>
       </Row>
