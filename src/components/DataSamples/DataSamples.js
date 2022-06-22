@@ -1,8 +1,16 @@
-import React from 'react'
-import { Row, Col, Card } from 'react-bootstrap'
+import { Card, Col, Row } from 'react-bootstrap'
 import styles from './DataSamples.module.scss'
 
 const samplesList = [
+  {
+    name: 'The Global Flow of People',
+    category: 'Chord Diagram',
+    url: './sample-datasets/Chord Diagram - The Global Flow of People.csv',
+    delimiter: ';',
+    sourceName: 'Nikola Sander, Guy J. Abel & Ramon Bauer',
+    sourceURL:
+      'http://download.gsb.bund.de/BIB/global_flow/',
+  },
   {
     name: 'Hate crimes in New York',
     category: 'Alluvial Diagram',

@@ -7,8 +7,7 @@ import {
   beeswarm,
   boxplot,
   bubblechart,
-  bumpchart,
-  circlepacking,
+  bumpchart, chorddiagram, circlepacking,
   circularDendrogram,
   contourPlot,
   convexHull,
@@ -28,7 +27,7 @@ import {
   treemap,
   violinplot,
   voronoidiagram,
-  voronoitreemap,
+  voronoitreemap
 } from '@rawgraphs/rawgraphs-charts'
 
 import { calendarHeatmap } from '@rawgraphs/rawgraphs-calendar-heatmap'
@@ -67,8 +66,7 @@ let charts = [
   violinplot,
   voronoidiagram,
   voronoitreemap,
-
-  
+  chorddiagram,
 ]
 
 export default charts
