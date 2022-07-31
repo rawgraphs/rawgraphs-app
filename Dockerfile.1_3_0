@@ -1,0 +1,24 @@
+# Docker container built on Ubuntu 16.04 that hosts the RAWGraphs visualization
+# application on a python simpleHTTP web server on port 4000.
+# FROM python:3.7
+# Note: Python added 30 Mb. Not sure if Tomcat would improve on that.
+FROM node:10-slim
+LABEL description="Implements a rawgraphs.io server. Execute using: \
+    docker run -d -p 4000:4000 dawmatt/rawgraphs:1.3.0" 
+
+# Install required utilities
+RUN apt-get update && \
+    apt-get install -y git \
+    python3 && \
+    npm install -g bower
+
+# Add Rawgraph code, dependencies and create user
+RUN mkdir /src/ && mkdir /src/raw && \
+    git clone git://github.com/densitydesign/raw.git /src/raw 
+WORKDIR /src/raw
+RUN bower --allow-root install && \
+    useradd -ms /bin/bash raw
+
+# Start the server
+USER raw
+CMD python3 -m http.server 4000 
