@@ -2,7 +2,7 @@
 # application on a python simpleHTTP web server on port 4000.
 FROM node:14-alpine
 LABEL description="Implements a rawgraphs.io server. Execute using: \
-    docker run -d -p 43000:3000 dawmatt/rawgraphs:2.0.0" 
+    docker run -d -p 43000:3000 dawmatt/rawgraphs:1.0.0" 
 
 ENV NODE_ENV=production
 
