@@ -1867,10 +1867,10 @@
     d3-voronoi-treemap "^1.1.1"
     louvain "^1.2.0"
 
-"@rawgraphs/rawgraphs-core@^1.0.0-beta.16":
-  version "1.0.0-beta.16"
-  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-core/-/rawgraphs-core-1.0.0-beta.16.tgz#71fe55faeb0787ba76d0fd1186cfd44c755ea8a8"
-  integrity sha512-wlF9aOZt+d+3t7WVs8B0H992lYTJZAlD6ZKYSqDMXj4X7XXTF2LCk5KsjMbpzYJXBgn+J8W6PsgzFGPyCGzvkA==
+"@rawgraphs/rawgraphs-core@^1.0.0-beta.17":
+  version "1.0.0-beta.17"
+  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-core/-/rawgraphs-core-1.0.0-beta.17.tgz#8fc861645369126d93e6e0cf2606cd883be5005d"
+  integrity sha512-vXfqV0OegJEOmB/pjkE2R6AVWPfDTNi0wQx6qFthqoB0ZQCqLLbH2KBBLmrtfnpx2J1RPoIy7cCFagF3XAQjrg==
   dependencies:
     d3-array "^2.4.0"
     d3-axis "^1.0.12"
