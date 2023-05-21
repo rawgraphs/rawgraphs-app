@@ -28,7 +28,7 @@ If you want to run your instance of RAWGraphs locally on your machine, be sure y
 If you want to run your instance of RAWGraphs locally on your machine, be sure you have the following requirements installed.
 
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) (it could be used through the interface of [GitHub Desktop](https://desktop.github.com/))
-- [Node.js](https://nodejs.org/en/)
+- [Node.js](https://nodejs.org/en/) (version 14)
 - [Yarn](https://yarnpkg.com/getting-started/install)
 
 ### Instructions (macOS)
@@ -62,6 +62,16 @@ You can also build your own version and upload it on your server by running the 
 ```shell
 yarn build
 ```
+
+### Instructions (docker on any platform)
+
+You might have a newer version of node installed. If so, you could benefit from running the `RAWGraphs-app` in an isolated container. To do this you will need to have docker installed. Then open the terminal in the root folder of the repository and type:
+
+```shell
+docker-compose up
+```
+
+This will install and start yarn. If you want to build your own production version, you would need to modify your docker configuration accordingly.
 
 ## Contributing
 
