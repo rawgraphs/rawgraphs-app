@@ -8,7 +8,6 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/app
-    # tty: true
     stdin_open: true
     ports:
       - 3000:3000
