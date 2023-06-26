@@ -63,10 +63,7 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "^4.14.1",
-    "prettier": "^2.1.2"
-  },
-  "engines": {
-    "node": "^14"
+    "prettier": "^2.1.2",
+    "sass": "^1.63.6"
   }
 }
