@@ -182,7 +182,7 @@ function ChartSelector({
                 <Card.Body className="w-75 px-2 py-3">
                   <Card.Title className="m-0">
                     <h2 className="m-0" style={{ whiteSpace: 'nowrap' }}>
-                      Add your chart!
+                      Load custom chart
                     </h2>
                   </Card.Title>
                 </Card.Body>

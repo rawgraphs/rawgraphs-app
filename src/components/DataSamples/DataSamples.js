@@ -73,6 +73,17 @@ const samplesList = [
   },
 
   {
+    name: 'Estimated migration flows between macro-areas from 1960 to 1970',
+    category: 'Chord diagram',
+    url:
+      './sample-datasets/Chord Diagram - Estimated migration flows between macro-areas.csv',
+    delimiter: ',',
+    sourceName: 'Gui J. Abel, via Data to Viz',
+    sourceURL:
+      'https://github.com/holtzy/data_to_viz/tree/master/Example_dataset',
+  },
+
+  {
     name: 'Most populated cities per continent',
     category: 'Circle packing',
     url: './sample-datasets/Circle Packing - Most populated cities.tsv',

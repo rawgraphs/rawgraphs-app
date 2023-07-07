@@ -8,6 +8,7 @@ import {
   boxplot,
   bubblechart,
   bumpchart,
+  chorddiagram,
   circlepacking,
   circularDendrogram,
   contourPlot,
@@ -46,6 +47,7 @@ let charts = [
   bubblechart,
   bumpchart,
   calendarHeatmap,
+  chorddiagram,
   circlepacking,
   circularDendrogram,
   contourPlot,
@@ -67,8 +69,6 @@ let charts = [
   violinplot,
   voronoidiagram,
   voronoitreemap,
-
-  
 ]
 
 export default charts

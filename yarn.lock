@@ -1846,17 +1846,17 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.7.0.tgz#5f7760965170f7f1e2910d2498c5be88b47a2a8c"
   integrity sha512-V3WyEc8ZyAuOQ2fpFuTuYYOd2tV4NePeSdxaHYgYAOs7ERLxlcFi2XsmgI5LJFdAUmJKXsg8jaIiVTkTHQygQw==
 
-"@rawgraphs/rawgraphs-calendar-heatmap@^1.0.0-beta.5":
-  version "1.0.0-beta.5"
-  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-calendar-heatmap/-/rawgraphs-calendar-heatmap-1.0.0-beta.5.tgz#88c1da0bc89ecbce2203d61d5d05c50f7b13a890"
-  integrity sha512-MngPSg9peNz0H0tGFzSrrWRaBNByyPGbiF5scIgXW7OCn5PYi5GAYN/4mZec1wgArfmMlTlIWVqlQXC4JDConA==
+"@rawgraphs/rawgraphs-calendar-heatmap@^v1.0.0-beta.8":
+  version "1.0.0-beta.8"
+  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-calendar-heatmap/-/rawgraphs-calendar-heatmap-1.0.0-beta.8.tgz#31f16ed269d3f48ddc273589e63d431074b323e6"
+  integrity sha512-tYqbLDt12UiXeRb+14tJ2NxpSfZmU+0dvITb7WUAZBcF/uraDmCkcbdVHLWPvMgDwJktWiHSmvoY69HC4TPGig==
   dependencies:
     d3 "^7.2.0"
 
-"@rawgraphs/rawgraphs-charts@^1.0.0-beta.27":
-  version "1.0.0-beta.27"
-  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-charts/-/rawgraphs-charts-1.0.0-beta.27.tgz#306b314c7c1bffaf3b979de89dbf7a37efb5efad"
-  integrity sha512-yr2bDf9+E8qdmIT+uh4DSGslWUrbGAXcbNekJgu+h5JN0PrmfjddF+X3k97535hGds7gPtJDVZnrFQ0h3vNO4g==
+"@rawgraphs/rawgraphs-charts@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@rawgraphs/rawgraphs-charts/-/rawgraphs-charts-1.0.1.tgz#0c713fbbaca4daaee38a417a184ba1f9196958dd"
+  integrity sha512-bSykr/MgPlEWu3XZJO8i9lvWkSox/pLcqgxJPHbSTqxFV/WjKZEIS3rq2vATczgud+ke5nfiGyrSuNcgmnJrqg==
   dependencies:
     d3 "^7.2.0"
     d3-contour "^3.0.1"
