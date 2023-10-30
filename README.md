@@ -71,7 +71,7 @@ You might have a newer version of node installed. If so, you could benefit from 
 docker-compose up
 ```
 
-This will install and start yarn. If you want to build your own production version, you would need to modify your docker configuration accordingly.
+This will install and start yarn. To access the app, open http://localhost:3000 as you would do otherwise. If you want to build your own production version, you would need to modify your docker configuration accordingly.
 
 ## Contributing
 
