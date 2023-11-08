@@ -204,7 +204,7 @@ function CustomChartLoader({ isOpen, onClose, ...props }) {
       contentClassName="bg-white"
     >
       <Modal.Header closeButton>
-        <Modal.Title>Add a new custom chart</Modal.Title>
+        <Modal.Title>Load custom chart</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
