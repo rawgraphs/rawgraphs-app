@@ -19,7 +19,7 @@ function LoadFromFile({ loading, load }) {
   } = useDropzone({
     disabled: loading,
     onDrop,
-    accept: 'text/plan,text/javascript',
+    accept: 'text/plain,text/javascript,.js',
     maxFiles: 1,
   })
   return (
