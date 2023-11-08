@@ -1,4 +1,31 @@
-## next
+## 2.0.1
+
+#### New Features
+
+- Added support for custom charts. Now oyu can load locally your custom charts without needing to download, comple and host RAWGraphs. See this blog post for more information: https://www.rawgraphs.io/post/introducing-a-new-feature-in-rgraphs-on-the-fly-custom-chart
+- Added Chord diagram: Added chart by merging pull request by @blindguardian50, @steve1711, @TheAlmightySpaceWarrior, @wizardry8, and @kandrews99.
+
+#### Changes
+
+- update rawgraphs-charts to 1.0.1
+- Updated rawgraphs-core dependencies
+- moved to sass instead of node-sass
+
+#### new features in charts
+
+- Voronoi Treemap: Exposed minimum weight ratio option, allowing better control of area fitting.
+- Barchart: Padding in horizontal bar charts now works.
+- Beeswarm plot: Added error message when using negative values for size.
+- Bump chart: labels are now correct when using padding
+- Circle packing: Added error message when using negative values for size.
+- Circular dendrogram: Added error message when using negative values for size.
+- Grouped barcharts: Fixed date formats. Axis ticks are now prettier when using dates.
+- Linear dendrogram: Added error message when using negative values for size.
+- Matrix plot: Improved labeling of visual options.
+- Sankey diagram: Improved labeling of visual options.
+- Stacked barcharts: Fixed date formats. Axis ticks are now prettier when using dates.
+- Voronoi treemap: Fixed label styles.
+- Fixed some typos (thanks to @SaarthakMaini and @TomFevrier!).
 
 ## 2.0.0-beta.13
 
