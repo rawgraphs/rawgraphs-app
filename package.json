@@ -42,7 +42,7 @@
   },
   "scripts": {
     "format": "prettier --write src",
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
