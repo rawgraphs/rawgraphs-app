@@ -45,12 +45,15 @@ function ScreenSizeAlert() {
           RAWGraphs 2.0 is designed for {size.width >= 768 ? 'slightly ' : ' '}
           bigger screens!
         </p>
-        <p>
+        {/* <p>
           Resize your browser window or{' '}
           <a href="mailto:?subject=Visit+RAWGraphs+2.0&body=Hello%21%0D%0APlease+do+not+forget+to+take+a+look+at+the+new+version+of+RAWGraphs%21%0D%0A%0D%0AVisit%3A+https%3A%2F%2Fdev.rawgraphs.io%2F%0D%0A%0D%0ASee+you+later%2C%0D%0AThe+RAWGraphs+Team">
             <BsEnvelopeFill /> send yourself a reminder
           </a>{' '}
           to come back at a better time.
+        </p> */}
+        <p>
+          Please resize your browser window.
         </p>
         <p>Touch devices are not fully supported yet.</p>
       </Modal.Body>

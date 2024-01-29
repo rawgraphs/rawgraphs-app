@@ -210,14 +210,14 @@ function CustomChartLoader({ isOpen, onClose, ...props }) {
       <Modal.Body>
         <CustomChartLoaderForm {...props} onClose={onClose} />
       </Modal.Body>
-      <Modal.Footer>
+      {/* <Modal.Footer>
         <div className='text-center w-100'>
           Do you want to know how to create a custom chart?{' '}
           <a href="https://rawgraphs.io" target="_blank" rel="noreferrer">
             Check our documentation
           </a>
         </div>
-      </Modal.Footer>
+      </Modal.Footer> */}
     </Modal>
   )
 }
