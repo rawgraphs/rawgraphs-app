@@ -318,7 +318,7 @@ function App() {
           </Section>
         )}
         <Footer />
-        <CookieConsent
+        {/*<CookieConsent
           location="bottom"
           buttonText="Got it!"
           style={{ background: '#f5f5f5', color: '#646467' }}
@@ -342,7 +342,7 @@ function App() {
           >
             Learn More
           </a>
-        </CookieConsent>
+        </CookieConsent>*/}
       </div>
       <ScreenSizeAlert />
     </div>

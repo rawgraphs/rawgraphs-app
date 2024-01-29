@@ -14,7 +14,10 @@ export default function Footer(props) {
         <Row>
           <Col xs={6} sm={{ span: 5, order: 1 }} lg={{ span: 3, order: 1 }}>
             <p className="Xsmall">
-              RAWGraphs is an open source project designed and developed by{' '}
+              RAWGraphs is an open source project designed and developed by DensityDesign, Calibro and Inmagik.
+              <br />© 2013-2021{' '}
+              (Apache License 2.0)
+              {/* RAWGraphs is an open source project designed and developed by{' '}
               <a
                 href="http://densitydesign.org/"
                 target="_blank"
@@ -42,7 +45,7 @@ export default function Footer(props) {
               <br />© 2013-2021{' '}
               <a href="https://raw.github.com/rawgraphs/rawgraphs-app/master/LICENSE">
                 (Apache License 2.0)
-              </a>
+              </a> */}
             </p>
           </Col>
           <Col xs={6} sm={{ span: 5, order: 3 }} lg={{ span: 3, order: 1 }}>
@@ -56,7 +59,7 @@ export default function Footer(props) {
             lg={{ offset: 0 }}
             xl={{ span: 2, offset: 2 }}
           >
-            <p>
+            {/* <p>
               <BsFillEnvelopeFill /> hello at rawgraphs.io
             </p>
             <p>
@@ -68,7 +71,7 @@ export default function Footer(props) {
               >
                 @rawgraphs
               </a>
-            </p>
+            </p> */}
           </Col>
           <Col
             xs={6}
@@ -77,7 +80,7 @@ export default function Footer(props) {
             lg={{ offset: 0 }}
             xl={{ span: 2, offset: 0 }}
           >
-            <p>
+            {/* <p>
               <FaGithub />{' '}
               <a
                 href="https://github.com/rawgraphs"
@@ -96,7 +99,7 @@ export default function Footer(props) {
               >
                 RAWGraphs v.1
               </a>
-            </p>
+            </p> */}
           </Col>
         </Row>
       </Container>
