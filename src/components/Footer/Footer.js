@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './Footer.module.scss'
 import { Row, Col, Container } from 'react-bootstrap'
-import { BsFillEnvelopeFill, BsBarChartFill } from 'react-icons/bs'
-import { FaTwitter, FaGithub } from 'react-icons/fa'
+// import { BsFillEnvelopeFill, BsBarChartFill } from 'react-icons/bs'
+// import { FaTwitter, FaGithub } from 'react-icons/fa'
 
 // #TODO add commit hash
 // const commitHash = process.env.REACT_APP_VERSION || 'dev'

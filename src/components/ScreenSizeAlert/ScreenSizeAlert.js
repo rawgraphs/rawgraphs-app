@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import useWindowSize from '../../hooks/useWindowSize'
 import { Modal, Button } from 'react-bootstrap'
-import { BsEnvelopeFill } from 'react-icons/bs'
+// import { BsEnvelopeFill } from 'react-icons/bs'
 
 // import styles from './ScreenSizeAlert.module.scss'
 

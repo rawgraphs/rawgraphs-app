@@ -1,6 +1,6 @@
 {
   "name": "rawgraphs-frontend",
-  "homepage": "https://app.rawgraphs.io",
+  "homepage": "./",
   "version": "2.0.1",
   "private": true,
   "dependencies": {
@@ -43,7 +43,7 @@
   "scripts": {
     "format": "prettier --write src",
     "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts build",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
