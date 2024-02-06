@@ -78,7 +78,7 @@ function ChartSelector({
                   <h4 className="mb-2">{currentChart.metadata.category}</h4>
                 </Card.Subtitle>
                 <Card.Text>{currentChart.metadata.description}</Card.Text>
-                <Card.Link
+                {/* <Card.Link
                   className={classNames({
                     [styles.disabled]: !currentChart.metadata.code,
                     underlined: true,
@@ -97,7 +97,7 @@ function ChartSelector({
                   target="_blank"
                 >
                   <BsLink color="black" /> Tutorial
-                </Card.Link>
+                </Card.Link> */}
               </Card.Body>
             </Card>
           )}
