@@ -113,7 +113,7 @@ const samplesList = [
   },
 
   {
-    name: 'Italians PMs and Presidents',
+    name: 'Italian PMs and Presidents',
     category: 'Gantt chart',
     url: './sample-datasets/Gantt chart - Italian PMs and presidents.tsv',
     delimiter: '\t',
