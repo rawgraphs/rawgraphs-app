@@ -28,8 +28,8 @@ If you want to run your instance of RAWGraphs locally on your machine, be sure y
 If you want to run your instance of RAWGraphs locally on your machine, be sure you have the following requirements installed.
 
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) (it could be used through the interface of [GitHub Desktop](https://desktop.github.com/))
-- [Node.js](https://nodejs.org/en/)
-- [Yarn](https://yarnpkg.com/getting-started/install)
+- [Node.js](https://nodejs.org/en/) (latest tested: 23.6.1)
+- [Yarn](https://yarnpkg.com/getting-started/install) (latest tested: 1.22)
 
 ### Instructions (macOS)
 
@@ -55,6 +55,11 @@ Now you can run the project locally in development mode with the command:
 
 ```shell
 yarn start
+```
+
+Ensure that you're using the legacy OpenSSL providers (to be updated):
+```shell
+export NODE_OPTIONS=--openssl-legacy-provider
 ```
 
 You can also build your own version and upload it on your server by running the command:
