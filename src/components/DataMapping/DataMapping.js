@@ -1,8 +1,6 @@
 import React, {
   useCallback,
-  useEffect,
   useImperativeHandle,
-  useRef,
   useState,
 } from 'react'
 import { Row, Col } from 'react-bootstrap'
@@ -153,21 +151,17 @@ function DataMapping({ dataTypes, dimensions, mapping, setMapping }, ref) {
     setDraggingId(null)
   }, [mapping])
 
-  // const commitLocalMapping = useCallback(() => {
-  //   console.log('COMMIT!', localMappding)
-  //   setMapping(localMappding)
-  //   setDraggingId(null)
-  // }, [localMappding, setMapping])
   const commitLocalMapping = () => {
-    // setMapping()
-    setMapping(lastMapping.current)
+    // Read the true latest localMappding via the setState updater callback,
+    // rather than a ref synced by a separate effect: under React 18's
+    // automatic batching, that ref could still hold the previous mapping
+    // when this runs, committing a stale snapshot to the real mapping.
+    setLocalMapping((currentLocalMapping) => {
+      setMapping(currentLocalMapping)
+      return currentLocalMapping
+    })
     setDraggingId(null)
   }
-
-  const lastMapping = useRef()
-  useEffect(() => {
-    lastMapping.current = localMappding
-  })
 
   useImperativeHandle(ref, () => ({
     clearLocalMapping: () => {
