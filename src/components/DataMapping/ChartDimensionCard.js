@@ -40,7 +40,7 @@ const ChartDimensionCard = ({
       isOver: monitor.isOver(),
     }),
     drop: (item, monitor) => {
-      if (item.type === 'column') {
+      if (monitor.getItemType() === 'column') {
         const defaulAggregation = dimension.aggregation
           ? getDefaultDimensionAggregation(dimension, dataTypes[item.id])
           : null

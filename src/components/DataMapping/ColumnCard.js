@@ -13,7 +13,8 @@ const ColumnCard = ({
   rollbackLocalMapping,
 }) => {
   const [{ isDragging }, drag] = useDrag({
-    item: { id: dimensionName, type: 'column' },
+    type: 'column',
+    item: { id: dimensionName },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
