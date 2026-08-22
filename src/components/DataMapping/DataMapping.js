@@ -186,7 +186,7 @@ function DataMapping({ dataTypes, dimensions, mapping, setMapping }, ref) {
             )
           })}
         </Col>
-        <Col>
+        <Col style={{ minWidth: 0 }}>
           <h5 className="text-uppercase">Chart Variables</h5>
           <Row
             className="sticky-top"

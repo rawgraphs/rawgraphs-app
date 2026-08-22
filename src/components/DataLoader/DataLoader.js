@@ -368,7 +368,7 @@ function DataLoader({
             </div>
           </Col>
         )}
-        <Col>
+        <Col style={{ minWidth: 0 }}>
           <Row className="h-100">
             <Col className="h-100">
               {mainContent}

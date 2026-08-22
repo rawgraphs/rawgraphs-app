@@ -102,7 +102,7 @@ function ChartSelector({
             </Card>
           )}
         </Col>
-        <Col>
+        <Col style={{ minWidth: 0 }}>
           <Row>
             {charts.map((d, i) => {
               return (
