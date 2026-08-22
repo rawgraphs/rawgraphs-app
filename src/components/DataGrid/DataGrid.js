@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState, useCallback } from 'react'
+import React, { useMemo, useRef, useState, useCallback, useLayoutEffect } from 'react'
 import ReactDataGrid from 'react-data-grid'
 import { Overlay, OverlayTrigger } from 'react-bootstrap'
 import classNames from 'classnames'
@@ -237,14 +237,29 @@ export default function DataGrid({
 
   const containerEl = useRef()
 
+  // Measured after layout settles (and re-measured on resize), rather than
+  // read from the ref during render: a mid-render read can race the
+  // sibling flex column and lock in the full pre-layout width, which then
+  // never gets a chance to correct itself.
+  const [containerWidth, setContainerWidth] = useState(0)
+  useLayoutEffect(() => {
+    const el = containerEl.current
+    if (!el) return
+    const observer = new ResizeObserver((entries) => {
+      setContainerWidth(entries[0].contentRect.width)
+    })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   // Make id column just as large as needed
   // Adjust constants to fit cell padding and font size
   // (Math.floor(Math.log10(data.dataset.length)) + 1) is the number
   //   of digits of the highest id
   const idColumnWidth =
     24 + 8 * (Math.floor(Math.log10(userDataset.length)) + 1)
-  
-  const equalDinstribution = (containerEl.current?.getBoundingClientRect().width - idColumnWidth - 1) / Object.keys(dataTypes).length
+
+  const equalDinstribution = (containerWidth - idColumnWidth - 1) / Object.keys(dataTypes).length
   const columnWidth = equalDinstribution ? Math.max(equalDinstribution, 170) : 170;
 
   const columns = useMemo(() => {
