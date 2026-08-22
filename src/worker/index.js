@@ -1,6 +1,5 @@
 import * as Comlink from 'comlink'
-/* eslint-disable import/no-webpack-loader-syntax */
-import Worker from 'worker-loader!./worker'
+import Worker from './worker?worker'
 
 let parsingWorker // = new Worker()
 let parsingWorkerProxy

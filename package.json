@@ -8,9 +8,6 @@
     "@rawgraphs/rawgraphs-charts": "^1.0.1",
     "@rawgraphs/rawgraphs-core": "^1.0.0-beta.17",
     "@rdfjs-elements/sparql-editor": "^0.1.6",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
     "array-insert": "^2.0.0",
     "array-move": "^3.0.1",
     "bootstrap": "^4.5.0",
@@ -34,40 +31,22 @@
     "react-dom": "^18.3.1",
     "react-dropzone": "^11.0.3",
     "react-icons": "^3.10.0",
-    "react-scripts": "^4.0.3",
     "sparql-http-client": "^2.4.0",
     "sparqljs": "3.5.1",
-    "typeface-inter": "^3.12.0",
-    "worker-loader": "^3.0.2"
-  },
-  "overrides": {
-    "@babel/core": "^7.29.7"
+    "typeface-inter": "^3.12.0"
   },
   "scripts": {
     "format": "prettier --write src",
-    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
+    "@vitejs/plugin-react": "^4.7.0",
     "prettier": "^2.1.2",
-    "sass": "^1.63.6"
+    "sass": "^1.63.6",
+    "vite": "^7.3.6",
+    "vite-plugin-svgr": "^5.2.0"
   }
 }

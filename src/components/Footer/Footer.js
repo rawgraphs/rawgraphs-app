@@ -5,7 +5,7 @@ import { BsFillEnvelopeFill, BsBarChartFill } from 'react-icons/bs'
 import { FaTwitter, FaGithub } from 'react-icons/fa'
 
 // #TODO add commit hash
-// const commitHash = process.env.REACT_APP_VERSION || 'dev'
+// const commitHash = import.meta.env.VITE_APP_VERSION || 'dev'
 
 export default function Footer(props) {
   return (
