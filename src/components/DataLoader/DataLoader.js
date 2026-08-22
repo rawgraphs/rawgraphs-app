@@ -252,7 +252,7 @@ function DataLoader({
 
   return (
     <>
-      <Row>
+      <Row className="flex-nowrap">
         {!userData && (
           <Col
             xs={3}

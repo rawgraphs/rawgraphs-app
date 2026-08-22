@@ -65,7 +65,7 @@ function ChartSelector({
           </Dropdown>
         </Col>
       </Row>
-      <Row>
+      <Row className="flex-nowrap">
         <Col xs={3} className="pt-3">
           {currentChart && (
             <Card className={styles.currentChart}>
