@@ -1,5 +1,5 @@
 import { get } from 'lodash'
-import React, { useCallback, useState } from 'react'
+import React, { Suspense, lazy, useCallback, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import {
   BsArrowCounterclockwise,
@@ -24,7 +24,10 @@ import UrlFetch from './loaders/UrlFetch'
 import Loading from './loading'
 import WarningMessage from '../WarningMessage'
 import DataMismatchModal from './DataMismatchModal'
-import SparqlFetch from './loaders/SparqlFetch'
+// sparqljs, sparql-http-client and lit-html/sparql-editor are only needed
+// by this one loader, and are sizeable enough to be worth keeping out of
+// the main bundle.
+const SparqlFetch = lazy(() => import('./loaders/SparqlFetch'))
 import { tsvFormat } from 'd3-dsv'
 import { CopyToClipboardButton } from '../CopyToClipboardButton'
 
@@ -113,14 +116,16 @@ function DataLoader({
       name: 'SPARQL query',
       message: 'Load data with a SparQL query',
       loader: (
-        <SparqlFetch
-          userInput={userInput}
-          setUserInput={(rawInput, source) => setUserInput(rawInput, source)}
-          setLoadingError={setLoadingError}
-          initialState={
-            initialOptionState?.type === 'sparql' ? initialOptionState : null
-          }
-        />
+        <Suspense fallback={<Loading />}>
+          <SparqlFetch
+            userInput={userInput}
+            setUserInput={(rawInput, source) => setUserInput(rawInput, source)}
+            setLoadingError={setLoadingError}
+            initialState={
+              initialOptionState?.type === 'sparql' ? initialOptionState : null
+            }
+          />
+        </Suspense>
       ),
       icon: BsCloud,
       disabled: false,
