@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="RAWGraphs: the missing link between spreadsheets and vector graphics"
+    />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>RAWGraphs 2.0</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5816319-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-5816319-7');
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script>
+      // Minimal stand-in for the Node `process` global some dependencies
+      // reference at runtime, assuming a webpack-bundled environment
+      // where it's always defined. Covers what's actually needed:
+      // NODE_ENV (checked by a few CJS deps); argv/exit, dead-code no-ops
+      // for sparqljs's generated parser (see vite.config.js); and
+      // version/versions.node, which the readable-stream polyfill pulled
+      // in transitively by sparql-http-client (via concat-stream) reads
+      // to branch on Node version, crashing without it since undefined
+      // has no .slice().
+      window.process = {
+        env: { NODE_ENV: 'production' },
+        argv: [],
+        version: 'v22.12.0',
+        versions: { node: '22.12.0' },
+        exit: function () {},
+      }
+      // sparqljs's Jison-generated parser ends with a "run as CLI if this
+      // is the entry module" guard (`require.main === module && ...`),
+      // dead code in a browser but still evaluated eagerly at import time.
+      // esbuild renames `require` to its own `__require` shim during dev
+      // pre-bundling, but Rollup's production build leaves this bare
+      // reference untouched, throwing ReferenceError before it even
+      // reaches the process.argv/exit calls the polyfill above covers.
+      window.require = { main: undefined }
+    </script>
+    <script type="module" src="/src/index.jsx"></script>
+  </body>
+</html>

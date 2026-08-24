@@ -10,11 +10,18 @@ import styles from './ParsingOptions.module.scss'
 import { BsArrowRepeat } from 'react-icons/bs'
 import { get } from 'lodash'
 import { fetchData as fetchDataFromUrl } from '../DataLoader/loaders/UrlFetch'
-import { fetchData as fetchDataFromSparql } from '../DataLoader/loaders/SparqlFetch'
 
 const dataRefreshWorkers = {
-  "url": fetchDataFromUrl,
-  "sparql": fetchDataFromSparql
+  "url": async (source) => fetchDataFromUrl(source),
+  // dynamic import: SparqlFetch pulls in sparqljs, sparql-http-client and
+  // lit-html, sizeable enough to keep out of the main bundle. DataLoader.js
+  // already lazy-loads the component itself for the same reason; this was
+  // the other, static import path that kept forcing it back into the main
+  // chunk regardless.
+  "sparql": async (source) => {
+    const { fetchData } = await import('../DataLoader/loaders/SparqlFetch')
+    return fetchData(source)
+  },
 }
 
 const dataRefreshCaptions = {

@@ -65,7 +65,7 @@ const ChartPreviewWithOptions = ({
   ])
 
   return (
-    <Row>
+    <Row className="flex-nowrap">
         <ChartOptions
           chart={chart}
           dataset={dataset}

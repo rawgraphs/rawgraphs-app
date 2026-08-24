@@ -39,10 +39,19 @@ const DEFAULT_PREFIXES = {
   hint: 'http://www.bigdata.com/queryHints#',
 }
 
+// sparql-http-client defaults to nodeify-fetch, whose browser patch wraps
+// a real streaming Response's body in a getReader()-based reader but then
+// forwards .json()/.text() calls to the original (now stream-locked)
+// Response, throwing "body stream is locked". Passing the browser's own
+// native fetch skips that broken patching entirely.
+const nativeFetch = window.fetch.bind(window)
+nativeFetch.Headers = window.Headers
+
 export async function fetchData(source) {
   const sparqlGenerator = new Generator()
   const client = new SimpleClient({
     endpointUrl: source.url,
+    fetch: nativeFetch,
   })
   const response = await client.query.select(
     sparqlGenerator.stringify(source.query)
