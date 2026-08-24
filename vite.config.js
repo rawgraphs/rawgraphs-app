@@ -19,6 +19,16 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    fs: {
+      // rawgraphs-core/rawgraphs-charts are symlinked in from sibling repo
+      // directories (local dev linking, see node_modules/@rawgraphs/*) for
+      // testing unreleased changes. Vite's default fs.allow only covers
+      // this project's own root, so without this it can serve the linked
+      // package's own entry file but fails to resolve THAT file's further
+      // imports of other symlinked packages (e.g. rawgraphs-charts
+      // importing rawgraphs-core) with "Failed to resolve import".
+      allow: ['..'],
+    },
   },
   build: {
     outDir: 'build',

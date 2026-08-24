@@ -24,7 +24,7 @@
     "react": "^18.3.1",
     "react-bootstrap": "^1.5.0",
     "react-color": "2.17.3",
-    "react-cookie-consent": "^9.0.0",
+    "react-cookie-consent": "^10.0.2",
     "react-data-grid": "7.0.0-canary.16",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
