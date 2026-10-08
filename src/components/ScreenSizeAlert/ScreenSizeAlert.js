@@ -42,7 +42,7 @@ function ScreenSizeAlert() {
       </Modal.Header>
       <Modal.Body>
         <p className="big">
-          RAWGraphs 2.0 is designed for {size.width >= 768 ? 'slightly ' : ' '}
+          RAWGraphs 2.1 is designed for {size.width >= 768 ? 'slightly ' : ' '}
           bigger screens!
         </p>
         <p>
