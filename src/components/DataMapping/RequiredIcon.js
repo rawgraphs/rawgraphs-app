@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReactComponent as Asterisk } from './asterisk.svg'
+import Asterisk from './asterisk.svg?react'
 import { Tooltip, OverlayTrigger } from 'react-bootstrap'
 
 function RequiredIcon() {

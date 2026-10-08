@@ -29,7 +29,9 @@ const obj = {
     try {
       const vizData = viz._getVizData()
       return vizData
-    } catch (err) {}
+    } catch (err) {
+      console.error(err)
+    }
   },
 }
 

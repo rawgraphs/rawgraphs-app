@@ -35,7 +35,7 @@ export default function ChartDimensionItem({
     accept: ['column', 'card'],
     collect: (monitor) => {
       return {
-        isOver: monitor.isOver() && monitor.getItem().type === 'column',
+        isOver: monitor.isOver() && monitor.getItemType() === 'column',
       }
     },
     hover(item, monitor) {
@@ -104,7 +104,7 @@ export default function ChartDimensionItem({
     },
     drop: (item, monitor) => {
       if (!dimension.multiple) {
-        if (item.type === 'column') {
+        if (monitor.getItemType() === 'column') {
           onChangeDimension(index, item.id)
         } else {
           replaceDimension(item.dimensionId, dimension.id, item.index, index)
@@ -114,7 +114,8 @@ export default function ChartDimensionItem({
   })
 
   const [{ isDragging }, drag] = useDrag({
-    item: { type: 'card', index, id: columnId, dimensionId: dimension.id },
+    type: 'card',
+    item: { index, id: columnId, dimensionId: dimension.id },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),

@@ -1,3 +1,8 @@
-$font-prefix: '../../..' !default;
+// Root-absolute path into public/ (see public/fonts/IBM-Plex-Mono), not a
+// relative path: Vite's Sass url() rebasing can't reliably resolve a
+// relative path across this file's legacy @import chain back to the
+// vendored font files' real location, so the font files are served as
+// static public/ assets instead of being bundled.
+$font-prefix: '/fonts' !default;
 @import 'fonts/IBM-Plex/scss/mono/regular/index';
-@import 'fonts/Inter\ Web/inter.css';
+@import 'fonts/Inter-Web/inter.css';
